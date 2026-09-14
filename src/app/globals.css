@@ -1,26 +1,57 @@
 @import "tailwindcss";
+@import "../styles/types.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #12141a;
+  --bg-raised: #1a1d26;
+  --bg-sunken: #0e1014;
+  --line: #2a2e38;
+  --ink: #f4f1ea;
+  --muted: #9aa0ad;
+  --mon-dominant: #1a1d26;
+  --mon-vibrant: #7ac74c;
+  --mon-muted: #2a2e38;
+  --mon-ink: #f4f1ea;
+  --mon-wash: #3f8f5b;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-raised: var(--bg-raised);
+  --color-sunken: var(--bg-sunken);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-display);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--bg);
+  color: var(--ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100dvh;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, color-mix(in srgb, var(--mon-wash) 22%, transparent), transparent 55%),
+    radial-gradient(900px 500px at 100% 0%, color-mix(in srgb, var(--mon-vibrant) 10%, transparent), transparent 50%),
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--mon-vibrant) 40%, #fff);
+  color: #12141a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

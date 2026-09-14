@@ -1,0 +1,182 @@
+[
+  {
+    "slug": "incineroar",
+    "job": "Intimidate plus Fake Out. A lead that buys the next send.",
+    "role": "support",
+    "partners": ["whimsicott", "rillaboom", "garchomp"],
+    "checks": ["water", "ground", "fighting"],
+    "checkedBy": ["rillaboom", "pelipper", "archaludon"],
+    "sampleSp": { "hp": 20, "atk": 4, "def": 12, "spa": 0, "spd": 20, "spe": 10 },
+    "kit": "Fake Out, Knock Off, Flare Blitz, Parting Shot"
+  },
+  {
+    "slug": "rillaboom",
+    "job": "Grassy Terrain and Fake Out. The new M-C problem you pack Fire for.",
+    "role": "support",
+    "partners": ["incineroar", "sneasler", "kingambit"],
+    "checks": ["fire", "flying", "ice"],
+    "checkedBy": ["charizard-mega-y", "talonflame", "cinderace"],
+    "sampleSp": { "hp": 12, "atk": 32, "def": 4, "spa": 0, "spd": 4, "spe": 14 },
+    "kit": "Fake Out, Grassy Glide, Wood Hammer, U-turn"
+  },
+  {
+    "slug": "kingambit",
+    "job": "Supreme Overlord wallbreaker. It gets stronger as partners fall.",
+    "role": "breaker",
+    "partners": ["incineroar", "gholdengo", "farigiraf"],
+    "checks": ["fighting", "fire", "ground"],
+    "checkedBy": ["sneasler", "charizard-mega-y", "quaquaval"],
+    "sampleSp": { "hp": 20, "atk": 32, "def": 4, "spa": 0, "spd": 4, "spe": 6 },
+    "kit": "Kowtow Cleave, Sucker Punch, Swords Dance, Protect"
+  },
+  {
+    "slug": "garchomp",
+    "job": "Fast Ground and Dragon pressure. A staple you plan the preview around.",
+    "role": "breaker",
+    "partners": ["incineroar", "sylveon", "charizard-mega-y"],
+    "checks": ["ice", "fairy", "dragon"],
+    "checkedBy": ["azumarill", "baxcalibur", "sylveon"],
+    "sampleSp": { "hp": 4, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 30 },
+    "kit": "Earthquake, Dragon Claw, Protect, Swords Dance"
+  },
+  {
+    "slug": "sneasler",
+    "job": "Unburden speed after the berry. It races the format.",
+    "role": "speed",
+    "partners": ["rillaboom", "whimsicott", "indeedee-female"],
+    "checks": ["psychic", "flying", "fairy"],
+    "checkedBy": ["gholdengo", "corviknight", "tinkaton"],
+    "sampleSp": { "hp": 4, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 30 },
+    "kit": "Dire Claw, Close Combat, Protect, Fake Out"
+  },
+  {
+    "slug": "salamence-mega",
+    "job": "Your Mega win condition. Aerilate Flying hits become the game.",
+    "role": "mega",
+    "partners": ["incineroar", "rillaboom", "whimsicott"],
+    "checks": ["ice", "rock", "fairy"],
+    "checkedBy": ["azumarill", "archaludon", "tinkaton"],
+    "sampleSp": { "hp": 4, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 30 },
+    "kit": "Double-Edge, Earthquake, Dragon Dance, Protect"
+  },
+  {
+    "slug": "whimsicott",
+    "job": "Tailwind and Prankster. It sets the clock for the other five.",
+    "role": "speed",
+    "partners": ["incineroar", "garchomp", "charizard-mega-y"],
+    "checks": ["steel", "poison", "fire"],
+    "checkedBy": ["heatran", "tinkaton", "gholdengo"],
+    "sampleSp": { "hp": 20, "atk": 0, "def": 4, "spa": 4, "spd": 12, "spe": 26 },
+    "kit": "Tailwind, Moonblast, Encore, Protect"
+  },
+  {
+    "slug": "pelipper",
+    "job": "Drizzle. If you want rain, this is the weather piece.",
+    "role": "weather",
+    "partners": ["basculegion-male", "archaludon", "swampert"],
+    "checks": ["electric", "rock"],
+    "checkedBy": ["raichu", "archaludon", "rillaboom"],
+    "sampleSp": { "hp": 20, "atk": 0, "def": 4, "spa": 20, "spd": 12, "spe": 10 },
+    "kit": "Hurricane, Weather Ball, U-turn, Roost"
+  },
+  {
+    "slug": "indeedee-female",
+    "job": "Psychic Surge. Terrain plus Healing Wish is how this three stays in the fight.",
+    "role": "support",
+    "partners": ["armarouge", "hatterene", "farigiraf"],
+    "checks": ["ghost", "dark", "bug"],
+    "checkedBy": ["kingambit", "sneasler", "dragapult"],
+    "sampleSp": { "hp": 24, "atk": 0, "def": 12, "spa": 4, "spd": 20, "spe": 6 },
+    "kit": "Psychic, Healing Wish, Thunder Wave, Calm Mind"
+  },
+  {
+    "slug": "gholdengo",
+    "job": "Good as Gold. Status bounce and a Steel that ignores a lot of tricks.",
+    "role": "breaker",
+    "partners": ["incineroar", "kingambit", "farigiraf"],
+    "checks": ["fire", "ground", "dark"],
+    "checkedBy": ["incineroar", "garchomp", "tyranitar"],
+    "sampleSp": { "hp": 12, "atk": 0, "def": 4, "spa": 32, "spd": 4, "spe": 14 },
+    "kit": "Make It Rain, Shadow Ball, Nasty Plot, Protect"
+  },
+  {
+    "slug": "charizard-mega-y",
+    "job": "Drought Mega. Sun plus Heat Wave is still a preview problem.",
+    "role": "mega",
+    "partners": ["incineroar", "garchomp", "whimsicott"],
+    "checks": ["water", "rock", "electric"],
+    "checkedBy": ["pelipper", "archaludon", "raichu"],
+    "sampleSp": { "hp": 4, "atk": 0, "def": 0, "spa": 32, "spd": 0, "spe": 30 },
+    "kit": "Heat Wave, Solar Beam, Protect, Ancient Power"
+  },
+  {
+    "slug": "sylveon",
+    "job": "Pixelate Hyper Voice. It answers Dragons without being a Dragon.",
+    "role": "breaker",
+    "partners": ["garchomp", "incineroar", "whimsicott"],
+    "checks": ["steel", "poison"],
+    "checkedBy": ["gholdengo", "tinkaton", "toxapex"],
+    "sampleSp": { "hp": 20, "atk": 0, "def": 4, "spa": 32, "spd": 4, "spe": 6 },
+    "kit": "Hyper Voice, Protect, Quick Attack, Calm Mind"
+  },
+  {
+    "slug": "archaludon",
+    "job": "Stamina Steel that loves rain. Electro Shot charges itself.",
+    "role": "breaker",
+    "partners": ["pelipper", "incineroar", "rillaboom"],
+    "checks": ["fighting", "ground", "fire"],
+    "checkedBy": ["garchomp", "sneasler", "incineroar"],
+    "sampleSp": { "hp": 12, "atk": 0, "def": 4, "spa": 32, "spd": 4, "spe": 14 },
+    "kit": "Electro Shot, Draco Meteor, Flash Cannon, Protect"
+  },
+  {
+    "slug": "farigiraf",
+    "job": "Armor Tail. It shuts off Fake Out and priority into the slot.",
+    "role": "support",
+    "partners": ["kingambit", "gholdengo", "indeedee-female"],
+    "checks": ["bug", "dark", "ghost"],
+    "checkedBy": ["kingambit", "sneasler", "dragapult"],
+    "sampleSp": { "hp": 24, "atk": 0, "def": 12, "spa": 20, "spd": 8, "spe": 2 },
+    "kit": "Trick Room, Psychic, Dazzling Gleam, Thunder Wave"
+  },
+  {
+    "slug": "sinistcha",
+    "job": "Hospitality healer. It keeps a win condition alive one more turn.",
+    "role": "support",
+    "partners": ["garchomp", "kingambit", "charizard-mega-y"],
+    "checks": ["fire", "ghost", "dark"],
+    "checkedBy": ["gholdengo", "tyranitar", "dragapult"],
+    "sampleSp": { "hp": 24, "atk": 0, "def": 12, "spa": 16, "spd": 12, "spe": 2 },
+    "kit": "Matcha Gotcha, Strength Sap, Hex, Recover"
+  },
+  {
+    "slug": "basculegion-male",
+    "job": "Swift Swim attacker in rain. It asks the preview if you packed Electric.",
+    "role": "breaker",
+    "partners": ["pelipper", "archaludon", "politoed"],
+    "checks": ["electric", "grass", "ghost"],
+    "checkedBy": ["raichu", "rillaboom", "gholdengo"],
+    "sampleSp": { "hp": 4, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 30 },
+    "kit": "Wave Crash, Last Respects, Aqua Jet, Protect"
+  },
+  {
+    "slug": "raichu",
+    "job": "Fast Electric. A clean answer to rain and Flying.",
+    "role": "speed",
+    "partners": ["whimsicott", "farigiraf", "incineroar"],
+    "checks": ["ground"],
+    "checkedBy": ["garchomp", "clodsire", "excadrill"],
+    "sampleSp": { "hp": 4, "atk": 0, "def": 0, "spa": 32, "spd": 0, "spe": 30 },
+    "kit": "Thunderbolt, Fake Out, Nuzzle, Protect"
+  },
+  {
+    "slug": "cinderace",
+    "job": "Libero attacker new to M-C. It picks a type and commits.",
+    "role": "breaker",
+    "partners": ["whimsicott", "incineroar", "farigiraf"],
+    "checks": ["water", "ground", "rock"],
+    "checkedBy": ["pelipper", "garchomp", "archaludon"],
+    "sampleSp": { "hp": 4, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 30 },
+    "kit": "Pyro Ball, High Jump Kick, Sucker Punch, Protect"
+  }
+]

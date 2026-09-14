@@ -4,14 +4,15 @@ import Link from "next/link";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
-import { TypeBadge } from "@/components/pokemon/TypeBadge";
 import { ROLE_LABEL, roleHref } from "@/content/roles";
 import { ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
 import { getLiteracyRole } from "@/content/literacy-roles";
 import { playLines, type TeamManual } from "@/content/manuals";
 import { ManualBriefing } from "@/components/manuals/ManualBriefing";
 import { ManualToc } from "@/components/manuals/ManualToc";
+import { ManualPlan } from "@/components/manuals/ManualPlan";
 import { ManualBranches } from "@/components/manuals/ManualBranches";
+import { SlotMatchups } from "@/components/manuals/SlotMatchups";
 
 export function ManualView({
   manual,
@@ -55,6 +56,8 @@ export function ManualView({
       ) : null}
       {manual.meta ? <p className="mt-4 max-w-[52ch] text-sm text-muted">{manual.meta}</p> : null}
 
+      {manual.plan?.length ? <ManualPlan plan={manual.plan} /> : null}
+
       <section id="three" className="mt-16 scroll-mt-28 md:scroll-mt-36">
         <h2 className="text-2xl font-semibold tracking-tight">The three</h2>
         <ol className="mt-6 space-y-6">
@@ -89,13 +92,7 @@ export function ManualView({
                       <p className="mt-1 text-xl font-semibold">{slot.title || "Empty slot"}</p>
                     )}
                     <p className="mt-0.5 text-sm font-medium">{slot.title}</p>
-                    {p ? (
-                      <div className="mt-2 flex flex-wrap gap-1">
-                        {p.types.map((t) => (
-                          <TypeBadge key={t} type={t} size="sm" />
-                        ))}
-                      </div>
-                    ) : null}
+                    {p ? <SlotMatchups types={p.types} /> : null}
                     {slot.ability || slot.item ? (
                       <p className="mt-2 text-xs text-muted">
                         {slot.ability ? slot.ability : null}
@@ -111,9 +108,17 @@ export function ManualView({
                   {slot.moves
                     .filter((m) => m.name)
                     .map((move) => (
-                      <li key={move.name} className="grid gap-1 py-2 sm:grid-cols-[9rem_1fr] sm:gap-4">
-                        <p className="font-medium">{move.name}</p>
-                        <p className="text-sm text-muted">{move.why}</p>
+                      <li key={move.name} className="py-2">
+                        <div className="grid gap-1 sm:grid-cols-[9rem_1fr] sm:gap-4">
+                          <p className="font-medium">{move.name}</p>
+                          <p className="text-sm text-muted">{move.why}</p>
+                        </div>
+                        {move.alts?.filter((a) => a.name).map((alt) => (
+                          <p key={alt.name} className="mt-1.5 text-sm text-muted sm:pl-[calc(9rem+1rem)]">
+                            <span className="font-medium text-ink">Swap {alt.name}. </span>
+                            {alt.why}
+                          </p>
+                        ))}
                       </li>
                     ))}
                 </ul>

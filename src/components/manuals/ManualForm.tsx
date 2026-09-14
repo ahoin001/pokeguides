@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
-import { TypeBadge } from "@/components/pokemon/TypeBadge";
+import { SlotMatchups } from "@/components/manuals/SlotMatchups";
 import { PokemonPicker } from "@/components/pokemon/PokemonPicker";
 import { Button } from "@/components/ui/Button";
 import { ARCHETYPE_IDS } from "@/types/pokemon";
@@ -16,6 +16,7 @@ import { LITERACY_ROLES } from "@/content/literacy-roles";
 import {
   emptySlot,
   type ManualBranch,
+  type ManualPlanBeat,
   type SlotManual,
   type TeamManual,
 } from "@/content/manuals";
@@ -111,6 +112,8 @@ export function ManualForm({
       />
       <SwitchList items={draft.switches ?? [{ into: "", send: "" }]} onChange={(switches) => commit({ ...draft, switches })} />
 
+      <PlanList items={draft.plan ?? []} onChange={(plan) => commit({ ...draft, plan })} />
+
       <h2 className="mt-16 text-2xl font-semibold tracking-tight">Slots</h2>
       <div className="mt-6 space-y-8">
         {draft.slots.map((slot, i) => {
@@ -128,11 +131,7 @@ export function ManualForm({
                   {p ? (
                     <>
                       <p className="font-semibold">{p.name}</p>
-                      <div className="mt-1 flex gap-1">
-                        {p.types.map((t) => (
-                          <TypeBadge key={t} type={t} size="sm" />
-                        ))}
-                      </div>
+                      <SlotMatchups types={p.types} />
                     </>
                   ) : (
                     <p className="text-muted">No Pokémon yet</p>
@@ -207,29 +206,87 @@ export function ManualForm({
                 </div>
               </div>
               <p className="mt-5 text-sm font-medium">Best kit</p>
-              <div className="mt-2 space-y-3">
+              <div className="mt-2 space-y-4">
                 {(slot.moves.length ? slot.moves : emptySlot().moves).map((move, mi) => (
-                  <div key={mi} className="grid gap-2 sm:grid-cols-2">
-                    <input
-                      className={inputClass}
-                      placeholder="Move"
-                      value={move.name}
-                      onChange={(e) => {
+                  <div key={mi} className="space-y-2 rounded-2xl bg-white/5 p-3">
+                    <div className="grid gap-2 sm:grid-cols-2">
+                      <input
+                        className={inputClass}
+                        placeholder="Move"
+                        value={move.name}
+                        onChange={(e) => {
+                          const moves = [...slot.moves];
+                          moves[mi] = { ...moves[mi], name: e.target.value };
+                          updateSlot(i, { moves });
+                        }}
+                      />
+                      <input
+                        className={inputClass}
+                        placeholder="Why"
+                        value={move.why}
+                        onChange={(e) => {
+                          const moves = [...slot.moves];
+                          moves[mi] = { ...moves[mi], why: e.target.value };
+                          updateSlot(i, { moves });
+                        }}
+                      />
+                    </div>
+                    {(move.alts ?? []).map((alt, ai) => (
+                      <div key={ai} className="grid gap-2 sm:grid-cols-2">
+                        <input
+                          className={inputClass}
+                          placeholder="Swap"
+                          value={alt.name}
+                          onChange={(e) => {
+                            const moves = [...slot.moves];
+                            const alts = [...(moves[mi].alts ?? [])];
+                            alts[ai] = { ...alts[ai], name: e.target.value };
+                            moves[mi] = { ...moves[mi], alts };
+                            updateSlot(i, { moves });
+                          }}
+                        />
+                        <div className="flex gap-2">
+                          <input
+                            className={inputClass}
+                            placeholder="When to swap"
+                            value={alt.why}
+                            onChange={(e) => {
+                              const moves = [...slot.moves];
+                              const alts = [...(moves[mi].alts ?? [])];
+                              alts[ai] = { ...alts[ai], why: e.target.value };
+                              moves[mi] = { ...moves[mi], alts };
+                              updateSlot(i, { moves });
+                            }}
+                          />
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            onClick={() => {
+                              const moves = [...slot.moves];
+                              moves[mi] = {
+                                ...moves[mi],
+                                alts: (moves[mi].alts ?? []).filter((_, j) => j !== ai),
+                              };
+                              updateSlot(i, { moves });
+                            }}
+                          >
+                            Remove
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      className="text-xs"
+                      onClick={() => {
                         const moves = [...slot.moves];
-                        moves[mi] = { ...moves[mi], name: e.target.value };
+                        moves[mi] = { ...moves[mi], alts: [...(moves[mi].alts ?? []), { name: "", why: "" }] };
                         updateSlot(i, { moves });
                       }}
-                    />
-                    <input
-                      className={inputClass}
-                      placeholder="Why"
-                      value={move.why}
-                      onChange={(e) => {
-                        const moves = [...slot.moves];
-                        moves[mi] = { ...moves[mi], why: e.target.value };
-                        updateSlot(i, { moves });
-                      }}
-                    />
+                    >
+                      Add swap
+                    </Button>
                   </div>
                 ))}
               </div>
@@ -274,7 +331,14 @@ export function ManualForm({
           <ul className="mt-4 space-y-4">
             {phase.branches.map((branch, bi) => (
               <li key={bi} className="rounded-2xl bg-white/5 p-4">
-                <p className="text-xs uppercase tracking-wide text-muted">If</p>
+                <p className="text-xs uppercase tracking-wide text-muted">On field (slug)</p>
+                <input
+                  className={`mt-2 ${inputClass}`}
+                  value={branch.out ?? ""}
+                  placeholder="whimsicott"
+                  onChange={(e) => updateBranch(pi, bi, { out: e.target.value || undefined })}
+                />
+                <p className="mt-3 text-xs uppercase tracking-wide text-muted">If</p>
                 <textarea
                   className={`mt-2 ${areaClass}`}
                   value={branch.when}
@@ -449,6 +513,64 @@ function SwitchList({
       </ul>
       <Button type="button" variant="line" className="mt-3" onClick={() => onChange([...rows, { into: "", send: "" }])}>
         Add switch
+      </Button>
+    </section>
+  );
+}
+
+function PlanList({
+  items,
+  onChange,
+}: {
+  items: ManualPlanBeat[];
+  onChange: (items: ManualPlanBeat[]) => void;
+}) {
+  const rows = items.length ? items : [{ title: "", goal: "", play: "" }];
+  return (
+    <section className="mt-16">
+      <h2 className="text-2xl font-semibold tracking-tight">How a game goes</h2>
+      <p className="mt-1 text-xs text-muted">Three beats. Goal, the play, then what happens next.</p>
+      <ul className="mt-4 space-y-4">
+        {rows.map((item, i) => (
+          <li key={i} className="rounded-3xl border border-line p-4">
+            <p className="text-xs uppercase tracking-wide text-muted">Beat {i + 1}</p>
+            <input
+              className={`mt-2 ${inputClass}`}
+              placeholder="Title — Clock"
+              value={item.title}
+              onChange={(e) => onChange(rows.map((x, j) => (j === i ? { ...x, title: e.target.value } : x)))}
+            />
+            <input
+              className={`mt-2 ${inputClass}`}
+              placeholder="Goal"
+              value={item.goal}
+              onChange={(e) => onChange(rows.map((x, j) => (j === i ? { ...x, goal: e.target.value } : x)))}
+            />
+            <textarea
+              className={`mt-2 ${areaClass}`}
+              placeholder="The play"
+              value={item.play}
+              onChange={(e) => onChange(rows.map((x, j) => (j === i ? { ...x, play: e.target.value } : x)))}
+            />
+            <textarea
+              className={`mt-2 ${areaClass}`}
+              placeholder="Then…"
+              value={item.next ?? ""}
+              onChange={(e) => onChange(rows.map((x, j) => (j === i ? { ...x, next: e.target.value } : x)))}
+            />
+            <Button type="button" variant="ghost" className="mt-2" onClick={() => onChange(rows.filter((_, j) => j !== i))}>
+              Remove
+            </Button>
+          </li>
+        ))}
+      </ul>
+      <Button
+        type="button"
+        variant="line"
+        className="mt-4"
+        onClick={() => onChange([...rows, { title: "", goal: "", play: "" }])}
+      >
+        Add beat
       </Button>
     </section>
   );

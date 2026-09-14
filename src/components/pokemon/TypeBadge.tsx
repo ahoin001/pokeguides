@@ -7,9 +7,11 @@ const INK_DARK: TypeId[] = ["electric", "ice", "ground", "normal", "bug", "steel
 export function TypeBadge({
   type,
   size = "md",
+  mark,
 }: {
   type: TypeId;
   size?: "sm" | "md";
+  mark?: string;
 }) {
   const ink = INK_DARK.includes(type) ? "text-[#1a1a1a]" : "text-white";
   return (
@@ -27,6 +29,7 @@ export function TypeBadge({
         className={size === "sm" ? "h-3 w-3" : "h-3.5 w-3.5"}
       />
       {TYPE_LABEL[type]}
+      {mark ? <span className="font-mono text-[9px] font-bold leading-none opacity-90">{mark}</span> : null}
     </span>
   );
 }

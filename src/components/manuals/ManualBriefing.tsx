@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getPokemon } from "@/lib/catalog/load";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { LoadSampleSix } from "@/components/learn/LoadSampleSix";
+import { SlotMatchups } from "@/components/manuals/SlotMatchups";
 import type { TeamManual } from "@/content/manuals";
 
 function ChipRow({ label, items }: { label: string; items: string[] }) {
@@ -41,6 +42,7 @@ export function ManualBriefing({ manual }: { manual: TeamManual }) {
                   <p className="mt-0.5 truncate text-xs text-muted">{slot.title}</p>
                 </div>
               </div>
+              {p ? <SlotMatchups types={p.types} /> : null}
               {slot.role ? <p className="mt-2 text-sm text-muted">{slot.role}</p> : null}
             </li>
           );

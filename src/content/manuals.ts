@@ -1,8 +1,14 @@
 import type { ArchetypeId, LiteracyRoleId, RoleId } from "@/types/pokemon";
 
+export type MoveAlt = {
+  name: string;
+  why: string;
+};
+
 export type MoveNote = {
   name: string;
   why: string;
+  alts?: MoveAlt[];
 };
 
 export type SlotManual = {
@@ -22,6 +28,8 @@ export type ManualBranch = {
   when: string;
   then: string;
   why?: string;
+  /** Catalog slug of who is already in the slot. Groups the playbook. */
+  out?: string;
 };
 
 export type ManualPhase = {
@@ -36,6 +44,13 @@ export type ManualSwitch = {
   send: string;
 };
 
+export type ManualPlanBeat = {
+  title: string;
+  goal: string;
+  play: string;
+  next?: string;
+};
+
 export type TeamManual = {
   id: string;
   title: string;
@@ -47,6 +62,7 @@ export type TeamManual = {
   press?: string[];
   refuse?: string[];
   switches?: ManualSwitch[];
+  plan?: ManualPlanBeat[];
   slots: SlotManual[];
   phases: ManualPhase[];
   loops: { title: string; body: string }[];
@@ -66,21 +82,41 @@ export const CANONICAL_MANUALS: TeamManual[] = [
   {
     id: "balance-whimsicott-corviknight-garchomp",
     title: "Honest Balance: Whimsicott, Corviknight, Garchomp",
-    lede: "Prankster clock, Steel U-turn, Garchomp cleans. One send. Fast U-turn is not a free switch.",
+    lede: "Cott clocks, Corvi soaks, Garchomp cleans. Tailwind is not Fake Out. Cott U-turn is not a free Garchomp.",
     philosophy:
-      "No Intimidate, no Fake Out. Whimsicott owns Speed. Corviknight eats the hit Garchomp cannot, then leaves only when the incoming name wants that click. Garchomp stays in the back until the slot is safe.",
+      "Cott leads unless it dies on send. Prankster Tailwind is +1 — Fake Out still goes first. After the clock you switch; Cott is too fast for a safe U-turn. Corvi is the physical shield and the Ice / Fairy / Poison patch. Garchomp cleans while Tailwind lasts.",
     archetype: "balance",
     slugs: ["whimsicott", "corviknight", "garchomp"],
     meta: "Physical and Fighting cores. You have no Fire STAB — Brave Bird is the Grass answer.",
     press: ["Physical leads", "Fighting cores", "Fairy into Corvi", "Dragons that lose Tailwind"],
-    refuse: ["Special Ice on Corvi", "Fire into Cott or Corvi", "Fast U-turn into Ice", "Encore on Dark"],
+    refuse: ["Poison into Cott", "Fire into Cott or Corvi", "Fast U-turn into Ice", "Encore on Dark", "Cott U-turn into Garchomp"],
     switches: [
-      { into: "Ice", send: "Corviknight — neutral, not a resist" },
-      { into: "Fairy", send: "Corviknight" },
-      { into: "Fire / Electric", send: "Garchomp" },
-      { into: "Water", send: "Whimsicott" },
-      { into: "Poison", send: "Corviknight (Steel immune)" },
+      { into: "Ice", send: "Corviknight — 1× Ice, not a resist. Garchomp is 4×." },
+      { into: "Fairy", send: "Corviknight (or stay on Cott — Fairy immune)" },
+      { into: "Fire / Electric", send: "Garchomp. Cott and Corvi are both 2× Fire." },
+      { into: "Water", send: "Cott or Corvi resist. Garchomp is 1×, not 2×." },
+      { into: "Poison", send: "Corviknight (Steel immune). Cott is 4×." },
       { into: "Ground", send: "Corviknight (Flying immune)" },
+    ],
+    plan: [
+      {
+        title: "Clock",
+        goal: "Take Speed before they dictate",
+        play: "Lead Whimsicott. Click Tailwind. Prankster is +1, not +3 — Fake Out still flinches you first. Dark does not stop Tailwind. Encore and Taunt still fail on Dark.",
+        next: "Switch out. Do not U-turn. 116 Speed plus Tailwind means you moved first, then they hit whoever came in.",
+      },
+      {
+        title: "Shield",
+        goal: "Live the physical, Ice, Fairy, or Poison",
+        play: "Default: Corvi comes in after the clock. Exception: if Cott cannot live turn 1 — Poison 4×, Fire, Fake Out into a KO — send Corvi first and clock later.",
+        next: "Absorb the hit. Slow U-turn into Garchomp only if you are slower or they switched. Fast U-turn under Tailwind is Ice on Garchomp.",
+      },
+      {
+        title: "Clean",
+        goal: "End it before Tailwind dies (four turns including the click)",
+        play: "Earthquake grounded non-Grass. Stone Edge or Dragon on Flying — not Rock Slide, not spam EQ into birds. Swords Dance if they Protect.",
+        next: "Protect is a scout for Ice/Fairy, not a stall button. If the timer is dying, click the KO.",
+      },
     ],
     slots: [
       {
@@ -88,36 +124,58 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         title: "The Time-Bender",
         job: "speed",
         literacy: "setter",
-        role: "Priority clock. Tailwind or Encore, then leave.",
+        role: "Default lead. Tailwind, Encore, Moonblast, or leave.",
         ability: "Prankster",
         item: "Focus Sash or Covert Cloak",
         moves: [
-          { name: "Tailwind", why: "Hits your side — still works vs Dark. The click counts as turn one of four." },
-          { name: "Encore", why: "Locks Protect or setup. Fails on Dark." },
+          { name: "Tailwind", why: "Hits your side — still works vs Dark. The click is turn one of four. Prankster +1 loses to Fake Out +3." },
+          {
+            name: "Encore",
+            why: "Locks Protect or setup. Fails on Dark.",
+            alts: [
+              { name: "Substitute", why: "If they KO you on the Encore turn, Sub first, then Tailwind behind it." },
+              { name: "Thunder Wave", why: "Lasting Speed drop after Tailwind dies. Prankster T-Wave fails on Dark. Ground is immune — Stun Spore is the Ground para." },
+            ],
+          },
           { name: "Moonblast", why: "STAB into Fighting and Dragon. The click when Encore is illegal." },
-          { name: "Taunt or Substitute", why: "Taunt shuts Trick Room, fails on Dark. Sub still works." },
+          {
+            name: "Taunt",
+            why: "Shuts Trick Room. Fails on Dark.",
+            alts: [{ name: "Substitute", why: "Same slot if you already locked Encore and need the puppet more than the room shut." }],
+          },
         ],
         objective: "Win the Speed race or lock a waste, then get out.",
         howToPlay:
-          "Lead only if it lives the send and Garchomp needs the race.\nTailwind if the race matters. Encore if they Protect or set up and are not Dark.\nDo not stay to chip. Dead Cott means Speed is Garchomp's 102.",
+          "Lead unless Poison or Fire would KO you turn one — then Corvi.\nTailwind if Corvi or Garchomp need the race. Encore Protect/setup if not Dark. Moonblast Fighting and Dragon.\nAfter Tailwind, switch. Cott U-turn is a fast pivot into their attack.",
       },
       {
         slug: "corviknight",
         title: "The Armor",
         job: "support",
         literacy: "pivot",
-        role: "Takes the hit, Roosts, or slow U-turns.",
+        role: "Default second send. Emergency lead if Cott cannot live.",
         ability: "Mirror Armor",
         item: "Rocky Helmet or Leftovers",
         moves: [
           { name: "U-turn", why: "If you outspeed, they hit whoever came in. Slow U-turn is the safe hand-off." },
           { name: "Brave Bird", why: "Grass answer. Recoil is real — do not farm it." },
-          { name: "Roost", why: "Stay against a locked physical resist. The wall can win 3v3." },
-          { name: "Iron Head or Body Press", why: "Steel STAB / Iron Defense wincon. Pick one kit." },
+          {
+            name: "Roost",
+            why: "Stay against a locked physical resist. The wall can win 3v3.",
+            alts: [
+              { name: "Iron Defense", why: "Only with Body Press. Two stages doubles Press. You are now the wincon." },
+              { name: "Taunt", why: "Works on Dark — Cott's Taunt does not. For healers and setup that live on Corvi." },
+            ],
+          },
+          {
+            name: "Body Press",
+            why: "Defense-based Fighting. The wincon click into Kingambit and Dark.",
+            alts: [{ name: "Iron Head", why: "Steel STAB if you do not want the Press kit." }],
+          },
         ],
-        objective: "Absorb Ice, Fairy, Fighting. Leave only when the next name wants in.",
+        objective: "Absorb Ice, Fairy, Fighting, Poison. Leave only when Garchomp wants in.",
         howToPlay:
-          "Usual lead into physical or Fairy.\nMirror Armor bounces Intimidate — keep it vs Incineroar.\nNever U-turn into Garchomp while faster than Ice.",
+          "Come in after Cott's clock, or lead if Cott dies on send.\nMirror Armor bounces Intimidate — keep it vs Incineroar.\nNever U-turn into Garchomp while faster than Ice.",
       },
       {
         slug: "garchomp",
@@ -129,53 +187,74 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         item: "Loaded Dice, Life Orb, or Yache Berry",
         moves: [
           { name: "Earthquake", why: "One target. Zero on Flying/Levitate. Grass resists it." },
-          { name: "Scale Shot or Dragon Claw", why: "Birds and Levitate. Scale Shot is backup Speed if Cott dies." },
-          { name: "Stone Edge", why: "Flying coverage. Still one Pokémon." },
-          { name: "Swords Dance", why: "The Protect branch. Do not slam the shield." },
+          {
+            name: "Scale Shot or Dragon Claw",
+            why: "Birds and Levitate. Scale Shot is backup Speed if Cott dies.",
+            alts: [{ name: "Outrage", why: "The nuke if Fairy is gone. You lock. A Fairy switch is a lost Garchomp." }],
+          },
+          { name: "Stone Edge", why: "Flying coverage. Singles — not Rock Slide." },
+          {
+            name: "Swords Dance",
+            why: "The Protect branch. Do not slam the shield. Next hit is the KO.",
+            alts: [{ name: "Protect", why: "Scout Ice/Fairy. Do not Protect on Tailwind's last turns when you need the KO." }],
+          },
         ],
-        objective: "Enter on a slow U-turn. Take KOs before Tailwind dies.",
+        objective: "Enter on a slow U-turn or a safe switch. Take KOs before Tailwind dies.",
         howToPlay:
-          "Do not lead into Ice, Fairy, or Water.\nCome in on Electric (immune) or a slow U-turn.\nEQ if grounded and not Grass. Rock or Dragon if they fly.",
+          "Do not come in on Ice or Fairy. Water is 1× — not an emergency.\nCome in on Electric (immune), Fire (resists), or a slow U-turn.\nEQ if grounded and not Grass. Rock or Dragon if they fly.",
       },
     ],
     phases: [
       {
         id: "preview",
         title: "Preview",
-        lede: "One first send. You cannot lead Cott and Corvi together.",
+        lede: "Default send is Cott. Corvi first is the emergency — not a second default.",
         branches: [
-          { when: "Physical lead Corvi walls", then: "Send Corviknight. Slow U-turn later.", why: "Armor first. Cleaner stays hidden." },
-          { when: "They outrun Garchomp without Tailwind", then: "Send Whimsicott if it lives. Tailwind first." },
-          { when: "Dark lead", then: "Tailwind still works. Do not Encore or Taunt." },
-          { when: "Ice on their three", then: "Corvi is the switch — 1× Ice, not a resist." },
-          { when: "Fire lead", then: "Garchomp. Cott and Corvi are both 2× Fire." },
-          { when: "Rillaboom / Grass", then: "Brave Bird. Do not Earthquake Grass." },
-          { when: "Trick Room look", then: "Lead Cott. Taunt the setter." },
+          { when: "Cott lives the send", then: "Cott. Tailwind, then switch. Not U-turn." },
+          { when: "Cott dies to the lead (Poison 4×, Fire, Fake Out into KO)", then: "Corvi first. Clock later." },
+          { when: "They outrun Garchomp", then: "Tailwind turn one. The race is the whole plan." },
+          { when: "Protect or setup, not Dark", then: "Encore is legal. Tailwind can wait a turn." },
+          { when: "Dark on the lead", then: "Tailwind or Moonblast. Encore and Taunt fail." },
+          { when: "Fighting or Dragon lead", then: "Moonblast. Fairy STAB is the click before you leave." },
+          { when: "Poison on their three", then: "Do not sit. Corvi is immune. Cott is 4×." },
+          { when: "Fire on their three", then: "Clock if sash lives, then Garchomp. Cott and Corvi are both 2× Fire." },
+          { when: "Ice on their three", then: "Tailwind, then Corvi. Ice is 1× on Corvi, 4× on Garchomp." },
+          { when: "Grass / Rillaboom", then: "Clock, then Brave Bird. Do not Earthquake Grass." },
+          { when: "Trick Room look", then: "Taunt the setter if not Dark. Then Tailwind or leave." },
         ],
       },
       {
         id: "lead",
         title: "Lead",
-        lede: "Tailwind costs this turn. U-turn does not protect the incoming name if you moved first.",
+        lede: "Cott is usually in the slot. Tailwind costs this turn. Then you switch — you do not U-turn.",
         branches: [
-          { when: "Cott out, Garchomp needs the race", then: "Tailwind. Then switch or Moonblast." },
-          { when: "Cott out, they Protect or set up, not Dark", then: "Encore. Next turn Tailwind or leave." },
-          { when: "Cott out into Dark", then: "Moonblast or switch. Never Encore." },
-          { when: "Corvi out, locked physical resist", then: "Stay. Roost or Iron Head. U-turn only when the next name wants in." },
-          { when: "Corvi out, want Garchomp in", then: "U-turn only if slower, they switched, or the click is Fire/Electric/Rock." },
+          { out: "whimsicott", when: "Corvi or Garchomp need the race", then: "Tailwind. Then switch or one Moonblast." },
+          { out: "whimsicott", when: "Tailwind is up", then: "Switch to Corvi (Ice/Fairy/physical) or Garchomp (Fire/Electric). Not U-turn." },
+          { out: "whimsicott", when: "They Protect or set up, not Dark", then: "Encore. Next turn Tailwind or leave." },
+          { out: "whimsicott", when: "Dark in", then: "Moonblast or switch. Never Encore. Never Taunt." },
+          { out: "whimsicott", when: "Fighting or Dragon in", then: "Moonblast. Then leave unless Tailwind is still the plan." },
+          { out: "whimsicott", when: "Trick Room setter, not Dark", then: "Taunt. The room does not go up." },
+          { out: "whimsicott", when: "Poison STAB coming", then: "Switch to Corvi now. 4×. Do not Tailwind into it." },
+          { out: "whimsicott", when: "Fire STAB coming", then: "Switch to Garchomp. Corvi is also 2× Fire." },
+          { out: "whimsicott", when: "Ice or Flying coming", then: "Switch to Corvi. Cott is 2× both. Steel is 1× — Corvi still resists it." },
+          { out: "whimsicott", when: "Electric coming", then: "Stay or Tailwind. Grass resists. Garchomp is the later immune." },
+          { out: "whimsicott", when: "Sash popped / they can KO", then: "Leave this turn. A dead Cott is Garchomp's 102 Speed." },
         ],
       },
       {
         id: "mid",
         title: "Mid",
-        lede: "Slow U-turn, stay on the wall, or re-up the clock.",
+        lede: "Slow U-turn, stay on the wall, or send Cott back to re-up the clock.",
         branches: [
-          { when: "Corvi healthy, they slower or locked into a Garchomp resist", then: "U-turn into Garchomp." },
-          { when: "Ice or Fairy onto Garchomp", then: "Corvi in. Fairy resists. Ice is neutral — Roost after." },
-          { when: "Electric or Fire onto Corvi", then: "Garchomp. Immune / resists." },
-          { when: "Water onto Garchomp", then: "Whimsicott. Chomp is 2× Water." },
-          { when: "Tailwind dying, still need Speed", then: "Cott in. Re-up before it fades." },
-          { when: "Locked physical on Corvi, no KO this turn", then: "Stay. Roost. Wall wins long games." },
+          { out: "corviknight", when: "Had to lead Corvi", then: "Take the hit. Slow U-turn later. Clock is still in the bag." },
+          { out: "corviknight", when: "Locked into a physical resist, no KO this turn", then: "Stay. Roost, Press, or Iron Defense. The wall can win." },
+          { out: "corviknight", when: "Want Garchomp, and you are slower or they switched", then: "U-turn. They hit Corvi, then Chomp is in." },
+          { out: "corviknight", when: "Want Garchomp, but you outspeed Ice", then: "Do not U-turn. Fast U-turn delivers Ice into Garchomp." },
+          { out: "corviknight", when: "Grass in", then: "Brave Bird. Recoil is the tax. Do not farm." },
+          { out: "corviknight", when: "Fire or Electric onto Corvi", then: "Garchomp. Resists Fire. Immune to Electric." },
+          { out: "garchomp", when: "Ice or Fairy onto Garchomp", then: "Corvi. Fairy resists. Ice is 1× — Roost after." },
+          { out: "garchomp", when: "Water onto Garchomp", then: "Optional Cott or Corvi (both resist). Chomp is 1× Water, not 2×." },
+          { out: "whimsicott", when: "Tailwind dying, still need Speed", then: "Cott back in. Re-up before it fades." },
         ],
       },
       {
@@ -183,12 +262,14 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         title: "Late",
         lede: "One target. No spread fantasy.",
         branches: [
-          { when: "Grounded, not Grass", then: "Earthquake. Take the KO." },
-          { when: "Flying or Levitate", then: "Stone Edge or Dragon STAB. EQ is a zero." },
-          { when: "Grass still up", then: "Brave Bird from Corvi. Do not EQ." },
-          { when: "You read Protect", then: "Swords Dance. Next hit is the KO." },
-          { when: "Ice or Fairy onto Garchomp", then: "Corvi if alive. Else you refused preview." },
-          { when: "Cott dead, they still outrun", then: "Scale Shot or Scarf next game. Click coverage that KOs after they move." },
+          { out: "garchomp", when: "Grounded, not Grass", then: "Earthquake. Take the KO." },
+          { out: "garchomp", when: "Flying or Levitate", then: "Stone Edge or Dragon STAB. EQ is a zero." },
+          { out: "garchomp", when: "You read Protect", then: "Swords Dance. Next hit is the KO." },
+          { out: "garchomp", when: "Need to scout Ice or Fairy", then: "Protect. Not on Tailwind's last turns." },
+          { out: "garchomp", when: "Fairy is gone, you need the nuke", then: "Outrage. You lock. Do not click it into Fairy." },
+          { out: "garchomp", when: "Ice or Fairy still in", then: "Corvi if alive. Else you donated the 4× / 2×." },
+          { out: "garchomp", when: "Cott dead, they still outrun", then: "Scale Shot. Coverage that KOs after they move." },
+          { out: "corviknight", when: "Grass still up", then: "Brave Bird. Do not send Garchomp to EQ it." },
         ],
       },
     ],
@@ -198,11 +279,14 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       { title: "Tailwind timer", body: "Four turns including the click. On turn three, re-up, Scale Shot, or close." },
     ],
     hazards: [
+      { title: "Prankster is not Fake Out", body: "Tailwind is +1. Fake Out is +3. They still flinch you, then you clock next turn if you live." },
+      { title: "Cott U-turn is not free", body: "116 Speed. After Tailwind you are even faster. They hit whoever came in. Switch instead." },
       { title: "Ice is not a Corvi resist", body: "Flying/Steel is 1× Ice. Special Ice still chunks. Roost. Do not sit." },
       { title: "Fast U-turn into Ice", body: "Damage, then switch, then they attack. If Corvi is faster, Ice hits Garchomp." },
-      { title: "Prankster vs Dark", body: "Encore and Taunt fail. Tailwind and Moonblast do not." },
+      { title: "Prankster vs Dark", body: "Encore, Taunt, and Thunder Wave fail. Tailwind and Moonblast do not. Corvi Taunt still works on Dark." },
       { title: "No Fire STAB", body: "Grass wants Brave Bird. EQ into Grass is a gift." },
-      { title: "Poison into Cott", body: "4×. Corvi is immune. Switch." },
+      { title: "Poison into Cott", body: "4×. Corvi is immune. Emergency lead." },
+      { title: "Outrage lock", body: "A Fairy switch ends Garchomp. Dragon Claw or Scale Shot if Fairy is still in the bag." },
     ],
   },
   {
@@ -277,7 +361,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         ],
         objective: "Stay back until Intimidate or Tailwind has bought the slot.",
         howToPlay:
-          "Come in on Parting Shot, Electric, Fighting, or Rock.\nDo not lead Ice, Fairy, Water, or Dragon.\nEQ grounded non-Grass. Dance on Protect.",
+          "Come in on Parting Shot, Electric, Fighting, or Rock.\nDo not come in on Ice, Fairy, or Dragon. Water is 1× on Garchomp.\nEQ grounded non-Grass. Dance on Protect.",
       },
     ],
     phases: [
@@ -300,41 +384,44 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       {
         id: "lead",
         title: "Lead",
+        lede: "Whoever you sent is in the slot. Fake Out and Tailwind are never the same turn.",
         branches: [
-          { when: "Cat out, they can KO or set up", then: "Fake Out. Next is Parting Shot or Blitz." },
-          { when: "Cat out into Ghost", then: "Snarl, Will-O-Wisp, or Parting Shot. Never Fake Out." },
-          { when: "Cat out, Cloak / Inner Focus", then: "Expect their attack. Parting Shot before KO range." },
-          { when: "Cat out, Dark setup or Protect", then: "Taunt. Cott Encore is illegal on Dark." },
-          { when: "Cat out, physical still hitting", then: "Will-O-Wisp, then Parting Shot. Burn plus Intimidate plus −6." },
-          { when: "Grass or Steel Blitz KOs", then: "Fake Out if needed, then Blitz. Be aggressive." },
-          { when: "Cott out, need the race", then: "Tailwind." },
-          { when: "Cott out, Protect/setup, not Dark", then: "Encore. Fake Out later." },
+          { out: "incineroar", when: "They can KO or set up", then: "Fake Out. Next is Parting Shot or Blitz." },
+          { out: "incineroar", when: "Ghost in", then: "Snarl, Will-O-Wisp, or Parting Shot. Never Fake Out." },
+          { out: "incineroar", when: "Cloak / Inner Focus", then: "Expect their attack. Parting Shot before KO range." },
+          { out: "incineroar", when: "Dark setup or Protect", then: "Taunt. Cott Encore is illegal on Dark." },
+          { out: "incineroar", when: "Physical still hitting", then: "Will-O-Wisp, then Parting Shot. Burn plus Intimidate plus −6." },
+          { out: "incineroar", when: "Grass or Steel, Blitz KOs", then: "Fake Out if needed, then Blitz. Be aggressive." },
+          { out: "whimsicott", when: "Garchomp needs the race", then: "Tailwind. Fake Out already happened or waits." },
+          { out: "whimsicott", when: "Protect or setup, not Dark", then: "Encore. Fake Out later." },
         ],
       },
       {
         id: "mid",
         title: "Mid",
         branches: [
-          { when: "Slot safe after Intimidate", then: "Parting Shot into Garchomp." },
-          { when: "Blitz KO is there", then: "Stay. Take it. Pivot next send." },
-          { when: "Water, Ground, Fighting, Rock threaten the cat", then: "Leave before KO. −6 does not save 0 HP." },
-          { when: "Ice onto predicted Garchomp", then: "Stay on Incineroar. Fire resists." },
-          { when: "Fairy in", then: "Cott. Do not Parting Shot Garchomp into Fairy." },
-          { when: "Gholdengo in", then: "Snarl. Fake Out is Normal. Taunt, burn, and Parting Shot fail on Good as Gold." },
-          { when: "Mirror Armor Corvi", then: "Intimidate bounces. Fake Out and Fire still work." },
-          { when: "Fake Out spent, slot still ugly", then: "Leave and come back. Refresh." },
+          { out: "incineroar", when: "Slot safe after Intimidate", then: "Parting Shot into Garchomp." },
+          { out: "incineroar", when: "Blitz KO is there", then: "Stay. Take it. Pivot next send." },
+          { out: "incineroar", when: "Water, Ground, Fighting, or Rock threaten", then: "Leave before KO. −6 does not save 0 HP." },
+          { out: "incineroar", when: "Ice onto predicted Garchomp", then: "Stay. Fire resists Ice. Garchomp is 4×." },
+          { out: "incineroar", when: "Gholdengo in", then: "Snarl. Fake Out is Normal. Taunt, burn, and Parting Shot fail on Good as Gold." },
+          { out: "incineroar", when: "Mirror Armor Corvi", then: "Intimidate bounces. Fake Out and Fire still work." },
+          { out: "incineroar", when: "Fake Out spent, slot still ugly", then: "Leave and come back. Refresh." },
+          { out: "whimsicott", when: "Fairy in", then: "Moonblast. Do not Parting Shot Garchomp into Fairy." },
+          { out: "garchomp", when: "Fairy onto Garchomp", then: "Cott. Both cat and Chomp are 2× Fairy." },
         ],
       },
       {
         id: "late",
         title: "Late",
         branches: [
-          { when: "Grounded, not Grass", then: "Earthquake. One target." },
-          { when: "Flying or Levitate", then: "Rock or Dragon STAB." },
-          { when: "Grass", then: "Flare Blitz if the cat lives. Do not EQ." },
-          { when: "Protect", then: "Swords Dance." },
-          { when: "Ice or Fairy onto Garchomp", then: "Ice → cat. Fairy → Cott." },
-          { when: "Cott dead, they still outrun", then: "Fake Out refresh or Scale Shot." },
+          { out: "garchomp", when: "Grounded, not Grass", then: "Earthquake. One target." },
+          { out: "garchomp", when: "Flying or Levitate", then: "Rock or Dragon STAB." },
+          { out: "garchomp", when: "Protect", then: "Swords Dance." },
+          { out: "garchomp", when: "Ice onto Garchomp", then: "Cat. Fire resists." },
+          { out: "garchomp", when: "Fairy onto Garchomp", then: "Cott. Moonblast." },
+          { out: "incineroar", when: "Grass still in", then: "Flare Blitz if the cat lives. Do not EQ." },
+          { out: "incineroar", when: "Cott dead, they still outrun", then: "Fake Out refresh or Scale Shot." },
         ],
       },
     ],
@@ -445,37 +532,39 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       {
         id: "lead",
         title: "Lead",
+        lede: "Boom is the usual first send. The Mega is almost never in this slot yet.",
         branches: [
-          { when: "Boom out, they KO / set up / Tailwind", then: "Fake Out. Next is U-turn or Glide." },
-          { when: "Boom out into Ghost", then: "U-turn or Wood Hammer." },
-          { when: "Glide KO is there", then: "Glide. Be aggressive." },
-          { when: "Want Sneasler in", then: "U-turn only if slower, they switched, or not Flying/Psychic." },
-          { when: "Had to lead Sneasler", then: "Play 120 Speed. No Seed yet. Leave to Mega into Fire." },
-          { when: "Clean Mega lead", then: "Intimidate happened. Mega. Double-Edge." },
+          { out: "rillaboom", when: "They KO / set up / Tailwind", then: "Fake Out. Next is U-turn or Glide." },
+          { out: "rillaboom", when: "Ghost in", then: "U-turn or Wood Hammer. Fake Out is Normal." },
+          { out: "rillaboom", when: "Glide KO is there", then: "Glide. Be aggressive." },
+          { out: "rillaboom", when: "Want Sneasler in", then: "U-turn only if slower, they switched, or not Flying/Psychic." },
+          { out: "sneasler", when: "Had to lead (Fire on Boom)", then: "Play 120 Speed. No Seed yet. Leave to Mega into Fire." },
+          { out: "salamence-mega", when: "Clean Mega lead (Fire)", then: "Intimidate happened. Mega. Double-Edge." },
         ],
       },
       {
         id: "mid",
         title: "Mid",
         branches: [
-          { when: "Sneasler entered on terrain with Seed", then: "Dire Claw Fairy/Ghost. Close Combat Dark/Steel. Spend it." },
-          { when: "Fire onto Boom", then: "Mega Salamence." },
-          { when: "Ice or Rock onto the Mega", then: "Rillaboom (Ice) or Sneasler (Rock)." },
-          { when: "Psychic or Flying onto Sneasler", then: "Leave. Boom takes Psychic. Mega takes Flying." },
-          { when: "Gholdengo / Steel on Dire Claw", then: "Wood Hammer or Mega EQ." },
-          { when: "Armor Tail still in", then: "Stop Fake Out and Glide. Hit it raw." },
-          { when: "Unburden spent, Ice gone", then: "Mega. Intimidate, Mega, Double-Edge." },
+          { out: "sneasler", when: "Entered on terrain with Seed", then: "Dire Claw Fairy/Ghost. Close Combat Dark/Steel. Spend it." },
+          { out: "sneasler", when: "Psychic or Flying onto Sneasler", then: "Leave. Boom takes Psychic. Mega takes Flying." },
+          { out: "sneasler", when: "Unburden spent, Ice gone", then: "Mega. Intimidate, Mega, Double-Edge." },
+          { out: "rillaboom", when: "Fire onto Boom", then: "Mega Salamence. Dragon resists Fire." },
+          { out: "rillaboom", when: "Gholdengo / Steel on Dire Claw", then: "Wood Hammer. Steel laughs at Poison." },
+          { out: "rillaboom", when: "Armor Tail still in", then: "Stop Fake Out and Glide. Wood Hammer raw." },
+          { out: "salamence-mega", when: "Ice onto the Mega", then: "Rillaboom. 4× Ice is the hole." },
+          { out: "salamence-mega", when: "Rock onto the Mega", then: "Sneasler. Fighting resists Rock." },
         ],
       },
       {
         id: "late",
         title: "Late",
         branches: [
-          { when: "Not Steel, Ice already scouted gone", then: "Double-Edge. One target." },
-          { when: "Steel or Fire resists Flying", then: "EQ, Glide, or Close Combat." },
-          { when: "Protect", then: "Dragon Dance. Do not recoil the shield." },
-          { when: "Ice or Fairy onto Mega", then: "Ice → Boom. Fairy → Dire Claw." },
-          { when: "Boom dead, terrain down, Seed still held", then: "Seed will not pop. Play 120. Mega is Speed." },
+          { out: "salamence-mega", when: "Not Steel, Ice already gone", then: "Double-Edge. One target." },
+          { out: "salamence-mega", when: "Steel or Fire resists Flying", then: "EQ if terrain is down, else Close Combat / Glide." },
+          { out: "salamence-mega", when: "Protect", then: "Dragon Dance. Do not recoil the shield." },
+          { out: "salamence-mega", when: "Ice or Fairy onto Mega", then: "Ice → Boom. Fairy → Dire Claw." },
+          { out: "sneasler", when: "Boom dead, terrain down, Seed still held", then: "Seed will not pop. Play 120. Mega is Speed." },
         ],
       },
     ],
@@ -583,34 +672,37 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       {
         id: "lead",
         title: "Lead",
+        lede: "Pelipper is the usual send — rain is already up. Electro Shot is not a charge.",
         branches: [
-          { when: "Pelipper out, rain just went up", then: "Hurricane or Weather Ball. U-turn if Archaludon wants the next click." },
-          { when: "Pelipper out into Electric", then: "Leave now. Archaludon." },
-          { when: "Archaludon out, rain up", then: "Electro Shot. It fires this turn." },
-          { when: "Archaludon out, sun went up", then: "You lost the engine. Draco or leave. Electro Shot charges again." },
-          { when: "Had to lead Basc", then: "Only if rain is already up from a prior send. Else you are a slow Water." },
+          { out: "pelipper", when: "Rain just went up", then: "Hurricane or Weather Ball. U-turn if Archaludon wants the next click." },
+          { out: "pelipper", when: "Electric in", then: "Leave now. Archaludon. Pelipper is 4× Electric." },
+          { out: "pelipper", when: "Grass in", then: "Leave to Archaludon. Both Waters are 2× Grass." },
+          { out: "archaludon", when: "Rain is up", then: "Electro Shot. It fires this turn." },
+          { out: "archaludon", when: "Sun went up", then: "You lost the engine. Draco or leave. Electro Shot charges again." },
+          { out: "basculegion-male", when: "Had to lead Basc", then: "Only if rain is already up. Else you are a slow Water." },
         ],
       },
       {
         id: "mid",
         title: "Mid",
         branches: [
-          { when: "Rain up, Archaludon healthy", then: "Electro Shot until they bring a Ground or a vest that sits." },
-          { when: "Electric onto Pelipper", then: "Archaludon." },
-          { when: "Grass onto Waters", then: "Archaludon. Steel/Dragon resists Grass." },
-          { when: "Drought Mega comes in", then: "If you move first, KO it. If not, rain is gone — Basc is no longer Swift Swim." },
-          { when: "Partner already fainted", then: "Basc Last Respects. That is the closer." },
-          { when: "Rain fading, still need a KO", then: "Basc Aqua Jet or Archaludon while it lasts. Damp Rock bought you this turn." },
+          { out: "archaludon", when: "Rain up, Archaludon healthy", then: "Electro Shot until they bring a Ground or a vest that sits." },
+          { out: "pelipper", when: "Electric onto Pelipper", then: "Archaludon." },
+          { out: "pelipper", when: "Grass onto Waters", then: "Archaludon. Steel/Dragon resists Grass." },
+          { out: "pelipper", when: "Drought Mega comes in", then: "If you move first, KO it. If not, rain is gone — Basc is no longer Swift Swim." },
+          { out: "basculegion-male", when: "Partner already fainted", then: "Last Respects. That is the closer." },
+          { out: "basculegion-male", when: "Rain fading, still need a KO", then: "Aqua Jet or Wave Crash while it lasts. Damp Rock bought you this turn." },
         ],
       },
       {
         id: "late",
         title: "Late",
         branches: [
-          { when: "Rain up, they are grounded", then: "Wave Crash or Electro Shot. One target." },
-          { when: "They Protect", then: "Do not recoil Wave Crash. Electro Shot or wait." },
-          { when: "Rain gone", then: "Aqua Jet, Last Respects, or Archaludon raw. Do not pretend Swift Swim is up." },
-          { when: "Electric still in", then: "Archaludon only. Both Waters die." },
+          { out: "basculegion-male", when: "Rain up, they are grounded", then: "Wave Crash. One target." },
+          { out: "archaludon", when: "Rain up, they sit on Water", then: "Electro Shot. One target." },
+          { out: "basculegion-male", when: "They Protect", then: "Do not recoil Wave Crash. Aqua Jet or wait." },
+          { out: "basculegion-male", when: "Rain gone", then: "Aqua Jet or Last Respects. Do not pretend Swift Swim is up." },
+          { out: "archaludon", when: "Electric still in", then: "Stay. Both Waters die to Electric." },
         ],
       },
     ],
@@ -719,12 +811,13 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       {
         id: "lead",
         title: "Lead",
+        lede: "Farigiraf is the Fake Out lead. Gholdengo is the Taunt lead. Kingambit should not be here yet.",
         branches: [
-          { when: "Farigiraf out, they Fake Out", then: "It fails. Trick Room." },
-          { when: "Farigiraf out, they Taunt, you have Herb", then: "Herb eats it. Trick Room." },
-          { when: "Farigiraf out, they Taunt, no Herb", then: "You lost the click. Psychic or leave to Gholdengo." },
-          { when: "Gholdengo lead into Taunt / Parting Shot", then: "It fails. Make It Rain or Nasty Plot." },
-          { when: "Kingambit out, room not up", then: "You misread. Protect or Sucker Punch. Get Farigiraf in." },
+          { out: "farigiraf", when: "They Fake Out", then: "It fails. Trick Room." },
+          { out: "farigiraf", when: "They Taunt, you have Herb", then: "Herb eats it. Trick Room." },
+          { out: "farigiraf", when: "They Taunt, no Herb", then: "You lost the click. Psychic or leave to Gholdengo." },
+          { out: "gholdengo", when: "Taunt or Parting Shot", then: "It fails. Make It Rain or Nasty Plot." },
+          { out: "kingambit", when: "Room is not up", then: "You misread. Protect or Sucker Punch. Get Farigiraf in." },
         ],
       },
       {
@@ -732,21 +825,23 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         title: "Mid",
         lede: "The four turns are the match. Count them.",
         branches: [
-          { when: "Room up, Kingambit in", then: "Kowtow or Dance. Move first. Be aggressive." },
-          { when: "Room up, they switch to Fighting", then: "Gholdengo. Immune." },
-          { when: "Room up, they switch to Fire", then: "Farigiraf. Do not sit either Steel." },
-          { when: "A partner fainted", then: "Kingambit Overlord is live. That is extra damage — spend the remaining turns." },
-          { when: "Room on last turn", then: "KO now or re-set Farigiraf next. Do not waffle." },
+          { out: "kingambit", when: "Room up", then: "Kowtow or Dance. Move first. Be aggressive." },
+          { out: "kingambit", when: "They switch to Fighting", then: "Gholdengo. Ghost immune." },
+          { out: "kingambit", when: "A partner fainted", then: "Overlord is live. Spend the remaining turns." },
+          { out: "gholdengo", when: "Room up, Fighting in", then: "Make It Rain or Shadow Ball. You are immune." },
+          { out: "farigiraf", when: "They switch to Fire", then: "Stay. Both Steels are 2× Fire." },
+          { out: "farigiraf", when: "Room on last turn", then: "KO now or re-set next. Do not waffle." },
         ],
       },
       {
         id: "late",
         title: "Late",
         branches: [
-          { when: "Room still up, one of theirs left", then: "Kowtow or Make It Rain. Close." },
-          { when: "Room down, they outrun the truck", then: "Sucker Punch if they attack. Gholdengo if they are Fighting." },
-          { when: "They Protect", then: "Swords Dance or Nasty Plot. Do not Sucker Punch the shield." },
-          { when: "Farigiraf alive, room down, still slow", then: "Re-set. The match is another four turns or you lose the race." },
+          { out: "kingambit", when: "Room still up, one of theirs left", then: "Kowtow. Close." },
+          { out: "kingambit", when: "Room down, they outrun the truck", then: "Sucker Punch if they attack." },
+          { out: "kingambit", when: "They Protect", then: "Swords Dance. Do not Sucker Punch the shield." },
+          { out: "gholdengo", when: "Room down, Fighting still in", then: "Stay. Ghost immune." },
+          { out: "farigiraf", when: "Room down, still slow", then: "Re-set. The match is another four turns or you lose the race." },
         ],
       },
     ],
@@ -771,7 +866,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       "Sun on this three is Mega Charizard Y. You do not splash Drought onto a rain team. Garchomp punches what Fire does not. Cinderace is the second Fire that stays fast if Y goes down. Rock and Water are the preview you refuse to donate Y into.",
     archetype: "sun",
     slugs: ["charizard-mega-y", "garchomp", "cinderace"],
-    meta: "Grass, Steel, Rillaboom. Rain if you overwrite. Everyone here is 2× Water — that is the hole.",
+    meta: "Grass, Steel, Rillaboom. Rain if you overwrite. Y and Cinderace are 2× Water. Garchomp is 1× Water, 4× Ice.",
     press: ["Grass / Rillaboom", "Steel", "Rain if you steal sun", "Bug / Ice into Cinderace"],
     refuse: ["Rock into Y", "Water into anyone", "Faster Drought", "Trick Room"],
     switches: [
@@ -817,7 +912,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         ],
         objective: "Take Rock and Electric. Punch what Fire does not.",
         howToPlay:
-          "Come in on Rock, Electric, or a resisted Fire.\nYou are 2× Water and 4× Ice — same holes as always.\nDo not 'patch' a Waterfall. Nobody here resists Water.",
+          "Come in on Rock, Electric, or a resisted Fire.\nYou are 4× Ice. Water is 1× — Y and Cinderace are the 2× Waters.\nDo not 'patch' a Waterfall for them. Nobody here resists Water.",
       },
       {
         slug: "cinderace",
@@ -842,7 +937,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       {
         id: "preview",
         title: "Preview",
-        lede: "Y is 4× Rock. Water hits all three for 2×. Preview is where you refuse both.",
+        lede: "Y is 4× Rock. Y and Cinderace are 2× Water. Preview is where you refuse to donate the Mega.",
         branches: [
           { when: "Grass / Rillaboom lead", then: "Y. Drought, Heat Wave. Glide is Fire-weak." },
           { when: "Steel / Kingambit", then: "Y Heat Wave or Cinderace High Jump Kick." },
@@ -856,34 +951,39 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       {
         id: "lead",
         title: "Lead",
+        lede: "Y is the usual send into Grass and Steel. Garchomp is the Rock send. Cinderace is the Ice send.",
         branches: [
-          { when: "Y out, sun just went up", then: "Heat Wave or Solar Beam. Take the KO." },
-          { when: "Y out into Rock or Water", then: "Leave to Garchomp (Rock) or anyone who is not 4× (Water is ugly on all)." },
-          { when: "Garchomp out on Rock", then: "Earthquake. You patched." },
-          { when: "Cinderace out, sun up", then: "Pyro Ball. Libero Fire." },
-          { when: "Rain overwrote sun", then: "Re-send Y to steal weather, or play Garchomp/Cinderace raw." },
+          { out: "charizard-mega-y", when: "Sun just went up", then: "Heat Wave or Solar Beam. Take the KO." },
+          { out: "charizard-mega-y", when: "Rock in", then: "Leave to Garchomp now. Y is 4× Rock." },
+          { out: "charizard-mega-y", when: "Water in", then: "Solar Beam if sun is up, then leave. Y is 2× Water." },
+          { out: "garchomp", when: "Rock in", then: "Earthquake. You patched." },
+          { out: "cinderace", when: "Sun is up", then: "Pyro Ball. Libero Fire." },
+          { out: "cinderace", when: "Ice in", then: "Stay. You resist. Garchomp is 4×. Y is 1× Ice." },
+          { out: "charizard-mega-y", when: "Rain overwrote sun", then: "Re-send Y later to steal weather, or play Garchomp/Cinderace raw." },
         ],
       },
       {
         id: "mid",
         title: "Mid",
         branches: [
-          { when: "Sun up, Grass or Steel in", then: "Y. Be aggressive." },
-          { when: "Rock onto Y", then: "Garchomp immediately." },
-          { when: "Water in", then: "Solar Beam from Y if sun is still up. Else you are losing this slot — chip and do not sit." },
-          { when: "Electric onto Y", then: "Garchomp." },
-          { when: "Y fainted, sun fading", then: "Cinderace is the remaining Fire. Sucker Punch if they outrun." },
-          { when: "They Protect", then: "Swords Dance Garchomp or wait. Do not Solar Beam the shield." },
+          { out: "charizard-mega-y", when: "Sun up, Grass or Steel in", then: "Heat Wave. Be aggressive." },
+          { out: "charizard-mega-y", when: "Rock onto Y", then: "Garchomp immediately." },
+          { out: "charizard-mega-y", when: "Water in", then: "Solar Beam if sun is still up. Else chip and do not sit." },
+          { out: "charizard-mega-y", when: "Electric onto Y", then: "Garchomp. Immune." },
+          { out: "cinderace", when: "Y fainted, sun fading", then: "Pyro Ball. Sucker Punch if they outrun." },
+          { out: "garchomp", when: "They Protect", then: "Swords Dance. Do not Solar Beam the shield." },
         ],
       },
       {
         id: "late",
         title: "Late",
         branches: [
-          { when: "Sun up, they cannot Rock you", then: "Heat Wave. Close." },
-          { when: "Y dead, one of theirs left", then: "Cinderace Pyro Ball or Garchomp EQ. One target." },
-          { when: "Sun gone", then: "Sucker Punch, EQ, Scale Shot. Solar Beam now charges — do not click it." },
-          { when: "Water still in", then: "Solar Beam only if sun is up. Otherwise you are fishing." },
+          { out: "charizard-mega-y", when: "Sun up, they cannot Rock you", then: "Heat Wave. Close." },
+          { out: "cinderace", when: "Y dead, one of theirs left", then: "Pyro Ball. One target." },
+          { out: "garchomp", when: "Y dead, grounded leftover", then: "Earthquake. One target." },
+          { out: "charizard-mega-y", when: "Sun gone", then: "Do not Solar Beam — it charges. Leave or chip Fire." },
+          { out: "cinderace", when: "Sun gone", then: "Sucker Punch or High Jump Kick. Pyro Ball is slower Fire." },
+          { out: "charizard-mega-y", when: "Water still in", then: "Solar Beam only if sun is up. Otherwise you are fishing." },
         ],
       },
     ],
@@ -894,7 +994,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     ],
     hazards: [
       { title: "4× Rock", body: "Y dies to Stone Edge. Garchomp is the switch. Preview is where you refuse the lead." },
-      { title: "Water on everyone", body: "All three are 2× Water. Solar Beam is the patch while sun lasts. There is no resist." },
+      { title: "Water on Y and Cinderace", body: "Both Fires are 2× Water. Garchomp is 1×. Solar Beam is the patch while sun lasts. There is no Water resist." },
       { title: "Weather war", body: "Pelipper overwrite on entry. Re-send Y to steal sun back. That is a turn." },
       { title: "Solar Beam without sun", body: "It charges. You donate a turn. Do not." },
       { title: "High Jump Kick miss / Ghost", body: "Cinderace can KO itself. Dire read. Pyro Ball is the safe Fire click." },
@@ -959,6 +1059,11 @@ export function emptyManual(id: string): TeamManual {
     press: [""],
     refuse: [""],
     switches: [{ into: "", send: "" }],
+    plan: [
+      { title: "", goal: "", play: "" },
+      { title: "", goal: "", play: "" },
+      { title: "", goal: "", play: "" },
+    ],
     loops: [{ title: "", body: "" }],
     hazards: [{ title: "", body: "" }],
   };

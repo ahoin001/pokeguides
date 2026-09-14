@@ -4,6 +4,7 @@ import type { TeamManual } from "@/content/manuals";
 
 export function ManualToc({ manual }: { manual: TeamManual }) {
   const jumps = [
+    ...(manual.plan?.some((b) => b.title || b.play) ? [{ href: "#plan", label: "Plan" }] : []),
     { href: "#three", label: "The three" },
     ...manual.phases.filter((p) => p.branches.some((b) => b.when || b.then)).map((p) => ({ href: `#${p.id}`, label: p.title })),
     ...(manual.switches?.some((s) => s.into || s.send) ? [{ href: "#switches", label: "Switches" }] : []),

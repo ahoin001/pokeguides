@@ -7,7 +7,7 @@
     "checks": ["water", "ground", "fighting"],
     "checkedBy": ["rillaboom", "pelipper", "archaludon"],
     "sampleSp": { "hp": 20, "atk": 4, "def": 12, "spa": 0, "spd": 20, "spe": 10 },
-    "kit": "Fake Out, Knock Off, Flare Blitz, Parting Shot"
+    "kit": "Fake Out, Parting Shot, Flare Blitz, Will-O-Wisp / Taunt / Snarl"
   },
   {
     "slug": "rillaboom",

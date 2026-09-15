@@ -10,6 +10,7 @@ import { cssVars } from "@/lib/champions/palette";
 import { TYPE_LABEL } from "@/lib/champions/types";
 import type { TypeId } from "@/types/pokemon";
 import type { FlowFork, ManualFlow } from "@/content/manuals";
+import { MANUAL_SCROLL_MT } from "./ManualToc";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
 
 const MOVE_TYPE: Record<string, TypeId> = {
@@ -146,7 +147,7 @@ export function ManualFlowchart({ flow }: { flow: ManualFlow }) {
     <MotionConfig reducedMotion="user">
     <section
       id={`flow-${flow.id}`}
-      className="mt-16 scroll-mt-28 md:scroll-mt-36"
+      className={`mt-16 ${MANUAL_SCROLL_MT}`}
       style={mon ? cssVars(mon.palette) : undefined}
       tabIndex={0}
       onKeyDown={onKey}

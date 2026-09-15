@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useManualsStore } from "@/stores/manuals";
+import { MANUAL_SCROLL_MT } from "./ManualToc";
 
 export function ManualNotes({ id }: { id: string }) {
   const stored = useManualsStore((s) => s.notes[id] ?? "");
@@ -13,7 +14,7 @@ export function ManualNotes({ id }: { id: string }) {
   }, [stored, id]);
 
   return (
-    <section className="mx-auto mt-16 w-full max-w-6xl">
+    <section id="notes" className={`mx-auto mt-16 w-full ${MANUAL_SCROLL_MT}`}>
       <h2 className="text-2xl font-semibold tracking-tight">Your notes</h2>
       <p className="mt-2 text-sm text-muted">Stays on this device. Canonical manuals keep notes even if the guide updates.</p>
       <textarea

@@ -20,11 +20,11 @@ function Spread({ sp }: { sp: SampleSp }) {
         return (
           <li
             key={s.key}
-            className={`rounded-lg px-0.5 py-1.5 text-center ${n ? "bg-white/8" : "bg-white/[0.04]"}`}
+            className={`rounded-lg px-1 py-2 text-center ${n ? "bg-white/10" : "bg-white/[0.04]"}`}
           >
-            <p className="font-mono text-[9px] uppercase tracking-[0.08em] text-muted">{s.label}</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-muted">{s.label}</p>
             <p
-              className={`mt-0.5 font-mono text-[13px] tabular-nums leading-none ${
+              className={`mt-1 font-mono text-[15px] tabular-nums leading-none ${
                 n ? "font-semibold" : "text-muted/45"
               }`}
             >

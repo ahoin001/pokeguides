@@ -18,7 +18,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-[100dvh] flex-col">
       <header className="sticky top-0 z-40 hidden border-b border-line/70 bg-bg/80 backdrop-blur-md md:block">
-        <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6">
+        <div className="mx-auto flex h-16 max-w-[1680px] items-center justify-between px-6">
           <Link href="/" className="text-lg font-semibold tracking-tight">
             Ringside
           </Link>
@@ -44,7 +44,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </nav>
         </div>
       </header>
-      <main className="mx-auto w-full max-w-[1400px] flex-1 px-4 pb-28 pt-6 md:px-6 md:pb-16 md:pt-10">
+      <main className="mx-auto w-full max-w-[1680px] flex-1 px-4 pb-28 pt-6 md:px-6 md:pb-16 md:pt-10">
         {children}
       </main>
       <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-line/70 bg-bg/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-md md:hidden">

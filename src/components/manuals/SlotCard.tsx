@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
@@ -5,10 +6,36 @@ import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { ROLE_LABEL, roleHref } from "@/content/roles";
 import { getLiteracyRole } from "@/content/literacy-roles";
 import { playLines, type SlotManual } from "@/content/manuals";
-import { SlotField, SlotSection, SLOT_GRID } from "./SlotField";
+import { SlotField, SLOT_GRID } from "./SlotField";
 import { SlotMatchups } from "./SlotMatchups";
 import { SlotItemBlock } from "./SlotItem";
 import { SlotTrainingBlock } from "./SlotTraining";
+
+function Band({
+  title,
+  tone,
+  children,
+}: {
+  title?: string;
+  tone: "identity" | "build" | "kit" | "play";
+  children: ReactNode;
+}) {
+  const bg = {
+    identity: "bg-[color-mix(in_srgb,var(--mon-wash)_26%,transparent)]",
+    build: "bg-sunken/80",
+    kit: "bg-white/[0.05]",
+    play: "bg-raised/90",
+  }[tone];
+
+  return (
+    <div className={`${bg} px-5 py-5 md:px-6 md:py-6`}>
+      {title ? (
+        <h3 className="mb-3.5 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">{title}</h3>
+      ) : null}
+      {children}
+    </div>
+  );
+}
 
 export function SlotCard({ slot }: { slot: SlotManual }) {
   const p = slot.slug ? getPokemon(slot.slug) : undefined;
@@ -18,65 +45,69 @@ export function SlotCard({ slot }: { slot: SlotManual }) {
 
   return (
     <li
-      className="flex flex-col rounded-[28px] border border-line bg-raised/40 p-5"
+      className="flex flex-col overflow-hidden rounded-[28px] border border-line/80 shadow-[0_12px_40px_rgba(0,0,0,0.22)]"
       style={p ? cssVars(p.palette) : undefined}
     >
-      <div className="flex items-start gap-3.5">
-        {p ? (
-          <Link href={`/pokemon/${p.slug}`} className="shrink-0">
-            <PokemonArt slug={p.slug} src={p.artwork} name={p.name} size={72} />
-          </Link>
-        ) : null}
-        <div className="min-w-0 pt-0.5">
-          <p className="text-xs text-muted">
-            <Link href={roleHref(slot.job)} className="underline">
-              {ROLE_LABEL[slot.job]}
-            </Link>
-            {lit ? ` · ${lit.name}` : null}
-          </p>
+      <Band tone="identity">
+        <div className="flex items-start gap-4">
           {p ? (
-            <Link href={`/pokemon/${p.slug}`} className="mt-0.5 block text-xl font-semibold tracking-tight">
-              {p.name}
+            <Link href={`/pokemon/${p.slug}`} className="shrink-0">
+              <PokemonArt slug={p.slug} src={p.artwork} name={p.name} size={88} />
             </Link>
-          ) : (
-            <p className="mt-0.5 text-xl font-semibold">{slot.title || "Empty slot"}</p>
-          )}
-          <p className="mt-0.5 text-sm font-medium">{slot.title}</p>
+          ) : null}
+          <div className="min-w-0 pt-0.5">
+            <p className="text-[13px] text-muted">
+              <Link href={roleHref(slot.job)} className="underline">
+                {ROLE_LABEL[slot.job]}
+              </Link>
+              {lit ? ` · ${lit.name}` : null}
+            </p>
+            {p ? (
+              <Link href={`/pokemon/${p.slug}`} className="mt-1 block text-2xl font-semibold tracking-tight">
+                {p.name}
+              </Link>
+            ) : (
+              <p className="mt-1 text-2xl font-semibold">{slot.title || "Empty slot"}</p>
+            )}
+            <p className="mt-1 text-base font-medium">{slot.title}</p>
+          </div>
         </div>
-      </div>
 
-      <div className="mt-4 space-y-1.5">
-        {p ? <SlotMatchups types={p.types} /> : null}
-        {slot.ability ? (
-          <SlotField label="Ability">
-            <p className="pt-0.5 text-sm font-medium leading-snug">{slot.ability}</p>
-          </SlotField>
-        ) : null}
-        {slot.nature ? (
-          <SlotField label="Nature">
-            <p className="pt-0.5 text-sm font-medium leading-snug">{slot.nature}</p>
-          </SlotField>
-        ) : null}
-      </div>
+        <div className="mt-5 space-y-2">
+          {p ? <SlotMatchups types={p.types} /> : null}
+          {slot.ability ? (
+            <SlotField label="Ability">
+              <p className="pt-0.5 text-[15px] font-medium leading-snug">{slot.ability}</p>
+            </SlotField>
+          ) : null}
+          {slot.nature ? (
+            <SlotField label="Nature">
+              <p className="pt-0.5 text-[15px] font-medium leading-snug">{slot.nature}</p>
+            </SlotField>
+          ) : null}
+        </div>
 
-      {slot.objective ? (
-        <p className="mt-4 text-sm leading-relaxed text-pretty">{slot.objective}</p>
-      ) : null}
+        {slot.objective ? (
+          <p className="mt-5 text-[15px] leading-relaxed text-pretty">{slot.objective}</p>
+        ) : null}
+      </Band>
 
       {slot.item || slot.training ? (
-        <div className="mt-4 space-y-2.5 border-t border-line/70 pt-4">
-          {slot.item ? <SlotItemBlock item={slot.item} why={slot.itemWhy} alts={slot.itemAlts} /> : null}
-          {slot.training ? <SlotTrainingBlock training={slot.training} /> : null}
-        </div>
+        <Band tone="build" title="Hold & training">
+          <div className="space-y-4">
+            {slot.item ? <SlotItemBlock item={slot.item} why={slot.itemWhy} alts={slot.itemAlts} /> : null}
+            {slot.training ? <SlotTrainingBlock training={slot.training} /> : null}
+          </div>
+        </Band>
       ) : null}
 
       {moves.length ? (
-        <SlotSection title="Kit">
-          <ul className="-mt-1">
+        <Band tone="kit" title="Kit">
+          <ul>
             {moves.map((move) => (
-              <li key={move.name} className="border-t border-line/60 py-2.5 first:border-t-0 first:pt-0 last:pb-0">
+              <li key={move.name} className="border-t border-white/8 py-3 first:border-t-0 first:pt-0 last:pb-0">
                 <SlotField label="">
-                  <p className="font-medium leading-snug">{move.name}</p>
+                  <p className="text-[15px] font-medium leading-snug">{move.name}</p>
                   <p className="mt-1 text-sm leading-relaxed text-muted">{move.why}</p>
                 </SlotField>
                 {move.alts
@@ -92,20 +123,20 @@ export function SlotCard({ slot }: { slot: SlotManual }) {
               </li>
             ))}
           </ul>
-        </SlotSection>
+        </Band>
       ) : null}
 
       {lines.length ? (
-        <SlotSection title="Play">
-          <ul className="space-y-2">
+        <Band tone="play" title="Play">
+          <ul className="space-y-2.5">
             {lines.map((line) => (
-              <li key={line} className={`${SLOT_GRID}`}>
-                <span className="mt-[0.7rem] block h-px w-2.5 justify-self-end bg-muted/70" aria-hidden />
-                <p className="text-sm leading-relaxed text-muted">{line}</p>
+              <li key={line} className={SLOT_GRID}>
+                <span className="mt-[0.75rem] block h-px w-2.5 justify-self-end bg-muted/70" aria-hidden />
+                <p className="text-[15px] leading-relaxed text-muted">{line}</p>
               </li>
             ))}
           </ul>
-        </SlotSection>
+        </Band>
       ) : null}
     </li>
   );

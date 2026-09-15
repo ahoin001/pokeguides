@@ -4,23 +4,29 @@ import { useEffect, useMemo, useState } from "react";
 import { flowsFor } from "@/content/classroom-flows";
 import type { TeamManual } from "@/content/manuals";
 
-export const MANUAL_SCROLL_MT = "scroll-mt-[4.25rem] md:scroll-mt-[8.25rem]";
+export const MANUAL_SCROLL_MT = "scroll-mt-[5.5rem] md:scroll-mt-[9.5rem]";
 
 export function manualJumps(manual: TeamManual) {
-  return [
-    { href: "#top", label: "Top" },
-    { href: "#three", label: "The three" },
-    { href: "#scout", label: "Vs scout" },
-    ...(manual.plan?.some((b) => b.title || b.play) ? [{ href: "#plan", label: "Plan" }] : []),
-    ...flowsFor(manual).map((flow) => ({ href: `#flow-${flow.id}`, label: flow.title })),
-    ...(manual.loops.some((l) => l.title || l.body) ? [{ href: "#loops", label: "Loops" }] : []),
-    ...((manual.switches ?? []).some((s) => s.into || s.send) ? [{ href: "#switches", label: "Switches" }] : []),
-    ...(manual.victims?.some((v) => v.name || v.why) ||
+  const flows = flowsFor(manual);
+  const hasGame =
+    flows.length > 0 ||
+    manual.loops.some((l) => l.title || l.body) ||
+    (manual.switches ?? []).some((s) => s.into || s.send);
+  const hasMatchups =
+    manual.victims?.some((v) => v.name || v.why) ||
     manual.counters?.some((c) => c.name || c.why) ||
     manual.advantages?.some((a) => a.title || a.body) ||
-    manual.hazards.some((h) => h.title || h.body)
-      ? [{ href: "#insights", label: "Insights" }]
-      : []),
+    manual.hazards.some((h) => h.title || h.body);
+  const hasPocket = Boolean(manual.pilot?.fail || (manual.switches ?? []).some((s) => s.into || s.send));
+
+  return [
+    { href: "#top", label: "Top" },
+    ...(hasPocket ? [{ href: "#pocket", label: "Pocket" }] : []),
+    { href: "#three", label: "The three" },
+    { href: "#scout", label: "Scout" },
+    ...(manual.plan?.some((b) => b.title || b.play) ? [{ href: "#plan", label: "Plan" }] : []),
+    ...(hasGame ? [{ href: "#game", label: "Game" }] : []),
+    ...(hasMatchups ? [{ href: "#matchups", label: "Matchups" }] : []),
     { href: "#notes", label: "Notes" },
   ];
 }
@@ -28,8 +34,10 @@ export function manualJumps(manual: TeamManual) {
 export function ManualToc({ manual }: { manual: TeamManual }) {
   const jumps = useMemo(() => manualJumps(manual), [manual]);
   const [active, setActive] = useState("#top");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const nodes = jumps
       .map((j) => document.getElementById(j.href.slice(1)))
       .filter((el): el is HTMLElement => Boolean(el));
@@ -52,11 +60,11 @@ export function ManualToc({ manual }: { manual: TeamManual }) {
   return (
     <nav
       aria-label="On this manual"
-      className="sticky top-0 z-30 -mx-4 -mt-6 border-b border-line/70 bg-bg/90 px-4 py-2 backdrop-blur-md md:top-16 md:-mx-6 md:-mt-10 md:px-6"
+      className="pointer-events-none sticky top-0 z-30 -mx-4 -mt-6 border-b border-line/70 bg-bg/90 px-4 py-2 backdrop-blur-md md:top-16 md:-mx-6 md:-mt-10 md:px-6"
     >
-      <ul className="flex gap-1.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <ul className="pointer-events-auto flex gap-1.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {jumps.map((j) => {
-          const on = active === j.href;
+          const on = mounted && active === j.href;
           return (
             <li key={j.href} className="shrink-0">
               <a

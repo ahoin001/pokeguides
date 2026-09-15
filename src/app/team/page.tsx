@@ -14,6 +14,9 @@ import { TeamChecklist } from "@/components/team/TeamChecklist";
 import { ManualNotes } from "@/components/manuals/ManualNotes";
 import { TEAM_NOTES_ID } from "@/lib/manuals/field-notes";
 import { VsScout } from "@/components/scout/VsScout";
+import { getCanonicalManual, manualHref } from "@/content/manuals";
+import { useManualsStore } from "@/stores/manuals";
+import { rankedFoesFor } from "@/lib/ranked/foes";
 import type { ArchetypeId, CatalogEntry } from "@/types/pokemon";
 import { LEARN_ROLE_IDS, ROLE_LABEL, roleHref } from "@/content/roles";
 import { ARCHETYPES, ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
@@ -25,9 +28,15 @@ import type { ScoutSide } from "@/lib/champions/vs";
 export default function TeamPage() {
   const slugs = useTeamStore((s) => s.slugs);
   const intent = useTeamStore((s) => s.intent);
+  const manualId = useTeamStore((s) => s.manualId);
   const setSlot = useTeamStore((s) => s.setSlot);
   const setIntent = useTeamStore((s) => s.setIntent);
+  const localManuals = useManualsStore((s) => s.local);
   const [pick, setPick] = useState<number | null>(null);
+  const playbook = useMemo(() => {
+    if (!manualId) return undefined;
+    return getCanonicalManual(manualId) ?? localManuals.find((m) => m.id === manualId);
+  }, [manualId, localManuals]);
   const mons = slugs.map((s) => (s ? getPokemon(s) : null));
   const filled = mons.filter(Boolean) as CatalogEntry[];
   const megas = filled.filter((m) => m.form === "mega" || m.form === "mega-z").length;
@@ -55,20 +64,37 @@ export default function TeamPage() {
     [considering, activeIntent, slugs],
   );
   const scoutSide: ScoutSide[] = useMemo(
-    () => filled.map((p) => ({ slug: p.slug, types: p.types })),
-    [filled],
+    () =>
+      filled.map((p) => {
+        const slot = playbook?.slots.find((s) => s.slug === p.slug);
+        return {
+          slug: p.slug,
+          types: p.types,
+          moves: slot?.moves.map((m) => m.name),
+        };
+      }),
+    [filled, playbook],
   );
 
   return (
     <div>
       <h1 className="text-4xl font-semibold tracking-tight">Team</h1>
-      <p className="mt-2 text-muted">
-        Three slots. Species clause. One Mega in battle. They see the list.{" "}
-        <Link href="/manuals" className="underline">
-          Read a field manual
-        </Link>
-        .
-      </p>
+      {playbook ? (
+        <p className="mt-2 text-muted">
+          Playing {playbook.title}. This is the bench — the manual is still the coach.{" "}
+          <Link href={manualHref(playbook.id)} className="underline">
+            Open the manual
+          </Link>.
+        </p>
+      ) : (
+        <p className="mt-2 text-muted">
+          Three slots. Species clause. One Mega in battle. They see the list.{" "}
+          <Link href="/manuals" className="underline">
+            Read a field manual
+          </Link>
+          .
+        </p>
+      )}
       {megas > 1 ? <p className="mt-3 text-sm text-amber-200">Two Megas on the three. Only one can go off.</p> : null}
 
       <div className="mt-6">
@@ -143,7 +169,12 @@ export default function TeamPage() {
       {scoutSide.length ? (
         <VsScout
           side={scoutSide}
-          lede="Search who they have. STABs only here — open a field manual for kit clicks."
+          lede={
+            playbook
+              ? "Loaded kit from the manual. Search who they have."
+              : "Search who they have. STABs only here — open a field manual for kit clicks."
+          }
+          suggestedFoes={rankedFoesFor(filled.map((p) => p.slug))}
         />
       ) : null}
       <div className="mt-12">

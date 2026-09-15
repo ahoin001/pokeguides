@@ -7,21 +7,39 @@ import { MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
 import type { ManualMatchup, ManualNote } from "@/content/manuals";
 
-type InsightItem = { title: string; body: string };
+type PressItem = {
+  key: string;
+  title: string;
+  how?: string;
+  watch?: string;
+  play?: string;
+  rule?: string;
+};
 
-function Group({
+const LANE = {
+  watch: "text-[#ff8aad] bg-[color-mix(in_srgb,#e23d7a_14%,transparent)]",
+  play: "text-[#9cbcff] bg-[color-mix(in_srgb,#6b8cff_12%,transparent)]",
+  rule: "text-[#f0c040] bg-[color-mix(in_srgb,#d4a017_14%,transparent)]",
+  how: "text-muted bg-white/[0.03]",
+} as const;
+
+function Board({
   id,
   title,
+  tone,
   items,
-  wash,
 }: {
   id: string;
   title: string;
-  items: InsightItem[];
-  wash: string;
+  tone: "good" | "bad";
+  items: PressItem[];
 }) {
   const [open, setOpen] = useState<string | null>(null);
   if (!items.length) return null;
+  const wash =
+    tone === "good"
+      ? "color-mix(in srgb, #2a4a9a 16%, transparent)"
+      : "color-mix(in srgb, #e23d7a 14%, transparent)";
 
   return (
     <section
@@ -29,16 +47,34 @@ function Group({
       className={`${MANUAL_SCROLL_MT} overflow-hidden rounded-[24px] border border-line`}
       style={{ background: `linear-gradient(165deg, ${wash}, transparent 58%), var(--bg-raised)` }}
     >
-      <h3 className="border-b border-line/70 px-4 py-3 text-lg font-semibold tracking-tight">{title}</h3>
+      <div className="flex items-center justify-between gap-3 border-b border-line/70 px-4 py-3">
+        <h3 className="text-lg font-semibold tracking-tight">{title}</h3>
+        <span
+          className={`rounded-full px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] ${
+            tone === "good" ? "bg-[#2a4a9a]/35 text-[#9cbcff]" : "bg-[#e23d7a]/25 text-[#ff8aad]"
+          }`}
+        >
+          {tone === "good" ? "Favored" : "Trap"}
+        </span>
+      </div>
       <ul>
         {items.map((item) => {
-          const expanded = open === item.title;
+          const expanded = open === item.key;
+          const lanes = [
+            item.watch ? ({ label: "Watch", text: item.watch, tone: "watch" as const }) : null,
+            item.play ? ({ label: "Do", text: item.play, tone: "play" as const }) : null,
+            item.rule ? ({ label: "Never", text: item.rule, tone: "rule" as const }) : null,
+            !item.watch && !item.play && !item.rule && item.how
+              ? ({ label: tone === "good" ? "How you win" : "What happens", text: item.how, tone: "how" as const })
+              : null,
+          ].filter(Boolean) as { label: string; text: string; tone: keyof typeof LANE }[];
+
           return (
-            <li key={item.title} className="border-t border-line/50 first:border-t-0">
+            <li key={item.key} className="border-t border-line/50 first:border-t-0">
               <button
                 type="button"
                 aria-expanded={expanded}
-                onClick={() => setOpen((cur) => (cur === item.title ? null : item.title))}
+                onClick={() => setOpen((cur) => (cur === item.key ? null : item.key))}
                 className="flex w-full items-start gap-3 px-4 py-3 text-left"
               >
                 <CaretDown
@@ -48,6 +84,12 @@ function Group({
                 />
                 <span className="min-w-0 flex-1">
                   <span className="block font-medium tracking-tight">{item.title}</span>
+                  {!expanded && item.how ? (
+                    <span className="mt-1 block line-clamp-1 text-sm text-muted">{item.how}</span>
+                  ) : null}
+                  {!expanded && !item.how && item.watch ? (
+                    <span className="mt-1 block line-clamp-1 text-sm text-muted">{item.watch}</span>
+                  ) : null}
                 </span>
               </button>
               <AnimatePresence initial={false}>
@@ -59,7 +101,16 @@ function Group({
                     transition={{ duration: motionTokens.layout, ease: easeOut }}
                     className="overflow-hidden"
                   >
-                    <p className="px-4 pb-3 pl-11 text-sm leading-relaxed text-muted">{item.body}</p>
+                    <div className="space-y-0 border-t border-line/40">
+                      {lanes.map((lane) => (
+                        <div key={lane.label} className={`px-4 py-3 pl-11 ${LANE[lane.tone]}`}>
+                          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em]">
+                            {lane.label}
+                          </p>
+                          <p className="mt-1.5 text-sm leading-relaxed text-ink/90">{lane.text}</p>
+                        </div>
+                      ))}
+                    </div>
                   </motion.div>
                 ) : null}
               </AnimatePresence>
@@ -69,6 +120,49 @@ function Group({
       </ul>
     </section>
   );
+}
+
+function mergeGood(victims: ManualMatchup[], advantages: ManualNote[]): PressItem[] {
+  const out: PressItem[] = [];
+  const seen = new Set<string>();
+  for (const v of victims) {
+    const key = v.name.trim().toLowerCase();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push({ key: `v-${v.name}`, title: v.name, how: v.why });
+  }
+  for (const a of advantages) {
+    const key = a.title.trim().toLowerCase();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push({ key: `a-${a.title}`, title: a.title, how: a.body });
+  }
+  return out;
+}
+
+function mergeBad(counters: ManualMatchup[], hazards: ManualNote[]): PressItem[] {
+  const out: PressItem[] = [];
+  const seen = new Set<string>();
+  for (const h of hazards) {
+    const key = h.title.trim().toLowerCase();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push({
+      key: `h-${h.title}`,
+      title: h.title,
+      how: h.body,
+      watch: h.watch,
+      play: h.play,
+      rule: h.rule,
+    });
+  }
+  for (const c of counters) {
+    const key = c.name.trim().toLowerCase();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push({ key: `c-${c.name}`, title: c.name, how: c.why });
+  }
+  return out;
 }
 
 export function ManualInsights({
@@ -82,38 +176,20 @@ export function ManualInsights({
   advantages: ManualNote[];
   hazards: ManualNote[];
 }) {
-  const hasAny = victims.length || counters.length || advantages.length || hazards.length;
-  if (!hasAny) return null;
+  const good = mergeGood(victims, advantages);
+  const bad = mergeBad(counters, hazards);
+  if (!good.length && !bad.length) return null;
 
   return (
     <MotionConfig reducedMotion="user">
-      <section id="insights" className={`mt-10 ${MANUAL_SCROLL_MT}`}>
-        <h2 className="text-2xl font-semibold tracking-tight">Insights</h2>
+      <section id="matchups" className={`mt-10 ${MANUAL_SCROLL_MT}`}>
+        <h2 className="text-2xl font-semibold tracking-tight">Matchups</h2>
+        <p className="mt-2 max-w-[52ch] text-sm text-muted">
+          Favored lines you want to force. Trap lines that end the game if you mis-send — open each for Watch, Do, and Never.
+        </p>
         <div className="mt-4 grid gap-4 md:grid-cols-2">
-          <Group
-            id="victims"
-            title="Notable victims"
-            items={victims.map((v) => ({ title: v.name, body: v.why }))}
-            wash="color-mix(in srgb, #2a4a9a 16%, transparent)"
-          />
-          <Group
-            id="counters"
-            title="Notable counters"
-            items={counters.map((c) => ({ title: c.name, body: c.why }))}
-            wash="color-mix(in srgb, #e23d7a 16%, transparent)"
-          />
-          <Group
-            id="advantages"
-            title="Advantages"
-            items={advantages.map((a) => ({ title: a.title, body: a.body }))}
-            wash="color-mix(in srgb, var(--type-electric) 14%, transparent)"
-          />
-          <Group
-            id="hazards"
-            title="Hazards"
-            items={hazards.map((h) => ({ title: h.title, body: h.body }))}
-            wash="color-mix(in srgb, var(--type-steel) 18%, transparent)"
-          />
+          <Board id="you-press" title="You press" tone="good" items={good} />
+          <Board id="they-press" title="They press you" tone="bad" items={bad} />
         </div>
       </section>
     </MotionConfig>

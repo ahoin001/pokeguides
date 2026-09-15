@@ -3,7 +3,7 @@ import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { ARCHETYPE_LABEL } from "@/content/archetypes";
-import { MANUAL_FAMILY_LABEL, manualFamily, manualHref, type TeamManual } from "@/content/manuals";
+import { FAMILY_LESSON, MANUAL_FAMILY_LABEL, manualFamily, manualHref, type TeamManual } from "@/content/manuals";
 
 export function ManualCard({
   manual,
@@ -15,6 +15,9 @@ export function ManualCard({
   const mons = manual.slugs.map((s) => (s ? getPokemon(s) : undefined));
   const wash = mons.find(Boolean);
   const press = (manual.press ?? []).map((s) => s.trim()).filter(Boolean).slice(0, 3);
+  const never = (manual.pilot?.fail ?? FAMILY_LESSON[manualFamily(manual)].commonFail).trim();
+  const lead = manual.slots.find((s) => /lead/i.test(s.role))?.role.trim();
+  const pickLine = never || lead;
 
   return (
     <Link
@@ -39,6 +42,14 @@ export function ManualCard({
       </p>
       <h2 className="mt-1 text-xl font-semibold tracking-tight">{manual.title || "Untitled three"}</h2>
       <p className="mt-2 text-sm text-muted">{manual.lede}</p>
+      {pickLine ? (
+        <p className="mt-3 text-sm leading-snug">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-[#f0c040]">
+            {never ? "Never" : "Lead"}
+          </span>
+          <span className="mt-0.5 block text-muted">{pickLine}</span>
+        </p>
+      ) : null}
       {press.length ? (
         <ul className="mt-3 flex flex-wrap gap-1.5">
           {press.map((chip) => (

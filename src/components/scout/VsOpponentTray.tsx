@@ -49,7 +49,9 @@ export function VsOpponentTray({
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0 flex-1">
           {foes.length === 0 ? (
-            <p className="text-sm text-muted">No opponent yet. Search the roster — up to three.</p>
+            <p className="text-sm text-muted">
+              No opponent yet. Ranked names below, or search the roster — up to three.
+            </p>
           ) : (
             <>
               <p className="text-xs font-medium uppercase tracking-wide text-muted">

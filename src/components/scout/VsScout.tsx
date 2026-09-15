@@ -66,11 +66,13 @@ export function VsScout({
   id = "scout",
   heading = "Vs scout",
   lede = "Search who they have. We show how your three hit them and how they hit you.",
+  suggestedFoes = [],
 }: {
   side: ScoutSide[];
   id?: string;
   heading?: string;
   lede?: string;
+  suggestedFoes?: string[];
 }) {
   const exclude = useMemo(() => side.map((s) => s.slug), [side]);
   const excludeKey = exclude.join("|");
@@ -92,8 +94,10 @@ export function VsScout({
   const [corner, setCorner] = useState<DockCorner>("br");
 
   useEffect(() => {
-    const foes = readSlugs(FOES_KEY).filter((s) => !exclude.includes(s)).slice(0, MAX_FOES);
+    const stored = readSlugs(FOES_KEY).filter((s) => !exclude.includes(s)).slice(0, MAX_FOES);
     const rec = readSlugs(RECENT_KEY).filter((s) => !exclude.includes(s));
+    const seed = suggestedFoes.filter((s) => !exclude.includes(s) && getPokemon(s)).slice(0, MAX_FOES);
+    const foes = stored.length ? stored : seed;
     setOpponentSlugs(foes);
     setFocusSlug(foes[0] ?? null);
     setRecent(rec);

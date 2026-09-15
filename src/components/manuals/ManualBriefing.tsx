@@ -7,35 +7,18 @@ import { CaretDown } from "@phosphor-icons/react";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
-import { LoadSampleSix } from "@/components/learn/LoadSampleSix";
 import { SlotMatchups } from "@/components/manuals/SlotMatchups";
 import { TeamCoverage } from "@/components/manuals/TeamCoverage";
 import { SlotCardBody } from "@/components/manuals/SlotCard";
 import { VsScout } from "@/components/scout/VsScout";
 import { MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
+import { ROLE_LABEL } from "@/content/roles";
 import type { TeamManual } from "@/content/manuals";
 import type { ScoutSide } from "@/lib/champions/vs";
-
-function ChipRow({ label, items }: { label: string; items: string[] }) {
-  const chips = items.map((s) => s.trim()).filter(Boolean);
-  if (!chips.length) return null;
-  return (
-    <div>
-      <p className="text-xs font-medium uppercase tracking-wide text-muted">{label}</p>
-      <ul className="mt-2 flex flex-wrap gap-2">
-        {chips.map((chip) => (
-          <li key={chip} className="rounded-full bg-white/5 px-3 py-1 text-sm">
-            {chip}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+import { rankedFoesFor } from "@/lib/ranked/foes";
 
 export function ManualBriefing({ manual }: { manual: TeamManual }) {
-  const ready = manual.slugs.every(Boolean);
   const [openSlug, setOpenSlug] = useState<string | null>(null);
   const scoutSide: ScoutSide[] = [];
   for (const slot of manual.slots) {
@@ -85,8 +68,13 @@ export function ManualBriefing({ manual }: { manual: TeamManual }) {
                       </Link>
                     ) : null}
                     <span className="min-w-0 flex-1">
-                      <span className="block truncate font-semibold tracking-tight">
-                        {p?.name ?? (slot.title || "Empty")}
+                      <span className="flex flex-wrap items-baseline gap-2">
+                        <span className="truncate font-semibold tracking-tight">
+                          {p?.name ?? (slot.title || "Empty")}
+                        </span>
+                        <span className="rounded-full bg-white/8 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
+                          {ROLE_LABEL[slot.job] ?? slot.job}
+                        </span>
                       </span>
                       <span className="mt-0.5 block truncate text-xs text-muted">{slot.title}</span>
                       {p ? <SlotMatchups types={p.types} /> : null}
@@ -110,6 +98,14 @@ export function ManualBriefing({ manual }: { manual: TeamManual }) {
               );
             })}
           </ul>
+          {manual.setsNote?.trim() ? (
+            <div className="mt-4 rounded-[24px] border border-line bg-sunken/60 px-4 py-3.5">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+                Stat Points
+              </p>
+              <p className="mt-1.5 max-w-prose text-sm leading-relaxed text-muted">{manual.setsNote}</p>
+            </div>
+          ) : null}
           <TeamCoverage
             members={manual.slots.flatMap((slot) => {
               const p = slot.slug ? getPokemon(slot.slug) : undefined;
@@ -124,15 +120,11 @@ export function ManualBriefing({ manual }: { manual: TeamManual }) {
             })}
           />
         </section>
-        {ready ? <LoadSampleSix slugs={[...manual.slugs]} intent={manual.archetype} /> : null}
-        <div className="grid gap-5 sm:grid-cols-2">
-          <ChipRow label="Press" items={manual.press ?? []} />
-          <ChipRow label="Refuse" items={manual.refuse ?? []} />
-        </div>
         {scoutSide.length ? (
           <VsScout
             side={scoutSide}
-            lede="Search who they have."
+            lede="Search who they previewed — typing and kit before you lead."
+            suggestedFoes={rankedFoesFor([...manual.slugs])}
           />
         ) : null}
       </div>

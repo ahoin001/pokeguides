@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { CaretDown } from "@phosphor-icons/react";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
+import { MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
 
 export function ManualLead({
   thesis,
@@ -12,6 +13,7 @@ export function ManualLead({
   failLabel = "Never.",
   philosophy,
   meta,
+  lessons,
 }: {
   thesis?: string;
   rule?: string;
@@ -19,28 +21,40 @@ export function ManualLead({
   failLabel?: string;
   philosophy?: string;
   meta?: string;
+  lessons?: ReactNode;
 }) {
   const [open, setOpen] = useState(false);
   const theory = [philosophy?.trim(), meta?.trim()].filter((s): s is string => Boolean(s));
   if (!thesis && !rule && !fail && !theory.length) return null;
 
   return (
-    <aside className="mt-6 max-w-3xl rounded-[28px] border border-line bg-raised/40 px-5 py-4">
-      {thesis ? <p className="font-semibold tracking-tight">{thesis}</p> : null}
-      {rule ? <p className={`${thesis ? "mt-2" : ""} text-sm text-muted`}>{rule}</p> : null}
+    <aside id="doctrine" className={`mt-6 max-w-3xl overflow-hidden rounded-[28px] border border-line bg-raised/40 ${MANUAL_SCROLL_MT}`}>
+      <div className="px-5 py-4">
+        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">Doctrine</p>
+        {thesis ? <p className="mt-2 text-xl font-semibold tracking-tight md:text-2xl">{thesis}</p> : null}
+        {lessons ? <div className="mt-3">{lessons}</div> : null}
+      </div>
+      {rule ? (
+        <div className="border-t border-line/70 bg-ink/[0.04] px-5 py-3.5">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#9cbcff]">Rule</p>
+          <p className="mt-1.5 text-[15px] leading-relaxed text-ink">{rule}</p>
+        </div>
+      ) : null}
       {fail ? (
-        <p className="mt-2 text-sm text-muted">
-          <span className="font-medium text-ink">{failLabel} </span>
-          {fail}
-        </p>
+        <div className="border-t border-[#d4a017]/30 bg-[color-mix(in_srgb,#d4a017_14%,transparent)] px-5 py-3.5">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#f0c040]">
+            {failLabel.replace(/\.$/, "")}
+          </p>
+          <p className="mt-1.5 text-[15px] leading-relaxed text-ink">{fail}</p>
+        </div>
       ) : null}
       {theory.length ? (
-        <>
+        <div className="border-t border-line/70 px-5 py-3">
           <button
             type="button"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="mt-3 flex items-center gap-2 text-sm text-muted hover:text-ink"
+            className="flex items-center gap-2 text-sm text-muted hover:text-ink"
           >
             <CaretDown
               size={14}
@@ -65,7 +79,7 @@ export function ManualLead({
               </motion.div>
             ) : null}
           </AnimatePresence>
-        </>
+        </div>
       ) : null}
     </aside>
   );

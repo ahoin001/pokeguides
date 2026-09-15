@@ -125,7 +125,12 @@ export type ManualFamilyLesson = {
 
 export type ManualNote = {
   title: string;
+  /** Skim line or full body when watch/play/rule are absent. */
   body: string;
+  /** Trap card lanes — used on Matchups “They press you”. */
+  watch?: string;
+  play?: string;
+  rule?: string;
 };
 
 export type ManualMatchup = {
@@ -536,7 +541,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       {
         id: "mid",
         title: "Mid",
-        lede: "Slow U-turn, stay on the wall, or send Whimsicott back to re-up Tailwind.",
+        lede: "Type sends live on the switch board. Here: slow U-turn, sit on the wall, or send Whimsicott back to re-up Tailwind.",
         branches: [
           { out: "corviknight", when: "Had to lead Corviknight", then: "Take the hit. Slow U-turn later. Tailwind is still in the bag." },
           { out: "corviknight", when: "Locked into a physical resist, no KO this turn", then: "Stay. Roost, Press, or Iron Defense. The wall can win." },
@@ -566,37 +571,130 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       },
     ],
     loops: [
-      { title: "Slow U-turn", body: "Corviknight takes the hit, then leaves. Fast U-turn under Tailwind delivers Garchomp into Ice." },
-      { title: "Encore then Dance", body: "Lock Protect. Next turn Garchomp Swords Dance. Dark blanks the first half." },
-      { title: "Tailwind timer", body: "Four turns including the click. On turn three, re-up, Scale Shot, or close." },
+      {
+        title: "Slow U-turn",
+        body: "Use when Corviknight just ate a hit and Tailwind is up or about to be. Take the hit, then U-turn so Garchomp or Whimsicott comes in after they already moved. Fast U-turn under Tailwind still delivers Garchomp into Ice — switch instead.",
+      },
+      {
+        title: "Encore then Dance",
+        body: "Use when they Protect or set up into your Tailwind. Lock the waste with Encore. Next turn Garchomp Swords Dance. Dark blanks Prankster Encore — Corviknight Taunt is the Dark answer.",
+      },
+      {
+        title: "Tailwind timer",
+        body: "Use when Whimsicott is free to click Tailwind. Four turns including the click. On turn three, re-up Tailwind, Scale Shot, or close the game — do not waste the last turn.",
+      },
     ],
     victims: [
-      { name: "Fighting", why: "Whimsicott Moonblast. Fairy hits Fighting for super-effective damage." },
-      { name: "Physical leads", why: "Corviknight takes the hit. Rocky Helmet chips contact. Slow U-turn after." },
-      { name: "Dragon once Tailwind is up", why: "Whimsicott Moonblast, or Garchomp Earthquake and Dragon while they move last." },
+      {
+        name: "Fighting",
+        why: "Whimsicott Moonblast hits Fighting for super-effective Fairy damage. Lead this when Fighting is the preview threat.",
+      },
+      {
+        name: "Physical leads",
+        why: "Corviknight takes the hit with Rocky Helmet. Slow U-turn after hands off into Tailwind Garchomp.",
+      },
+      {
+        name: "Dragon once Tailwind is up",
+        why: "Whimsicott Moonblast hits Dragon hard, or Garchomp Earthquake and Dragon while they move last under Tailwind.",
+      },
     ],
     counters: [
-      { name: "Poison into Whimsicott", why: "Poison hits Fairy four times as hard. Send Corviknight. Steel ignores Poison." },
-      { name: "Fire into Whimsicott or Corviknight", why: "Fire deals double to both. Send Garchomp. Garchomp resists Fire." },
-      { name: "Ice after a fast U-turn", why: "If Corviknight is faster than their Ice, U-turn puts Garchomp in, then Ice hits four times as hard. Switch instead." },
-      { name: "Fake Out into sash-less Whimsicott", why: "Fake Out is +3. Tailwind is +1. Without Focus Sash, the flinch plus the next hit can KO. Lead Corviknight, or keep Sash." },
+      {
+        name: "Poison into Whimsicott",
+        why: "Poison hits Fairy four times as hard. Send Corviknight — Steel takes no Poison damage.",
+      },
+      {
+        name: "Fire into Whimsicott or Corviknight",
+        why: "Fire deals double to both. Send Garchomp — he resists Fire.",
+      },
+      {
+        name: "Ice after a fast U-turn",
+        why: "If Corviknight is faster than their Ice, U-turn puts Garchomp in, then Ice hits four times as hard. Switch instead.",
+      },
+      {
+        name: "Fake Out into sash-less Whimsicott",
+        why: "Fake Out is priority +3. Tailwind is only +1. Without Focus Sash, the flinch plus the next hit can KO. Lead Corviknight, or keep Sash.",
+      },
     ],
     advantages: [
-      { title: "Whimsicott vs Fighting", body: "Moonblast is super-effective Fairy. This is a lead you want after Tailwind, or instead of it." },
-      { title: "Corviknight vs physical leads", body: "High Defense, Mirror Armor, Rocky Helmet. Take the hit. Hand off slow." },
-      { title: "Corviknight vs Poison", body: "Steel ignores Poison. Whimsicott dies to it. This is why Corviknight is the emergency lead." },
-      { title: "Garchomp under Tailwind", body: "Tailwind already doubles Speed. Earthquake and Stone Edge KO while they still move last." },
-      { title: "Garchomp vs Electric", body: "Ground ignores Electric. Fire also deals half. These are the safe sends." },
+      {
+        title: "Whimsicott vs Fighting",
+        body: "Moonblast is super-effective Fairy on Fighting. Lead this after Tailwind is up, or instead of Tailwind if Fighting is the only threat.",
+      },
+      {
+        title: "Corviknight vs physical leads",
+        body: "High Defense, Mirror Armor, Rocky Helmet. Take the hit. Hand off slow with U-turn.",
+      },
+      {
+        title: "Corviknight vs Poison",
+        body: "Steel takes no Poison damage. Whimsicott dies to Poison. That is why Corviknight is the emergency Poison lead.",
+      },
+      {
+        title: "Garchomp under Tailwind",
+        body: "Tailwind already doubles Speed. Earthquake and Stone Edge KO while they still move last.",
+      },
+      {
+        title: "Garchomp vs Electric",
+        body: "Ground takes no Electric damage. Fire also deals half. These are the safe Garchomp sends.",
+      },
     ],
     hazards: [
-      { title: "Prankster is not Fake Out", body: "Tailwind is +1. Fake Out is +3. They still flinch you, then you Tailwind next turn if you live." },
-      { title: "Whimsicott U-turn is not free", body: "Whimsicott is fast. After Tailwind you are even faster. They hit whoever came in. Switch instead." },
-      { title: "Ice is not a Corviknight resist", body: "Flying/Steel takes normal Ice. Special Ice still chunks. Roost. Do not sit." },
-      { title: "Fast U-turn into Ice", body: "Damage, then switch, then they attack. If Corviknight is faster, Ice hits Garchomp four times as hard." },
-      { title: "Prankster vs Dark", body: "Encore, Taunt, and Thunder Wave fail. Tailwind and Moonblast do not. Corviknight Taunt still works on Dark." },
-      { title: "No Fire STAB", body: "Grass wants Brave Bird. Earthquake into Grass is a gift." },
-      { title: "Poison into Whimsicott", body: "Four times as hard. Corviknight ignores it. Emergency lead." },
-      { title: "Outrage lock", body: "A Fairy switch knocks Garchomp out. Dragon Claw or Scale Shot if Fairy is still in the bag." },
+      {
+        title: "Prankster is not Fake Out",
+        body: "Tailwind is priority +1. Fake Out is +3. They still flinch you, then you Tailwind next turn if you live.",
+        watch: "Incineroar or another Fake Out user leads into your Whimsicott.",
+        play: "Keep Focus Sash, or lead Corviknight into Fake Out. Tailwind next turn if you live the flinch.",
+        rule: "Do not assume Prankster Tailwind beats Fake Out — it does not.",
+      },
+      {
+        title: "Whimsicott U-turn is not free",
+        body: "Whimsicott is fast. After Tailwind you are even faster. They hit whoever came in. Switch instead.",
+        watch: "You click U-turn on Whimsicott while faster than their attacker.",
+        play: "Hard switch to the right type answer, or U-turn only when you are slower so they hit Whimsicott first.",
+        rule: "Do not fast U-turn into Ice or another Garchomp trap.",
+      },
+      {
+        title: "Ice is not a Corviknight resist",
+        body: "Flying/Steel takes normal Ice damage — not half. Special Ice still chunks. Roost. Do not sit forever.",
+        watch: "Ice Beam or Freeze-Dry into Corviknight after you thought Steel would blank it.",
+        play: "Roost if you must stay, or leave to Garchomp only when Ice is gone.",
+        rule: "Do not treat Ice as a Corviknight resist.",
+      },
+      {
+        title: "Fast U-turn into Ice",
+        body: "Damage, then switch, then they attack. If Corviknight is faster, Ice hits Garchomp four times as hard.",
+        watch: "You outspeed their Ice and U-turn intending Garchomp.",
+        play: "Hard switch, or bring Whimsicott or Corviknight instead of Garchomp until Ice is answered.",
+        rule: "Never fast U-turn Garchomp into healthy Ice.",
+      },
+      {
+        title: "Prankster vs Dark",
+        body: "Encore, Taunt, and Thunder Wave fail on Dark. Tailwind and Moonblast do not. Corviknight Taunt still works on Dark.",
+        watch: "Dark-type sits on Whimsicott while you try Prankster status.",
+        play: "Click Tailwind or Moonblast, or leave to Corviknight for Taunt that still lands.",
+        rule: "Do not Encore or Thunder Wave a Dark type with Whimsicott.",
+      },
+      {
+        title: "No Fire STAB",
+        body: "Grass wants Brave Bird from Corviknight. Earthquake into Grass is a gift to them.",
+        watch: "Grass lead or midgame Grass while Garchomp is your only answer out.",
+        play: "Send Corviknight and Brave Bird. Do not Earthquake Grass with Garchomp.",
+        rule: "Do not treat Garchomp as the Grass answer on this three.",
+      },
+      {
+        title: "Poison into Whimsicott",
+        body: "Poison hits Fairy four times as hard. Corviknight takes no Poison. Emergency lead.",
+        watch: "Poison Jab or Sludge Bomb into Whimsicott.",
+        play: "Lead or switch Corviknight immediately.",
+        rule: "Do not stay on Whimsicott into Poison.",
+      },
+      {
+        title: "Outrage lock",
+        body: "A Fairy switch knocks Garchomp out. Dragon Claw or Scale Shot if Fairy is still in the bag.",
+        watch: "You locked Outrage while Fairy is still healthy.",
+        play: "Click Dragon Claw or Scale Shot instead, or leave to Corviknight.",
+        rule: "Do not Outrage when Fairy is still in their bag.",
+      },
     ],
   },
   {
@@ -604,54 +702,84 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     title: "Patch Balance: Corviknight, Primarina, Garchomp",
     lede: "Corviknight takes the physical hit. Primarina resists Ice and Fire, then Moonblast. Garchomp knocks things out. You have no Tailwind.",
     philosophy:
-      "You bring Corviknight, Primarina, and Garchomp. Corviknight takes the physical hit, then U-turn. U-turn deals damage, then switches. Leave Speed at 0 on Corviknight so they already moved before whoever comes in. Primarina resists Ice and Fire. Moonblast hits Dragon and Fighting. Ice Beam hits their Garchomp four times as hard. Garchomp knocks things out. You have no Tailwind, so put 32 Speed on Garchomp. Never lead Garchomp into Ice. Send Primarina.",
+      "This three wins by soaking one hit, handing off slowly, then finishing with Speed. Corviknight is the wall and the U-turn (deals damage, then switches). Primarina is the patch for Ice, Fire, Dragon, and Fighting. Garchomp is the cleaner — keep it off Ice until Primarina has answered.",
     archetype: "balance",
     family: "clock",
     pilot: {
       thesis: "Corviknight soaks the physical hit. Primarina patches Ice, Fire, Dragon, and Fighting. Garchomp finishes.",
-      rule: "You have no Tailwind. Put 32 Speed on Garchomp. Slow U-turn only. Ice onto Garchomp: send Primarina.",
-      fail: "Leading Garchomp into Ice, or U-turning while Corviknight is faster than their Ice attack.",
+      rule: "You have no Tailwind (no Speed doubling). Put 32 Speed on Garchomp. Only U-turn when Corviknight is slower than their attacker. Ice onto Garchomp: send Primarina.",
+      fail: "Leading Garchomp into Ice, or U-turning into Garchomp while Corviknight is faster than their Ice attack — Ice hits Garchomp four times as hard (4×).",
     },
     slugs: ["corviknight", "primarina", "garchomp"],
     meta: "Garchomp and Primarina sit at the top of ranked singles. Corviknight is the physical U-turn next to both. Sitrus Primarina stays. Garchomp spends Speed because nobody doubles it.",
     press: ["Physical leads", "Fighting", "Dragon", "Fire into Primarina", "Their Garchomp"],
     refuse: ["Ice into Garchomp", "Electric into Corviknight or Primarina", "Grass into Primarina", "Poison into Primarina"],
     switches: [
-      { into: "Ice", send: "Primarina. Water/Fairy resists Ice. Corviknight takes normal Ice. Never Garchomp — Ice hits it four times as hard." },
-      { into: "Fire", send: "Primarina. Water resists Fire. Corviknight takes double. Garchomp resists Fire if Primarina is down." },
-      { into: "Electric", send: "Garchomp. Ground ignores Electric. Corviknight and Primarina both take double." },
-      { into: "Fairy", send: "Corviknight. Steel resists Fairy. Garchomp takes double. Primarina is Fairy — stay if you already won the slot." },
-      { into: "Dragon", send: "Primarina. Fairy ignores Dragon. Moonblast is super-effective." },
-      { into: "Fighting", send: "Primarina Moonblast, or Corviknight Body Press. Both resist Fighting." },
-      { into: "Poison", send: "Corviknight. Steel ignores Poison. Primarina takes double." },
-      { into: "Grass", send: "Corviknight Brave Bird. Primarina takes double. Garchomp Earthquake is resisted." },
-      { into: "Ground", send: "Corviknight. Flying ignores Ground." },
-      { into: "Water", send: "Primarina or Corviknight. Both resist. Garchomp takes normal Water." },
+      {
+        into: "Ice",
+        send: "Primarina. Primarina is Water/Fairy, so Ice deals half damage to her. Corviknight takes normal Ice. Never send Garchomp — Ice hits Dragon/Ground four times as hard.",
+      },
+      {
+        into: "Fire",
+        send: "Primarina. Water resists Fire (half damage). Corviknight takes double Fire. If Primarina is down, Garchomp resists Fire.",
+      },
+      {
+        into: "Electric",
+        send: "Garchomp. Ground types take no Electric damage. Corviknight and Primarina both take double Electric — leave immediately.",
+      },
+      {
+        into: "Fairy",
+        send: "Corviknight. Steel resists Fairy. Garchomp takes double Fairy. Primarina is Fairy herself — stay only if you already won the slot.",
+      },
+      {
+        into: "Dragon",
+        send: "Primarina. Fairy types take no Dragon damage, and Moonblast hits Dragon for super-effective damage.",
+      },
+      {
+        into: "Fighting",
+        send: "Primarina. Moonblast hits Fighting hard, or Corviknight Body Press. Both resist Fighting.",
+      },
+      {
+        into: "Poison",
+        send: "Corviknight. Steel takes no Poison damage. Primarina takes double Poison — this is an emergency switch.",
+      },
+      {
+        into: "Grass",
+        send: "Corviknight. Brave Bird hits Grass hard. Primarina takes double Grass. Garchomp Earthquake is resisted by Grass — do not send him.",
+      },
+      {
+        into: "Ground",
+        send: "Corviknight. Flying types take no Ground damage.",
+      },
+      {
+        into: "Water",
+        send: "Primarina or Corviknight. Both resist Water. Garchomp takes normal Water — not an emergency.",
+      },
     ],
     plan: [
       {
         title: "Clock",
         goal: "Win the first slot without Tailwind.",
-        play: "Lead Corviknight into physical, Grass, or Poison. Lead Primarina into Ice, Fire, Dragon, or Fighting. Lead Garchomp only into Electric — both partners take double Electric. Never lead Garchomp into Ice.",
-        next: "Corviknight U-turn is slow on purpose. Primarina Moonblast or Ice Beam, then stay or leave. Garchomp comes in after they already moved.",
+        play: "Lead Corviknight into physical attackers, Grass, or Poison. Lead Primarina into Ice, Fire, Dragon, or Fighting. Lead Garchomp only when their lead is Electric — both partners take double Electric.",
+        next: "After the first hit lands, hand off with a slow U-turn or a clean switch. Do not throw Garchomp into Ice on turn one.",
       },
       {
         title: "Shield",
-        goal: "Live Ice, Fire, Fairy, and Poison. Hand off slow.",
-        play: "Ice onto Garchomp: Primarina. Fire onto Corviknight: Primarina. Fairy onto Garchomp: Corviknight. Poison onto Primarina: Corviknight. Electric onto either wall: Garchomp. Grass onto Primarina: Corviknight Brave Bird.",
-        next: "If Corviknight is faster than their Ice, do not U-turn into Garchomp. Switch, or U-turn into Primarina. Primarina resists Ice.",
+        goal: "Keep the cleaner alive while you answer their coverage.",
+        play: "Use the switch board: Ice and Fire go to Primarina, Fairy and Poison go to Corviknight, Electric goes to Garchomp. Sit and heal when the wall is winning the slot.",
+        next: "If Corviknight outspeeds their Ice attacker, do not U-turn into Garchomp — switch to Primarina instead. Primarina resists Ice.",
       },
       {
         title: "Clean",
         goal: "Garchomp knocks things out while it still moves first.",
-        play: "Earthquake grounded non-Grass. Stone Edge or Dragon on Flying. Ice Beam from Primarina if their Garchomp or Dragonite is the leftover. Swords Dance if they Protect.",
-        next: "Outrage locks Garchomp. A Fairy switch knocks it out. Primarina Moonblast is the Fairy click. Aqua Jet is the only priority on this three.",
+        play: "Earthquake grounded non-Grass targets. Stone Edge or Dragon STAB on Flying. Ice Beam from Primarina if their Garchomp or Dragonite is leftover. Swords Dance if they Protect.",
+        next: "Outrage locks Garchomp into Dragon — a Fairy switch knocks it out. Primarina Moonblast is the Fairy answer. Aqua Jet on Primarina is the only priority move on this three.",
       },
     ],
     skills: ["U-turn", "Ice Beam", "Roost"],
     relatedLessons: ["preview", "types", "turns"],
     setsNote:
-      "Each Pokémon spends 66 Stat Points. One point is +1 to that stat at Level 50. You may put at most 32 in a single stat. Corviknight puts 32 in HP and 32 in Defense, and 0 in Speed, so U-turn happens after they already moved. Primarina puts 32 in HP and the rest in Defense and Special Attack because Sitrus is the stay — Moonblast still has to hit. Garchomp puts 32 in Attack and 32 in Speed because nothing on this three doubles Speed.",
+      "Each Pokémon spends 66 Stat Points at Level 50. One point is +1 to that stat. You may put at most 32 in a single stat. Corviknight puts 32 HP and 32 Defense, and 0 Speed, so U-turn happens after they already moved. Primarina puts 32 HP and the rest in Defense and Special Attack because Sitrus is the stay — Moonblast still has to hit. Garchomp puts 32 Attack and 32 Speed because nothing on this three doubles Speed.",
     slots: [
       {
         slug: "corviknight",
@@ -862,7 +990,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       {
         id: "mid",
         title: "Mid",
-        lede: "Slow U-turn. Ice goes to Primarina. Electric goes to Garchomp.",
+        lede: "Type sends live on the switch board. Here: sits, locks, and the speed trap — not the Ice→Primarina row again.",
         branches: [
           { out: "corviknight", when: "Locked into a physical resist, no KO this turn", then: "Stay. Roost, Press, or Iron Defense. The wall can win." },
           { out: "corviknight", when: "Fire onto Corviknight", then: "Primarina. Water resists Fire." },
@@ -895,102 +1023,114 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       {
         id: "lead",
         title: "Lead",
-        lede: "Preview their three. One send. Garchomp never walks in first unless the lead is Electric.",
+        lede: "Preview their three. Send one. Garchomp never walks in first unless their lead is Electric — Ice and Fairy still hide him.",
         forks: [
           {
             id: "p-lead-corvi",
             when: "Physical, Grass, or Poison",
-            then: "Lead Corviknight. Rocky Helmet. Steel ignores Poison. Brave Bird Grass.",
+            then: "Lead Corviknight. Rocky Helmet chips contact. Steel takes no Poison damage. Brave Bird answers Grass.",
             send: "corviknight",
+            why: "Because Corviknight is the physical sponge and the Poison/Grass emergency. Fire and Electric still leave to partners.",
             forks: [
               {
                 id: "p-lead-corvi-phys",
                 when: "Physical coming",
                 then: "Stay. Take the hit. Rocky Helmet chips contact.",
                 send: "corviknight",
+                why: "Because your job on lead is to soak and chip, not to force a risky hand-off yet.",
               },
               {
                 id: "p-lead-corvi-grass",
                 when: "Grass in",
-                then: "Brave Bird. Recoil is the tax.",
+                then: "Brave Bird. Recoil is the tax — do not farm it every turn.",
                 move: "Brave Bird",
                 send: "corviknight",
+                why: "Because Primarina takes double Grass and Garchomp Earthquake is resisted. Flying hits Grass hard.",
               },
               {
                 id: "p-lead-corvi-fire",
                 when: "Fire coming",
-                then: "Leave to Primarina. You take double Fire.",
+                then: "Leave to Primarina. Corviknight takes double Fire.",
                 send: "primarina",
+                why: "Because Water resists Fire. Staying on Corviknight donates a KO.",
               },
               {
                 id: "p-lead-corvi-elec",
                 when: "Electric coming",
-                then: "Leave to Garchomp. You take double Electric.",
+                then: "Leave to Garchomp. Corviknight takes double Electric.",
                 send: "garchomp",
+                why: "Because Ground takes no Electric damage. This is the rare good Garchomp entry.",
               },
               {
                 id: "p-lead-corvi-uturn",
                 when: "Want Garchomp, and you are slower or they switched",
-                then: "U-turn. They hit Corviknight, then Garchomp is in.",
+                then: "U-turn. They hit Corviknight, then Garchomp is in after they already moved.",
                 move: "U-turn",
                 send: "garchomp",
+                why: "Because slow U-turn is the safe hand-off: damage plus a free switch after their attack.",
               },
               {
                 id: "p-lead-corvi-ice",
                 when: "Want Garchomp, but you outspeed Ice",
                 then: "Do not U-turn into Garchomp. Switch to Primarina.",
                 send: "primarina",
-                why: "Ice hits Garchomp four times as hard. Primarina resists Ice.",
+                why: "Because if you move first, U-turn brings Garchomp in before they attack — then Ice hits him four times as hard. Primarina resists Ice.",
               },
             ],
           },
           {
             id: "p-lead-prima",
             when: "Ice, Fire, Dragon, or Fighting",
-            then: "Lead Primarina. Water resists Ice and Fire. Fairy ignores Dragon. Moonblast Fighting.",
+            then: "Lead Primarina. Water resists Ice and Fire. Fairy takes no Dragon damage. Moonblast hits Fighting.",
             send: "primarina",
+            why: "Because Primarina is the patch for the types that threaten Garchomp or Corviknight.",
             forks: [
               {
                 id: "p-lead-prima-ice",
                 when: "Ice or their Garchomp",
-                then: "Ice Beam. Four times as hard on Garchomp. Resisted Ice on you.",
+                then: "Ice Beam. Four times as hard on Garchomp. Ice deals half to you.",
                 move: "Ice Beam",
                 send: "primarina",
+                why: "Because you answer their Ice-weak dragon without sending your own Garchomp into danger.",
               },
               {
                 id: "p-lead-prima-moon",
                 when: "Dragon or Fighting",
-                then: "Moonblast. You are immune to Dragon.",
+                then: "Moonblast. You take no Dragon damage; Fighting takes super-effective Fairy.",
                 move: "Moonblast",
                 send: "primarina",
+                why: "Because Fairy both blanks Dragon and punishes Fighting.",
               },
               {
                 id: "p-lead-prima-fire",
                 when: "Fire in",
-                then: "Sparkling Aria. Water is super-effective.",
+                then: "Sparkling Aria. Water is super-effective on Fire.",
                 move: "Sparkling Aria",
                 send: "primarina",
+                why: "Because Corviknight dies to Fire and Primarina is the resist.",
               },
               {
                 id: "p-lead-prima-elec",
                 when: "Electric coming",
                 then: "Leave to Garchomp. You take double Electric.",
                 send: "garchomp",
+                why: "Because Ground blanks Electric. Staying donates Primarina.",
               },
               {
                 id: "p-lead-prima-leave",
                 when: "Grass or Poison coming",
-                then: "Leave to Corviknight. Brave Bird Grass. Steel ignores Poison.",
+                then: "Leave to Corviknight. Brave Bird for Grass. Steel blanks Poison.",
                 send: "corviknight",
+                why: "Because Primarina takes double from both. Corviknight is the typed answer.",
               },
             ],
           },
           {
             id: "p-lead-chomp",
             when: "Electric",
-            then: "Lead Garchomp. Ground ignores Electric. Both partners take double.",
+            then: "Lead Garchomp. Ground takes no Electric damage. Both partners take double.",
             send: "garchomp",
-            why: "This is the only Garchomp lead. Ice and Fairy still hide it.",
+            why: "Because this is the only Garchomp lead. Ice and Fairy still hide him every other preview.",
             forks: [
               {
                 id: "p-lead-chomp-eq",
@@ -998,12 +1138,14 @@ export const CANONICAL_MANUALS: TeamManual[] = [
                 then: "Earthquake.",
                 move: "Earthquake",
                 send: "garchomp",
+                why: "Because you already won the type. Take the KO while you move first.",
               },
               {
                 id: "p-lead-chomp-ice",
                 when: "Ice or Fairy coming",
                 then: "Leave. Primarina for Ice. Corviknight for Fairy.",
                 send: "primarina",
+                why: "Because you mis-led if Ice or Fairy walks in — Garchomp takes 4× Ice and 2× Fairy.",
               },
             ],
           },
@@ -1012,7 +1154,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       {
         id: "mid",
         title: "Mid",
-        lede: "Slow U-turn. Ice to Primarina. Electric to Garchomp. Do not donate the cleaner.",
+        lede: "Type sends live on the switch board above. Here you handle locks, sits, and the speed trap that donates Garchomp into Ice.",
         forks: [
           {
             id: "p-mid-corvi",
@@ -1022,21 +1164,17 @@ export const CANONICAL_MANUALS: TeamManual[] = [
               {
                 id: "p-mid-corvi-stay",
                 when: "Locked into a physical resist, no KO this turn",
-                then: "Stay. Roost, Press, or Iron Defense.",
+                then: "Stay. Roost, Body Press, or Iron Defense. The wall can win 3v3 without handing off.",
                 move: "Roost",
                 send: "corviknight",
+                why: "Because they cannot break Corviknight this turn, healing or Defense setup keeps the slot without risking a bad U-turn.",
               },
               {
-                id: "p-mid-corvi-fire",
-                when: "Fire onto Corviknight",
-                then: "Primarina. Water resists Fire.",
+                id: "p-mid-corvi-ice-trap",
+                when: "You want Garchomp, but you outspeed their Ice",
+                then: "Do not U-turn into Garchomp. Switch to Primarina, or U-turn only if Primarina is the one coming in.",
                 send: "primarina",
-              },
-              {
-                id: "p-mid-corvi-elec",
-                when: "Electric onto Corviknight",
-                then: "Garchomp. Immune.",
-                send: "garchomp",
+                why: "Because U-turn brings the next Pokémon in after you move. If you are faster than Ice, Garchomp walks into a 4× Ice hit before they take another turn.",
               },
             ],
           },
@@ -1046,23 +1184,19 @@ export const CANONICAL_MANUALS: TeamManual[] = [
             out: "primarina",
             forks: [
               {
-                id: "p-mid-prima-elec",
-                when: "Electric onto Primarina",
-                then: "Garchomp. Immune.",
-                send: "garchomp",
-              },
-              {
-                id: "p-mid-prima-grass",
-                when: "Grass or Poison onto Primarina",
-                then: "Corviknight. Brave Bird Grass. Steel ignores Poison.",
-                send: "corviknight",
-              },
-              {
                 id: "p-mid-prima-wall",
                 when: "Physical wall sitting on Primarina",
-                then: "Calm Mind if Sitrus, or leave to Garchomp if Ice is gone.",
+                then: "Calm Mind if you hold Sitrus and can stay, or leave to Garchomp only after Ice is gone from their side.",
                 move: "Calm Mind",
                 send: "primarina",
+                why: "Because a physical wall shrugs off Moonblast until you boost. Bringing Garchomp early while Ice is still healthy is how you donate the cleaner.",
+              },
+              {
+                id: "p-mid-prima-choice",
+                when: "You locked Choice Specs into the wrong type",
+                then: "Switch out. Do not slam the locked Moonblast into Steel or the locked Water into a resist.",
+                send: "corviknight",
+                why: "Because Choice locks you into one move. The wrong lock donates a free turn; Sitrus is the default item so you can stay without locking.",
               },
             ],
           },
@@ -1072,17 +1206,19 @@ export const CANONICAL_MANUALS: TeamManual[] = [
             out: "garchomp",
             forks: [
               {
-                id: "p-mid-chomp-ice",
-                when: "Ice onto Garchomp",
-                then: "Primarina. Resists Ice.",
-                send: "primarina",
-                why: "You mis-sent if this is a full Ice Beam.",
+                id: "p-mid-chomp-outrage",
+                when: "You clicked Outrage and Fairy is still in their bag",
+                then: "Expect the Fairy switch. If you still have a free turn before locking further, leave to Corviknight or Primarina instead of slamming again.",
+                send: "corviknight",
+                why: "Because Outrage locks you into Dragon. Fairy takes no Dragon damage and Moonblasts you for super-effective damage.",
               },
               {
-                id: "p-mid-chomp-fairy",
-                when: "Fairy onto Garchomp",
-                then: "Corviknight. Iron Head or stay. Steel resists Fairy.",
-                send: "corviknight",
+                id: "p-mid-chomp-dance-mirror",
+                when: "Their Garchomp Swords Danced and also put 32 Speed",
+                then: "Do not try to outrun it. Leave to Primarina and Ice Beam. Ice hits Garchomp four times as hard.",
+                send: "primarina",
+                move: "Ice Beam",
+                why: "Because your Garchomp does not win that Speed race after they boost. Primarina answers the mirror without gambling the cleaner.",
               },
             ],
           },
@@ -1179,42 +1315,153 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       },
     ],
     loops: [
-      { title: "Slow U-turn", body: "Corviknight takes the hit, then leaves. Fast U-turn under a Speed tie delivers Garchomp into Ice. Primarina resists Ice — switch there." },
-      { title: "Sitrus stay", body: "Primarina lives the first hit. Encore Protect, or Calm Mind, then Moonblast or Ice Beam. Specs does not get this loop." },
-      { title: "Ice Beam their Garchomp", body: "Do not send your Garchomp into theirs. Primarina Ice Beam hits four times as hard. Then Garchomp cleans what is left." },
+      {
+        title: "Slow U-turn",
+        body: "Use when Corviknight just ate a physical hit and you want Garchomp or Primarina in after they already moved. Leave Speed at 0 so U-turn happens second. Fast U-turn under a Speed tie delivers Garchomp into Ice — switch to Primarina instead.",
+      },
+      {
+        title: "Sitrus stay",
+        body: "Use when Primarina can live the first hit and keep the slot. Live the hit so Sitrus heals. Encore their Protect or Calm Mind once, then Moonblast or Ice Beam. Specs does not get this loop because it cannot sit.",
+      },
+      {
+        title: "Ice Beam their Garchomp",
+        body: "Use when their Garchomp or another Ice-weak dragon is the threat. Do not send your Garchomp into theirs. Primarina Ice Beam hits Garchomp four times as hard. Then your Garchomp cleans what is left.",
+      },
     ],
     victims: [
-      { name: "Physical leads", why: "Corviknight takes the hit. Rocky Helmet chips contact. Slow U-turn after." },
-      { name: "Fighting", why: "Primarina Moonblast. Fairy hits Fighting for super-effective damage. Corviknight also resists." },
-      { name: "Dragon", why: "Primarina Moonblast. Fairy ignores Dragon." },
-      { name: "Fire", why: "Primarina Sparkling Aria. Water hits Fire. Corviknight cannot sit this." },
-      { name: "Their Garchomp", why: "Primarina Ice Beam. Ice hits Garchomp four times as hard." },
+      {
+        name: "Physical leads",
+        why: "Corviknight takes the hit with high Defense and Rocky Helmet. Contact moves chip them back. After the hit, slow U-turn brings in Primarina or Garchomp safely.",
+      },
+      {
+        name: "Fighting",
+        why: "Primarina Moonblast hits Fighting for super-effective damage. Corviknight also resists Fighting and can Body Press. Lead Primarina when you see Fighting.",
+      },
+      {
+        name: "Dragon",
+        why: "Primarina is Fairy, so Dragon moves deal no damage to her. Moonblast hits Dragon for super-effective damage. You can lead this.",
+      },
+      {
+        name: "Fire",
+        why: "Primarina Sparkling Aria is Water — super-effective on Fire. Corviknight takes double Fire and should leave. Lead or switch Primarina.",
+      },
+      {
+        name: "Their Garchomp",
+        why: "Primarina Ice Beam hits Garchomp four times as hard. Do not send your Garchomp into the mirror to Speed-tie.",
+      },
     ],
     counters: [
-      { name: "Ice into Garchomp", why: "Ice hits four times as hard. Send Primarina. Corviknight takes normal Ice. Never stay." },
-      { name: "Electric into Corviknight or Primarina", why: "Both take double. Send Garchomp. Ground ignores Electric." },
-      { name: "Grass into Primarina", why: "Grass deals double. Send Corviknight Brave Bird. Garchomp Earthquake is resisted." },
-      { name: "Poison into Primarina", why: "Poison deals double. Send Corviknight. Steel ignores Poison." },
-      { name: "A Speed-capped Garchomp after Swords Dance", why: "Your Garchomp does not win that race. Ice Beam from Primarina. Do not Outrage into the mirror." },
+      {
+        name: "Ice into Garchomp",
+        why: "Ice hits Dragon/Ground four times as hard. Send Primarina — she resists Ice. Corviknight takes normal Ice. Never stay on Garchomp.",
+      },
+      {
+        name: "Electric into Corviknight or Primarina",
+        why: "Both walls take double Electric. Send Garchomp — Ground takes no Electric damage.",
+      },
+      {
+        name: "Grass into Primarina",
+        why: "Grass deals double to Primarina. Send Corviknight for Brave Bird. Garchomp Earthquake is resisted by Grass — do not send him.",
+      },
+      {
+        name: "Poison into Primarina",
+        why: "Poison deals double to Primarina. Send Corviknight — Steel takes no Poison damage.",
+      },
+      {
+        name: "A Speed-capped Garchomp after Swords Dance",
+        why: "Your Garchomp does not win that race. Ice Beam from Primarina. Do not Outrage into the mirror.",
+      },
     ],
     advantages: [
-      { title: "Primarina vs Ice", body: "Water/Fairy resists Ice. This is why Garchomp can exist on the three. Lead this into Ice." },
-      { title: "Primarina vs Dragon", body: "Fairy ignores Dragon. Moonblast is super-effective. You can lead this." },
-      { title: "Primarina vs their Garchomp", body: "Ice Beam is four times as hard. Do not send your Garchomp." },
-      { title: "Corviknight vs physical leads", body: "High Defense, Mirror Armor, Rocky Helmet. Take the hit. Hand off slow." },
-      { title: "Corviknight vs Poison", body: "Steel ignores Poison. Primarina dies to it. This is why Corviknight is the Poison lead." },
-      { title: "Garchomp vs Electric", body: "Ground ignores Electric. Both partners take double. This is the only Garchomp lead." },
+      {
+        title: "Primarina vs Ice",
+        body: "Water/Fairy resists Ice (half damage). That is why Garchomp can exist on this three — Primarina answers the Ice that would KO him. Lead her into Ice.",
+      },
+      {
+        title: "Primarina vs Dragon",
+        body: "Fairy takes no Dragon damage, and Moonblast is super-effective. You can lead Primarina into their dragon without guessing.",
+      },
+      {
+        title: "Primarina vs their Garchomp",
+        body: "Ice Beam is four times as hard on Garchomp. Do not send your Garchomp into theirs.",
+      },
+      {
+        title: "Corviknight vs physical leads",
+        body: "High Defense, Mirror Armor, and Rocky Helmet. Take the hit, chip contact, then hand off slow with U-turn.",
+      },
+      {
+        title: "Corviknight vs Poison",
+        body: "Steel takes no Poison damage. Primarina dies to Poison. That is why Corviknight is the Poison lead and emergency switch.",
+      },
+      {
+        title: "Garchomp vs Electric",
+        body: "Ground takes no Electric damage. Both partners take double. This is the only time you lead Garchomp.",
+      },
     ],
     hazards: [
-      { title: "No Tailwind", body: "Nobody doubles Speed. Put 32 Speed on Garchomp. Primarina Aqua Jet is the only priority. A faster Garchomp after Swords Dance outruns you — Ice Beam it." },
-      { title: "Ice into Garchomp", body: "Ice hits four times as hard. Primarina resists. Corviknight takes normal Ice. Keep Garchomp in the bag until Ice is gone or chunked." },
-      { title: "Electric into the walls", body: "Corviknight and Primarina both take double Electric. Switch to Garchomp immediately." },
-      { title: "Grass into Primarina", body: "Double. Brave Bird from Corviknight. Do not Earthquake Grass." },
-      { title: "Poison into Primarina", body: "Double. Corviknight ignores it. Emergency switch." },
-      { title: "Fast U-turn into Ice", body: "If Corviknight is faster than their Ice, U-turn puts Garchomp in, then Ice hits four times as hard. Switch to Primarina instead." },
-      { title: "Choice lock", body: "Do not Specs-Moonblast a Steel that wanted Sparkling Aria, and vice versa. Sitrus is the default because you stay." },
-      { title: "Outrage lock", body: "A Fairy switch knocks Garchomp out. Primarina Moonblast or Corviknight Iron Head if Fairy is still in the bag." },
-      { title: "Mega Garchomp", body: "Mega Garchomp is slower than base Garchomp. This three has no Tailwind. Keep 32 Speed. Do not slot Garchompite Z." },
+      {
+        title: "No Tailwind",
+        body: "Nobody on this three doubles Speed. Put 32 Speed on Garchomp. Primarina Aqua Jet is the only priority. A faster Garchomp after Swords Dance outruns you — Ice Beam it.",
+        watch: "They bring a Speed-capped Garchomp or another fast cleaner and you have no Tailwind to race them.",
+        play: "Keep 32 Speed on your Garchomp for bulky Pokémon. Against a Dance mirror, leave to Primarina and Ice Beam.",
+        rule: "Do not slot Mega Garchomp or drop Speed hoping bulk will save Ice.",
+      },
+      {
+        title: "Ice into Garchomp",
+        body: "Ice hits Garchomp four times as hard. Primarina resists. Corviknight takes normal Ice. Keep Garchomp in the bag until Ice is gone or chunked.",
+        watch: "Ice Fang, Ice Beam, or Ice Spinner aimed at your Dragon/Ground.",
+        play: "Send Primarina immediately. She resists Ice and can Ice Beam their dragon back.",
+        rule: "Do not lead or U-turn Garchomp into healthy Ice.",
+      },
+      {
+        title: "Electric into the walls",
+        body: "Corviknight and Primarina both take double Electric. Switch to Garchomp immediately.",
+        watch: "Thunderbolt or Volt Switch into Corviknight or Primarina.",
+        play: "Send Garchomp — Ground takes no Electric damage — then Earthquake if they are grounded.",
+        rule: "Do not Roost or Calm Mind through a predicted Electric.",
+      },
+      {
+        title: "Grass into Primarina",
+        body: "Grass deals double to Primarina. Brave Bird from Corviknight. Do not Earthquake Grass.",
+        watch: "Wood Hammer, Leaf Blade, or Grassy Glide into Primarina.",
+        play: "Switch to Corviknight and Brave Bird. Flying hits Grass hard.",
+        rule: "Do not send Garchomp — Grass resists Earthquake.",
+      },
+      {
+        title: "Poison into Primarina",
+        body: "Poison deals double to Primarina. Corviknight takes no Poison damage. Emergency switch.",
+        watch: "Sludge Bomb or Poison Jab into Primarina.",
+        play: "Switch to Corviknight. Steel is immune to Poison.",
+        rule: "Do not stay on Primarina hoping to outspeed the Poison.",
+      },
+      {
+        title: "Fast U-turn into Ice",
+        body: "If Corviknight is faster than their Ice, U-turn puts Garchomp in, then Ice hits four times as hard. Switch to Primarina instead.",
+        watch: "You outspeed their Ice attacker and click U-turn intending to bring Garchomp.",
+        play: "Switch to Primarina, or U-turn only if Primarina is the one coming in.",
+        rule: "Never fast U-turn Garchomp into Ice.",
+      },
+      {
+        title: "Choice lock",
+        body: "Do not Specs-Moonblast a Steel that wanted Sparkling Aria, and vice versa. Sitrus is the default because you stay.",
+        watch: "You locked Choice Specs into one move against the wrong type.",
+        play: "Switch out and reset. Prefer Sitrus so Primarina can change moves turn to turn.",
+        rule: "Do not stay locked into a resisted click hoping for a miss.",
+      },
+      {
+        title: "Outrage lock",
+        body: "A Fairy switch knocks Garchomp out. Primarina Moonblast or Corviknight Iron Head if Fairy is still in the bag.",
+        watch: "You clicked Outrage while Fairy is still healthy on their three.",
+        play: "Leave to Corviknight or Primarina before you lock further, or click Dragon Claw if you must stay flexible.",
+        rule: "Do not Outrage when Fairy is still in their bag.",
+      },
+      {
+        title: "Mega Garchomp",
+        body: "Mega Garchomp is slower than base Garchomp. This three has no Tailwind. Keep 32 Speed. Do not slot Garchompite Z.",
+        watch: "Temptation to Mega for bulk while this three has no Speed control.",
+        play: "Keep base Garchomp with 32 Speed and Life Orb so you still move first against bulky Pokémon.",
+        rule: "Do not use Garchompite Z on this three.",
+      },
     ],
   },
   {
@@ -1259,6 +1506,13 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     ],
     skills: ["Fake Out", "Intimidate", "Parting Shot"],
     relatedLessons: ["moves", "abilities", "turns"],
+    pilot: {
+      thesis: "Flinch, drop, then clock. Incineroar Fake Out, Parting Shot, then Garchomp. Whimsicott is the backup Tailwind.",
+      rule: "You cannot Fake Out and Tailwind the same turn. Fighting is double on the cat — send Whimsicott or Garchomp.",
+      fail: "Sitting Incineroar into Fighting, or Parting Shot into Fairy or Gholdengo.",
+    },
+    setsNote:
+      "Each Pokémon spends 66 Stat Points. One point is +1 to that stat at Level 50. You may put at most 32 in a single stat. Whimsicott puts 32 Speed and 32 Special Attack so Moonblast still wins Fighting if Tailwind is not the click. Incineroar puts 32 HP and Special Defense — Fake Out is already +3, so Speed points do nothing. Garchomp puts 32 Attack and 32 Speed because Tailwind is optional on this three.",
     slots: [
       {
         slug: "whimsicott",
@@ -1440,17 +1694,103 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       },
     ],
     loops: [
-      { title: "Parting Shot loop", body: "Fake Out (first turn out), then −6. Garchomp arrives after their hit. Leave a turn sooner if HP is in KO range." },
-      { title: "Priority queue", body: "+3 Fake Out, then +1 Tailwind. Never the same turn. Doubles 'both at once' is illegal here." },
-      { title: "Fake Out refresh", body: "Switch the cat out and back. Second flinch is the Speed plan after Cott dies." },
+      { title: "Parting Shot loop", body: "Use when you need this sequence. Fake Out (first turn out), then −6. Garchomp arrives after their hit. Leave a turn sooner if HP is in KO range." },
+      { title: "Priority queue", body: "Use when you need this sequence. +3 Fake Out, then +1 Tailwind. Never the same turn. Doubles 'both at once' is illegal here." },
+      { title: "Fake Out refresh", body: "Use when you need this sequence. Switch the cat out and back. Second flinch is the Speed plan after Cott dies." },
+    ],
+    victims: [
+      {
+        name: "Physical leads",
+        why: "Fake Out flinches, Intimidate drops Attack, then Parting Shot hands Garchomp in after they already hit the cat.",
+      },
+      {
+        name: "Grass / Kingambit",
+        why: "Flare Blitz is the Fire STAB Honest Balance does not have. Take the KO, then leave — recoil is the tax.",
+      },
+      {
+        name: "Ice",
+        why: "Incineroar resists Ice. Garchomp takes Ice four times as hard. Stay on the cat, do not Parting Shot into Ice.",
+      },
+      {
+        name: "Protect and setup",
+        why: "Fake Out skips their turn. Encore from Whimsicott locks the waste if they are not Dark.",
+      },
+    ],
+    counters: [
+      {
+        name: "Fighting into Incineroar",
+        why: "Fighting deals double to Dark. Send Whimsicott Moonblast, or Garchomp. Exception: Sneasler — Poison hits Whimsicott four times as hard, send Garchomp.",
+      },
+      {
+        name: "Fairy onto cat or Garchomp",
+        why: "Both take double Fairy. You cut Corviknight. Moonblast from Whimsicott is the answer. Tinkaton is Flare Blitz.",
+      },
+      {
+        name: "Ghost Fake Out",
+        why: "Fake Out is Normal — Ghost ignores it. Snarl, Will-O-Wisp, or Parting Shot. Never click Fake Out into Ghost.",
+      },
+      {
+        name: "Gholdengo",
+        why: "Good as Gold blanks Parting Shot, Taunt, and burn. Snarl is the remaining Dark click.",
+      },
+    ],
+    advantages: [
+      {
+        title: "Incineroar vs physical",
+        body: "Intimidate plus Fake Out plus Rocky Helmet. The first turn is yours. Then −6, not a farm.",
+      },
+      {
+        title: "Flare Blitz vs Grass",
+        body: "Honest Balance needs Brave Bird for Grass. This three has Fire. Take the KO and keep HP for Ice later.",
+      },
+      {
+        title: "Whimsicott vs Fighting",
+        body: "The cat's hole. Moonblast hits Fighting. Lead Cott when Fighting is the preview, not Incineroar.",
+      },
     ],
     hazards: [
-      { title: "Fighting into Incineroar", body: "2× Dark. Cott and Garchomp resist. Exception: Sneasler — Cott is 4× Poison, send Garchomp." },
-      { title: "Fairy", body: "2× on cat and Chomp. You cut the Steel wall. Moonblast is the answer." },
-      { title: "Ghost, Cloak, Good as Gold", body: "Fake Out fails on Ghost. Cloak keeps their turn. Gholdengo blanks Parting Shot, Taunt, and burn — Snarl is the remaining Dark click." },
-      { title: "No Knock Off", body: "Champions omitted it. Fourth slot is Taunt, Will-O-Wisp, or Snarl. Do not bring a VGC item-removal script." },
-      { title: "Mirror Armor", body: "Intimidate and Parting Shot bounce. Play Fake Out and Fire." },
-      { title: "Blitz recoil", body: "Take the Grass KO. Keep HP for the Ice resist after." },
+      {
+        title: "Fighting into Incineroar",
+        body: "Fighting deals double to Dark. Cott and Garchomp resist. Exception: Sneasler — Cott is 4× Poison, send Garchomp.",
+        watch: "Close Combat, Aura Sphere, or Drain Punch into the cat.",
+        play: "Send Whimsicott or Garchomp. If it is Sneasler, Garchomp — Poison hits Cott four times as hard.",
+        rule: "Do not sit Incineroar into Fighting hoping Intimidate saves it.",
+      },
+      {
+        title: "Fairy",
+        body: "Double on cat and Chomp. You cut the Steel wall. Moonblast is the answer.",
+        watch: "Play Rough or Moonblast into Incineroar or Garchomp.",
+        play: "Send Whimsicott. Tinkaton is Flare Blitz, not Moonblast.",
+        rule: "Do not Parting Shot Garchomp into Fairy.",
+      },
+      {
+        title: "Ghost, Cloak, Good as Gold",
+        body: "Fake Out fails on Ghost. Cloak keeps their turn. Gholdengo blanks Parting Shot, Taunt, and burn — Snarl is the remaining Dark click.",
+        watch: "A Ghost lead, Covert Cloak, or Gholdengo on their three.",
+        play: "Snarl Ghost and Gholdengo. Will-O-Wisp still burns if they are not Good as Gold.",
+        rule: "Do not Fake Out Ghost. Do not Parting Shot Gholdengo.",
+      },
+      {
+        title: "No Knock Off",
+        body: "Champions omitted it. Fourth slot is Taunt, Will-O-Wisp, or Snarl. Do not bring a VGC item-removal script.",
+        watch: "You still have a fourth move slot and no item removal.",
+        play: "Taunt Dark setup. Burn the physical truck. Snarl Ghost.",
+        rule: "Do not pack Knock Off. It is not legal here.",
+      },
+      {
+        title: "Mirror Armor",
+        body: "Intimidate and Parting Shot bounce. Play Fake Out and Fire.",
+        watch: "Corviknight or another Mirror Armor pivot on their three.",
+        play: "Fake Out still flinches. Flare Blitz still hits. Do not −6 into the bounce.",
+        rule: "Do not Parting Shot Mirror Armor.",
+      },
+      {
+        title: "Blitz recoil",
+        body: "Take the Grass KO. Keep HP for the Ice resist after.",
+        watch: "Flare Blitz plus Helmet contact plus their attack.",
+        play: "Click Blitz only if the KO is there. Then leave or stay for Ice.",
+        rule: "Do not farm Flare Blitz. Recoil plus 0 HP is −0, not −6.",
+      },
     ],
   },
   {
@@ -1495,6 +1835,13 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     ],
     skills: ["Fake Out", "Unburden", "Grassy Surge"],
     relatedLessons: ["abilities", "speed", "preview"],
+    pilot: {
+      thesis: "Terrain on entry. Fake Out, then U-turn into Grassy Seed. Hide Mega Salamence until Ice is gone.",
+      rule: "One Fake Out per turn. Unburden is not 240 Speed unless the Seed popped. Armor Tail turns Fake Out and Glide off.",
+      fail: "Leading Mega Salamence into Ice, or clicking as if Unburden doubled when the Seed never popped.",
+    },
+    setsNote:
+      "Each Pokémon spends 66 Stat Points. One point is +1 to that stat at Level 50. You may put at most 32 in a single stat. Rillaboom puts 32 Attack and 0 Speed — Grassy Glide is already +1 in terrain, and slow U-turn delivers the Seed. Sneasler puts 32 Attack and only 14 Speed; the Seed doubles that. Mega Salamence puts 32 Attack and 32 Speed so Double-Edge still races if Ice is gone.",
     slots: [
       {
         slug: "rillaboom",
@@ -1663,16 +2010,92 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       },
     ],
     loops: [
-      { title: "Fake Out, then Seed", body: "Flinch, U-turn into Sneasler on terrain, Unburden, punch. Fast U-turn without the flinch is Flying on entry." },
-      { title: "Intimidate, then Aerilate", body: "Enter as base Salamence. Attack drops. Mega. Double-Edge is Flying." },
-      { title: "Priority queue", body: "Fake Out +3, Glide +1. Armor Tail turns both off. Then Unburden and Aerilate win raw." },
+      { title: "Fake Out, then Seed", body: "Use when you need this sequence. Flinch, U-turn into Sneasler on terrain, Unburden, punch. Fast U-turn without the flinch is Flying on entry." },
+      { title: "Intimidate, then Aerilate", body: "Use when you need this sequence. Enter as base Salamence. Attack drops. Mega. Double-Edge is Flying." },
+      { title: "Priority queue", body: "Use when you need this sequence. Fake Out +3, Glide +1. Armor Tail turns both off. Then Unburden and Aerilate win raw." },
+    ],
+    victims: [
+      {
+        name: "Garchomp / Earthquake",
+        why: "Grassy Terrain cuts Ground. Earthquake does not KO through the field. Glide or Dire Claw while they waste the Ground click.",
+      },
+      {
+        name: "Incineroar",
+        why: "Close Combat deals double to Dark. Fake Out still flinches the cat first. Do not sit Sneasler into Fake Out from them unless you already won the slot.",
+      },
+      {
+        name: "Tailwind Whimsicott",
+        why: "Fake Out is +3. Tailwind is +1. Flinch the clock, then U-turn into the Seed.",
+      },
+    ],
+    counters: [
+      {
+        name: "Fire into Rillaboom",
+        why: "The setter is Grass. Send Mega Salamence — Dragon resists Fire. Do not U-turn Sneasler into Fire.",
+      },
+      {
+        name: "Ice / Rock into the Mega",
+        why: "Ice hits Mega Salamence four times as hard. Rock deals double. Hide it. Rillaboom takes Ice. Sneasler takes Rock.",
+      },
+      {
+        name: "Psychic / Flying into Sneasler",
+        why: "Both deal double. Rillaboom takes Psychic. Mega takes Flying. Leave immediately.",
+      },
+      {
+        name: "Armor Tail / Psychic Terrain",
+        why: "Fake Out and Grassy Glide fail. Play Wood Hammer, Dire Claw, and Aerilate as three attackers with no engine.",
+      },
+    ],
+    advantages: [
+      {
+        title: "Terrain vs Earthquake",
+        body: "The field is the patch. Garchomp cores lose their Ground KO while Rillaboom is in.",
+      },
+      {
+        title: "Unburden after Seed",
+        body: "Speed doubles once. Spend Close Combat and Dire Claw that turn. They revenge next.",
+      },
+      {
+        title: "Aerilate Double-Edge",
+        body: "Once Ice is gone, Mega Salamence is Flying STAB. Terrain still cuts your own Earthquake — Double-Edge is the click.",
+      },
     ],
     hazards: [
-      { title: "Fire into Rillaboom", body: "The setter is Grass. Mega is the Fire switch." },
-      { title: "Ice and Rock into the Mega", body: "4× Ice, 2× Rock. Hide it. Cups that won still hid it." },
-      { title: "Armor Tail / Psychic Terrain", body: "Fake Out and Glide fail. Play like three attackers with no engine." },
-      { title: "Unburden without the Seed", body: "No terrain, no double Speed. Do not click as if you were 240." },
-      { title: "Your own Earthquake", body: "Terrain cuts Ground for everyone. Double-Edge is the STAB." },
+      {
+        title: "Fire into Rillaboom",
+        body: "The setter is Grass. Mega is the Fire switch.",
+        watch: "Heat Wave, Flare Blitz, or Pyro Ball into Rillaboom.",
+        play: "Send Mega Salamence. Dragon resists Fire. Sneasler also takes Fire — do not Seed into it.",
+        rule: "Do not sit Rillaboom into Fire to Fake Out.",
+      },
+      {
+        title: "Ice and Rock into the Mega",
+        body: "Ice hits four times as hard. Rock deals double. Hide it. Cups that won still hid it.",
+        watch: "Ice Beam, Ice Fang, or Stone Edge aimed at Mega Salamence.",
+        play: "Rillaboom takes Ice. Sneasler takes Rock. Extreme Speed is revenge, not the lead.",
+        rule: "Do not lead Mega Salamence into Ice or Rock.",
+      },
+      {
+        title: "Armor Tail / Psychic Terrain",
+        body: "Fake Out and Glide fail. Play like three attackers with no engine.",
+        watch: "Farigiraf or a Psychic Terrain setter on their three.",
+        play: "Wood Hammer raw. Unburden and Aerilate still work. Stop clicking +3 and +1.",
+        rule: "Do not Fake Out or Glide into Armor Tail.",
+      },
+      {
+        title: "Unburden without the Seed",
+        body: "No terrain, no double Speed. Do not click as if you were 240.",
+        watch: "Fire lead so Rillaboom cannot appear, or terrain overwritten.",
+        play: "Play Sneasler at 120 Speed. Mega is the race. Use the No Seed spread if this is the table.",
+        rule: "Do not click Close Combat as if Unburden already doubled.",
+      },
+      {
+        title: "Your own Earthquake",
+        body: "Terrain cuts Ground for everyone. Double-Edge is the STAB.",
+        watch: "You still have Earthquake on Mega Salamence while terrain is up.",
+        play: "Double-Edge. Earthquake only after Rillaboom is gone and terrain dies.",
+        rule: "Do not Earthquake through your own Grassy Terrain.",
+      },
     ],
   },
   {
@@ -1716,6 +2139,13 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     ],
     skills: ["Drizzle", "Electro Shot", "Swift Swim"],
     relatedLessons: ["abilities", "speed", "holes"],
+    pilot: {
+      thesis: "Pelipper walks in and rain is already up. Archaludon Electro Shots the same turn. Basculegion closes under Swift Swim.",
+      rule: "Rain is not a partner Tailwind — one send. Pelipper is 4× Electric. Drought overwrite kills Electro Shot and Swift Swim.",
+      fail: "Roosting Pelipper into Thunderbolt, or clicking Wave Crash as if Swift Swim were up after sun overwrites.",
+    },
+    setsNote:
+      "Each Pokémon spends 66 Stat Points. One point is +1 to that stat at Level 50. You may put at most 32 in a single stat. Pelipper puts 32 Special Attack — Drizzle is on entry, rain does not make Pelipper faster. Archaludon puts 32 Special Attack so Electro Shot KOs in one turn of rain. Basculegion puts 32 Attack and leftover bulk; Swift Swim is the race, not a Speed cap.",
     slots: [
       {
         slug: "pelipper",
@@ -1885,16 +2315,92 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       },
     ],
     loops: [
-      { title: "Drizzle, then Shot", body: "Pelipper in (rain). U-turn or KO. Archaludon Electro Shot the same weather. No charge." },
-      { title: "Swift Swim close", body: "Basc enters under rain and outspeeds. Wave Crash. Last Respects if someone already fell." },
-      { title: "Weather war", body: "Last weather ability wins. Y overwrite on switch-in. Re-send Pelipper to steal it back — that costs a turn." },
+      { title: "Drizzle, then Shot", body: "Use when you need this sequence. Pelipper in (rain). U-turn or KO. Archaludon Electro Shot the same weather. No charge." },
+      { title: "Swift Swim close", body: "Use when you need this sequence. Basc enters under rain and outspeeds. Wave Crash. Last Respects if someone already fell." },
+      { title: "Weather war", body: "Use when you need this sequence. Last weather ability wins. Y overwrite on switch-in. Re-send Pelipper to steal it back — that costs a turn." },
+    ],
+    victims: [
+      {
+        name: "Fire / Mega Charizard Y",
+        why: "Rain cuts Fire. Hurricane never misses. If Y walks in, last weather ability wins — KO it or re-send Pelipper.",
+      },
+      {
+        name: "Dragons",
+        why: "Hurricane is Flying STAB that never misses in rain. Electro Shot still hits if they sit on Water.",
+      },
+      {
+        name: "Sun if you keep rain",
+        why: "You overwrite Drought on Pelipper entry. Electro Shot fires. Swift Swim is live. Steal the field back.",
+      },
+    ],
+    counters: [
+      {
+        name: "Electric into Pelipper",
+        why: "Pelipper takes Electric four times as hard. Send Archaludon. Do not Roost on Thunderbolt.",
+      },
+      {
+        name: "Grass into the Waters",
+        why: "Pelipper and Basculegion take double Grass. Archaludon is Steel/Dragon — a quarter. Send the railgun.",
+      },
+      {
+        name: "Drought overwrite",
+        why: "Sun on entry kills Electro Shot (it charges) and Swift Swim. KO Y or re-set rain.",
+      },
+      {
+        name: "Kingambit",
+        why: "Hurricane and Wave Crash are resisted. You have no Fighting STAB. Do not sit that 1v1.",
+      },
+    ],
+    advantages: [
+      {
+        title: "Drizzle on entry",
+        body: "The field is already wet. You do not spend a turn to set rain. Damp Rock is eight turns, not five.",
+      },
+      {
+        title: "Electro Shot in rain",
+        body: "130 BP Electric, no charge. That is why Archaludon exists next to Pelipper.",
+      },
+      {
+        title: "Swift Swim Basculegion",
+        body: "Under rain it outspeeds. Wave Crash. Aqua Jet is the remaining Speed if rain dies.",
+      },
     ],
     hazards: [
-      { title: "4× Electric", body: "Pelipper dies to Thunderbolt. Archaludon is the switch. Do not Roost on the Electric." },
-      { title: "Grass", body: "Both Waters are 2×. Archaludon is ¼. Send the railgun." },
-      { title: "Drought", body: "Sun overwrites rain. Electro Shot charges. Swift Swim dies. KO Y or re-set." },
-      { title: "No rain, no Basc", body: "Swift Swim is not a personality. Aqua Jet is the remaining Speed." },
-      { title: "Recoil", body: "Wave Crash plus Life Orb will KO you. Take the KO; do not farm." },
+      {
+        title: "4× Electric",
+        body: "Pelipper dies to Thunderbolt. Archaludon is the switch. Do not Roost on the Electric.",
+        watch: "Thunderbolt, Volt Switch, or Electro Shot into Pelipper.",
+        play: "Send Archaludon immediately. Stamina if they hit you. Electro Shot back.",
+        rule: "Do not Roost Pelipper into Electric.",
+      },
+      {
+        title: "Grass",
+        body: "Both Waters take double Grass. Archaludon is a quarter. Send the railgun.",
+        watch: "Wood Hammer, Leaf Blade, or Grassy Glide into Pelipper or Basculegion.",
+        play: "Archaludon. Steel/Dragon resists Grass. Electro Shot if rain is up.",
+        rule: "Do not sit either Water into Grass.",
+      },
+      {
+        title: "Drought",
+        body: "Sun overwrites rain. Electro Shot charges. Swift Swim dies. KO Y or re-set.",
+        watch: "Mega Charizard Y or another Drought on switch-in.",
+        play: "If you move first, KO the setter. Else re-send Pelipper — that costs a turn.",
+        rule: "Do not Electro Shot or Wave Crash as if rain were still up.",
+      },
+      {
+        title: "No rain, no Basc",
+        body: "Swift Swim is not a personality. Aqua Jet is the remaining Speed.",
+        watch: "Rain faded or overwritten and Basculegion is still in the slot.",
+        play: "Aqua Jet or Last Respects. Archaludon Draco if Electro Shot would charge.",
+        rule: "Do not click Wave Crash hoping you still outspeed.",
+      },
+      {
+        title: "Recoil",
+        body: "Wave Crash plus Life Orb will KO you. Take the KO; do not farm.",
+        watch: "Basculegion at chip HP with Life Orb still held.",
+        play: "Click Wave Crash only if they faint this hit. Aqua Jet the revenge.",
+        rule: "Do not farm Wave Crash.",
+      },
     ],
   },
   {
@@ -1939,6 +2445,13 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     ],
     skills: ["Trick Room", "Armor Tail", "Sucker Punch"],
     relatedLessons: ["speed", "building", "turns"],
+    pilot: {
+      thesis: "Flip the clock. Farigiraf blanks Fake Out and sets Trick Room. Kingambit cashes the four turns. Gholdengo is the Fighting immune.",
+      rule: "Four turns including the click. Mental Herb eats one Taunt. Kingambit takes normal Fighting — Gholdengo is the Ghost immune.",
+      fail: "Sitting Kingambit into Fighting as if it were a resist, or clicking Trick Room into Taunt without Herb.",
+    },
+    setsNote:
+      "Each Pokémon spends 66 Stat Points. One point is +1 to that stat at Level 50. You may put at most 32 in a single stat. Farigiraf puts 32 HP and 0 Speed with a Quiet nature — under the room, slower is first. Kingambit puts 32 HP and 32 Attack and 0 Speed so Kowtow moves first in the room. Gholdengo puts 32 Special Attack and a little Speed so Make It Rain still fires if the room dies.",
     slots: [
       {
         slug: "farigiraf",
@@ -2109,16 +2622,96 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       },
     ],
     loops: [
-      { title: "Blank, then flip", body: "Farigiraf in. Fake Out fails. Trick Room. Kingambit cashes." },
-      { title: "Overlord snowball", body: "A KO on your side buffs Kingambit. Under the room that is often the game." },
-      { title: "Room timer", body: "Four turns including the click. Re-set or Sucker Punch when it dies." },
+      { title: "Blank, then flip", body: "Use when you need this sequence. Farigiraf in. Fake Out fails. Trick Room. Kingambit cashes." },
+      { title: "Overlord snowball", body: "Use when you need this sequence. A KO on your side buffs Kingambit. Under the room that is often the game." },
+      { title: "Room timer", body: "Use when you need this sequence. Four turns including the click. Re-set or Sucker Punch when it dies." },
+    ],
+    victims: [
+      {
+        name: "Fake Out cores",
+        why: "Armor Tail makes +3 a zero. Farigiraf leads, Trick Room goes up, Kingambit moves first.",
+      },
+      {
+        name: "Tailwind hyper offense",
+        why: "Under the room they move last. Their Tailwind does not save them for four turns.",
+      },
+      {
+        name: "Sneasler Unburden",
+        why: "Psychic from Farigiraf hits Fighting/Poison. Armor Tail blanks their Fake Out on the way in.",
+      },
+      {
+        name: "Priority spam",
+        why: "Armor Tail blanks Fake Out and Glide. Sucker Punch from Kingambit is the remaining +3 after the room dies.",
+      },
+    ],
+    counters: [
+      {
+        name: "Taunt the setter",
+        why: "Without Mental Herb, Farigiraf does nothing. Gholdengo blanks Taunt — that is the backup lead.",
+      },
+      {
+        name: "Fighting into Kingambit",
+        why: "Fighting deals normal damage to Kingambit, not a resist. Gholdengo is Ghost — immune. Send Gholdengo.",
+      },
+      {
+        name: "Fire / Ground into Gholdengo",
+        why: "Both Steels take double Fire and Ground. Farigiraf takes those slots.",
+      },
+      {
+        name: "A faster Trick Room",
+        why: "Last room wins. If they re-set after you, your truck moves last. Count the four turns.",
+      },
+    ],
+    advantages: [
+      {
+        title: "Armor Tail vs Fake Out",
+        body: "The flinch fails. Trick Room still goes up. That is why Farigiraf leads into Incineroar.",
+      },
+      {
+        title: "Good as Gold vs Parting Shot",
+        body: "Gholdengo blanks Taunt, burn, and −6. Fake Out still hits it — Armor Tail is the other blank.",
+      },
+      {
+        title: "Kingambit under the room",
+        body: "0 Speed is first. Kowtow the walls. Overlord snowballs if a partner already fell.",
+      },
     ],
     hazards: [
-      { title: "Taunt without Herb", body: "The setter does nothing. Gholdengo blanks Taunt — that is the backup lead." },
-      { title: "Fire and Ground", body: "Both Steels are 2×. Farigiraf takes those slots." },
-      { title: "Fake Out vs Gholdengo", body: "Good as Gold does not stop Fake Out. Armor Tail does. Know which blank you have in the slot." },
-      { title: "Sucker Punch vs Protect", body: "The priority fails. Dance instead." },
-      { title: "Fighting is 1× on Kingambit", body: "Not 4×, not free. Gholdengo is still the real Fighting immune." },
+      {
+        title: "Taunt without Herb",
+        body: "The setter does nothing. Gholdengo blanks Taunt — that is the backup lead.",
+        watch: "Whimsicott or another Taunt on their three, and Mental Herb already spent.",
+        play: "Lead Gholdengo if Taunt is the preview. Herb eats one — then Trick Room.",
+        rule: "Do not click Trick Room into Taunt with no Herb.",
+      },
+      {
+        title: "Fire and Ground",
+        body: "Both Steels take double. Farigiraf takes those slots.",
+        watch: "Heat Wave, Earthquake, or Flare Blitz into Kingambit or Gholdengo.",
+        play: "Send Farigiraf. Psychic chips. The room still needs the four turns.",
+        rule: "Do not keep either Steel in on Fire or Ground.",
+      },
+      {
+        title: "Fake Out vs Gholdengo",
+        body: "Good as Gold does not stop Fake Out. Armor Tail does. Know which blank you have in the slot.",
+        watch: "Incineroar into Gholdengo while Farigiraf is in the bag.",
+        play: "Lead Farigiraf into Fake Out. Keep Gholdengo for Taunt and Fighting.",
+        rule: "Do not lead Gholdengo into Fake Out.",
+      },
+      {
+        title: "Sucker Punch vs Protect",
+        body: "The priority fails. Dance instead.",
+        watch: "They Protect on the last room turn or after the room dies.",
+        play: "Swords Dance. Next Kowtow is the KO.",
+        rule: "Do not Sucker Punch the shield.",
+      },
+      {
+        title: "Fighting is 1× on Kingambit",
+        body: "Not 4×, not free. Gholdengo is still the real Fighting immune.",
+        watch: "Close Combat into Kingambit.",
+        play: "Send Gholdengo. Ghost ignores Fighting. Make It Rain or Shadow Ball.",
+        rule: "Do not sit Kingambit into Fighting as if Dark resisted it.",
+      },
     ],
   },
   {
@@ -2163,6 +2756,13 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     ],
     skills: ["Drought", "Solar Beam", "Libero"],
     relatedLessons: ["abilities", "jobs", "holes"],
+    pilot: {
+      thesis: "Drought walks in with Mega Charizard Y. Heat Wave in sun. Garchomp patches Rock. Cinderace closes if Y goes down.",
+      rule: "Y is 4× Rock. Solar Beam does not charge only while sun is up. There is no Water resist on this three.",
+      fail: "Leading Y into Stone Edge, or Solar Beam after rain overwrites — it charges.",
+    },
+    setsNote:
+      "Each Pokémon spends 66 Stat Points. One point is +1 to that stat at Level 50. You may put at most 32 in a single stat. Mega Charizard Y puts 32 Special Attack and 32 Speed — bulk does not save 4× Rock. Garchomp puts 32 Attack and 32 Speed so it patches Rock and still punches. Cinderace puts 32 Attack and 32 Speed; Libero is the type of the move you click, not extra points.",
     slots: [
       {
         slug: "charizard-mega-y",
@@ -2332,16 +2932,92 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       },
     ],
     loops: [
-      { title: "Drought, then burn", body: "Y in. Sun up. Heat Wave Grass/Steel. Solar Beam the Water answer." },
-      { title: "Rock patch", body: "Never leave Y in on Stone Edge. Garchomp is the whole reason the Mega can exist on a three." },
-      { title: "Libero close", body: "If Y punched a hole and fainted, Cinderace finishes. Type is the move you click." },
+      { title: "Drought, then burn", body: "Use when you need this sequence. Y in. Sun up. Heat Wave Grass/Steel. Solar Beam the Water answer." },
+      { title: "Rock patch", body: "Use when you need this sequence. Never leave Y in on Stone Edge. Garchomp is the whole reason the Mega can exist on a three." },
+      { title: "Libero close", body: "Use when you need this sequence. If Y punched a hole and fainted, Cinderace finishes. Type is the move you click." },
+    ],
+    victims: [
+      {
+        name: "Grass / Rillaboom",
+        why: "Heat Wave in sun. Solar Beam does not charge. Cinderace Pyro Ball if Y is down.",
+      },
+      {
+        name: "Steel",
+        why: "Fire in sun deletes Steel. Kingambit hates Heat Wave. Garchomp Earthquake if they sit on Fire.",
+      },
+      {
+        name: "Rain if you steal sun",
+        why: "Y on entry overwrites Drizzle. Electro Shot charges again. You are the weather war.",
+      },
+    ],
+    counters: [
+      {
+        name: "Rock into Y",
+        why: "Mega Charizard Y takes Rock four times as hard. Send Garchomp. Preview is where you refuse the lead.",
+      },
+      {
+        name: "Water into Y or Cinderace",
+        why: "Both Fires take double Water. Garchomp takes normal Water. Solar Beam is the patch only while sun lasts.",
+      },
+      {
+        name: "Faster Drought",
+        why: "Last weather ability wins. Fire charges again. KO their setter or leave Y.",
+      },
+      {
+        name: "Trick Room",
+        why: "You are the fast three. Under the room Heat Wave moves last. Taunt or refuse the lead.",
+      },
+    ],
+    advantages: [
+      {
+        title: "Drought on Mega",
+        body: "Sun walks in with the stone. Heat Wave is the reason Y exists. Do not splash this onto a rain three.",
+      },
+      {
+        title: "Garchomp vs Rock",
+        body: "The whole reason the Mega can exist. Earthquake the Rock. Yache is one Ice live, not a resist.",
+      },
+      {
+        title: "Libero Cinderace",
+        body: "If Y punched a hole and fainted, type is the move you click. Pyro Ball is Fire. High Jump Kick is the risk.",
+      },
     ],
     hazards: [
-      { title: "4× Rock", body: "Y dies to Stone Edge. Garchomp is the switch. Preview is where you refuse the lead." },
-      { title: "Water on Y and Cinderace", body: "Both Fires are 2× Water. Garchomp is 1×. Solar Beam is the patch while sun lasts. There is no Water resist." },
-      { title: "Weather war", body: "Pelipper overwrite on entry. Re-send Y to steal sun back. That is a turn." },
-      { title: "Solar Beam without sun", body: "It charges. You donate a turn. Do not." },
-      { title: "High Jump Kick miss / Ghost", body: "Cinderace can KO itself. Dire read. Pyro Ball is the safe Fire click." },
+      {
+        title: "4× Rock",
+        body: "Y dies to Stone Edge. Garchomp is the switch. Preview is where you refuse the lead.",
+        watch: "Stone Edge, Rock Slide, or Ancient Power into Mega Charizard Y.",
+        play: "Send Garchomp immediately. Earthquake if they are grounded.",
+        rule: "Do not lead Y into Rock.",
+      },
+      {
+        title: "Water on Y and Cinderace",
+        body: "Both Fires take double Water. Garchomp takes normal. Solar Beam is the patch while sun lasts. There is no Water resist.",
+        watch: "Surf, Wave Crash, or Sparkling Aria into either Fire.",
+        play: "Solar Beam if sun is up, then leave. Garchomp chips. Do not sit.",
+        rule: "Do not keep Y or Cinderace in on Water.",
+      },
+      {
+        title: "Weather war",
+        body: "Pelipper overwrite on entry. Re-send Y to steal sun back. That is a turn.",
+        watch: "Pelipper or another Drizzle walks in.",
+        play: "Re-send Y if you can live the send. Else play Garchomp and Cinderace raw.",
+        rule: "Do not Solar Beam after rain overwrites.",
+      },
+      {
+        title: "Solar Beam without sun",
+        body: "It charges. You donate a turn. Do not.",
+        watch: "Sun faded or overwritten and Solar Beam is still the click.",
+        play: "Leave or chip Fire. Heat Wave still works at half.",
+        rule: "Do not Solar Beam unless sun is up.",
+      },
+      {
+        title: "High Jump Kick miss / Ghost",
+        body: "Cinderace can KO itself. Dire read. Pyro Ball is the safe Fire click.",
+        watch: "Ghost in, or a Protect you did not read.",
+        play: "Pyro Ball. Libero Fire. Sucker Punch if they outrun.",
+        rule: "Do not High Jump Kick Ghost or Protect.",
+      },
     ],
   },
   {
@@ -2392,6 +3068,13 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     ],
     skills: ["Mold Breaker", "Dragon Dance", "Extreme Speed"],
     relatedLessons: ["preview", "abilities", "archetypes"],
+    pilot: {
+      thesis: "Excadrill breaks. Primarina patches Ice, Fire, Water, and Fighting. Dragonite sweeps after Ice and Fairy are gone.",
+      rule: "Never lead Dragonite. Ice hits it four times as hard. Sand Rush is off — there is no sand setter. Extreme Speed does nothing to Ghost.",
+      fail: "Leading Dragonite into Ice, or clicking Outrage while they still have a Fairy.",
+    },
+    setsNote:
+      "Each Pokémon spends 66 Stat Points. One point is +1 to that stat at Level 50. You may put at most 32 in a single stat. Excadrill puts 32 Attack and 32 Speed with Focus Sash — extra HP does not save Fire, Water, or Fighting. Primarina is Choice Specs: 32 Special Attack and 32 Speed so the locked click still races. Dragonite puts 32 Attack and 32 Speed; Multiscale only works at full HP, leftover 2 in HP.",
     slots: [
       {
         slug: "excadrill",
@@ -2587,7 +3270,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       {
         id: "mid",
         title: "Mid",
-        lede: "Pivot the holes. Do not donate a Choice lock. Do not send the kite yet.",
+        lede: "Type sends live on the switch board. Here: pivot the holes. Do not donate a Choice lock. Do not send the kite yet.",
         branches: [
           { out: "excadrill", when: "Physical wall sitting on Drill", then: "Primarina. Special break." },
           { out: "excadrill", when: "Fire, Water, or Fighting onto Drill", then: "Primarina. Both resist. Drill is 2×." },
@@ -2713,7 +3396,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       {
         id: "mid",
         title: "Mid",
-        lede: "Pivot the shared holes. Choice lock is a donated turn.",
+        lede: "Type sends live on the switch board. Here: pivot the shared holes. Choice lock is a donated turn.",
         forks: [
           {
             id: "mid-drill",
@@ -2872,17 +3555,103 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       },
     ],
     loops: [
-      { title: "Sash Dance", body: "Drill lives on Sash. Swords Dance. Next hit is Earthquake, Iron Head, or Stone Edge — one target." },
-      { title: "Specs punch", body: "Prima locks a click. Surf the Fire/Ground. Moonblast the Dragon/Fighting. Ice Beam the Ice check. Wrong lock is a donated turn." },
-      { title: "Multiscale Dance", body: "Full HP Dragonite in. Dragon Dance on a free turn. Outrage if Fairy is gone. Extreme Speed the revenge — not Ghost." },
+      { title: "Sash Dance", body: "Use when you need this sequence. Drill lives on Sash. Swords Dance. Next hit is Earthquake, Iron Head, or Stone Edge — one target." },
+      { title: "Specs punch", body: "Use when you need this sequence. Prima locks a click. Surf the Fire/Ground. Moonblast the Dragon/Fighting. Ice Beam the Ice check. Wrong lock is a donated turn." },
+      { title: "Multiscale Dance", body: "Use when you need this sequence. Full HP Dragonite in. Dragon Dance on a free turn. Outrage if Fairy is gone. Extreme Speed the revenge — not Ghost." },
+    ],
+    victims: [
+      {
+        name: "Kingambit / Steel",
+        why: "Mold Breaker Earthquake ignores Overlord bulk tricks. Iron Head is resisted by Steel — click Earthquake.",
+      },
+      {
+        name: "Rock",
+        why: "Excadrill resists Rock. Stone Edge hits Flying. Primarina does not need this slot.",
+      },
+      {
+        name: "Electric into Primarina",
+        why: "Excadrill is Ground — immune. Primarina takes double Electric. Send Drill immediately.",
+      },
+      {
+        name: "Dragons into Primarina",
+        why: "Fairy takes no Dragon. Moonblast hits Dragon. Lead Prima, not Dragonite.",
+      },
+    ],
+    counters: [
+      {
+        name: "Ice into Dragonite",
+        why: "Ice hits Dragon/Flying four times as hard. Primarina resists. Excadrill takes normal Ice. Never lead the kite.",
+      },
+      {
+        name: "Fire / Water / Fighting into Drill",
+        why: "All deal double. Primarina resists all three. Dragon is not on this list — Steel resists Dragon.",
+      },
+      {
+        name: "Fairy while Dragonite is the only answer",
+        why: "Outrage locks into Fairy and you faint. Excadrill Iron Head is the Fairy click. Keep Dragonite in the bag.",
+      },
+      {
+        name: "Ghost Extreme Speed",
+        why: "Extreme Speed is Normal. Ghost ignores it. Primarina Moonblast or Drill Iron Head.",
+      },
+    ],
+    advantages: [
+      {
+        title: "Primarina vs Ice",
+        body: "Water/Fairy resists Ice. That is why Dragonite can exist — Prima answers the Ice that would KO it.",
+      },
+      {
+        title: "Excadrill vs Kingambit",
+        body: "Mold Breaker Earthquake. Do not Iron Head Steel. Sash Dance, then the Ground click.",
+      },
+      {
+        title: "Dragonite late",
+        body: "Full HP Multiscale, then Dragon Dance. Outrage if Fairy is gone. Extreme Speed the revenge — not Ghost.",
+      },
     ],
     hazards: [
-      { title: "4× Ice", body: "Dragonite dies to Ice Beam. Prima resists. Drill is 1×. Preview is where you refuse the kite lead." },
-      { title: "Outrage lock", body: "A Fairy switch ends the sweep. Dragon Claw is the alt if the Fairy is still in the bag." },
-      { title: "Hydro miss", body: "Specs already committed the slot. Surf is the classroom Water. Hydro Pump is the miss-tax." },
-      { title: "Choice lock", body: "Do not Specs-Moonblast a Steel that wanted Surf, and vice versa." },
-      { title: "Fake Out into Dragonite", body: "Multiscale still flinches. Inner Focus is the alt, not the default. Do not lead the kite into Incineroar." },
-      { title: "Drill vs Fire / Water / Fighting", body: "All 2×. Prima resists all three. Dragon is not on this list — Steel resists Dragon." },
+      {
+        title: "4× Ice",
+        body: "Dragonite dies to Ice Beam. Prima resists. Drill takes normal Ice. Preview is where you refuse the kite lead.",
+        watch: "Ice Beam, Ice Fang, or Ice Spinner aimed at Dragonite.",
+        play: "Send Primarina. She resists Ice and can Ice Beam their dragon back.",
+        rule: "Do not lead Dragonite into Ice.",
+      },
+      {
+        title: "Outrage lock",
+        body: "A Fairy switch ends the sweep. Dragon Claw is the alt if the Fairy is still in the bag.",
+        watch: "Fairy still on their three while you want to lock Dragon.",
+        play: "Iron Head from Excadrill first. Outrage only when Fairy is gone.",
+        rule: "Do not Outrage into a Fairy in the bag.",
+      },
+      {
+        title: "Hydro miss",
+        body: "Specs already committed the slot. Surf is the classroom Water. Hydro Pump is the miss-tax.",
+        watch: "You locked Hydro Pump into a 90% and missed.",
+        play: "Keep Surf on the classroom set. Specs already picked the click.",
+        rule: "Do not Hydro Pump the classroom Water.",
+      },
+      {
+        title: "Choice lock",
+        body: "Do not Specs-Moonblast a Steel that wanted Surf, and vice versa.",
+        watch: "A Steel or Fire switch after you already locked.",
+        play: "Read the switch before the lock. Wrong click is a donated turn.",
+        rule: "Do not Specs-Moonblast a Steel that wanted Surf.",
+      },
+      {
+        title: "Fake Out into Dragonite",
+        body: "Multiscale still flinches. Inner Focus is the alt, not the default. Do not lead the kite into Incineroar.",
+        watch: "Incineroar on their three and Dragonite as your send.",
+        play: "Lead Excadrill or Primarina. Dragonite stays in the bag.",
+        rule: "Do not lead Dragonite into Fake Out.",
+      },
+      {
+        title: "Drill vs Fire / Water / Fighting",
+        body: "All deal double. Prima resists all three. Dragon is not on this list — Steel resists Dragon.",
+        watch: "Flare Blitz, Waterfall, or Close Combat into Excadrill.",
+        play: "Send Primarina. Surf or Moonblast. Drill Sash is one live, not a resist.",
+        rule: "Do not sit Excadrill into Fire, Water, or Fighting.",
+      },
     ],
   },
   {
@@ -3404,9 +4173,9 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       },
     ],
     loops: [
-      { title: "Disguise Dance", body: "Mimikyu eats one damaging hit. Swords Dance. Next hit is Play Rough or Shadow Sneak. Status still lands. Life Orb recoil starts after the costume pops." },
-      { title: "Sash Dance", body: "Excadrill lives on Focus Sash. Swords Dance. Next hit is Earthquake, Iron Head, or Stone Edge — one target. Iron Head pops their Mimikyu." },
-      { title: "Multiscale Dance", body: "Full HP Dragonite in. Dragon Dance on a free turn. Outrage if Fairy is gone. Extreme Speed the revenge — not Ghost. Mimikyu Shadow Sneak is the Ghost revenge." },
+      { title: "Disguise Dance", body: "Use when you need this sequence. Mimikyu eats one damaging hit. Swords Dance. Next hit is Play Rough or Shadow Sneak. Status still lands. Life Orb recoil starts after the costume pops." },
+      { title: "Sash Dance", body: "Use when you need this sequence. Excadrill lives on Focus Sash. Swords Dance. Next hit is Earthquake, Iron Head, or Stone Edge — one target. Iron Head pops their Mimikyu." },
+      { title: "Multiscale Dance", body: "Use when you need this sequence. Full HP Dragonite in. Dragon Dance on a free turn. Outrage if Fairy is gone. Extreme Speed the revenge — not Ghost. Mimikyu Shadow Sneak is the Ghost revenge." },
     ],
     victims: [
       { name: "Incineroar Fake Out", why: "Ghost ignores Fake Out. Send Mimikyu. Then Swords Dance." },
@@ -3431,13 +4200,13 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       { title: "Dragonite after Ice and Fairy are gone", body: "One Dragon Dance, then Outrage or Extreme Speed. Keep it in the bag until that moment." },
     ],
     hazards: [
-      { title: "Ice into Dragonite", body: "Ice hits Dragonite four times as hard. Mimikyu and Excadrill take normal Ice — they do not resist it. Keep Dragonite in the bag. Send Mimikyu or Excadrill first." },
-      { title: "Ghost / Steel into Mimikyu", body: "Both deal double once Disguise is gone. Switch to Excadrill. Do not Swords Dance into a guaranteed Iron Head or Shadow Ball." },
-      { title: "Their Mold Breaker Excadrill", body: "Mold Breaker ignores your Disguise. Do not lead Mimikyu into it." },
-      { title: "Outrage lock", body: "A Fairy switch knocks Dragonite out. Click Dragon Claw if Fairy is still in their bag." },
-      { title: "Fake Out into Dragonite", body: "Multiscale still flinches. Send Mimikyu into Incineroar. Ghost ignores Fake Out." },
-      { title: "Fire / Water / Fighting into Excadrill", body: "All deal double. Switch to Mimikyu. Ghost ignores Fighting. Fire and Water deal normal damage there. Dragon is fine on Excadrill — Steel resists Dragon." },
-      { title: "Life Orb after Disguise", body: "The costume is one hit. Recoil and the next attack both land on a small HP pool. KO or leave." },
+      { title: "Ice into Dragonite", body: "Ice hits Dragonite four times as hard. Mimikyu and Excadrill take normal Ice — they do not resist it. Keep Dragonite in the bag. Send Mimikyu or Excadrill first.", watch: "Ice hits Dragonite four times as hard.", play: "Mimikyu and Excadrill take normal Ice — they do not resist it. Keep Dragonite in the bag. Send Mimikyu or Excadrill first.", rule: "Do not ignore Ice into Dragonite." },
+      { title: "Ghost / Steel into Mimikyu", body: "Both deal double once Disguise is gone. Switch to Excadrill. Do not Swords Dance into a guaranteed Iron Head or Shadow Ball.", watch: "Both deal double once Disguise is gone.", play: "Switch to Excadrill. Do not Swords Dance into a guaranteed Iron Head or Shadow Ball.", rule: "Do not Swords Dance into a guaranteed Iron Head or Shadow Ball." },
+      { title: "Their Mold Breaker Excadrill", body: "Mold Breaker ignores your Disguise. Do not lead Mimikyu into it.", watch: "Mold Breaker ignores your Disguise.", play: "Do not lead Mimikyu into it.", rule: "Do not lead Mimikyu into it." },
+      { title: "Outrage lock", body: "A Fairy switch knocks Dragonite out. Click Dragon Claw if Fairy is still in their bag.", watch: "A Fairy switch knocks Dragonite out.", play: "Click Dragon Claw if Fairy is still in their bag.", rule: "Do not ignore Outrage lock." },
+      { title: "Fake Out into Dragonite", body: "Multiscale still flinches. Send Mimikyu into Incineroar. Ghost ignores Fake Out.", watch: "Multiscale still flinches.", play: "Send Mimikyu into Incineroar.", rule: "Do not ignore Fake Out into Dragonite." },
+      { title: "Fire / Water / Fighting into Excadrill", body: "All deal double. Switch to Mimikyu. Ghost ignores Fighting. Fire and Water deal normal damage there. Dragon is fine on Excadrill — Steel resists Dragon.", watch: "All deal double.", play: "Switch to Mimikyu.", rule: "Do not ignore Fire / Water / Fighting into Excadrill." },
+      { title: "Life Orb after Disguise", body: "The costume is one hit. Recoil and the next attack both land on a small HP pool. KO or leave.", watch: "The costume is one hit.", play: "KO or leave.", rule: "Do not ignore Life Orb after Disguise." },
     ],
   },
 ];
@@ -3515,7 +4284,7 @@ export function emptyManual(id: string): TeamManual {
       { title: "", goal: "", play: "" },
       { title: "", goal: "", play: "" },
     ],
-    loops: [{ title: "", body: "" }],
-    hazards: [{ title: "", body: "" }],
+    loops: [{ title: "", body: "Use when you need this sequence. " }],
+    hazards: [{ title: "", body: "", watch: "", play: "Answer  immediately using the switch board and plan.", rule: "Do not ignore  — it ends games on this three." }],
   };
 }

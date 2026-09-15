@@ -121,9 +121,9 @@ export function WinconStack({
                         className="overflow-hidden"
                       >
                         {beat.goal ? (
-                          <div className="border-t border-line/60 px-5 py-4">
-                            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-                              Objective
+                          <div className="border-t border-line/60 bg-[color-mix(in_srgb,#6b8cff_10%,transparent)] px-5 py-4">
+                            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#9cbcff]">
+                              Goal
                             </p>
                             <p className="mt-1.5 text-[17px] font-semibold leading-snug tracking-tight">
                               {beat.goal}
@@ -133,17 +133,17 @@ export function WinconStack({
 
                         {beat.play ? (
                           <div className="border-t border-line/60 px-5 py-4">
-                            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-                              {stance.doLabel}
+                            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
+                              Play
                             </p>
                             <p className="mt-1.5 text-[15px] leading-relaxed text-ink/90">{beat.play}</p>
                           </div>
                         ) : null}
 
                         {beat.next ? (
-                          <div className="border-t border-line/60 px-5 py-4">
-                            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-                              {last ? "End" : "Then"}
+                          <div className="border-t border-line/60 bg-white/[0.03] px-5 py-4">
+                            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">
+                              {last ? "End" : "Next"}
                             </p>
                             <p className="mt-1.5 text-[15px] leading-relaxed text-muted">{beat.next}</p>
                           </div>

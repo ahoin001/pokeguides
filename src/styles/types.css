@@ -1,22 +1,23 @@
+/* Pokémon Champions type disc colors (OP.GG Champions badge palette) */
 :root {
-  --type-normal: #a8a878;
-  --type-fire: #f08030;
-  --type-water: #6890f0;
-  --type-electric: #f8d030;
-  --type-grass: #78c850;
-  --type-ice: #98d8d8;
-  --type-fighting: #c03028;
-  --type-poison: #a040a0;
-  --type-ground: #e0c068;
-  --type-flying: #a890f0;
-  --type-psychic: #f85888;
-  --type-bug: #a8b820;
-  --type-rock: #b8a038;
-  --type-ghost: #705898;
-  --type-dragon: #7038f8;
-  --type-dark: #705848;
-  --type-steel: #b8b8d0;
-  --type-fairy: #ee99ac;
+  --type-normal: #999999;
+  --type-fire: #ff612c;
+  --type-water: #2992ff;
+  --type-electric: #ffdb00;
+  --type-grass: #42bf24;
+  --type-ice: #42d8ff;
+  --type-fighting: #ffa202;
+  --type-poison: #994dcf;
+  --type-ground: #ab7939;
+  --type-flying: #95c9ff;
+  --type-psychic: #ff637f;
+  --type-bug: #9fa424;
+  --type-rock: #bcb889;
+  --type-ghost: #6e4570;
+  --type-dragon: #5462d6;
+  --type-dark: #4f4747;
+  --type-steel: #6aaed3;
+  --type-fairy: #ffb1ff;
 }
 
 .type-sheet {

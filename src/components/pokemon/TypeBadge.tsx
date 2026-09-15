@@ -2,8 +2,6 @@ import { TYPE_LABEL } from "@/lib/champions/types";
 import type { TypeId } from "@/types/pokemon";
 import { TypeGlyph } from "./TypeGlyph";
 
-const INK_DARK: TypeId[] = ["electric", "ice", "ground", "normal", "bug", "steel", "fairy"];
-
 export function TypeBadge({
   type,
   size = "md",
@@ -13,10 +11,9 @@ export function TypeBadge({
   size?: "sm" | "md";
   mark?: string;
 }) {
-  const ink = INK_DARK.includes(type) ? "text-[#1a1a1a]" : "text-white";
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-full font-semibold tracking-tight ${ink} ${
+      className={`inline-flex items-center gap-1 rounded-full font-semibold tracking-tight text-white ${
         size === "sm" ? "px-1.5 py-0.5 text-[10px]" : "px-2 py-1 text-xs"
       }`}
       style={{

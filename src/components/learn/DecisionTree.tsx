@@ -14,7 +14,18 @@ import type { FlowFork, ManualFlow } from "@/content/manuals";
 import { MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
 
-const INK_DARK: TypeId[] = ["electric", "ice", "ground", "normal", "bug", "steel", "fairy"];
+/** Light Champions discs — dark label ink for move chips (glyphs stay white elsewhere). */
+const INK_DARK: TypeId[] = [
+  "normal",
+  "electric",
+  "ice",
+  "fighting",
+  "flying",
+  "bug",
+  "rock",
+  "steel",
+  "fairy",
+];
 
 function findFork(forks: FlowFork[], id: string): FlowFork | undefined {
   for (const fork of forks) {

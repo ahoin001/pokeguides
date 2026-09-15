@@ -19,7 +19,7 @@ export function ManualCard({
   return (
     <Link
       href={manualHref(manual.id)}
-      className="block rounded-[28px] border border-line bg-raised/50 p-5 transition hover:bg-raised"
+      className="flex h-full flex-col rounded-[28px] border border-line bg-raised/50 p-5 transition hover:bg-raised"
       style={wash ? cssVars(wash.palette) : undefined}
     >
       <div className="flex items-end gap-2">

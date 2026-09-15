@@ -187,7 +187,7 @@ export function ManualForm({
                 value={slot.role}
                 onChange={(e) => updateSlot(i, { role: e.target.value })}
               />
-              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <div className="mt-4 grid gap-4 sm:grid-cols-3">
                 <div>
                   <label className="block text-sm font-medium">Ability the tree needs</label>
                   <input
@@ -202,6 +202,15 @@ export function ManualForm({
                     className={`mt-2 ${inputClass}`}
                     value={slot.item ?? ""}
                     onChange={(e) => updateSlot(i, { item: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium">Nature</label>
+                  <input
+                    className={`mt-2 ${inputClass}`}
+                    value={slot.nature ?? ""}
+                    placeholder="Jolly"
+                    onChange={(e) => updateSlot(i, { nature: e.target.value })}
                   />
                 </div>
               </div>

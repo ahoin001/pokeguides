@@ -19,6 +19,7 @@ export type SlotManual = {
   role: string;
   ability?: string;
   item?: string;
+  nature?: string;
   moves: MoveNote[];
   objective: string;
   howToPlay: string;
@@ -51,6 +52,24 @@ export type ManualPlanBeat = {
   next?: string;
 };
 
+export type FlowFork = {
+  id: string;
+  when: string;
+  then?: string;
+  move?: string;
+  send?: string;
+  out?: string;
+  why?: string;
+  forks?: FlowFork[];
+};
+
+export type ManualFlow = {
+  id: string;
+  title: string;
+  lede?: string;
+  forks: FlowFork[];
+};
+
 export type TeamManual = {
   id: string;
   title: string;
@@ -65,6 +84,7 @@ export type TeamManual = {
   plan?: ManualPlanBeat[];
   slots: SlotManual[];
   phases: ManualPhase[];
+  flows?: ManualFlow[];
   loops: { title: string; body: string }[];
   hazards: { title: string; body: string }[];
 };
@@ -74,6 +94,45 @@ export function playLines(howToPlay: string) {
     .split("\n")
     .map((line) => line.replace(/^[-•]\s*/, "").trim())
     .filter(Boolean);
+}
+
+function branchToLeaf(phaseId: string, branch: ManualBranch, gi: number, bi: number): FlowFork {
+  return {
+    id: `${phaseId}-${branch.out ?? "field"}-${gi}-${bi}`,
+    when: branch.when,
+    then: branch.then,
+    why: branch.why,
+    out: branch.out,
+  };
+}
+
+export function flowsFromPhases(phases: ManualPhase[]): ManualFlow[] {
+  return phases
+    .filter((p) => p.branches.some((b) => b.when || b.then))
+    .map((phase) => {
+      const live = phase.branches.filter((b) => b.when || b.then);
+      const groups: { out?: string; items: ManualBranch[] }[] = [];
+      for (const branch of live) {
+        const last = groups[groups.length - 1];
+        if (last && last.out === branch.out) last.items.push(branch);
+        else groups.push({ out: branch.out, items: [branch] });
+      }
+      const wrap = groups.some((g) => g.out);
+      const forks: FlowFork[] = wrap
+        ? groups.map((g, gi) => ({
+            id: `${phase.id}-${g.out ?? "field"}-${gi}`,
+            when: g.out ? "This Pokémon is out" : "The slot",
+            out: g.out,
+            forks: g.items.map((b, bi) => branchToLeaf(phase.id, b, gi, bi)),
+          }))
+        : groups.flatMap((g, gi) => g.items.map((b, bi) => branchToLeaf(phase.id, b, gi, bi)));
+      return { id: phase.id, title: phase.title, lede: phase.lede, forks };
+    });
+}
+
+export function resolveFlows(manual: TeamManual): ManualFlow[] {
+  const authored = (manual.flows ?? []).filter((f) => f.forks.length);
+  return authored.length ? authored : flowsFromPhases(manual.phases);
 }
 
 export const MANUAL_PHASE_IDS = ["preview", "lead", "mid", "late"] as const;
@@ -127,6 +186,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Default lead. Tailwind, Encore, Moonblast, or leave.",
         ability: "Prankster",
         item: "Focus Sash or Covert Cloak",
+        nature: "Timid",
         moves: [
           { name: "Tailwind", why: "Hits your side — still works vs Dark. The click is turn one of four. Prankster +1 loses to Fake Out +3." },
           {
@@ -156,6 +216,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Default second send. Emergency lead if Cott cannot live.",
         ability: "Mirror Armor",
         item: "Rocky Helmet or Leftovers",
+        nature: "Impish",
         moves: [
           { name: "U-turn", why: "If you outspeed, they hit whoever came in. Slow U-turn is the safe hand-off." },
           { name: "Brave Bird", why: "Grass answer. Recoil is real — do not farm it." },
@@ -169,7 +230,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           },
           {
             name: "Body Press",
-            why: "Defense-based Fighting. The wincon click into Kingambit and Dark.",
+            why: "Defense-based Fighting. Dark cores. Kingambit is 1× Dark/Steel — bulky Press still hurts, it is not 4×.",
             alts: [{ name: "Iron Head", why: "Steel STAB if you do not want the Press kit." }],
           },
         ],
@@ -185,6 +246,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Late KO. Hidden until the slot is safe.",
         ability: "Rough Skin",
         item: "Loaded Dice, Life Orb, or Yache Berry",
+        nature: "Jolly",
         moves: [
           { name: "Earthquake", why: "One target. Zero on Flying/Levitate. Grass resists it." },
           {
@@ -317,9 +379,10 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Clock and trap. Fake Out is the backup if Cott dies.",
         ability: "Prankster",
         item: "Focus Sash or Covert Cloak",
+        nature: "Timid",
         moves: [
           { name: "Tailwind", why: "Whole turn in singles. Still works vs Dark." },
-          { name: "Encore", why: "After Fake Out, this turns Protect into a free Garchomp send. Fails on Dark." },
+          { name: "Encore", why: "Locks Protect or setup. Fails on Dark. Not the same turn as Fake Out — one send." },
           { name: "Moonblast", why: "Fighting (Incineroar's hole) and Dragon (Cott is immune)." },
           { name: "Taunt or Substitute", why: "Taunt vs Trick Room. Fails on Dark." },
         ],
@@ -335,6 +398,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Flinch, Fire, −6 delivery. Fourth slot is support, not item removal.",
         ability: "Intimidate",
         item: "Rocky Helmet, Safety Goggles, or Sitrus",
+        nature: "Careful",
         moves: [
           { name: "Fake Out", why: "+3 first turn out. Ghost is a zero. Cloak / Inner Focus keep their turn." },
           { name: "Parting Shot", why: "−6. They hit you, then Garchomp arrives. Fails on Good as Gold. Dies in KO range before −6." },
@@ -353,6 +417,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Enters on −6. Ends it.",
         ability: "Rough Skin",
         item: "Loaded Dice, Life Orb, or Yache Berry",
+        nature: "Jolly",
         moves: [
           { name: "Earthquake", why: "One target. Grass is Incineroar's job." },
           { name: "Scale Shot or Dragon Claw", why: "Birds. Backup Speed if Cott is dead and Fake Out is spent." },
@@ -448,7 +513,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     archetype: "grassy",
     slugs: ["rillaboom", "sneasler", "salamence-mega"],
     meta: "Garchomp and Kingambit cores. Terrain cuts Earthquake. Armor Tail turns the engine off.",
-    press: ["Garchomp / EQ", "Kingambit", "Tailwind Cott (Fake Out is +3)", "Setup"],
+    press: ["Garchomp / EQ", "Incineroar (Close Combat is 2×)", "Tailwind Cott (Fake Out is +3)", "Setup"],
     refuse: ["Fire into Rillaboom", "Ice / Rock into the Mega", "Psychic / Flying into Sneasler", "Armor Tail / Psychic Terrain"],
     switches: [
       { into: "Ice", send: "Rillaboom" },
@@ -467,6 +532,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Terrain on entry. Flinch, Glide, or deliver the Seed.",
         ability: "Grassy Surge",
         item: "Miracle Seed or Assault Vest",
+        nature: "Adamant",
         moves: [
           { name: "Fake Out", why: "First turn out. Ghost / Armor Tail / Psychic Terrain are zeros." },
           { name: "Grassy Glide", why: "+1 in terrain. Fails into Armor Tail and Psychic Terrain." },
@@ -485,9 +551,10 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Seed pops, Speed doubles, punch a hole.",
         ability: "Unburden",
         item: "Grassy Seed",
+        nature: "Jolly",
         moves: [
           { name: "Dire Claw", why: "Poison into Fairy. Can poison, para, or sleep. Steel laughs — that is Boom or the Mega." },
-          { name: "Close Combat", why: "Kingambit and Incineroar. Defense drops; no White Herb." },
+          { name: "Close Combat", why: "Incineroar is 2×. Kingambit is 1× Dark/Steel — Unburden still punches, it is not 4×. Defense drops; no White Herb." },
           { name: "Fake Out", why: "Second flinch after a refresh. Not a double lead." },
           { name: "Protect or U-turn", why: "Scout Flying/Psychic. Escape into the Mega." },
         ],
@@ -503,6 +570,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Intimidate on entry, Mega, Aerilate Flying.",
         ability: "Aerilate",
         item: "Salamencite",
+        nature: "Adamant",
         moves: [
           { name: "Double-Edge", why: "Aerilate STAB. Recoil is the tax. Not EQ through your own terrain." },
           { name: "Dragon Dance or Hyper Voice", why: "Dance on Protect. Hyper Voice is the special cup line. Commit to one." },
@@ -525,7 +593,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { when: "Ice on their three", then: "Boom is the Ice switch. Never the Mega." },
           { when: "Fairy on their three", then: "Sneasler after terrain. Dire Claw." },
           { when: "Indeedee / Farigiraf", then: "Priority is off. Wood Hammer, Dire Claw, Double-Edge." },
-          { when: "Kingambit or Incineroar", then: "Fake Out, then Close Combat." },
+          { when: "Kingambit or Incineroar", then: "Fake Out, then Close Combat. Incineroar is 2×. Kingambit is 1× Dark/Steel." },
           { when: "Whimsicott Tailwind three", then: "Fake Out the Cott (+3 vs +1). Terrain cuts EQ." },
         ],
       },
@@ -561,7 +629,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         title: "Late",
         branches: [
           { out: "salamence-mega", when: "Not Steel, Ice already gone", then: "Double-Edge. One target." },
-          { out: "salamence-mega", when: "Steel or Fire resists Flying", then: "EQ if terrain is down, else Close Combat / Glide." },
+          { out: "salamence-mega", when: "Steel or Fire resists Flying", then: "Earthquake if terrain is down. Dragon Claw if it is up — terrain cuts Ground." },
           { out: "salamence-mega", when: "Protect", then: "Dragon Dance. Do not recoil the shield." },
           { out: "salamence-mega", when: "Ice or Fairy onto Mega", then: "Ice → Boom. Fairy → Dire Claw." },
           { out: "sneasler", when: "Boom dead, terrain down, Seed still held", then: "Seed will not pop. Play 120. Mega is Speed." },
@@ -590,8 +658,8 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     archetype: "rain",
     slugs: ["pelipper", "archaludon", "basculegion-male"],
     meta: "Fire cores and Charizard Y. Pack the Electric switch (Archaludon) and respect Grass.",
-    press: ["Fire / Mega Charizard Y", "Kingambit", "Sun if you keep rain", "Steel that hates Water"],
-    refuse: ["Electric into Pelipper", "Grass into the Waters", "Drought overwrite", "Trick Room"],
+    press: ["Fire / Mega Charizard Y", "Dragons (Hurricane)", "Sun if you keep rain"],
+    refuse: ["Electric into Pelipper", "Grass into the Waters", "Drought overwrite", "Trick Room", "Kingambit (Hurricane and Wave Crash are ½ — no Fighting STAB)"],
     switches: [
       { into: "Electric", send: "Archaludon" },
       { into: "Grass", send: "Archaludon (Steel/Dragon resists)" },
@@ -608,6 +676,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Drizzle on entry. Hurricane never misses in rain.",
         ability: "Drizzle",
         item: "Damp Rock or Focus Sash",
+        nature: "Modest",
         moves: [
           { name: "Hurricane", why: "Never misses in rain. Flying STAB into Fighting and Grass." },
           { name: "Weather Ball", why: "Water in rain. The special nuke from a setter." },
@@ -626,6 +695,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Electro Shot in one turn. Stamina if they hit you.",
         ability: "Stamina",
         item: "Assault Vest or White Herb",
+        nature: "Modest",
         moves: [
           { name: "Electro Shot", why: "No charge in rain. 130 BP Electric. This is the hole-punch." },
           { name: "Flash Cannon or Draco Meteor", why: "Steel STAB / Dragon nuke. Meteor if you need the KO now." },
@@ -644,6 +714,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Swift Swim closer. Last Respects scales if a partner fell.",
         ability: "Swift Swim",
         item: "Life Orb or Choice Band",
+        nature: "Adamant",
         moves: [
           { name: "Wave Crash", why: "Water STAB in rain. Recoil. Take the KO." },
           { name: "Last Respects", why: "Ghost nuke after a KO on your side. Do not lead it at +0 unless you have to." },
@@ -665,7 +736,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { when: "Fast Electric (Raichu, Kilowattrel)", then: "Archaludon. Pelipper is 4× Electric." },
           { when: "Grass / Rillaboom", then: "Archaludon. Do not send either Water." },
           { when: "Mega Charizard Y on their three", then: "Do not gift Pelipper into Drought+Heat Wave. Archaludon or wait the Mega out." },
-          { when: "Kingambit", then: "Pelipper Hurricane or Basc Wave Crash. Fighting is not on this three." },
+          { when: "Kingambit", then: "Chip with Electro Shot (1×). Hurricane and Wave Crash are ½ on Dark/Steel. You have no Fighting STAB — do not assume 2×." },
           { when: "Trick Room look", then: "You are the fast three. Taunt is not here. Play to KO the setter or lose the clock." },
         ],
       },
@@ -729,7 +800,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     slugs: ["farigiraf", "kingambit", "gholdengo"],
     meta: "Fake Out balance and Tailwind HO. Taunt on the setter is the preview you respect.",
     press: ["Fake Out cores", "Tailwind HO", "Sneasler Unburden", "Priority spam"],
-    refuse: ["Taunt the setter", "Fighting into Kingambit", "Fire / Ground into Gholdengo", "A faster Trick Room"],
+    refuse: ["Taunt the setter", "Sitting Kingambit in Fighting (1×, not a resist — Gholdengo is immune)", "Fire / Ground into Gholdengo", "A faster Trick Room"],
     switches: [
       { into: "Fake Out / Grassy Glide", send: "Farigiraf (Armor Tail)" },
       { into: "Fighting", send: "Gholdengo (Ghost immune)" },
@@ -747,6 +818,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Armor Tail plus Trick Room. Protect the four turns.",
         ability: "Armor Tail",
         item: "Mental Herb or Sitrus Berry",
+        nature: "Quiet",
         moves: [
           { name: "Trick Room", why: "The whole plan. Mental Herb eats one Taunt." },
           { name: "Psychic", why: "STAB into Fighting and Poison. Sneasler hates this." },
@@ -765,6 +837,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Supreme Overlord. Slow on purpose. First under the room.",
         ability: "Supreme Overlord",
         item: "Leftovers or Black Glasses",
+        nature: "Adamant",
         moves: [
           { name: "Kowtow Cleave", why: "Dark STAB that never misses. The hole-punch." },
           { name: "Sucker Punch", why: "Priority if the room is down. Fails if they Protect or status." },
@@ -783,6 +856,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Good as Gold. Status bounce. Special Steel.",
         ability: "Good as Gold",
         item: "Leftovers or Choice Specs",
+        nature: "Modest",
         moves: [
           { name: "Make It Rain", why: "Steel STAB. Drops SpA — Specs or accept the drop." },
           { name: "Shadow Ball", why: "Ghost STAB. 2× into Psychic." },
@@ -868,7 +942,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     slugs: ["charizard-mega-y", "garchomp", "cinderace"],
     meta: "Grass, Steel, Rillaboom. Rain if you overwrite. Y and Cinderace are 2× Water. Garchomp is 1× Water, 4× Ice.",
     press: ["Grass / Rillaboom", "Steel", "Rain if you steal sun", "Bug / Ice into Cinderace"],
-    refuse: ["Rock into Y", "Water into anyone", "Faster Drought", "Trick Room"],
+    refuse: ["Rock into Y", "Water into Y or Cinderace", "Faster Drought", "Trick Room"],
     switches: [
       { into: "Rock", send: "Garchomp" },
       { into: "Electric", send: "Garchomp (immune)" },
@@ -886,6 +960,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Setter and wincon. Heat Wave in sun. Solar Beam does not charge.",
         ability: "Drought",
         item: "Charizardite Y",
+        nature: "Modest",
         moves: [
           { name: "Heat Wave or Flamethrower", why: "Fire STAB in sun. The reason Y exists." },
           { name: "Solar Beam", why: "No charge in sun. Grass and Water answers that would sit on Fire." },
@@ -904,6 +979,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Rock and Electric switch. Ground hole-punch.",
         ability: "Rough Skin",
         item: "Loaded Dice, Life Orb, or Yache Berry",
+        nature: "Jolly",
         moves: [
           { name: "Earthquake", why: "One target. Hits Y's Fire answers that are grounded." },
           { name: "Dragon Claw or Scale Shot", why: "Dragon STAB. Scale Shot if Y died and you need Speed." },
@@ -922,9 +998,10 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         role: "Picks a type and commits. Fast Fire if Y is gone.",
         ability: "Libero",
         item: "Life Orb or Heavy-Duty Boots",
+        nature: "Jolly",
         moves: [
           { name: "Pyro Ball", why: "Fire STAB in sun. Libero makes you Fire on the click." },
-          { name: "High Jump Kick", why: "Fighting into Kingambit and Incineroar. Miss is a self-KO risk." },
+          { name: "High Jump Kick", why: "Fighting into Incineroar (2×). Kingambit is 1× Dark/Steel. Miss is a self-KO. Ghost is a zero." },
           { name: "Sucker Punch", why: "Dark priority. Backup Speed if sun is gone." },
           { name: "U-turn or Gunk Shot", why: "Pivot / Poison into Fairy. U-turn still has the fast-switch trap." },
         ],
@@ -998,6 +1075,465 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       { title: "Weather war", body: "Pelipper overwrite on entry. Re-send Y to steal sun back. That is a turn." },
       { title: "Solar Beam without sun", body: "It charges. You donate a turn. Do not." },
       { title: "High Jump Kick miss / Ghost", body: "Cinderace can KO itself. Dire read. Pyro Ball is the safe Fire click." },
+    ],
+  },
+  {
+    id: "balance-excadrill-primarina-dragonite",
+    title: "Scale Sweep: Excadrill, Primarina, Dragonite",
+    lede: "Drill breaks, Prima patches, Dragonite sweeps. Dragon is not a Drill threat. Stone Edge, not Rock Slide. Never lead the kite.",
+    philosophy:
+      "Clock is Excadrill or Primarina — whoever the preview names. Dragonite stays in the bag until Ice (4×) and Fairy are gone or chunked. Sand Rush is dead without a sand setter. Multiscale is full HP only. Extreme Speed is Normal — Ghosts laugh.",
+    archetype: "balance",
+    slugs: ["excadrill", "primarina", "dragonite"],
+    meta: "Kingambit and Steel, Rock, Electric into Prima, Dragons into Prima. Ice is Dragonite's funeral. Fire / Water / Fighting are Drill's. Electric is Prima's — Drill is immune.",
+    press: ["Kingambit / Steel", "Rock", "Electric into Primarina", "Dragons into Primarina"],
+    refuse: [
+      "Ice into Dragonite",
+      "Fire / Water / Fighting into Drill",
+      "Fairy while Dragonite is the only answer",
+      "Ghost Extreme Speed",
+    ],
+    switches: [
+      { into: "Fire / Water / Fighting", send: "Primarina — Drill is 2×. Prima resists." },
+      { into: "Ice", send: "Primarina (resists). Drill is 1×. Dragonite is 4× — never." },
+      { into: "Fairy", send: "Excadrill (Iron Head). Do not park Dragonite." },
+      { into: "Electric", send: "Excadrill (immune). Prima is 2×." },
+      { into: "Grass", send: "Dragonite later (¼) if Ice/Fairy are gone. Drill is 1× now." },
+      { into: "Dragon", send: "Primarina (Fairy immune). Drill resists Dragon — Steel does." },
+      { into: "Physical wall on Drill", send: "Primarina special" },
+    ],
+    plan: [
+      {
+        title: "Clock",
+        goal: "Break or patch on the first send — not Dragonite",
+        play: "Physical, Steel, Rock, or Electric: Excadrill. Fire, Water, Fighting, or Dragon: Primarina. Dragonite never walks in first.",
+        next: "Sash Dance on Drill if they live. Specs punch on Prima. Then leave the slot for the kite.",
+      },
+      {
+        title: "Shield",
+        goal: "Pivot the shared holes so Dragonite still has Multiscale",
+        play: "Ice and Fairy onto Dragonite → Drill (Iron Head Fairy, EQ or Iron Head Ice). Fire / Water / Fighting onto Drill → Prima. Electric onto Prima → Drill. Physical wall sitting on Drill → Prima special.",
+        next: "Choice lock is a donated turn. Do not Specs-Moonblast a Steel that wanted Surf.",
+      },
+      {
+        title: "Clean",
+        goal: "Dragon Dance, then Outrage or Extreme Speed",
+        play: "Send Dragonite only after Ice and Fairy are gone or chunked. Dance into a Protect or a free turn. Outrage if the last two cannot Fairy. Extreme Speed the revenge — not Ghost.",
+        next: "Outrage locks. A Fairy switch ends the sweep. Multiscale is gone after the first chip.",
+      },
+    ],
+    slots: [
+      {
+        slug: "excadrill",
+        title: "The Drill",
+        job: "breaker",
+        literacy: "wallbreaker",
+        role: "Default physical lead. Mold Breaker. Sash Dance.",
+        ability: "Mold Breaker",
+        item: "Focus Sash",
+        nature: "Jolly",
+        moves: [
+          { name: "Swords Dance", why: "Sash is the turn. Next hit is the KO. Do not Dance into a guaranteed Fire/Water/Fighting." },
+          {
+            name: "Earthquake",
+            why: "Ground STAB. vs Kingambit click EQ — not Iron Head. Steel resists Steel.",
+          },
+          { name: "Iron Head", why: "Steel STAB into Fairy and Ice. Flinch is a gift, not the plan." },
+          {
+            name: "Stone Edge",
+            why: "Flying. Singles — not Rock Slide.",
+            alts: [{ name: "Rock Slide", why: "Do not. Spread fantasy from doubles. One target, one Edge." }],
+          },
+        ],
+        objective: "Lead into physical, Steel, Rock, Electric (immune). Punch a hole. Leave Fire, Water, Fighting, Ground.",
+        howToPlay:
+          "Lead vs physical, Steel, Rock, or Electric. You are immune to Electric.\nvs Kingambit: Earthquake. Iron Head is resisted.\nFire, Water, Fighting, Ground leave — not Dragon. Steel resists Dragon.\nSand Rush needs sand. There is no setter. Mold Breaker is the ability.",
+      },
+      {
+        slug: "primarina",
+        title: "The Patch",
+        job: "breaker",
+        literacy: "wallbreaker",
+        role: "Special break. Fire / Water / Fighting / Dragon lead. The physical-wall answer.",
+        ability: "Torrent",
+        item: "Choice Specs or Leftovers",
+        nature: "Modest",
+        moves: [
+          {
+            name: "Surf",
+            why: "Safe Water STAB. Hits Fire and Ground that threaten Drill.",
+            alts: [{ name: "Hydro Pump", why: "The miss-tax. Specs already commits the slot. Surf is the classroom click." }],
+          },
+          { name: "Moonblast", why: "Fairy STAB. Dragons and Fighting. Fairy immune to Dragon — you can lead that." },
+          { name: "Ice Beam", why: "Dragonite's Ice checks, and Dragons that would sit on Moonblast. Garchomp is 4×." },
+          {
+            name: "Psychic",
+            why: "Poison that would 2× you. Specs lock — pick before you click.",
+            alts: [
+              { name: "Energy Ball", why: "Grass into Waters that shrug Moonblast. Drill is 1× Grass; Dragonite is ¼ later." },
+              { name: "Calm Mind", why: "Leftovers set. You are no longer Choice. Slower break, no lock." },
+            ],
+          },
+        ],
+        objective: "Lead into Fire, Water, Fighting, Dragon. Patch physical walls. Leave Electric, Grass, Poison (2×).",
+        howToPlay:
+          "Lead vs Fire, Water, Fighting, or Dragon. Fairy immune to Dragon.\nElectric, Grass, Poison are 2× — Electric to Drill (immune), Grass to Dragonite (¼) once Ice/Fairy are gone.\nChoice lock: do not Moonblast a Steel that wanted Surf, and vice versa.",
+      },
+      {
+        slug: "dragonite",
+        title: "The Kite",
+        job: "breaker",
+        literacy: "sweeper",
+        role: "Late wincon. Hidden until Ice and Fairy are gone.",
+        ability: "Multiscale",
+        item: "Lum Berry",
+        nature: "Adamant",
+        moves: [
+          { name: "Dragon Dance", why: "The free turn. Protect branch. Multiscale still up if you are full." },
+          {
+            name: "Outrage",
+            why: "The sweep click. You lock. A Fairy switch ends Dragonite.",
+            alts: [{ name: "Dragon Claw", why: "If you fear the Fairy switch. Less damage. You can leave." }],
+          },
+          { name: "Earthquake", why: "Steel that resists Dragon. Grounded leftovers. Hits Ghost — Extreme Speed does not." },
+          {
+            name: "Extreme Speed",
+            why: "Normal priority. Revenge after Dance. Ghost is immune.",
+          },
+        ],
+        objective: "Never the lead. Dance, then Outrage or Extreme Speed. Keep Multiscale for one hit.",
+        howToPlay:
+          "Do not lead. Hide until Ice (4×) and Fairy are gone or chunked.\nMultiscale only on full HP. The first chip ends it. Fake Out still flinches — Inner Focus is the alt, not the default.\nOutrage locks. Extreme Speed is Normal — do not click it into Ghost.",
+      },
+    ],
+    phases: [
+      {
+        id: "preview",
+        title: "Preview",
+        lede: "One send. Name Drill or Prima. Dragonite stays in the bag.",
+        branches: [
+          { when: "Physical, Steel, Rock, or Electric", then: "Excadrill. Mold Breaker. Sash. Electric immune." },
+          { when: "Fire, Water, Fighting, or Dragon", then: "Primarina. Fairy immune to Dragon. Surf or Moonblast." },
+          { when: "Ice or Fairy still healthy", then: "Keep Dragonite back. Patch with Prima or Drill first." },
+          { when: "Kingambit on their three", then: "Drill. Earthquake — not Iron Head. Steel resists Steel." },
+          { when: "They look like Fake Out", then: "Do not lead Dragonite. Multiscale still flinches." },
+        ],
+      },
+      {
+        id: "lead",
+        title: "Lead",
+        lede: "Drill or Prima. Dragonite is not here yet.",
+        branches: [
+          { out: "excadrill", when: "Kingambit or a Steel that resists Iron Head", then: "Earthquake. Steel resists Steel." },
+          { out: "excadrill", when: "Fairy", then: "Iron Head." },
+          { out: "excadrill", when: "Flying", then: "Stone Edge. Not Rock Slide." },
+          { out: "excadrill", when: "They Protect or you live the hit", then: "Swords Dance. Sash is the turn." },
+          { out: "excadrill", when: "Fire, Water, Fighting, or Ground coming", then: "Leave. Steel does not resist those. Dragon is fine — Steel resists Dragon." },
+          { out: "primarina", when: "Dragon or Fighting", then: "Moonblast." },
+          { out: "primarina", when: "Fire or a grounded Water", then: "Surf. Hydro Pump is the miss-tax alt." },
+          { out: "primarina", when: "Dragonite's Ice check is in", then: "Ice Beam." },
+          { out: "primarina", when: "Electric, Grass, or Poison", then: "Leave. 2×. Electric → Drill (immune). Grass → Dragonite later (¼)." },
+        ],
+      },
+      {
+        id: "mid",
+        title: "Mid",
+        lede: "Pivot the holes. Do not donate a Choice lock. Do not send the kite yet.",
+        branches: [
+          { out: "excadrill", when: "Physical wall sitting on Drill", then: "Primarina. Special break." },
+          { out: "excadrill", when: "Fire, Water, or Fighting onto Drill", then: "Primarina. Both resist. Drill is 2×." },
+          { out: "primarina", when: "Electric onto Prima", then: "Excadrill. Immune." },
+          { out: "primarina", when: "Grass onto Prima", then: "Drill now (1×) or Dragonite later (¼) if Ice and Fairy are gone." },
+          { out: "primarina", when: "Poison onto Prima", then: "Drill. Steel immune to Poison. Psychic if you are not locked into Water." },
+          { out: "primarina", when: "Specs locked Moonblast, Steel in", then: "You donated. That Steel wanted Surf. Leave if you can." },
+          { out: "primarina", when: "Specs locked Surf, Dragon or Fighting in", then: "You wanted Moonblast. Chip or leave." },
+          { out: "dragonite", when: "Ice or Fairy onto Dragonite", then: "Excadrill. Iron Head Fairy. EQ or Iron Head Ice. Prima resists Ice." },
+        ],
+      },
+      {
+        id: "late",
+        title: "Late",
+        lede: "Ice and Fairy gone or chunked. Then the kite.",
+        branches: [
+          { out: "dragonite", when: "Ice and Fairy gone or chunked", then: "Dragon Dance, then Outrage or Extreme Speed." },
+          { out: "dragonite", when: "They Protect", then: "Dragon Dance. Multiscale still wants full HP." },
+          { out: "dragonite", when: "Ghost in", then: "Earthquake. Extreme Speed is Normal — Ghost immune." },
+          { out: "dragonite", when: "Steel leftover", then: "Earthquake. Outrage is resisted." },
+          { out: "dragonite", when: "Outrage locked, Fairy switches in", then: "The sweep is over. Claw is the alt if you feared this." },
+          { out: "dragonite", when: "Multiscale broken", then: "You take real damage now. Do not eat a second hit for free." },
+          { out: "excadrill", when: "Sash still in, a wall left", then: "Swords Dance and break. Dragonite can wait one more KO." },
+          { out: "primarina", when: "Torrent live, one of theirs left", then: "Surf or Moonblast. Specs already picked the click." },
+        ],
+      },
+    ],
+    flows: [
+      {
+        id: "lead",
+        title: "Lead",
+        lede: "Preview their three. One send. Dragonite never walks in first.",
+        forks: [
+          {
+            id: "lead-drill",
+            when: "Physical, Steel, Rock, or Electric",
+            then: "Lead Excadrill. Mold Breaker. Sash. Electric immune.",
+            send: "excadrill",
+            forks: [
+              {
+                id: "lead-drill-eq",
+                when: "Kingambit or a Steel that resists Iron Head",
+                then: "Earthquake. Steel resists Steel.",
+                move: "Earthquake",
+                send: "excadrill",
+                why: "Iron Head is the wrong Kingambit click.",
+              },
+              {
+                id: "lead-drill-fairy",
+                when: "Fairy",
+                then: "Iron Head.",
+                move: "Iron Head",
+                send: "excadrill",
+              },
+              {
+                id: "lead-drill-flying",
+                when: "Flying",
+                then: "Stone Edge. Not Rock Slide.",
+                move: "Stone Edge",
+                send: "excadrill",
+                why: "One target. Spread fantasy stays out.",
+              },
+              {
+                id: "lead-drill-dance",
+                when: "They Protect or you live the hit",
+                then: "Swords Dance. Sash is the turn.",
+                move: "Swords Dance",
+                send: "excadrill",
+              },
+              {
+                id: "lead-drill-leave",
+                when: "Fire, Water, Fighting, or Ground coming",
+                then: "Leave to Primarina. Steel does not resist those.",
+                send: "primarina",
+                why: "Dragon is fine on Drill — Steel resists Dragon. Do not treat Dragon as a Drill threat.",
+              },
+            ],
+          },
+          {
+            id: "lead-prima",
+            when: "Fire, Water, Fighting, or Dragon",
+            then: "Lead Primarina. Fairy immune to Dragon. Surf is the safe Water.",
+            send: "primarina",
+            forks: [
+              {
+                id: "lead-prima-moon",
+                when: "Dragon or Fighting",
+                then: "Moonblast.",
+                move: "Moonblast",
+                send: "primarina",
+              },
+              {
+                id: "lead-prima-surf",
+                when: "Fire or a grounded Water",
+                then: "Surf. Hydro Pump is the miss-tax alt.",
+                move: "Surf",
+                send: "primarina",
+              },
+              {
+                id: "lead-prima-ice",
+                when: "Dragonite's Ice check is in",
+                then: "Ice Beam. Chunk it before the kite comes out.",
+                move: "Ice Beam",
+                send: "primarina",
+              },
+              {
+                id: "lead-prima-leave",
+                when: "Electric, Grass, or Poison",
+                then: "Leave. You are 2×.",
+                send: "excadrill",
+                why: "Electric → Drill (immune). Grass → Dragonite later (¼) once Ice and Fairy are gone.",
+              },
+            ],
+          },
+          {
+            id: "lead-hide",
+            when: "Ice or Fairy still healthy",
+            then: "Keep Dragonite back. Patch with Primarina or Excadrill first.",
+            why: "Dragonite is 4× Ice. Fairy ends Outrage. Never the lead. Fake Out still flinches Multiscale.",
+          },
+        ],
+      },
+      {
+        id: "mid",
+        title: "Mid",
+        lede: "Pivot the shared holes. Choice lock is a donated turn.",
+        forks: [
+          {
+            id: "mid-drill",
+            when: "This Pokémon is out",
+            out: "excadrill",
+            forks: [
+              {
+                id: "mid-drill-wall",
+                when: "Physical wall sitting on Drill",
+                then: "Primarina. Special break.",
+                send: "primarina",
+              },
+              {
+                id: "mid-drill-fwf",
+                when: "Fire, Water, or Fighting onto Drill",
+                then: "Primarina. Both resist. Drill is 2×.",
+                send: "primarina",
+              },
+            ],
+          },
+          {
+            id: "mid-prima",
+            when: "This Pokémon is out",
+            out: "primarina",
+            forks: [
+              {
+                id: "mid-prima-elec",
+                when: "Electric onto Prima",
+                then: "Excadrill. Immune.",
+                send: "excadrill",
+              },
+              {
+                id: "mid-prima-grass",
+                when: "Grass onto Prima",
+                then: "Drill now (1×), or Dragonite later (¼) if Ice and Fairy are gone.",
+                send: "excadrill",
+              },
+              {
+                id: "mid-prima-poison",
+                when: "Poison onto Prima",
+                then: "Drill. Steel immune to Poison.",
+                send: "excadrill",
+                why: "Psychic if Specs is not locked into Water.",
+              },
+              {
+                id: "mid-prima-lock-moon",
+                when: "Specs locked Moonblast, Steel in",
+                then: "You donated. That Steel wanted Surf.",
+                why: "Leave if the lock lets you. Do not Moonblast a Steel on purpose.",
+              },
+              {
+                id: "mid-prima-lock-surf",
+                when: "Specs locked Surf, Dragon or Fighting in",
+                then: "You wanted Moonblast. Chip or leave.",
+                move: "Surf",
+              },
+            ],
+          },
+          {
+            id: "mid-nite",
+            when: "This Pokémon is out",
+            out: "dragonite",
+            forks: [
+              {
+                id: "mid-nite-ice-fairy",
+                when: "Ice or Fairy onto Dragonite",
+                then: "Excadrill. Iron Head Fairy. EQ or Iron Head Ice.",
+                send: "excadrill",
+                why: "Prima resists Ice. Dragonite is 4× Ice — you mis-sent if this is full HP Ice.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "late",
+        title: "Late",
+        lede: "Ice and Fairy gone or chunked. Then Dance.",
+        forks: [
+          {
+            id: "late-nite",
+            when: "This Pokémon is out",
+            out: "dragonite",
+            forks: [
+              {
+                id: "late-nite-go",
+                when: "Ice and Fairy gone or chunked",
+                then: "Dragon Dance, then Outrage or Extreme Speed.",
+                move: "Dragon Dance",
+                send: "dragonite",
+              },
+              {
+                id: "late-nite-protect",
+                when: "They Protect",
+                then: "Dragon Dance. Multiscale still wants full HP.",
+                move: "Dragon Dance",
+                send: "dragonite",
+              },
+              {
+                id: "late-nite-ghost",
+                when: "Ghost in",
+                then: "Earthquake. Extreme Speed is Normal — Ghost immune.",
+                move: "Earthquake",
+                send: "dragonite",
+              },
+              {
+                id: "late-nite-steel",
+                when: "Steel leftover",
+                then: "Earthquake. Outrage is resisted.",
+                move: "Earthquake",
+                send: "dragonite",
+              },
+              {
+                id: "late-nite-fairy-lock",
+                when: "Outrage locked, Fairy switches in",
+                then: "The sweep is over. Claw is the alt if you feared this.",
+                move: "Outrage",
+                why: "Do not click Outrage while a Fairy is in the bag unless you can KO through the switch.",
+              },
+              {
+                id: "late-nite-scale",
+                when: "Multiscale broken",
+                then: "You take real damage now. Do not eat a second hit for free.",
+                send: "dragonite",
+              },
+            ],
+          },
+          {
+            id: "late-drill",
+            when: "This Pokémon is out",
+            out: "excadrill",
+            forks: [
+              {
+                id: "late-drill-sash",
+                when: "Sash still in, a wall left",
+                then: "Swords Dance and break. Dragonite can wait one more KO.",
+                move: "Swords Dance",
+                send: "excadrill",
+              },
+            ],
+          },
+          {
+            id: "late-prima",
+            when: "This Pokémon is out",
+            out: "primarina",
+            forks: [
+              {
+                id: "late-prima-torrent",
+                when: "Torrent live, one of theirs left",
+                then: "Surf or Moonblast. Specs already picked the click.",
+                send: "primarina",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    loops: [
+      { title: "Sash Dance", body: "Drill lives on Sash. Swords Dance. Next hit is Earthquake, Iron Head, or Stone Edge — one target." },
+      { title: "Specs punch", body: "Prima locks a click. Surf the Fire/Ground. Moonblast the Dragon/Fighting. Ice Beam the Ice check. Wrong lock is a donated turn." },
+      { title: "Multiscale Dance", body: "Full HP Dragonite in. Dragon Dance on a free turn. Outrage if Fairy is gone. Extreme Speed the revenge — not Ghost." },
+    ],
+    hazards: [
+      { title: "4× Ice", body: "Dragonite dies to Ice Beam. Prima resists. Drill is 1×. Preview is where you refuse the kite lead." },
+      { title: "Outrage lock", body: "A Fairy switch ends the sweep. Dragon Claw is the alt if the Fairy is still in the bag." },
+      { title: "Hydro miss", body: "Specs already committed the slot. Surf is the classroom Water. Hydro Pump is the miss-tax." },
+      { title: "Choice lock", body: "Do not Specs-Moonblast a Steel that wanted Surf, and vice versa." },
+      { title: "Fake Out into Dragonite", body: "Multiscale still flinches. Inner Focus is the alt, not the default. Do not lead the kite into Incineroar." },
+      { title: "Drill vs Fire / Water / Fighting", body: "All 2×. Prima resists all three. Dragon is not on this list — Steel resists Dragon." },
     ],
   },
 ];

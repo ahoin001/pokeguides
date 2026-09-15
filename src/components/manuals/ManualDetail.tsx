@@ -19,7 +19,7 @@ export function ManualDetail({ id }: { id: string }) {
 
   if (!manual) {
     return (
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-6xl">
         <p className="text-sm text-muted">
           <Link href="/manuals" className="hover:text-ink">
             Field manuals
@@ -35,7 +35,7 @@ export function ManualDetail({ id }: { id: string }) {
     <div>
       <ManualView manual={manual} sourced={sourced} />
       {!isCanonicalManualId(id) ? (
-        <div className="mx-auto mt-10 flex max-w-3xl flex-wrap gap-3">
+        <div className="mx-auto mt-10 flex max-w-6xl flex-wrap gap-3">
           <Link
             href={`/manuals/${id}/edit`}
             className="inline-flex items-center justify-center rounded-full border border-line px-4 py-2 text-sm font-medium transition hover:border-ink/40"

@@ -13,7 +13,7 @@ export function ManualNotes({ id }: { id: string }) {
   }, [stored, id]);
 
   return (
-    <section className="mx-auto mt-16 max-w-3xl">
+    <section className="mx-auto mt-16 w-full max-w-6xl">
       <h2 className="text-2xl font-semibold tracking-tight">Your notes</h2>
       <p className="mt-2 text-sm text-muted">Stays on this device. Canonical manuals keep notes even if the guide updates.</p>
       <textarea

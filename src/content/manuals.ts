@@ -273,7 +273,9 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         item: "Focus Sash",
         itemWhy: "You lead. Fake Out flinches, Sash keeps 1 HP, Tailwind is turn two. Matches the 2 HP spread.",
         itemAlts: [
-          { name: "Covert Cloak", why: "Fake Out does not flinch. Tailwind is turn one. Use the Cloak bulk spread." },
+          { name: "Covert Cloak", why: "Fake Out does not flinch. Tailwind is turn one — you do not spend Sash, then clock. Use the Cloak bulk spread. Pick this when Incineroar is on their three." },
+          { name: "Mental Herb", why: "Taunt blanks Prankster Tailwind. Farigiraf and the Cott mirror click it. Herb eats the Taunt once so the clock still goes up. Keep the sash spread." },
+          { name: "Fairy Feather", why: "Moonblast is how you KO Dragon and Fighting after the clock, not Corvi Press. 20% Fairy. You are no longer sash — do not lead into Fake Out or Poison." },
         ],
         nature: "Timid",
         training: train(2, 0, 0, 32, 0, 32, {
@@ -305,7 +307,10 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           {
             name: "Taunt",
             why: "Shuts Trick Room. Fails on Dark.",
-            alts: [{ name: "Substitute", why: "Same slot if you already locked Encore and need the puppet more than the room shut." }],
+            alts: [
+              { name: "Energy Ball", why: "Grass STAB into Pelipper and Archaludon. Garchomp EQ is a zero on Flying. Corvi Brave Bird is 1×. This is the rain answer on the clock." },
+              { name: "Substitute", why: "Same slot if you already locked Encore and need the puppet more than the room shut." },
+            ],
           },
         ],
         objective: "Win the Speed race or lock a waste, then get out.",
@@ -322,7 +327,9 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         item: "Rocky Helmet",
         itemWhy: "The physical wall. Contact into U-turn, Brave Bird, and Body Press pays HP. You are the slow hand-off.",
         itemAlts: [
-          { name: "Leftovers", why: "If you Roost and win the slot. Helmet is worse when they never make contact." },
+          { name: "Leftovers", why: "If you Roost and win the slot. Helmet is worse when they never make contact — special Ice, Specs Prima, Gholdengo." },
+          { name: "Occa Berry", why: "Fire is 2× on Cott and Corvi. Garchomp is the Fire switch. Occa is if you had to lead Corvi into Charizard or Incineroar and still need the slow U-turn." },
+          { name: "Sitrus Berry", why: "One burst heal after Fake Out or Brave Bird recoil. Helmet chips them; Sitrus keeps you. Use when the wall has to win 3v3, not hand off." },
         ],
         nature: "Impish",
         training: train(32, 0, 32, 0, 2, 0, {
@@ -348,14 +355,15 @@ export const CANONICAL_MANUALS: TeamManual[] = [
             name: "Roost",
             why: "Stay against a locked physical resist. The wall can win 3v3.",
             alts: [
-              { name: "Iron Defense", why: "Only with Body Press. Two stages doubles Press. You are now the wincon." },
+              { name: "Bulk Up", why: "Attack and Defense. Brave Bird becomes the Grass KO and Press still hurts. Champions singles uses this more than Iron Defense when you need both STABs." },
+              { name: "Iron Defense", why: "Only with Body Press. Two stages doubles Press. You are now the wincon — Garchomp can stay in the bag." },
               { name: "Taunt", why: "Works on Dark — Cott's Taunt does not. For healers and setup that live on Corvi." },
             ],
           },
           {
             name: "Body Press",
             why: "Defense-based Fighting. Dark cores. Kingambit is 1× Dark/Steel — bulky Press still hurts, it is not 4×.",
-            alts: [{ name: "Iron Head", why: "Steel STAB if you do not want the Press kit." }],
+            alts: [{ name: "Iron Head", why: "Steel STAB into Fairy and Ice if Garchomp is already down. Press is the Dark answer; Head is the Mimikyu / Floette answer." }],
           },
         ],
         objective: "Absorb Ice, Fairy, Fighting, Poison. Leave only when Garchomp wants in.",
@@ -372,8 +380,10 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         item: "Loaded Dice",
         itemWhy: "Scale Shot is the Speed plan if Cott dies. Dice makes it hit five times. Tailwind is still the clock.",
         itemAlts: [
-          { name: "Life Orb", why: "Dragon Claw over Scale Shot. You want the single-hit KO, not the Speed stages." },
+          { name: "Life Orb", why: "Champions singles majority. Dragon Claw over Scale Shot. You want the single-hit KO, not the Speed stages. Tailwind is still the clock — you do not need Dice if Cott lives." },
+          { name: "Roseli Berry", why: "Fairy is 2×. Mimikyu Play Rough and Mega Floette. Corvi is the Fairy switch; Roseli is if Corvi is already down and you still have to send." },
           { name: "Yache Berry", why: "Ice is 4×. The berry is one live, not a resist. Preview Ice or do not send." },
+          { name: "Clear Amulet", why: "Intimidate on the send. Corvi Mirror Armor already bounces Incineroar. Amulet is if the cat is still in and Corvi is gone — Garchomp keeps the Attack Tailwind paid for." },
         ],
         nature: "Jolly",
         training: train(20, 32, 14, 0, 0, 0, {
@@ -398,7 +408,14 @@ export const CANONICAL_MANUALS: TeamManual[] = [
             why: "Birds and Levitate. Scale Shot is backup Speed if Cott dies.",
             alts: [{ name: "Outrage", why: "The nuke if Fairy is gone. You lock. A Fairy switch is a lost Garchomp." }],
           },
-          { name: "Stone Edge", why: "Flying coverage. Singles — not Rock Slide." },
+          {
+            name: "Stone Edge",
+            why: "Flying coverage. Singles — not Rock Slide.",
+            alts: [
+              { name: "Fire Fang", why: "This three has no Fire STAB. Scizor is 4×. Corvi Brave Bird already answers Grass; Fang is the Steel/Bug leftover if Corvi is down." },
+              { name: "Rock Slide", why: "Do not. Spread fantasy from doubles. One target, one Edge." },
+            ],
+          },
           {
             name: "Swords Dance",
             why: "The Protect branch. Do not slam the shield. Next hit is the KO.",
@@ -1569,7 +1586,9 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         item: "Focus Sash",
         itemWhy: "Sash Dance. You live one, +2, KO. Matches the 2 HP spread. Leftovers does not survive Fire, Water, or Fighting.",
         itemAlts: [
-          { name: "Life Orb", why: "Kingambit / Trick Room table where you already outspeed. Skip the Dance and punch." },
+          { name: "Life Orb", why: "Kingambit / Trick Room table where you already outspeed. Skip the Dance and punch. Recoil is real — you are not the kite." },
+          { name: "Choice Scarf", why: "Jolly 32 Spe is 154. Scarf is 231 — you outrun Jolly Garchomp (169) and Sneasler. You lock. Dragonite is the setup sweeper now; Drill is revenge. Do not Dance in the scarf." },
+          { name: "Occa Berry", why: "Fire is 2×. Prima is the Fire switch. Occa is if you mis-led Drill into Charizard and still need the Earthquake on Kingambit next." },
         ],
         nature: "Jolly",
         training: train(2, 32, 0, 0, 0, 32, {
@@ -1597,10 +1616,13 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           {
             name: "Stone Edge",
             why: "Flying. Singles — not Rock Slide.",
-            alts: [{ name: "Rock Slide", why: "Do not. Spread fantasy from doubles. One target, one Edge." }],
+            alts: [
+              { name: "Rapid Spin", why: "Stealth Rock is 2× Flying. One chip ends Dragonite's Multiscale. Glimmora is the table. Prima still Ice Beams birds — you can drop Edge. The kite is the whole three." },
+              { name: "Rock Slide", why: "Do not. Spread fantasy from doubles. One target, one Edge." },
+            ],
           },
         ],
-        objective: "Lead into physical, Steel, Rock, Electric (immune). Punch a hole. Leave Fire, Water, Fighting, Ground.",
+        objective: "Lead into physical, Steel, Rock, Electric (immune). Punch Kingambit. Leave Fire, Water, Fighting, Ground.",
         howToPlay:
           "Lead vs physical, Steel, Rock, or Electric. You are immune to Electric.\nvs Kingambit: Earthquake. Iron Head is resisted.\nFire, Water, Fighting, Ground leave — not Dragon. Steel resists Dragon.\nSand Rush needs sand. There is no setter. Mold Breaker is the ability.",
       },
@@ -1614,7 +1636,9 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         item: "Choice Specs",
         itemWhy: "The patch is a locked click. Surf or Moonblast, then leave. Matches the 32 SpA / 32 Spe spread.",
         itemAlts: [
-          { name: "Leftovers", why: "Calm Mind set. Sit, boost, Surf. Use the Leftovers Calm Mind spread. You are slower." },
+          { name: "Sitrus Berry", why: "Champions singles majority. Calm Mind + Encore, sit, then punch. Use when Incineroar and Protect are the table and Prima has to win the slot, not just hole it for the kite. Swap Psychic for Encore. Use the Leftovers Calm Mind spread." },
+          { name: "Leftovers", why: "Same stay set as Sitrus, slower heal. Sit, boost, Surf. You are slower. Drill and Dragonite are the race." },
+          { name: "Mystic Water", why: "No lock, no berry. Surf and Sparkling Aria get 20%. You can still Ice Beam Garchomp and Moonblast Dragons. Use when Choice would donate into a Steel." },
         ],
         nature: "Modest",
         training: train(2, 0, 0, 32, 0, 32, {
@@ -1636,16 +1660,24 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           {
             name: "Surf",
             why: "Safe Water STAB. Hits Fire and Ground that threaten Drill.",
-            alts: [{ name: "Hydro Pump", why: "The miss-tax. Specs already commits the slot. Surf is the classroom click." }],
+            alts: [
+              { name: "Sparkling Aria", why: "90 Water that heals burns. Incineroar Will-O-Wisp ends the kite if it lands on Dragonite. Aria is the cat table. Specs still locks it." },
+              { name: "Hydro Pump", why: "The miss-tax. Specs already commits the slot. Surf is the classroom click." },
+            ],
           },
           { name: "Moonblast", why: "Fairy STAB. Dragons and Fighting. Fairy immune to Dragon — you can lead that." },
-          { name: "Ice Beam", why: "Dragonite's Ice checks, and Dragons that would sit on Moonblast. Garchomp is 4×." },
+          {
+            name: "Ice Beam",
+            why: "Dragonite's Ice checks, and Dragons that would sit on Moonblast. Garchomp is 4×.",
+            alts: [{ name: "Aqua Jet", why: "Torrent priority. Revenge Charizard and Cinderace after Drill is gone. Kingambit resists Water — still Earthquake that." }],
+          },
           {
             name: "Psychic",
             why: "Poison that would 2× you. Specs lock — pick before you click.",
             alts: [
               { name: "Energy Ball", why: "Grass into Waters that shrug Moonblast. Drill is 1× Grass; Dragonite is ¼ later." },
-              { name: "Calm Mind", why: "Leftovers set. You are no longer Choice. Slower break, no lock." },
+              { name: "Encore", why: "Sitrus / Leftovers set. Lock Protect or setup, then Calm Mind. You are no longer Choice." },
+              { name: "Calm Mind", why: "Leftovers or Sitrus set. You are no longer Choice. Slower break, no lock." },
             ],
           },
         ],
@@ -1663,7 +1695,9 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         item: "Lum Berry",
         itemWhy: "Multiscale is full HP. Status or Outrage confusion ends the kite. Lum is the one clean Dance.",
         itemAlts: [
-          { name: "Heavy-Duty Boots", why: "Stealth Rock is 2× Flying. One chip ends Multiscale. Boots keeps the kite at full until Dance." },
+          { name: "Heavy-Duty Boots", why: "Stealth Rock is 2× Flying. One chip ends Multiscale. Boots keeps the kite at full until Dance. If they have Glimmora, this or Rapid Spin on Drill — pick one." },
+          { name: "Yache Berry", why: "Ice is 4×. Prima resists Ice; this berry is if Prima is already down and you still have to send. One live, not a resist." },
+          { name: "Life Orb", why: "The Dance already happened and you need the KO through Multiscale chip. Recoil pops the scale on the first hit you deal — only if the last one cannot revenge." },
         ],
         nature: "Adamant",
         training: train(2, 32, 0, 0, 0, 32, {
@@ -1688,10 +1722,15 @@ export const CANONICAL_MANUALS: TeamManual[] = [
             why: "The sweep click. You lock. A Fairy switch ends Dragonite.",
             alts: [{ name: "Dragon Claw", why: "If you fear the Fairy switch. Less damage. You can leave." }],
           },
-          { name: "Earthquake", why: "Steel that resists Dragon. Grounded leftovers. Hits Ghost — Extreme Speed does not." },
+          {
+            name: "Earthquake",
+            why: "Steel that resists Dragon. Grounded leftovers. Hits Ghost — Extreme Speed does not.",
+            alts: [{ name: "Fire Punch", why: "Corviknight is Flying/Steel — EQ is a zero. Drill Stone Edge is the bird answer while Drill lives. Punch is if Drill is down and a Steel bird is left." }],
+          },
           {
             name: "Extreme Speed",
             why: "Normal priority. Revenge after Dance. Ghost is immune.",
+            alts: [{ name: "Roost", why: "Full HP brings Multiscale back. Use when they cannot KO through the roost and Ice/Fairy are gone. You give up revenge — Prima Aqua Jet is not here; Drill has no priority." }],
           },
         ],
         objective: "Never the lead. Dance, then Outrage or Extreme Speed. Keep Multiscale for one hit.",
@@ -2088,8 +2127,10 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         itemWhy:
           "Disguise is the live. After the costume pops you need the KO. Life Orb is the punch that matches 32 Atk. Leftovers does not cash the Dance.",
         itemAlts: [
-          { name: "Lum Berry", why: "Will-O-Wisp and Thunder Wave end the sweep after Disguise. Lum is the clean +2." },
-          { name: "Mental Herb", why: "Taunt blanks Swords Dance. Herb eats the Taunt once." },
+          { name: "Lum Berry", why: "Will-O-Wisp and Thunder Wave end the sweep after Disguise. Status still lands through the costume. Lum is the clean +2. Use when Incineroar and Cott are on their three." },
+          { name: "Mental Herb", why: "Taunt blanks Swords Dance. Herb eats the Taunt once. Farigiraf and the Cott mirror." },
+          { name: "Fairy Feather", why: "Play Rough is how you KO Dragon and Fighting — 20% Fairy, no Life Orb recoil. Disguise is still the live. Weaker Ghost STAB; Drill still handles Steel." },
+          { name: "Kasib Berry", why: "Ghost is 2×. Gholdengo and Basculegion. Drill is the Ghost switch; Kasib is if you have to sit the first Shadow Ball after Disguise pops." },
         ],
         nature: "Jolly",
         training: train(2, 32, 0, 0, 0, 32, {
@@ -2115,8 +2156,8 @@ export const CANONICAL_MANUALS: TeamManual[] = [
             name: "Shadow Claw",
             why: "Ghost STAB when you already outspeed. Stronger than Sneak if the Dance won the race.",
             alts: [
-              { name: "Wood Hammer", why: "Grass into Water/Ground (Swampert). Recoil after Disguise is gone — one click, then leave." },
-              { name: "Shadow Ball", why: "Do not. This three is physical. Special Ghost wastes the Dance." },
+              { name: "Wood Hammer", why: "This three has no Water STAB. Grass into Water/Ground (Swampert, Gastrodon). Recoil after Disguise is gone — one click, then leave. Scale Sweep had Surf; you do not." },
+              { name: "Drain Punch", why: "Do not. Fighting is ½ on Steel in Champions. Drill Iron Head is the Steel answer. Punch does not patch Ghost/Steel." },
             ],
           },
         ],
@@ -2134,7 +2175,9 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         item: "Focus Sash",
         itemWhy: "Sash Dance. You live one, +2, KO. Matches the 2 HP spread. Leftovers does not survive Fire, Water, or Fighting.",
         itemAlts: [
-          { name: "Life Orb", why: "Kingambit / Trick Room table where you already outspeed. Skip the Dance and punch." },
+          { name: "Life Orb", why: "Kingambit / Trick Room table where you already outspeed. Skip the Dance and punch. Recoil is real — Mimikyu already holds the other Orb fantasy; do not double it unless the table is trucks." },
+          { name: "Choice Scarf", why: "Jolly 32 Spe is 154. Scarf is 231 — you outrun Jolly Garchomp (169). You lock. Mimikyu is the Disguise dancer; Drill is revenge. Do not Dance in the scarf." },
+          { name: "Occa Berry", why: "Fire is 2×. Mimikyu sits Fire at 1× — not a resist. Occa is if you mis-led Drill into Charizard and still need Iron Head on their Mimikyu." },
         ],
         nature: "Jolly",
         training: train(2, 32, 0, 0, 0, 32, {
@@ -2153,19 +2196,23 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           ]),
         ]),
         moves: [
-          { name: "Swords Dance", why: "Sash is the turn. Next hit is the KO. Do not Dance into a guaranteed Fire/Water/Fighting." },
+          {
+            name: "Swords Dance",
+            why: "Sash is the turn. Next hit is the KO. Do not Dance into a guaranteed Fire/Water/Fighting.",
+            alts: [{ name: "Rapid Spin", why: "If Glimmora is the table and you kept Stone Edge. Mimikyu already Dances. You sash-punch, then Spin so Dragonite still has Multiscale." }],
+          },
           {
             name: "Earthquake",
             why: "Ground STAB. vs Kingambit click EQ — not Iron Head. Steel resists Steel.",
           },
-          {
-            name: "Iron Head",
-            why: "Steel STAB into Fairy and Ice. Mold Breaker ignores Disguise — this is their Mimikyu answer. Flinch is a gift, not the plan.",
-          },
+          { name: "Iron Head", why: "Steel STAB into Fairy and Ice. Flinch is a gift, not the plan. Mold Breaker pops their Mimikyu." },
           {
             name: "Stone Edge",
-            why: "Flying. Singles — not Rock Slide.",
-            alts: [{ name: "Rock Slide", why: "Do not. Spread fantasy from doubles. One target, one Edge." }],
+            why: "Flying. Singles — not Rock Slide. Keep this — Mimikyu Play Rough is 1× Flying and you have no Ice Beam.",
+            alts: [
+              { name: "Rapid Spin", why: "Stealth Rock ends Dragonite. You have no Prima Ice Beam for birds, so do not drop Edge. Swap Dance for Spin instead: sash-punch, Mimikyu is the dancer." },
+              { name: "Rock Slide", why: "Do not. Spread fantasy from doubles. One target, one Edge." },
+            ],
           },
         ],
         objective: "Lead into physical, Steel, Rock, Electric (immune). Punch their Mimikyu. Leave Fire, Water, Fighting, Ground.",

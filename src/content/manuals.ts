@@ -15,11 +15,16 @@ export type SlotTrainingAlt = {
   name: string;
   sp: SampleSp;
   why: string;
+  spend?: string[];
 };
 
 export type SlotTraining = {
   sp: SampleSp;
   why: string;
+  /** One line: what this spread is for. */
+  label?: string;
+  /** What each pile of points buys. */
+  spend?: string[];
   alts?: SlotTrainingAlt[];
 };
 
@@ -40,12 +45,31 @@ export type SlotManual = {
   howToPlay: string;
 };
 
-function train(hp: number, atk: number, def: number, spa: number, spd: number, spe: number, why: string, alts?: SlotTrainingAlt[]): SlotTraining {
-  return { sp: { hp, atk, def, spa, spd, spe }, why, alts };
+function train(
+  hp: number,
+  atk: number,
+  def: number,
+  spa: number,
+  spd: number,
+  spe: number,
+  copy: { label: string; why: string; spend: string[] },
+  alts?: SlotTrainingAlt[],
+): SlotTraining {
+  return { sp: { hp, atk, def, spa, spd, spe }, ...copy, alts };
 }
 
-function alt(name: string, hp: number, atk: number, def: number, spa: number, spd: number, spe: number, why: string): SlotTrainingAlt {
-  return { name, sp: { hp, atk, def, spa, spd, spe }, why };
+function alt(
+  name: string,
+  hp: number,
+  atk: number,
+  def: number,
+  spa: number,
+  spd: number,
+  spe: number,
+  why: string,
+  spend?: string[],
+): SlotTrainingAlt {
+  return { name, sp: { hp, atk, def, spa, spd, spe }, why, spend };
 }
 
 export type ManualBranch = {
@@ -214,8 +238,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Covert Cloak", why: "Fake Out does not flinch. Tailwind is turn one. Use the Cloak bulk spread." },
         ],
         nature: "Timid",
-        training: train(2, 0, 0, 32, 0, 32, "Sash is the live. Timid 32 Spe is 184 — Moonblast if Tailwind is not the click. Prankster Tailwind does not need the Speed; 32 Spe is for the sash games after you leave.", [
-          alt("Cloak bulk", 32, 0, 14, 0, 20, 0, "Covert Cloak. Fake Out does not flinch. HP and SpD live the next hit so you clock turn two. Moonblast is weaker — Corvi and Garchomp do the KOs."),
+        training: train(2, 0, 0, 32, 0, 32, {
+          label: "Fast sash attacker",
+          why: "Put the cap in the two stats that win the job: Speed so Moonblast still fires if Tailwind is not the click, Special Attack so that Moonblast KOs. The leftover 2 goes in HP. Focus Sash already lets you live one hit — extra bulk would not save a second.",
+          spend: [
+            "32 Spe — 184 Timid. You outrun almost the whole format when you have to fight instead of clock.",
+            "32 SpA — Moonblast into Fighting and Dragon. Tailwind does not need this; the sash games do.",
+            "2 HP — leftover. Sash is the live. Prankster Tailwind already moves first, so these Speed points are for after you leave the setter seat.",
+          ],
+        }, [
+          alt("Cloak bulk", 32, 0, 14, 0, 20, 0, "Covert Cloak means Fake Out does not flinch. Spend the cap on HP and the rest on defenses so you live the next hit and still click Tailwind. Moonblast is weaker — Corvi and Garchomp KO.", [
+            "32 HP — you are no longer sash. This is the stay.",
+            "20 SpD / 14 Def — survive the hit after Fake Out fails.",
+            "0 Spe — Prankster Tailwind already goes first. Do not spend Speed here.",
+          ]),
         ]),
         moves: [
           { name: "Tailwind", why: "Hits your side — still works vs Dark. The click is turn one of four. Prankster +1 loses to Fake Out +3." },
@@ -251,8 +287,21 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Leftovers", why: "If you Roost and win the slot. Helmet is worse when they never make contact." },
         ],
         nature: "Impish",
-        training: train(32, 0, 32, 0, 2, 0, "Slow on purpose. Impish 32 Def is the physical wall. Zero Spe so U-turn is the slow hand-off — 32 Spe here is Ice on Garchomp.", [
-          alt("Special Ice", 32, 0, 20, 0, 14, 0, "Ice is 1×, not a resist. Special Ice still chunks. Pull 12 from Def into SpD if that is the table."),
+        training: train(32, 0, 32, 0, 2, 0, {
+          label: "Physical wall, slow on purpose",
+          why: "Corvi's job is to take a physical hit and hand off. Cap HP and Defense. Leave Speed at 0 so U-turn lets Garchomp come in after they already moved. If you are faster, they hit Garchomp on the way in — that is Ice on the cleaner.",
+          spend: [
+            "32 HP — the stay. You are the physical sponge.",
+            "32 Def — Impish wall. Brave Bird and Body Press live.",
+            "2 SpD — leftover crumb. Ice is 1×, not a resist; if special Ice is the table, use the swap.",
+            "0 Spe — slow U-turn. Fast U-turn is Ice on Garchomp.",
+          ],
+        }, [
+          alt("Special Ice", 32, 0, 20, 0, 14, 0, "Ice is 1× on Corvi, not a resist. If they are Ice Beam / Freeze-Dry, not physical Ice, pull 12 from Defense into Special Defense so you still hand off.", [
+            "32 HP — still the stay.",
+            "20 Def / 14 SpD — split the wall toward special Ice.",
+            "0 Spe — still the slow hand-off.",
+          ]),
         ]),
         moves: [
           { name: "U-turn", why: "If you outspeed, they hit whoever came in. Slow U-turn is the safe hand-off." },
@@ -289,8 +338,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Yache Berry", why: "Ice is 4×. The berry is one live, not a resist. Preview Ice or do not send." },
         ],
         nature: "Jolly",
-        training: train(20, 32, 14, 0, 0, 0, "Tailwind is the Speed. 32 Atk, then HP and Def so you live the swap-in. Jolly 0 Spe is 134 — doubled under Tailwind you outrun the format.", [
-          alt("Cott died", 2, 32, 0, 0, 0, 32, "No clock. 32 Spe is 169 Jolly. Scale Shot is the other Speed plan. You give up the stay."),
+        training: train(20, 32, 14, 0, 0, 0, {
+          label: "Tailwind cleaner",
+          why: "Tailwind already doubles your Speed. Jolly with 0 Spe is 134 — under Tailwind you outrun the format. Put the cap on Attack. The rest keeps you alive on the swap-in. Spending 32 on Speed while the clock is up is wasted points.",
+          spend: [
+            "32 Atk — Earthquake and Scale Shot have to KO.",
+            "20 HP / 14 Def — live the send after Cott or Corvi.",
+            "0 Spe — Tailwind is the race. Loaded Dice Scale Shot is the backup clock if Cott dies.",
+          ],
+        }, [
+          alt("Cott died", 2, 32, 0, 0, 0, 32, "No Tailwind. You win Speed yourself. Jolly 32 Spe is 169 — outruns uninvested 90s and most of the format. You give up the stay.", [
+            "32 Spe — 169 Jolly. This is the meta race when the clock is dead.",
+            "32 Atk — still the punch.",
+            "2 HP — leftover. You are glass now.",
+          ]),
         ]),
         moves: [
           { name: "Earthquake", why: "One target. Zero on Flying/Levitate. Grass resists it." },
@@ -429,8 +490,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Covert Cloak", why: "If Cott leads into Fake Out. Tailwind the same turn. Use the Cloak bulk spread." },
         ],
         nature: "Timid",
-        training: train(2, 0, 0, 32, 0, 32, "Same sash script as Honest. You are not the Fake Out — the cat is. 32 Spe is 184 Timid if you have to Moonblast Fighting instead of clocking.", [
-          alt("Cloak bulk", 32, 0, 14, 0, 20, 0, "If Incineroar always leads. You clock turn two after the flinch. Bulk, not Moonblast."),
+        training: train(2, 0, 0, 32, 0, 32, {
+          label: "Fast sash attacker",
+          why: "Same sash pattern as Honest: cap Speed and Special Attack, leftover 2 in HP. You are not the Fake Out — Incineroar is. These Speed points are so Moonblast still wins Fighting if you have to click it instead of clocking.",
+          spend: [
+            "32 Spe — 184 Timid. Moonblast before the format if Tailwind is not the click.",
+            "32 SpA — Fighting (Incineroar's hole) and Dragon.",
+            "2 HP — leftover. Sash is the live.",
+          ],
+        }, [
+          alt("Cloak bulk", 32, 0, 14, 0, 20, 0, "If Incineroar always leads, Cott clocks after the flinch. Spend the cap on HP so you live turn two. Moonblast is weaker — the cat and Garchomp KO.", [
+            "32 HP — the stay after Fake Out fails to flinch you.",
+            "20 SpD / 14 Def — live the next hit, then Tailwind.",
+            "0 Spe — Prankster already moves first.",
+          ]),
         ]),
         moves: [
           { name: "Tailwind", why: "Whole turn in singles. Still works vs Dark." },
@@ -456,8 +529,21 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Safety Goggles", why: "Rillaboom Spore tables. Fake Out still functions. Powder does not." },
         ],
         nature: "Careful",
-        training: train(32, 4, 10, 0, 20, 0, "Fake Out is +3 — Spe does not matter. Careful 32 HP and SpD live so Parting Shot is −6, not 0 HP. 4 Atk is a crumb for Fake Out chip.", [
-          alt("Blitz KOs", 20, 32, 0, 0, 0, 14, "Grass and Kingambit die this send. You leave faster. Do not sit on Water or Fighting."),
+        training: train(32, 4, 10, 0, 20, 0, {
+          label: "Flinch, then live the −6",
+          why: "Fake Out is +3 priority — Speed points do not make it faster. Cap HP. Careful boosts Special Defense so you live special chip and still click Parting Shot. A crumb in Attack is enough for Fake Out; Flare Blitz KOs come from base 115, not from a second cap.",
+          spend: [
+            "32 HP — Parting Shot has to happen. 0 HP is −0, not −6.",
+            "20 SpD — Careful wall. Snarl wars and special Grass.",
+            "10 Def / 4 Atk — leftover. Fake Out chip, not a sweeper Attack cap.",
+            "0 Spe — Fake Out already moves first. Do not race.",
+          ],
+        }, [
+          alt("Blitz KOs", 20, 32, 0, 0, 0, 14, "If Grass and Kingambit die this send. Cap Attack, keep a little Speed so you leave after the KO. Do not sit on Water or Fighting — those are still not your slot.", [
+            "32 Atk — Flare Blitz has to KO.",
+            "20 HP — recoil plus Helmet contact.",
+            "14 Spe — enough to leave after the KO. Careful still drops Speed — this is not a race.",
+          ]),
         ]),
         moves: [
           { name: "Fake Out", why: "+3 first turn out. Ghost is a zero. Cloak / Inner Focus keep their turn." },
@@ -483,8 +569,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Yache Berry", why: "Ice on the table. One live. Fire from the cat is the real Ice answer." },
         ],
         nature: "Jolly",
-        training: train(2, 32, 0, 0, 0, 32, "Tailwind is optional on this three. 32 Spe is 169 Jolly so you still clean if Cott died and Fake Out is spent.", [
-          alt("Clock always up", 20, 32, 14, 0, 0, 0, "If Cott leads every game. Tailwind is the Speed. Spend the 32 Spe on HP and Def."),
+        training: train(2, 32, 0, 0, 0, 32, {
+          label: "Self-sufficient cleaner",
+          why: "Tailwind is optional on this three. Cap Attack and Speed so you still clean if Cott died and Fake Out is spent. Jolly 32 Spe is 169 — the usual Champions race. Leftover 2 in HP. Glass is the cost of not needing the clock.",
+          spend: [
+            "32 Spe — 169 Jolly. Outruns uninvested 90s and most of the format without Tailwind.",
+            "32 Atk — the KO on the −6 send.",
+            "2 HP — leftover. Life Orb already spends HP; bulk is not this slot.",
+          ],
+        }, [
+          alt("Clock always up", 20, 32, 14, 0, 0, 0, "If Cott leads every game, Tailwind is already the Speed. Move the 32 Speed points into HP and Defense so you live the swap-in.", [
+            "32 Atk — still the punch.",
+            "20 HP / 14 Def — the stay under Tailwind.",
+            "0 Spe — the clock is the race.",
+          ]),
         ]),
         moves: [
           { name: "Earthquake", why: "One target. Grass is Incineroar's job." },
@@ -605,8 +703,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Assault Vest", why: "If you drop U-turn. Special chip on the setter. You are no longer the Seed delivery." },
         ],
         nature: "Adamant",
-        training: train(20, 32, 14, 0, 0, 0, "Grassy Glide is +1 — Spe is not the KO. 32 Atk, then HP and Def so Fake Out into U-turn still delivers a live Sneasler. Slow U-turn wants you slower than what is in.", [
-          alt("Terrain down", 2, 32, 0, 0, 0, 32, "Armor Tail / Psychic Terrain. Glide is off. 32 Spe is 137 so Wood Hammer still moves before uninvested 90s."),
+        training: train(20, 32, 14, 0, 0, 0, {
+          label: "Priority setter, slow hand-off",
+          why: "Grassy Glide is +1 priority in terrain — Speed points do not make it faster. Cap Attack. Put the rest in HP and Defense so Fake Out into U-turn still delivers a live Sneasler. Stay slower than what is in so U-turn is a slow hand-off.",
+          spend: [
+            "32 Atk — Glide and Wood Hammer have to KO.",
+            "20 HP / 14 Def — live Fake Out contact, then U-turn.",
+            "0 Spe — Glide is the race. Slow U-turn so the Seed pops on Sneasler, not into their attack.",
+          ],
+        }, [
+          alt("Terrain down", 2, 32, 0, 0, 0, 32, "Armor Tail or Psychic Terrain turns Glide off. You have to win Speed yourself. Adamant 32 Spe is 137 — Wood Hammer still moves before uninvested 90s.", [
+            "32 Spe — 137 Adamant. Glide is illegal; this is raw Speed.",
+            "32 Atk — Wood Hammer is now the click.",
+            "2 HP — leftover.",
+          ]),
         ]),
         moves: [
           { name: "Fake Out", why: "First turn out. Ghost / Armor Tail / Psychic Terrain are zeros." },
@@ -631,8 +741,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Focus Sash", why: "Fire lead, Boom cannot appear, terrain never goes up. You play 120 raw with the No Seed spread." },
         ],
         nature: "Jolly",
-        training: train(20, 32, 0, 0, 0, 14, "Unburden doubles Speed. Jolly 14 Spe is 169; after the Seed that is 338. 32 Atk is the punch. 14 Spe is the backup if terrain never went up.", [
-          alt("No Seed", 2, 32, 0, 0, 0, 32, "Fire lead, Boom cannot appear, or Armor Tail. You play 120 raw. Jolly 32 Spe is 189."),
+        training: train(20, 32, 0, 0, 0, 14, {
+          label: "Unburden burst",
+          why: "The Seed doubles Speed when terrain pops it. You do not need a Speed cap — Jolly 14 Spe is 169, then Unburden makes that 338. Cap Attack. Put the rest in HP so you live the send. If terrain never goes up, 14 Spe is still a real number; the No Seed swap is the full race.",
+          spend: [
+            "32 Atk — Close Combat and Dire Claw have to KO while you are doubled.",
+            "20 HP — live the swap-in so Unburden actually happens.",
+            "14 Spe — 169 Jolly before the Seed. Backup if terrain is late. After Unburden you outrun everything.",
+          ],
+        }, [
+          alt("No Seed", 2, 32, 0, 0, 0, 32, "Fire lead, Boom cannot appear, or Armor Tail. You play 120 raw Speed. Jolly 32 Spe is 189 — the format's top race without Unburden.", [
+            "32 Spe — 189 Jolly. No double. This is the meta Speed cap.",
+            "32 Atk — still the punch.",
+            "2 HP — leftover. Sash if you held it.",
+          ]),
         ]),
         moves: [
           { name: "Dire Claw", why: "Poison into Fairy. Can poison, para, or sleep. Steel laughs — that is Boom or the Mega." },
@@ -654,8 +776,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         item: "Salamencite",
         itemWhy: "The Mega. Aerilate does not exist until you click it. One stone. No swap.",
         nature: "Adamant",
-        training: train(2, 32, 0, 0, 0, 32, "120 Spe. 32 Spe is 172 before Dance. Adamant keeps Aerilate Double-Edge. You hide until Ice is gone — bulk does not save 4× Ice.", [
-          alt("Hyper Voice", 2, 0, 0, 32, 0, 32, "Special cup line. Modest. Commit — you cannot run both 32 Atk and 32 SpA."),
+        training: train(2, 32, 0, 0, 0, 32, {
+          label: "Fast Aerilate sweeper",
+          why: "The usual glass pattern: cap Attack and Speed, leftover 2 in HP. Adamant 32 Spe is 172 before Dragon Dance. Bulk does not save 4× Ice — hide until Ice is gone, then Mega. You cannot cap both Attack and Special Attack; pick Double-Edge.",
+          spend: [
+            "32 Spe — 172 Adamant. Outruns uninvested 100s before Dance.",
+            "32 Atk — Aerilate Double-Edge is the KO.",
+            "2 HP — leftover. 4× Ice still KOs through HP.",
+          ],
+        }, [
+          alt("Hyper Voice", 2, 0, 0, 32, 0, 32, "Special cup line. Switch to Modest. Cap Special Attack instead. You cannot run both 32 Atk and 32 SpA on 66 points.", [
+            "32 Spe — still the race. Modest, so Speed is not nature-boosted — the 32 Spe is the whole race.",
+            "32 SpA — Hyper Voice.",
+            "2 HP — leftover.",
+          ]),
         ]),
         moves: [
           { name: "Double-Edge", why: "Aerilate STAB. Recoil is the tax. Not EQ through your own terrain." },
@@ -767,8 +901,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Focus Sash", why: "Fast Electric on the table. You gift one Thunderbolt and still Hurricane. Use the Sash spread." },
         ],
         nature: "Modest",
-        training: train(20, 0, 0, 32, 0, 14, "Drizzle is on entry. 32 SpA is Hurricane / Weather Ball. 4× Electric is not a bulk problem — leave. 14 Spe is 99 so you U-turn before some uninvested walls.", [
-          alt("Sash", 2, 0, 0, 32, 0, 32, "Focus Sash. You gift one Electric and still fire. 32 Spe is 117 before rain Speed from nowhere — Pelipper is not Swift Swim."),
+        training: train(20, 0, 0, 32, 0, 14, {
+          label: "Damp Rock setter",
+          why: "Drizzle is on entry — you do not spend points to set rain. Cap Special Attack so Hurricane and Weather Ball chip. A little Speed so U-turn happens before uninvested walls. Do not dump the rest into HP to 'tank Electric' — Pelipper is 4× Electric. Leave.",
+          spend: [
+            "32 SpA — Hurricane / Weather Ball. Modest. This is the chip.",
+            "20 HP — live a resisted hit, then Roost or U-turn.",
+            "14 Spe — 99 Modest. U-turn before some uninvested walls. Pelipper is not Swift Swim; rain does not make you faster.",
+          ],
+        }, [
+          alt("Sash", 2, 0, 0, 32, 0, 32, "Focus Sash into fast Electric. You gift one Thunderbolt and still Hurricane. Cap Speed so you fire before the next one. 32 Spe is 117 Modest — rain does not add Speed to Pelipper.", [
+            "32 Spe — 117 Modest. You move, then sash, then fire.",
+            "32 SpA — still the chip.",
+            "2 HP — leftover. Sash is the live.",
+          ]),
         ]),
         moves: [
           { name: "Hurricane", why: "Never misses in rain. Flying STAB into Fighting and Grass." },
@@ -794,8 +940,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "White Herb", why: "Draco Meteor is the fourth click. Herb eats the SpA drop. Shot still fires." },
         ],
         nature: "Modest",
-        training: train(20, 0, 0, 32, 0, 14, "Electro Shot is 32 SpA. 14 Spe is 119 so you fire before uninvested 85s. Life Orb is the punch. Vest is the swap if you drop Protect.", [
-          alt("Vest stay", 32, 0, 14, 20, 0, 0, "You already outspeed under rain's Archaludon clicks if they hit you. Pull Spe into HP and Def. 20 SpA still nukes — Shot's +1 SpA is the rest."),
+        training: train(20, 0, 0, 32, 0, 14, {
+          label: "Rain railgun",
+          why: "Electro Shot in rain has no charge and boosts Special Attack as it fires. Cap Special Attack anyway — the +1 is on top of the cap, not instead of it. A little Speed so you fire before uninvested 85s. Life Orb is the punch. If you swap to Assault Vest, use the stay spread — Vest cannot hold Protect.",
+          spend: [
+            "32 SpA — Electro Shot is the hole-punch.",
+            "20 HP — live Grass or Electric on the way in.",
+            "14 Spe — 119 Modest. Fire before uninvested 85s. Stamina bulk is the Vest swap, not this spread.",
+          ],
+        }, [
+          alt("Vest stay", 32, 0, 14, 20, 0, 0, "Drop Protect. You already outspeed enough if they hit you — Stamina plus Vest is the stay. Pull Speed into HP and Defense. 20 SpA still nukes because Shot's +1 is the rest.", [
+            "32 HP / 14 Def — Stamina scales Defense when they hit you.",
+            "20 SpA — Shot's +1 Special Attack covers the missing 12.",
+            "0 Spe — they hit you first; you get Stamina, then you fire.",
+          ]),
         ]),
         moves: [
           { name: "Electro Shot", why: "No charge in rain. 130 BP Electric. This is the hole-punch." },
@@ -820,8 +978,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Choice Band", why: "If you drop Flip Turn. Locked Wave Crash. Stronger, no pivot." },
         ],
         nature: "Adamant",
-        training: train(24, 32, 10, 0, 0, 0, "Swift Swim doubles Speed. 32 Spe in rain is a waste. 32 Atk, then HP so Wave Crash plus Orb does not KO you first. Aqua Jet is the race if rain dies.", [
-          alt("Rain stolen", 2, 32, 0, 0, 0, 32, "Drought on the table. 32 Spe is 130 Adamant without Swim. Last Respects / Aqua Jet still exist. You are no longer the closer."),
+        training: train(24, 32, 10, 0, 0, 0, {
+          label: "Swift Swim closer",
+          why: "Rain doubles your Speed. Adamant with 0 Spe is already 98 — under Swift Swim that is 196. Putting 32 in Speed while rain is up is wasted. Cap Attack. Put the rest in HP and Defense so Wave Crash plus Life Orb does not KO you before they faint. Aqua Jet is the race if rain dies.",
+          spend: [
+            "32 Atk — Wave Crash and Last Respects have to KO.",
+            "24 HP / 10 Def — recoil plus Orb. Take the KO; do not farm.",
+            "0 Spe — Swift Swim is the race. 32 Spe here does nothing extra in rain.",
+          ],
+        }, [
+          alt("Rain stolen", 2, 32, 0, 0, 0, 32, "Drought on the table. Swim is dead. Cap Speed so Last Respects and Aqua Jet still function. Adamant 32 Spe is 130 without rain — you are no longer the closer, you are revenge.", [
+            "32 Spe — 130 Adamant. The race without Swim.",
+            "32 Atk — still the punch.",
+            "2 HP — leftover.",
+          ]),
         ]),
         moves: [
           { name: "Wave Crash", why: "Water STAB in rain. Recoil. Take the KO." },
@@ -931,8 +1101,21 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Sitrus Berry", why: "If they never Taunt. One heal after Fake Out fails. You still click Trick Room." },
         ],
         nature: "Quiet",
-        training: train(32, 0, 14, 20, 0, 0, "Quiet drops Speed. 0 Spe is 72. Trick Room wants you last. 32 HP lives the Taunt turn if Herb is gone. 20 SpA is Psychic, not a sweep.", [
-          alt("They always Fake Out", 32, 0, 20, 14, 0, 0, "Pull from SpA into Def. Armor Tail already blanks the flinch. You only need to live the second hit and click the room."),
+        training: train(32, 0, 14, 20, 0, 0, {
+          label: "Trick Room setter, last on purpose",
+          why: "Quiet lowers Speed. 0 Spe Quiet is 72 — under Trick Room, slower is first. Cap HP so you live the Taunt turn if Mental Herb is gone. Special Attack is 20, not a cap: Psychic chips, it does not sweep. Kingambit is the KO.",
+          spend: [
+            "32 HP — live Taunt or the second hit, then click the room.",
+            "20 SpA — Psychic into Fighting and Poison. Not a sweeper cap.",
+            "14 Def — leftover. Armor Tail already blanks Fake Out.",
+            "0 Spe — Quiet. Trick Room wants you last.",
+          ],
+        }, [
+          alt("They always Fake Out", 32, 0, 20, 14, 0, 0, "Armor Tail already blanks the flinch. Pull Special Attack into Defense so you live the second hit and still click Trick Room.", [
+            "32 HP / 20 Def — the stay after Fake Out does nothing.",
+            "14 SpA — enough Psychic. The room is the job.",
+            "0 Spe — still last.",
+          ]),
         ]),
         moves: [
           { name: "Trick Room", why: "The whole plan. Mental Herb eats one Taunt." },
@@ -957,8 +1140,21 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Black Glasses", why: "If the room is a punch, not a stay. Kowtow now. You give up the residual." },
         ],
         nature: "Adamant",
-        training: train(32, 32, 2, 0, 0, 0, "Under the room, 50 Spe is a virtue. Do not put Stat Points in Spe — Sucker Punch is the race after the four turns. 32 Atk, 32 HP.", [
-          alt("Special chip", 20, 32, 0, 0, 14, 0, "If the table is Heat Wave and Make It Rain, not Close Combat. Fighting is still 1× — Gholdengo is the immune."),
+        training: train(32, 32, 2, 0, 0, 0, {
+          label: "Trick Room truck",
+          why: "Base 50 Speed is a virtue under the room — you move first by being last. Do not put points in Speed. Cap Attack and HP. Sucker Punch is the race after the four turns, not Stat Points. Leftover 2 in Defense.",
+          spend: [
+            "32 Atk — Kowtow has to break walls. Overlord adds more if a partner fell.",
+            "32 HP — sit the four turns. Leftovers is the residual.",
+            "2 Def — leftover crumb.",
+            "0 Spe — under the room, slower is first. After the room, Sucker Punch is +1.",
+          ],
+        }, [
+          alt("Special chip", 20, 32, 0, 0, 14, 0, "If the table is Heat Wave and Make It Rain, not Close Combat. Pull HP into Special Defense. Fighting is still 1× — Gholdengo is the immune.", [
+            "32 Atk — still the punch.",
+            "20 HP / 14 SpD — live special chip under the room.",
+            "0 Spe — still last.",
+          ]),
         ]),
         moves: [
           { name: "Kowtow Cleave", why: "Dark STAB that never misses. The hole-punch." },
@@ -983,8 +1179,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Choice Specs", why: "Drop Protect and Plot. Make It Rain is the only click. Use the 32 SpA race spread." },
         ],
         nature: "Modest",
-        training: train(14, 0, 0, 32, 0, 20, "32 SpA is Make It Rain. 20 Spe is 124 so you outrun uninvested 80s when the room is down. Fighting is Ghost-immune — Spe is the leftover race, not a bulk dump.", [
-          alt("Room stay", 20, 0, 14, 32, 0, 0, "If Farigiraf always flips the clock. You move first by being slow. Pull Spe into HP and Def vs Fire/Ground chip you cannot afford."),
+        training: train(14, 0, 0, 32, 0, 20, {
+          label: "Special Steel, race when the room dies",
+          why: "Cap Special Attack — Make It Rain is the click. Put 20 in Speed (124 Modest) so you outrun uninvested 80s when Trick Room is down. Fighting is Ghost-immune, so those leftover points are a Speed race, not a bulk dump. Ghost does not need HP to 'tank Fighting'.",
+          spend: [
+            "32 SpA — Make It Rain. Modest.",
+            "20 Spe — 124 Modest. The race after the four turns.",
+            "14 HP — leftover. You are not the wall; you are the immune that punches.",
+          ],
+        }, [
+          alt("Room stay", 20, 0, 14, 32, 0, 0, "If Farigiraf always flips the clock, you move first by being slow. Pull Speed into HP and Defense vs Fire and Ground chip you cannot afford.", [
+            "32 SpA — still Make It Rain.",
+            "20 HP / 14 Def — sit the room.",
+            "0 Spe — slower is first under Trick Room.",
+          ]),
         ]),
         moves: [
           { name: "Make It Rain", why: "Steel STAB. Drops SpA — Specs or accept the drop." },
@@ -1091,8 +1299,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         item: "Charizardite Y",
         itemWhy: "Drought is the Mega ability. No stone, no sun. No swap.",
         nature: "Modest",
-        training: train(2, 0, 0, 32, 0, 32, "4× Rock. Bulk does not save Stone Edge. 32 SpA, 32 Spe (152). Modest does not boost Speed — the 32 Spe is the race vs 90s and other Droughts.", [
-          alt("They never Rock", 14, 0, 0, 32, 0, 20, "Grass-heavy table. Pull 12 Spe into HP so Heat Wave lives a resisted hit. Do not do this into Archaludon or Tyranitar."),
+        training: train(2, 0, 0, 32, 0, 32, {
+          label: "Fast Drought sweeper",
+          why: "4× Rock. Bulk does not save Stone Edge — leftover 2 in HP is the tax, not a wall. Cap Special Attack and Speed. Modest does not boost Speed, so the 32 Spe (152) is the whole race vs 90s and other Droughts.",
+          spend: [
+            "32 Spe — 152 Modest. Modest does not boost Speed; these points are the race.",
+            "32 SpA — Heat Wave in sun. The reason Y exists.",
+            "2 HP — leftover. 4× Rock still KOs.",
+          ],
+        }, [
+          alt("They never Rock", 14, 0, 0, 32, 0, 20, "Grass-heavy table, no Archaludon or Tyranitar. Pull 12 Speed into HP so Heat Wave lives a resisted hit. Do not do this into Rock.", [
+            "32 SpA — still the burn.",
+            "20 Spe — 140 Modest. Enough vs Grass; not the Rock race.",
+            "14 HP — live a resisted hit.",
+          ]),
         ]),
         moves: [
           { name: "Heat Wave or Flamethrower", why: "Fire STAB in sun. The reason Y exists." },
@@ -1118,8 +1338,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Life Orb", why: "Electric soak, then EQ. You are not eating Ice Beam." },
         ],
         nature: "Jolly",
-        training: train(2, 32, 0, 0, 0, 32, "No Tailwind on this three. 32 Spe is 169 Jolly so you patch Rock before they click it twice. Yache is the item, not HP — 4× Ice still KOs.", [
-          alt("Y always leads", 20, 32, 14, 0, 0, 0, "If Drought is always up and you only come in on Electric. Pull Spe into HP and Def. You are not racing Rock; you are soaking Thunderbolt."),
+        training: train(2, 32, 0, 0, 0, 32, {
+          label: "Fast Rock patch",
+          why: "No Tailwind on this three. Cap Attack and Speed so you patch Rock before they click it twice. Jolly 32 Spe is 169. Yache is the Ice live, not HP — 4× Ice still KOs through a bulk dump.",
+          spend: [
+            "32 Spe — 169 Jolly. Patch Rock this turn, not next turn.",
+            "32 Atk — Earthquake the Fire answers that are grounded.",
+            "2 HP — leftover. Yache is the item. HP does not beat Ice Beam.",
+          ],
+        }, [
+          alt("Y always leads", 20, 32, 14, 0, 0, 0, "If Drought is always up and you only come in on Electric. You are not racing Rock — you are soaking Thunderbolt. Move Speed into HP and Defense.", [
+            "32 Atk — still EQ.",
+            "20 HP / 14 Def — soak Electric. Ground immune is the switch; bulk is the stay.",
+            "0 Spe — Y already burned what you would have raced.",
+          ]),
         ]),
         moves: [
           { name: "Earthquake", why: "One target. Hits Y's Fire answers that are grounded." },
@@ -1144,8 +1376,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Heavy-Duty Boots", why: "Stealth Rock on the table. Cinderace is 2× Rock. You enter clean, you hit weaker." },
         ],
         nature: "Jolly",
-        training: train(2, 32, 0, 0, 0, 32, "119 Spe. Jolly 32 is 188. Libero commits a type — you outrun what Y did not KO. Boots vs Orb is the item, not a bulk question.", [
-          alt("Y closed", 20, 32, 0, 0, 0, 14, "If Mega Y is the wincon and you are revenge. 14 Spe is 168 Jolly. Spend the rest on HP so Sucker Punch / HJK lives a chip."),
+        training: train(2, 32, 0, 0, 0, 32, {
+          label: "Fast Libero closer",
+          why: "Base 119 Speed. Jolly 32 Spe is 188 — you outrun what Y did not KO. Cap Attack. Leftover 2 in HP. Boots vs Orb is the item question, not a bulk question. Libero commits a type on the click; Speed is how you use that type first.",
+          spend: [
+            "32 Spe — 188 Jolly. Top-end race after Y.",
+            "32 Atk — Pyro Ball and High Jump Kick.",
+            "2 HP — leftover. Orb already spends HP.",
+          ],
+        }, [
+          alt("Y closed", 20, 32, 0, 0, 0, 14, "If Mega Y is the wincon and you are revenge. 14 Spe is 168 Jolly — still faster than uninvested 100s. Spend the rest on HP so Sucker Punch / High Jump Kick lives a chip.", [
+            "32 Atk — still the punch.",
+            "20 HP — live the revenge send.",
+            "14 Spe — 168 Jolly. Y already won the first race.",
+          ]),
         ]),
         moves: [
           { name: "Pyro Ball", why: "Fire STAB in sun. Libero makes you Fire on the click." },
@@ -1284,8 +1528,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Life Orb", why: "Kingambit / Trick Room table where you already outspeed. Skip the Dance and punch." },
         ],
         nature: "Jolly",
-        training: train(2, 32, 0, 0, 0, 32, "Sash Dance. 2 HP is the tax. Jolly 32 Spe is 154 — outruns uninvested Garchomp (122), not Jolly Chomp (169). Sand Rush is dead; there is no setter.", [
-          alt("They are slow", 20, 32, 14, 0, 0, 0, "Kingambit / TR table. You already outspeed the truck. Pull Spe into HP and Def so the sash is not the only live."),
+        training: train(2, 32, 0, 0, 0, 32, {
+          label: "Sash Dance lead",
+          why: "The classroom glass pattern: cap Attack and Speed, leftover 2 in HP. Focus Sash is the live — extra HP would not save Fire, Water, or Fighting. Jolly 32 Spe is 154: outruns uninvested Garchomp (122), not Jolly Garchomp (169). Sand Rush is off; there is no sand setter.",
+          spend: [
+            "32 Spe — 154 Jolly. Dance, then KO before they click Fire/Water/Fighting.",
+            "32 Atk — Earthquake (Kingambit) and Iron Head (Fairy).",
+            "2 HP — leftover. Sash is the one live. Bulk does not beat those 2× types.",
+          ],
+        }, [
+          alt("They are slow", 20, 32, 14, 0, 0, 0, "Kingambit or Trick Room table. You already outspeed the truck. Move Speed into HP and Defense so Sash is not the only live — you can skip Dance and punch.", [
+            "32 Atk — still EQ the truck.",
+            "20 HP / 14 Def — sit a hit if they are slower.",
+            "0 Spe — you already outspeed 50 Spe Kingambit.",
+          ]),
         ]),
         moves: [
           { name: "Swords Dance", why: "Sash is the turn. Next hit is the KO. Do not Dance into a guaranteed Fire/Water/Fighting." },
@@ -1317,8 +1573,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Leftovers", why: "Calm Mind set. Sit, boost, Surf. Use the Leftovers Calm Mind spread. You are slower." },
         ],
         nature: "Modest",
-        training: train(2, 0, 0, 32, 0, 32, "Specs. 32 SpA and 32 Spe (112). Modest does not boost Speed. You lock a click; outrunning uninvested 70s is the difference between KO and revenge.", [
-          alt("Leftovers Calm Mind", 32, 0, 0, 20, 14, 0, "Not Choice. Sit, boost, Surf. Pull Spe into HP and SpD. You are the patch, not the race."),
+        training: train(2, 0, 0, 32, 0, 32, {
+          label: "Choice Specs patch",
+          why: "You lock one click, so that click has to KO. Cap Special Attack. Cap Speed because Modest does not boost Speed — 32 Spe is 112, which outruns uninvested 70s. That is the difference between KO and revenge. Leftover 2 in HP.",
+          spend: [
+            "32 SpA — Surf or Moonblast has to break the wall. Specs locks it.",
+            "32 Spe — 112 Modest. Modest does not boost Speed; these points are the whole race.",
+            "2 HP — leftover. Choice does not sit.",
+          ],
+        }, [
+          alt("Leftovers Calm Mind", 32, 0, 0, 20, 14, 0, "Not Choice. Sit, boost, Surf. Move Speed into HP and Special Defense. You are the patch that stays, not the race.", [
+            "32 HP — the stay.",
+            "20 SpA / 14 SpD — Calm Mind supplies the rest of the punch.",
+            "0 Spe — you are not racing. Drill and Dragonite are.",
+          ]),
         ]),
         moves: [
           {
@@ -1354,8 +1622,20 @@ export const CANONICAL_MANUALS: TeamManual[] = [
           { name: "Heavy-Duty Boots", why: "Stealth Rock is 2× Flying. One chip ends Multiscale. Boots keeps the kite at full until Dance." },
         ],
         nature: "Adamant",
-        training: train(2, 32, 0, 0, 0, 32, "Never the lead. 32 Spe is 132 Adamant; one Dragon Dance is 198. Extra HP does not restore Multiscale — it is full HP or it is gone. 32 Atk, 32 Spe.", [
-          alt("You always Dance", 20, 32, 0, 0, 0, 14, "If the free turn is real. 14 Spe is 114, Dance is 171. Pull the rest into HP so the first chip after Multiscale does not KO."),
+        training: train(2, 32, 0, 0, 0, 32, {
+          label: "Multiscale kite",
+          why: "Never the lead. Cap Attack and Speed. Adamant 32 Spe is 132; one Dragon Dance is 198. Extra HP does not restore Multiscale — it is full HP or it is gone. Leftover 2 in HP is the tax. Lum keeps the one clean Dance.",
+          spend: [
+            "32 Spe — 132 Adamant. One Dance is 198. That is the sweep.",
+            "32 Atk — Outrage and Extreme Speed.",
+            "2 HP — leftover. HP after the first chip does not bring Multiscale back.",
+          ],
+        }, [
+          alt("You always Dance", 20, 32, 0, 0, 0, 14, "If the free turn is real every game. 14 Spe is 114, Dance is 171. Move the rest into HP so the first chip after Multiscale drops does not KO.", [
+            "32 Atk — still the kite.",
+            "20 HP — live the hit after Multiscale is gone.",
+            "14 Spe — 114 Adamant, 171 after Dance. Enough if the free turn is guaranteed.",
+          ]),
         ]),
         moves: [
           { name: "Dragon Dance", why: "The free turn. Protect branch. Multiscale still up if you are full." },

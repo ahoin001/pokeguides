@@ -3,19 +3,14 @@
 import Link from "next/link";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
-import { PokemonArt } from "@/components/pokemon/PokemonArt";
-import { ROLE_LABEL, roleHref } from "@/content/roles";
 import { ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
-import { getLiteracyRole } from "@/content/literacy-roles";
-import { playLines, type TeamManual } from "@/content/manuals";
+import { type TeamManual } from "@/content/manuals";
 import { flowsFor } from "@/content/classroom-flows";
 import { ManualBriefing } from "@/components/manuals/ManualBriefing";
 import { ManualToc } from "@/components/manuals/ManualToc";
 import { ManualPlan } from "@/components/manuals/ManualPlan";
 import { ManualFlowchart } from "@/components/manuals/ManualFlowchart";
-import { SlotMatchups } from "@/components/manuals/SlotMatchups";
-import { SlotTrainingBlock } from "@/components/manuals/SlotTraining";
-import { SlotItemBlock } from "@/components/manuals/SlotItem";
+import { SlotCard } from "@/components/manuals/SlotCard";
 
 export function ManualView({
   manual,
@@ -68,84 +63,15 @@ export function ManualView({
           <section id="three" className="mt-16 scroll-mt-28 md:scroll-mt-36">
             <h2 className="text-2xl font-semibold tracking-tight">The three</h2>
             <p className="mt-2 max-w-prose text-sm text-muted">
-              66 Stat Points. Max 32 in one stat. The item is the classroom hold. A swap is the same slot played a
-              different way — not a second Pokémon.
+              You have 66 Stat Points. One point is +1 to that stat at Level 50. You may put at most 32 in a single
+              stat. Classroom default: 32 in the stat that KOs, 32 in Speed if you must move first, leftover 2 in HP.
+              If Tailwind, rain, Trick Room, or Unburden already solves Speed, those 32 Speed points move into HP and
+              Defense instead. A swap is the same Pokémon trained for a different table — not a second Pokémon.
             </p>
-            <ol className="mt-6 grid gap-4 lg:grid-cols-3">
-              {manual.slots.map((slot) => {
-                const p = slot.slug ? getPokemon(slot.slug) : undefined;
-                const lit = slot.literacy ? getLiteracyRole(slot.literacy) : undefined;
-                const lines = playLines(slot.howToPlay);
-                return (
-                  <li
-                    key={`${slot.slug}-${slot.title}`}
-                    className="rounded-[28px] border border-line bg-raised/40 p-5"
-                    style={p ? cssVars(p.palette) : undefined}
-                  >
-                    <div className="flex gap-4">
-                      {p ? (
-                        <Link href={`/pokemon/${p.slug}`} className="shrink-0">
-                          <PokemonArt slug={p.slug} src={p.artwork} name={p.name} size={80} />
-                        </Link>
-                      ) : null}
-                      <div className="min-w-0">
-                        <p className="text-xs text-muted">
-                          <Link href={roleHref(slot.job)} className="underline">
-                            {ROLE_LABEL[slot.job]}
-                          </Link>
-                          {lit ? ` · ${lit.name}` : null}
-                        </p>
-                        {p ? (
-                          <Link href={`/pokemon/${p.slug}`} className="mt-1 block text-xl font-semibold tracking-tight">
-                            {p.name}
-                          </Link>
-                        ) : (
-                          <p className="mt-1 text-xl font-semibold">{slot.title || "Empty slot"}</p>
-                        )}
-                        <p className="mt-0.5 text-sm font-medium">{slot.title}</p>
-                        {p ? <SlotMatchups types={p.types} /> : null}
-                        {slot.ability || slot.item || slot.nature ? (
-                          <p className="mt-2 text-xs text-muted">
-                            {[slot.ability, slot.item, slot.nature].filter(Boolean).join(" · ")}
-                          </p>
-                        ) : null}
-                      </div>
-                    </div>
-                    {slot.objective ? <p className="mt-4 text-sm">{slot.objective}</p> : null}
-                    {slot.item ? (
-                      <SlotItemBlock item={slot.item} why={slot.itemWhy} alts={slot.itemAlts} />
-                    ) : null}
-                    {slot.training ? <SlotTrainingBlock training={slot.training} /> : null}
-                    <h3 className="mt-5 text-xs font-semibold uppercase tracking-wide text-muted">Kit</h3>
-                    <ul className="mt-2 divide-y divide-line/80">
-                      {slot.moves
-                        .filter((m) => m.name)
-                        .map((move) => (
-                          <li key={move.name} className="py-2">
-                            <p className="font-medium">{move.name}</p>
-                            <p className="mt-0.5 text-sm text-muted">{move.why}</p>
-                            {move.alts?.filter((a) => a.name).map((alt) => (
-                              <p key={alt.name} className="mt-1.5 text-sm text-muted">
-                                <span className="font-medium text-ink">Swap {alt.name}. </span>
-                                {alt.why}
-                              </p>
-                            ))}
-                          </li>
-                        ))}
-                    </ul>
-                    {lines.length ? (
-                      <>
-                        <h3 className="mt-5 text-xs font-semibold uppercase tracking-wide text-muted">Play</h3>
-                        <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm text-muted">
-                          {lines.map((line) => (
-                            <li key={line}>{line}</li>
-                          ))}
-                        </ul>
-                      </>
-                    ) : null}
-                  </li>
-                );
-              })}
+            <ol className="mt-6 grid items-start gap-4 lg:grid-cols-3">
+              {manual.slots.map((slot) => (
+                <SlotCard key={`${slot.slug}-${slot.title}`} slot={slot} />
+              ))}
             </ol>
           </section>
 

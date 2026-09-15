@@ -20,13 +20,14 @@ export function TypeIcon({
   type: TypeId;
   size?: keyof typeof SIZE;
   slash?: boolean;
-  title?: string;
+  /** Native tooltip. Pass `false` when a custom hover already explains the mark. */
+  title?: string | false;
 }) {
-  const label = title ?? TYPE_LABEL[type];
+  const label = typeof title === "string" ? title : TYPE_LABEL[type];
   const compact = size === "xs" || size === "sm" || size === "sheet";
   return (
     <span
-      title={label}
+      title={title === false ? undefined : label}
       className={`relative inline-flex shrink-0 items-center justify-center rounded-full text-white ${SIZE[size]}`}
       style={{
         background: `var(--type-${type})`,

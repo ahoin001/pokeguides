@@ -1,4 +1,5 @@
 import type { MoveAlt } from "@/content/manuals";
+import { SlotField } from "./SlotField";
 
 export function SlotItemBlock({
   item,
@@ -11,16 +12,17 @@ export function SlotItemBlock({
 }) {
   const swaps = alts?.filter((a) => a.name) ?? [];
   return (
-    <>
-      <h3 className="mt-5 text-xs font-semibold uppercase tracking-wide text-muted">Item</h3>
-      <p className="mt-2 font-medium">{item}</p>
-      {why ? <p className="mt-1 text-sm text-muted">{why}</p> : null}
+    <div className="space-y-2.5">
+      <SlotField label="Item">
+        <p className="font-medium leading-snug">{item}</p>
+        {why ? <p className="mt-1 text-sm leading-relaxed text-muted">{why}</p> : null}
+      </SlotField>
       {swaps.map((a) => (
-        <p key={a.name} className="mt-2 text-sm text-muted">
-          <span className="font-medium text-ink">Swap {a.name}. </span>
-          {a.why}
-        </p>
+        <SlotField key={a.name} label="Swap">
+          <p className="font-medium leading-snug">{a.name}</p>
+          {a.why ? <p className="mt-1 text-sm leading-relaxed text-muted">{a.why}</p> : null}
+        </SlotField>
       ))}
-    </>
+    </div>
   );
 }

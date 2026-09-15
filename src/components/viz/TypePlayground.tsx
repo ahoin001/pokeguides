@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { TYPE_IDS, type TypeId } from "@/types/pokemon";
-import { TYPE_LABEL, attackMultiplier, defensiveMatchup } from "@/lib/champions/types";
+import { type TypeId } from "@/types/pokemon";
+import { TYPE_IDS_ALPHA, TYPE_LABEL, attackMultiplier, defensiveMatchup } from "@/lib/champions/types";
 import { TypeIcon } from "@/components/pokemon/TypeIcon";
 
 export function TypePlayground({ seed = "fire" }: { seed?: TypeId }) {
@@ -87,7 +87,7 @@ function TypePick({
 }) {
   return (
     <div className="mt-4 grid grid-cols-6 gap-3 sm:grid-cols-9 md:gap-4">
-      {TYPE_IDS.map((t) => {
+      {TYPE_IDS_ALPHA.map((t) => {
         const on = value.includes(t);
         return (
           <button

@@ -21,7 +21,22 @@ import {
   type TeamManual,
 } from "@/content/manuals";
 import { syncSlugsFromSlots, validateManual } from "@/lib/champions/manuals";
+import { sampleSpTotal } from "@/lib/champions/stats";
 import { useManualsStore } from "@/stores/manuals";
+import type { SampleSp } from "@/types/pokemon";
+
+const STAT_FIELDS: { key: keyof SampleSp; label: string }[] = [
+  { key: "hp", label: "HP" },
+  { key: "atk", label: "Atk" },
+  { key: "def", label: "Def" },
+  { key: "spa", label: "SpA" },
+  { key: "spd", label: "SpD" },
+  { key: "spe", label: "Spe" },
+];
+
+function zeroSp(): SampleSp {
+  return { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 };
+}
 
 const inputClass =
   "w-full rounded-2xl border border-line bg-sunken px-4 py-3 text-ink outline-none placeholder:text-muted focus:border-ink/40";
@@ -202,6 +217,7 @@ export function ManualForm({
                     className={`mt-2 ${inputClass}`}
                     value={slot.item ?? ""}
                     onChange={(e) => updateSlot(i, { item: e.target.value })}
+                    placeholder="Focus Sash"
                   />
                 </div>
                 <div>
@@ -214,6 +230,114 @@ export function ManualForm({
                   />
                 </div>
               </div>
+              <label className="mt-4 block text-sm font-medium">Why this item</label>
+              <textarea
+                className={`mt-2 ${areaClass}`}
+                placeholder="Sash lives Fake Out. Tailwind is turn two."
+                value={slot.itemWhy ?? ""}
+                onChange={(e) => updateSlot(i, { itemWhy: e.target.value })}
+              />
+              <p className="mt-4 text-sm font-medium">Swap item</p>
+              <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                <input
+                  className={inputClass}
+                  placeholder="Covert Cloak"
+                  value={slot.itemAlts?.[0]?.name ?? ""}
+                  onChange={(e) => {
+                    const current = slot.itemAlts?.[0] ?? { name: "", why: "" };
+                    updateSlot(i, { itemAlts: [{ ...current, name: e.target.value }] });
+                  }}
+                />
+                <textarea
+                  className={areaClass}
+                  placeholder="When to hold the swap"
+                  value={slot.itemAlts?.[0]?.why ?? ""}
+                  onChange={(e) => {
+                    const current = slot.itemAlts?.[0] ?? { name: "", why: "" };
+                    updateSlot(i, { itemAlts: [{ ...current, why: e.target.value }] });
+                  }}
+                />
+              </div>
+              {(() => {
+                const training = slot.training ?? { sp: zeroSp(), why: "" };
+                const alt0 = training.alts?.[0] ?? { name: "", sp: zeroSp(), why: "" };
+                const used = sampleSpTotal(training.sp);
+                const over = used > 66 || Object.values(training.sp).some((n) => n > 32);
+                return (
+                  <div className="mt-6">
+                    <p className="text-sm font-medium">Training</p>
+                    <p className="mt-1 text-xs text-muted">66 Stat Points. Max 32 in one stat.</p>
+                    <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-6">
+                      {STAT_FIELDS.map((s) => (
+                        <label key={s.key} className="block text-xs text-muted">
+                          {s.label}
+                          <input
+                            type="number"
+                            min={0}
+                            max={32}
+                            className={`mt-1 ${inputClass} px-2 py-2 tabular-nums`}
+                            value={training.sp[s.key] || ""}
+                            onChange={(e) => {
+                              const n = Math.max(0, Math.min(32, Number(e.target.value) || 0));
+                              updateSlot(i, {
+                                training: { ...training, sp: { ...training.sp, [s.key]: n } },
+                              });
+                            }}
+                          />
+                        </label>
+                      ))}
+                    </div>
+                    <p className={`mt-2 text-xs tabular-nums ${over ? "text-red-400" : "text-muted"}`}>{used} / 66</p>
+                    <textarea
+                      className={`mt-3 ${areaClass}`}
+                      placeholder="Why this spread"
+                      value={training.why}
+                      onChange={(e) => updateSlot(i, { training: { ...training, why: e.target.value } })}
+                    />
+                    <p className="mt-4 text-sm font-medium">Swap build</p>
+                    <input
+                      className={`mt-2 ${inputClass}`}
+                      placeholder="Name — Cloak bulk, Specs, No Seed"
+                      value={alt0.name}
+                      onChange={(e) =>
+                        updateSlot(i, {
+                          training: { ...training, alts: [{ ...alt0, name: e.target.value }] },
+                        })
+                      }
+                    />
+                    <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-6">
+                      {STAT_FIELDS.map((s) => (
+                        <label key={s.key} className="block text-xs text-muted">
+                          {s.label}
+                          <input
+                            type="number"
+                            min={0}
+                            max={32}
+                            className={`mt-1 ${inputClass} px-2 py-2 tabular-nums`}
+                            value={alt0.sp[s.key] || ""}
+                            onChange={(e) => {
+                              const n = Math.max(0, Math.min(32, Number(e.target.value) || 0));
+                              updateSlot(i, {
+                                training: { ...training, alts: [{ ...alt0, sp: { ...alt0.sp, [s.key]: n } }] },
+                              });
+                            }}
+                          />
+                        </label>
+                      ))}
+                    </div>
+                    <textarea
+                      className={`mt-3 ${areaClass}`}
+                      placeholder="When to use the swap"
+                      value={alt0.why}
+                      onChange={(e) =>
+                        updateSlot(i, {
+                          training: { ...training, alts: [{ ...alt0, why: e.target.value }] },
+                        })
+                      }
+                    />
+                  </div>
+                );
+              })()}
               <p className="mt-5 text-sm font-medium">Best kit</p>
               <div className="mt-2 space-y-4">
                 {(slot.moves.length ? slot.moves : emptySlot().moves).map((move, mi) => (

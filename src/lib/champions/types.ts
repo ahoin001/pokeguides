@@ -21,6 +21,11 @@ export const TYPE_LABEL: Record<TypeId, string> = {
   fairy: "Fairy",
 };
 
+/** Display order on the type sheet and pickers. Chart math still uses TYPE_IDS. */
+export const TYPE_IDS_ALPHA = [...TYPE_IDS].sort((a, b) =>
+  TYPE_LABEL[a].localeCompare(TYPE_LABEL[b]),
+) as TypeId[];
+
 /** Attacker -> defender -> multiplier. Official chart. */
 const CHART: Record<TypeId, Partial<Record<TypeId, number>>> = {
   normal: { rock: 0.5, ghost: 0, steel: 0.5 },
@@ -75,7 +80,7 @@ const CHART: Record<TypeId, Partial<Record<TypeId, number>>> = {
     rock: 2,
     ghost: 0,
     dark: 2,
-    steel: 2,
+    steel: 0.5,
     fairy: 0.5,
   },
   poison: {
@@ -194,18 +199,11 @@ export function teamWeaknessCounts(teamTypes: readonly (readonly TypeId[])[]) {
   return counts;
 }
 
-/** Community sheet pairing: left column starters / field, right column the rest. */
-export const TYPE_SHEET_ROWS: readonly [TypeId, TypeId][] = [
-  ["grass", "normal"],
-  ["fire", "poison"],
-  ["water", "psychic"],
-  ["electric", "ghost"],
-  ["flying", "ice"],
-  ["bug", "dragon"],
-  ["fighting", "dark"],
-  ["rock", "steel"],
-  ["ground", "fairy"],
-];
+/** Two-column A–Z: Bug | Dark, Dragon | Electric, … so a name is where you expect. */
+export const TYPE_SHEET_ROWS: readonly [TypeId, TypeId][] = Array.from(
+  { length: TYPE_IDS_ALPHA.length / 2 },
+  (_, i) => [TYPE_IDS_ALPHA[i * 2], TYPE_IDS_ALPHA[i * 2 + 1]] as [TypeId, TypeId],
+);
 
 export function typeSheet(type: TypeId) {
   const weak: TypeId[] = [];
@@ -214,7 +212,7 @@ export function typeSheet(type: TypeId) {
   const hits: TypeId[] = [];
   const soft: TypeId[] = [];
   const fails: TypeId[] = [];
-  for (const other of TYPE_IDS) {
+  for (const other of TYPE_IDS_ALPHA) {
     const incoming = attackMultiplier(other, type);
     if (incoming === 0) immuneIn.push(other);
     else if (incoming > 1) weak.push(other);

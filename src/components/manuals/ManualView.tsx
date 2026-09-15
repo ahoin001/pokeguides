@@ -14,6 +14,8 @@ import { ManualToc } from "@/components/manuals/ManualToc";
 import { ManualPlan } from "@/components/manuals/ManualPlan";
 import { ManualFlowchart } from "@/components/manuals/ManualFlowchart";
 import { SlotMatchups } from "@/components/manuals/SlotMatchups";
+import { SlotTrainingBlock } from "@/components/manuals/SlotTraining";
+import { SlotItemBlock } from "@/components/manuals/SlotItem";
 
 export function ManualView({
   manual,
@@ -65,6 +67,10 @@ export function ManualView({
 
           <section id="three" className="mt-16 scroll-mt-28 md:scroll-mt-36">
             <h2 className="text-2xl font-semibold tracking-tight">The three</h2>
+            <p className="mt-2 max-w-prose text-sm text-muted">
+              66 Stat Points. Max 32 in one stat. The item is the classroom hold. A swap is the same slot played a
+              different way — not a second Pokémon.
+            </p>
             <ol className="mt-6 grid gap-4 lg:grid-cols-3">
               {manual.slots.map((slot) => {
                 const p = slot.slug ? getPokemon(slot.slug) : undefined;
@@ -106,6 +112,10 @@ export function ManualView({
                       </div>
                     </div>
                     {slot.objective ? <p className="mt-4 text-sm">{slot.objective}</p> : null}
+                    {slot.item ? (
+                      <SlotItemBlock item={slot.item} why={slot.itemWhy} alts={slot.itemAlts} />
+                    ) : null}
+                    {slot.training ? <SlotTrainingBlock training={slot.training} /> : null}
                     <h3 className="mt-5 text-xs font-semibold uppercase tracking-wide text-muted">Kit</h3>
                     <ul className="mt-2 divide-y divide-line/80">
                       {slot.moves

@@ -9,8 +9,8 @@ export default function RolesHub() {
   return (
     <article className="mx-auto max-w-3xl">
       <p className="text-sm text-muted">
-        <Link href="/learn" className="hover:text-ink">
-          Learn
+        <Link href="/learn/jobs" className="hover:text-ink">
+          Jobs
         </Link>
       </p>
       <h1 className="mt-2 text-4xl font-semibold tracking-tight">What a Pokémon is for</h1>

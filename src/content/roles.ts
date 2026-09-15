@@ -8,6 +8,7 @@ export type RoleGuide = {
   spot: string[];
   needs: string[];
   exampleSlug: string;
+  secondExampleSlug: string;
   literacy: LiteracyRoleId[];
   usedBy: ArchetypeId[];
 };
@@ -35,6 +36,7 @@ export const ROLES: RoleGuide[] = [
     ],
     needs: ["A breaker that actually KOs once the turn is bought.", "A typing that can take the hit you are offering."],
     exampleSlug: "incineroar",
+    secondExampleSlug: "whimsicott",
     literacy: ["wall", "disruptor", "pivot"],
     usedBy: ["balance", "hyper-offense", "trick-room", "rain", "sun", "grassy"],
   },
@@ -50,6 +52,7 @@ export const ROLES: RoleGuide[] = [
     ],
     needs: ["A Speed number that wins the races you care about, or priority.", "A type that the format's walls do not like."],
     exampleSlug: "kingambit",
+    secondExampleSlug: "excadrill",
     literacy: ["wallbreaker", "sweeper"],
     usedBy: ["balance", "hyper-offense", "trick-room", "rain", "sun", "grassy"],
   },
@@ -65,6 +68,7 @@ export const ROLES: RoleGuide[] = [
     ],
     needs: ["Partners that actually benefit once you win the race.", "A plan for priority the other way."],
     exampleSlug: "cinderace",
+    secondExampleSlug: "sneasler",
     literacy: ["disruptor", "setter", "sweeper"],
     usedBy: ["balance", "hyper-offense", "trick-room", "rain", "sun", "grassy"],
   },
@@ -80,6 +84,7 @@ export const ROLES: RoleGuide[] = [
     ],
     needs: ["At least one Pokémon that gets stronger in that weather.", "An answer to the other weather, because only one field wins."],
     exampleSlug: "pelipper",
+    secondExampleSlug: "charizard-mega-y",
     literacy: ["setter"],
     usedBy: ["rain", "sun"],
   },
@@ -95,6 +100,7 @@ export const ROLES: RoleGuide[] = [
     ],
     needs: ["A turn to Mega without eating a revenge KO.", "Coverage so the Mega is not walled by one typing."],
     exampleSlug: "salamence-mega",
+    secondExampleSlug: "charizard-mega-y",
     literacy: ["sweeper", "wallbreaker"],
     usedBy: ["balance", "hyper-offense", "sun"],
   },

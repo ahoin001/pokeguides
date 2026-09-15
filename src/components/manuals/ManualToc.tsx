@@ -12,10 +12,6 @@ export function manualJumps(manual: TeamManual) {
     ...(manual.plan?.some((b) => b.title || b.play) ? [{ href: "#plan", label: "Plan" }] : []),
     { href: "#three", label: "The three" },
     ...flowsFor(manual).map((flow) => ({ href: `#flow-${flow.id}`, label: flow.title })),
-    ...(manual.switches?.some((s) => s.into || s.send) ? [{ href: "#switches", label: "Switches" }] : []),
-    ...(manual.loops.some((l) => l.title || l.body) ? [{ href: "#loops", label: "Loops" }] : []),
-    ...(manual.hazards.some((h) => h.title || h.body) ? [{ href: "#hazards", label: "Hazards" }] : []),
-    { href: "#notes", label: "Notes" },
   ];
 }
 

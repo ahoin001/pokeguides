@@ -12,6 +12,7 @@ import { PokemonActions } from "@/components/pokemon/PokemonActions";
 import { ROLE_LABEL, roleHref, getRole } from "@/content/roles";
 import { getLiteracyRole } from "@/content/literacy-roles";
 import { scorePokemon } from "@/lib/champions/role-score";
+import { manualsFeaturing, manualHref } from "@/content/manuals";
 
 export function generateStaticParams() {
   return catalog.map((p) => ({ slug: p.slug }));
@@ -32,6 +33,7 @@ export default async function PokemonPage({
   const partners = (ed?.partners ?? [])
     .map((s) => getPokemon(s))
     .filter(Boolean);
+  const featured = manualsFeaturing(slug);
 
   return (
     <article style={cssVars(pokemon.palette)}>
@@ -87,6 +89,23 @@ export default async function PokemonPage({
           </div>
         ) : null}
       </section>
+
+      {featured.length ? (
+        <section className="mt-16">
+          <h2 className="text-2xl font-semibold">Field manuals</h2>
+          <p className="mt-2 text-muted">Classroom threes that run this Pokémon.</p>
+          <ul className="mt-4 divide-y divide-line rounded-3xl border border-line">
+            {featured.map((m) => (
+              <li key={m.id}>
+                <Link href={manualHref(m.id)} className="block px-5 py-4 transition hover:bg-raised/70">
+                  <p className="font-semibold tracking-tight">{m.title}</p>
+                  <p className="mt-1 text-sm text-muted">{m.lede}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <section className="mt-16">
         <h2 className="text-2xl font-semibold">Matchup</h2>

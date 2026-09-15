@@ -117,6 +117,12 @@ export type ManualFlow = {
   forks: FlowFork[];
 };
 
+export type ManualFamilyLesson = {
+  thesis: string;
+  clockRule: string;
+  commonFail: string;
+};
+
 export type TeamManual = {
   id: string;
   title: string;
@@ -131,6 +137,9 @@ export type TeamManual = {
   refuse?: string[];
   switches?: ManualSwitch[];
   plan?: ManualPlanBeat[];
+  /** Verbs this three teaches. Learn deep-links here. */
+  skills?: string[];
+  relatedLessons?: string[];
   slots: SlotManual[];
   phases: ManualPhase[];
   flows?: ManualFlow[];
@@ -204,6 +213,34 @@ export const MANUAL_FAMILY_BLURB: Record<ManualFamilyId, string> = {
   room: "Slow on purpose. Four turns, then you re-set or you race.",
 };
 
+export const FAMILY_LESSON: Record<ManualFamilyId, ManualFamilyLesson> = {
+  clock: {
+    thesis: "Take Speed before they dictate. The clock is a turn, then you leave.",
+    clockRule: "Prankster Tailwind is +1. Fake Out is +3. You cannot Fake Out and Tailwind the same turn.",
+    commonFail: "U-turn a 184 Speed Cott into the cleaner. Fast U-turn under Tailwind is Ice on Garchomp.",
+  },
+  kite: {
+    thesis: "The sweeper stays in the bag until Ice and Fairy are gone.",
+    clockRule: "Disguise or Multiscale is the free turn. Spend it on a Dance, not chip.",
+    commonFail: "Leading the kite into Ice. Mold Breaker Drill ignores Multiscale.",
+  },
+  weather: {
+    thesis: "The setter walks in and the field is already up. The other two cash it.",
+    clockRule: "One field wins. Drought overwrite is a funeral. Swift Swim and Chlorophyll only count if the field is up.",
+    commonFail: "Sitting the setter into the 4× (Electric on Pelipper, Rock on Y).",
+  },
+  terrain: {
+    thesis: "Terrain on entry. Unburden after the seed. Hide the Mega until Ice is gone.",
+    clockRule: "Fake Out, then U-turn into Grassy Seed. Armor Tail turns the engine off.",
+    commonFail: "Clicking as if Unburden were 240 when the seed never popped.",
+  },
+  room: {
+    thesis: "Slow on purpose. Four turns including the click, then re-set or race.",
+    clockRule: "Armor Tail blanks Fake Out. Taunt on the setter is the refuse — Mental Herb eats one.",
+    commonFail: "Sitting Kingambit in Fighting as if it were 4×. It is 1×. Gholdengo is the immune.",
+  },
+};
+
 export function manualFamily(manual: Pick<TeamManual, "family" | "archetype">): ManualFamilyId {
   if (manual.family) return manual.family;
   switch (manual.archetype) {
@@ -262,6 +299,8 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         next: "Protect is a scout for Ice/Fairy, not a stall button. If the timer is dying, click the KO.",
       },
     ],
+    skills: ["Tailwind", "U-turn", "Prankster"],
+    relatedLessons: ["speed", "preview", "turns"],
     slots: [
       {
         slug: "whimsicott",
@@ -532,6 +571,28 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       { into: "Grass / Steel", send: "Incineroar Flare Blitz" },
       { into: "Fairy", send: "Whimsicott; Tinkaton → Flare Blitz" },
     ],
+    plan: [
+      {
+        title: "Clock",
+        goal: "Flinch, drop, then clock",
+        play: "Lead Incineroar. Fake Out, Intimidate. You cannot Fake Out and Tailwind the same turn. If the cat dies on send, Cott is the backup clock.",
+        next: "Parting Shot is −6: they hit the cat, then Garchomp is in. Do not stay to farm Flare Blitz unless Grass is the KO you need.",
+      },
+      {
+        title: "Shield",
+        goal: "Live Fighting, Fairy, and the Ice you traded Corvi for",
+        play: "Fighting is 2× on the cat — Cott or Garchomp take that slot. Fairy is 2× on cat and Chomp. Moonblast is the answer. Ice goes to Incineroar.",
+        next: "Ghost Fake Out, Cloak, and Gholdengo blank the cat’s tricks. Snarl remains.",
+      },
+      {
+        title: "Clean",
+        goal: "Garchomp after the drop and the clock",
+        play: "Earthquake grounded non-Grass. Stone Edge or Dragon on Flying. Swords Dance if they Protect.",
+        next: "If Tailwind is not up and they still outrun Chomp, you needed the clock. Do not clean on hope.",
+      },
+    ],
+    skills: ["Fake Out", "Intimidate", "Parting Shot"],
+    relatedLessons: ["moves", "abilities", "turns"],
     slots: [
       {
         slug: "whimsicott",
@@ -746,6 +807,28 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       { into: "Rock", send: "Sneasler" },
       { into: "Ground", send: "Mega (immune) or Rillaboom" },
     ],
+    plan: [
+      {
+        title: "Clock",
+        goal: "Terrain on entry, then the Seed",
+        play: "Fake Out, then U-turn into Grassy Seed. Unburden doubles Speed after the item is gone. One Fake Out per turn.",
+        next: "Armor Tail and Psychic Terrain turn the engine off. Then you are three attackers with no field.",
+      },
+      {
+        title: "Shield",
+        goal: "Hide the Mega until Ice is gone",
+        play: "Rillaboom takes Ice. Mega takes Fire. Sneasler Dire Claw is the Fairy. Do not send Aerilate into Ice or Rock.",
+        next: "Cups that won still hid the Mega. Extreme Speed is the revenge, not the lead.",
+      },
+      {
+        title: "Clean",
+        goal: "Aerilate once Ice is spent. Unburden if the Seed popped",
+        play: "Double-Edge is Flying STAB. Terrain cuts Earthquake — do not click Ground as if it were 1×. Sneasler Close Combat the cat.",
+        next: "If the Seed never popped, do not click as if you were 240 Speed.",
+      },
+    ],
+    skills: ["Fake Out", "Unburden", "Grassy Surge"],
+    relatedLessons: ["abilities", "speed", "preview"],
     slots: [
       {
         slug: "rillaboom",
@@ -945,6 +1028,28 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       { into: "Rock into Pelipper", send: "Archaludon or Basculegion" },
       { into: "Dragon", send: "Pelipper or Basculegion" },
     ],
+    plan: [
+      {
+        title: "Clock",
+        goal: "Drizzle walks in. The field is already wet",
+        play: "Lead Pelipper unless Electric is the send. Hurricane never misses. Damp Rock is eight turns, not five.",
+        next: "If Drought overwrites you, Electro Shot charges and Swift Swim dies. KO Y or re-set.",
+      },
+      {
+        title: "Shield",
+        goal: "Archaludon is the Electric and Grass switch",
+        play: "Pelipper is 4× Electric. Both Waters are 2× Grass. The railgun is ¼ Grass and resists Electric. Do not Roost on the Thunderbolt.",
+        next: "Kingambit walls Hurricane and Wave Crash. You have no Fighting STAB. Do not sit that 1v1.",
+      },
+      {
+        title: "Clean",
+        goal: "Electro Shot the same turn. Swift Swim closes",
+        play: "Archaludon charges in rain. Basculegion Wave Crash under Swift Swim. Aqua Jet if rain dies.",
+        next: "Wave Crash plus Life Orb will KO you. Take the KO. Do not farm.",
+      },
+    ],
+    skills: ["Drizzle", "Electro Shot", "Swift Swim"],
+    relatedLessons: ["abilities", "speed", "holes"],
     slots: [
       {
         slug: "pelipper",
@@ -1146,6 +1251,28 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       { into: "Status / Parting Shot", send: "Gholdengo (Good as Gold)" },
       { into: "Dragon", send: "Gholdengo or Farigiraf" },
     ],
+    plan: [
+      {
+        title: "Clock",
+        goal: "Flip it. Armor Tail blanks Fake Out",
+        play: "Lead Farigiraf unless Taunt is the preview you respect — then Herb, or Gholdengo as the backup lead. Four turns including the click.",
+        next: "If Taunt lands without Herb, the setter does nothing. Re-set before the room dies or you race.",
+      },
+      {
+        title: "Shield",
+        goal: "Gholdengo blanks Parting Shot. Fighting is a Ghost immune",
+        play: "Kingambit is 1× Fighting, not a resist. Gholdengo is immune. Fire and Ground go to Farigiraf — both Steels are 2×.",
+        next: "Good as Gold does not stop Fake Out. Armor Tail does. Know which blank is in the slot.",
+      },
+      {
+        title: "Clean",
+        goal: "Kingambit cashes the four turns",
+        play: "Kowtow the walls. Sucker Punch when the room dies. Dance if they Protect — Sucker Punch fails into Protect.",
+        next: "Overlord snowballs a KO on your side. Under the room that is often the game.",
+      },
+    ],
+    skills: ["Trick Room", "Armor Tail", "Sucker Punch"],
+    relatedLessons: ["speed", "building", "turns"],
     slots: [
       {
         slug: "farigiraf",
@@ -1348,6 +1475,28 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       { into: "Water", send: "Nobody is good — leave Y, chip, do not sit" },
       { into: "Dragon", send: "Cinderace or Y" },
     ],
+    plan: [
+      {
+        title: "Clock",
+        goal: "Drought walks in with the Mega",
+        play: "Y is the field and the wincon. Heat Wave in sun. Solar Beam does not charge. Do not splash this stone onto a rain three.",
+        next: "If a faster Drought overwrites you, Fire charges again. KO their setter or leave Y.",
+      },
+      {
+        title: "Shield",
+        goal: "Garchomp patches Rock. Nobody likes Water",
+        play: "Rock into Y is a donation. Water into Y or Cinderace is 2×. Garchomp is 1× Water, 4× Ice. Cinderace takes Ice.",
+        next: "Leave Y on Water, chip, do not sit. Electric is Garchomp immune.",
+      },
+      {
+        title: "Clean",
+        goal: "Heat Wave the Grass. Libero closes if Y goes down",
+        play: "Y and Cinderace hit Grass and Steel. Garchomp punches what Fire does not. Trick Room is a refuse — you are the fast three.",
+        next: "If Y dies, Cinderace is still a Fire. It is not Drought. Play the race, not the field.",
+      },
+    ],
+    skills: ["Drought", "Solar Beam", "Libero"],
+    relatedLessons: ["abilities", "jobs", "holes"],
     slots: [
       {
         slug: "charizard-mega-y",
@@ -1575,6 +1724,8 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         next: "Outrage locks. A Fairy switch ends the sweep. Multiscale is gone after the first chip.",
       },
     ],
+    skills: ["Mold Breaker", "Dragon Dance", "Extreme Speed"],
+    relatedLessons: ["preview", "abilities", "archetypes"],
     slots: [
       {
         slug: "excadrill",
@@ -2115,6 +2266,8 @@ export const CANONICAL_MANUALS: TeamManual[] = [
         next: "Outrage locks. A Fairy switch ends the sweep. Multiscale is gone after the first chip.",
       },
     ],
+    skills: ["Disguise", "Swords Dance", "Fake Out"],
+    relatedLessons: ["abilities", "moves", "preview"],
     slots: [
       {
         slug: "mimikyu-disguised",
@@ -2606,6 +2759,16 @@ export function getCanonicalManual(id: string) {
 
 export function isCanonicalManualId(id: string) {
   return CANONICAL_MANUALS.some((m) => m.id === id);
+}
+
+export function manualsFeaturing(slug: string) {
+  return CANONICAL_MANUALS.filter(
+    (m) => m.slugs.includes(slug) || m.slots.some((s) => s.slug === slug),
+  );
+}
+
+export function manualsForArchetype(id: string) {
+  return CANONICAL_MANUALS.filter((m) => m.archetype === id);
 }
 
 export function manualHref(id: string) {

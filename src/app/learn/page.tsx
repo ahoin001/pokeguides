@@ -1,80 +1,86 @@
 import Link from "next/link";
-import { chapterHref, getChapter, learnByGroup, type LearnChapter } from "@/content/learn";
+import { getPokemon } from "@/lib/catalog/load";
+import { PokemonArt } from "@/components/pokemon/PokemonArt";
+import { BANDS, LESSONS, lessonHref, lessonsByBand } from "@/content/curriculum";
 
 export default function LearnIndex() {
-  const building = getChapter("building");
-  const roles = getChapter("roles");
-  const archetypes = getChapter("archetypes");
-  const reads = learnByGroup("play");
-
   return (
     <div>
-      <h1 className="max-w-[10ch] text-4xl font-semibold tracking-tight md:text-5xl">Learn</h1>
-      <p className="mt-4 max-w-[46ch] text-lg text-muted">
-        A Pokémon is a job. A three is a plan. Then you learn the reads that punish a bad one.
+      <h1 className="max-w-[12ch] text-4xl font-semibold tracking-tight md:text-5xl">Learn</h1>
+      <p className="mt-4 max-w-[48ch] text-lg text-muted">
+        Four shelves from never-played-competitive to reading a three. Skip any band. Manuals are the exam.
       </p>
 
-      <section className="mt-14">
-        <h2 className="text-2xl font-semibold tracking-tight">Build a three</h2>
-        {building ? <FeaturedChapter chapter={building} /> : null}
-        <div className="mt-4 grid gap-3 md:grid-cols-2">
-          {roles ? <HubLink chapter={roles} /> : null}
-          {archetypes ? <HubLink chapter={archetypes} /> : null}
-        </div>
+      <div className="mt-14 space-y-16">
+        {BANDS.map((band) => (
+          <section key={band.id}>
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <h2 className="text-2xl font-semibold tracking-tight">{band.title}</h2>
+              <p className="text-sm text-muted">{band.skipIf}</p>
+            </div>
+            <ul className="mt-5 grid gap-3 md:grid-cols-2">
+              {lessonsByBand(band.id).map((lesson) => (
+                <li key={lesson.slug}>
+                  <LessonCard slug={lesson.slug} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+
+      <section className="mt-20 grid gap-3 md:grid-cols-3">
         <Link
           href="/manuals"
-          className="mt-3 block rounded-[28px] border border-line bg-raised/40 p-6 transition hover:bg-raised"
+          className="block rounded-[28px] border border-line bg-raised/40 p-6 transition hover:bg-raised"
         >
-          <h3 className="text-xl font-semibold tracking-tight">Field manuals</h3>
-          <p className="mt-2 text-sm text-muted">
-            Authored threes with If/Then trees: preview, first send, the hand-off, the late game.
-          </p>
+          <h2 className="text-xl font-semibold tracking-tight">Field manuals</h2>
+          <p className="mt-2 text-sm text-muted">The practicum. If/Then trees on eight classroom threes.</p>
         </Link>
-      </section>
-
-      <section className="mt-20 max-w-3xl">
-        <h2 className="text-2xl font-semibold tracking-tight">The reads</h2>
-        <p className="mt-2 max-w-[48ch] text-sm text-muted">
-          Preview, Speed, and the hole on your three. This is what separates a list from a team that wins.
-        </p>
-        <ul className="mt-6 divide-y divide-line rounded-[28px] border border-line">
-          {reads.map((c) => (
-            <li key={c.slug}>
-              <Link href={chapterHref(c)} className="block px-5 py-4 transition hover:bg-raised/70">
-                <h3 className="font-semibold tracking-tight">{c.title}</h3>
-                <p className="mt-1 text-sm text-muted">{c.lede}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <Link
+          href="/meta"
+          className="block rounded-[28px] border border-line bg-raised/40 p-6 transition hover:bg-raised"
+        >
+          <h2 className="text-xl font-semibold tracking-tight">Ranked Meta</h2>
+          <p className="mt-2 text-sm text-muted">Dated snapshot. What to prepare for after you can read a preview.</p>
+        </Link>
+        <Link
+          href="/glossary"
+          className="block rounded-[28px] border border-line bg-raised/40 p-6 transition hover:bg-raised"
+        >
+          <h2 className="text-xl font-semibold tracking-tight">Glossary</h2>
+          <p className="mt-2 text-sm text-muted">Check, counter, never-leave, 50/50. The words other guides use.</p>
+        </Link>
       </section>
     </div>
   );
 }
 
-function FeaturedChapter({ chapter }: { chapter: LearnChapter }) {
+function LessonCard({ slug }: { slug: string }) {
+  const lesson = LESSONS.find((l) => l.slug === slug);
+  if (!lesson) return null;
+  const faces = lesson.examples.slice(0, 3).map((e) => getPokemon(e.slug));
   return (
     <Link
-      href={chapterHref(chapter)}
-      className="mt-5 block rounded-[32px] border border-line bg-raised/70 px-6 py-8 transition hover:bg-raised md:px-10 md:py-10"
-      style={{
-        background: `linear-gradient(120deg, color-mix(in srgb, var(--type-fighting) 16%, transparent), transparent 42%), var(--bg-raised)`,
-      }}
+      href={lessonHref(lesson.slug)}
+      className="block rounded-[28px] border border-line bg-raised/40 p-5 transition hover:bg-raised"
     >
-      <h3 className="text-3xl font-semibold tracking-tight md:text-4xl">{chapter.title}</h3>
-      <p className="mt-4 max-w-[46ch] text-lg text-muted">{chapter.lede}</p>
-    </Link>
-  );
-}
-
-function HubLink({ chapter }: { chapter: LearnChapter }) {
-  return (
-    <Link
-      href={chapterHref(chapter)}
-      className="block rounded-[28px] border border-line bg-raised/40 p-6 transition hover:bg-raised"
-    >
-      <h3 className="text-xl font-semibold tracking-tight">{chapter.title}</h3>
-      <p className="mt-2 text-sm text-muted">{chapter.lede}</p>
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <h3 className="text-xl font-semibold tracking-tight">{lesson.title}</h3>
+          <p className="mt-2 text-sm text-muted">{lesson.thesis}</p>
+        </div>
+        <div className="flex shrink-0 -space-x-2">
+          {faces.map((p) =>
+            p ? (
+              <span key={p.slug} className="rounded-full bg-sunken ring-2 ring-raised">
+                <PokemonArt slug={p.slug} src={p.sprite || p.artwork} name={p.name} size={40} />
+              </span>
+            ) : null,
+          )}
+        </div>
+      </div>
+      <p className="mt-3 text-xs text-muted">{lesson.skipIf}</p>
     </Link>
   );
 }

@@ -17,6 +17,7 @@ import { LoadSampleSix } from "@/components/learn/LoadSampleSix";
 import { CompareSplit } from "@/components/learn/CompareSplit";
 import { RosterBoard } from "@/components/learn/RosterBoard";
 import { ARCHETYPE_IDS } from "@/types/pokemon";
+import { manualsForArchetype, manualHref } from "@/content/manuals";
 
 export function generateStaticParams() {
   return ARCHETYPE_IDS.map((id) => ({ id }));
@@ -29,6 +30,7 @@ export default async function ArchetypePage({ params }: { params: Promise<{ id: 
   const coreMons = style.core.slugs.map((s) => getPokemon(s));
   const next = ARCHETYPES[ARCHETYPES.findIndex((a) => a.id === style.id) + 1];
   const wash = coreMons.find(Boolean);
+  const manuals = manualsForArchetype(style.id);
 
   return (
     <article className="mx-auto max-w-3xl" style={wash ? cssVars(wash.palette) : undefined}>
@@ -133,6 +135,23 @@ export default async function ArchetypePage({ params }: { params: Promise<{ id: 
           ))}
           .
         </p>
+      ) : null}
+
+      {manuals.length ? (
+        <section className="mt-16">
+          <h2 className="text-2xl font-semibold">Classroom manuals</h2>
+          <p className="mt-2 text-sm text-muted">The exam for this style. Load the three, then walk the tree.</p>
+          <ul className="mt-4 divide-y divide-line rounded-3xl border border-line">
+            {manuals.map((m) => (
+              <li key={m.id}>
+                <Link href={manualHref(m.id)} className="block px-5 py-4 transition hover:bg-raised/70">
+                  <p className="font-semibold tracking-tight">{m.title}</p>
+                  <p className="mt-1 text-sm text-muted">{m.lede}</p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
       ) : null}
 
       {next ? (

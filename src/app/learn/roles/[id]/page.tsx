@@ -17,6 +17,7 @@ export default async function RolePage({ params }: { params: Promise<{ id: strin
   const role = getRole(id);
   if (!role || !LEARN_ROLE_IDS.includes(role.id)) notFound();
   const example = getPokemon(role.exampleSlug);
+  const second = getPokemon(role.secondExampleSlug);
   const job = example ? getEditorial(example.slug)?.job : undefined;
   const literacy = LITERACY_ROLES.filter((l) => role.literacy.includes(l.id));
   const styles = ARCHETYPES.filter((a) => role.usedBy.includes(a.id));
@@ -26,30 +27,23 @@ export default async function RolePage({ params }: { params: Promise<{ id: strin
   return (
     <article className="mx-auto max-w-3xl" style={example ? cssVars(example.palette) : undefined}>
       <p className="text-sm text-muted">
-        <Link href="/learn/roles" className="hover:text-ink">
+        <Link href="/learn/jobs" className="hover:text-ink">
           Jobs
         </Link>
       </p>
       <h1 className="mt-2 text-4xl font-semibold tracking-tight">{role.name}</h1>
       <p className="mt-4 text-lg text-muted">{role.oneLiner}</p>
 
-      {example ? (
-        <div className="mt-10 flex items-center gap-5 rounded-3xl border border-line bg-raised/50 p-5">
-          <PokemonArt slug={example.slug} src={example.artwork} name={example.name} share size={120} />
-          <div className="min-w-0">
-            <p className="text-xs text-muted">Classroom example</p>
-            <Link href={`/pokemon/${example.slug}`} className="mt-1 block text-2xl font-semibold tracking-tight">
-              {example.name}
-            </Link>
-            <div className="mt-2 flex flex-wrap gap-1.5">
-              {example.types.map((t) => (
-                <TypeBadge key={t} type={t} size="sm" />
-              ))}
-            </div>
-            {job ? <p className="mt-2 text-sm text-muted">{job}</p> : null}
-          </div>
-        </div>
-      ) : null}
+      <div className="mt-10 grid gap-4 sm:grid-cols-2">
+        {example ? <ExampleFace pokemon={example} job={job} label="Classroom" /> : null}
+        {second ? (
+          <ExampleFace
+            pokemon={second}
+            job={getEditorial(second.slug)?.job}
+            label="Second example"
+          />
+        ) : null}
+      </div>
 
       <p className="mt-10 text-[17px] leading-relaxed">{role.job}</p>
 
@@ -106,10 +100,38 @@ export default async function RolePage({ params }: { params: Promise<{ id: strin
           Next: {next.name}
         </Link>
       ) : (
-        <Link href="/learn/archetypes" className="mt-12 block text-sm text-muted hover:text-ink">
-          Next: How a three wants to play
+        <Link href="/learn/building" className="mt-12 block text-sm text-muted hover:text-ink">
+          Next: How you build a three
         </Link>
       )}
     </article>
+  );
+}
+
+function ExampleFace({
+  pokemon,
+  job,
+  label,
+}: {
+  pokemon: NonNullable<ReturnType<typeof getPokemon>>;
+  job?: string;
+  label: string;
+}) {
+  return (
+    <div className="flex items-center gap-5 rounded-3xl border border-line bg-raised/50 p-5" style={cssVars(pokemon.palette)}>
+      <PokemonArt slug={pokemon.slug} src={pokemon.artwork} name={pokemon.name} share size={96} />
+      <div className="min-w-0">
+        <p className="text-xs text-muted">{label}</p>
+        <Link href={`/pokemon/${pokemon.slug}`} className="mt-1 block text-2xl font-semibold tracking-tight">
+          {pokemon.name}
+        </Link>
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {pokemon.types.map((t) => (
+            <TypeBadge key={t} type={t} size="sm" />
+          ))}
+        </div>
+        {job ? <p className="mt-2 text-sm text-muted">{job}</p> : null}
+      </div>
+    </div>
   );
 }

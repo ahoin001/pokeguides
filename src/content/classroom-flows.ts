@@ -12,25 +12,25 @@ const HONEST: ManualFlow[] = [
   {
     id: "lead",
     title: "Lead",
-    lede: "Cott unless it dies on send. Tailwind is +1. Then switch — not U-turn.",
+    lede: "Whimsicott unless it dies on send. Tailwind is +1. Then switch — not U-turn.",
     forks: [
-      q("h-live", "Cott lives the send", {
-        then: "Lead Whimsicott. Clock, then leave.",
+      q("h-live", "Whimsicott lives the send", {
+        then: "Lead Whimsicott. Tailwind, then leave.",
         send: "whimsicott",
         forks: [
-          q("h-tw", "Corvi or Garchomp need the race", { then: "Tailwind. Then switch or one Moonblast.", move: "Tailwind", send: "whimsicott" }),
+          q("h-tw", "Corviknight or Garchomp need the race", { then: "Tailwind. Then switch or one Moonblast.", move: "Tailwind", send: "whimsicott" }),
           q("h-encore", "They Protect or set up, not Dark", { then: "Encore. Next turn Tailwind or leave.", move: "Encore", send: "whimsicott" }),
           q("h-dark", "Dark in", { then: "Moonblast or switch. Never Encore. Never Taunt.", move: "Moonblast", send: "whimsicott" }),
-          q("h-fd", "Fighting or Dragon in", { then: "Moonblast. Fairy STAB, then leave unless the clock is still the plan.", move: "Moonblast", send: "whimsicott" }),
+          q("h-fd", "Fighting or Dragon in", { then: "Moonblast. Fairy STAB, then leave unless Tailwind is still the plan.", move: "Moonblast", send: "whimsicott" }),
           q("h-tr", "Trick Room setter, not Dark", { then: "Taunt. The room does not go up.", move: "Taunt", send: "whimsicott" }),
-          q("h-poison", "Poison STAB coming", { then: "Corvi now. Cott is 4×.", send: "corviknight" }),
-          q("h-fire", "Fire STAB coming", { then: "Garchomp. Corvi is also 2× Fire.", send: "garchomp" }),
-          q("h-ice", "Ice or Flying coming", { then: "Corvi. Cott is 2× both. Ice is 1× on Corvi, not a resist.", send: "corviknight" }),
+          q("h-poison", "Poison STAB coming", { then: "Corviknight now. Poison hits Whimsicott four times as hard.", send: "corviknight" }),
+          q("h-fire", "Fire STAB coming", { then: "Garchomp. Corviknight also takes double Fire.", send: "garchomp" }),
+          q("h-ice", "Ice or Flying coming", { then: "Corviknight. Both deal double to Whimsicott. Ice deals normal damage to Corviknight — not a resist.", send: "corviknight" }),
           q("h-elec", "Electric coming", { then: "Stay or Tailwind. Grass resists. Garchomp is the later immune.", send: "whimsicott" }),
         ],
       }),
-      q("h-die", "Cott dies to the lead (Poison 4×, Fire, Fake Out into KO)", {
-        then: "Corvi first. Clock later.",
+      q("h-die", "Whimsicott dies to the lead (Poison four times as hard, Fire, Fake Out into KO)", {
+        then: "Corviknight first. Tailwind later.",
         send: "corviknight",
         why: "Not a second default. Emergency only.",
       }),
@@ -40,22 +40,22 @@ const HONEST: ManualFlow[] = [
   {
     id: "mid",
     title: "Mid",
-    lede: "Slow U-turn, stay on the wall, or re-up the clock. Fast U-turn under Tailwind is Ice on Garchomp.",
+    lede: "Slow U-turn, stay on the wall, or re-up Tailwind. Fast U-turn under Tailwind is Ice on Garchomp.",
     forks: [
       out("h-mid-corvi", "corviknight", [
-        q("h-mid-c1", "Had to lead Corvi", { then: "Take the hit. Slow U-turn later. Clock is still in the bag.", send: "corviknight" }),
+        q("h-mid-c1", "Had to lead Corviknight", { then: "Take the hit. Slow U-turn later. Tailwind is still in the bag.", send: "corviknight" }),
         q("h-mid-c2", "Locked into a physical resist, no KO this turn", { then: "Stay. Roost, Press, or Iron Defense. The wall can win.", move: "Roost", send: "corviknight" }),
-        q("h-mid-c3", "Want Garchomp, and you are slower or they switched", { then: "U-turn. They hit Corvi, then Chomp is in.", move: "U-turn", send: "garchomp" }),
-        q("h-mid-c4", "Want Garchomp, but you outspeed Ice", { then: "Do not U-turn. Fast U-turn delivers Ice into Garchomp.", why: "116 Spe plus Tailwind. Switch instead." }),
+        q("h-mid-c3", "Want Garchomp, and you are slower or they switched", { then: "U-turn. They hit Corviknight, then Garchomp is in.", move: "U-turn", send: "garchomp" }),
+        q("h-mid-c4", "Want Garchomp, but you outspeed Ice", { then: "Do not U-turn. Fast U-turn delivers Ice into Garchomp.", why: "Whimsicott is fast. After Tailwind you are faster. Switch instead." }),
         q("h-mid-c5", "Grass in", { then: "Brave Bird. Recoil is the tax. Do not Earthquake Grass.", move: "Brave Bird", send: "corviknight" }),
-        q("h-mid-c6", "Fire or Electric onto Corvi", { then: "Garchomp. Resists Fire. Immune to Electric.", send: "garchomp" }),
+        q("h-mid-c6", "Fire or Electric onto Corviknight", { then: "Garchomp. Resists Fire. Immune to Electric.", send: "garchomp" }),
       ]),
       out("h-mid-chomp", "garchomp", [
-        q("h-mid-g1", "Ice or Fairy onto Garchomp", { then: "Corvi. Fairy resists. Ice is 1× — Roost after.", send: "corviknight" }),
-        q("h-mid-g2", "Water onto Garchomp", { then: "Optional Cott or Corvi (both resist). Chomp is 1× Water, not 2×.", send: "whimsicott" }),
+        q("h-mid-g1", "Ice or Fairy onto Garchomp", { then: "Corviknight. Fairy resists. Ice deals normal damage — Roost after.", send: "corviknight" }),
+        q("h-mid-g2", "Water onto Garchomp", { then: "Optional Whimsicott or Corviknight (both resist). Garchomp takes normal Water.", send: "whimsicott" }),
       ]),
       out("h-mid-cott", "whimsicott", [
-        q("h-mid-w1", "Tailwind dying, still need Speed", { then: "Cott back in. Re-up before it fades.", move: "Tailwind", send: "whimsicott" }),
+        q("h-mid-w1", "Tailwind dying, still need Speed", { then: "Whimsicott back in. Re-up before it fades.", move: "Tailwind", send: "whimsicott" }),
       ]),
     ],
   },
@@ -66,15 +66,15 @@ const HONEST: ManualFlow[] = [
     forks: [
       out("h-late-chomp", "garchomp", [
         q("h-late-g1", "Grounded, not Grass", { then: "Earthquake. Take the KO.", move: "Earthquake", send: "garchomp" }),
-        q("h-late-g2", "Flying or Levitate", { then: "Stone Edge or Dragon STAB. EQ is a zero.", move: "Stone Edge", send: "garchomp" }),
+        q("h-late-g2", "Flying or Levitate", { then: "Stone Edge or Dragon STAB. Earthquake does nothing.", move: "Stone Edge", send: "garchomp" }),
         q("h-late-g3", "You read Protect", { then: "Swords Dance. Next hit is the KO.", move: "Swords Dance", send: "garchomp" }),
         q("h-late-g4", "Need to scout Ice or Fairy", { then: "Protect. Not on Tailwind's last turns.", move: "Protect", send: "garchomp" }),
         q("h-late-g5", "Fairy is gone, you need the nuke", { then: "Outrage. You lock. Do not click it into Fairy.", move: "Outrage", send: "garchomp" }),
-        q("h-late-g6", "Ice or Fairy still in", { then: "Corvi if alive. Else you donated the 4× / 2×.", send: "corviknight" }),
-        q("h-late-g7", "Cott dead, they still outrun", { then: "Scale Shot. Coverage that KOs after they move.", move: "Scale Shot", send: "garchomp" }),
+        q("h-late-g6", "Ice or Fairy still in", { then: "Corviknight if alive. Else you donated Ice four times as hard, or Fairy double.", send: "corviknight" }),
+        q("h-late-g7", "Whimsicott dead, they still outrun", { then: "Scale Shot. Coverage that KOs after they move.", move: "Scale Shot", send: "garchomp" }),
       ]),
       out("h-late-corvi", "corviknight", [
-        q("h-late-c1", "Grass still up", { then: "Brave Bird. Do not send Garchomp to EQ it.", move: "Brave Bird", send: "corviknight" }),
+        q("h-late-c1", "Grass still up", { then: "Brave Bird. Do not send Garchomp to Earthquake it.", move: "Brave Bird", send: "corviknight" }),
       ]),
     ],
   },

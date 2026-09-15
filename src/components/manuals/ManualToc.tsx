@@ -9,9 +9,18 @@ export const MANUAL_SCROLL_MT = "scroll-mt-[4.25rem] md:scroll-mt-[8.25rem]";
 export function manualJumps(manual: TeamManual) {
   return [
     { href: "#top", label: "Top" },
-    ...(manual.plan?.some((b) => b.title || b.play) ? [{ href: "#plan", label: "Plan" }] : []),
     { href: "#three", label: "The three" },
+    { href: "#scout", label: "Vs scout" },
+    ...(manual.plan?.some((b) => b.title || b.play) ? [{ href: "#plan", label: "Plan" }] : []),
     ...flowsFor(manual).map((flow) => ({ href: `#flow-${flow.id}`, label: flow.title })),
+    ...(manual.loops.some((l) => l.title || l.body) ? [{ href: "#loops", label: "Loops" }] : []),
+    ...((manual.switches ?? []).some((s) => s.into || s.send) ? [{ href: "#switches", label: "Switches" }] : []),
+    ...(manual.victims?.some((v) => v.name || v.why) ||
+    manual.counters?.some((c) => c.name || c.why) ||
+    manual.advantages?.some((a) => a.title || a.body) ||
+    manual.hazards.some((h) => h.title || h.body)
+      ? [{ href: "#insights", label: "Insights" }]
+      : []),
   ];
 }
 

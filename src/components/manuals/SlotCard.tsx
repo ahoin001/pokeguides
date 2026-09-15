@@ -37,60 +37,81 @@ function Band({
   );
 }
 
-export function SlotCard({ slot }: { slot: SlotManual }) {
+export function SlotCardBody({ slot, identity = true }: { slot: SlotManual; identity?: boolean }) {
   const p = slot.slug ? getPokemon(slot.slug) : undefined;
   const lit = slot.literacy ? getLiteracyRole(slot.literacy) : undefined;
   const lines = playLines(slot.howToPlay);
   const moves = slot.moves.filter((m) => m.name);
 
   return (
-    <li
-      className="flex flex-col overflow-hidden rounded-[28px] border border-line/80 shadow-[0_12px_40px_rgba(0,0,0,0.22)]"
-      style={p ? cssVars(p.palette) : undefined}
-    >
-      <Band tone="identity">
-        <div className="flex items-start gap-4">
-          {p ? (
-            <Link href={`/pokemon/${p.slug}`} className="shrink-0">
-              <PokemonArt slug={p.slug} src={p.artwork} name={p.name} size={88} />
-            </Link>
-          ) : null}
-          <div className="min-w-0 pt-0.5">
-            <p className="text-[13px] text-muted">
-              <Link href={roleHref(slot.job)} className="underline">
-                {ROLE_LABEL[slot.job]}
-              </Link>
-              {lit ? ` · ${lit.name}` : null}
-            </p>
+    <>
+      {identity ? (
+        <Band tone="identity">
+          <div className="flex items-start gap-4">
             {p ? (
-              <Link href={`/pokemon/${p.slug}`} className="mt-1 block text-2xl font-semibold tracking-tight">
-                {p.name}
+              <Link href={`/pokemon/${p.slug}`} className="shrink-0">
+                <PokemonArt slug={p.slug} src={p.artwork} name={p.name} size={88} />
               </Link>
-            ) : (
-              <p className="mt-1 text-2xl font-semibold">{slot.title || "Empty slot"}</p>
-            )}
-            <p className="mt-1 text-base font-medium">{slot.title}</p>
+            ) : null}
+            <div className="min-w-0 pt-0.5">
+              <p className="text-[13px] text-muted">
+                <Link href={roleHref(slot.job)} className="underline">
+                  {ROLE_LABEL[slot.job]}
+                </Link>
+                {lit ? ` · ${lit.name}` : null}
+              </p>
+              {p ? (
+                <Link href={`/pokemon/${p.slug}`} className="mt-1 block text-2xl font-semibold tracking-tight">
+                  {p.name}
+                </Link>
+              ) : (
+                <p className="mt-1 text-2xl font-semibold">{slot.title || "Empty slot"}</p>
+              )}
+              <p className="mt-1 text-base font-medium">{slot.title}</p>
+            </div>
           </div>
-        </div>
 
-        <div className="mt-5 space-y-2">
-          {p ? <SlotMatchups types={p.types} /> : null}
-          {slot.ability ? (
-            <SlotField label="Ability">
-              <p className="pt-0.5 text-[15px] font-medium leading-snug">{slot.ability}</p>
-            </SlotField>
-          ) : null}
-          {slot.nature ? (
-            <SlotField label="Nature">
-              <p className="pt-0.5 text-[15px] font-medium leading-snug">{slot.nature}</p>
-            </SlotField>
-          ) : null}
-        </div>
+          <div className="mt-5 space-y-2">
+            {p ? <SlotMatchups types={p.types} /> : null}
+            {slot.ability ? (
+              <SlotField label="Ability">
+                <p className="pt-0.5 text-[15px] font-medium leading-snug">{slot.ability}</p>
+              </SlotField>
+            ) : null}
+            {slot.nature ? (
+              <SlotField label="Nature">
+                <p className="pt-0.5 text-[15px] font-medium leading-snug">{slot.nature}</p>
+              </SlotField>
+            ) : null}
+          </div>
 
-        {slot.objective ? (
-          <p className="mt-5 text-[15px] leading-relaxed text-pretty">{slot.objective}</p>
-        ) : null}
-      </Band>
+          {slot.objective ? (
+            <p className="mt-5 text-[15px] leading-relaxed text-pretty">{slot.objective}</p>
+          ) : null}
+        </Band>
+      ) : (
+        <>
+          {slot.ability || slot.nature || slot.objective ? (
+            <Band tone="identity">
+              <div className="space-y-2">
+                {slot.ability ? (
+                  <SlotField label="Ability">
+                    <p className="pt-0.5 text-[15px] font-medium leading-snug">{slot.ability}</p>
+                  </SlotField>
+                ) : null}
+                {slot.nature ? (
+                  <SlotField label="Nature">
+                    <p className="pt-0.5 text-[15px] font-medium leading-snug">{slot.nature}</p>
+                  </SlotField>
+                ) : null}
+              </div>
+              {slot.objective ? (
+                <p className="mt-5 text-[15px] leading-relaxed text-pretty">{slot.objective}</p>
+              ) : null}
+            </Band>
+          ) : null}
+        </>
+      )}
 
       {slot.item || slot.training ? (
         <Band tone="build" title="Hold & training">
@@ -138,6 +159,18 @@ export function SlotCard({ slot }: { slot: SlotManual }) {
           </ul>
         </Band>
       ) : null}
+    </>
+  );
+}
+
+export function SlotCard({ slot }: { slot: SlotManual }) {
+  const p = slot.slug ? getPokemon(slot.slug) : undefined;
+  return (
+    <li
+      className="flex flex-col overflow-hidden rounded-[28px] border border-line/80 shadow-[0_12px_40px_rgba(0,0,0,0.22)]"
+      style={p ? cssVars(p.palette) : undefined}
+    >
+      <SlotCardBody slot={slot} />
     </li>
   );
 }

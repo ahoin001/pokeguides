@@ -11,12 +11,14 @@ import { CoverageFlower } from "@/components/viz/CoverageFlower";
 import { SpeedTape } from "@/components/viz/SpeedTape";
 import { PokemonPicker } from "@/components/pokemon/PokemonPicker";
 import { TeamChecklist } from "@/components/team/TeamChecklist";
+import { VsScout } from "@/components/scout/VsScout";
 import type { ArchetypeId, CatalogEntry } from "@/types/pokemon";
 import { LEARN_ROLE_IDS, ROLE_LABEL, roleHref } from "@/content/roles";
 import { ARCHETYPES, ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
 import { readTeam, slotJob } from "@/lib/champions/team-readout";
 import { suggestForTeam } from "@/lib/champions/suggest";
 import { teamChecklist } from "@/lib/champions/team-checklist";
+import type { ScoutSide } from "@/lib/champions/vs";
 
 export default function TeamPage() {
   const slugs = useTeamStore((s) => s.slugs);
@@ -49,6 +51,10 @@ export default function TeamPage() {
   const suggested = useMemo(
     () => suggestForTeam(considering, activeIntent, slugs.filter(Boolean) as string[]),
     [considering, activeIntent, slugs],
+  );
+  const scoutSide: ScoutSide[] = useMemo(
+    () => filled.map((p) => ({ slug: p.slug, types: p.types })),
+    [filled],
   );
 
   return (
@@ -132,6 +138,12 @@ export default function TeamPage() {
           </Link>
         )}
       </div>
+      {scoutSide.length ? (
+        <VsScout
+          side={scoutSide}
+          lede="Search who they have. STABs only here — open a field manual for kit clicks."
+        />
+      ) : null}
       <div className="mt-12">
         <TeamChecklist items={checks} />
       </div>

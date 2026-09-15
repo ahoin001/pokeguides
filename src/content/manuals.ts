@@ -123,6 +123,8 @@ export type TeamManual = {
   lede: string;
   philosophy: string;
   archetype: ArchetypeId;
+  /** Classroom shelf. Clock / kite / weather / terrain / room. */
+  family?: ManualFamilyId;
   slugs: [string, string, string];
   meta: string;
   press?: string[];
@@ -184,6 +186,41 @@ export function resolveFlows(manual: TeamManual): ManualFlow[] {
 
 export const MANUAL_PHASE_IDS = ["preview", "lead", "mid", "late"] as const;
 
+export const MANUAL_FAMILY_IDS = ["clock", "kite", "weather", "terrain", "room"] as const;
+export type ManualFamilyId = (typeof MANUAL_FAMILY_IDS)[number];
+export const MANUAL_FAMILY_LABEL: Record<ManualFamilyId, string> = {
+  clock: "Clock",
+  kite: "Kite",
+  weather: "Weather",
+  terrain: "Terrain",
+  room: "Room",
+};
+
+export const MANUAL_FAMILY_BLURB: Record<ManualFamilyId, string> = {
+  clock: "Take Speed first. Tailwind or Fake Out, then hand the slot.",
+  kite: "A late sweeper stays in the bag until Ice and Fairy are gone.",
+  weather: "Rain or sun walks in with the setter. Overwrite is the funeral.",
+  terrain: "The field is the engine. Terrain on entry, then Unburden or the Mega.",
+  room: "Slow on purpose. Four turns, then you re-set or you race.",
+};
+
+export function manualFamily(manual: Pick<TeamManual, "family" | "archetype">): ManualFamilyId {
+  if (manual.family) return manual.family;
+  switch (manual.archetype) {
+    case "rain":
+    case "sun":
+      return "weather";
+    case "grassy":
+      return "terrain";
+    case "trick-room":
+      return "room";
+    case "hyper-offense":
+      return "kite";
+    default:
+      return "clock";
+  }
+}
+
 export const CANONICAL_MANUALS: TeamManual[] = [
   {
     id: "balance-whimsicott-corviknight-garchomp",
@@ -192,6 +229,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     philosophy:
       "Cott leads unless it dies on send. Prankster Tailwind is +1 — Fake Out still goes first. After the clock you switch; Cott is too fast for a safe U-turn. Corvi is the physical shield and the Ice / Fairy / Poison patch. Garchomp cleans while Tailwind lasts.",
     archetype: "balance",
+    family: "clock",
     slugs: ["whimsicott", "corviknight", "garchomp"],
     meta: "Physical and Fighting cores. You have no Fire STAB — Brave Bird is the Grass answer.",
     press: ["Physical leads", "Fighting cores", "Fairy into Corvi", "Dragons that lose Tailwind"],
@@ -464,6 +502,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     philosophy:
       "Stranglehold, not a wall. You traded Corvi's U-turn for Intimidate, Fake Out, Fire STAB, and Parting Shot. Parting Shot is −6: they hit the cat, then Garchomp is in. Champions cut Knock Off — the fourth slot is Taunt, Will-O-Wisp, or Snarl.",
     archetype: "balance",
+    family: "clock",
     slugs: ["whimsicott", "incineroar", "garchomp"],
     meta: "Physical leads, Grass, setup. Fighting is now 2× on the pivot — Cott or Garchomp take that slot.",
     press: ["Physical leads", "Ice (Fire resist)", "Grass / Kingambit", "Protect and setup"],
@@ -677,6 +716,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     philosophy:
       "Early M-C cups keep handing first to Mega Salamence next to Rillaboom. Sneasler is the usual third. Fake Out, then U-turn into Grassy Seed. Hide the Mega until Ice is gone.",
     archetype: "grassy",
+    family: "terrain",
     slugs: ["rillaboom", "sneasler", "salamence-mega"],
     meta: "Garchomp and Kingambit cores. Terrain cuts Earthquake. Armor Tail turns the engine off.",
     press: ["Garchomp / EQ", "Incineroar (Close Combat is 2×)", "Tailwind Cott (Fake Out is +3)", "Setup"],
@@ -876,6 +916,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     philosophy:
       "Pelipper walks in and the field is already wet. Archaludon turns that into a 130 BP Electric nuke with no charge. Basculegion is the physical closer under Swift Swim. If Drought overwrites you, the three is three Waters with no engine.",
     archetype: "rain",
+    family: "weather",
     slugs: ["pelipper", "archaludon", "basculegion-male"],
     meta: "Fire cores and Charizard Y. Pack the Electric switch (Archaludon) and respect Grass.",
     press: ["Fire / Mega Charizard Y", "Dragons (Hurricane)", "Sun if you keep rain"],
@@ -1075,6 +1116,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     philosophy:
       "This three is slow on purpose. Farigiraf sets the room and shuts priority. Kingambit cashes the turns. Gholdengo is the special Steel and the Ghost answer the truck hates. Fast teams look scary in preview. Under the room they move last.",
     archetype: "trick-room",
+    family: "room",
     slugs: ["farigiraf", "kingambit", "gholdengo"],
     meta: "Fake Out balance and Tailwind HO. Taunt on the setter is the preview you respect.",
     press: ["Fake Out cores", "Tailwind HO", "Sneasler Unburden", "Priority spam"],
@@ -1276,6 +1318,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     philosophy:
       "Sun on this three is Mega Charizard Y. You do not splash Drought onto a rain team. Garchomp punches what Fire does not. Cinderace is the second Fire that stays fast if Y goes down. Rock and Water are the preview you refuse to donate Y into.",
     archetype: "sun",
+    family: "weather",
     slugs: ["charizard-mega-y", "garchomp", "cinderace"],
     meta: "Grass, Steel, Rillaboom. Rain if you overwrite. Y and Cinderace are 2× Water. Garchomp is 1× Water, 4× Ice.",
     press: ["Grass / Rillaboom", "Steel", "Rain if you steal sun", "Bug / Ice into Cinderace"],
@@ -1476,6 +1519,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
     philosophy:
       "Clock is Excadrill or Primarina — whoever the preview names. Dragonite stays in the bag until Ice (4×) and Fairy are gone or chunked. Sand Rush is dead without a sand setter. Multiscale is full HP only. Extreme Speed is Normal — Ghosts laugh.",
     archetype: "balance",
+    family: "kite",
     slugs: ["excadrill", "primarina", "dragonite"],
     meta: "Kingambit and Steel, Rock, Electric into Prima, Dragons into Prima. Ice is Dragonite's funeral. Fire / Water / Fighting are Drill's. Electric is Prima's — Drill is immune.",
     press: ["Kingambit / Steel", "Rock", "Electric into Primarina", "Dragons into Primarina"],
@@ -1985,6 +2029,528 @@ export const CANONICAL_MANUALS: TeamManual[] = [
       { title: "Drill vs Fire / Water / Fighting", body: "All 2×. Prima resists all three. Dragon is not on this list — Steel resists Dragon." },
     ],
   },
+  {
+    id: "balance-mimikyu-excadrill-dragonite",
+    title: "Disguise Sweep: Mimikyu, Excadrill, Dragonite",
+    lede: "Disguise is the free Dance. Drill breaks Steel. Dragonite closes. Fake Out is a zero. Ice has no patch.",
+    philosophy:
+      "Same kite as Scale Sweep — Dragonite stays in the bag until Ice (4×) and Fairy are gone. The patch is Mimikyu, not Primarina. Ghost/Fairy is immune to Normal, Fighting, and Dragon, so Fake Out does nothing. Disguise eats the first damaging hit; Swords Dance is that turn. Drill is still the Steel and Rock lead, and Mold Breaker is how you pop their Mimikyu. Nobody resists Ice. Do not send the kite first.",
+    archetype: "balance",
+    family: "kite",
+    slugs: ["mimikyu-disguised", "excadrill", "dragonite"],
+    meta: "Week-1 M-C cups do not list this three as an S-pair. Mimikyu, Excadrill, and Dragonite each show as singles A-threats. The 3v3 synergy is real: Disguise Dance, Mold Breaker Steel, Multiscale kite. It is not Grassy Mega Salamence. Ice is worse than Scale Sweep — Prima resisted it; Mimikyu and Drill are both 1×.",
+    press: ["Fake Out cores", "Fighting / Dragon", "Kingambit / Steel", "Rock"],
+    refuse: [
+      "Ice into Dragonite",
+      "Fire / Water / Fighting into Drill",
+      "Ghost / Steel into Mimikyu",
+      "Fairy while Dragonite is the only answer",
+      "Ghost Extreme Speed",
+    ],
+    switches: [
+      { into: "Fake Out / Fighting / Dragon", send: "Mimikyu — Ghost immune to Fake Out and Fighting. Fairy immune to Dragon." },
+      { into: "Fire / Water", send: "Mimikyu (1×). Drill is 2×. Not a Prima resist — sit, do not farm." },
+      { into: "Ice", send: "Mimikyu or Drill (both 1×). Dragonite is 4× — never." },
+      { into: "Fairy", send: "Excadrill (Iron Head). Do not park Dragonite." },
+      { into: "Ghost / Steel into Mimikyu", send: "Excadrill. Steel resists Ghost. Iron Head the Fairy. Mold Breaker pops their Disguise." },
+      { into: "Electric", send: "Excadrill (immune). Mimikyu is 1×." },
+      { into: "Physical wall on Drill", send: "Mimikyu after Disguise Dance, or Dragonite later if Ice/Fairy are gone." },
+    ],
+    plan: [
+      {
+        title: "Clock",
+        goal: "Disguise Dance or Drill break — not Dragonite",
+        play: "Fake Out, Fighting, or Dragon: Mimikyu. Physical, Steel, Rock, or Electric: Excadrill. Fire or Water: Mimikyu at 1× — leave Drill. Dragonite never walks in first.",
+        next: "Disguise is the sash. Dance, then Play Rough or Shadow Sneak. Sash Dance on Drill if they live.",
+      },
+      {
+        title: "Shield",
+        goal: "Pivot Ghost and Steel off Mimikyu. Keep Multiscale full.",
+        play: "Ghost or Steel onto Mimikyu → Drill. Ice onto the kite → Mimikyu or Drill, never Dragonite. Fairy onto Dragonite → Drill Iron Head. Fire / Water / Fighting onto Drill → Mimikyu (Fighting immune; Fire/Water 1×).",
+        next: "Life Orb recoil starts after Disguise pops. Do not sit a second Fire or Water for free.",
+      },
+      {
+        title: "Clean",
+        goal: "Dragon Dance, then Outrage or Extreme Speed",
+        play: "Send Dragonite only after Ice and Fairy are gone or chunked. Dance into a Protect or a free turn. Outrage if the last two cannot Fairy. Extreme Speed the revenge — not Ghost. Mimikyu Shadow Sneak is the Ghost revenge.",
+        next: "Outrage locks. A Fairy switch ends the sweep. Multiscale is gone after the first chip.",
+      },
+    ],
+    slots: [
+      {
+        slug: "mimikyu-disguised",
+        title: "The Costume",
+        job: "breaker",
+        literacy: "wallbreaker",
+        role: "Disguise Dance. Fake Out / Fighting / Dragon lead. The Fire/Water sit Drill cannot take.",
+        ability: "Disguise",
+        item: "Life Orb",
+        itemWhy:
+          "Disguise is the live. After the costume pops you need the KO. Life Orb is the punch that matches 32 Atk. Leftovers does not cash the Dance.",
+        itemAlts: [
+          { name: "Lum Berry", why: "Will-O-Wisp and Thunder Wave end the sweep after Disguise. Lum is the clean +2." },
+          { name: "Mental Herb", why: "Taunt blanks Swords Dance. Herb eats the Taunt once." },
+        ],
+        nature: "Jolly",
+        training: train(2, 32, 0, 0, 0, 32, {
+          label: "Disguise Dance",
+          why: "Same glass tax as Sash Drill: cap Attack and Speed, leftover 2 in HP. Disguise is the one free hit — extra HP does not save Ghost or Steel after the costume pops. Jolly 32 Spe is 162: outruns Jolly Drill (154) and uninvested Garchomp (122), not Jolly Garchomp (169).",
+          spend: [
+            "32 Spe — 162 Jolly. Dance, then Play Rough before they click Ghost or Steel.",
+            "32 Atk — Play Rough (Dragon/Fighting) and Shadow Sneak (revenge).",
+            "2 HP — leftover. Disguise is the live. Bulk does not beat Ghost or Steel once the costume is gone.",
+          ],
+        }, [
+          alt("Adamant punch", 2, 32, 0, 0, 0, 32, "You already outspeed the table. Adamant 32 Spe is 148. Same 66 spend — nature is the Attack. Use when Kingambit and Incineroar are the clock, not Garchomp.", [
+            "32 Atk — Adamant, not Jolly. The Dance KO.",
+            "32 Spe — 148. Still beats 50 Spe trucks.",
+            "2 HP — leftover. Disguise is still the live.",
+          ]),
+        ]),
+        moves: [
+          { name: "Swords Dance", why: "Disguise is the turn. Next hit is the KO. Do not Dance into a guaranteed Ghost or Steel." },
+          { name: "Play Rough", why: "Fairy STAB. Dragons and Fighting. You are immune to Dragon — you can lead that." },
+          { name: "Shadow Sneak", why: "Ghost priority. Revenge and the Ghosts Extreme Speed cannot touch." },
+          {
+            name: "Shadow Claw",
+            why: "Ghost STAB when you already outspeed. Stronger than Sneak if the Dance won the race.",
+            alts: [
+              { name: "Wood Hammer", why: "Grass into Water/Ground (Swampert). Recoil after Disguise is gone — one click, then leave." },
+              { name: "Shadow Ball", why: "Do not. This three is physical. Special Ghost wastes the Dance." },
+            ],
+          },
+        ],
+        objective: "Lead into Fake Out, Fighting, Dragon. Sit Fire/Water that would KO Drill. Leave Ghost and Steel.",
+        howToPlay:
+          "Lead vs Fake Out, Fighting, or Dragon. Ghost immune to Fake Out and Fighting. Fairy immune to Dragon.\nFire and Water are 1× — you can sit them; Drill cannot. You do not resist them the way Prima did.\nGhost and Steel are 2× — leave to Drill. Mold Breaker Iron Head pops their Mimikyu.\nDisguise is one damaging hit. Status still lands. Life Orb recoil starts after the costume pops.",
+      },
+      {
+        slug: "excadrill",
+        title: "The Drill",
+        job: "breaker",
+        literacy: "wallbreaker",
+        role: "Default physical lead. Mold Breaker. Sash Dance. The Mimikyu answer.",
+        ability: "Mold Breaker",
+        item: "Focus Sash",
+        itemWhy: "Sash Dance. You live one, +2, KO. Matches the 2 HP spread. Leftovers does not survive Fire, Water, or Fighting.",
+        itemAlts: [
+          { name: "Life Orb", why: "Kingambit / Trick Room table where you already outspeed. Skip the Dance and punch." },
+        ],
+        nature: "Jolly",
+        training: train(2, 32, 0, 0, 0, 32, {
+          label: "Sash Dance lead",
+          why: "The classroom glass pattern: cap Attack and Speed, leftover 2 in HP. Focus Sash is the live — extra HP would not save Fire, Water, or Fighting. Jolly 32 Spe is 154: outruns uninvested Garchomp (122), not Jolly Garchomp (169). Sand Rush is off; there is no sand setter.",
+          spend: [
+            "32 Spe — 154 Jolly. Dance, then KO before they click Fire/Water/Fighting.",
+            "32 Atk — Earthquake (Kingambit) and Iron Head (Fairy, and their Mimikyu).",
+            "2 HP — leftover. Sash is the one live. Bulk does not beat those 2× types.",
+          ],
+        }, [
+          alt("They are slow", 20, 32, 14, 0, 0, 0, "Kingambit or Trick Room table. You already outspeed the truck. Move Speed into HP and Defense so Sash is not the only live — you can skip Dance and punch.", [
+            "32 Atk — still EQ the truck.",
+            "20 HP / 14 Def — sit a hit if they are slower.",
+            "0 Spe — you already outspeed 50 Spe Kingambit.",
+          ]),
+        ]),
+        moves: [
+          { name: "Swords Dance", why: "Sash is the turn. Next hit is the KO. Do not Dance into a guaranteed Fire/Water/Fighting." },
+          {
+            name: "Earthquake",
+            why: "Ground STAB. vs Kingambit click EQ — not Iron Head. Steel resists Steel.",
+          },
+          {
+            name: "Iron Head",
+            why: "Steel STAB into Fairy and Ice. Mold Breaker ignores Disguise — this is their Mimikyu answer. Flinch is a gift, not the plan.",
+          },
+          {
+            name: "Stone Edge",
+            why: "Flying. Singles — not Rock Slide.",
+            alts: [{ name: "Rock Slide", why: "Do not. Spread fantasy from doubles. One target, one Edge." }],
+          },
+        ],
+        objective: "Lead into physical, Steel, Rock, Electric (immune). Punch their Mimikyu. Leave Fire, Water, Fighting, Ground.",
+        howToPlay:
+          "Lead vs physical, Steel, Rock, or Electric. You are immune to Electric.\nvs Kingambit: Earthquake. Iron Head is resisted.\nvs Mimikyu: Iron Head. Mold Breaker ignores Disguise. Earthquake is 1× Ground.\nFire, Water, Fighting, Ground leave — Fighting to Mimikyu (immune). Fire/Water to Mimikyu (1×).\nDragon is fine on Drill — Steel resists Dragon. Sand Rush needs sand. There is no setter.",
+      },
+      {
+        slug: "dragonite",
+        title: "The Kite",
+        job: "breaker",
+        literacy: "sweeper",
+        role: "Late wincon. Hidden until Ice and Fairy are gone.",
+        ability: "Multiscale",
+        item: "Lum Berry",
+        itemWhy: "Multiscale is full HP. Status or Outrage confusion ends the kite. Lum is the one clean Dance.",
+        itemAlts: [
+          { name: "Heavy-Duty Boots", why: "Stealth Rock is 2× Flying. One chip ends Multiscale. Boots keeps the kite at full until Dance." },
+        ],
+        nature: "Adamant",
+        training: train(2, 32, 0, 0, 0, 32, {
+          label: "Multiscale kite",
+          why: "Never the lead. Cap Attack and Speed. Adamant 32 Spe is 132; one Dragon Dance is 198. Extra HP does not restore Multiscale — it is full HP or it is gone. Leftover 2 in HP is the tax. Lum keeps the one clean Dance.",
+          spend: [
+            "32 Spe — 132 Adamant. One Dance is 198. That is the sweep.",
+            "32 Atk — Outrage and Extreme Speed.",
+            "2 HP — leftover. HP after the first chip does not bring Multiscale back.",
+          ],
+        }, [
+          alt("You always Dance", 20, 32, 0, 0, 0, 14, "If the free turn is real every game. 14 Spe is 114, Dance is 171. Move the rest into HP so the first chip after Multiscale drops does not KO.", [
+            "32 Atk — still the kite.",
+            "20 HP — live the hit after Multiscale is gone.",
+            "14 Spe — 114 Adamant, 171 after Dance. Enough if the free turn is guaranteed.",
+          ]),
+        ]),
+        moves: [
+          { name: "Dragon Dance", why: "The free turn. Protect branch. Multiscale still up if you are full." },
+          {
+            name: "Outrage",
+            why: "The sweep click. You lock. A Fairy switch ends Dragonite.",
+            alts: [{ name: "Dragon Claw", why: "If you fear the Fairy switch. Less damage. You can leave." }],
+          },
+          { name: "Earthquake", why: "Steel that resists Dragon. Grounded leftovers. Hits Ghost — Extreme Speed does not." },
+          {
+            name: "Extreme Speed",
+            why: "Normal priority. Revenge after Dance. Ghost is immune — Mimikyu Shadow Sneak is that revenge.",
+          },
+        ],
+        objective: "Never the lead. Dance, then Outrage or Extreme Speed. Keep Multiscale for one hit.",
+        howToPlay:
+          "Do not lead. Hide until Ice (4×) and Fairy are gone or chunked.\nThis three has no Ice resist. Mimikyu and Drill are both 1×. Preview is where you refuse the kite.\nMultiscale only on full HP. Fake Out still flinches — send Mimikyu into Incineroar, not the kite.\nOutrage locks. Extreme Speed is Normal — do not click it into Ghost.",
+      },
+    ],
+    phases: [
+      {
+        id: "preview",
+        title: "Preview",
+        lede: "One send. Name Mimikyu or Drill. Dragonite stays in the bag.",
+        branches: [
+          { when: "Fake Out, Fighting, or Dragon", then: "Mimikyu. Ghost immune to Fake Out and Fighting. Fairy immune to Dragon." },
+          { when: "Physical, Steel, Rock, or Electric", then: "Excadrill. Mold Breaker. Sash. Electric immune." },
+          { when: "Fire or Water", then: "Mimikyu (1×). Drill is 2×. Not a Prima resist — sit, then Dance." },
+          { when: "Ice or Fairy still healthy", then: "Keep Dragonite back. Nobody resists Ice. Patch with Mimikyu or Drill first." },
+          { when: "Kingambit on their three", then: "Drill. Earthquake — not Iron Head. Steel resists Steel." },
+          { when: "Their Mimikyu", then: "Drill Iron Head. Mold Breaker ignores Disguise." },
+        ],
+      },
+      {
+        id: "lead",
+        title: "Lead",
+        lede: "Mimikyu or Drill. Dragonite is not here yet.",
+        branches: [
+          { out: "mimikyu-disguised", when: "Fake Out coming", then: "Stay. Ghost immune. Then Swords Dance." },
+          { out: "mimikyu-disguised", when: "Dragon or Fighting", then: "Play Rough. You are immune." },
+          { out: "mimikyu-disguised", when: "They Protect or Disguise still up", then: "Swords Dance. Disguise is the turn." },
+          { out: "mimikyu-disguised", when: "Ghost or Steel coming", then: "Leave to Drill. You are 2×." },
+          { out: "mimikyu-disguised", when: "Need revenge on a Ghost", then: "Shadow Sneak. Extreme Speed is Normal." },
+          { out: "excadrill", when: "Kingambit or a Steel that resists Iron Head", then: "Earthquake. Steel resists Steel." },
+          { out: "excadrill", when: "Fairy or their Mimikyu", then: "Iron Head. Mold Breaker pops Disguise." },
+          { out: "excadrill", when: "Flying", then: "Stone Edge. Not Rock Slide." },
+          { out: "excadrill", when: "They Protect or you live the hit", then: "Swords Dance. Sash is the turn." },
+          { out: "excadrill", when: "Fire, Water, Fighting, or Ground coming", then: "Leave to Mimikyu. Fighting immune. Fire/Water 1×. Ground: Mimikyu is 1×." },
+        ],
+      },
+      {
+        id: "mid",
+        title: "Mid",
+        lede: "Pivot Ghost and Steel off Mimikyu. Do not send the kite yet.",
+        branches: [
+          { out: "mimikyu-disguised", when: "Ghost or Steel onto Mimikyu", then: "Excadrill. Steel resists Ghost. Iron Head the Fairy." },
+          { out: "mimikyu-disguised", when: "Disguise popped, Life Orb recoil stacking", then: "You are glass now. KO or leave. Do not farm Fire/Water." },
+          { out: "excadrill", when: "Fire, Water, or Fighting onto Drill", then: "Mimikyu. Fighting immune. Fire/Water 1×." },
+          { out: "excadrill", when: "Physical wall sitting on Drill", then: "Mimikyu Dance, or Dragonite later if Ice and Fairy are gone." },
+          { out: "dragonite", when: "Ice onto Dragonite", then: "Mimikyu or Drill. Both 1×. You mis-sent if this is full HP Ice." },
+          { out: "dragonite", when: "Fairy onto Dragonite", then: "Excadrill. Iron Head." },
+        ],
+      },
+      {
+        id: "late",
+        title: "Late",
+        lede: "Ice and Fairy gone or chunked. Then the kite.",
+        branches: [
+          { out: "dragonite", when: "Ice and Fairy gone or chunked", then: "Dragon Dance, then Outrage or Extreme Speed." },
+          { out: "dragonite", when: "They Protect", then: "Dragon Dance. Multiscale still wants full HP." },
+          { out: "dragonite", when: "Ghost in", then: "Earthquake, or leave to Mimikyu Shadow Sneak. Extreme Speed is Normal." },
+          { out: "dragonite", when: "Steel leftover", then: "Earthquake. Outrage is resisted." },
+          { out: "dragonite", when: "Outrage locked, Fairy switches in", then: "The sweep is over. Claw is the alt if you feared this." },
+          { out: "dragonite", when: "Multiscale broken", then: "You take real damage now. Do not eat a second hit for free." },
+          { out: "mimikyu-disguised", when: "Disguise still in, a wall left", then: "Swords Dance and Play Rough. Dragonite can wait one more KO." },
+          { out: "excadrill", when: "Sash still in, a wall left", then: "Swords Dance and break. Dragonite can wait one more KO." },
+        ],
+      },
+    ],
+    flows: [
+      {
+        id: "lead",
+        title: "Lead",
+        lede: "Preview their three. One send. Dragonite never walks in first.",
+        forks: [
+          {
+            id: "lead-mimi",
+            when: "Fake Out, Fighting, or Dragon",
+            then: "Lead Mimikyu. Ghost immune to Fake Out and Fighting. Fairy immune to Dragon.",
+            send: "mimikyu-disguised",
+            forks: [
+              {
+                id: "lead-mimi-fo",
+                when: "Fake Out coming",
+                then: "Stay. Ghost immune. Then Swords Dance.",
+                move: "Swords Dance",
+                send: "mimikyu-disguised",
+                why: "Incineroar's Fake Out is a zero. Do not send Dragonite into the cat.",
+              },
+              {
+                id: "lead-mimi-fairy",
+                when: "Dragon or Fighting",
+                then: "Play Rough. You are immune.",
+                move: "Play Rough",
+                send: "mimikyu-disguised",
+              },
+              {
+                id: "lead-mimi-dance",
+                when: "They Protect or Disguise still up",
+                then: "Swords Dance. Disguise is the turn.",
+                move: "Swords Dance",
+                send: "mimikyu-disguised",
+              },
+              {
+                id: "lead-mimi-leave",
+                when: "Ghost or Steel coming",
+                then: "Leave to Excadrill. You are 2×.",
+                send: "excadrill",
+                why: "Steel resists Ghost. Iron Head pops Fairy and their Mimikyu.",
+              },
+            ],
+          },
+          {
+            id: "lead-fw",
+            when: "Fire or Water",
+            then: "Lead Mimikyu at 1×. Drill is 2×. This is not Prima — you sit, you do not resist.",
+            send: "mimikyu-disguised",
+            forks: [
+              {
+                id: "lead-fw-dance",
+                when: "Disguise eats the first Fire or Water",
+                then: "Swords Dance, then Play Rough or leave. Life Orb recoil starts next hit.",
+                move: "Swords Dance",
+                send: "mimikyu-disguised",
+              },
+            ],
+          },
+          {
+            id: "lead-drill",
+            when: "Physical, Steel, Rock, or Electric",
+            then: "Lead Excadrill. Mold Breaker. Sash. Electric immune.",
+            send: "excadrill",
+            forks: [
+              {
+                id: "lead-drill-eq",
+                when: "Kingambit or a Steel that resists Iron Head",
+                then: "Earthquake. Steel resists Steel.",
+                move: "Earthquake",
+                send: "excadrill",
+              },
+              {
+                id: "lead-drill-mimi",
+                when: "Fairy or their Mimikyu",
+                then: "Iron Head. Mold Breaker ignores Disguise.",
+                move: "Iron Head",
+                send: "excadrill",
+                why: "Earthquake is 1× Ground on Mimikyu. Iron Head is the pop.",
+              },
+              {
+                id: "lead-drill-flying",
+                when: "Flying",
+                then: "Stone Edge. Not Rock Slide.",
+                move: "Stone Edge",
+                send: "excadrill",
+              },
+              {
+                id: "lead-drill-dance",
+                when: "They Protect or you live the hit",
+                then: "Swords Dance. Sash is the turn.",
+                move: "Swords Dance",
+                send: "excadrill",
+              },
+              {
+                id: "lead-drill-leave",
+                when: "Fire, Water, Fighting, or Ground coming",
+                then: "Leave to Mimikyu. Fighting immune. Fire/Water 1×.",
+                send: "mimikyu-disguised",
+                why: "Dragon is fine on Drill — Steel resists Dragon.",
+              },
+            ],
+          },
+          {
+            id: "lead-hide",
+            when: "Ice or Fairy still healthy",
+            then: "Keep Dragonite back. Patch with Mimikyu or Excadrill first.",
+            why: "Dragonite is 4× Ice. This three has no Ice resist. Fairy ends Outrage. Fake Out still flinches Multiscale — send Mimikyu into the cat.",
+          },
+        ],
+      },
+      {
+        id: "mid",
+        title: "Mid",
+        lede: "Pivot Ghost and Steel off Mimikyu. Do not donate the kite.",
+        forks: [
+          {
+            id: "mid-mimi",
+            when: "This Pokémon is out",
+            out: "mimikyu-disguised",
+            forks: [
+              {
+                id: "mid-mimi-ghost-steel",
+                when: "Ghost or Steel onto Mimikyu",
+                then: "Excadrill. Steel resists Ghost. Iron Head the Fairy.",
+                send: "excadrill",
+              },
+              {
+                id: "mid-mimi-popped",
+                when: "Disguise popped, Life Orb recoil stacking",
+                then: "You are glass now. KO or leave. Do not farm Fire or Water.",
+                send: "mimikyu-disguised",
+              },
+            ],
+          },
+          {
+            id: "mid-drill",
+            when: "This Pokémon is out",
+            out: "excadrill",
+            forks: [
+              {
+                id: "mid-drill-fwf",
+                when: "Fire, Water, or Fighting onto Drill",
+                then: "Mimikyu. Fighting immune. Fire/Water 1×.",
+                send: "mimikyu-disguised",
+              },
+              {
+                id: "mid-drill-wall",
+                when: "Physical wall sitting on Drill",
+                then: "Mimikyu Dance, or Dragonite later if Ice and Fairy are gone.",
+                send: "mimikyu-disguised",
+              },
+            ],
+          },
+          {
+            id: "mid-nite",
+            when: "This Pokémon is out",
+            out: "dragonite",
+            forks: [
+              {
+                id: "mid-nite-ice",
+                when: "Ice onto Dragonite",
+                then: "Mimikyu or Drill. Both 1×.",
+                send: "mimikyu-disguised",
+                why: "You mis-sent if this is full HP Ice. Scale Sweep had Prima. This three does not.",
+              },
+              {
+                id: "mid-nite-fairy",
+                when: "Fairy onto Dragonite",
+                then: "Excadrill. Iron Head.",
+                send: "excadrill",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "late",
+        title: "Late",
+        lede: "Ice and Fairy gone or chunked. Then Dance.",
+        forks: [
+          {
+            id: "late-nite",
+            when: "This Pokémon is out",
+            out: "dragonite",
+            forks: [
+              {
+                id: "late-nite-go",
+                when: "Ice and Fairy gone or chunked",
+                then: "Dragon Dance, then Outrage or Extreme Speed.",
+                move: "Dragon Dance",
+                send: "dragonite",
+              },
+              {
+                id: "late-nite-protect",
+                when: "They Protect",
+                then: "Dragon Dance. Multiscale still wants full HP.",
+                move: "Dragon Dance",
+                send: "dragonite",
+              },
+              {
+                id: "late-nite-ghost",
+                when: "Ghost in",
+                then: "Earthquake, or leave to Mimikyu Shadow Sneak. Extreme Speed is Normal.",
+                move: "Earthquake",
+                send: "dragonite",
+              },
+              {
+                id: "late-nite-steel",
+                when: "Steel leftover",
+                then: "Earthquake. Outrage is resisted.",
+                move: "Earthquake",
+                send: "dragonite",
+              },
+              {
+                id: "late-nite-fairy-lock",
+                when: "Outrage locked, Fairy switches in",
+                then: "The sweep is over. Claw is the alt if you feared this.",
+                move: "Outrage",
+              },
+              {
+                id: "late-nite-scale",
+                when: "Multiscale broken",
+                then: "You take real damage now. Do not eat a second hit for free.",
+                send: "dragonite",
+              },
+            ],
+          },
+          {
+            id: "late-mimi",
+            when: "This Pokémon is out",
+            out: "mimikyu-disguised",
+            forks: [
+              {
+                id: "late-mimi-dance",
+                when: "Disguise still in, a wall left",
+                then: "Swords Dance and Play Rough. Dragonite can wait one more KO.",
+                move: "Swords Dance",
+                send: "mimikyu-disguised",
+              },
+            ],
+          },
+          {
+            id: "late-drill",
+            when: "This Pokémon is out",
+            out: "excadrill",
+            forks: [
+              {
+                id: "late-drill-sash",
+                when: "Sash still in, a wall left",
+                then: "Swords Dance and break. Dragonite can wait one more KO.",
+                move: "Swords Dance",
+                send: "excadrill",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    loops: [
+      { title: "Disguise Dance", body: "Mimikyu eats one damaging hit. Swords Dance. Next hit is Play Rough or Shadow Sneak. Status still lands. Life Orb recoil starts after the costume pops." },
+      { title: "Sash Dance", body: "Drill lives on Sash. Swords Dance. Next hit is Earthquake, Iron Head, or Stone Edge — one target. Iron Head pops their Mimikyu." },
+      { title: "Multiscale Dance", body: "Full HP Dragonite in. Dragon Dance on a free turn. Outrage if Fairy is gone. Extreme Speed the revenge — not Ghost. Mimikyu Shadow Sneak is the Ghost revenge." },
+    ],
+    hazards: [
+      { title: "No Ice resist", body: "Dragonite is 4× Ice. Mimikyu and Drill are both 1×. Scale Sweep had Prima. Preview is where you refuse the kite lead." },
+      { title: "Ghost / Steel into Mimikyu", body: "Both 2× once Disguise is gone. Drill patches. Do not Dance into a guaranteed Iron Head or Shadow Ball." },
+      { title: "Mold Breaker mirror", body: "Their Excadrill ignores your Disguise. Do not lead Mimikyu into Mold Breaker Drill." },
+      { title: "Outrage lock", body: "A Fairy switch ends the sweep. Dragon Claw is the alt if the Fairy is still in the bag." },
+      { title: "Fake Out into Dragonite", body: "Multiscale still flinches. Send Mimikyu into Incineroar. Ghost is immune." },
+      { title: "Drill vs Fire / Water / Fighting", body: "All 2×. Mimikyu takes Fighting for free and sits Fire/Water at 1×. Dragon is not on this list — Steel resists Dragon." },
+      { title: "Life Orb after Disguise", body: "The costume is one hit. Recoil and the next STAB both land on 55 HP. KO or leave." },
+    ],
+  },
 ];
 
 export function getCanonicalManual(id: string) {
@@ -2032,6 +2598,7 @@ export function emptyManual(id: string): TeamManual {
     lede: "",
     philosophy: "",
     archetype: "balance",
+    family: "clock",
     slugs: ["", "", ""],
     meta: "",
     slots: [emptySlot(), emptySlot(), emptySlot()],

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
-import { type TeamManual } from "@/content/manuals";
+import { MANUAL_FAMILY_LABEL, manualFamily, type TeamManual } from "@/content/manuals";
 import { flowsFor } from "@/content/classroom-flows";
 import { ManualBriefing } from "@/components/manuals/ManualBriefing";
 import { ManualToc, MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
@@ -39,6 +39,8 @@ export function ManualView({
         <h1 className="mt-2 text-4xl font-semibold tracking-tight lg:text-5xl">{manual.title}</h1>
         <p className="mt-3 text-lg text-muted">{manual.lede}</p>
         <p className="mt-2 text-sm text-muted">
+          {MANUAL_FAMILY_LABEL[manualFamily(manual)]}
+          {" · "}
           <Link href={archetypeHref(manual.archetype)} className="underline">
             {ARCHETYPE_LABEL[manual.archetype]}
           </Link>

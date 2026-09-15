@@ -3,7 +3,7 @@ import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { ARCHETYPE_LABEL } from "@/content/archetypes";
-import { manualHref, type TeamManual } from "@/content/manuals";
+import { MANUAL_FAMILY_LABEL, manualFamily, manualHref, type TeamManual } from "@/content/manuals";
 
 export function ManualCard({
   manual,
@@ -34,7 +34,7 @@ export function ManualCard({
         )}
       </div>
       <p className="mt-4 text-xs text-muted">
-        {ARCHETYPE_LABEL[manual.archetype]}
+        {MANUAL_FAMILY_LABEL[manualFamily(manual)]} · {ARCHETYPE_LABEL[manual.archetype]}
         {sourced === "local" ? " · Yours" : ""}
       </p>
       <h2 className="mt-1 text-xl font-semibold tracking-tight">{manual.title || "Untitled three"}</h2>

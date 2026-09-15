@@ -88,7 +88,7 @@ export function DecisionTree({
     <MotionConfig reducedMotion="user">
       <section
         id={`flow-${flow.id}`}
-        className={compact ? "mt-8" : `mt-16 ${MANUAL_SCROLL_MT}`}
+        className={compact ? "mt-8" : `mt-10 ${MANUAL_SCROLL_MT}`}
         style={mon ? cssVars(mon.palette) : undefined}
         tabIndex={0}
         onKeyDown={onKey}

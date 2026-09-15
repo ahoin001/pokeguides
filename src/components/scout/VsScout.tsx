@@ -2,12 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, LayoutGroup, MotionConfig, motion } from "motion/react";
+import { VsScoutDock, type DockCorner } from "@/components/scout/VsScoutDock";
 import { catalog, getPokemon } from "@/lib/catalog/load";
 import { searchCatalog } from "@/lib/catalog/search";
 import { cssVars } from "@/lib/champions/palette";
 import { speBand } from "@/lib/champions/vs-stats";
 import { scoutField, type ScoutFoe, type ScoutSide, type ScoutTeamResult } from "@/lib/champions/vs";
-import { easeOut, fadeUp, motionTokens } from "@/components/motion/tokens";
+import { easeOut, motionTokens } from "@/components/motion/tokens";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { TypeBadge } from "@/components/pokemon/TypeBadge";
 import { MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
@@ -22,6 +23,7 @@ import type { CatalogEntry } from "@/types/pokemon";
 const RECENT_KEY = "ringside-vs-scout-recent";
 const FOES_KEY = "ringside-vs-scout-foes";
 const DOCK_KEY = "ringside-vs-scout-dock";
+const CORNER_KEY = "ringside-vs-scout-dock-corner";
 const RECENT_MAX = 5;
 
 function readSlugs(key: string): string[] {
@@ -48,6 +50,14 @@ function readDock(): boolean {
     return sessionStorage.getItem(DOCK_KEY) === "1";
   } catch {
     return false;
+  }
+}
+
+function readCorner(): DockCorner {
+  try {
+    return sessionStorage.getItem(CORNER_KEY) === "tr" ? "tr" : "br";
+  } catch {
+    return "br";
   }
 }
 
@@ -79,6 +89,7 @@ export function VsScout({
   const [hydrated, setHydrated] = useState(false);
   const [docked, setDocked] = useState(false);
   const [dockOpen, setDockOpen] = useState(true);
+  const [corner, setCorner] = useState<DockCorner>("br");
 
   useEffect(() => {
     const foes = readSlugs(FOES_KEY).filter((s) => !exclude.includes(s)).slice(0, MAX_FOES);
@@ -87,6 +98,7 @@ export function VsScout({
     setFocusSlug(foes[0] ?? null);
     setRecent(rec);
     setDocked(readDock());
+    setCorner(readCorner());
     setHydrated(true);
     // excludeKey is the stable membership signal; exclude array identity is not.
     // eslint-disable-next-line react-hooks/exhaustive-deps -- excludeKey tracks slug membership
@@ -105,6 +117,15 @@ export function VsScout({
       /* ignore */
     }
   }, [docked, hydrated]);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    try {
+      sessionStorage.setItem(CORNER_KEY, corner);
+    } catch {
+      /* ignore */
+    }
+  }, [corner, hydrated]);
 
   useEffect(() => {
     if (!opponentSlugs.length) {
@@ -306,7 +327,7 @@ export function VsScout({
       <LayoutGroup>
         <section id={id} className={`mt-10 ${MANUAL_SCROLL_MT}`}>
           <h2 className="text-2xl font-semibold tracking-tight">{heading}</h2>
-          <p className="mt-2 max-w-[52ch] text-sm text-muted">{lede}</p>
+          {lede ? <p className="mt-2 max-w-[52ch] text-sm text-muted">{lede}</p> : null}
 
           {showDock ? (
             <p className="mt-5 rounded-[22px] border border-line bg-raised/40 px-4 py-3 text-sm text-muted">
@@ -324,12 +345,7 @@ export function VsScout({
           )}
 
           <AnimatePresence mode="wait" initial={false}>
-            {!foes.length ? (
-              <motion.p key="empty" {...fadeUp} className="mt-6 max-w-[48ch] text-sm text-muted">
-                Pick up to three names when you cannot remember the typing. Stats, Spe race, and matchups land
-                below.
-              </motion.p>
-            ) : showDock ? null : (
+            {foes.length && !showDock ? (
               <ScoutReport
                 multi={foes.length > 1}
                 field={field}
@@ -341,41 +357,22 @@ export function VsScout({
                 ourMons={ourMons}
                 hasMoves={hasMoves}
               />
-            )}
+            ) : null}
           </AnimatePresence>
         </section>
 
         {showDock ? (
-          <motion.div
-            layout
-            className="fixed inset-x-3 bottom-[4.5rem] z-40 max-h-[70vh] overflow-auto rounded-[28px] border border-line bg-bg/95 p-3 shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-md md:inset-x-auto md:right-6 md:bottom-6 md:w-[min(42rem,calc(100vw-3rem))] md:p-4"
-          >
-            <div className="mb-2 flex items-center justify-between gap-2">
-              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Pinned scout</p>
-              <button
-                type="button"
-                onClick={() => setDockOpen((v) => !v)}
-                className="rounded-full px-3 py-1 text-xs text-muted hover:bg-white/8"
-              >
-                {dockOpen ? "Collapse" : "Expand"}
-              </button>
-            </div>
-            {chrome}
-            {dockOpen && focusFoe && focusReport ? (
-              <div className="mt-3 space-y-3" style={cssVars(focusFoe.palette)}>
-                <SafeSwitchCallout
-                  slug={focusReport.safeSwitchSlug}
-                  holes={focusReport.sharedHoles}
-                  compact
-                />
-                <div className="grid gap-2 sm:grid-cols-3">
-                  {focusReport.slots.map((slot) => (
-                    <VsSlotCard key={slot.slug} result={slot} hasMoves={hasMoves} compact />
-                  ))}
-                </div>
-              </div>
-            ) : null}
-          </motion.div>
+          <VsScoutDock
+            corner={corner}
+            onCorner={setCorner}
+            dockOpen={dockOpen}
+            onToggleOpen={() => setDockOpen((v) => !v)}
+            chrome={chrome}
+            focusFoe={focusFoe}
+            focusReport={focusReport}
+            ourMons={ourMons}
+            hasMoves={hasMoves}
+          />
         ) : null}
       </LayoutGroup>
     </MotionConfig>

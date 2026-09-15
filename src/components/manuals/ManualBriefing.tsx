@@ -9,15 +9,13 @@ import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { LoadSampleSix } from "@/components/learn/LoadSampleSix";
 import { SlotMatchups } from "@/components/manuals/SlotMatchups";
+import { TeamCoverage } from "@/components/manuals/TeamCoverage";
 import { SlotCardBody } from "@/components/manuals/SlotCard";
 import { VsScout } from "@/components/scout/VsScout";
 import { MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
 import type { TeamManual } from "@/content/manuals";
 import type { ScoutSide } from "@/lib/champions/vs";
-
-const SETS_FALLBACK =
-  "Each Pokémon spends 66 Stat Points. One point is +1 to that stat at Level 50. You may put at most 32 in a single stat.";
 
 function ChipRow({ label, items }: { label: string; items: string[] }) {
   const chips = items.map((s) => s.trim()).filter(Boolean);
@@ -54,11 +52,8 @@ export function ManualBriefing({ manual }: { manual: TeamManual }) {
     <MotionConfig reducedMotion="user">
       <div className="mt-8 space-y-6">
         <section id="three" className={MANUAL_SCROLL_MT}>
-          <h2 className="text-2xl font-semibold tracking-tight">The three</h2>
-          <p className="mt-2 max-w-[62ch] text-sm leading-relaxed text-muted">
-            {manual.setsNote?.trim() || SETS_FALLBACK} Tap a name for the set.
-          </p>
-          <ul className="mt-5 grid items-start gap-3 lg:grid-cols-3">
+          <h2 className="sr-only">The three</h2>
+          <ul className="grid items-start gap-3 lg:grid-cols-3">
             {manual.slots.map((slot) => {
               const p = slot.slug ? getPokemon(slot.slug) : undefined;
               const key = `${slot.slug}-${slot.title}`;
@@ -115,6 +110,19 @@ export function ManualBriefing({ manual }: { manual: TeamManual }) {
               );
             })}
           </ul>
+          <TeamCoverage
+            members={manual.slots.flatMap((slot) => {
+              const p = slot.slug ? getPokemon(slot.slug) : undefined;
+              if (!p) return [];
+              return [
+                {
+                  name: p.name,
+                  types: p.types,
+                  moves: slot.moves.map((m) => m.name),
+                },
+              ];
+            })}
+          />
         </section>
         {ready ? <LoadSampleSix slugs={[...manual.slugs]} intent={manual.archetype} /> : null}
         <div className="grid gap-5 sm:grid-cols-2">
@@ -124,7 +132,7 @@ export function ManualBriefing({ manual }: { manual: TeamManual }) {
         {scoutSide.length ? (
           <VsScout
             side={scoutSide}
-            lede="Search who they have. Kit clicks and STABs — how your three hit them, and how they hit you."
+            lede="Search who they have."
           />
         ) : null}
       </div>

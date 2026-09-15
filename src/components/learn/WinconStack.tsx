@@ -51,7 +51,7 @@ function stanceFor(title: string): Stance {
 export function WinconStack({
   plan,
   heading = "Clock, shield, clean",
-  lede = "Objective, then the click. The arrow is when you hand the slot.",
+  lede = "",
   id = "plan",
 }: {
   plan: ManualPlanBeat[];
@@ -66,12 +66,11 @@ export function WinconStack({
 
   return (
     <MotionConfig reducedMotion="user">
-      <section id={id} className={`mt-16 ${MANUAL_SCROLL_MT}`}>
+      <section id={id} className={`mt-10 ${MANUAL_SCROLL_MT}`}>
         {heading ? <h2 className="text-2xl font-semibold tracking-tight">{heading}</h2> : null}
         {lede ? <p className="mt-2 max-w-prose text-sm text-muted">{lede}</p> : null}
-        <p className="mt-2 text-xs text-muted">Tap a beat to open the objective and clicks.</p>
 
-        <ol className="mt-6 max-w-2xl list-none space-y-0">
+        <ol className={`${heading || lede ? "mt-5" : "mt-6"} max-w-2xl list-none space-y-0`}>
           {beats.map((beat, i) => {
             const stance = stanceFor(beat.title || "");
             const last = i === beats.length - 1;
@@ -140,33 +139,25 @@ export function WinconStack({
                             <p className="mt-1.5 text-[15px] leading-relaxed text-ink/90">{beat.play}</p>
                           </div>
                         ) : null}
+
+                        {beat.next ? (
+                          <div className="border-t border-line/60 px-5 py-4">
+                            <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+                              {last ? "End" : "Then"}
+                            </p>
+                            <p className="mt-1.5 text-[15px] leading-relaxed text-muted">{beat.next}</p>
+                          </div>
+                        ) : null}
                       </motion.div>
                     ) : null}
                   </AnimatePresence>
                 </div>
 
                 {!last ? (
-                  <div className="relative flex flex-col items-center py-1" aria-hidden={false}>
-                    <span className="block h-3 w-px bg-line" aria-hidden />
+                  <div className="relative flex flex-col items-center py-1" aria-hidden>
+                    <span className="block h-3 w-px bg-line" />
                     <FlowArrow />
-                    {beat.next ? (
-                      <p className="my-2 max-w-[36ch] rounded-full border border-line bg-sunken/80 px-4 py-2 text-center text-sm leading-snug text-muted">
-                        <span className="font-medium text-ink">Then </span>
-                        {beat.next}
-                      </p>
-                    ) : (
-                      <span className="my-2 block h-2" aria-hidden />
-                    )}
-                    <FlowArrow />
-                    <span className="block h-3 w-px bg-line" aria-hidden />
-                  </div>
-                ) : beat.next ? (
-                  <div className="mt-4 flex flex-col items-center">
-                    <FlowArrow />
-                    <p className="mt-2 max-w-[36ch] rounded-full border border-line bg-sunken/80 px-4 py-2 text-center text-sm leading-snug text-muted">
-                      <span className="font-medium text-ink">End </span>
-                      {beat.next}
-                    </p>
+                    <span className="block h-3 w-px bg-line" />
                   </div>
                 ) : null}
               </li>

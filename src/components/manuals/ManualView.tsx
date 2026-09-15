@@ -14,6 +14,7 @@ import { ManualFlowchart } from "@/components/manuals/ManualFlowchart";
 import { ManualLoopStrip } from "@/components/manuals/ManualLoopStrip";
 import { ManualSwitchStrip } from "@/components/manuals/ManualSwitchStrip";
 import { ManualInsights } from "@/components/manuals/ManualInsights";
+import { ManualLead } from "@/components/manuals/ManualLead";
 
 export function ManualView({
   manual,
@@ -55,38 +56,17 @@ export function ManualView({
           <Link href={archetypeHref(manual.archetype)} className="underline">
             {ARCHETYPE_LABEL[manual.archetype]}
           </Link>
-          {" · "}
-          {mons
-            .map((p) => p?.name)
-            .filter(Boolean)
-            .join(" · ")}
         </p>
       </header>
 
-      {manual.pilot ? (
-        <aside className="mt-6 max-w-3xl rounded-[28px] border border-line bg-raised/40 px-5 py-4">
-          <p className="font-semibold tracking-tight">{manual.pilot.thesis}</p>
-          <p className="mt-2 text-sm text-muted">{manual.pilot.rule}</p>
-          <p className="mt-2 text-sm text-muted">
-            <span className="font-medium text-ink">Never. </span>
-            {manual.pilot.fail}
-          </p>
-        </aside>
-      ) : family ? (
-        <aside className="mt-6 max-w-3xl rounded-[28px] border border-line bg-raised/40 px-5 py-4">
-          <p className="font-semibold tracking-tight">{family.thesis}</p>
-          <p className="mt-2 text-sm text-muted">{family.clockRule}</p>
-          <p className="mt-2 text-sm text-muted">
-            <span className="font-medium text-ink">Common fail. </span>
-            {family.commonFail}
-          </p>
-        </aside>
-      ) : null}
-
-      {manual.philosophy ? (
-        <p className="mt-6 max-w-prose text-[17px] leading-relaxed">{manual.philosophy}</p>
-      ) : null}
-      {manual.meta ? <p className="mt-3 max-w-prose text-sm text-muted">{manual.meta}</p> : null}
+      <ManualLead
+        thesis={manual.pilot?.thesis ?? family?.thesis}
+        rule={manual.pilot?.rule ?? family?.clockRule}
+        fail={manual.pilot?.fail ?? family?.commonFail}
+        failLabel={manual.pilot ? "Never." : "Common fail."}
+        philosophy={manual.philosophy}
+        meta={manual.meta}
+      />
 
       <ManualBriefing manual={manual} />
 

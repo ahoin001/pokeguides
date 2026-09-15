@@ -21,6 +21,7 @@ export function manualJumps(manual: TeamManual) {
     manual.hazards.some((h) => h.title || h.body)
       ? [{ href: "#insights", label: "Insights" }]
       : []),
+    { href: "#notes", label: "Notes" },
   ];
 }
 

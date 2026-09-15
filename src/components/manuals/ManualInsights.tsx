@@ -48,9 +48,6 @@ function Group({
                 />
                 <span className="min-w-0 flex-1">
                   <span className="block font-medium tracking-tight">{item.title}</span>
-                  {!expanded ? (
-                    <span className="mt-0.5 block truncate text-sm text-muted">{item.body}</span>
-                  ) : null}
                 </span>
               </button>
               <AnimatePresence initial={false}>
@@ -90,10 +87,9 @@ export function ManualInsights({
 
   return (
     <MotionConfig reducedMotion="user">
-      <section id="insights" className={`mt-12 ${MANUAL_SCROLL_MT}`}>
+      <section id="insights" className={`mt-10 ${MANUAL_SCROLL_MT}`}>
         <h2 className="text-2xl font-semibold tracking-tight">Insights</h2>
-        <p className="mt-2 max-w-[52ch] text-sm text-muted">Skim the names. Open a chip for the why.</p>
-        <div className="mt-5 grid gap-4 md:grid-cols-2">
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
           <Group
             id="victims"
             title="Notable victims"

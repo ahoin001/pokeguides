@@ -11,6 +11,8 @@ import { CoverageFlower } from "@/components/viz/CoverageFlower";
 import { SpeedTape } from "@/components/viz/SpeedTape";
 import { PokemonPicker } from "@/components/pokemon/PokemonPicker";
 import { TeamChecklist } from "@/components/team/TeamChecklist";
+import { ManualNotes } from "@/components/manuals/ManualNotes";
+import { TEAM_NOTES_ID } from "@/lib/manuals/field-notes";
 import { VsScout } from "@/components/scout/VsScout";
 import type { ArchetypeId, CatalogEntry } from "@/types/pokemon";
 import { LEARN_ROLE_IDS, ROLE_LABEL, roleHref } from "@/content/roles";
@@ -153,6 +155,7 @@ export default function TeamPage() {
           <SpeedTape mons={filled} />
         </div>
       ) : null}
+      <ManualNotes id={TEAM_NOTES_ID} exclude={slugs.filter((s): s is string => Boolean(s))} />
       {pick !== null ? (
         <div className="fixed inset-0 z-50 flex items-end bg-black/50 p-4 md:items-center md:justify-center">
           <div className="w-full max-w-lg rounded-t-3xl bg-raised p-5 md:rounded-3xl">

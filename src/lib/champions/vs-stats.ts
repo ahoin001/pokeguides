@@ -54,6 +54,20 @@ export function formatSpeRace(kind: SpeRaceKind): string {
   }
 }
 
+/** Compact dock / matrix-adjacent label. */
+export function formatSpeRaceShort(kind: SpeRaceKind): string {
+  switch (kind) {
+    case "always":
+      return "Always";
+    case "can":
+      return "Can race";
+    case "tie-band":
+      return "Tie";
+    case "outsped":
+      return "Outsped";
+  }
+}
+
 /** Short glyph label for matrix cells. */
 export function speRaceGlyph(kind: SpeRaceKind): string {
   switch (kind) {

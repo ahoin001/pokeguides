@@ -25,6 +25,7 @@ const ALIAS: Record<string, string> = {
   lycanroc: "lycanroc-dusk",
   floetteeternal: "floette-eternal",
   floetteeternalflower: "floette-eternal",
+  staraptormega: "staraptor-mega",
 };
 
 type BattleTop = {

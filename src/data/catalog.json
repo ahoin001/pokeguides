@@ -3614,6 +3614,53 @@
     "source": "pokeapi"
   },
   {
+    "id": 10308,
+    "slug": "staraptor-mega",
+    "name": "Mega Staraptor",
+    "dexNo": 398,
+    "types": [
+      "fighting",
+      "flying"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 85,
+      "atk": 140,
+      "def": 100,
+      "spa": 60,
+      "spd": 90,
+      "spe": 110,
+      "bst": 585
+    },
+    "speedAt0": 130,
+    "speedAt32": 162,
+    "abilities": [
+      "contrary"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "tailwind"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10308.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10308.png",
+    "tokens": "mega staraptor staraptor-mega fighting flying contrary brown pivot priority setup recovery tailwind",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#504445",
+      "vibrant": "#605050",
+      "muted": "#41393d",
+      "ink": "#f4f1ea",
+      "wash": "#605050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 407,
     "slug": "roserade",
     "name": "Roserade",

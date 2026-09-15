@@ -9,7 +9,6 @@ export function ManualSwitchStrip({ switches }: { switches: ManualSwitch[] }) {
   return (
     <section id="switches" className={`mt-6 ${MANUAL_SCROLL_MT}`}>
       <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Switches</p>
-      <p className="mt-1 text-sm text-muted">Into this, send that. Mid-game handoffs.</p>
       <ul className="mt-3 overflow-hidden rounded-2xl border border-line bg-raised/40">
         {switches.map((row) => (
           <li

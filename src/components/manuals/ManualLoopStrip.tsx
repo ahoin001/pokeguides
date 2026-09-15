@@ -14,7 +14,6 @@ export function ManualLoopStrip({ loops }: { loops: { title: string; body: strin
     <MotionConfig reducedMotion="user">
       <section id="loops" className={`mt-6 ${MANUAL_SCROLL_MT}`}>
         <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Loops</p>
-        <p className="mt-1 text-sm text-muted">How this three hands the slot. Tap a loop.</p>
         <ol className="mt-3 space-y-2">
           {loops.map((loop, i) => {
             const expanded = open === i;
@@ -33,9 +32,6 @@ export function ManualLoopStrip({ loops }: { loops: { title: string; body: strin
                   />
                   <span className="min-w-0 flex-1">
                     <span className="font-semibold tracking-tight">{loop.title}</span>
-                    {!expanded ? (
-                      <span className="mt-0.5 block truncate text-sm text-muted">{loop.body}</span>
-                    ) : null}
                   </span>
                 </button>
                 <AnimatePresence initial={false}>

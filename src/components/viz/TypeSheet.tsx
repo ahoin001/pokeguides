@@ -2,6 +2,7 @@
 
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import {
+  Children,
   useCallback,
   useRef,
   useState,
@@ -16,7 +17,7 @@ import { easeOut, motionTokens } from "@/components/motion/tokens";
 import { TypePlayground } from "./TypePlayground";
 
 type Tone = keyof typeof TONE;
-type Dir = "in" | "out" | "flat";
+type Dir = "in" | "out";
 
 const TONE = {
   onYou: { fill: "color-mix(in srgb, #e23d7a 58%, #fff)", ink: "#c2185b", glow: "#ff6b9a" },
@@ -136,7 +137,11 @@ function TypeRow({
       <span className="col-start-2 row-span-4 self-start pt-0.5">
         <TypeIcon type={type} size="hero" />
       </span>
-      <Lane className="col-start-3 row-start-1">
+      <Lane
+        className="col-start-3 row-start-1"
+        dir="in"
+        color={weak.length ? TONE.onYou.ink : TONE.immune.ink}
+      >
         {weak.length ? (
           <MatchupPill tone="onYou" dir="in" types={weak} host={type} onShowTip={onShowTip} onHideTip={onHideTip} />
         ) : null}
@@ -152,12 +157,16 @@ function TypeRow({
           />
         ) : null}
       </Lane>
-      <Lane className="col-start-3 row-start-2">
+      <Lane className="col-start-3 row-start-2" dir="in" color={TONE.resist.ink}>
         {resist.length ? (
-          <MatchupPill tone="resist" dir="flat" types={resist} host={type} onShowTip={onShowTip} onHideTip={onHideTip} />
+          <MatchupPill tone="resist" dir="in" types={resist} host={type} onShowTip={onShowTip} onHideTip={onHideTip} />
         ) : null}
       </Lane>
-      <Lane className="col-start-3 row-start-3">
+      <Lane
+        className="col-start-3 row-start-3"
+        dir="out"
+        color={hits.length ? TONE.youHit.ink : TONE.immune.ink}
+      >
         {hits.length ? (
           <MatchupPill tone="youHit" dir="out" types={hits} host={type} onShowTip={onShowTip} onHideTip={onHideTip} />
         ) : null}
@@ -173,19 +182,36 @@ function TypeRow({
           />
         ) : null}
       </Lane>
-      <Lane className="col-start-3 row-start-4">
+      <Lane className="col-start-3 row-start-4" dir="out" color={TONE.youSoft.ink}>
         {soft.length ? (
-          <MatchupPill tone="youSoft" dir="flat" types={soft} host={type} onShowTip={onShowTip} onHideTip={onHideTip} />
+          <MatchupPill tone="youSoft" dir="out" types={soft} host={type} onShowTip={onShowTip} onHideTip={onHideTip} />
         ) : null}
       </Lane>
     </button>
   );
 }
 
-function Lane({ children, className }: { children: ReactNode; className?: string }) {
+function Lane({
+  dir,
+  color,
+  children,
+  className,
+}: {
+  dir: Dir;
+  color: string;
+  children: ReactNode;
+  className?: string;
+}) {
+  const items = Children.toArray(children).filter(Boolean);
+  if (!items.length) {
+    return <div className={`min-h-8 min-w-0 ${className ?? ""}`} />;
+  }
   return (
-    <div className={`flex min-h-8 min-w-0 flex-wrap items-center gap-1.5 self-start ${className ?? ""}`}>
-      {children}
+    <div className={`flex min-h-8 min-w-0 items-start gap-1.5 self-start ${className ?? ""}`}>
+      <span className="mt-2.5 shrink-0">
+        <RailMark kind={dir} color={color} />
+      </span>
+      <div className="flex min-w-0 flex-wrap items-center gap-1.5">{items}</div>
     </div>
   );
 }
@@ -207,10 +233,9 @@ function MatchupPill({
   onShowTip: (tip: Tip) => void;
   onHideTip: (delay?: number) => void;
 }) {
-  const { fill, ink } = TONE[tone];
+  const { fill } = TONE[tone];
   return (
     <span className="inline-flex max-w-full items-center gap-1">
-      <RailMark kind={dir} color={ink} />
       <span
         className="inline-flex max-w-full flex-wrap items-center gap-1 rounded-full px-1.5 py-1"
         style={{ background: fill }}
@@ -352,9 +377,7 @@ function MatchupPopover({ tip }: { tip: Tip | null }) {
 function RailMark({ kind, color }: { kind: Dir; color: string }) {
   return (
     <svg viewBox="0 0 22 12" className="h-3 w-[22px] shrink-0" aria-hidden>
-      {kind === "flat" ? (
-        <path d="M1 6h20" fill="none" stroke={color} strokeWidth="1.85" strokeLinecap="round" />
-      ) : kind === "in" ? (
+      {kind === "in" ? (
         <>
           <path d="M21 6H8" fill="none" stroke={color} strokeWidth="1.85" strokeLinecap="round" />
           <path d="M8.2 1.15 1.1 6l7.1 4.85Z" fill={color} />
@@ -374,8 +397,8 @@ function Legend() {
     <ul className="grid grid-cols-2 gap-x-4 gap-y-3 border-b border-black/25 bg-[#243056] px-4 py-3.5 sm:px-5">
       <LegendItem tone="onYou" dir="in" sample="fighting" {...MATCH.onYou} />
       <LegendItem tone="youHit" dir="out" sample="fire" {...MATCH.youHit} />
-      <LegendItem tone="resist" dir="flat" sample="steel" {...MATCH.resist} />
-      <LegendItem tone="youSoft" dir="flat" sample="rock" {...MATCH.youSoft} />
+      <LegendItem tone="resist" dir="in" sample="steel" {...MATCH.resist} />
+      <LegendItem tone="youSoft" dir="out" sample="rock" {...MATCH.youSoft} />
       <LegendItem tone="immune" sample="ghost" slash className="col-span-2" {...MATCH.immune} phrase="No effect (← into you, → you into them)" />
     </ul>
   );

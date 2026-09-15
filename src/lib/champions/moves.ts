@@ -259,3 +259,20 @@ export function isDamagingMove(name: string): boolean {
   if (UTILITY.has(key)) return false;
   return Boolean(MOVE_TYPE[key]);
 }
+
+/** Unique attacking types from damaging kit names. Splits “A or B” / slashes. */
+export function damagingMoveTypes(names: readonly string[]): TypeId[] {
+  const seen = new Set<TypeId>();
+  const out: TypeId[] = [];
+  for (const raw of names) {
+    const parts = raw.split(/\s*(?:[/]|,\s*| or )\s*/).map((s) => s.trim()).filter(Boolean);
+    for (const name of parts) {
+      if (!isDamagingMove(name)) continue;
+      const type = moveType(name);
+      if (!type || seen.has(type)) continue;
+      seen.add(type);
+      out.push(type);
+    }
+  }
+  return out;
+}

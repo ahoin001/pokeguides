@@ -55,7 +55,7 @@ export function ManualDetail({ id }: { id: string }) {
           </Button>
         </div>
       ) : null}
-      <ManualNotes id={id} />
+      <ManualNotes id={id} exclude={manual.slugs.filter((s): s is string => Boolean(s))} />
     </div>
   );
 }

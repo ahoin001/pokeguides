@@ -91,6 +91,7 @@ export function VsScout({
   const [hydrated, setHydrated] = useState(false);
   const [docked, setDocked] = useState(false);
   const [dockOpen, setDockOpen] = useState(true);
+  const [chromeCollapsed, setChromeCollapsed] = useState(false);
   const [corner, setCorner] = useState<DockCorner>("br");
 
   useEffect(() => {
@@ -217,6 +218,14 @@ export function VsScout({
   function toggleDock() {
     setDocked((v) => !v);
     setDockOpen(true);
+    setChromeCollapsed(false);
+  }
+
+  function toggleChrome() {
+    setChromeCollapsed((v) => {
+      if (!v) setPickerOpen(false);
+      return !v;
+    });
   }
 
   if (!side.length) return null;
@@ -372,6 +381,10 @@ export function VsScout({
             dockOpen={dockOpen}
             onToggleOpen={() => setDockOpen((v) => !v)}
             chrome={chrome}
+            chromeCollapsed={chromeCollapsed}
+            onToggleChrome={toggleChrome}
+            onCloseSearch={() => setPickerOpen(false)}
+            pickerOpen={pickerOpen}
             focusFoe={focusFoe}
             focusReport={focusReport}
             ourMons={ourMons}

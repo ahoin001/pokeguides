@@ -1,6 +1,8 @@
 import type { ArchetypeSlot } from "@/content/archetypes";
 
-export type LessonBand = "format" | "verbs" | "three" | "reads";
+export type LearnTrack = "singles" | "doubles";
+
+export type LessonBand = "poke-ball" | "great-ball" | "ultra-ball" | "master-ball";
 
 export type LessonViz =
   | "none"
@@ -44,31 +46,38 @@ export type Lesson = {
 
 export const BANDS: { id: LessonBand; title: string; skipIf: string }[] = [
   {
-    id: "format",
-    title: "The fight",
-    skipIf: "Skip if you already play Champions singles.",
+    id: "poke-ball",
+    title: "Poké Ball",
+    skipIf: "Skip if you already see a three and can name what it is trying to do.",
   },
   {
-    id: "verbs",
-    title: "The verbs",
-    skipIf: "Skip if Fake Out, 66 SP, and Speed races already click.",
+    id: "great-ball",
+    title: "Great Ball",
+    skipIf: "Skip if Fake Out, 66 SP, Speed races, and jobs already click.",
   },
   {
-    id: "three",
-    title: "The three",
-    skipIf: "Skip if you can name a wincon, a hole, and a style.",
+    id: "ultra-ball",
+    title: "Ultra Ball",
+    skipIf: "Skip if you can name a wincon, a hole, and a preview sentence.",
   },
   {
-    id: "reads",
-    title: "The reads",
-    skipIf: "Skip if preview already feels like turn 0. Go to manuals.",
+    id: "master-ball",
+    title: "Master Ball",
+    skipIf: "Skip if you already play the board, review the game, and check usage. Go to manuals.",
   },
 ];
+
+export const BAND_FIRST: Record<LessonBand, string> = {
+  "poke-ball": "the-fight",
+  "great-ball": "abilities",
+  "ultra-ball": "building",
+  "master-ball": "turns",
+};
 
 export const LESSONS: Lesson[] = [
   {
     slug: "the-fight",
-    band: "format",
+    band: "poke-ball",
     title: "This is not the story mode",
     thesis: "3v3, one Pokémon out, 66 Stat Points, one Mega, open lists. Your turn is the whole turn.",
     skipIf: "Skip if you already play Champions ranked singles.",
@@ -110,7 +119,7 @@ export const LESSONS: Lesson[] = [
   },
   {
     slug: "types",
-    band: "format",
+    band: "poke-ball",
     title: "Types are switch math",
     thesis: "You are not memorizing a chart. You are asking: can I come in.",
     skipIf: "Skip if you already switch on type, not on panic.",
@@ -141,11 +150,11 @@ export const LESSONS: Lesson[] = [
     ],
     viz: "types",
     relatedManuals: ["balance-whimsicott-corviknight-garchomp"],
-    next: "abilities",
+    next: "archetypes",
   },
   {
     slug: "abilities",
-    band: "verbs",
+    band: "great-ball",
     title: "Abilities that change the game",
     thesis: "Intimidate is a tax. Disguise is a turn. Drizzle is the team. Prankster is +1, not +3.",
     skipIf: "Skip if you already play around Intimidate, Disguise, and weather overwrite.",
@@ -197,7 +206,7 @@ export const LESSONS: Lesson[] = [
   },
   {
     slug: "moves",
-    band: "verbs",
+    band: "great-ball",
     title: "Moves that steal turns",
     thesis: "Fake Out, Protect, U-turn, Dance, rocks, priority. Each one is a sentence, not a slot filler.",
     skipIf: "Skip if you already know when not to Sucker Punch into Protect.",
@@ -245,7 +254,7 @@ export const LESSONS: Lesson[] = [
   },
   {
     slug: "training",
-    band: "verbs",
+    band: "great-ball",
     title: "66 points is a statement",
     thesis: "Max 32 in one stat. Sitrus vs Sash vs Choice vs Mega stone. Leftover 2 lives in HP.",
     skipIf: "Skip if you already spend 32 Spe on purpose and know why Sash is not Sitrus.",
@@ -280,7 +289,7 @@ export const LESSONS: Lesson[] = [
   },
   {
     slug: "speed",
-    band: "verbs",
+    band: "great-ball",
     title: "You race their whole list",
     thesis: "Not the Pokémon in front of you. The three they brought. 32 Spe, Scarf, Mega, Trick Room, weather, priority.",
     skipIf: "Skip if you already pack a plan for the race you lose.",
@@ -321,7 +330,7 @@ export const LESSONS: Lesson[] = [
   },
   {
     slug: "jobs",
-    band: "three",
+    band: "great-ball",
     title: "A Pokémon is a job",
     thesis: "Support, breaker, speed, weather, Mega. Two examples each. Sweeper is a translation, not a slot.",
     skipIf: "Skip if you already build from the job, not the name.",
@@ -375,7 +384,7 @@ export const LESSONS: Lesson[] = [
   },
   {
     slug: "building",
-    band: "three",
+    band: "ultra-ball",
     title: "How you build a three",
     thesis: "Win condition, the partner that lets it fire, the patch for the shared hole. Then phys/spec mix and a Speed plan.",
     skipIf: "Skip if you already say the sentence out loud before you pick names.",
@@ -430,42 +439,48 @@ export const LESSONS: Lesson[] = [
       { slug: "gholdengo", caption: "The patch" },
     ],
     viz: "wincon-stack",
-    relatedManuals: ["trick-room-farigiraf-kingambit-gholdengo"],
-    next: "archetypes",
+    relatedManuals: ["trick-room-farigiraf-kingambit-gholdengo", "balance-whimsicott-corviknight-garchomp"],
+    next: "holes",
   },
   {
     slug: "archetypes",
-    band: "three",
-    title: "How a three wants to play",
-    thesis: "Balance is chess. Hyper Offense is a sprint. Trick Room flips the clock. Rain, sun, Grassy are field engines.",
-    skipIf: "Skip if you already pick a style before you pick names.",
+    band: "poke-ball",
+    title: "What are they trying to do?",
+    thesis: "Name their plan on preview before you name a lead. Balance pivots. Hyper Offense sprints. Trick Room flips. Weather and terrain cash a field. Tailwind is a clock you can read.",
+    skipIf: "Skip if you already identify their style in one look, including hybrids.",
     body: [
-      "An archetype is the plan, not the species list. Family language on manuals: clock, kite, weather, terrain, room. Load a classroom three. Then open the manual — that is the exam.",
+      "An archetype is the game plan, not the species list. Ask what their three is trying to accomplish. If you cannot name it, you are already behind on preview.",
+      "Squads hybridize. Rain that still pivots is still rain. Trick Room with a Tailwind backup is Tail Room — they win if either clock lands. Read the mode they can force, then the backup.",
     ],
     beats: [
       {
-        title: "Balance — clock",
-        body: "Breaker, cleaner, patch. If the lead goes wrong you still have a game. Honest Balance clocks with Cott, soaks with Corvi, cleans with Garchomp.",
+        title: "Balance — they want to pivot",
+        body: "Good spread of offense and a switch that lives. If the lead goes wrong they still have a game. Honest Balance clocks with Cott, soaks with Corvi, cleans with Garchomp. Fire-Water-Grass cores are the same idea: complementary types so they can switch.",
         example: { slug: "whimsicott", caption: "Honest Balance. Tailwind, then the hand-off." },
       },
       {
-        title: "Hyper Offense — kite",
-        body: "Win by turn 4 or the snowball dies. The kite stays in the bag until Ice and Fairy are gone. Scale Sweep hides Dragonite. Disguise Sweep hides it behind Mimikyu’s costume.",
+        title: "Hyper Offense — they want KOs now",
+        body: "Win by turn 4 or the snowball dies. One support, everyone else damages. The kite stays in the bag until Ice and Fairy are gone. Scale Sweep hides Dragonite. Disguise Sweep hides it behind Mimikyu’s costume.",
         example: { slug: "dragonite", caption: "Multiscale kite. Extreme Speed after the wall is gone." },
       },
       {
-        title: "Trick Room — room",
-        body: "Slow on purpose. Four turns including the click. Armor Tail blanks Fake Out. Then the truck cashes.",
+        title: "Tailwind is a clock you can read",
+        body: "Whimsicott, Murkrow, Tornadus on preview means they want to double Speed and cash slower names without a Scarf. It is often a hybrid sitting on Balance or Hyper Offense — not a separate three you pick in Team. Four turns including the click. After that they are slow again.",
+        example: { slug: "whimsicott", caption: "Prankster Tailwind. Then they leave. The cleaner inherits the clock." },
+      },
+      {
+        title: "Trick Room — they flip the race",
+        body: "Slow on purpose. Four turns including the click. Armor Tail blanks Fake Out. Then the truck cashes. Tail Room is the hybrid: Farigiraf plus a Tailwind name so they still race if the room gets Taunted.",
         example: { slug: "farigiraf", caption: "The setter. Kingambit and Gholdengo cash the room." },
       },
       {
-        title: "Rain, sun, Grassy",
-        body: "The field walks in with the setter. Overwrite is the funeral. Terrain cuts Earthquake. Unburden needs the seed gone.",
+        title: "Rain, sun, Grassy — the field is the team",
+        body: "The field walks in with the setter. Overwrite is the funeral. Terrain cuts Earthquake. Unburden needs the seed gone. Pelipper is rain. Mega Charizard Y is sun. Rillaboom is the grass room. Hybrids exist: rain that still U-turns is rain with a Balance backup.",
         example: { slug: "pelipper", caption: "Rain. Y is sun. Rillaboom is the room." },
       },
     ],
     examples: [
-      { slug: "whimsicott", caption: "Balance" },
+      { slug: "whimsicott", caption: "Balance / Tailwind" },
       { slug: "dragonite", caption: "Kite" },
       { slug: "farigiraf", caption: "Room" },
       { slug: "pelipper", caption: "Rain" },
@@ -479,11 +494,11 @@ export const LESSONS: Lesson[] = [
       "sun-charizard-y-garchomp-cinderace",
       "grassy-rillaboom-sneasler-salamence-mega",
     ],
-    next: "holes",
+    next: "abilities",
   },
   {
     slug: "holes",
-    band: "three",
+    band: "ultra-ball",
     title: "Holes, checks, and coverage",
     thesis: "If two of yours share a hole, the match is already about that hole. A resist is not a counter.",
     skipIf: "Skip if you already refuse to bring two 4× Ice names without a patch.",
@@ -521,7 +536,7 @@ export const LESSONS: Lesson[] = [
   },
   {
     slug: "preview",
-    band: "reads",
+    band: "ultra-ball",
     title: "Preview is turn 0",
     thesis: "Name their wincon, their Speed plan, their hole. Then pick a send that respects all three.",
     skipIf: "Skip if you already write one sentence before you confirm the lead.",
@@ -562,7 +577,7 @@ export const LESSONS: Lesson[] = [
   },
   {
     slug: "turns",
-    band: "reads",
+    band: "master-ball",
     title: "Lead, mid, late",
     thesis: "The lead buys the mid. The mid buys the late. 50/50s are structured so the wrong guess is cheap.",
     skipIf: "Skip if you already play the room you are in, not the preview you wrote.",

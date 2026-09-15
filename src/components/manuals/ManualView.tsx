@@ -1,10 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
-import { FAMILY_LESSON, MANUAL_FAMILY_LABEL, manualFamily, type TeamManual } from "@/content/manuals";
+import {
+  FAMILY_LESSON,
+  MANUAL_FAMILY_LABEL,
+  defaultLineupId,
+  manualFamily,
+  resolveManual,
+  type TeamManual,
+} from "@/content/manuals";
 import { getLesson, lessonHref } from "@/content/curriculum";
 import { flowsFor } from "@/content/classroom-flows";
 import { ManualBriefing } from "@/components/manuals/ManualBriefing";
@@ -17,14 +25,20 @@ import { ManualInsights } from "@/components/manuals/ManualInsights";
 import { ManualLead } from "@/components/manuals/ManualLead";
 import { ManualPocket } from "@/components/manuals/ManualPocket";
 import { ManualWalkthrough } from "@/components/manuals/ManualWalkthrough";
+import { ManualLineupBar } from "@/components/manuals/ManualLineupBar";
 
 export function ManualView({
-  manual,
+  manual: parent,
   sourced,
 }: {
   manual: TeamManual;
   sourced: "canonical" | "local";
 }) {
+  const [lineupId, setLineupId] = useState(() => defaultLineupId(parent) ?? "");
+  const activeId =
+    lineupId && parent.lineups?.some((l) => l.id === lineupId) ? lineupId : defaultLineupId(parent) ?? "";
+  const manual = resolveManual(parent, activeId || undefined);
+
   const mons = manual.slugs.map((s) => (s ? getPokemon(s) : undefined));
   const wash = mons.find(Boolean);
   const switches = (manual.switches ?? []).filter((s) => s.into || s.send);
@@ -42,6 +56,9 @@ export function ManualView({
   const otherFlows = flows.filter((f) => f !== leadFlow && f !== midFlow && f !== lateFlow);
   const hasGame = flows.length > 0 || loops.length > 0 || switches.length > 0;
   const teamSlugs = manual.slugs.filter((s): s is string => Boolean(s));
+  const lineups = parent.lineups;
+  const box = parent.box;
+  const modeKey = activeId || "default";
 
   return (
     <article className="mx-auto w-full" style={wash ? cssVars(wash.palette) : undefined}>
@@ -54,8 +71,8 @@ export function ManualView({
           </Link>
           {sourced === "local" ? " · Yours" : ""}
         </p>
-        <h1 className="mt-2 text-4xl font-semibold tracking-tight lg:text-5xl">{manual.title}</h1>
-        <p className="mt-3 text-lg text-muted">{manual.lede}</p>
+        <h1 className="mt-2 text-4xl font-semibold tracking-tight lg:text-5xl">{parent.title}</h1>
+        <p className="mt-3 text-lg text-muted">{parent.lede}</p>
         <p className="mt-3 flex flex-wrap items-center gap-2 text-sm text-muted">
           <span className="rounded-full bg-white/8 px-3 py-1 font-medium text-ink">
             {MANUAL_FAMILY_LABEL[manualFamily(manual)]}
@@ -66,62 +83,72 @@ export function ManualView({
           >
             {ARCHETYPE_LABEL[manual.archetype]}
           </Link>
+          {box && box.length > 3 ? (
+            <span className="rounded-full border border-line px-3 py-1 text-muted">+{box.length - 3} flex</span>
+          ) : null}
         </p>
+
+        {box?.length && lineups?.length && activeId ? (
+          <ManualLineupBar box={box} lineups={lineups} lineupId={activeId} onSelect={setLineupId} />
+        ) : null}
       </header>
 
-      <ManualWalkthrough manual={manual} />
+      <div key={modeKey}>
+        <ManualWalkthrough manual={manual} />
 
-      <ManualLead
-        thesis={manual.pilot?.thesis ?? family?.thesis}
-        rule={manual.pilot?.rule ?? family?.clockRule}
-        fail={manual.pilot?.fail ?? family?.commonFail}
-        failLabel={manual.pilot ? "Never." : "Common fail."}
-        philosophy={manual.philosophy}
-        meta={manual.meta}
-        lessons={
-          lessons.length ? (
-            <p className="text-sm text-muted">
-              If this word is new:{" "}
-              {lessons.slice(0, 2).map((l, i) =>
-                l ? (
-                  <span key={l.slug}>
-                    {i ? ", " : ""}
-                    <Link href={lessonHref(l.slug)} className="underline">
-                      {l.title}
-                    </Link>
-                  </span>
-                ) : null,
-              )}
+        <ManualLead
+          thesis={manual.pilot?.thesis ?? family?.thesis}
+          rule={manual.pilot?.rule ?? family?.clockRule}
+          fail={manual.pilot?.fail ?? family?.commonFail}
+          failLabel={manual.pilot ? "Never." : "Common fail."}
+          philosophy={manual.philosophy}
+          meta={manual.meta}
+          lessons={
+            lessons.length ? (
+              <p className="text-sm text-muted">
+                If this word is new:{" "}
+                {lessons.slice(0, 2).map((l, i) =>
+                  l ? (
+                    <span key={l.slug}>
+                      {i ? ", " : ""}
+                      <Link href={lessonHref(l.slug)} className="underline">
+                        {l.title}
+                      </Link>
+                    </span>
+                  ) : null,
+                )}
+              </p>
+            ) : undefined
+          }
+        />
+
+        <ManualPocket manual={manual} />
+
+        <ManualBriefing manual={manual} />
+
+        {manual.plan?.length ? <ManualPlan plan={manual.plan} /> : null}
+
+        {hasGame ? (
+          <section id="game" className={`mt-10 ${MANUAL_SCROLL_MT}`}>
+            <h2 className="text-2xl font-semibold tracking-tight">How a game goes</h2>
+            <p className="mt-2 max-w-[52ch] text-sm text-muted">
+              Open on Lead. Learn the named plays. Use the switch board for type sends. Mid and Late cover situations the
+              board does not.
             </p>
-          ) : undefined
-        }
-      />
 
-      <ManualPocket manual={manual} />
+            {leadFlow ? <ManualFlowchart flow={leadFlow} /> : null}
+            {loops.length ? <ManualLoopStrip loops={loops} /> : null}
+            {switches.length ? <ManualSwitchStrip switches={switches} teamSlugs={teamSlugs} /> : null}
+            {midFlow ? <ManualFlowchart flow={midFlow} /> : null}
+            {lateFlow ? <ManualFlowchart flow={lateFlow} /> : null}
+            {otherFlows.map((flow) => (
+              <ManualFlowchart key={flow.id} flow={flow} />
+            ))}
+          </section>
+        ) : null}
 
-      <ManualBriefing manual={manual} />
-
-      {manual.plan?.length ? <ManualPlan plan={manual.plan} /> : null}
-
-      {hasGame ? (
-        <section id="game" className={`mt-10 ${MANUAL_SCROLL_MT}`}>
-          <h2 className="text-2xl font-semibold tracking-tight">How a game goes</h2>
-          <p className="mt-2 max-w-[52ch] text-sm text-muted">
-            Open on Lead. Learn the named plays. Use the switch board for type sends. Mid and Late cover situations the board does not.
-          </p>
-
-          {leadFlow ? <ManualFlowchart flow={leadFlow} /> : null}
-          {loops.length ? <ManualLoopStrip loops={loops} /> : null}
-          {switches.length ? <ManualSwitchStrip switches={switches} teamSlugs={teamSlugs} /> : null}
-          {midFlow ? <ManualFlowchart flow={midFlow} /> : null}
-          {lateFlow ? <ManualFlowchart flow={lateFlow} /> : null}
-          {otherFlows.map((flow) => (
-            <ManualFlowchart key={flow.id} flow={flow} />
-          ))}
-        </section>
-      ) : null}
-
-      <ManualInsights victims={victims} counters={counters} advantages={advantages} hazards={hazards} />
+        <ManualInsights victims={victims} counters={counters} advantages={advantages} hazards={hazards} />
+      </div>
     </article>
   );
 }

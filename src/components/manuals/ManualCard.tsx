@@ -42,6 +42,9 @@ export function ManualCard({
       </p>
       <h2 className="mt-1 text-xl font-semibold tracking-tight">{manual.title || "Untitled three"}</h2>
       <p className="mt-2 text-sm text-muted">{manual.lede}</p>
+      {manual.box && manual.box.length > 3 ? (
+        <p className="mt-2 text-xs text-muted">+{manual.box.length - 3} flex on the page</p>
+      ) : null}
       {pickLine ? (
         <p className="mt-3 text-sm leading-snug">
           <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-[#f0c040]">

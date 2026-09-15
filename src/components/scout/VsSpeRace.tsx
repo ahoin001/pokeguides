@@ -14,20 +14,56 @@ import { easeOut, fadeUp, motionTokens } from "@/components/motion/tokens";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 
 const KIND_TONE: Record<SpeRaceKind, string> = {
-  always: "text-ink",
-  can: "text-muted",
+  always: "text-emerald-300",
+  can: "text-amber-200",
   "tie-band": "text-muted",
-  outsped: "text-[#c2185b]",
+  outsped: "text-rose-300",
 };
+
+const LEGEND: { kind: SpeRaceKind; blurb: string }[] = [
+  { kind: "always", blurb: "Your 0 SP Spe still beats their 32 SP Spe." },
+  { kind: "can", blurb: "Bands overlap — Spe investment can flip the race." },
+  { kind: "tie-band", blurb: "Same Spe floors and ceilings. Nature/priority decides." },
+  { kind: "outsped", blurb: "Their 0 SP Spe still beats your 32 SP Spe." },
+];
+
+export function SpeRaceLegend({ compact = false }: { compact?: boolean }) {
+  return (
+    <ul
+      className={
+        compact
+          ? "grid gap-1.5 sm:grid-cols-2"
+          : "grid gap-2 sm:grid-cols-2 lg:grid-cols-4"
+      }
+    >
+      {LEGEND.map(({ kind, blurb }) => (
+        <li
+          key={kind}
+          className="rounded-xl border border-line/60 bg-white/[0.03] px-2.5 py-2"
+        >
+          <p className={`text-[11px] font-semibold ${KIND_TONE[kind]}`}>
+            {formatSpeRaceShort(kind)}
+          </p>
+          <p className={`mt-0.5 leading-snug text-muted ${compact ? "text-[10px]" : "text-xs"}`}>
+            {blurb}
+          </p>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export function VsSpeRace({
   ours,
   foe,
   compact = false,
+  showLegend = true,
 }: {
   ours: CatalogEntry[];
   foe: CatalogEntry;
   compact?: boolean;
+  /** Set false when a parent already renders SpeRaceLegend. */
+  showLegend?: boolean;
 }) {
   const theirBand = speBand(foe);
 
@@ -40,6 +76,11 @@ export function VsSpeRace({
             vs <span className="font-medium text-ink">{foe.name}</span>
           </p>
         </div>
+        {showLegend ? (
+          <div className="mt-2">
+            <SpeRaceLegend compact />
+          </div>
+        ) : null}
         <ul className="mt-2 divide-y divide-line/70">
           {ours.map((mon) => {
             const oursBand = speBand(mon);
@@ -85,6 +126,12 @@ export function VsSpeRace({
         </div>
       </div>
 
+      {showLegend ? (
+        <div className="mt-4">
+          <SpeRaceLegend />
+        </div>
+      ) : null}
+
       <ul className="mt-5 space-y-3">
         {ours.map((mon, i) => {
           const oursBand = speBand(mon);
@@ -120,30 +167,34 @@ export function VsSpeRace({
   );
 }
 
+function speNumClass(you: number, them: number, side: "you" | "them") {
+  const win = side === "you" ? you > them : them > you;
+  const lose = side === "you" ? you < them : them < you;
+  if (win) return "rounded-md bg-emerald-500/25 px-1 font-semibold text-emerald-100";
+  if (lose) return "rounded-md bg-rose-500/20 px-1 font-semibold text-rose-100";
+  return "text-muted";
+}
+
 function DuelCell({ label, you, them }: { label: string; you: number; them: number }) {
-  const youWins = you > them;
-  const themWins = them > you;
   return (
     <div className="rounded-xl bg-white/5 px-3 py-2 text-center">
       <p className="font-mono text-[10px] uppercase tracking-wide text-muted">{label}</p>
       <p className="mt-1 flex items-baseline justify-center gap-1.5 font-mono tabular-nums">
-        <span className={youWins ? "text-lg font-semibold text-ink" : "text-base text-muted"}>{you}</span>
+        <span className={`text-base ${speNumClass(you, them, "you")}`}>{you}</span>
         <span className="text-[10px] text-muted">vs</span>
-        <span className={themWins ? "text-lg font-semibold text-ink" : "text-base text-muted"}>{them}</span>
+        <span className={`text-base ${speNumClass(you, them, "them")}`}>{them}</span>
       </p>
     </div>
   );
 }
 
 function DuelInline({ label, you, them }: { label: string; you: number; them: number }) {
-  const youWins = you > them;
-  const themWins = them > you;
   return (
     <span className="inline-flex items-baseline gap-1 font-mono text-xs tabular-nums">
       <span className="text-[10px] uppercase tracking-wide text-muted">{label}</span>
-      <span className={youWins ? "font-semibold text-ink" : "text-muted"}>{you}</span>
+      <span className={speNumClass(you, them, "you")}>{you}</span>
       <span className="text-[10px] text-muted">vs</span>
-      <span className={themWins ? "font-semibold text-ink" : "text-muted"}>{them}</span>
+      <span className={speNumClass(you, them, "them")}>{them}</span>
     </span>
   );
 }

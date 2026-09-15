@@ -18,13 +18,18 @@ export function matchesManualQuery(manual: TeamManual, q: string) {
   return words.every((word) => hay.includes(word));
 }
 
+function monTerms(slug: string) {
+  if (!slug) return [];
+  const pokemon = getPokemon(slug);
+  if (!pokemon) return [slug];
+  return [pokemon.slug, pokemon.name, pokemon.tokens];
+}
+
 function manualHaystack(manual: TeamManual) {
-  const mons = manual.slugs.flatMap((slug) => {
-    if (!slug) return [];
-    const pokemon = getPokemon(slug);
-    if (!pokemon) return [slug];
-    return [pokemon.slug, pokemon.name, pokemon.tokens];
-  });
+  const core = manual.slugs.flatMap(monTerms);
+  const box = (manual.box ?? []).flatMap(monTerms);
+  const lineupMons = (manual.lineups ?? []).flatMap((l) => l.slugs.flatMap(monTerms));
+  const lineupCopy = (manual.lineups ?? []).flatMap((l) => [l.label, l.when, l.identity]);
   return [
     manual.title,
     manual.lede,
@@ -32,7 +37,10 @@ function manualHaystack(manual: TeamManual) {
     ARCHETYPE_LABEL[manual.archetype],
     MANUAL_FAMILY_LABEL[manualFamily(manual)],
     ...(manual.press ?? []),
-    ...mons,
+    ...core,
+    ...box,
+    ...lineupMons,
+    ...lineupCopy,
   ]
     .join(" ")
     .toLowerCase();

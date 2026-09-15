@@ -1,5 +1,8 @@
 import type { ArchetypeId, LiteracyRoleId, RoleId, SampleSp } from "@/types/pokemon";
+import { alt, train } from "@/content/manual-train";
+import { OVERLORD_PIVOT_MANUAL } from "@/content/manuals/overlord-pivot";
 
+export { alt, train };
 export type MoveAlt = {
   name: string;
   why: string;
@@ -44,33 +47,6 @@ export type SlotManual = {
   objective: string;
   howToPlay: string;
 };
-
-function train(
-  hp: number,
-  atk: number,
-  def: number,
-  spa: number,
-  spd: number,
-  spe: number,
-  copy: { label: string; why: string; spend: string[] },
-  alts?: SlotTrainingAlt[],
-): SlotTraining {
-  return { sp: { hp, atk, def, spa, spd, spe }, ...copy, alts };
-}
-
-function alt(
-  name: string,
-  hp: number,
-  atk: number,
-  def: number,
-  spa: number,
-  spd: number,
-  spe: number,
-  why: string,
-  spend?: string[],
-): SlotTrainingAlt {
-  return { name, sp: { hp, atk, def, spa, spd, spe }, why, spend };
-}
 
 export type ManualBranch = {
   when: string;
@@ -144,6 +120,32 @@ export type ManualPilot = {
   fail: string;
 };
 
+/** One active three for a boxed manual. Selecting a lineup rebuilds Plan / Game / Matchups. */
+export type ManualLineup = {
+  id: string;
+  label: string;
+  /** When to pick this mode. */
+  when: string;
+  /** One-line tweak to the shared spine. */
+  identity: string;
+  slugs: [string, string, string];
+  slots: SlotManual[];
+  pilot?: ManualPilot;
+  meta?: string;
+  philosophy?: string;
+  press?: string[];
+  refuse?: string[];
+  switches?: ManualSwitch[];
+  plan?: ManualPlanBeat[];
+  victims?: ManualMatchup[];
+  counters?: ManualMatchup[];
+  advantages?: ManualNote[];
+  phases?: ManualPhase[];
+  flows?: ManualFlow[];
+  loops: { title: string; body: string }[];
+  hazards: ManualNote[];
+};
+
 export type TeamManual = {
   id: string;
   title: string;
@@ -173,7 +175,42 @@ export type TeamManual = {
   flows?: ManualFlow[];
   loops: { title: string; body: string }[];
   hazards: ManualNote[];
+  /** Full six for the bench strip. Modes pick which three are live. */
+  box?: string[];
+  /** Alternate lineups. Base fields = default (usually lineups[0]). */
+  lineups?: ManualLineup[];
 };
+
+/** Overlay a lineup onto the parent manual. Parent id / title / box / lineups stay. */
+export function resolveManual(manual: TeamManual, lineupId?: string | null): TeamManual {
+  const packs = manual.lineups;
+  if (!packs?.length) return manual;
+  const pack = (lineupId ? packs.find((l) => l.id === lineupId) : undefined) ?? packs[0];
+  if (!pack) return manual;
+  return {
+    ...manual,
+    slugs: pack.slugs,
+    slots: pack.slots,
+    pilot: pack.pilot ?? manual.pilot,
+    meta: pack.meta ?? manual.meta,
+    philosophy: pack.philosophy ?? manual.philosophy,
+    press: pack.press ?? manual.press,
+    refuse: pack.refuse ?? manual.refuse,
+    switches: pack.switches ?? manual.switches,
+    plan: pack.plan ?? manual.plan,
+    victims: pack.victims ?? manual.victims,
+    counters: pack.counters ?? manual.counters,
+    advantages: pack.advantages ?? manual.advantages,
+    phases: pack.phases ?? manual.phases,
+    flows: pack.flows ?? manual.flows,
+    loops: pack.loops,
+    hazards: pack.hazards,
+  };
+}
+
+export function defaultLineupId(manual: TeamManual): string | undefined {
+  return manual.lineups?.[0]?.id;
+}
 
 export function playLines(howToPlay: string) {
   return howToPlay
@@ -287,6 +324,7 @@ export function manualFamily(manual: Pick<TeamManual, "family" | "archetype">): 
 }
 
 export const CANONICAL_MANUALS: TeamManual[] = [
+  OVERLORD_PIVOT_MANUAL,
   {
     id: "balance-whimsicott-corviknight-garchomp",
     title: "Honest Balance: Whimsicott, Corviknight, Garchomp",
@@ -4220,9 +4258,13 @@ export function isCanonicalManualId(id: string) {
 }
 
 export function manualsFeaturing(slug: string) {
-  return CANONICAL_MANUALS.filter(
-    (m) => m.slugs.includes(slug) || m.slots.some((s) => s.slug === slug),
-  );
+  return CANONICAL_MANUALS.filter((m) => {
+    if (m.slugs.includes(slug) || m.slots.some((s) => s.slug === slug)) return true;
+    if (m.box?.includes(slug)) return true;
+    return (m.lineups ?? []).some(
+      (l) => l.slugs.includes(slug) || l.slots.some((s) => s.slug === slug),
+    );
+  });
 }
 
 export function manualsForArchetype(id: string) {

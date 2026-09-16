@@ -8,6 +8,7 @@ import { useTeamStore } from "@/stores/team";
 import type { CatalogEntry } from "@/types/pokemon";
 import { PokemonArt } from "./PokemonArt";
 import { TypeBadge } from "./TypeBadge";
+import { UsageBadge } from "./UsageBadge";
 
 type Density = "display" | "catalog" | "compact";
 
@@ -52,7 +53,10 @@ export function PokemonCard({
           className={density === "catalog" ? "mx-auto" : ""}
         />
         <div className="min-w-0">
-          <p className="font-mono text-[11px] text-muted">#{String(pokemon.dexNo).padStart(3, "0")}</p>
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="font-mono text-[11px] text-muted">#{String(pokemon.dexNo).padStart(3, "0")}</p>
+            <UsageBadge slug={pokemon.slug} linked={false} />
+          </div>
           <h3 className="truncate text-lg font-semibold tracking-tight">{pokemon.name}</h3>
           <div className="mt-2 flex flex-wrap gap-1.5">
             {pokemon.types.map((t) => (
@@ -78,6 +82,7 @@ export function PokemonCard({
           >
             Add to team
           </button>
+          <UsageBadge slug={pokemon.slug} className="ml-auto" />
         </div>
       ) : null}
     </article>

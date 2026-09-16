@@ -44,7 +44,8 @@
       "wash": "#408080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 63
   },
   {
     "id": 10033,
@@ -137,7 +138,8 @@
       "wash": "#d09050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 18
   },
   {
     "id": 10034,
@@ -277,7 +279,8 @@
       "wash": "#706050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 37
   },
   {
     "id": 10036,
@@ -372,7 +375,8 @@
       "wash": "#c0a050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 190
   },
   {
     "id": 18,
@@ -422,7 +426,8 @@
       "wash": "#d0c0a0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 155
   },
   {
     "id": 10073,
@@ -518,7 +523,8 @@
       "wash": "#908090",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 224
   },
   {
     "id": 25,
@@ -565,7 +571,8 @@
       "wash": "#f0d080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 169
   },
   {
     "id": 26,
@@ -613,7 +620,8 @@
       "wash": "#d0a050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 41
   },
   {
     "id": 10100,
@@ -660,7 +668,8 @@
       "wash": "#a07040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 192
   },
   {
     "id": 36,
@@ -708,7 +717,8 @@
       "wash": "#f0e0d0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 47
   },
   {
     "id": 38,
@@ -754,7 +764,8 @@
       "wash": "#f0e0a0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 168
   },
   {
     "id": 10104,
@@ -801,7 +812,8 @@
       "wash": "#d0e0f0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 20
   },
   {
     "id": 40,
@@ -850,7 +862,8 @@
       "wash": "#f0f0f0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 150
   },
   {
     "id": 53,
@@ -898,7 +911,8 @@
       "wash": "#f0e0b0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 245
   },
   {
     "id": 10108,
@@ -946,7 +960,8 @@
       "wash": "#d0d0e0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 105
   },
   {
     "id": 59,
@@ -994,7 +1009,8 @@
       "wash": "#d0c0a0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 125
   },
   {
     "id": 65,
@@ -1042,7 +1058,8 @@
       "wash": "#a09050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 103
   },
   {
     "id": 80,
@@ -1091,7 +1108,8 @@
       "wash": "#e0a0b0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 101
   },
   {
     "id": 83,
@@ -1141,7 +1159,8 @@
       "wash": "#a09090",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 207
   },
   {
     "id": 94,
@@ -1189,7 +1208,8 @@
       "wash": "#8080a0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 35
   },
   {
     "id": 10038,
@@ -1284,7 +1304,8 @@
       "wash": "#d0c0a0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 96
   },
   {
     "id": 10039,
@@ -1379,7 +1400,8 @@
       "wash": "#606070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 66
   },
   {
     "id": 122,
@@ -1429,7 +1451,8 @@
       "wash": "#305070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 209
   },
   {
     "id": 130,
@@ -1475,7 +1498,8 @@
       "wash": "#4090b0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 14
   },
   {
     "id": 10041,
@@ -1567,7 +1591,8 @@
       "wash": "#80d0e0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 79
   },
   {
     "id": 135,
@@ -1614,7 +1639,8 @@
       "wash": "#100d070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 189
   },
   {
     "id": 142,
@@ -1663,7 +1689,8 @@
       "wash": "#b090c0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 145
   },
   {
     "id": 143,
@@ -1709,7 +1736,8 @@
       "wash": "#f0e0d0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 68
   },
   {
     "id": 149,
@@ -1757,7 +1785,8 @@
       "wash": "#f0b070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 30
   },
   {
     "id": 157,
@@ -1803,7 +1832,8 @@
       "wash": "#c0b080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 204
   },
   {
     "id": 168,
@@ -1852,7 +1882,8 @@
       "wash": "#b05060",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 213
   },
   {
     "id": 181,
@@ -1898,7 +1929,8 @@
       "wash": "#f0d050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 178
   },
   {
     "id": 184,
@@ -1946,7 +1978,8 @@
       "wash": "#40a0d0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 90
   },
   {
     "id": 186,
@@ -1991,7 +2024,8 @@
       "wash": "#90d060",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 83
   },
   {
     "id": 197,
@@ -2037,7 +2071,8 @@
       "wash": "#405050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 40
   },
   {
     "id": 199,
@@ -2085,7 +2120,8 @@
       "wash": "#d09090",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 120
   },
   {
     "id": 208,
@@ -2133,7 +2169,8 @@
       "wash": "#606080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 181
   },
   {
     "id": 212,
@@ -2183,7 +2220,8 @@
       "wash": "#a04040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 44
   },
   {
     "id": 248,
@@ -2230,7 +2268,8 @@
       "wash": "#a0b090",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 55
   },
   {
     "id": 254,
@@ -2276,7 +2315,8 @@
       "wash": "#90d090",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 118
   },
   {
     "id": 10065,
@@ -2370,7 +2410,8 @@
       "wash": "#c05040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 38
   },
   {
     "id": 10050,
@@ -2465,7 +2506,8 @@
       "wash": "#607080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 39
   },
   {
     "id": 10064,
@@ -2611,7 +2653,8 @@
       "wash": "#100f0b0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 52
   },
   {
     "id": 282,
@@ -2661,7 +2704,8 @@
       "wash": "#f0f0f0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 86
   },
   {
     "id": 10051,
@@ -2757,7 +2801,8 @@
       "wash": "#9070b0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 77
   },
   {
     "id": 303,
@@ -2806,7 +2851,8 @@
       "wash": "#707070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 61
   },
   {
     "id": 10052,
@@ -2901,7 +2947,8 @@
       "wash": "#707070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 123
   },
   {
     "id": 308,
@@ -2949,7 +2996,8 @@
       "wash": "#e08090",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 185
   },
   {
     "id": 317,
@@ -2996,7 +3044,8 @@
       "wash": "#9080b0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 188
   },
   {
     "id": 323,
@@ -3044,7 +3093,8 @@
       "wash": "#e09080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 235
   },
   {
     "id": 324,
@@ -3091,7 +3141,8 @@
       "wash": "#d0c0a0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 116
   },
   {
     "id": 334,
@@ -3138,7 +3189,8 @@
       "wash": "#e0e0f0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 126
   },
   {
     "id": 10067,
@@ -3232,7 +3284,8 @@
       "wash": "#909090",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 42
   },
   {
     "id": 358,
@@ -3277,7 +3330,8 @@
       "wash": "#c07080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 151
   },
   {
     "id": 359,
@@ -3324,7 +3378,8 @@
       "wash": "#e0e0f0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 46
   },
   {
     "id": 373,
@@ -3371,7 +3426,8 @@
       "wash": "#a05060",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 1
   },
   {
     "id": 10089,
@@ -3466,7 +3522,8 @@
       "wash": "#6090a0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 29
   },
   {
     "id": 10076,
@@ -3562,7 +3619,8 @@
       "wash": "#d08060",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 146
   },
   {
     "id": 398,
@@ -3611,7 +3669,8 @@
       "wash": "#505050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 54
   },
   {
     "id": 10308,
@@ -3707,7 +3766,8 @@
       "wash": "#f07080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 173
   },
   {
     "id": 409,
@@ -3753,7 +3813,8 @@
       "wash": "#707070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 243
   },
   {
     "id": 411,
@@ -3800,7 +3861,8 @@
       "wash": "#707070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 205
   },
   {
     "id": 442,
@@ -3848,7 +3910,8 @@
       "wash": "#e0b0c0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 171
   },
   {
     "id": 445,
@@ -3896,7 +3959,8 @@
       "wash": "#607090",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 2
   },
   {
     "id": 10058,
@@ -3990,7 +4054,8 @@
       "wash": "#606060",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 6
   },
   {
     "id": 10059,
@@ -4034,6 +4099,52 @@
       "muted": "#495c69",
       "ink": "#12141a",
       "wash": "#7090a0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 450,
+    "slug": "hippowdon",
+    "name": "Hippowdon",
+    "dexNo": 450,
+    "types": [
+      "ground"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "role": "support",
+    "stats": {
+      "hp": 108,
+      "atk": 112,
+      "def": 118,
+      "spa": 68,
+      "spd": 72,
+      "spe": 47,
+      "bst": 525
+    },
+    "speedAt0": 67,
+    "speedAt32": 99,
+    "abilities": [
+      "sand stream",
+      "sand force"
+    ],
+    "kitTags": [
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/450.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/450.png",
+    "tokens": "hippowdon hippowdon ground sand stream sand force brown recovery status hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#8a6a4a",
+      "vibrant": "#a07850",
+      "muted": "#6e553c",
+      "ink": "#f4f1ea",
+      "wash": "#a07850",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -4083,7 +4194,8 @@
       "wash": "#608080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 156
   },
   {
     "id": 461,
@@ -4130,7 +4242,8 @@
       "wash": "#d07070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 124
   },
   {
     "id": 464,
@@ -4178,7 +4291,8 @@
       "wash": "#706060",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 174
   },
   {
     "id": 468,
@@ -4278,7 +4392,8 @@
       "wash": "#404040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 127
   },
   {
     "id": 473,
@@ -4326,7 +4441,8 @@
       "wash": "#a07040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 50
   },
   {
     "id": 10008,
@@ -4373,7 +4489,8 @@
       "wash": "#e08060",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 32
   },
   {
     "id": 10009,
@@ -4420,7 +4537,8 @@
       "wash": "#40a0c0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 23
   },
   {
     "id": 10012,
@@ -4467,7 +4585,8 @@
       "wash": "#e08060",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 177
   },
   {
     "id": 497,
@@ -4513,7 +4632,8 @@
       "wash": "#009050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 106
   },
   {
     "id": 503,
@@ -4560,7 +4680,8 @@
       "wash": "#4070b0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 248
   },
   {
     "id": 530,
@@ -4608,7 +4729,8 @@
       "wash": "#605050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 67
   },
   {
     "id": 531,
@@ -4655,7 +4777,8 @@
       "wash": "#f0a0b0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 176
   },
   {
     "id": 534,
@@ -4702,7 +4825,8 @@
       "wash": "#707070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 121
   },
   {
     "id": 545,
@@ -4750,7 +4874,8 @@
       "wash": "#804050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 93
   },
   {
     "id": 547,
@@ -4802,7 +4927,8 @@
       "wash": "#f0f0d0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 76
   },
   {
     "id": 553,
@@ -4850,7 +4976,8 @@
       "wash": "#b07080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 159
   },
   {
     "id": 560,
@@ -4898,7 +5025,8 @@
       "wash": "#100d080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 149
   },
   {
     "id": 563,
@@ -4944,7 +5072,8 @@
       "wash": "#505050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 162
   },
   {
     "id": 571,
@@ -4990,7 +5119,8 @@
       "wash": "#903040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 175
   },
   {
     "id": 579,
@@ -5037,7 +5167,8 @@
       "wash": "#80c0a0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 153
   },
   {
     "id": 604,
@@ -5082,7 +5213,8 @@
       "wash": "#506080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 142
   },
   {
     "id": 609,
@@ -5130,7 +5262,8 @@
       "wash": "#404040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 100
   },
   {
     "id": 614,
@@ -5177,7 +5310,8 @@
       "wash": "#e0f0f0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 231
   },
   {
     "id": 635,
@@ -5225,7 +5359,8 @@
       "wash": "#505050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 27
   },
   {
     "id": 652,
@@ -5273,7 +5408,8 @@
       "wash": "#b0a080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 158
   },
   {
     "id": 655,
@@ -5320,7 +5456,8 @@
       "wash": "#a05040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 33
   },
   {
     "id": 658,
@@ -5369,7 +5506,8 @@
       "wash": "#304090",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 19
   },
   {
     "id": 663,
@@ -5418,7 +5556,8 @@
       "wash": "#e07040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 132
   },
   {
     "id": 10061,
@@ -5463,7 +5602,8 @@
       "wash": "#102020",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 57
   },
   {
     "id": 673,
@@ -5509,7 +5649,8 @@
       "wash": "#009050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 252
   },
   {
     "id": 675,
@@ -5558,7 +5699,8 @@
       "wash": "#606060",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 208
   },
   {
     "id": 681,
@@ -5604,7 +5746,8 @@
       "wash": "#a09080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 11
   },
   {
     "id": 683,
@@ -5650,7 +5793,8 @@
       "wash": "#c07080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 237
   },
   {
     "id": 687,
@@ -5698,7 +5842,8 @@
       "wash": "#8080b0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 167
   },
   {
     "id": 689,
@@ -5746,7 +5891,8 @@
       "wash": "#605040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 184
   },
   {
     "id": 691,
@@ -5794,7 +5940,8 @@
       "wash": "#604030",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 99
   },
   {
     "id": 693,
@@ -5840,7 +5987,8 @@
       "wash": "#0070c0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 172
   },
   {
     "id": 697,
@@ -5887,7 +6035,8 @@
       "wash": "#a05050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 225
   },
   {
     "id": 699,
@@ -5934,7 +6083,8 @@
       "wash": "#7090c0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 161
   },
   {
     "id": 700,
@@ -5981,7 +6131,8 @@
       "wash": "#e0e0e0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 31
   },
   {
     "id": 701,
@@ -6031,7 +6182,8 @@
       "wash": "#509070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 143
   },
   {
     "id": 706,
@@ -6076,7 +6228,8 @@
       "wash": "#e0d0e0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 198
   },
   {
     "id": 707,
@@ -6124,7 +6277,8 @@
       "wash": "#c0c0d0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 152
   },
   {
     "id": 713,
@@ -6170,7 +6324,8 @@
       "wash": "#d0f0100",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 179
   },
   {
     "id": 715,
@@ -6219,7 +6374,8 @@
       "wash": "#8060a0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 144
   },
   {
     "id": 724,
@@ -6268,7 +6424,8 @@
       "wash": "#a07050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 226
   },
   {
     "id": 727,
@@ -6317,7 +6474,8 @@
       "wash": "#e05050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 89
   },
   {
     "id": 730,
@@ -6365,7 +6523,8 @@
       "wash": "#60a0b0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 3
   },
   {
     "id": 740,
@@ -6413,7 +6572,8 @@
       "wash": "#e0e0e0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 186
   },
   {
     "id": 10152,
@@ -6459,7 +6619,8 @@
       "wash": "#b0a0a0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 244
   },
   {
     "id": 748,
@@ -6507,7 +6668,8 @@
       "wash": "#7060a0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 43
   },
   {
     "id": 752,
@@ -6554,7 +6716,8 @@
       "wash": "#d0e0f0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 82
   },
   {
     "id": 758,
@@ -6602,7 +6765,8 @@
       "wash": "#606060",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 129
   },
   {
     "id": 763,
@@ -6649,7 +6813,8 @@
       "wash": "#b0d080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 182
   },
   {
     "id": 765,
@@ -6697,7 +6862,8 @@
       "wash": "#60a050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 258
   },
   {
     "id": 768,
@@ -6744,7 +6910,8 @@
       "wash": "#d0e0d0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 4
   },
   {
     "id": 778,
@@ -6791,7 +6958,8 @@
       "wash": "#a09070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 10
   },
   {
     "id": 780,
@@ -6839,7 +7007,8 @@
       "wash": "#f0f0e0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 217
   },
   {
     "id": 784,
@@ -6888,7 +7057,8 @@
       "wash": "#a0a0a0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 140
   },
   {
     "id": 812,
@@ -6936,7 +7106,8 @@
       "wash": "#008040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 12
   },
   {
     "id": 815,
@@ -6984,7 +7155,8 @@
       "wash": "#c05030",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 21
   },
   {
     "id": 818,
@@ -7031,7 +7203,8 @@
       "wash": "#404040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 84
   },
   {
     "id": 823,
@@ -7080,7 +7253,8 @@
       "wash": "#404060",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 15
   },
   {
     "id": 828,
@@ -7128,7 +7302,8 @@
       "wash": "#302020",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 201
   },
   {
     "id": 842,
@@ -7175,7 +7350,8 @@
       "wash": "#507050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 251
   },
   {
     "id": 849,
@@ -7224,7 +7400,8 @@
       "wash": "#705080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 80
   },
   {
     "id": 853,
@@ -7269,7 +7446,8 @@
       "wash": "#305090",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 114
   },
   {
     "id": 855,
@@ -7316,7 +7494,8 @@
       "wash": "#a0d0d0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 110
   },
   {
     "id": 858,
@@ -7364,7 +7543,8 @@
       "wash": "#80a0b0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 87
   },
   {
     "id": 861,
@@ -7413,7 +7593,8 @@
       "wash": "#303050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 45
   },
   {
     "id": 865,
@@ -7458,7 +7639,8 @@
       "wash": "#90b060",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 71
   },
   {
     "id": 869,
@@ -7503,7 +7685,8 @@
       "wash": "#100f0e0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 200
   },
   {
     "id": 870,
@@ -7548,7 +7731,8 @@
       "wash": "#b09040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 233
   },
   {
     "id": 871,
@@ -7594,7 +7778,8 @@
       "wash": "#504050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 108
   },
   {
     "id": 876,
@@ -7692,7 +7877,8 @@
       "wash": "#605070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 98
   },
   {
     "id": 887,
@@ -7741,7 +7927,8 @@
       "wash": "#70c0c0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 60
   },
   {
     "id": 901,
@@ -7838,7 +8025,8 @@
       "wash": "#709070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 16
   },
   {
     "id": 10248,
@@ -7886,7 +8074,8 @@
       "wash": "#e0f0f0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 107
   },
   {
     "id": 903,
@@ -7937,7 +8126,8 @@
       "wash": "#505080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 22
   },
   {
     "id": 904,
@@ -7986,7 +8176,8 @@
       "wash": "#303040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 109
   },
   {
     "id": 908,
@@ -8036,7 +8227,8 @@
       "wash": "#308040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 13
   },
   {
     "id": 911,
@@ -8081,7 +8273,8 @@
       "wash": "#c04030",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 28
   },
   {
     "id": 914,
@@ -8129,7 +8322,8 @@
       "wash": "#3050a0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 137
   },
   {
     "id": 927,
@@ -8219,7 +8413,8 @@
       "wash": "#50a030",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 91
   },
   {
     "id": 934,
@@ -8265,7 +8460,8 @@
       "wash": "#f0f0f0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 164
   },
   {
     "id": 936,
@@ -8312,7 +8508,8 @@
       "wash": "#e02010",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 49
   },
   {
     "id": 937,
@@ -8359,7 +8556,8 @@
       "wash": "#202040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 51
   },
   {
     "id": 939,
@@ -8406,7 +8604,8 @@
       "wash": "#20b090",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 48
   },
   {
     "id": 941,
@@ -8502,7 +8701,8 @@
       "wash": "#807060",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 166
   },
   {
     "id": 945,
@@ -8598,7 +8798,8 @@
       "wash": "#407050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 64
   },
   {
     "id": 956,
@@ -8647,7 +8848,8 @@
       "wash": "#100c050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 73
   },
   {
     "id": 959,
@@ -8696,7 +8898,8 @@
       "wash": "#806080",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 102
   },
   {
     "id": 964,
@@ -8742,7 +8945,8 @@
       "wash": "#60c0d0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 135
   },
   {
     "id": 967,
@@ -8835,7 +9039,8 @@
       "wash": "#e06050",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 97
   },
   {
     "id": 970,
@@ -8882,7 +9087,8 @@
       "wash": "#3050a0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 17
   },
   {
     "id": 973,
@@ -9073,7 +9279,8 @@
       "wash": "#a0a0b0",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 78
   },
   {
     "id": 980,
@@ -9169,7 +9376,8 @@
       "wash": "#403020",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 210
   },
   {
     "id": 982,
@@ -9267,7 +9475,8 @@
       "wash": "#202020",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 34
   },
   {
     "id": 998,
@@ -9313,7 +9522,8 @@
       "wash": "#406070",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 7
   },
   {
     "id": 1000,
@@ -9359,7 +9569,8 @@
       "wash": "#e0c040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 8
   },
   {
     "id": 1013,
@@ -9407,7 +9618,8 @@
       "wash": "#303030",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 119
   },
   {
     "id": 1018,
@@ -9456,6 +9668,7 @@
       "wash": "#102040",
       "source": "artwork"
     },
-    "source": "pokeapi"
+    "source": "pokeapi",
+    "usageRank": 9
   }
 ]

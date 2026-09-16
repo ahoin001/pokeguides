@@ -13,6 +13,10 @@ import { ROLE_LABEL, roleHref, getRole } from "@/content/roles";
 import { getLiteracyRole } from "@/content/literacy-roles";
 import { scorePokemon } from "@/lib/champions/role-score";
 import { manualsFeaturing, manualHref } from "@/content/manuals";
+import { getRankedBySlug, rankedByName, rankedSingles } from "@/lib/ranked/load";
+import { formatAsOf, formatPct } from "@/lib/ranked/format";
+import { LadderKit } from "@/components/ladder/LadderKit";
+import type { ParsedBattleKit } from "@/lib/champions-battle/types";
 
 export function generateStaticParams() {
   return catalog.map((p) => ({ slug: p.slug }));
@@ -34,6 +38,17 @@ export default async function PokemonPage({
     .map((s) => getPokemon(s))
     .filter(Boolean);
   const featured = manualsFeaturing(slug);
+  const ranked = getRankedBySlug(slug);
+  const ladderKit: ParsedBattleKit | undefined = ranked
+    ? {
+        moves: ranked.moves,
+        items: ranked.items.length ? ranked.items : ranked.item ? [ranked.item] : [],
+        abilities: ranked.ability ? [ranked.ability] : [],
+        natures: ranked.nature ? [ranked.nature] : [],
+        spreads: ranked.spread ? [ranked.spread] : [],
+        teammates: ranked.teammates.map((name) => ({ name })),
+      }
+    : undefined;
 
   return (
     <article style={cssVars(pokemon.palette)}>
@@ -42,7 +57,19 @@ export default async function PokemonPage({
           <PokemonArt slug={pokemon.slug} src={pokemon.artwork} name={pokemon.name} share size={320} />
         </div>
         <div>
-          <p className="font-mono text-sm text-muted">#{String(pokemon.dexNo).padStart(3, "0")}</p>
+          <div className="flex flex-wrap items-center gap-3">
+            <p className="font-mono text-sm text-muted">#{String(pokemon.dexNo).padStart(3, "0")}</p>
+            {ranked ? (
+              <Link
+                href={`/usage/${ranked.showdownId}`}
+                className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[11px] text-muted transition hover:border-ink/40 hover:text-ink"
+              >
+                Singles #{ranked.rank}
+                {ranked.item?.name ? ` · ${ranked.item.name}` : ""}
+                {formatPct(ranked.item?.pct) ? ` ${formatPct(ranked.item?.pct)}` : ""}
+              </Link>
+            ) : null}
+          </div>
           <h1 className="mt-1 text-5xl font-semibold tracking-tight">{pokemon.name}</h1>
           <div className="mt-4 flex flex-wrap gap-2">
             {pokemon.types.map((t) => (
@@ -61,6 +88,36 @@ export default async function PokemonPage({
           <PokemonActions slug={pokemon.slug} />
         </div>
       </div>
+
+      {ladderKit ? (
+        <section className="mt-16 rounded-[32px] border border-line bg-raised/40 p-5 sm:p-8">
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">Ladder kit</h2>
+              <p className="mt-2 text-sm text-muted">
+                Snapshot from Champions Battle Data · {formatAsOf(rankedSingles.asOf)} · season{" "}
+                {rankedSingles.season}
+              </p>
+            </div>
+            <Link
+              href={`/usage/${ranked!.showdownId}`}
+              className="rounded-full border border-line px-4 py-2 text-sm transition hover:border-ink/40"
+            >
+              Live usage →
+            </Link>
+          </div>
+          <div className="mt-8">
+            <LadderKit
+              kit={ladderKit}
+              compact
+              teammateHref={(name) => {
+                const hit = rankedByName(name);
+                return hit?.showdownId ? `/usage/${hit.showdownId}` : undefined;
+              }}
+            />
+          </div>
+        </section>
+      ) : null}
 
       <section className="mt-16">
         <h2 className="text-2xl font-semibold">On a team</h2>

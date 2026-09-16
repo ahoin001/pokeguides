@@ -21,8 +21,7 @@ export function manualJumps(manual: TeamManual, boxed = false) {
 
   return [
     { href: "#top", label: "Top" },
-    ...(boxed ? [{ href: "#box", label: "Six" }] : []),
-    ...(boxed ? [{ href: "#preview", label: "Preview" }] : []),
+    ...(boxed ? [{ href: "#box", label: "Lineup" }] : []),
     ...(hasPocket ? [{ href: "#pocket", label: "Pocket" }] : []),
     { href: "#three", label: "The three" },
     { href: "#scout", label: "Scout" },

@@ -35,6 +35,9 @@ export default function HomePage() {
 
       <section>
         <div className="flex flex-wrap gap-4 text-sm text-muted">
+          <Link href="/usage" className="underline hover:text-ink">
+            Live usage
+          </Link>
           <Link href="/regulation">Regulation</Link>
           <Link href="/glossary">Glossary</Link>
           <Link href="/about">About</Link>

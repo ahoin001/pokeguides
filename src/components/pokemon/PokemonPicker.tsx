@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { catalog } from "@/lib/catalog/load";
 import { searchCatalog } from "@/lib/catalog/search";
+import { usageForSlug } from "@/lib/ranked/usage-client";
 import { TypeBadge } from "./TypeBadge";
 import { ROLE_LABEL } from "@/content/roles";
 import type { Suggestion } from "@/lib/champions/suggest";
@@ -57,22 +58,33 @@ export function PokemonPicker({
         </div>
       ) : null}
       <ul className="mt-3 max-h-72 overflow-auto">
-        {results.map((p) => (
-          <li key={p.slug}>
-            <button
-              type="button"
-              onClick={() => onPick(p.slug)}
-              className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left hover:bg-white/5"
-            >
-              <span>{p.name}</span>
-              <span className="flex gap-1">
-                {p.types.map((t) => (
-                  <TypeBadge key={t} type={t} size="sm" />
-                ))}
-              </span>
-            </button>
-          </li>
-        ))}
+        {results.map((p) => {
+          const usage = usageForSlug(p.slug);
+          return (
+            <li key={p.slug}>
+              <button
+                type="button"
+                onClick={() => onPick(p.slug)}
+                className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left hover:bg-white/5"
+              >
+                <span>
+                  <span className="block">{p.name}</span>
+                  {usage ? (
+                    <span className="mt-0.5 block font-mono text-[10px] text-muted">
+                      Singles #{usage.rank}
+                      {usage.move ? ` · ${usage.move}` : ""}
+                    </span>
+                  ) : null}
+                </span>
+                <span className="flex gap-1">
+                  {p.types.map((t) => (
+                    <TypeBadge key={t} type={t} size="sm" />
+                  ))}
+                </span>
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

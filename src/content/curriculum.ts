@@ -115,7 +115,11 @@ export const LESSONS: Lesson[] = [
       { slug: "incineroar", caption: "Fake Out is +3" },
     ],
     viz: "stadium",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "types",
   },
   {
@@ -150,7 +154,11 @@ export const LESSONS: Lesson[] = [
       { slug: "corviknight", caption: "The Fairy and Ground patch." },
     ],
     viz: "types",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "archetypes",
   },
   {
@@ -210,7 +218,11 @@ export const LESSONS: Lesson[] = [
       { slug: "ceruledge", caption: "Flash Fire" },
     ],
     viz: "ability-field",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "moves",
   },
   {
@@ -262,7 +274,11 @@ export const LESSONS: Lesson[] = [
     ],
     viz: "flowchart",
     flowId: "they-fake-out",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "training",
   },
   {
@@ -297,7 +313,11 @@ export const LESSONS: Lesson[] = [
       { slug: "charizard-mega-y", caption: "The stone" },
     ],
     viz: "training",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "speed",
   },
   {
@@ -335,7 +355,11 @@ export const LESSONS: Lesson[] = [
       { slug: "dragonite", caption: "Multiscale kite" },
     ],
     viz: "speed-tape",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "jobs",
   },
   {
@@ -392,7 +416,11 @@ export const LESSONS: Lesson[] = [
       { slug: "salamence-mega", caption: "Mega" },
     ],
     viz: "roster",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "building",
   },
   {
@@ -458,7 +486,11 @@ export const LESSONS: Lesson[] = [
       { slug: "gholdengo", caption: "The patch" },
     ],
     viz: "wincon-stack",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "holes",
   },
   {
@@ -505,7 +537,11 @@ export const LESSONS: Lesson[] = [
       { slug: "pelipper", caption: "Rain" },
     ],
     viz: "chooser",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "abilities",
   },
   {
@@ -540,7 +576,11 @@ export const LESSONS: Lesson[] = [
       { slug: "gholdengo", caption: "The patch" },
     ],
     viz: "matchup",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "preview",
   },
   {
@@ -595,7 +635,11 @@ export const LESSONS: Lesson[] = [
       { slug: "dragonite", caption: "Their kite" },
     ],
     viz: "preview-board",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "turns",
   },
   {
@@ -632,7 +676,11 @@ export const LESSONS: Lesson[] = [
     ],
     viz: "flowchart",
     flowId: "turns",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "tempo",
   },
   {
@@ -680,7 +728,11 @@ export const LESSONS: Lesson[] = [
     ],
     viz: "flowchart",
     flowId: "tempo",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "positioning",
   },
   {
@@ -722,7 +774,11 @@ export const LESSONS: Lesson[] = [
       { slug: "incineroar", caption: "Pivot or sacrifice" },
     ],
     viz: "none",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "review",
   },
   {
@@ -763,7 +819,11 @@ export const LESSONS: Lesson[] = [
       { slug: "kingambit", caption: "Accountability" },
     ],
     viz: "none",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "keeping-up",
   },
   {
@@ -804,7 +864,11 @@ export const LESSONS: Lesson[] = [
       { slug: "pelipper", caption: "A three you already studied" },
     ],
     viz: "none",
-    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "manuals",
   },
 ];

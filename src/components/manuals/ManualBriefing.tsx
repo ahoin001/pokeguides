@@ -64,7 +64,7 @@ export function ManualBriefing({ manual }: { manual: TeamManual }) {
                         className="shrink-0"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <PokemonArt slug={p.slug} src={p.artwork} name={p.name} size={56} share />
+                        <PokemonArt slug={p.slug} src={p.artwork} name={p.name} size={56} />
                       </Link>
                     ) : null}
                     <span className="min-w-0 flex-1">

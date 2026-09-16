@@ -11,7 +11,7 @@ import { TYPE_IDS } from "@/types/pokemon";
 import { TypeIcon } from "@/components/pokemon/TypeIcon";
 import { LEARN_ROLE_IDS, ROLE_LABEL, getRole, roleHref } from "@/content/roles";
 
-const SORTS = ["dex", "name", "bst", "spe"] as const;
+const SORTS = ["dex", "name", "bst", "spe", "usage"] as const;
 
 export default function PokedexPage() {
   const [q, setQ] = useQueryState("q", parseAsString.withDefault(""));
@@ -81,6 +81,7 @@ export default function PokedexPage() {
           <option value="name">Name</option>
           <option value="bst">BST</option>
           <option value="spe">Speed</option>
+          <option value="usage">Ladder usage</option>
         </select>
       </div>
       {roleGuide ? (

@@ -1,6 +1,8 @@
 import type { ArchetypeId, LiteracyRoleId, RoleId, SampleSp } from "@/types/pokemon";
 import { alt, train } from "@/content/manual-train";
 import { OVERLORD_PIVOT_MANUAL } from "@/content/manuals/overlord-pivot";
+import { PRESSURE_BALANCE_MANUAL } from "@/content/manuals/pressure-balance";
+import { CLOCKWORK_BALANCE_MANUAL } from "@/content/manuals/clockwork-balance";
 
 export { alt, train };
 
@@ -116,6 +118,25 @@ export type ManualPilot = {
   fail: string;
 };
 
+/**
+ * First-class preview counter-plan: identify what their six bullies,
+ * then bring the three that bully that structure back.
+ */
+export type ManualPackStrategy = {
+  /** What their six is trying to bully you with (preview read). */
+  opponentPattern: string;
+  /** The three selected from the registered six. */
+  bring: [string, string, string];
+  /** Why this package answers that pattern. */
+  purpose: string;
+  /** Structures / threats this package attacks. */
+  targets: string[];
+  /** Structures where you should refuse this package. */
+  refuses: string[];
+  /** How this three wins once selected. */
+  winCondition: string;
+};
+
 /** One preview bring of three from the registered six. */
 export type ManualPack = {
   id: string;
@@ -123,6 +144,8 @@ export type ManualPack = {
   when: string;
   identity: string;
   slugs: [string, string, string];
+  /** Explicit reason for choosing this three from six. */
+  strategy?: ManualPackStrategy;
   pilot?: ManualPilot;
   meta?: string;
   philosophy?: string;
@@ -138,6 +161,19 @@ export type ManualPack = {
   loops: { title: string; body: string }[];
   hazards: ManualNote[];
 };
+
+/** Resolve authored strategy, or derive a thin one from pack fields. */
+export function resolvePackStrategy(pack: ManualPack): ManualPackStrategy {
+  if (pack.strategy) return pack.strategy;
+  return {
+    opponentPattern: pack.when,
+    bring: pack.slugs,
+    purpose: pack.identity,
+    targets: pack.press ?? [],
+    refuses: pack.refuse ?? [],
+    winCondition: pack.pilot?.thesis ?? pack.philosophy ?? pack.identity,
+  };
+}
 
 /** @deprecated Use ManualPack */
 export type ManualLineup = ManualPack & { slots?: SlotManual[] };
@@ -363,7 +399,11 @@ export function manualFamily(manual: Pick<TeamManual, "family" | "archetype">): 
   }
 }
 
-export const CANONICAL_MANUALS: TeamManual[] = [OVERLORD_PIVOT_MANUAL];
+export const CANONICAL_MANUALS: TeamManual[] = [
+  CLOCKWORK_BALANCE_MANUAL,
+  PRESSURE_BALANCE_MANUAL,
+  OVERLORD_PIVOT_MANUAL,
+];
 
 export function getCanonicalManual(id: string) {
   return CANONICAL_MANUALS.find((m) => m.id === id);

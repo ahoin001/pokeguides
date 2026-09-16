@@ -176,7 +176,10 @@ function Kit({
       <div className="mt-8 flex flex-wrap gap-3">
         {row.slug ? (
           <>
-            <Link href={`/pokemon/${row.slug}`} className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg">
+            <Link href={`/usage/${row.showdownId}`} className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg">
+              Live usage
+            </Link>
+            <Link href={`/pokemon/${row.slug}`} className="rounded-full border border-line px-4 py-2 text-sm">
               Open in dex
             </Link>
             <button
@@ -246,6 +249,10 @@ export function RankedBoard({
           <a href={meta.sourceUrl} className="underline" target="_blank" rel="noreferrer">
             {meta.source}
           </a>
+          .{" "}
+          <Link href="/usage" className="underline">
+            Live usage feed
+          </Link>
           .
         </p>
         <input

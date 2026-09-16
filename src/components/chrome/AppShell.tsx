@@ -10,7 +10,7 @@ const LINKS = [
   { href: "/learn", label: "Learn", icon: Books },
   { href: "/pokedex", label: "Dex", icon: SquaresFour },
   { href: "/team", label: "Team", icon: UsersThree },
-  { href: "/meta", label: "Meta", icon: ChartLine },
+  { href: "/usage", label: "Usage", icon: ChartLine },
 ];
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -32,6 +32,9 @@ export function AppShell({ children }: { children: ReactNode }) {
                 {l.label}
               </Link>
             ))}
+            <Link href="/meta" className={path.startsWith("/meta") ? "text-ink" : "text-muted hover:text-ink"}>
+              Meta
+            </Link>
             <Link href="/compare" className={path.startsWith("/compare") ? "text-ink" : "text-muted hover:text-ink"}>
               Compare
             </Link>

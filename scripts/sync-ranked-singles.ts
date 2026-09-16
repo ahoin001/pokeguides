@@ -181,7 +181,59 @@ async function main() {
 
   await mkdir(path.dirname(OUT), { recursive: true });
   await writeFile(OUT, `${JSON.stringify(snapshot, null, 2)}\n`);
-  console.log(`Wrote ${rows.length} singles ranks (${season}). Top 8: ${rows.slice(0, 8).map((r) => `${r.rank} ${r.name}`).join(", ")}`);
+
+  const usageBySlug: Record<
+    string,
+    {
+      rank: number;
+      showdownId: string;
+      name: string;
+      move?: string;
+      movePct?: number;
+      item?: string;
+      itemPct?: number;
+    }
+  > = {};
+  for (const row of rows) {
+    if (!row.slug) continue;
+    usageBySlug[row.slug] = {
+      rank: row.rank,
+      showdownId: row.showdownId,
+      name: row.name,
+      move: row.moves[0]?.name,
+      movePct: row.moves[0]?.pct,
+      item: row.item?.name,
+      itemPct: row.item?.pct,
+    };
+  }
+  const usageOut = path.join(ROOT, "src", "data", "usage-index.json");
+  await writeFile(
+    usageOut,
+    `${JSON.stringify({ asOf, season, count: Object.keys(usageBySlug).length, bySlug: usageBySlug })}\n`,
+  );
+
+  let patched = 0;
+  for (const mon of catalog) {
+    const hit = usageBySlug[mon.slug];
+    const next = hit?.rank;
+    if (mon.usageRank !== next) {
+      mon.usageRank = next;
+      patched += 1;
+    }
+  }
+  if (patched) {
+    await writeFile(
+      path.join(ROOT, "src", "data", "catalog.json"),
+      `${JSON.stringify(catalog, null, 2)}\n`,
+    );
+  }
+
+  console.log(
+    `Wrote ${rows.length} singles ranks (${season}); usage-index ${Object.keys(usageBySlug).length}; catalog usageRank patches ${patched}. Top 8: ${rows
+      .slice(0, 8)
+      .map((r) => `${r.rank} ${r.name}`)
+      .join(", ")}`,
+  );
 }
 
 main().catch((err) => {

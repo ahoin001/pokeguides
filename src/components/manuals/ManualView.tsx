@@ -25,7 +25,7 @@ import { ManualInsights } from "@/components/manuals/ManualInsights";
 import { ManualLead } from "@/components/manuals/ManualLead";
 import { ManualPocket } from "@/components/manuals/ManualPocket";
 import { ManualWalkthrough } from "@/components/manuals/ManualWalkthrough";
-import { ManualBringSix, ManualPreviewBar } from "@/components/manuals/ManualPreviewBar";
+import { ManualLineup } from "@/components/manuals/ManualPreviewBar";
 
 function packForSlug(parent: TeamManual, slug: string): string | undefined {
   const packs = parent.packs?.length ? parent.packs : parent.lineups;
@@ -104,17 +104,19 @@ export function ManualView({
 
       {boxed && box && roster && core && packs && activeId ? (
         <>
-          <ManualBringSix
+          <ManualLineup
             box={[...box]}
             core={[...core]}
             roster={roster}
+            packs={packs}
+            packId={activeId}
             activeSlugs={[...manual.slugs]}
             onPickSlug={(slug) => {
               const next = packForSlug(parent, slug);
               if (next) setPackId(next);
             }}
+            onSelectPack={setPackId}
           />
-          <ManualPreviewBar packs={packs} packId={activeId} onSelect={setPackId} />
         </>
       ) : null}
 

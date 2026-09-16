@@ -81,13 +81,13 @@ export function KitUsageSection({
   title,
   items,
   empty,
-  hrefFor,
+  hrefs,
   onPick,
 }: {
   title: string;
   items: KitShare[];
   empty?: string;
-  hrefFor?: (name: string) => string | undefined;
+  hrefs?: Record<string, string>;
   onPick?: (name: string) => void;
 }) {
   if (!items.length) {
@@ -110,7 +110,7 @@ export function KitUsageSection({
               name={item.name}
               pct={item.pct}
               max={peak}
-              href={hrefFor?.(item.name)}
+              href={hrefs?.[item.name]}
               onPick={onPick ? () => onPick(item.name) : undefined}
             />
           </li>
@@ -148,14 +148,14 @@ function SpreadBars({ spread }: { spread: KitSpread }) {
 /** Primary: moves, items, teammates. Advanced: ability, nature, SP spread. */
 export function KitUsagePanel({
   kit,
-  teammateHref,
+  teammateHrefs,
   onTeammate,
   emptyMoves = "No move usage listed.",
   emptyItems = "No item usage listed.",
   emptyTeammates = "No teammate list listed.",
 }: {
   kit: ParsedBattleKit;
-  teammateHref?: (name: string) => string | undefined;
+  teammateHrefs?: Record<string, string>;
   onTeammate?: (name: string) => void;
   emptyMoves?: string;
   emptyItems?: string;
@@ -169,7 +169,7 @@ export function KitUsagePanel({
         title="Teammates"
         items={kit.teammates}
         empty={emptyTeammates}
-        hrefFor={onTeammate ? undefined : teammateHref}
+        hrefs={onTeammate ? undefined : teammateHrefs}
         onPick={onTeammate}
       />
 

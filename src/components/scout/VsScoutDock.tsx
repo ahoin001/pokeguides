@@ -265,7 +265,7 @@ export function VsScoutDock({
           stiffness: motionTokens.spring.stiffness,
           damping: motionTokens.spring.damping,
         }}
-        className={`fixed z-50 flex max-w-[min(100vw-1.5rem,20rem)] items-center gap-1 rounded-full border border-line bg-bg/95 py-1.5 pl-1.5 pr-2 backdrop-blur-md ${place} ${lift}`}
+        className={`fixed z-50 flex max-w-[min(100vw-1.5rem,10rem)] items-center gap-0.5 rounded-full border border-line bg-bg/95 py-0.5 pl-0.5 pr-1 backdrop-blur-md ${place} ${lift}`}
       >
         <button
           type="button"
@@ -275,28 +275,21 @@ export function VsScoutDock({
             dragControls.start(e);
           }}
           onKeyDown={onKeyMove}
-          className={`touch-none rounded-full p-1.5 text-muted hover:bg-white/8 hover:text-ink ${
+          className={`touch-none rounded-full p-1 text-muted hover:bg-white/8 hover:text-ink ${
             dragging ? "cursor-grabbing" : "cursor-grab"
           }`}
         >
-          <DotsSixVertical size={16} weight="bold" />
+          <DotsSixVertical size={12} weight="bold" />
         </button>
         <button
           type="button"
           onClick={onToggleOpen}
-          className="flex min-w-0 flex-1 items-center gap-2 rounded-full px-2 py-1 text-left transition hover:bg-white/6"
+          className="flex min-w-0 flex-1 items-center gap-1 rounded-full px-1 py-0.5 text-left transition hover:bg-white/6"
         >
-          <Crosshair size={16} weight="bold" className="shrink-0 text-ink" />
-          <span className="min-w-0 truncate text-sm font-medium tracking-tight">
+          <Crosshair size={12} weight="bold" className="shrink-0 text-ink" />
+          <span className="min-w-0 truncate text-[11px] font-medium leading-none tracking-tight">
             {dragging ? `Pin ${liveLabel}` : focusFoe ? focusFoe.name : "Scout"}
           </span>
-        </button>
-        <button
-          type="button"
-          onClick={onToggleOpen}
-          className="shrink-0 rounded-full bg-ink px-3 py-1 text-xs font-medium text-bg"
-        >
-          Open
         </button>
         <span className="sr-only" aria-live="polite">
           Scout pill pinned to {liveLabel}

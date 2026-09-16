@@ -123,8 +123,8 @@ export function ManualView({
         </>
       ) : null}
 
-      <div key={modeKey}>
-        <ManualWalkthrough manual={manual} />
+      <div>
+        <ManualWalkthrough key={modeKey} manual={manual} />
 
         <ManualLead
           thesis={manual.pilot?.thesis ?? family?.thesis}

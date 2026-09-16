@@ -50,7 +50,7 @@ export function VsOpponentTray({
         <div className="min-w-0 flex-1">
           {foes.length === 0 ? (
             <p className="text-sm text-muted">
-              No opponent yet. Ranked names below, or search the roster — up to three.
+              No opponent yet. Tap a ranked name below, or search — up to three.
             </p>
           ) : (
             <>

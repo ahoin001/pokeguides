@@ -109,10 +109,13 @@ export default async function PokemonPage({
           <div className="mt-8">
             <LadderKit
               kit={ladderKit}
-              teammateHref={(name) => {
-                const hit = rankedByName(name);
-                return hit?.showdownId ? `/meta?mon=${hit.showdownId}` : undefined;
-              }}
+              teammateHrefs={Object.fromEntries(
+                ladderKit.teammates.flatMap((t) => {
+                  const hit = rankedByName(t.name);
+                  const href = hit?.showdownId ? `/meta?mon=${hit.showdownId}` : undefined;
+                  return href ? [[t.name, href] as const] : [];
+                }),
+              )}
             />
           </div>
         </section>

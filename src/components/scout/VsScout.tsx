@@ -112,17 +112,22 @@ export function VsScout({
   useEffect(() => {
     const stored = readSlugs(FOES_KEY).filter((s) => !exclude.includes(s)).slice(0, MAX_FOES);
     const rec = readSlugs(RECENT_KEY).filter((s) => !exclude.includes(s));
-    const seed = suggestedFoes.filter((s) => !exclude.includes(s)).slice(0, MAX_FOES);
-    const foes = stored.length ? stored : seed;
-    setOpponentSlugs(foes);
-    setFocusSlug(foes[0] ?? null);
+    setOpponentSlugs(stored);
+    setFocusSlug(stored[0] ?? null);
     setRecent(rec);
     setDocked(readDock(defaultDocked));
     setCorner(readCorner());
     setHydrated(true);
-    // excludeKey is the stable membership signal; exclude array identity is not.
+    // Restore once. Ranked names are suggestion chips — never auto-selected.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    setOpponentSlugs((prev) => prev.filter((s) => !exclude.includes(s)));
+    setRecent((prev) => prev.filter((s) => !exclude.includes(s)));
     // eslint-disable-next-line react-hooks/exhaustive-deps -- excludeKey tracks slug membership
-  }, [excludeKey]);
+  }, [excludeKey, hydrated]);
 
   useEffect(() => {
     if (!hydrated || !scoutRequest) return;
@@ -286,6 +291,7 @@ export function VsScout({
       docked={docked}
       onToggleDock={toggleDock}
       recent={recent}
+      suggested={suggestedFoes.filter((s) => !exclude.includes(s))}
       onPickRecent={(slug, selected) => (selected ? setFocusSlug(slug) : addOpponent(slug))}
       q={q}
       onQuery={setQ}

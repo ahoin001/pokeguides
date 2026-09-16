@@ -4,12 +4,13 @@ import type { ParsedBattleKit } from "@/lib/champions-battle/types";
 /** Ladder kit display — bars for moves/items/teammates; ability/nature/SP in Advanced. */
 export function LadderKit({
   kit,
-  teammateHref,
+  teammateHrefs,
 }: {
   kit: ParsedBattleKit;
-  teammateHref?: (name: string) => string | undefined;
+  /** Pre-resolved teammate name → href (serializable; safe for RSC → client). */
+  teammateHrefs?: Record<string, string>;
   /** @deprecated ignored — layout is always stacked bars */
   compact?: boolean;
 }) {
-  return <KitUsagePanel kit={kit} teammateHref={teammateHref} />;
+  return <KitUsagePanel kit={kit} teammateHrefs={teammateHrefs} />;
 }

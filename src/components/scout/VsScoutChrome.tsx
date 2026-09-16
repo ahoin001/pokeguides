@@ -20,6 +20,7 @@ export function VsScoutChrome({
   docked,
   onToggleDock,
   recent,
+  suggested = [],
   onPickRecent,
   q,
   onQuery,
@@ -38,6 +39,7 @@ export function VsScoutChrome({
   docked: boolean;
   onToggleDock: () => void;
   recent: string[];
+  suggested?: string[];
   onPickRecent: (slug: string, selected: boolean) => void;
   q: string;
   onQuery: (value: string) => void;
@@ -45,6 +47,8 @@ export function VsScoutChrome({
   opponentSlugs: string[];
   onToggleResult: (slug: string, selected: boolean) => void;
 }) {
+  const chips = [...suggested, ...recent.filter((s) => !suggested.includes(s))];
+
   return (
     <>
       <VsOpponentTray
@@ -60,16 +64,16 @@ export function VsScoutChrome({
         onToggleDock={onToggleDock}
       />
       <AnimatePresence initial={false}>
-        {recent.length && !pickerOpen ? (
+        {chips.length && !pickerOpen ? (
           <motion.ul
-            key="recent"
+            key="chips"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: motionTokens.state, ease: easeOut }}
             className="flex flex-wrap gap-2 overflow-hidden px-1"
           >
-            {recent.map((slug) => {
+            {chips.map((slug) => {
               const p = pokemonFromSearch(slug);
               if (!p) return null;
               const selected = opponentSlugs.includes(slug);

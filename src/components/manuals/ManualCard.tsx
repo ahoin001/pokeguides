@@ -12,12 +12,14 @@ export function ManualCard({
   manual: TeamManual;
   sourced: "canonical" | "local";
 }) {
-  const mons = manual.slugs.map((s) => (s ? getPokemon(s) : undefined));
+  const showSlugs = manual.box?.length ? manual.box : manual.slugs;
+  const mons = showSlugs.map((s) => (s ? getPokemon(s) : undefined));
   const wash = mons.find(Boolean);
   const press = (manual.press ?? []).map((s) => s.trim()).filter(Boolean).slice(0, 3);
   const never = (manual.pilot?.fail ?? FAMILY_LESSON[manualFamily(manual)].commonFail).trim();
   const lead = manual.slots.find((s) => /lead/i.test(s.role))?.role.trim();
   const pickLine = never || lead;
+  const packCount = manual.packs?.length ?? manual.lineups?.length ?? 0;
 
   return (
     <Link
@@ -25,12 +27,12 @@ export function ManualCard({
       className="flex h-full flex-col rounded-[28px] border border-line bg-raised/50 p-5 transition hover:bg-raised"
       style={wash ? cssVars(wash.palette) : undefined}
     >
-      <div className="flex items-end gap-2">
+      <div className="flex flex-wrap items-end gap-1.5">
         {mons.map((p, i) =>
           p ? (
-            <PokemonArt key={p.slug} slug={p.slug} src={p.artwork} name={p.name} size={64} />
+            <PokemonArt key={p.slug} slug={p.slug} src={p.artwork} name={p.name} size={manual.box?.length ? 48 : 64} />
           ) : (
-            <span key={i} className="grid h-16 w-16 place-items-center rounded-2xl bg-white/5 text-xs text-muted">
+            <span key={i} className="grid h-12 w-12 place-items-center rounded-2xl bg-white/5 text-xs text-muted">
               —
             </span>
           ),
@@ -42,8 +44,10 @@ export function ManualCard({
       </p>
       <h2 className="mt-1 text-xl font-semibold tracking-tight">{manual.title || "Untitled three"}</h2>
       <p className="mt-2 text-sm text-muted">{manual.lede}</p>
-      {manual.box && manual.box.length > 3 ? (
-        <p className="mt-2 text-xs text-muted">+{manual.box.length - 3} flex on the page</p>
+      {packCount > 0 ? (
+        <p className="mt-2 text-xs text-muted">
+          {showSlugs.length}-box · {packCount} preview pack{packCount === 1 ? "" : "s"}
+        </p>
       ) : null}
       {pickLine ? (
         <p className="mt-3 text-sm leading-snug">

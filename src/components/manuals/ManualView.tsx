@@ -8,7 +8,7 @@ import { ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
 import {
   FAMILY_LESSON,
   MANUAL_FAMILY_LABEL,
-  defaultLineupId,
+  defaultPackId,
   manualFamily,
   resolveManual,
   type TeamManual,
@@ -25,7 +25,18 @@ import { ManualInsights } from "@/components/manuals/ManualInsights";
 import { ManualLead } from "@/components/manuals/ManualLead";
 import { ManualPocket } from "@/components/manuals/ManualPocket";
 import { ManualWalkthrough } from "@/components/manuals/ManualWalkthrough";
-import { ManualLineupBar } from "@/components/manuals/ManualLineupBar";
+import { ManualBringSix, ManualPreviewBar } from "@/components/manuals/ManualPreviewBar";
+
+function packForSlug(parent: TeamManual, slug: string): string | undefined {
+  const packs = parent.packs?.length ? parent.packs : parent.lineups;
+  if (!packs?.length) return undefined;
+  const corePack = packs.find((p) => p.id === "core") ?? packs[0];
+  const coreSet = new Set(parent.core ?? corePack?.slugs ?? []);
+  if (!coreSet.has(slug)) {
+    return packs.find((p) => (p.slugs as string[]).includes(slug))?.id ?? corePack?.id;
+  }
+  return corePack?.id;
+}
 
 export function ManualView({
   manual: parent,
@@ -34,9 +45,9 @@ export function ManualView({
   manual: TeamManual;
   sourced: "canonical" | "local";
 }) {
-  const [lineupId, setLineupId] = useState(() => defaultLineupId(parent) ?? "");
-  const activeId =
-    lineupId && parent.lineups?.some((l) => l.id === lineupId) ? lineupId : defaultLineupId(parent) ?? "";
+  const [packId, setPackId] = useState(() => defaultPackId(parent) ?? "");
+  const packs = parent.packs?.length ? parent.packs : parent.lineups;
+  const activeId = packId && packs?.some((p) => p.id === packId) ? packId : defaultPackId(parent) ?? "";
   const manual = resolveManual(parent, activeId || undefined);
 
   const mons = manual.slugs.map((s) => (s ? getPokemon(s) : undefined));
@@ -56,13 +67,15 @@ export function ManualView({
   const otherFlows = flows.filter((f) => f !== leadFlow && f !== midFlow && f !== lateFlow);
   const hasGame = flows.length > 0 || loops.length > 0 || switches.length > 0;
   const teamSlugs = manual.slugs.filter((s): s is string => Boolean(s));
-  const lineups = parent.lineups;
   const box = parent.box;
+  const roster = parent.roster;
+  const core = parent.core ?? (packs?.[0]?.slugs as [string, string, string] | undefined);
   const modeKey = activeId || "default";
+  const boxed = Boolean(box?.length && packs?.length && roster?.length && core);
 
   return (
     <article className="mx-auto w-full" style={wash ? cssVars(wash.palette) : undefined}>
-      <ManualToc manual={manual} />
+      <ManualToc manual={manual} boxed={boxed} />
 
       <header id="top" className={`${MANUAL_SCROLL_MT} max-w-3xl`}>
         <p className="text-sm text-muted">
@@ -83,15 +96,27 @@ export function ManualView({
           >
             {ARCHETYPE_LABEL[manual.archetype]}
           </Link>
-          {box && box.length > 3 ? (
-            <span className="rounded-full border border-line px-3 py-1 text-muted">+{box.length - 3} flex</span>
+          {boxed ? (
+            <span className="rounded-full border border-line px-3 py-1 text-muted">6-box · preview packs</span>
           ) : null}
         </p>
-
-        {box?.length && lineups?.length && activeId ? (
-          <ManualLineupBar box={box} lineups={lineups} lineupId={activeId} onSelect={setLineupId} />
-        ) : null}
       </header>
+
+      {boxed && box && roster && core && packs && activeId ? (
+        <>
+          <ManualBringSix
+            box={[...box]}
+            core={[...core]}
+            roster={roster}
+            activeSlugs={[...manual.slugs]}
+            onPickSlug={(slug) => {
+              const next = packForSlug(parent, slug);
+              if (next) setPackId(next);
+            }}
+          />
+          <ManualPreviewBar packs={packs} packId={activeId} onSelect={setPackId} />
+        </>
+      ) : null}
 
       <div key={modeKey}>
         <ManualWalkthrough manual={manual} />

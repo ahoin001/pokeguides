@@ -28,8 +28,10 @@ function monTerms(slug: string) {
 function manualHaystack(manual: TeamManual) {
   const core = manual.slugs.flatMap(monTerms);
   const box = (manual.box ?? []).flatMap(monTerms);
-  const lineupMons = (manual.lineups ?? []).flatMap((l) => l.slugs.flatMap(monTerms));
-  const lineupCopy = (manual.lineups ?? []).flatMap((l) => [l.label, l.when, l.identity]);
+  const roster = (manual.roster ?? []).flatMap((s) => monTerms(s.slug));
+  const packs = manual.packs?.length ? manual.packs : (manual.lineups ?? []);
+  const packMons = packs.flatMap((p) => p.slugs.flatMap(monTerms));
+  const packCopy = packs.flatMap((p) => [p.label, p.when, p.identity]);
   return [
     manual.title,
     manual.lede,
@@ -39,8 +41,9 @@ function manualHaystack(manual: TeamManual) {
     ...(manual.press ?? []),
     ...core,
     ...box,
-    ...lineupMons,
-    ...lineupCopy,
+    ...roster,
+    ...packMons,
+    ...packCopy,
   ]
     .join(" ")
     .toLowerCase();

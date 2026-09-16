@@ -6,7 +6,7 @@ import type { TeamManual } from "@/content/manuals";
 
 export const MANUAL_SCROLL_MT = "scroll-mt-[5.5rem] md:scroll-mt-[9.5rem]";
 
-export function manualJumps(manual: TeamManual) {
+export function manualJumps(manual: TeamManual, boxed = false) {
   const flows = flowsFor(manual);
   const hasGame =
     flows.length > 0 ||
@@ -21,6 +21,8 @@ export function manualJumps(manual: TeamManual) {
 
   return [
     { href: "#top", label: "Top" },
+    ...(boxed ? [{ href: "#box", label: "Six" }] : []),
+    ...(boxed ? [{ href: "#preview", label: "Preview" }] : []),
     ...(hasPocket ? [{ href: "#pocket", label: "Pocket" }] : []),
     { href: "#three", label: "The three" },
     { href: "#scout", label: "Scout" },
@@ -31,8 +33,8 @@ export function manualJumps(manual: TeamManual) {
   ];
 }
 
-export function ManualToc({ manual }: { manual: TeamManual }) {
-  const jumps = useMemo(() => manualJumps(manual), [manual]);
+export function ManualToc({ manual, boxed = false }: { manual: TeamManual; boxed?: boolean }) {
+  const jumps = useMemo(() => manualJumps(manual, boxed), [manual, boxed]);
   const [active, setActive] = useState("#top");
   const [mounted, setMounted] = useState(false);
 

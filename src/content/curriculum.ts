@@ -115,7 +115,7 @@ export const LESSONS: Lesson[] = [
       { slug: "incineroar", caption: "Fake Out is +3" },
     ],
     viz: "stadium",
-    relatedManuals: ["balance-whimsicott-corviknight-garchomp"],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "types",
   },
   {
@@ -150,7 +150,7 @@ export const LESSONS: Lesson[] = [
       { slug: "corviknight", caption: "The Fairy and Ground patch." },
     ],
     viz: "types",
-    relatedManuals: ["balance-whimsicott-corviknight-garchomp"],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "archetypes",
   },
   {
@@ -210,11 +210,7 @@ export const LESSONS: Lesson[] = [
       { slug: "ceruledge", caption: "Flash Fire" },
     ],
     viz: "ability-field",
-    relatedManuals: [
-      "balance-whimsicott-incineroar-garchomp",
-      "balance-mimikyu-excadrill-dragonite",
-      "rain-pelipper-archaludon-basculegion",
-    ],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "moves",
   },
   {
@@ -266,10 +262,7 @@ export const LESSONS: Lesson[] = [
     ],
     viz: "flowchart",
     flowId: "they-fake-out",
-    relatedManuals: [
-      "balance-whimsicott-incineroar-garchomp",
-      "balance-whimsicott-corviknight-garchomp",
-    ],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "training",
   },
   {
@@ -304,7 +297,7 @@ export const LESSONS: Lesson[] = [
       { slug: "charizard-mega-y", caption: "The stone" },
     ],
     viz: "training",
-    relatedManuals: ["balance-whimsicott-corviknight-garchomp", "sun-charizard-y-garchomp-cinderace"],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "speed",
   },
   {
@@ -342,10 +335,7 @@ export const LESSONS: Lesson[] = [
       { slug: "dragonite", caption: "Multiscale kite" },
     ],
     viz: "speed-tape",
-    relatedManuals: [
-      "balance-whimsicott-corviknight-garchomp",
-      "balance-excadrill-primarina-dragonite",
-    ],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "jobs",
   },
   {
@@ -402,10 +392,7 @@ export const LESSONS: Lesson[] = [
       { slug: "salamence-mega", caption: "Mega" },
     ],
     viz: "roster",
-    relatedManuals: [
-      "balance-whimsicott-incineroar-garchomp",
-      "grassy-rillaboom-sneasler-salamence-mega",
-    ],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "building",
   },
   {
@@ -471,7 +458,7 @@ export const LESSONS: Lesson[] = [
       { slug: "gholdengo", caption: "The patch" },
     ],
     viz: "wincon-stack",
-    relatedManuals: ["trick-room-farigiraf-kingambit-gholdengo", "balance-whimsicott-corviknight-garchomp"],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "holes",
   },
   {
@@ -518,14 +505,7 @@ export const LESSONS: Lesson[] = [
       { slug: "pelipper", caption: "Rain" },
     ],
     viz: "chooser",
-    relatedManuals: [
-      "balance-whimsicott-corviknight-garchomp",
-      "balance-excadrill-primarina-dragonite",
-      "trick-room-farigiraf-kingambit-gholdengo",
-      "rain-pelipper-archaludon-basculegion",
-      "sun-charizard-y-garchomp-cinderace",
-      "grassy-rillaboom-sneasler-salamence-mega",
-    ],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "abilities",
   },
   {
@@ -560,10 +540,7 @@ export const LESSONS: Lesson[] = [
       { slug: "gholdengo", caption: "The patch" },
     ],
     viz: "matchup",
-    relatedManuals: [
-      "balance-whimsicott-corviknight-garchomp",
-      "trick-room-farigiraf-kingambit-gholdengo",
-    ],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "preview",
   },
   {
@@ -618,10 +595,7 @@ export const LESSONS: Lesson[] = [
       { slug: "dragonite", caption: "Their kite" },
     ],
     viz: "preview-board",
-    relatedManuals: [
-      "balance-whimsicott-corviknight-garchomp",
-      "balance-excadrill-primarina-dragonite",
-    ],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "turns",
   },
   {
@@ -658,10 +632,7 @@ export const LESSONS: Lesson[] = [
     ],
     viz: "flowchart",
     flowId: "turns",
-    relatedManuals: [
-      "balance-whimsicott-corviknight-garchomp",
-      "balance-whimsicott-incineroar-garchomp",
-    ],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "tempo",
   },
   {
@@ -709,10 +680,7 @@ export const LESSONS: Lesson[] = [
     ],
     viz: "flowchart",
     flowId: "tempo",
-    relatedManuals: [
-      "balance-whimsicott-corviknight-garchomp",
-      "balance-whimsicott-incineroar-garchomp",
-    ],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "positioning",
   },
   {
@@ -754,11 +722,7 @@ export const LESSONS: Lesson[] = [
       { slug: "incineroar", caption: "Pivot or sacrifice" },
     ],
     viz: "none",
-    relatedManuals: [
-      "rain-pelipper-archaludon-basculegion",
-      "balance-whimsicott-corviknight-garchomp",
-      "sun-charizard-y-garchomp-cinderace",
-    ],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "review",
   },
   {
@@ -799,10 +763,7 @@ export const LESSONS: Lesson[] = [
       { slug: "kingambit", caption: "Accountability" },
     ],
     viz: "none",
-    relatedManuals: [
-      "balance-whimsicott-corviknight-garchomp",
-      "rain-pelipper-archaludon-basculegion",
-    ],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "keeping-up",
   },
   {
@@ -843,11 +804,7 @@ export const LESSONS: Lesson[] = [
       { slug: "pelipper", caption: "A three you already studied" },
     ],
     viz: "none",
-    relatedManuals: [
-      "balance-whimsicott-corviknight-garchomp",
-      "balance-excadrill-primarina-dragonite",
-      "rain-pelipper-archaludon-basculegion",
-    ],
+    relatedManuals: ["balance-garchomp-corviknight-kingambit"],
     next: "manuals",
   },
 ];

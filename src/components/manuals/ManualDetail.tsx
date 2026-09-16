@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { getCanonicalManual, isCanonicalManualId, resolveManual, defaultLineupId } from "@/content/manuals";
+import { defaultPackId, getCanonicalManual, isCanonicalManualId, resolveManual } from "@/content/manuals";
 import { useManualsStore } from "@/stores/manuals";
 import { ManualView } from "@/components/manuals/ManualView";
 import { ManualNotes } from "@/components/manuals/ManualNotes";
@@ -33,7 +33,7 @@ export function ManualDetail({ id }: { id: string }) {
 
   const noteExclude = [
     ...new Set(
-      [...(manual.box ?? []), ...resolveManual(manual, defaultLineupId(manual)).slugs].filter(
+      [...(manual.box ?? []), ...resolveManual(manual, defaultPackId(manual)).slugs].filter(
         (s): s is string => Boolean(s),
       ),
     ),

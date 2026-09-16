@@ -331,7 +331,7 @@ export function VsScout({
               className="w-full rounded-2xl border border-line bg-sunken px-4 py-3 text-ink outline-none placeholder:text-muted focus:border-ink/40 disabled:opacity-50"
               autoFocus
             />
-            <ul className="mt-2 max-h-56 overflow-auto">
+            <ul className="mt-2 max-h-56 overflow-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {results.map((p) => {
                 const selected = opponentSlugs.includes(p.slug);
                 const blocked = !selected && !canAdd;

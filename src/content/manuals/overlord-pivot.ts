@@ -1,35 +1,40 @@
 import { alt, train } from "@/content/manual-train";
 import type {
   ManualFlow,
-  ManualLineup,
   ManualNote,
+  ManualPack,
   ManualPhase,
   SlotManual,
   TeamManual,
 } from "@/content/manuals";
 
-const BOX = ["garchomp", "corviknight", "kingambit", "rillaboom", "primarina", "incineroar"] as const;
+const BOX = [
+  "garchomp",
+  "corviknight",
+  "kingambit",
+  "primarina",
+  "meowscarada",
+  "rotom-wash",
+] as const;
 
-function garchompSlot(roleExtra: string): SlotManual {
+const CORE: [string, string, string] = ["garchomp", "corviknight", "kingambit"];
+
+function garchompSlot(): SlotManual {
   return {
     slug: "garchomp",
     title: "The Breaker",
     job: "breaker",
     literacy: "sweeper",
-    role: `Forces switches. Breaks walls. ${roleExtra}`,
+    role: "Forces switches. Breaks walls. Hide until Ice and Fairy are scouted.",
     ability: "Rough Skin",
     item: "Life Orb",
-    itemWhy:
-      "You want the KO on the switch-in. Life Orb pays HP for damage. Choice Scarf is the revenge alt when their cleaner outruns you.",
+    itemWhy: "KO on the switch-in. Choice Scarf is the revenge alt when their cleaner outruns you.",
     itemAlts: [
       {
         name: "Choice Scarf",
-        why: "Use when their cleaner outspeeds Life Orb Garchomp and you need one locked revenge click. You give up Swords Dance and the free switch read.",
+        why: "Lock one revenge click when their cleaner outspeeds Life Orb Garchomp.",
       },
-      {
-        name: "Focus Sash",
-        why: "Use only if you must live one Ice or Fairy you already scouted. Prefer switching to the flex pivot instead.",
-      },
+      { name: "Focus Sash", why: "Live one Ice or Fairy you already scouted. Prefer the flex that answers it." },
     ],
     nature: "Jolly",
     training: train(
@@ -41,144 +46,36 @@ function garchompSlot(roleExtra: string): SlotManual {
       32,
       {
         label: "Attack race",
-        why: "Garchomp is the Speed cleaner on this spine. Cap Attack and Speed. Ice still hits four times as hard — the flex pivot owns that answer, not bulk on Garchomp.",
+        why: "Cap Attack and Speed. Ice is still four times — flex owns that answer, not bulk here.",
         spend: [
-          "32 Atk — Earthquake and Fire Fang have to force the switch.",
-          "32 Spe — Jolly race. Nothing on the spine doubles Speed for you.",
-          "2 SpD — leftover crumb.",
-          "0 HP — you are not the wall. Leave early on Ice or Fairy.",
+          "32 Atk — Earthquake and Fire Fang force the switch.",
+          "32 Spe — Jolly race.",
+          "2 SpD — leftover.",
+          "0 HP — leave early on Ice or Fairy.",
         ],
       },
-      [
-        alt(
-          "Choice Scarf",
-          0,
-          32,
-          0,
-          0,
-          2,
-          32,
-          "Same points. Scarf multiplies Speed. Lock Earthquake or Fire Fang — do not lock Outrage into Fairy.",
-          [
-            "32 Atk — the locked click has to KO.",
-            "32 Spe — Scarf is the whole race.",
-            "2 SpD — leftover.",
-          ],
-        ),
-      ],
     ),
     moves: [
-      {
-        name: "Earthquake",
-        why: "Ground STAB. Hits Steel that panic-switch into Dragon. Does nothing to Flying or Levitate.",
-      },
-      {
-        name: "Fire Fang",
-        why: "Punishes Steel and Grass switch-ins that block Dragon. The read that makes Garchomp force panic.",
-        alts: [{ name: "Fire Blast", why: "Special alt if you somehow run mixed. Prefer Fang on physical Life Orb." }],
-      },
+      { name: "Earthquake", why: "Ground STAB. Hits Steel that panic into Dragon." },
+      { name: "Fire Fang", why: "Punishes Steel and Grass switch-ins." },
       {
         name: "Dragon Claw",
-        why: "Dragon STAB that does not lock. Outrage is the nuke only after Fairy is gone.",
+        why: "Dragon STAB that does not lock. Outrage only after Fairy is gone.",
         alts: [
-          {
-            name: "Outrage",
-            why: "Use when Fairy is confirmed out. A Fairy switch knocks you out while locked.",
-          },
-          {
-            name: "Scale Shot",
-            why: "Use when you need Speed stages after they Protect, and Fairy is already gone.",
-          },
+          { name: "Outrage", why: "Fairy confirmed out." },
+          { name: "Scale Shot", why: "Speed stages after Protect when Fairy is gone." },
+          { name: "Stealth Rock", why: "Chip Sashes and Flying before the mid-game." },
         ],
       },
       {
         name: "Swords Dance",
-        why: "Boost into a Protect or a free switch. Never Dance into a known Ice or Fairy.",
-        alts: [{ name: "Protect", why: "Scout Ice or Fairy on the first entry. Prefer the flex pivot if you already know." }],
+        why: "Boost into Protect or a free switch.",
+        alts: [{ name: "Protect", why: "Scout Ice or Fairy on first entry." }],
       },
     ],
-    objective: "Force switches. Break the wall. Leave Ice and Fairy to the flex pivot.",
+    objective: "Force switches. Break the wall. Leave Ice and Fairy to flex.",
     howToPlay:
-      "Come in on Electric, Fire into a resist, or after the pivot chips.\nEarthquake grounded non-Grass. Fire Fang on Steel panic-switches.\nIce or Fairy: leave. Do not Outrage while Fairy is healthy.",
-  };
-}
-
-function kingambitSlot(roleExtra: string): SlotManual {
-  return {
-    slug: "kingambit",
-    title: "The Closer",
-    job: "breaker",
-    literacy: "wallbreaker",
-    role: `Supreme Overlord closer. ${roleExtra}`,
-    ability: "Supreme Overlord",
-    item: "Black Glasses",
-    itemWhy:
-      "Dark STAB has to finish. Glasses stacks with Overlord after a partner falls. Life Orb is the punchier alt when you already won the chip war.",
-    itemAlts: [
-      {
-        name: "Life Orb",
-        why: "Use when you need raw damage into bulky Walls and already expect a KO trade. Recoil is real on a slow mon.",
-      },
-      {
-        name: "Leftovers",
-        why: "Use when you sit against a resist and need residual. Prefer Glasses for the close.",
-      },
-    ],
-    nature: "Adamant",
-    training: train(
-      32,
-      32,
-      2,
-      0,
-      0,
-      0,
-      {
-        label: "Overlord truck",
-        why: "You are slow on purpose. Cap Attack and HP. Sucker Punch is the Speed plan — not Stat Points. Fighting is 1× (Dark weak × Steel resist) — not free, not death.",
-        spend: [
-          "32 Atk — Kowtow and Sucker Punch have to close.",
-          "32 HP — live one hit after a partner traded.",
-          "2 Def — leftover crumb.",
-          "0 Spe — Sucker Punch is +1. Do not race Fighting with Speed.",
-        ],
-      },
-      [
-        alt(
-          "Special chip",
-          20,
-          32,
-          0,
-          0,
-          14,
-          0,
-          "Use when the table is special spam and Primarina is not in. Pull HP into Special Defense.",
-          ["32 Atk — still the punch.", "20 HP / 14 SpD — live special chip.", "0 Spe — still the truck."],
-        ),
-      ],
-    ),
-    moves: [
-      { name: "Kowtow Cleave", why: "Dark STAB that never misses. Breaks walls that stall Sucker Punch." },
-      {
-        name: "Sucker Punch",
-        why: "Priority if they attack. Fails on Protect or status. Do not click it into a shield.",
-      },
-      {
-        name: "Iron Head",
-        why: "Steel into Fairy. Flinches sometimes — not a plan, a bonus.",
-        alts: [{ name: "Swords Dance", why: "Use when you get a free turn after a KO. Overlord plus Dance ends games." }],
-      },
-      {
-        name: "Low Kick",
-        why: "Fighting coverage into their Kingambit or Normal walls. Weight matters.",
-        alts: [
-          { name: "Brick Break", why: "Fixed power Fighting. Screens breaker if the table runs Reflect." },
-          { name: "Protect", why: "Scout Fighting priority. You take normal Fighting — leave if their Close Combat is live." },
-        ],
-      },
-    ],
-    objective: "Close after trades. Overlord scales when a partner falls. Do not lead into Fighting.",
-    howToPlay:
-      "Stay in the bag until Garchomp or the flex has traded.\nSucker Punch healthy sweepers that attack. Kowtow walls that Protect.\nFighting into you: leave to the flex if it answers, or Protect once to scout.",
+      "Come in on Electric, Fire into a resist, or after a pivot chips.\nEarthquake grounded non-Grass. Fire Fang Steel panic-switches.\nIce or Fairy: leave. Do not Outrage while Fairy is healthy.",
   };
 }
 
@@ -188,13 +85,13 @@ function corviknightSlot(): SlotManual {
     title: "The Scout",
     job: "support",
     literacy: "pivot",
-    role: "Blind lead. Rocky Helmet sponge. Slow U-turn into Garchomp.",
+    role: "Blind lead. Rocky Helmet sponge. Slow U-turn. Fairy answer.",
     ability: "Mirror Armor",
     item: "Rocky Helmet",
-    itemWhy: "Contact into you pays HP. You are the physical scout and the Fairy/Poison/Grass emergency.",
+    itemWhy: "Contact pays HP. Physical scout and Fairy/Poison/Grass emergency.",
     itemAlts: [
-      { name: "Leftovers", why: "Use when you Roost and win the slot against special chip. Helmet is worse when they never make contact." },
-      { name: "Occa Berry", why: "Emergency Fire live. Prefer switching to Incineroar or Primarina from the box when you can." },
+      { name: "Leftovers", why: "Roost stay against special chip." },
+      { name: "Occa Berry", why: "Emergency Fire live — prefer Rotom or Primarina when you can." },
     ],
     nature: "Impish",
     training: train(
@@ -206,52 +103,46 @@ function corviknightSlot(): SlotManual {
       0,
       {
         label: "Physical wall, slow on purpose",
-        why: "Take the hit, then U-turn after they move. Cap HP and Defense. Speed at 0 so the hand-off is safe.",
-        spend: [
-          "32 HP — the stay.",
-          "32 Def — Impish wall. Body Press still hurts.",
-          "2 SpD — leftover. Ice deals normal damage.",
-          "0 Spe — slow U-turn. Fast U-turn is Ice on Garchomp.",
-        ],
+        why: "Take the hit, U-turn after they move. Speed at 0.",
+        spend: ["32 HP — the stay.", "32 Def — Impish wall.", "2 SpD — leftover.", "0 Spe — slow U-turn."],
       },
     ),
     moves: [
       {
         name: "U-turn",
-        why: "Slow hand-off into Garchomp or Kingambit after they already moved. If you outspeed Ice, do not U-turn into Garchomp — switch to a flex that resists.",
+        why: "Slow hand-off into Garchomp or Kingambit. If you outspeed Ice, do not U-turn into Garchomp.",
       },
       { name: "Brave Bird", why: "Grass answer. Recoil is the tax." },
       {
         name: "Roost",
         why: "Stay against a locked physical resist.",
-        alts: [{ name: "Iron Defense", why: "With Body Press, two stages doubles Press. You become the wincon." }],
+        alts: [{ name: "Iron Defense", why: "With Body Press, two stages doubles Press." }],
       },
       {
         name: "Body Press",
-        why: "Defense-based Fighting. Hits Dark. Kingambit takes normal Fighting — bulky Press still hurts.",
+        why: "Defense-based Fighting. Hits Dark.",
         alts: [{ name: "Iron Head", why: "Steel into Fairy when Garchomp is down." }],
       },
     ],
     objective: "Scout, chip, Fairy answer. Leave Electric and Fire.",
     howToPlay:
-      "Lead vs physical, Grass, or Poison. Steel blanks Poison. Flying blanks Ground.\nElectric and Fire leave — Garchomp for Electric, a Fire resist from the box if available.\nNever U-turn into Garchomp while faster than Ice.",
+      "Lead vs physical, Grass, or Poison.\nElectric and Fire leave — Garchomp or Rotom.\nNever U-turn into Garchomp while faster than Ice.",
   };
 }
 
-function rillaboomSlot(): SlotManual {
+function kingambitSlot(): SlotManual {
   return {
-    slug: "rillaboom",
-    title: "The Terrain",
-    job: "support",
-    literacy: "pivot",
-    role: "Grassy Surge lead. Priority Glide vs rain abusers. Anti-Water weapon.",
-    ability: "Grassy Surge",
-    item: "Assault Vest",
-    itemWhy: "You walk in and the field is up. Vest lets you tank a special Water or Fire and click Glide or Wood Hammer. Choice Band is the locked nuke alt.",
+    slug: "kingambit",
+    title: "The Closer",
+    job: "breaker",
+    literacy: "wallbreaker",
+    role: "Supreme Overlord closer. Bag until a partner trades.",
+    ability: "Supreme Overlord",
+    item: "Black Glasses",
+    itemWhy: "Dark STAB finishes. Stacks with Overlord after a partner falls.",
     itemAlts: [
-      { name: "Choice Band", why: "Lock Wood Hammer or Glide. Use when one click has to delete Barraskewda or a Water wall." },
-      { name: "Grassy Seed", why: "Defense boost on entry. Unburden is not on this set — Seed is bulk, not Speed." },
-      { name: "Life Orb", why: "Raw Glide damage. Recoil plus Wood Hammer recoil stacks — careful." },
+      { name: "Life Orb", why: "Raw damage into bulky walls after chip." },
+      { name: "Leftovers", why: "Sit against a resist. Prefer Glasses for the close." },
     ],
     nature: "Adamant",
     training: train(
@@ -262,54 +153,28 @@ function rillaboomSlot(): SlotManual {
       0,
       0,
       {
-        label: "Terrain truck",
-        why: "Grassy Glide is priority under terrain — you do not need Speed points to outrun rain abusers. Cap Attack and HP.",
-        spend: [
-          "32 Atk — Glide and Wood Hammer have to KO.",
-          "32 HP — live the Fire or Poison answer once.",
-          "2 Def — leftover.",
-          "0 Spe — Glide is +1 under Grassy Terrain.",
-        ],
+        label: "Overlord truck",
+        why: "Slow on purpose. Sucker Punch is the Speed plan. Fighting is 1× — not free.",
+        spend: ["32 Atk — Kowtow and Sucker Punch close.", "32 HP — live one hit after a trade.", "2 Def — leftover.", "0 Spe — Sucker Punch is +1."],
       },
-      [
-        alt(
-          "Choice Band race",
-          4,
-          32,
-          0,
-          0,
-          0,
-          30,
-          "If you lock Band and still want to move before medium-Speed Waters without Glide. Prefer Glide under terrain.",
-          ["32 Atk — Band locked click.", "30 Spe — race without priority.", "4 HP — leftover."],
-        ),
-      ],
     ),
     moves: [
+      { name: "Kowtow Cleave", why: "Dark STAB that never misses." },
+      { name: "Sucker Punch", why: "Priority if they attack. Fails on Protect." },
       {
-        name: "Grassy Glide",
-        why: "Grass priority under Grassy Terrain. Deletes Barraskewda and other rain abusers before they move.",
+        name: "Iron Head",
+        why: "Steel into Fairy.",
+        alts: [{ name: "Swords Dance", why: "Free turn after a KO." }],
       },
       {
-        name: "Wood Hammer",
-        why: "Chunks grounded walls. Recoil is real — Grassy Terrain heals a tick after.",
-      },
-      {
-        name: "U-turn",
-        why: "Pivot into Garchomp or Kingambit when Fire or Poison walks in. Terrain still heals whoever stays grounded.",
-      },
-      {
-        name: "Fake Out",
-        why: "Flinch the first entry. Buy a free Glide or hand-off next turn.",
-        alts: [
-          { name: "Knock Off", why: "Strip Leftovers or Assault Vest from a wall before Garchomp breaks it." },
-          { name: "High Horsepower", why: "Ground coverage into Fire that resists Grass." },
-        ],
+        name: "Low Kick",
+        why: "Fighting coverage into their Kingambit.",
+        alts: [{ name: "Protect", why: "Scout Fighting priority." }],
       },
     ],
-    objective: "Overwrite weather. Priority-hunt Water. Pivot when Fire or Poison arrives.",
+    objective: "Close after trades. Do not lead into Fighting.",
     howToPlay:
-      "Lead into Rain, Water, or Ground-heavy previews.\nGlide the rain abuser under terrain. U-turn on Fire or Poison.\nDo not sit idle — force the pivot, then hand Garchomp the break.",
+      "Stay bagged until Garchomp or a flex has traded.\nSucker Punch attackers. Kowtow walls that Protect.\nFighting: leave to Rotom or Corvi.",
   };
 }
 
@@ -322,11 +187,10 @@ function primarinaSlot(): SlotManual {
     role: "Ice and Dragon patch. Rain sponge. Special Defense anchor.",
     ability: "Torrent",
     item: "Sitrus Berry",
-    itemWhy: "You stay. Sitrus is one burst after the first hit. Leftovers is slower. Specs does not sit.",
+    itemWhy: "You stay. One burst after the first hit.",
     itemAlts: [
-      { name: "Leftovers", why: "Calm Mind stay when they cannot KO. Slower than Sitrus." },
-      { name: "Choice Specs", why: "One locked Moonblast or Sparkling Aria has to KO. Do not lock into Steel." },
-      { name: "Mystic Water", why: "Stronger Water without locking. Still Ice Beam and Moonblast." },
+      { name: "Leftovers", why: "Calm Mind stay when they cannot KO." },
+      { name: "Choice Specs", why: "One locked Moonblast or Sparkling Aria. Do not lock into Steel." },
     ],
     nature: "Modest",
     training: train(
@@ -338,259 +202,143 @@ function primarinaSlot(): SlotManual {
       0,
       {
         label: "Special stay",
-        why: "This lineup needs a Special Defense anchor — Garchomp and Kingambit lean physical. Cap HP. Split Defense and Special Defense. Special Attack gets enough for Moonblast.",
-        spend: [
-          "32 HP — Sitrus stay.",
-          "16 SpD — live special Ice and Water in rain.",
-          "14 SpA — Moonblast and Ice Beam still hurt.",
-          "4 Def — crumb vs physical leftovers.",
-          "0 Spe — Garchomp is the race.",
-        ],
+        why: "SpD anchor — Garchomp and Kingambit lean physical.",
+        spend: ["32 HP — Sitrus stay.", "16 SpD — live special Ice and Water.", "14 SpA — Moonblast still hurts.", "4 Def — crumb.", "0 Spe — Garchomp races."],
       },
-      [
-        alt(
-          "Choice Specs",
-          2,
-          0,
-          0,
-          32,
-          0,
-          32,
-          "Lock one click. Cap Special Attack and Speed. Do not sit.",
-          ["32 SpA — the locked KO.", "32 Spe — Modest race.", "2 HP — leftover."],
-        ),
-      ],
     ),
     moves: [
-      { name: "Moonblast", why: "Fairy STAB. Dragon and Fighting. Blanks Dragon damage into you." },
+      { name: "Moonblast", why: "Fairy STAB. Dragon and Fighting." },
       {
         name: "Sparkling Aria",
-        why: "Water STAB. Hits Fire and Ground. Heals burn on the target — useful if Incineroar burned your Garchomp earlier.",
-        alts: [{ name: "Surf", why: "Stronger Water without the burn heal." }],
+        why: "Water STAB. Hits Fire and Ground.",
+        alts: [{ name: "Surf", why: "Stronger Water without burn heal." }],
       },
-      {
-        name: "Ice Beam",
-        why: "Hits their Garchomp four times as hard. Answers Dragon without sending your Garchomp into Ice.",
-      },
+      { name: "Ice Beam", why: "Hits their Garchomp four times as hard." },
       {
         name: "Aqua Jet",
-        why: "Water priority. Revenge Fire. Kingambit resists Water — Earthquake that from Garchomp.",
+        why: "Water priority. Revenge Fire.",
         alts: [
-          { name: "Calm Mind", why: "Boost when the stay is real. You give up Aqua Jet." },
-          { name: "Encore", why: "Lock Protect or a setup move, then Moonblast." },
+          { name: "Calm Mind", why: "Boost when the stay is real." },
+          { name: "Encore", why: "Lock Protect or setup, then Moonblast." },
         ],
       },
     ],
-    objective: "Answer Ice, Dragon, special Water. Do not sit into Grass or Poison.",
+    objective: "Answer Ice, Dragon, special Water. Leave Grass and Poison.",
     howToPlay:
-      "Lead vs Ice, Fire, Dragon, Fighting, or rain specials.\nIce Beam their dragon. Moonblast Fighting and Dragon.\nGrass or Poison: leave to Kingambit (Poison) or Garchomp carefully — prefer not sitting.",
+      "Bring vs Ice, Fire, Dragon, Fighting, or rain specials.\nIce Beam their dragon. Moonblast Fighting.\nGrass or Poison: leave to Kingambit or Meowscarada.",
   };
 }
 
-function incineroarSlot(): SlotManual {
+function meowscaradaSlot(): SlotManual {
   return {
-    slug: "incineroar",
-    title: "The Intimidate",
-    job: "support",
-    literacy: "pivot",
-    role: "Intimidate pivot. Knock Off. Physical disruption into hyper offense.",
-    ability: "Intimidate",
-    item: "Rocky Helmet",
-    itemWhy: "Contact plus Intimidate. Helmet chips the physical attacker you just cut. Sitrus is the stay alt.",
+    slug: "meowscarada",
+    title: "The Revenge",
+    job: "breaker",
+    literacy: "sweeper",
+    role: "Speed threat. Flower Trick. Knock Off. U-turn pivot.",
+    ability: "Overgrow",
+    item: "Choice Scarf",
+    itemWhy: "Outrun medium Speed and revenge. Life Orb is the freer click alt.",
     itemAlts: [
-      { name: "Sitrus Berry", why: "One burst heal after Fake Out or Knock. Prefer when you sit." },
-      { name: "Assault Vest", why: "Special bulk into mixed tables. You lose Fake Out and Parting Shot if those are status — Vest blocks status moves." },
+      { name: "Life Orb", why: "Flower Trick without locking. Recoil is real." },
+      { name: "Focus Sash", why: "Live one hit to flower the revenge." },
     ],
-    nature: "Impish",
+    nature: "Jolly",
     training: train(
+      0,
       32,
+      0,
+      0,
       2,
       32,
-      0,
-      0,
-      0,
       {
-        label: "Physical pivot",
-        why: "Intimidate is free Attack cut. Cap HP and Defense. Attack gets a crumb for Knock Off and Flare Blitz.",
-        spend: [
-          "32 HP — the stay after Intimidate.",
-          "32 Def — live the cut physical hit.",
-          "2 Atk — Knock and Fake Out still register.",
-          "0 Spe — Parting Shot / U-turn after they move when possible.",
-        ],
+        label: "Scarf race",
+        why: "Cap Attack and Speed. Scarf multiplies the race.",
+        spend: ["32 Atk — Flower Trick has to KO.", "32 Spe — the race before Scarf.", "2 SpD — leftover.", "0 HP — revenge, not wall."],
       },
       [
-        alt(
-          "Careful special",
-          32,
-          0,
-          4,
-          0,
-          30,
-          0,
-          "When the table is special physical hybrids. Pull Defense into Special Defense.",
-          ["32 HP — still the stay.", "30 SpD — live special.", "4 Def — crumb."],
-        ),
+        alt("Life Orb", 4, 32, 0, 0, 0, 30, "Free clicks. Pull a little Speed into HP.", [
+          "32 Atk — still the punch.",
+          "30 Spe — Jolly race without Scarf.",
+          "4 HP — leftover.",
+        ]),
       ],
     ),
     moves: [
-      { name: "Fake Out", why: "Flinch lead. Buy Intimidate value and a free Knock or Parting Shot." },
+      { name: "Flower Trick", why: "Grass STAB that never misses and always crits." },
+      { name: "Knock Off", why: "Strip Leftovers and Choice. Softens walls." },
       {
-        name: "Knock Off",
-        why: "Strip Leftovers, Assault Vest, or Choice. Softens walls Corviknight could not break alone.",
+        name: "U-turn",
+        why: "Pivot into Garchomp or Corviknight after chip.",
+        alts: [{ name: "Triple Axel", why: "Ice coverage into Dragons when Primarina is benched." }],
       },
       {
-        name: "Parting Shot",
-        why: "Attack and SpA cut, then leave into Garchomp or Kingambit.",
-        alts: [{ name: "U-turn", why: "Damage plus switch when you need chip more than the drop." }],
-      },
-      {
-        name: "Flare Blitz",
-        why: "Fire STAB into Steel and Grass walls. Recoil is real — Intimidate entry should already have cut them.",
-        alts: [
-          { name: "Will-O-Wisp", why: "Permanent Attack cut when you cannot risk Blitz recoil." },
-          { name: "Throat Chop", why: "Dark STAB into Psychic / Ghost without recoil." },
-        ],
+        name: "Play Rough",
+        why: "Fairy into Fighting and Dragon.",
+        alts: [{ name: "Thunder Punch", why: "Electric into Water/Flying when Rotom is benched." }],
       },
     ],
-    objective: "Cut Attack, strip items, hand off. Leave Water and Ground.",
+    objective: "Revenge and strip. Leave Fire and Ice.",
     howToPlay:
-      "Lead vs hyper offense physical or bulky Steel/Grass.\nFake Out, Knock, Parting Shot into Garchomp.\nWater or Ground: leave to Garchomp (Ground blanks Electric too) or Kingambit carefully.",
+      "Bring vs HO and soft fields that need Speed.\nFlower Trick the revenge. Knock then U-turn into Chomp.\nFire or Ice: leave to Corvi or Primarina.",
   };
 }
 
-const CORE_SWITCHES = [
-  {
-    into: "Ice",
-    send: "Corviknight. Ice deals normal damage to Steel/Flying. Never Garchomp — Ice hits Dragon/Ground four times as hard. Kingambit takes normal Ice.",
-  },
-  {
-    into: "Fairy",
-    send: "Corviknight. Steel resists Fairy. Garchomp takes double Fairy. Kingambit Iron Head if Corvi is down.",
-  },
-  {
-    into: "Electric",
-    send: "Garchomp. Ground takes no Electric. Corviknight takes double — leave immediately.",
-  },
-  {
-    into: "Fire",
-    send: "Garchomp resists Fire. Corviknight takes double — leave. Kingambit takes double Fire — do not sit.",
-  },
-  {
-    into: "Fighting",
-    send: "Corviknight Body Press trade, or Garchomp if you can threaten first. Kingambit takes normal Fighting (1×) — not free. Prefer not leading the truck into Close Combat.",
-  },
-  {
-    into: "Ground",
-    send: "Corviknight. Flying takes no Ground.",
-  },
-  {
-    into: "Water",
-    send: "Corviknight resists. Garchomp takes normal Water — not an emergency. Kingambit resists Water.",
-  },
-  {
-    into: "Grass",
-    send: "Corviknight Brave Bird. Garchomp Earthquake is resisted — do not send him to break Grass alone.",
-  },
-  {
-    into: "Poison",
-    send: "Corviknight. Steel takes no Poison. Kingambit resists Poison.",
-  },
-  {
-    into: "Dragon",
-    send: "Kingambit Iron Head, or Garchomp if you won the speed. Corviknight takes normal Dragon.",
-  },
-];
+function rotomWashSlot(): SlotManual {
+  return {
+    slug: "rotom-wash",
+    title: "The Volt Pivot",
+    job: "support",
+    literacy: "pivot",
+    role: "Volt Switch. Fighting sponge for Kingambit. Water absorb.",
+    ability: "Levitate",
+    item: "Sitrus Berry",
+    itemWhy: "Sit one hit then Volt Switch. Leftovers is the longer stay.",
+    itemAlts: [
+      { name: "Leftovers", why: "Will-O / Pain Split stay." },
+      { name: "Choice Specs", why: "Lock Hydro Pump or Thunderbolt. Do not sit." },
+    ],
+    nature: "Modest",
+    training: train(
+      32,
+      0,
+      0,
+      20,
+      14,
+      0,
+      {
+        label: "Bulky pivot",
+        why: "Live Fighting for Gambit. Cap HP. Split SpA and SpD.",
+        spend: ["32 HP — the stay.", "20 SpA — Hydro and Thunderbolt hurt.", "14 SpD — live special chip.", "0 Spe — Volt Switch after they move when possible."],
+      },
+    ),
+    moves: [
+      { name: "Volt Switch", why: "Electric damage plus hand-off into Garchomp or Kingambit." },
+      { name: "Hydro Pump", why: "Water STAB. Hits Ground that blanks Volt Switch.", alts: [{ name: "Surf", why: "Safer Water without the miss." }] },
+      {
+        name: "Will-O-Wisp",
+        why: "Burn physical attackers before you leave.",
+        alts: [{ name: "Thunder Wave", why: "Para the race when burn is resisted." }],
+      },
+      {
+        name: "Pain Split",
+        why: "Equalize HP against a tank.",
+        alts: [{ name: "Protect", why: "Scout and stall Leftovers." }],
+      },
+    ],
+    objective: "Absorb Fighting. Pivot with Volt Switch. Leave Grass and Dark.",
+    howToPlay:
+      "Bring vs Fighting-heavy previews.\nWill-O physical, Volt Switch into Gambit or Chomp.\nGrass or Dark: leave to Corvi or Meow.",
+  };
+}
 
-const CORE_PLAN = [
-  {
-    title: "Clock",
-    goal: "Scout without donating Garchomp into Ice.",
-    play: "Lead Corviknight into physical, Grass, or Poison. Lead Garchomp only into Electric. Keep Kingambit in the bag until a partner has traded or the field is soft.",
-    next: "Rocky Helmet chips contact. Slow U-turn into Garchomp after they move.",
-  },
-  {
-    title: "Shield",
-    goal: "Helmet absorb, then punish the panic switch.",
-    play: "Sit Corviknight into physical attackers. U-turn into Garchomp on Electric or Fire predictions. Fire Fang Steel that switch into Dragon Claw.",
-    next: "Ice or Fairy onto Garchomp: back to Corviknight. Do not Outrage while Fairy is healthy.",
-  },
-  {
-    title: "Clean",
-    goal: "Kingambit closes after trades fuel Overlord.",
-    play: "When Garchomp or Corviknight falls, Kingambit enters with Overlord stacks. Sucker Punch healthy attackers. Kowtow walls that Protect.",
-    next: "Fighting priority still hurts. Iron Head Fairy leftovers. Do not Sucker Punch Protect.",
-  },
-];
-
-const CORE_LOOPS = [
-  {
-    title: "Helmet, then hand-off",
-    body: "Corviknight takes contact. Rocky Helmet chips. Slow U-turn into Garchomp after they already moved. Earthquake or Fire Fang the switch-in.",
-  },
-  {
-    title: "Steel panic Fang",
-    body: "Garchomp clicks Dragon. They panic into Steel. Fire Fang. The read that forces the next pivot.",
-  },
-  {
-    title: "Overlord close",
-    body: "A partner falls. Kingambit walks in with Supreme Overlord. Sucker Punch the cleaner that attacks, or Kowtow the wall that stalls.",
-  },
-];
-
-const CORE_HAZARDS: ManualNote[] = [
-  {
-    title: "Ice into Garchomp",
-    body: "Ice hits Garchomp four times as hard.",
-    watch: "Ice coverage or Ice Fang on their lead.",
-    play: "Send Corviknight. Do not U-turn into Garchomp while you outspeed Ice.",
-    rule: "Never leave Garchomp in on known Ice.",
-  },
-  {
-    title: "Fairy into Garchomp",
-    body: "Fairy deals double to Dragon/Ground.",
-    watch: "Moonblast, Play Rough, or Mimikyu still healthy.",
-    play: "Corviknight resists. Iron Head from Kingambit if Corvi is down.",
-    rule: "Do not Outrage while Fairy is in their bag.",
-  },
-  {
-    title: "Fighting into Kingambit",
-    body: "Fighting is 1× on Dark/Steel — not free, not death.",
-    watch: "Close Combat, Mach Punch, or Fighting priority.",
-    play: "Protect once to scout, or leave to Corviknight Body Press. Do not greed Kowtow into a guaranteed Fighting KO.",
-    rule: "Do not lead Kingambit into a live Fighting attacker.",
-  },
-  {
-    title: "Fire into Corviknight or Kingambit",
-    body: "Both take double Fire.",
-    watch: "Flare Blitz, Heat Wave, or Fire Blast.",
-    play: "Garchomp resists Fire. Hand off before the KO.",
-    rule: "Do not Roost Corviknight into a Fire lock.",
-  },
-  {
-    title: "Rain / Water spam",
-    body: "Core Corvi resists Water but cannot priority-hunt Barraskewda.",
-    watch: "Pelipper plus a Swift Swim cleaner.",
-    play: "Swap to Terrain (Rillaboom) or Special (Primarina) from the box before the series.",
-    rule: "Do not stubborn Core into a known rain team.",
-  },
-];
-
-const CORE_ADVANTAGES: ManualNote[] = [
-  {
-    title: "Physical hyper offense",
-    body: "Helmet Corvi plus Overlord Kingambit loves contact spam.",
-    watch: "Multiple contact Fake Out / Band attackers.",
-    play: "Lead Corvi, chip, U-turn into Chomp, close with Gambit.",
-    rule: "Still respect Ice coverage on those attackers.",
-  },
-  {
-    title: "Steel walls",
-    body: "Garchomp Fire Fang and Kingambit Kowtow both pressure Steel.",
-    watch: "Assault Vest Steel or Leftovers walls.",
-    play: "Force the switch with Dragon, Fang the Steel, or Knock with Incineroar mode.",
-    rule: "Do not lock Choice Scarf Outrage into that Steel.",
-  },
+const ROSTER: SlotManual[] = [
+  garchompSlot(),
+  corviknightSlot(),
+  kingambitSlot(),
+  primarinaSlot(),
+  meowscaradaSlot(),
+  rotomWashSlot(),
 ];
 
 function corePhases(): ManualPhase[] {
@@ -598,13 +346,13 @@ function corePhases(): ManualPhase[] {
     {
       id: "preview",
       title: "Preview",
-      lede: "Name Ice and Fairy before Garchomp walks in. Kingambit stays bagged.",
+      lede: "Register six. After you see their six, bring three. Ice and Fairy hide Garchomp.",
       branches: [
-        { when: "Physical lead, Grass, or Poison", then: "Corviknight." },
-        { when: "Electric lead", then: "Garchomp. Both partners hate Electric." },
-        { when: "Ice or Fairy visible", then: "Corviknight. Hide Garchomp." },
-        { when: "Fighting lead", then: "Corviknight. Not Kingambit." },
-        { when: "Rain / Water heavy", then: "Wrong mode. Bring Terrain or Special from the box." },
+        { when: "Blind / balanced six", then: "Core pack — Garchomp, Corviknight, Kingambit." },
+        { when: "Special spam, Ice, or Dragon", then: "Special pack — Primarina in, Corvi out." },
+        { when: "Hyper offense / speed races", then: "Speed pack — Meowscarada in." },
+        { when: "Fighting-heavy", then: "Pivot pack — Rotom-Wash + Corvi + Gambit." },
+        { when: "Soft field, need Speed + closer", then: "Break pack — Chomp, Meow, Gambit." },
       ],
     },
     {
@@ -612,36 +360,32 @@ function corePhases(): ManualPhase[] {
       title: "Lead",
       lede: "Corviknight is the blind lead. Garchomp is the Electric lead. Kingambit is not a lead.",
       branches: [
-        { out: "corviknight", when: "Physical contact", then: "Stay. Helmet chips. Roost if they are locked into a resist." },
-        { out: "corviknight", when: "Want Garchomp, you are slower", then: "U-turn. They hit Corvi, then Chomp is in." },
-        { out: "corviknight", when: "Want Garchomp, you outspeed Ice", then: "Do not U-turn into Chomp. Stay or hard switch after scouting." },
-        { out: "garchomp", when: "Electric in", then: "Earthquake if grounded." },
-        { out: "garchomp", when: "Ice or Fairy coming", then: "Leave to Corviknight." },
-        { out: "kingambit", when: "You led the truck", then: "Misread. Protect or Sucker Punch. Get Corvi or Chomp in." },
+        { out: "corviknight", when: "Physical contact", then: "Stay. Helmet chips." },
+        { out: "corviknight", when: "Want Garchomp, slower", then: "U-turn." },
+        { out: "corviknight", when: "Want Garchomp, outspeed Ice", then: "Do not U-turn into Chomp." },
+        { out: "garchomp", when: "Electric", then: "Earthquake if grounded." },
+        { out: "kingambit", when: "You led the truck", then: "Misread. Protect. Get Corvi or Chomp in." },
       ],
     },
     {
       id: "mid",
       title: "Mid",
-      lede: "Helmet absorb. Punish Steel switches. Fuel Overlord without panicking.",
+      lede: "Helmet absorb. Punish Steel. Fuel Overlord.",
       branches: [
-        { out: "corviknight", when: "Locked physical resist", then: "Roost or Body Press. Wall can win 3v3." },
+        { out: "corviknight", when: "Locked physical resist", then: "Roost or Body Press." },
         { out: "garchomp", when: "Steel switches in", then: "Fire Fang." },
         { out: "garchomp", when: "Fairy or Ice", then: "Corviknight." },
-        { out: "kingambit", when: "A partner fainted", then: "Overlord is live. Kowtow or Sucker Punch." },
-        { out: "kingambit", when: "Fighting switches in", then: "Protect or leave to Corvi." },
+        { out: "kingambit", when: "Partner fainted", then: "Overlord close." },
       ],
     },
     {
       id: "late",
       title: "Late",
-      lede: "One target. Overlord closes. Chomp cleans if Ice is gone.",
+      lede: "Overlord closes. Chomp cleans if Ice and Fairy are gone.",
       branches: [
         { out: "kingambit", when: "They attack", then: "Sucker Punch." },
-        { out: "kingambit", when: "They Protect or status", then: "Kowtow or Dance. Not Sucker Punch." },
+        { out: "kingambit", when: "They Protect", then: "Kowtow. Not Sucker Punch." },
         { out: "garchomp", when: "Ice gone, grounded", then: "Earthquake." },
-        { out: "garchomp", when: "Fairy still in", then: "Dragon Claw only. No Outrage." },
-        { out: "corviknight", when: "Grass leftover", then: "Brave Bird." },
       ],
     },
   ];
@@ -652,90 +396,69 @@ function coreFlows(): ManualFlow[] {
     {
       id: "lead",
       title: "Lead",
-      lede: "Preview their three. Corviknight is the blind lead. Garchomp only for Electric. Kingambit stays bagged.",
+      lede: "Corviknight blind. Garchomp for Electric. Kingambit bagged.",
       forks: [
         {
           id: "op-lead-corvi",
           when: "Physical, Grass, Poison, or blind",
-          then: "Lead Corviknight. Rocky Helmet chips contact. Scout before Garchomp enters.",
+          then: "Lead Corviknight.",
           send: "corviknight",
-          why: "Because Corvi is the Fairy/Poison/Grass answer and the slow hand-off.",
+          why: "Scout and Fairy answer.",
           forks: [
             {
               id: "op-lead-corvi-phys",
-              when: "Physical contact coming",
-              then: "Stay. Take the hit. Helmet chips.",
+              when: "Physical contact",
+              then: "Stay. Helmet chips.",
               send: "corviknight",
-              why: "Because your job is soak and scout, not a risky early Chomp entry.",
             },
             {
               id: "op-lead-corvi-uturn",
-              when: "Want Garchomp, and you are slower or they switched",
+              when: "Want Garchomp, slower or they switched",
               then: "U-turn into Garchomp.",
               move: "U-turn",
               send: "garchomp",
-              why: "Because slow U-turn lets them hit Corvi, then Chomp enters after they moved.",
             },
             {
               id: "op-lead-corvi-ice",
-              when: "Want Garchomp, but you outspeed Ice",
+              when: "Want Garchomp, outspeed Ice",
               then: "Do not U-turn into Garchomp.",
               send: "corviknight",
-              why: "Because fast U-turn brings Chomp in before Ice — four times damage.",
             },
             {
               id: "op-lead-corvi-elec",
-              when: "Electric coming",
+              when: "Electric",
               then: "Leave to Garchomp.",
               send: "garchomp",
-              why: "Because Ground blanks Electric and Corvi takes double.",
-            },
-            {
-              id: "op-lead-corvi-fire",
-              when: "Fire coming",
-              then: "Leave to Garchomp. Corvi takes double Fire.",
-              send: "garchomp",
-              why: "Because Garchomp resists Fire.",
             },
           ],
         },
         {
           id: "op-lead-chomp",
           when: "Electric",
-          then: "Lead Garchomp. Partners both hate Electric.",
+          then: "Lead Garchomp.",
           send: "garchomp",
-          why: "Because this is the only clean Garchomp lead on Core.",
           forks: [
             {
               id: "op-lead-chomp-eq",
-              when: "They are grounded",
+              when: "Grounded",
               then: "Earthquake.",
               move: "Earthquake",
               send: "garchomp",
-              why: "Because you already won the type.",
             },
             {
               id: "op-lead-chomp-ice",
-              when: "Ice or Fairy coming",
+              when: "Ice or Fairy",
               then: "Leave to Corviknight.",
               send: "corviknight",
-              why: "Because you mis-led if Ice or Fairy walks in.",
             },
           ],
-        },
-        {
-          id: "op-lead-gambit",
-          when: "You are tempted to lead Kingambit",
-          then: "Do not. Bag the truck until a partner trades.",
-          send: "corviknight",
-          why: "Because Fighting and early pressure punish a naked Overlord lead.",
         },
       ],
     },
     {
       id: "mid",
       title: "Mid",
-      lede: "Type sends live on the switch board. Here: locks, Steel reads, and Overlord fuel.",
+      lede: "Type sends on the switch board. Here: locks and Overlord fuel.",
       forks: [
         {
           id: "op-mid-corvi",
@@ -744,19 +467,17 @@ function coreFlows(): ManualFlow[] {
           forks: [
             {
               id: "op-mid-corvi-stay",
-              when: "Locked into a physical resist",
-              then: "Roost or Body Press. The wall can win without handing off.",
+              when: "Locked physical resist",
+              then: "Roost or Body Press.",
               move: "Roost",
               send: "corviknight",
-              why: "Because a free heal keeps Chomp and Gambit healthy for the close.",
             },
             {
               id: "op-mid-corvi-hand",
-              when: "Soft field, Ice scouted gone",
+              when: "Ice scouted gone",
               then: "Slow U-turn into Garchomp.",
               move: "U-turn",
               send: "garchomp",
-              why: "Because the breaker needs a safe entry.",
             },
           ],
         },
@@ -767,26 +488,16 @@ function coreFlows(): ManualFlow[] {
           forks: [
             {
               id: "op-mid-chomp-steel",
-              when: "Steel switches in on Dragon",
+              when: "Steel switches in",
               then: "Fire Fang.",
               move: "Fire Fang",
               send: "garchomp",
-              why: "Because Steel panic-switches are the punish loop.",
             },
             {
               id: "op-mid-chomp-fairy",
               when: "Fairy or Ice",
               then: "Leave to Corviknight.",
               send: "corviknight",
-              why: "Because Chomp is 2× Fairy and 4× Ice.",
-            },
-            {
-              id: "op-mid-chomp-dance",
-              when: "You read Protect",
-              then: "Swords Dance. Next hit is the KO.",
-              move: "Swords Dance",
-              send: "garchomp",
-              why: "Because Protect gave a free turn.",
             },
           ],
         },
@@ -797,17 +508,15 @@ function coreFlows(): ManualFlow[] {
           forks: [
             {
               id: "op-mid-gambit-overlord",
-              when: "A partner fainted",
-              then: "Kowtow or Sucker Punch. Overlord is live.",
+              when: "Partner fainted",
+              then: "Kowtow or Sucker Punch.",
               send: "kingambit",
-              why: "Because trades are the plan, not a panic.",
             },
             {
               id: "op-mid-gambit-fight",
-              when: "Fighting switches in",
+              when: "Fighting",
               then: "Protect or leave to Corviknight.",
               send: "corviknight",
-              why: "Because Fighting is 1× but Close Combat still chunks.",
             },
           ],
         },
@@ -816,7 +525,7 @@ function coreFlows(): ManualFlow[] {
     {
       id: "late",
       title: "Late",
-      lede: "Overlord closes. Chomp cleans only if Ice and Fairy are gone.",
+      lede: "Overlord closes. Chomp cleans if Ice and Fairy are gone.",
       forks: [
         {
           id: "op-late-gambit",
@@ -829,23 +538,13 @@ function coreFlows(): ManualFlow[] {
               then: "Sucker Punch.",
               move: "Sucker Punch",
               send: "kingambit",
-              why: "Because priority wins the 1v1 scramble.",
             },
             {
               id: "op-late-gambit-kowtow",
-              when: "They Protect or status",
-              then: "Kowtow Cleave. Do not Sucker Punch the shield.",
+              when: "Protect or status",
+              then: "Kowtow Cleave.",
               move: "Kowtow Cleave",
               send: "kingambit",
-              why: "Because Sucker Punch fails on Protect.",
-            },
-            {
-              id: "op-late-gambit-fairy",
-              when: "Fairy leftover",
-              then: "Iron Head.",
-              move: "Iron Head",
-              send: "kingambit",
-              why: "Because Steel hits Fairy hard.",
             },
           ],
         },
@@ -860,15 +559,6 @@ function coreFlows(): ManualFlow[] {
               then: "Earthquake.",
               move: "Earthquake",
               send: "garchomp",
-              why: "Because the cleaner job is now safe.",
-            },
-            {
-              id: "op-late-chomp-outrage",
-              when: "Fairy still in",
-              then: "Dragon Claw only. No Outrage.",
-              move: "Dragon Claw",
-              send: "garchomp",
-              why: "Because a Fairy switch knocks locked Outrage out.",
             },
           ],
         },
@@ -877,511 +567,205 @@ function coreFlows(): ManualFlow[] {
   ];
 }
 
-function lineupCore(): ManualLineup {
-  const slots = [
-    garchompSlot("Hide behind Corviknight until Ice and Fairy are scouted."),
-    corviknightSlot(),
-    kingambitSlot("Bag the truck until a partner trades."),
-  ];
+const CORE_HAZARDS: ManualNote[] = [
+  {
+    title: "Ice into Garchomp",
+    body: "Ice hits Garchomp four times as hard.",
+    watch: "Ice coverage on their six.",
+    play: "Bring Special (Primarina) or keep Corvi. Do not U-turn into Chomp while faster than Ice.",
+    rule: "Never leave Garchomp in on known Ice.",
+  },
+  {
+    title: "Fairy into Garchomp",
+    body: "Fairy deals double to Dragon/Ground.",
+    watch: "Moonblast or Play Rough still healthy.",
+    play: "Corviknight resists. Iron Head from Kingambit if Corvi is down.",
+    rule: "Do not Outrage while Fairy is in their bag.",
+  },
+  {
+    title: "Fighting into Kingambit",
+    body: "Fighting is 1× on Dark/Steel — not free.",
+    watch: "Close Combat or Fighting priority.",
+    play: "Bring Pivot (Rotom) or Corvi Body Press. Do not lead the truck.",
+    rule: "Do not lead Kingambit into live Fighting.",
+  },
+  {
+    title: "Hyper offense Speed",
+    body: "Core Corvi is slow on purpose.",
+    watch: "Multiple Band or Scarf cleaners.",
+    play: "Bring Speed (Meowscarada) or Break pack.",
+    rule: "Do not stubborn Core into a known HO six.",
+  },
+];
+
+function packCore(): ManualPack {
   return {
     id: "core",
     label: "Core",
-    when: "Blind ladder / balanced foes",
+    when: "Blind ladder / balanced six",
     identity: "Corviknight scouts and chips. Garchomp breaks. Kingambit closes on trades.",
     slugs: ["garchomp", "corviknight", "kingambit"],
-    slots,
     pilot: {
-      thesis: "Corviknight buys information and Helmet chip. Garchomp forces switches and breaks. Kingambit closes after trades fuel Supreme Overlord.",
-      rule: "Blind lead Corviknight. Slow U-turn into Garchomp. Ice onto Garchomp: Corviknight. Kingambit stays bagged until a partner falls or the field is soft.",
+      thesis:
+        "Register six. After preview, bring Corviknight, Garchomp, and Kingambit for balanced foes. Corvi buys information. Chomp breaks. Gambit closes.",
+      rule: "Blind lead Corviknight. Slow U-turn into Garchomp. Ice onto Garchomp: Corviknight. Kingambit stays bagged until a partner falls.",
       fail: "U-turning into Garchomp while faster than Ice, leading Kingambit into Fighting, or Outrage while Fairy is healthy.",
     },
-    meta: "Garchomp and Kingambit sit as the wincon spine. Corviknight is the default flex — Rocky Helmet U-turn into a Life Orb or Scarf Chomp, then Overlord closes.",
+    meta: "Default bring. Garchomp and Kingambit are the wincon spine. Corviknight is the wall.",
     philosophy:
-      "You bring Garchomp, Corviknight, and Kingambit. Corviknight is the scout and the Fairy answer. Garchomp is the breaker — Earthquake and Fire Fang force panic switches. Kingambit is the closer — Supreme Overlord grows when a partner falls, then Sucker Punch or Kowtow ends the game. Ice hits Garchomp four times as hard — send Corviknight. Fighting into Kingambit is normal damage, not free — do not lead the truck.",
+      "You register six: Garchomp, Corviknight, Kingambit, Primarina, Meowscarada, Rotom-Wash. At preview you bring three. Core is the blind bring — Corvi scouts, Chomp breaks, Gambit closes on Supreme Overlord.",
     press: ["Physical leads", "Steel walls", "Electric", "Contact spam"],
-    refuse: ["Ice into Garchomp", "Fairy into Garchomp", "Fighting lead into Kingambit", "Known rain without a mode swap"],
-    switches: CORE_SWITCHES,
-    plan: CORE_PLAN,
-    loops: CORE_LOOPS,
+    refuse: ["Ice into Garchomp", "Fairy into Garchomp", "Fighting lead into Kingambit", "Known HO without Speed pack"],
+    switches: [
+      { into: "Ice", send: "Corviknight. Never Garchomp — Ice hits four times as hard." },
+      { into: "Fairy", send: "Corviknight. Steel resists. Kingambit Iron Head if Corvi is down." },
+      { into: "Electric", send: "Garchomp. Ground blanks Electric." },
+      { into: "Fire", send: "Garchomp resists. Corviknight and Kingambit take double — leave." },
+      { into: "Fighting", send: "Corviknight Body Press. Kingambit takes normal Fighting — not a lead." },
+      { into: "Ground", send: "Corviknight. Flying blanks Ground." },
+      { into: "Water", send: "Corviknight resists. Kingambit resists." },
+      { into: "Grass", send: "Corviknight Brave Bird. Do not Earthquake Grass with Garchomp alone." },
+      { into: "Poison", send: "Corviknight. Steel blanks Poison." },
+      { into: "Dragon", send: "Kingambit Iron Head, or Garchomp if you won Speed." },
+    ],
+    plan: [
+      {
+        title: "Clock",
+        goal: "Scout without donating Garchomp into Ice.",
+        play: "Lead Corviknight into physical, Grass, or Poison. Lead Garchomp only into Electric. Keep Kingambit bagged.",
+        next: "Rocky Helmet chips. Slow U-turn into Garchomp after they move.",
+      },
+      {
+        title: "Shield",
+        goal: "Helmet absorb, then punish the panic switch.",
+        play: "Sit Corviknight into physical. U-turn into Garchomp on Electric or Fire. Fire Fang Steel that switch into Dragon.",
+        next: "Ice or Fairy onto Garchomp: back to Corviknight.",
+      },
+      {
+        title: "Clean",
+        goal: "Kingambit closes after trades fuel Overlord.",
+        play: "When a partner falls, Kingambit enters stacked. Sucker Punch attackers. Kowtow walls that Protect.",
+        next: "Do not Sucker Punch Protect.",
+      },
+    ],
+    loops: [
+      {
+        title: "Helmet, then hand-off",
+        body: "Corviknight takes contact. Rocky Helmet chips. Slow U-turn into Garchomp. Earthquake or Fire Fang the switch-in.",
+      },
+      {
+        title: "Steel panic Fang",
+        body: "Garchomp clicks Dragon. They panic into Steel. Fire Fang.",
+      },
+      {
+        title: "Overlord close",
+        body: "A partner falls. Kingambit walks in with Supreme Overlord. Sucker Punch or Kowtow ends it.",
+      },
+    ],
     hazards: CORE_HAZARDS,
-    advantages: CORE_ADVANTAGES,
+    advantages: [
+      {
+        title: "Physical hyper offense",
+        body: "Helmet Corvi plus Overlord loves contact spam.",
+        watch: "Multiple contact Fake Out / Band attackers.",
+        play: "Lead Corvi, chip, U-turn into Chomp, close with Gambit.",
+        rule: "Still respect Ice coverage.",
+      },
+    ],
     victims: [
-      { name: "Physical hyper offense", why: "Helmet Corvi chips contact. Overlord Kingambit loves the trades they force." },
+      { name: "Physical hyper offense", why: "Helmet Corvi chips contact. Overlord loves the trades." },
       { name: "Steel pivots", why: "Fire Fang punishes the panic switch into Dragon." },
-      { name: "Electric leads", why: "Garchomp blanks Electric. Both partners would take double." },
+      { name: "Electric leads", why: "Garchomp blanks Electric." },
     ],
     counters: [
-      { name: "Rain + Barraskewda", why: "Core cannot priority-hunt Swift Swim. Bring Terrain." },
-      { name: "Special walls / Calm Mind", why: "Corvi is physical. Bring Special (Primarina)." },
-      { name: "Bulky Grass / Steel that shrug Brave Bird", why: "Bring Intimidate (Incineroar) for Knock Off and Flare Blitz." },
+      { name: "Special spam / Ice", why: "Bring Special — Primarina." },
+      { name: "Hyper offense Speed", why: "Bring Speed — Meowscarada." },
+      { name: "Fighting-heavy", why: "Bring Pivot — Rotom-Wash." },
     ],
     phases: corePhases(),
     flows: coreFlows(),
   };
 }
 
-function terrainSwitches() {
-  return [
-    {
-      into: "Water",
-      send: "Rillaboom. Grassy Glide under terrain outspeeds rain abusers. Garchomp takes normal Water.",
-    },
-    {
-      into: "Fire",
-      send: "Garchomp resists Fire. Rillaboom takes double — U-turn out immediately.",
-    },
-    {
-      into: "Poison",
-      send: "Kingambit resists Poison. Rillaboom takes double — leave.",
-    },
-    {
-      into: "Ice",
-      send: "Rillaboom takes half Ice. Never Garchomp — 4× Ice. Kingambit takes normal Ice.",
-    },
-    {
-      into: "Fairy",
-      send: "Kingambit Iron Head. Garchomp takes double Fairy. Rillaboom takes normal Fairy.",
-    },
-    {
-      into: "Electric",
-      send: "Garchomp. Ground blanks Electric. Rillaboom takes normal Electric.",
-    },
-    {
-      into: "Flying",
-      send: "Kingambit or Garchomp Dragon/Rock coverage. Rillaboom Glide does nothing useful into Flying resists — Wood Hammer is resisted by Flying.",
-    },
-    {
-      into: "Ground",
-      send: "Rillaboom. Grassy Terrain cuts Earthquake damage. Garchomp is fine on offense.",
-    },
-  ];
-}
-
-function lineupTerrain(): ManualLineup {
-  return {
-    id: "terrain",
-    label: "Terrain",
-    when: "Rain, Water spam, weather wars, Ground chip",
-    identity: "Rillaboom overwrites the field and priority-hunts Water. Garchomp and Kingambit still close.",
-    slugs: ["garchomp", "rillaboom", "kingambit"],
-    slots: [
-      garchompSlot("Enter after Glide chips or U-turn. Ice still leaves to Rillaboom."),
-      rillaboomSlot(),
-      kingambitSlot("Same closer — trades from Rillaboom still fuel Overlord."),
-    ],
-    pilot: {
-      thesis: "Rillaboom sets Grassy Terrain on entry, hunts rain abusers with Grassy Glide, then hands Garchomp the break. Kingambit still closes.",
-      rule: "Lead Rillaboom into Rain or Water. Glide under terrain. U-turn on Fire or Poison. Ice onto Garchomp: Rillaboom resists.",
-      fail: "Sitting Rillaboom into Fire, or bringing Core Corvi into a known rain team you already scouted.",
-    },
-    meta: "Swap Corviknight for Rillaboom when weather and Water are the problem. You lose the physical Steel wall — play more aggressively.",
-    philosophy:
-      "Same spine: Garchomp breaks, Kingambit closes. Rillaboom replaces Corviknight to own the field. Grassy Surge overwrites rain and sun on entry. Grassy Glide becomes priority — Barraskewda does not get the turn. Wood Hammer chunks grounded walls. Without Corvi you do not sponge physical as well — trade harder into Overlord.",
-    press: ["Rain", "Water", "Ground chip", "Weather setters"],
-    refuse: ["Fire into Rillaboom", "Poison into Rillaboom", "Ice into Garchomp"],
-    switches: terrainSwitches(),
-    plan: [
-      {
-        title: "Clock",
-        goal: "Terrain up before their weather dictates.",
-        play: "Lead Rillaboom into Water, Rain, or Ground-heavy. Fake Out if available, then Glide the abuser.",
-        next: "Fire or Poison: U-turn into Garchomp or Kingambit while terrain ticks heal.",
-      },
-      {
-        title: "Shield",
-        goal: "Priority hunt, then break.",
-        play: "Glide keeps Water from sweeping. Hand Garchomp Earthquake or Fire Fang once the rain threat is soft.",
-        next: "Ice onto Garchomp: Rillaboom. Fairy: Kingambit Iron Head.",
-      },
-      {
-        title: "Clean",
-        goal: "Aggressive close without Corvi's wall.",
-        play: "Wood Hammer into remaining anchors. Kingambit Overlord after trades. Sucker Punch leftovers.",
-        next: "You play shorter games — do not stall.",
-      },
-    ],
-    loops: [
-      {
-        title: "Surge, then Glide",
-        body: "Rillaboom enters. Terrain overwrites rain. Grassy Glide deletes the Swift Swim cleaner before it moves.",
-      },
-      {
-        title: "Chip, then Chomp",
-        body: "U-turn from Rillaboom into Garchomp while terrain heals. Earthquake the softened field.",
-      },
-      {
-        title: "Overlord still closes",
-        body: "Rillaboom or Garchomp falls. Kingambit walks in stacked. Same Sucker / Kowtow endgame.",
-      },
-    ],
-    hazards: [
-      {
-        title: "Fire into Rillaboom",
-        body: "Fire deals double to Grass.",
-        watch: "Fire Blast, Flare Blitz, or Drought.",
-        play: "U-turn to Garchomp. Do not Wood Hammer the Fire type.",
-        rule: "Never sit Rillaboom into known Fire.",
-      },
-      {
-        title: "Ice into Garchomp",
-        body: "Still 4×.",
-        watch: "Ice Beam on rain teams.",
-        play: "Rillaboom resists Ice. Hand off.",
-        rule: "Terrain mode does not make Garchomp Ice-proof.",
-      },
-      {
-        title: "Flying / Levitate",
-        body: "Earthquake and Glide lose targets.",
-        watch: "Corviknight or Zapdos.",
-        play: "Kingambit Iron Head / Kowtow, or Garchomp Dragon coverage.",
-        rule: "Do not click Earthquake into Flying.",
-      },
-    ],
-    advantages: [
-      {
-        title: "Rain teams",
-        body: "Terrain overwrite plus Glide priority.",
-        watch: "Pelipper + Barraskewda / Archaludon.",
-        play: "Lead Rillaboom. Glide the cleaner. Chomp or Gambit finish.",
-        rule: "Respect Ice coverage on the rain team.",
-      },
-    ],
-    victims: [
-      { name: "Rain offense", why: "Grassy Surge deletes their weather. Glide deletes their cleaner." },
-      { name: "Water walls", why: "Wood Hammer and Glide chunk Water that Corvi only resisted." },
-    ],
-    counters: [
-      { name: "Fire spam", why: "No Corvi. Garchomp is the Fire resist — do not mis-lead Rillaboom." },
-      { name: "Poison", why: "Rillaboom takes double. Kingambit is the switch." },
-    ],
-    phases: [
-      {
-        id: "preview",
-        title: "Preview",
-        branches: [
-          { when: "Rain or Water heavy", then: "Rillaboom." },
-          { when: "Fire lead", then: "Garchomp. Not Rillaboom." },
-          { when: "Poison lead", then: "Kingambit or Garchomp — not Rillaboom." },
-        ],
-      },
-      {
-        id: "lead",
-        title: "Lead",
-        branches: [
-          { out: "rillaboom", when: "Rain abuser in", then: "Grassy Glide under terrain." },
-          { out: "rillaboom", when: "Fire coming", then: "U-turn to Garchomp." },
-          { out: "garchomp", when: "Electric or Fire", then: "Stay. Earthquake or threaten." },
-        ],
-      },
-      {
-        id: "mid",
-        title: "Mid",
-        branches: [
-          { out: "rillaboom", when: "Wall grounded", then: "Wood Hammer." },
-          { out: "garchomp", when: "Steel switch", then: "Fire Fang." },
-          { out: "kingambit", when: "Partner down", then: "Overlord close." },
-        ],
-      },
-      {
-        id: "late",
-        title: "Late",
-        branches: [
-          { out: "kingambit", when: "They attack", then: "Sucker Punch." },
-          { out: "garchomp", when: "Ice gone", then: "Earthquake." },
-          { out: "rillaboom", when: "Water leftover", then: "Glide." },
-        ],
-      },
-    ],
-    flows: [
-      {
-        id: "lead",
-        title: "Lead",
-        lede: "Terrain lead into Rain and Water. Hide Rillaboom from Fire.",
-        forks: [
-          {
-            id: "op-t-lead-rilla",
-            when: "Rain, Water, or Ground-heavy",
-            then: "Lead Rillaboom. Terrain is up on entry.",
-            send: "rillaboom",
-            why: "Because Grassy Surge overwrites their weather and enables Glide.",
-            forks: [
-              {
-                id: "op-t-lead-glide",
-                when: "Rain abuser in",
-                then: "Grassy Glide.",
-                move: "Grassy Glide",
-                send: "rillaboom",
-                why: "Because priority under terrain beats Swift Swim Speed.",
-              },
-              {
-                id: "op-t-lead-fire",
-                when: "Fire coming",
-                then: "U-turn to Garchomp.",
-                move: "U-turn",
-                send: "garchomp",
-                why: "Because Grass takes double Fire.",
-              },
-              {
-                id: "op-t-lead-poison",
-                when: "Poison coming",
-                then: "Leave to Kingambit.",
-                send: "kingambit",
-                why: "Because Steel resists Poison.",
-              },
-            ],
-          },
-          {
-            id: "op-t-lead-chomp",
-            when: "Fire or Electric",
-            then: "Lead Garchomp.",
-            send: "garchomp",
-            why: "Because Rillaboom hates Fire and Chomp blanks Electric.",
-          },
-        ],
-      },
-      {
-        id: "mid",
-        title: "Mid",
-        lede: "Hunt Water. Hand the break. Fuel Overlord.",
-        forks: [
-          {
-            id: "op-t-mid-rilla",
-            when: "This Pokémon is out",
-            out: "rillaboom",
-            forks: [
-              {
-                id: "op-t-mid-hammer",
-                when: "Grounded wall",
-                then: "Wood Hammer.",
-                move: "Wood Hammer",
-                send: "rillaboom",
-                why: "Because you are clearing the path for Chomp without Corvi's Press.",
-              },
-              {
-                id: "op-t-mid-uturn",
-                when: "Soft Water, want Chomp",
-                then: "U-turn into Garchomp.",
-                move: "U-turn",
-                send: "garchomp",
-                why: "Because terrain still heals the grounded entry.",
-              },
-            ],
-          },
-          {
-            id: "op-t-mid-chomp",
-            when: "This Pokémon is out",
-            out: "garchomp",
-            forks: [
-              {
-                id: "op-t-mid-fang",
-                when: "Steel switches in",
-                then: "Fire Fang.",
-                move: "Fire Fang",
-                send: "garchomp",
-                why: "Same punish loop as Core.",
-              },
-              {
-                id: "op-t-mid-ice",
-                when: "Ice",
-                then: "Leave to Rillaboom.",
-                send: "rillaboom",
-                why: "Grass resists Ice. Chomp is 4×.",
-              },
-            ],
-          },
-          {
-            id: "op-t-mid-gambit",
-            when: "This Pokémon is out",
-            out: "kingambit",
-            forks: [
-              {
-                id: "op-t-mid-overlord",
-                when: "Partner fainted",
-                then: "Kowtow or Sucker Punch.",
-                send: "kingambit",
-                why: "Trades still fuel the close.",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        id: "late",
-        title: "Late",
-        lede: "Aggressive finish. No Corvi stall.",
-        forks: [
-          {
-            id: "op-t-late-gambit",
-            when: "This Pokémon is out",
-            out: "kingambit",
-            forks: [
-              {
-                id: "op-t-late-sucker",
-                when: "They attack",
-                then: "Sucker Punch.",
-                move: "Sucker Punch",
-                send: "kingambit",
-                why: "Priority close.",
-              },
-            ],
-          },
-          {
-            id: "op-t-late-rilla",
-            when: "This Pokémon is out",
-            out: "rillaboom",
-            forks: [
-              {
-                id: "op-t-late-glide",
-                when: "Water leftover",
-                then: "Grassy Glide.",
-                move: "Grassy Glide",
-                send: "rillaboom",
-                why: "Finish the rain piece.",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  };
-}
-
-function lineupSpecial(): ManualLineup {
+function packSpecial(): ManualPack {
   return {
     id: "special",
     label: "Special",
-    when: "Special attackers, Ice/Dragon pressure, rain check without terrain",
-    identity: "Primarina is the special wall and Ice answer. Garchomp and Kingambit stay the spine.",
+    when: "Special spam, Ice, Dragon on their six",
+    identity: "Primarina patches Ice and special. Garchomp and Kingambit stay the spine.",
     slugs: ["garchomp", "primarina", "kingambit"],
-    slots: [
-      garchompSlot("Enter on Electric or after Primarina softens Ice. Fairy leaves to Kingambit Iron Head."),
-      primarinaSlot(),
-      kingambitSlot("Fairy answer when Primarina is down. Still the Overlord closer."),
-    ],
     pilot: {
-      thesis: "Primarina soaks special Water, Ice, and Dragon. Moonblast and Ice Beam patch what Garchomp cannot sit. Kingambit still closes.",
-      rule: "Lead Primarina into Ice, Fire, Dragon, Fighting, or rain specials. Lead Garchomp into Electric. Ice onto Garchomp: Primarina.",
+      thesis: "Saw Ice, Dragon, or special walls on preview — bring Primarina instead of Corviknight.",
+      rule: "Lead Primarina into Ice, Fire, Dragon, Fighting. Lead Garchomp into Electric. Ice onto Garchomp: Primarina.",
       fail: "Leading Garchomp into Ice, or sitting Primarina into Grass or Poison.",
     },
-    meta: "Swap Corviknight for Primarina when special damage and Ice are the problem. You lose Helmet chip — gain a Fairy STAB and Aqua Jet.",
-    philosophy:
-      "Same spine. Primarina replaces Corviknight as the flex wall — Special Defense, Ice resist, Fairy STAB. Rain Water hits her for resisted damage even without terrain. Ice Beam answers their Garchomp. Kingambit Iron Head is the Fairy backup when Primarina falls. You no longer sponge pure physical as well — respect Band attackers.",
-    press: ["Special attackers", "Dragon", "Ice pressure", "Rain specials"],
+    meta: "Corvi out, Primarina in. You lose Helmet chip — gain SpD and Ice Beam.",
+    press: ["Special attackers", "Dragon", "Ice", "Rain specials"],
     refuse: ["Grass into Primarina", "Poison into Primarina", "Ice into Garchomp", "Electric into Primarina"],
     switches: [
-      {
-        into: "Ice",
-        send: "Primarina. Water/Fairy takes half Ice. Never Garchomp.",
-      },
-      {
-        into: "Fire",
-        send: "Primarina. Water resists Fire. Garchomp also resists — Primarina if you need the special stay.",
-      },
-      {
-        into: "Dragon",
-        send: "Primarina. Fairy takes no Dragon. Moonblast hits back.",
-      },
-      {
-        into: "Fairy",
-        send: "Kingambit Iron Head. Garchomp takes double. Primarina is Fairy — stay only if you already won.",
-      },
-      {
-        into: "Electric",
-        send: "Garchomp. Primarina takes double Electric.",
-      },
-      {
-        into: "Fighting",
-        send: "Primarina Moonblast. Kingambit takes normal Fighting — not the lead.",
-      },
-      {
-        into: "Grass",
-        send: "Kingambit or Garchomp carefully. Primarina takes double Grass — leave.",
-      },
-      {
-        into: "Poison",
-        send: "Kingambit. Steel resists. Primarina takes double — leave.",
-      },
-      {
-        into: "Water",
-        send: "Primarina. Resists Water even in rain. Kingambit also resists.",
-      },
+      { into: "Ice", send: "Primarina. Never Garchomp." },
+      { into: "Fire", send: "Primarina. Water resists." },
+      { into: "Dragon", send: "Primarina. Fairy blanks Dragon." },
+      { into: "Fairy", send: "Kingambit Iron Head. Garchomp takes double." },
+      { into: "Electric", send: "Garchomp. Primarina takes double." },
+      { into: "Fighting", send: "Primarina Moonblast." },
+      { into: "Grass", send: "Kingambit. Primarina takes double — leave." },
+      { into: "Poison", send: "Kingambit. Steel resists." },
+      { into: "Water", send: "Primarina. Resists Water even in rain." },
     ],
     plan: [
       {
         title: "Clock",
         goal: "Patch Ice and special before Chomp enters.",
-        play: "Lead Primarina into Ice, Fire, Dragon, Fighting, or rain specials. Lead Garchomp only into Electric.",
-        next: "Moonblast or Ice Beam first turn. Hand off only after Ice is soft.",
+        play: "Lead Primarina into Ice, Fire, Dragon, Fighting. Lead Garchomp only into Electric.",
+        next: "Moonblast or Ice Beam first. Hand off after Ice is soft.",
       },
       {
         title: "Shield",
         goal: "Special stay, then break.",
-        play: "Sitrus Primarina sits Calm Mind or Encore when safe. Garchomp Earthquake after Ice leaves. Fairy: Kingambit Iron Head.",
-        next: "Grass or Poison onto Primarina: Kingambit immediately.",
+        play: "Sitrus Primarina sits. Fairy: Kingambit Iron Head. Grass or Poison: Kingambit immediately.",
+        next: "Garchomp Earthquake after Ice leaves.",
       },
       {
         title: "Clean",
         goal: "Chomp or Overlord finishes.",
-        play: "Aqua Jet revenge Fire. Kingambit Sucker Punch after trades. Garchomp cleans grounded leftovers.",
-        next: "Outrage only if Fairy is confirmed gone.",
+        play: "Aqua Jet revenge Fire. Kingambit Sucker Punch after trades.",
+        next: "Outrage only if Fairy is gone.",
       },
     ],
     loops: [
-      {
-        title: "Ice Beam the dragon",
-        body: "Primarina answers their Garchomp or Dragonite with Ice Beam without sending your own Chomp into Ice.",
-      },
-      {
-        title: "Moonblast, then Chomp",
-        body: "Fairy deletes Fighting or Dragon. Switch to Garchomp on Electric or a soft physical leftover.",
-      },
-      {
-        title: "Overlord close",
-        body: "Same truck endgame. Primarina trades still stack Supreme Overlord.",
-      },
+      { title: "Ice Beam the dragon", body: "Primarina answers their Garchomp without sending yours into Ice." },
+      { title: "Moonblast, then Chomp", body: "Fairy deletes Fighting or Dragon. Switch to Garchomp on Electric." },
+      { title: "Overlord close", body: "Primarina trades still stack Supreme Overlord." },
     ],
     hazards: [
       {
         title: "Grass into Primarina",
-        body: "Grass deals double to Water/Fairy.",
-        watch: "Rillaboom, Kartana, or Leaf Storm.",
-        play: "Leave to Kingambit. Do not Calm Mind into Grass.",
+        body: "Grass deals double.",
+        watch: "Rillaboom or Leaf Storm.",
+        play: "Kingambit. Do not Calm Mind into Grass.",
         rule: "Never sit Primarina into known Grass.",
-      },
-      {
-        title: "Poison into Primarina",
-        body: "Poison deals double.",
-        watch: "Sludge Bomb or Gunk Shot.",
-        play: "Kingambit. Steel resists.",
-        rule: "Poison is an emergency leave.",
       },
       {
         title: "Ice into Garchomp",
         body: "Still 4×.",
-        watch: "Ice Beam after they force a switch.",
+        watch: "Ice Beam after a force-switch.",
         play: "Primarina. She resists Ice.",
-        rule: "Special mode exists to stop this donate.",
+        rule: "Special pack exists to stop this donate.",
       },
     ],
     advantages: [
       {
         title: "Special hyper offense",
         body: "Primarina is the SpD anchor the spine lacked.",
-        watch: "Choice Specs specials or Calm Mind sweepers.",
-        play: "Lead Primarina. Sitrus stay. Hand Chomp or Gambit the KO.",
-        rule: "Still respect Grass coverage.",
-      },
-      {
-        title: "Rain without Barraskewda",
-        body: "Primarina resists Water; Ice Beam answers Dragons on rain teams.",
-        watch: "Pelipper + special Water.",
-        play: "Lead Primarina. Sparkling Aria. Save Terrain mode for priority Swift Swim.",
-        rule: "If Barraskewda is in, prefer Terrain.",
+        watch: "Choice Specs specials.",
+        play: "Lead Primarina. Hand Chomp or Gambit the KO.",
+        rule: "Respect Grass coverage.",
       },
     ],
     victims: [
       { name: "Dragon cores", why: "Moonblast blanks Dragon. Ice Beam hits Ice-weak dragons." },
-      { name: "Special attackers", why: "Sitrus Primarina is the SpD wall Garchomp and Kingambit are not." },
+      { name: "Special attackers", why: "Sitrus Primarina is the SpD wall." },
     ],
     counters: [
       { name: "Grass", why: "Primarina takes double. Kingambit must answer." },
@@ -1413,7 +797,7 @@ function lineupSpecial(): ManualLineup {
         branches: [
           { out: "primarina", when: "Can stay", then: "Calm Mind or Encore, then Moonblast." },
           { out: "garchomp", when: "Ice soft", then: "Earthquake / Fire Fang." },
-          { out: "kingambit", when: "Fairy in", then: "Iron Head." },
+          { out: "kingambit", when: "Fairy", then: "Iron Head." },
         ],
       },
       {
@@ -1422,7 +806,7 @@ function lineupSpecial(): ManualLineup {
         branches: [
           { out: "kingambit", when: "They attack", then: "Sucker Punch." },
           { out: "primarina", when: "Fire revenge", then: "Aqua Jet." },
-          { out: "garchomp", when: "Ice and Fairy gone", then: "Earthquake or Outrage." },
+          { out: "garchomp", when: "Ice and Fairy gone", then: "Earthquake." },
         ],
       },
     ],
@@ -1433,50 +817,44 @@ function lineupSpecial(): ManualLineup {
         lede: "Primarina patches Ice and special. Garchomp only for Electric.",
         forks: [
           {
-            id: "op-s-lead-prima",
+            id: "sp-lead-prima",
             when: "Ice, Fire, Dragon, Fighting, or rain special",
             then: "Lead Primarina.",
             send: "primarina",
-            why: "Because she is the SpD patch and Ice answer.",
             forks: [
               {
-                id: "op-s-lead-ice",
+                id: "sp-lead-ice",
                 when: "Ice or their dragon",
                 then: "Ice Beam.",
                 move: "Ice Beam",
                 send: "primarina",
-                why: "Four times on Garchomp without sending yours.",
               },
               {
-                id: "op-s-lead-moon",
+                id: "sp-lead-moon",
                 when: "Dragon or Fighting",
                 then: "Moonblast.",
                 move: "Moonblast",
                 send: "primarina",
-                why: "Fairy blanks Dragon and hurts Fighting.",
               },
               {
-                id: "op-s-lead-grass",
+                id: "sp-lead-grass",
                 when: "Grass or Poison",
                 then: "Leave to Kingambit.",
                 send: "kingambit",
-                why: "Primarina takes double from both.",
               },
               {
-                id: "op-s-lead-elec",
+                id: "sp-lead-elec",
                 when: "Electric",
                 then: "Leave to Garchomp.",
                 send: "garchomp",
-                why: "Water/Fairy takes double Electric.",
               },
             ],
           },
           {
-            id: "op-s-lead-chomp",
+            id: "sp-lead-chomp",
             when: "Electric",
             then: "Lead Garchomp.",
             send: "garchomp",
-            why: "Both partners hate Electric; Ground blanks it.",
           },
         ],
       },
@@ -1486,67 +864,61 @@ function lineupSpecial(): ManualLineup {
         lede: "Stay special. Hand the break when Ice is soft.",
         forks: [
           {
-            id: "op-s-mid-prima",
+            id: "sp-mid-prima",
             when: "This Pokémon is out",
             out: "primarina",
             forks: [
               {
-                id: "op-s-mid-cm",
+                id: "sp-mid-cm",
                 when: "Physical wall sitting, Sitrus live",
                 then: "Calm Mind, then Moonblast.",
                 move: "Calm Mind",
                 send: "primarina",
-                why: "Boost wins the sit without donating Chomp early.",
               },
               {
-                id: "op-s-mid-leave",
-                when: "Ice soft, want breaker",
-                then: "Switch to Garchomp on a free turn.",
+                id: "sp-mid-leave",
+                when: "Ice soft",
+                then: "Switch to Garchomp.",
                 send: "garchomp",
-                why: "Chomp finishes what Primarina softened.",
               },
             ],
           },
           {
-            id: "op-s-mid-chomp",
+            id: "sp-mid-chomp",
             when: "This Pokémon is out",
             out: "garchomp",
             forks: [
               {
-                id: "op-s-mid-ice",
+                id: "sp-mid-ice",
                 when: "Ice",
                 then: "Leave to Primarina.",
                 send: "primarina",
-                why: "4× Ice is why this mode exists.",
               },
               {
-                id: "op-s-mid-fairy",
+                id: "sp-mid-fairy",
                 when: "Fairy",
                 then: "Leave to Kingambit.",
                 send: "kingambit",
-                why: "Iron Head answers Fairy; Primarina is Fairy herself.",
               },
             ],
           },
           {
-            id: "op-s-mid-gambit",
+            id: "sp-mid-gambit",
             when: "This Pokémon is out",
             out: "kingambit",
             forks: [
               {
-                id: "op-s-mid-iron",
-                when: "Fairy in",
+                id: "sp-mid-iron",
+                when: "Fairy",
                 then: "Iron Head.",
                 move: "Iron Head",
                 send: "kingambit",
-                why: "Steel into Fairy.",
               },
               {
-                id: "op-s-mid-overlord",
+                id: "sp-mid-overlord",
                 when: "Partner down",
                 then: "Sucker Punch or Kowtow.",
                 send: "kingambit",
-                why: "Overlord close.",
               },
             ],
           },
@@ -1558,32 +930,30 @@ function lineupSpecial(): ManualLineup {
         lede: "Aqua Jet revenge. Overlord or Chomp finishes.",
         forks: [
           {
-            id: "op-s-late-prima",
+            id: "sp-late-prima",
             when: "This Pokémon is out",
             out: "primarina",
             forks: [
               {
-                id: "op-s-late-jet",
+                id: "sp-late-jet",
                 when: "Fire would move first",
                 then: "Aqua Jet.",
                 move: "Aqua Jet",
                 send: "primarina",
-                why: "Only priority on this three besides Sucker Punch.",
               },
             ],
           },
           {
-            id: "op-s-late-gambit",
+            id: "sp-late-gambit",
             when: "This Pokémon is out",
             out: "kingambit",
             forks: [
               {
-                id: "op-s-late-sucker",
+                id: "sp-late-sucker",
                 when: "They attack",
                 then: "Sucker Punch.",
                 move: "Sucker Punch",
                 send: "kingambit",
-                why: "Priority close.",
               },
             ],
           },
@@ -1593,170 +963,104 @@ function lineupSpecial(): ManualLineup {
   };
 }
 
-function lineupIntimidate(): ManualLineup {
+function packSpeed(): ManualPack {
   return {
-    id: "intimidate",
-    label: "Intimidate",
-    when: "Hyper offense physical, Knock Off value, Steel/Grass walls",
-    identity: "Incineroar cuts Attack and strips items. Garchomp and Kingambit cash the soft field.",
-    slugs: ["garchomp", "incineroar", "kingambit"],
-    slots: [
-      garchompSlot("Enter after Parting Shot or Knock. Ice is weaker without Corvi — scout harder."),
-      incineroarSlot(),
-      kingambitSlot("Knock Off into Kowtow. Overlord after Incineroar trades."),
-    ],
+    id: "speed",
+    label: "Speed",
+    when: "Hyper offense / revenge races on their six",
+    identity: "Meowscarada brings the race. Corviknight still walls. Garchomp breaks.",
+    slugs: ["garchomp", "meowscarada", "corviknight"],
     pilot: {
-      thesis: "Incineroar Intimidates, Fake Outs, and Knocks. Parting Shot hands Garchomp or Kingambit a softer attacker. Same Overlord close.",
-      rule: "Lead Incineroar into physical HO or bulky Steel/Grass. Fake Out, Knock, Parting Shot into Garchomp. Water or Ground: leave.",
-      fail: "Sitting Incineroar into Water or Ground, or treating Intimidate as Ice protection for Garchomp — it is not.",
+      thesis: "Saw HO or multiple Speed threats — bring Meowscarada. Kingambit stays on the bench this game.",
+      rule: "Lead Corvi into physical. Scarf Meow revenge. Hand Garchomp the break when Ice is soft.",
+      fail: "Flower Trick into Fire, or U-turning Meow into Garchomp while Ice is live.",
     },
-    meta: "Swap Corviknight for Incineroar when you need Intimidate and Knock Off more than Helmet Fairy resists. Fairy answer shifts to Kingambit Iron Head.",
-    philosophy:
-      "Same spine. Incineroar replaces Corviknight as the flex pivot — Intimidate on entry, Fake Out, Knock Off, Parting Shot. You break walls Corvi only chipped. You lose Steel's Fairy resist on the pivot — Kingambit Iron Head owns Fairy. Ice onto Garchomp is scarier without Corvi; scout before the hand-off.",
-    press: ["Physical HO", "Leftovers walls", "Steel", "Grass"],
-    refuse: ["Water into Incineroar", "Ground into Incineroar", "Ice into Garchomp unscouted", "Fairy without Iron Head ready"],
+    meta: "Gambit out, Meow in. You lose Overlord close — gain Scarf revenge and Knock.",
+    press: ["Hyper offense", "Medium Speed cleaners", "Item walls"],
+    refuse: ["Fire into Meowscarada", "Ice into Garchomp", "Fairy into Garchomp"],
     switches: [
-      {
-        into: "Water",
-        send: "Kingambit resists Water. Garchomp takes normal. Incineroar takes double — leave.",
-      },
-      {
-        into: "Ground",
-        send: "Garchomp is fine offensively; Incineroar takes double Ground — leave. Flying is gone without Corvi.",
-      },
-      {
-        into: "Fairy",
-        send: "Kingambit Iron Head. Garchomp takes double. Incineroar takes normal Fairy.",
-      },
-      {
-        into: "Ice",
-        send: "Incineroar takes half Ice. Never Garchomp. Scout before any U-turn or Parting Shot into Chomp.",
-      },
-      {
-        into: "Fighting",
-        send: "Incineroar resists Fighting. Kingambit takes normal — prefer Incineroar.",
-      },
-      {
-        into: "Electric",
-        send: "Garchomp. Incineroar takes normal Electric.",
-      },
-      {
-        into: "Dragon",
-        send: "Kingambit Iron Head or Garchomp if speed won. Incineroar takes normal Dragon.",
-      },
-      {
-        into: "Grass",
-        send: "Incineroar Flare Blitz. Garchomp Earthquake is resisted — prefer the cat.",
-      },
-      {
-        into: "Steel",
-        send: "Incineroar Flare Blitz or Knock, then Garchomp Fire Fang.",
-      },
+      { into: "Ice", send: "Corviknight. Never Garchomp." },
+      { into: "Fairy", send: "Corviknight." },
+      { into: "Fire", send: "Garchomp or Corvi. Meow takes double — leave." },
+      { into: "Electric", send: "Garchomp." },
+      { into: "Fighting", send: "Corviknight or Meow Play Rough." },
+      { into: "Water", send: "Corviknight. Meow Flower Trick chunks Water." },
+      { into: "Grass", send: "Corviknight Brave Bird or Meow Knock." },
+      { into: "Ground", send: "Corviknight." },
     ],
     plan: [
       {
         title: "Clock",
-        goal: "Intimidate and strip before the break.",
-        play: "Lead Incineroar into physical HO or Steel/Grass walls. Fake Out, Knock Off, Parting Shot into Garchomp.",
-        next: "Water or Ground: leave immediately. Do not greed Blitz.",
+        goal: "Wall first, revenge second.",
+        play: "Lead Corviknight into physical. Meowscarada comes in after a KO or free switch for Flower Trick.",
+        next: "Knock Off stay items before Chomp breaks.",
       },
       {
         title: "Shield",
-        goal: "Cut Attack, then punish.",
-        play: "Intimidate stacks with Helmet if you run it. Will-O-Wisp if Blitz is too risky. Hand Chomp Fire Fang on Steel.",
-        next: "Ice scout before Parting Shot into Garchomp. Fairy: Kingambit.",
+        goal: "Scarf covers what Corvi cannot outrun.",
+        play: "U-turn Corvi into Meow only when Ice is scouted. Flower Trick the revenge.",
+        next: "Fire onto Meow: Corvi or Chomp immediately.",
       },
       {
         title: "Clean",
-        goal: "Soft field into Overlord.",
-        play: "Knocked walls fall to Kowtow. Sucker Punch HO leftovers. Garchomp cleans Electric and grounded.",
-        next: "You play for trades — Incineroar falling still fuels Overlord.",
+        goal: "Chomp finishes without Overlord.",
+        play: "No Kingambit this bring — Garchomp is the closer. Soft field with Knock, then Earthquake.",
+        next: "Do not greed Scale Shot into Fairy.",
       },
     ],
     loops: [
-      {
-        title: "Fake Out, Knock, Part",
-        body: "Incineroar leads. Flinch. Strip the item. Parting Shot into Garchomp on a −1 attacker.",
-      },
-      {
-        title: "Blitz the wall",
-        body: "Flare Blitz Steel or Grass that shrugged Corvi. Recoil is fine if Knock already landed.",
-      },
-      {
-        title: "Overlord close",
-        body: "Same truck. Incineroar trades are Overlord fuel.",
-      },
+      { title: "Knock, then Chomp", body: "Meowscarada strips Leftovers. U-turn into Garchomp. Earthquake the soft wall." },
+      { title: "Scarf Flower", body: "After a KO, Meowscarada Flower Tricks the next attacker before they move." },
+      { title: "Helmet absorb", body: "Corvi still chips contact. Hand Meow or Chomp the race." },
     ],
     hazards: [
       {
-        title: "Water into Incineroar",
-        body: "Water deals double to Fire/Dark.",
-        watch: "Rain or Surf.",
-        play: "Kingambit or Garchomp. Prefer Terrain/Special modes for rain series.",
-        rule: "Never sit the cat into Water.",
+        title: "Fire into Meowscarada",
+        body: "Fire deals double to Grass/Dark.",
+        watch: "Flare Blitz or Heat Wave.",
+        play: "Leave to Garchomp or Corvi.",
+        rule: "Never sit Meow into known Fire.",
       },
       {
-        title: "Ground into Incineroar",
-        body: "Ground deals double.",
-        watch: "Earthquake.",
-        play: "Leave to Garchomp. You lost Corvi's Flying immunity.",
-        rule: "Ground is an emergency leave.",
-      },
-      {
-        title: "Ice into Garchomp",
-        body: "No Corvi resist. Incineroar resists Ice — use it.",
-        watch: "Ice Fang after Parting Shot.",
-        play: "Do not Part into Chomp until Ice is scouted. Send Incineroar into Ice.",
-        rule: "Intimidate does not reduce Ice damage.",
-      },
-      {
-        title: "Fairy without Iron Head",
-        body: "You lost Corvi's Steel resist on the pivot.",
-        watch: "Moonblast.",
-        play: "Kingambit Iron Head is mandatory coverage this mode.",
-        rule: "Do not bag Gambit while Fairy cleans Chomp.",
+        title: "No Overlord",
+        body: "Kingambit is benched.",
+        watch: "Late 1v1 scramble.",
+        play: "Garchomp must clean. Play for health.",
+        rule: "Do not trade as if Overlord were coming.",
       },
     ],
     advantages: [
       {
         title: "Band hyper offense",
-        body: "Intimidate plus Fake Out stalls their clock.",
-        watch: "Multiple Band contact attackers.",
-        play: "Lead Incineroar. Cut, Knock, Part into Chomp or Gambit.",
-        rule: "Scout Ice before the Chomp hand-off.",
-      },
-      {
-        title: "Leftovers / Vest walls",
-        body: "Knock Off removes the stay item Corvi could not.",
-        watch: "Assault Vest Steel or Leftovers tanks.",
-        play: "Knock, then Flare Blitz or Chomp Fang.",
-        rule: "Do not Blitz into a Water absorb.",
+        body: "Scarf Meow outruns medium Speeds Corvi cannot.",
+        watch: "Multiple Band attackers under 100 base Speed.",
+        play: "Corvi chip, Meow revenge, Chomp clean.",
+        rule: "Scout Ice before Chomp entry.",
       },
     ],
     victims: [
-      { name: "Physical HO", why: "Intimidate and Fake Out wreck contact offense." },
-      { name: "Item-reliant walls", why: "Knock Off turns Leftovers and Vest into paper." },
+      { name: "Medium Speed HO", why: "Scarf Flower Trick deletes the revenge window." },
+      { name: "Leftovers walls", why: "Knock Off before Chomp breaks." },
     ],
     counters: [
-      { name: "Rain / Water", why: "Cat hates Water. Bring Terrain or Special." },
-      { name: "Ground spam", why: "No Flying immunity. Chomp must answer." },
+      { name: "Fire spam", why: "Meow hates Fire. Chomp is the resist." },
+      { name: "Late Overlord need", why: "Wrong pack — bring Break or Core if you need Gambit." },
     ],
     phases: [
       {
         id: "preview",
         title: "Preview",
         branches: [
-          { when: "Physical HO or Steel/Grass wall", then: "Incineroar." },
-          { when: "Water or Ground lead", then: "Garchomp or Kingambit — not Incineroar." },
-          { when: "Electric", then: "Garchomp." },
+          { when: "HO / Speed", then: "This pack." },
+          { when: "Fire lead", then: "Corvi or Chomp — not Meow." },
         ],
       },
       {
         id: "lead",
         title: "Lead",
         branches: [
-          { out: "incineroar", when: "Physical", then: "Fake Out, then Knock or Part." },
-          { out: "incineroar", when: "Water or Ground", then: "Leave immediately." },
+          { out: "corviknight", when: "Physical", then: "Helmet, then hand off." },
+          { out: "meowscarada", when: "Free revenge", then: "Flower Trick." },
           { out: "garchomp", when: "Electric", then: "Earthquake." },
         ],
       },
@@ -1764,18 +1068,17 @@ function lineupIntimidate(): ManualLineup {
         id: "mid",
         title: "Mid",
         branches: [
-          { out: "incineroar", when: "Wall with item", then: "Knock Off, then Blitz or Part." },
-          { out: "garchomp", when: "Steel switch", then: "Fire Fang." },
-          { out: "kingambit", when: "Fairy", then: "Iron Head." },
+          { out: "meowscarada", when: "Item wall", then: "Knock Off, then U-turn or Flower." },
+          { out: "garchomp", when: "Steel", then: "Fire Fang." },
+          { out: "corviknight", when: "Fairy or Ice onto Chomp", then: "Stay." },
         ],
       },
       {
         id: "late",
         title: "Late",
         branches: [
-          { out: "kingambit", when: "They attack", then: "Sucker Punch." },
-          { out: "garchomp", when: "Soft field", then: "Earthquake." },
-          { out: "incineroar", when: "−1 attacker leftover", then: "Parting Shot into Gambit or Chomp." },
+          { out: "meowscarada", when: "They attack first next", then: "Flower Trick." },
+          { out: "garchomp", when: "Ice gone", then: "Earthquake." },
         ],
       },
     ],
@@ -1783,125 +1086,96 @@ function lineupIntimidate(): ManualLineup {
       {
         id: "lead",
         title: "Lead",
-        lede: "Intimidate lead into physical. Hide the cat from Water and Ground.",
+        lede: "Corvi walls. Meow revenges. Chomp for Electric.",
         forks: [
           {
-            id: "op-i-lead-incin",
-            when: "Physical HO, Steel, or Grass",
-            then: "Lead Incineroar. Intimidate on entry.",
-            send: "incineroar",
-            why: "Because Attack cut plus Fake Out wins the opener.",
+            id: "spd-lead-corvi",
+            when: "Physical or blind",
+            then: "Lead Corviknight.",
+            send: "corviknight",
             forks: [
               {
-                id: "op-i-lead-fake",
-                when: "They are physical",
-                then: "Fake Out.",
-                move: "Fake Out",
-                send: "incineroar",
-                why: "Free turn into Knock or Part.",
+                id: "spd-lead-uturn-meow",
+                when: "Want Meow after chip",
+                then: "U-turn into Meowscarada if Ice is soft.",
+                move: "U-turn",
+                send: "meowscarada",
               },
               {
-                id: "op-i-lead-knock",
-                when: "They hold a stay item",
-                then: "Knock Off.",
-                move: "Knock Off",
-                send: "incineroar",
-                why: "Strip Leftovers or Vest before Chomp breaks.",
-              },
-              {
-                id: "op-i-lead-part",
-                when: "Want Garchomp on a −1 attacker",
-                then: "Parting Shot into Garchomp.",
-                move: "Parting Shot",
+                id: "spd-lead-uturn-chomp",
+                when: "Electric or soft physical",
+                then: "U-turn into Garchomp.",
+                move: "U-turn",
                 send: "garchomp",
-                why: "Attack and SpA drop plus a free hand-off.",
-              },
-              {
-                id: "op-i-lead-water",
-                when: "Water or Ground",
-                then: "Leave. Cat takes double.",
-                send: "kingambit",
-                why: "Kingambit resists Water; Chomp answers Ground offensively.",
               },
             ],
           },
           {
-            id: "op-i-lead-chomp",
-            when: "Electric",
-            then: "Lead Garchomp.",
-            send: "garchomp",
-            why: "Ground blanks Electric.",
+            id: "spd-lead-meow",
+            when: "Free Speed revenge already",
+            then: "Lead Meowscarada carefully — prefer Corvi first.",
+            send: "meowscarada",
+            forks: [
+              {
+                id: "spd-lead-flower",
+                when: "They are in range",
+                then: "Flower Trick.",
+                move: "Flower Trick",
+                send: "meowscarada",
+              },
+              {
+                id: "spd-lead-fire",
+                when: "Fire",
+                then: "Leave to Garchomp.",
+                send: "garchomp",
+              },
+            ],
           },
         ],
       },
       {
         id: "mid",
         title: "Mid",
-        lede: "Strip, cut, hand off. Scout Ice before Chomp.",
+        lede: "Knock, race, break.",
         forks: [
           {
-            id: "op-i-mid-incin",
+            id: "spd-mid-meow",
             when: "This Pokémon is out",
-            out: "incineroar",
+            out: "meowscarada",
             forks: [
               {
-                id: "op-i-mid-blitz",
-                when: "Steel or Grass wall, Knock done",
-                then: "Flare Blitz.",
-                move: "Flare Blitz",
-                send: "incineroar",
-                why: "Fire STAB breaks what Corvi only chipped.",
+                id: "spd-mid-knock",
+                when: "Stay item up",
+                then: "Knock Off.",
+                move: "Knock Off",
+                send: "meowscarada",
               },
               {
-                id: "op-i-mid-ice",
-                when: "Want Chomp but Ice unscouted",
-                then: "Stay or Part only into Kingambit. Do not donate Chomp.",
-                send: "kingambit",
-                why: "No Corvi Ice sponge. Incineroar resists Ice.",
+                id: "spd-mid-uturn",
+                when: "Want Chomp",
+                then: "U-turn into Garchomp.",
+                move: "U-turn",
+                send: "garchomp",
               },
             ],
           },
           {
-            id: "op-i-mid-chomp",
+            id: "spd-mid-chomp",
             when: "This Pokémon is out",
             out: "garchomp",
             forks: [
               {
-                id: "op-i-mid-fang",
-                when: "Steel switches in",
+                id: "spd-mid-fang",
+                when: "Steel",
                 then: "Fire Fang.",
                 move: "Fire Fang",
                 send: "garchomp",
-                why: "Same punish loop.",
               },
               {
-                id: "op-i-mid-fairy",
-                when: "Fairy",
-                then: "Leave to Kingambit.",
-                send: "kingambit",
-                why: "Iron Head is the Fairy answer this mode.",
-              },
-            ],
-          },
-          {
-            id: "op-i-mid-gambit",
-            when: "This Pokémon is out",
-            out: "kingambit",
-            forks: [
-              {
-                id: "op-i-mid-iron",
-                when: "Fairy",
-                then: "Iron Head.",
-                move: "Iron Head",
-                send: "kingambit",
-                why: "You lost Corvi Steel resist on the pivot.",
-              },
-              {
-                id: "op-i-mid-overlord",
-                when: "Partner down",
-                then: "Sucker Punch or Kowtow.",
-                send: "kingambit",
-                why: "Overlord close.",
+                id: "spd-mid-ice",
+                when: "Ice or Fairy",
+                then: "Leave to Corviknight.",
+                send: "corviknight",
               },
             ],
           },
@@ -1910,35 +1184,513 @@ function lineupIntimidate(): ManualLineup {
       {
         id: "late",
         title: "Late",
-        lede: "Soft field. Overlord or Chomp finishes.",
+        lede: "No Gambit. Chomp or Meow finishes.",
         forks: [
           {
-            id: "op-i-late-gambit",
+            id: "spd-late-meow",
             when: "This Pokémon is out",
-            out: "kingambit",
+            out: "meowscarada",
             forks: [
               {
-                id: "op-i-late-sucker",
-                when: "They attack",
-                then: "Sucker Punch.",
-                move: "Sucker Punch",
-                send: "kingambit",
-                why: "Priority close.",
+                id: "spd-late-flower",
+                when: "They would move first without Scarf",
+                then: "Flower Trick.",
+                move: "Flower Trick",
+                send: "meowscarada",
               },
             ],
           },
           {
-            id: "op-i-late-chomp",
+            id: "spd-late-chomp",
             when: "This Pokémon is out",
             out: "garchomp",
             forks: [
               {
-                id: "op-i-late-eq",
-                when: "Grounded, Ice scouted gone",
+                id: "spd-late-eq",
+                when: "Ice gone",
                 then: "Earthquake.",
                 move: "Earthquake",
                 send: "garchomp",
-                why: "Cleaner job.",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  };
+}
+
+function packPivot(): ManualPack {
+  return {
+    id: "pivot",
+    label: "Pivot",
+    when: "Fighting-heavy six / need Volt Switch loops",
+    identity: "Rotom-Wash sponges Fighting for Gambit. Corviknight walls. Kingambit closes.",
+    slugs: ["corviknight", "rotom-wash", "kingambit"],
+    pilot: {
+      thesis: "Saw Fighting spam — bench Garchomp. Rotom and Corvi protect Kingambit's entry.",
+      rule: "Lead Corvi or Rotom. Will-O physical. Volt Switch into Gambit after a trade. Do not lead Kingambit.",
+      fail: "Leading Kingambit into Fighting, or sitting Rotom into Grass.",
+    },
+    meta: "Chomp out, Rotom in. You lose Earthquake break — gain Fighting sponge and Volt Switch.",
+    press: ["Fighting", "Physical HO", "Ground (Levitate)"],
+    refuse: ["Grass into Rotom", "Dark into Rotom", "Leading Kingambit"],
+    switches: [
+      { into: "Fighting", send: "Rotom-Wash or Corviknight. Never lead Kingambit." },
+      { into: "Ground", send: "Rotom Levitate or Corvi Flying." },
+      { into: "Fairy", send: "Corviknight. Kingambit Iron Head." },
+      { into: "Fire", send: "Rotom Hydro. Corvi takes double — leave." },
+      { into: "Water", send: "Corviknight or Rotom." },
+      { into: "Grass", send: "Corviknight Brave Bird. Rotom takes double — leave." },
+      { into: "Electric", send: "Corviknight takes double — leave carefully. Kingambit resists." },
+      { into: "Ice", send: "Corviknight. Kingambit takes normal Ice." },
+    ],
+    plan: [
+      {
+        title: "Clock",
+        goal: "Absorb Fighting before Gambit walks in.",
+        play: "Lead Corvi into physical or Rotom into Fighting. Will-O, then Volt Switch.",
+        next: "Kingambit enters only after a partner has chipped or traded.",
+      },
+      {
+        title: "Shield",
+        goal: "Volt Switch loops keep Gambit healthy.",
+        play: "Pain Split or Sitrus on Rotom. Helmet on Corvi. Hand Gambit a −1 burned attacker.",
+        next: "Grass onto Rotom: Corvi immediately.",
+      },
+      {
+        title: "Clean",
+        goal: "Overlord close without Chomp.",
+        play: "No Earthquake — Kowtow and Sucker Punch finish. Iron Head Fairy.",
+        next: "Do not Sucker Punch Protect.",
+      },
+    ],
+    loops: [
+      { title: "Will-O, Volt, truck", body: "Rotom burns the physical. Volt Switch into Kingambit. Overlord or raw Kowtow." },
+      { title: "Helmet, then Gambit", body: "Corvi chips contact. Slow hand-off into Kingambit on a soft field." },
+      { title: "Overlord close", body: "A partner falls. Sucker Punch the cleaner." },
+    ],
+    hazards: [
+      {
+        title: "Grass into Rotom",
+        body: "Grass deals double to Water/Electric.",
+        watch: "Rillaboom or Leaf Storm.",
+        play: "Corviknight Brave Bird.",
+        rule: "Never sit Rotom into known Grass.",
+      },
+      {
+        title: "No Garchomp",
+        body: "Earthquake is gone.",
+        watch: "Steel walls that need Fang.",
+        play: "Corvi Press or Gambit Kowtow. Consider Core or Break next game.",
+        rule: "Do not play as if Fire Fang were available.",
+      },
+    ],
+    advantages: [
+      {
+        title: "Fighting cores",
+        body: "Rotom and Corvi both answer Fighting better than Chomp.",
+        watch: "Close Combat / Aura Sphere spam.",
+        play: "Lead Rotom or Corvi. Gambit closes after burn.",
+        rule: "Still Protect once if Gambit must enter into Fighting.",
+      },
+    ],
+    victims: [
+      { name: "Fighting HO", why: "Rotom sponges. Gambit closes after burn." },
+      { name: "Ground leads", why: "Levitate blanks Earthquake." },
+    ],
+    counters: [
+      { name: "Grass", why: "Rotom takes double. Corvi must answer." },
+      { name: "Steel walls needing Fang", why: "Wrong pack — bring Core or Break." },
+    ],
+    phases: [
+      {
+        id: "preview",
+        title: "Preview",
+        branches: [
+          { when: "Fighting-heavy", then: "This pack." },
+          { when: "Grass lead", then: "Corvi — not Rotom." },
+        ],
+      },
+      {
+        id: "lead",
+        title: "Lead",
+        branches: [
+          { out: "rotom-wash", when: "Fighting", then: "Will-O or Volt Switch." },
+          { out: "corviknight", when: "Physical / Grass", then: "Helmet or Brave Bird." },
+          { out: "kingambit", when: "You led the truck", then: "Misread." },
+        ],
+      },
+      {
+        id: "mid",
+        title: "Mid",
+        branches: [
+          { out: "rotom-wash", when: "Burned attacker", then: "Volt Switch into Kingambit." },
+          { out: "kingambit", when: "Partner down", then: "Overlord." },
+          { out: "corviknight", when: "Fairy", then: "Stay or Iron Head hand-off." },
+        ],
+      },
+      {
+        id: "late",
+        title: "Late",
+        branches: [
+          { out: "kingambit", when: "They attack", then: "Sucker Punch." },
+          { out: "rotom-wash", when: "One left", then: "Hydro or Volt." },
+        ],
+      },
+    ],
+    flows: [
+      {
+        id: "lead",
+        title: "Lead",
+        lede: "Rotom or Corvi first. Gambit bagged.",
+        forks: [
+          {
+            id: "pv-lead-rotom",
+            when: "Fighting or Ground",
+            then: "Lead Rotom-Wash.",
+            send: "rotom-wash",
+            forks: [
+              {
+                id: "pv-lead-wisp",
+                when: "Physical",
+                then: "Will-O-Wisp.",
+                move: "Will-O-Wisp",
+                send: "rotom-wash",
+              },
+              {
+                id: "pv-lead-volt",
+                when: "Want Gambit",
+                then: "Volt Switch into Kingambit.",
+                move: "Volt Switch",
+                send: "kingambit",
+              },
+              {
+                id: "pv-lead-grass",
+                when: "Grass",
+                then: "Leave to Corviknight.",
+                send: "corviknight",
+              },
+            ],
+          },
+          {
+            id: "pv-lead-corvi",
+            when: "Physical, Grass, Poison",
+            then: "Lead Corviknight.",
+            send: "corviknight",
+          },
+        ],
+      },
+      {
+        id: "mid",
+        title: "Mid",
+        lede: "Burn, pivot, stack Overlord.",
+        forks: [
+          {
+            id: "pv-mid-rotom",
+            when: "This Pokémon is out",
+            out: "rotom-wash",
+            forks: [
+              {
+                id: "pv-mid-volt",
+                when: "Soft field",
+                then: "Volt Switch into Kingambit.",
+                move: "Volt Switch",
+                send: "kingambit",
+              },
+            ],
+          },
+          {
+            id: "pv-mid-gambit",
+            when: "This Pokémon is out",
+            out: "kingambit",
+            forks: [
+              {
+                id: "pv-mid-overlord",
+                when: "Partner fainted",
+                then: "Kowtow or Sucker Punch.",
+                send: "kingambit",
+              },
+              {
+                id: "pv-mid-fight",
+                when: "Fighting",
+                then: "Protect or leave to Rotom.",
+                send: "rotom-wash",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "late",
+        title: "Late",
+        lede: "Overlord without Chomp.",
+        forks: [
+          {
+            id: "pv-late-gambit",
+            when: "This Pokémon is out",
+            out: "kingambit",
+            forks: [
+              {
+                id: "pv-late-sucker",
+                when: "They attack",
+                then: "Sucker Punch.",
+                move: "Sucker Punch",
+                send: "kingambit",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  };
+}
+
+function packBreak(): ManualPack {
+  return {
+    id: "break",
+    label: "Break",
+    when: "Soft field — need Speed and Overlord together",
+    identity: "Meowscarada races. Garchomp breaks. Kingambit closes. No Corvi wall.",
+    slugs: ["garchomp", "meowscarada", "kingambit"],
+    pilot: {
+      thesis: "Their six looks soft or already scouted — bring Meow + Chomp + Gambit. Play short and aggressive.",
+      rule: "Meow Knock and Flower. Chomp Fire Fang and Earthquake. Gambit closes. Ice must be gone before Chomp sits.",
+      fail: "Leading Gambit, or bringing this pack into unknown Ice without Primarina.",
+    },
+    meta: "Corvi and Rotom out. Maximum offense from the box.",
+    press: ["Soft walls", "Medium Speed", "Item-reliant tanks"],
+    refuse: ["Unknown Ice", "Fairy without Iron Head ready", "Fighting lead into Gambit"],
+    switches: [
+      { into: "Ice", send: "Meowscarada takes normal Ice — not great. Prefer Special pack if Ice is live. Never Garchomp." },
+      { into: "Fairy", send: "Kingambit Iron Head. Garchomp takes double." },
+      { into: "Fire", send: "Garchomp. Meow takes double — leave." },
+      { into: "Electric", send: "Garchomp." },
+      { into: "Fighting", send: "Meow Play Rough. Kingambit takes normal — not a lead." },
+      { into: "Water", send: "Meow Flower Trick. Kingambit resists." },
+      { into: "Grass", send: "Meow Knock or Chomp Fire Fang." },
+    ],
+    plan: [
+      {
+        title: "Clock",
+        goal: "Strip and race immediately.",
+        play: "Lead Meow into soft physical or free Flower. Lead Chomp into Electric. Gambit bagged.",
+        next: "Knock before Chomp commits.",
+      },
+      {
+        title: "Shield",
+        goal: "No wall — play prediction.",
+        play: "U-turn Meow into Chomp only when Ice is confirmed gone. Fairy: Gambit Iron Head.",
+        next: "Fighting onto Gambit: Meow or Protect.",
+      },
+      {
+        title: "Clean",
+        goal: "Speed plus Overlord.",
+        play: "Meow Flower the revenge. Gambit Sucker Punch after trades. Chomp Earthquake leftovers.",
+        next: "Short games. Do not stall.",
+      },
+    ],
+    loops: [
+      { title: "Knock, Fang, truck", body: "Meow Knock. Chomp Fire Fang Steel. Gambit Kowtow the rest." },
+      { title: "Scarf into Overlord", body: "Meow trades. Gambit enters stacked. Sucker Punch." },
+      { title: "Electric Chomp", body: "Lead Chomp into Electric. Earthquake. Meow cleans Speed." },
+    ],
+    hazards: [
+      {
+        title: "Ice without Corvi or Prima",
+        body: "No Ice sponge on this bring.",
+        watch: "Ice Beam on their six.",
+        play: "Wrong pack — bring Special or Core.",
+        rule: "Do not Break into known Ice.",
+      },
+      {
+        title: "Fairy",
+        body: "No Corvi Steel resist on the pivot.",
+        watch: "Moonblast.",
+        play: "Kingambit Iron Head is mandatory.",
+        rule: "Do not bag Gambit while Fairy cleans Chomp.",
+      },
+    ],
+    advantages: [
+      {
+        title: "Soft balanced six",
+        body: "Speed plus Overlord ends games fast.",
+        watch: "No Ice, weak Fighting.",
+        play: "Meow pressure, Chomp break, Gambit close.",
+        rule: "Confirm Ice is absent on preview.",
+      },
+    ],
+    victims: [
+      { name: "Item walls", why: "Knock plus Fang plus Kowtow." },
+      { name: "Medium Speed offense", why: "Scarf Meow and Sucker Punch both race." },
+    ],
+    counters: [
+      { name: "Ice", why: "No sponge. Bring Special." },
+      { name: "Fighting priority", why: "No Rotom. Protect or Meow." },
+    ],
+    phases: [
+      {
+        id: "preview",
+        title: "Preview",
+        branches: [
+          { when: "Soft field, Ice gone", then: "This pack." },
+          { when: "Ice visible", then: "Special or Core instead." },
+        ],
+      },
+      {
+        id: "lead",
+        title: "Lead",
+        branches: [
+          { out: "meowscarada", when: "Soft physical", then: "Knock or Flower." },
+          { out: "garchomp", when: "Electric", then: "Earthquake." },
+          { out: "kingambit", when: "Led truck", then: "Misread." },
+        ],
+      },
+      {
+        id: "mid",
+        title: "Mid",
+        branches: [
+          { out: "meowscarada", when: "Want Chomp", then: "U-turn if Ice gone." },
+          { out: "garchomp", when: "Steel", then: "Fire Fang." },
+          { out: "kingambit", when: "Partner down", then: "Overlord." },
+        ],
+      },
+      {
+        id: "late",
+        title: "Late",
+        branches: [
+          { out: "kingambit", when: "They attack", then: "Sucker Punch." },
+          { out: "meowscarada", when: "Revenge", then: "Flower Trick." },
+          { out: "garchomp", when: "Grounded", then: "Earthquake." },
+        ],
+      },
+    ],
+    flows: [
+      {
+        id: "lead",
+        title: "Lead",
+        lede: "Aggressive. Meow or Chomp. Gambit bagged.",
+        forks: [
+          {
+            id: "br-lead-meow",
+            when: "Soft physical or free Flower",
+            then: "Lead Meowscarada.",
+            send: "meowscarada",
+            forks: [
+              {
+                id: "br-lead-knock",
+                when: "Item up",
+                then: "Knock Off.",
+                move: "Knock Off",
+                send: "meowscarada",
+              },
+              {
+                id: "br-lead-flower",
+                when: "In range",
+                then: "Flower Trick.",
+                move: "Flower Trick",
+                send: "meowscarada",
+              },
+              {
+                id: "br-lead-fire",
+                when: "Fire",
+                then: "Leave to Garchomp.",
+                send: "garchomp",
+              },
+            ],
+          },
+          {
+            id: "br-lead-chomp",
+            when: "Electric",
+            then: "Lead Garchomp.",
+            send: "garchomp",
+          },
+        ],
+      },
+      {
+        id: "mid",
+        title: "Mid",
+        lede: "Race and stack Overlord.",
+        forks: [
+          {
+            id: "br-mid-meow",
+            when: "This Pokémon is out",
+            out: "meowscarada",
+            forks: [
+              {
+                id: "br-mid-uturn",
+                when: "Ice gone, want Chomp",
+                then: "U-turn into Garchomp.",
+                move: "U-turn",
+                send: "garchomp",
+              },
+            ],
+          },
+          {
+            id: "br-mid-chomp",
+            when: "This Pokémon is out",
+            out: "garchomp",
+            forks: [
+              {
+                id: "br-mid-fang",
+                when: "Steel",
+                then: "Fire Fang.",
+                move: "Fire Fang",
+                send: "garchomp",
+              },
+              {
+                id: "br-mid-fairy",
+                when: "Fairy",
+                then: "Leave to Kingambit.",
+                send: "kingambit",
+              },
+            ],
+          },
+          {
+            id: "br-mid-gambit",
+            when: "This Pokémon is out",
+            out: "kingambit",
+            forks: [
+              {
+                id: "br-mid-overlord",
+                when: "Partner fainted",
+                then: "Sucker Punch or Kowtow.",
+                send: "kingambit",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "late",
+        title: "Late",
+        lede: "Speed and Overlord finish.",
+        forks: [
+          {
+            id: "br-late-gambit",
+            when: "This Pokémon is out",
+            out: "kingambit",
+            forks: [
+              {
+                id: "br-late-sucker",
+                when: "They attack",
+                then: "Sucker Punch.",
+                move: "Sucker Punch",
+                send: "kingambit",
+              },
+            ],
+          },
+          {
+            id: "br-late-meow",
+            when: "This Pokémon is out",
+            out: "meowscarada",
+            forks: [
+              {
+                id: "br-late-flower",
+                when: "Revenge",
+                then: "Flower Trick.",
+                move: "Flower Trick",
+                send: "meowscarada",
               },
             ],
           },
@@ -1949,12 +1701,12 @@ function lineupIntimidate(): ManualLineup {
 }
 
 export const OVERLORD_PIVOT_MANUAL: TeamManual = (() => {
-  const core = lineupCore();
-  const lineups = [core, lineupTerrain(), lineupSpecial(), lineupIntimidate()];
+  const core = packCore();
+  const packs = [core, packSpecial(), packSpeed(), packPivot(), packBreak()];
   return {
     id: "balance-garchomp-corviknight-kingambit",
     title: "Overlord Pivot",
-    lede: "Garchomp breaks. Kingambit closes on trades. The third slot is a flex pivot — Corviknight by default, or Rillaboom, Primarina, or Incineroar when the matchup demands it.",
+    lede: "Register six. Preview their six. Bring three. Garchomp breaks, Kingambit closes, and the third slot answers what you saw.",
     philosophy: core.philosophy!,
     archetype: "balance",
     family: "clock",
@@ -1965,19 +1717,23 @@ export const OVERLORD_PIVOT_MANUAL: TeamManual = (() => {
     refuse: core.refuse,
     switches: core.switches,
     plan: core.plan,
-    skills: ["U-turn", "Sucker Punch", "Earthquake"],
+    skills: ["U-turn", "Sucker Punch", "Volt Switch"],
     relatedLessons: ["preview", "types", "turns"],
     setsNote:
-      "Each Pokémon spends 66 Stat Points at Level 50. Cap is 32 in one stat. Garchomp races Attack and Speed. Kingambit caps Attack and HP with 0 Speed — Sucker Punch is the race. The flex pivot spends bulk: Corviknight and Incineroar on Defense, Primarina on HP/SpD, Rillaboom on Attack/HP for Glide.",
+      "Each Pokémon spends 66 Stat Points at Level 50. Cap is 32 in one stat. Garchomp and Meowscarada race Attack and Speed. Kingambit caps Attack and HP with 0 Speed. Corviknight and Rotom spend bulk. Primarina splits HP and SpD.",
     victims: core.victims,
     counters: core.counters,
     advantages: core.advantages,
-    slots: core.slots,
+    slots: ROSTER.filter((s) => (core.slugs as string[]).includes(s.slug)).sort(
+      (a, b) => core.slugs.indexOf(a.slug) - core.slugs.indexOf(b.slug),
+    ),
     phases: core.phases!,
     flows: core.flows,
     loops: core.loops,
     hazards: core.hazards,
     box: [...BOX],
-    lineups,
+    roster: ROSTER,
+    core: CORE,
+    packs,
   };
 })();

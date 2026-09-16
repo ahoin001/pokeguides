@@ -107,8 +107,8 @@ export default function ManualsIndex() {
       <header className="max-w-3xl">
         <h1 className="text-4xl font-semibold tracking-tight lg:text-5xl">Field manuals</h1>
         <p className="mt-4 text-lg text-muted">
-          Authored 3v3 singles guides, shelved by how they take the clock. One Pokémon out. Load a three onto Team when
-          you want to try it.
+          Boxed sixes for Champions singles — register six, preview, bring three. Load a bring onto Team when you want to
+          try it.
         </p>
         <div className="mt-6">
           <Link

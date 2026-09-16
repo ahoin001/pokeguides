@@ -270,7 +270,7 @@ export function VsScoutDock({
         </button>
       </div>
 
-      <div className="min-h-0 flex-1 space-y-3 overflow-auto">
+      <div className="min-h-0 flex-1 space-y-3 overflow-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {!chromeCollapsed ? <div className="space-y-3">{chrome}</div> : null}
 
         {dockOpen ? (

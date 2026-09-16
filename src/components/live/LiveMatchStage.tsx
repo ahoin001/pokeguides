@@ -53,7 +53,7 @@ export function LiveMatchStage() {
       <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
         <div className="space-y-10">
           <section className="rounded-[28px] border border-line/60 bg-raised/30 p-4 md:p-5">
-            <LivePackageBar />
+            <LivePackageBar exclude={foes} />
           </section>
 
           <section className="rounded-[28px] border border-line/60 bg-raised/30 p-4 md:p-5">

@@ -11,6 +11,7 @@ import { FightClassroom } from "@/components/learn/FightClassroom";
 import { TypesClassroom } from "@/components/learn/TypesClassroom";
 import { AbilitiesClassroom } from "@/components/learn/AbilitiesClassroom";
 import { MoveSheetClassroom } from "@/components/learn/MoveSheetClassroom";
+import { ItemsClassroom } from "@/components/learn/ItemsClassroom";
 import { DecisionTree } from "@/components/learn/DecisionTree";
 import { type LearnTrack, type Lesson, isMoveSheet } from "@/content/curriculum";
 import { LEARN_FLOWS } from "@/content/learn-flows";
@@ -38,6 +39,8 @@ export function LessonView({
       <AbilitiesClassroom lesson={lesson} />
     ) : isMoveSheet(lesson.slug) ? (
       <MoveSheetClassroom lesson={lesson} />
+    ) : lesson.slug === "training" ? (
+      <ItemsClassroom lesson={lesson} />
     ) : null;
 
   return (

@@ -357,11 +357,11 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
         title: "Tailwind",
         tag: "Speed clock",
         body: "Tailwind doubles Speed for the user’s side on a short clock. The setup turn counts, so the setter must hand the remaining turns to a cleaner quickly. Fake Out, Taunt, or stalling the clock denies the plan.",
-        takeaway: "Set Tailwind only when the next Pokémon immediately cashes the Speed.",
+        takeaway: "Fake Out or Taunt the setter. Kill the cleaner under the clock — Cott is not the wincon.",
         rows: [
-          { label: "Does", detail: "Doubles the user’s side Speed for a limited number of turns." },
-          { label: "When", detail: "Flips multiple losing Speed matchups for the next attacker." },
-          { label: "Answer", detail: "Fake Out or Taunt the setter, use priority, or stall the clock." },
+          { label: "Does", detail: "Doubles your side’s Speed for a short window (includes the click)." },
+          { label: "When", detail: "Lead or after Fake Out. Balance and HO both use Cott to flip races." },
+          { label: "Answer", detail: "Fake Out the setter. Taunt. Dark blanks Prankster. Priority revenge on the cleaner. Play as if they are all faster until the clock ends." },
         ],
         example: { slug: "whimsicott", caption: "Prankster Tailwind. Then switch." },
         examples: [
@@ -581,11 +581,11 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
         title: "U-turn",
         tag: "Bug pivot",
         body: "U-turn deals Bug damage and switches the user out after the hit. It covers a stay with chip and a switch with your chosen answer. Click it when the opponent has two likely responses that require different attackers.",
-        takeaway: "U-turn when both stay and switch improve your matchup.",
+        takeaway: "U-turn when stay and swap both need different answers. Against it: scout what comes in — that Pokémon is the real threat.",
         rows: [
-          { label: "Does", detail: "Deals Bug damage, then lets the user switch." },
-          { label: "When", detail: "Covers both an uncertain stay and an uncertain switch." },
-          { label: "Answer", detail: "Use a Bug resist, punish contact, or set hazards to tax the pivot cycle." },
+          { label: "Does", detail: "Bug damage, then they bring in a teammate." },
+          { label: "When", detail: "Covering play — chip if they stay, answer if they switch. Shield momentum." },
+          { label: "Answer", detail: "Bug resist or Ghost. Knock Off the pivot. Prepare for the Pokémon that comes in, not only the U-turn user." },
         ],
         example: { slug: "meowscarada", caption: "U-turn covers stay and swap." },
         examples: [
@@ -697,11 +697,11 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
         title: "Protect",
         tag: "+4 scout",
         body: "Protect acts at +4 and blocks most direct effects for the turn. Use it to reveal coverage, stall Sucker Punch, or spend a field turn. Repeated Protect can fail, and passive opponents can use the free turn to switch or set up.",
-        takeaway: "Protect once to learn or stall something specific, then act on the answer.",
+        takeaway: "Protect once to ask a real question. Against theirs: do not Sucker Punch into it — status, switch, or Encore.",
         rows: [
-          { label: "Does", detail: "Blocks most attacks and effects for one turn at +4 priority." },
-          { label: "When", detail: "Scouts coverage, stalls Sucker Punch, or burns a field turn." },
-          { label: "Answer", detail: "Set up, switch, use a bypass, or punish the likely move after Protect." },
+          { label: "Does", detail: "Blocks the hit this turn at +4. Consecutive Protect can fail." },
+          { label: "When", detail: "Scout Ice/Fairy/coverage. Stall Sucker Punch and Choice locks. Burn a Fake Out." },
+          { label: "Answer", detail: "Do not click Sucker or Fake Out into it. Status, switch, or Encore the Protect. Attack when they must leave the shield." },
         ],
         example: { slug: "garchomp", caption: "Protect into Ice or Fairy is information." },
         examples: [

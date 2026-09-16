@@ -1,5 +1,6 @@
 import type { ArchetypeSlot } from "@/content/archetypes";
 import { MOVE_SHEET_LESSONS } from "@/content/move-sheets";
+import { ITEMS_LESSON } from "@/content/items-sheet";
 
 export type LearnTrack = "singles" | "doubles";
 
@@ -87,7 +88,7 @@ export const BANDS: { id: LessonBand; title: string; skipIf: string }[] = [
   {
     id: "great-ball",
     title: "Great Ball",
-    skipIf: "Skip if priority, status, field, boosts, pivots, defense, 66 SP, and jobs already click.",
+    skipIf: "Skip if priority, status, field, boosts, pivots, defense, items, and jobs already click.",
   },
   {
     id: "ultra-ball",
@@ -266,8 +267,8 @@ export const LESSONS: Lesson[] = [
     thesis: "Intimidate is a tax. Disguise is a turn. Drizzle is the team. Prankster is +1, not +3.",
     skipIf: "Skip if you already play around Intimidate, Disguise, and weather overwrite.",
     body: [
-      "Most abilities are flavor. These are not. If it is on the card, the rest of the three should cash it — or the rest of their three should deny it.",
-      "Read the ability the turn you see it. A Ceruledge that absorbs Torch Song is not Weak Armor. A Volcarona that burns on contact is not Flash Fire. That line is a free knowledge gap for the rest of the game.",
+      "Most abilities are flavor. These are not. Learn what the ability does and why it wins turns — then memorize which ranked faces carry it.",
+      "On preview, name the dangerous abilities on their list. The turn an ability reveals, write it down. Flash Fire is not Weak Armor. That line is a free knowledge gap for the rest of the game.",
     ],
     rules: [
       { label: "Switch-in tax", detail: "Intimidate drops Attack on entry. Mirror Armor and Clear Body answer it." },
@@ -280,93 +281,153 @@ export const LESSONS: Lesson[] = [
     beats: [
       {
         title: "Intimidate",
-        body: "Incineroar walks in and Attack drops one stage. That is a switch-in tax on every physical attacker for the rest of the send. Fake Out plus the drop plus Parting Shot is why the cat is a format staple — you tax, you flinch, you leave on your terms.",
-        takeaway: "If their wincon is physical, Intimidate is a preview sentence. Pack Mirror Armor, Clear Body, or a special attacker that does not care.",
+        body: "On switch-in, Intimidate lowers the opponent’s Attack one stage. That tax lasts for the rest of the send — every physical hit they throw is weaker. It is useful as free progress on entry: you punish physical wincons without spending a move. Pair it with pivots and Fake Out and you open the game on your terms. Special attackers ignore the drop.",
+        takeaway: "If their wincon is physical, Intimidate on the list is a preview sentence. Mirror Armor, Clear Body, or a special answer denies the tax.",
         rows: [
-          { label: "Uses it", detail: "Incineroar — Fake Out, Intimidate, Parting Shot." },
-          { label: "Answers", detail: "Corviknight Mirror Armor bounces the drop. Clear Body ignores it. Special attackers shrug." },
-          { label: "Do not", detail: "Hard-switch your physical cleaner into the cat for free. You donate Attack." },
+          { label: "Does", detail: "On entry, −1 Attack to the opposing Pokémon." },
+          { label: "Useful", detail: "Free physical tax every send. Slows setup sweepers and Choice Band trucks." },
+          { label: "Answer", detail: "Mirror Armor bounces it. Clear Body ignores it. Special attackers shrug. Do not hard-switch your physical cleaner in for free." },
         ],
-        example: { slug: "incineroar", caption: "The cat. Tax, flinch, leave." },
+        example: { slug: "incineroar", caption: "Intimidate — the format’s switch-in tax." },
         examples: [
-          { slug: "incineroar", caption: "Intimidate + Fake Out" },
-          { slug: "corviknight", caption: "Mirror Armor bounce" },
+          { slug: "salamence", caption: "Intimidate" },
+          { slug: "incineroar", caption: "Intimidate" },
+          { slug: "gyarados", caption: "Intimidate" },
+          { slug: "mawile", caption: "Intimidate" },
+          { slug: "arcanine", caption: "Intimidate" },
+          { slug: "staraptor", caption: "Intimidate" },
         ],
       },
       {
-        title: "Disguise and Multiscale",
-        body: "Mimikyu’s costume eats one damaging hit — then it is gone. Dragonite’s Multiscale halves the first hit from full HP. Both are a free turn if you spend them on a setup move. Chip, rocks, and status do not respect the costume the way a nuke does; Stealth Rock still pops Multiscale on the switch.",
-        takeaway: "The free hit is the plan. Dance behind it. Do not farm the costume with chip and then eat a boosted STAB.",
+        title: "Disguise",
+        body: "Disguise blocks the first damaging hit the user takes — the costume breaks, the HP does not. Status, weather chip, and some indirect effects do not always spend it the way a nuke does. It is useful as a free turn: Dance, setup, or a safe pivot behind the costume. After it breaks, the Pokémon is ordinary.",
+        takeaway: "The free hit is the plan. Do not farm the costume with chip and then eat a boosted STAB.",
         rows: [
-          { label: "Disguise", detail: "Mimikyu — costume, then Swords Dance or Play Rough." },
-          { label: "Multiscale", detail: "Dragonite — first hit from full is halved. Rocks and prior chip remove it." },
-          { label: "Deny", detail: "Mold Breaker Excadrill ignores both. Hazards tax the Multiscale switch." },
+          { label: "Does", detail: "Negates the first damaging hit; then the costume is gone." },
+          { label: "Useful", detail: "Buys a Swords Dance, a safe hit, or a pivot on the free turn." },
+          { label: "Answer", detail: "Mold Breaker ignores it. Status and hazards pressure. Knock it once, then punish the setup." },
         ],
-        example: { slug: "mimikyu-disguised", caption: "Costume, then Dance. Fire after it pops." },
-        examples: [
-          { slug: "mimikyu-disguised", caption: "Disguise" },
-          { slug: "dragonite", caption: "Multiscale" },
-          { slug: "excadrill", caption: "Mold Breaker denies both" },
-        ],
+        example: { slug: "mimikyu-disguised", caption: "Disguise — one free hit." },
+        examples: [{ slug: "mimikyu-disguised", caption: "Disguise" }],
       },
       {
-        title: "Prankster is +1",
-        body: "Whimsicott Tailwind is priority +1 — not Fake Out’s +3. Fake Out still flinches Cott before Tailwind goes up. Dark types are immune to Prankster status (Taunt, Encore, Will-O-Wisp from Prankster users fail). Tailwind still goes up against Dark; the clock is not a status move on them.",
-        takeaway: "Clock first, then leave. Do not U-turn the setter into their Ground cleaner.",
+        title: "Multiscale",
+        body: "From full HP, Multiscale halves the damage of the first hit the user takes. Any prior chip — Stealth Rock, Life Orb recoil on the foe’s side does not matter; rocks on your switch do — removes it before the fight. It is useful as a live into revenge or a free Dragon Dance window. Once HP is no longer full, Multiscale is offline.",
+        takeaway: "Chip Multiscale before the nuke. Rocks on the switch are enough.",
         rows: [
-          { label: "Uses it", detail: "Whimsicott — Tailwind, then pivot. Encore and Taunt on non-Dark." },
-          { label: "Beats Fake Out?", detail: "No. Fake Out is +3. Armor Tail and Ghost also blank Fake Out." },
-          { label: "Dark", detail: "Taunt and Encore fail. Tailwind still sets." },
+          { label: "Does", detail: "Halves damage from the first hit while at full HP." },
+          { label: "Useful", detail: "Lives a revenge hit or buys a Dance from full." },
+          { label: "Answer", detail: "Stealth Rock or any chip before the big hit. Mold Breaker ignores it. Fake Out then follow up." },
         ],
-        example: { slug: "whimsicott", caption: "Clock. Then switch — not into Garchomp." },
+        example: { slug: "dragonite", caption: "Multiscale — half damage from full." },
+        examples: [{ slug: "dragonite", caption: "Multiscale" }],
+      },
+      {
+        title: "Prankster",
+        body: "Prankster gives +1 priority to status moves — Tailwind, Thunder Wave, Taunt, Encore, Will-O-Wisp. It does not speed up damaging moves. Fake Out is still +3, so flinch still beats Prankster Tailwind. Dark types are immune to Prankster status aimed at them; Tailwind still goes up because it targets your side, not the Dark Pokémon.",
+        takeaway: "Prankster is +1 on support verbs. Fake Out still wins the lead race. Dark blanks Taunt and Encore.",
+        rows: [
+          { label: "Does", detail: "+1 priority on status moves only." },
+          { label: "Useful", detail: "Sets Tailwind, Taunt, Encore, or Wave before most attacks resolve." },
+          { label: "Answer", detail: "Fake Out the setter. Dark blanks Prankster status. Taunt first if you outspeed the +1." },
+        ],
+        example: { slug: "whimsicott", caption: "Prankster — +1 on the support click." },
+        examples: [
+          { slug: "whimsicott", caption: "Prankster" },
+          { slug: "grimmsnarl", caption: "Prankster" },
+          { slug: "sableye", caption: "Prankster" },
+          { slug: "klefki", caption: "Prankster" },
+        ],
       },
       {
         title: "Mold Breaker",
-        body: "Excadrill ignores abilities that would soft-wall the hit — Multiscale, Disguise, Levitate, Flash Fire. The kite you hid behind Dragonite is not safe if Drill is in. Sand Force in sand is extra Attack; the ability that matters for the match is Mold Breaker.",
+        body: "Mold Breaker makes your moves ignore the target’s ability when resolving the hit. Multiscale, Disguise, Levitate, Flash Fire, and similar soft walls do not apply. It is useful as the answer to free-turn abilities and Ground immunities that would otherwise stall your STAB. The ability does not boost power by itself — it removes their safety net.",
         takeaway: "If Disguise or Multiscale is their free turn, ask whether Mold Breaker is on their list.",
         rows: [
-          { label: "Uses it", detail: "Excadrill — Earthquake through Multiscale and Disguise." },
-          { label: "Also watch", detail: "Other Mold Breaker names in the format. Same rule: the soft wall is gone." },
+          { label: "Does", detail: "Your moves ignore the foe’s ability for that hit." },
+          { label: "Useful", detail: "Breaks Multiscale, Disguise, Levitate, Flash Fire soft walls." },
+          { label: "Answer", detail: "Do not hide behind those abilities. Resist the type, Protect, or KO the Mold Breaker first." },
         ],
-        example: { slug: "excadrill", caption: "Mold Breaker Earthquake. Sand Force in sand." },
+        example: { slug: "excadrill", caption: "Mold Breaker — soft walls do not apply." },
+        examples: [
+          { slug: "excadrill", caption: "Mold Breaker" },
+          { slug: "tinkaton", caption: "Mold Breaker" },
+        ],
       },
       {
         title: "Unaware",
-        body: "Skeledirge ignores their Attack and Defense boosts when they hit it — a Moody or Calm Mind stack that looks scary is still a Torch Song if you stayed correctly. Unaware does not ignore their Speed, and it does not ignore Special Defense when you attack. Do not assume the nuke always lands.",
-        takeaway: "Setup is not a wincon into Unaware. Speed races and SpD still are.",
+        body: "Unaware ignores the opponent’s Attack and Defense stage boosts when calculating damage involving you — their Swords Dance does not make their hit harder into you, and their Defense boosts do not soften your attacks the same way. It does not ignore Speed, Special Defense, or the type chart. It is useful as a hard stop to physical and Defense-stacking setup.",
+        takeaway: "Setup is not a wincon into Unaware. Speed races, status, and SpD still are.",
         rows: [
-          { label: "Uses it", detail: "Skeledirge — Slack Off, Torch Song, Will-O-Wisp." },
-          { label: "Ignores", detail: "Their Atk/Def boosts into you." },
-          { label: "Does not", detail: "Ignore Speed, SpD, or type chart." },
+          { label: "Does", detail: "Ignores foe Atk/Def boosts in damage involving the Unaware user." },
+          { label: "Useful", detail: "Shuts Dance and Defense stacks that would otherwise snowball." },
+          { label: "Answer", detail: "Outspeed and status. Special attacks into SpD. Phaze. Do not keep stacking Attack into it." },
         ],
-        example: { slug: "skeledirge", caption: "Unaware plus Slack Off. Setup dies here." },
+        example: { slug: "skeledirge", caption: "Unaware — their Attack boosts do not count." },
+        examples: [
+          { slug: "skeledirge", caption: "Unaware" },
+          { slug: "clefable", caption: "Unaware" },
+          { slug: "dondozo", caption: "Unaware" },
+          { slug: "clodsire", caption: "Unaware" },
+        ],
       },
       {
-        title: "The field",
-        body: "Drizzle, Drought, Grassy Surge set the board on entry. Weather overwrite is a funeral — one field wins. Pelipper’s rain makes Hurricane accurate and lets Archaludon Electro Shot charge the same turn. Torkoal Drought and Charizardite Y are the sun package. Rillaboom Grassy Surge is the terrain. Unburden only doubles Speed after the item is gone — Sitrus or Weakness Policy popping is the start of the race, not the end.",
-        takeaway: "Name the setter on preview. If two setters are on the list, the lead often decides whose field sticks.",
+        title: "Drizzle",
+        body: "Drizzle sets rain on entry. Water moves strengthen, Fire weakens, Thunder and Hurricane become accurate, and Swift Swim doubles Speed while rain lasts. It is useful because the ability is the team — every partner cashes the field. Overwrite from Drought or sand ends the package.",
+        takeaway: "No Drizzle setter on the list usually means no rain. Plan the lead as if the bird is coming.",
         rows: [
-          { label: "Rain", detail: "Pelipper Drizzle — Hurricane, Electro Shot, Swift Swim." },
-          { label: "Sun", detail: "Torkoal / Mega Charizard Y — Chlorophyll, Drought nuke." },
-          { label: "Grassy", detail: "Rillaboom — Grassy Surge, Wood Hammer, Fake Out." },
+          { label: "Does", detail: "Sets rain when the user enters." },
+          { label: "Useful", detail: "Enables Swift Swim, Electro Shot, accurate Hurricane, Water offense." },
+          { label: "Answer", detail: "Sun or sand overwrite. KO the setter. Resist Water. Play Speed as if rain ends." },
         ],
-        example: { slug: "pelipper", caption: "Drizzle on entry. The field is the team." },
+        example: { slug: "pelipper", caption: "Drizzle — rain on entry." },
         examples: [
           { slug: "pelipper", caption: "Drizzle" },
-          { slug: "torkoal", caption: "Drought" },
-          { slug: "rillaboom", caption: "Grassy Surge" },
+          { slug: "politoed", caption: "Drizzle" },
         ],
       },
       {
-        title: "Information",
-        body: "Ability variants change the match. Flame Body Volcarona burns on contact; Flash Fire Ceruledge absorbs Torch Song; Weak Armor is a different Pokémon. Write the ability the turn you see it. That is a free knowledge gap — the rest of the game just changed.",
-        takeaway: "Do not play the species. Play the ability you saw.",
+        title: "Drought",
+        body: "Drought sets harsh sunlight on entry. Fire strengthens, Water weakens, Chlorophyll doubles Speed, and Growth jumps. Mega stones that grant Drought make the item and the field the same wincon. It is useful as an instant offense mode for sun teams.",
+        takeaway: "Drought on the list = play sun until the setter or Mega is gone.",
         rows: [
-          { label: "Flash Fire", detail: "Ceruledge — absorbs Torch Song. Not Weak Armor." },
-          { label: "Contact burn", detail: "Flame Body / Static — physical contact is a tax." },
-          { label: "Habit", detail: "Note it in scout notes the turn it reveals." },
+          { label: "Does", detail: "Sets sun when the user enters." },
+          { label: "Useful", detail: "Fire nukes, Chlorophyll racers, Growth stacks." },
+          { label: "Answer", detail: "Rock and Water resists. Rain overwrite. KO the Drought setter." },
         ],
-        example: { slug: "ceruledge", caption: "Flash Fire on Torch Song. The game just changed." },
+        example: { slug: "charizard-mega-y", caption: "Drought — sun on entry." },
+        examples: [
+          { slug: "charizard-mega-y", caption: "Drought" },
+          { slug: "torkoal", caption: "Drought" },
+          { slug: "ninetales", caption: "Drought" },
+        ],
+      },
+      {
+        title: "Grassy Surge",
+        body: "Grassy Surge sets Grassy Terrain on entry. Grounded Pokémon heal each turn, Earthquake softens, and Grassy Glide becomes +1 priority. It is useful as both residual recovery and a priority engine for Grass attackers. Without the terrain, Glide is just a slow Grass move.",
+        takeaway: "No Grassy Surge, no Grassy room. Remove or overwrite terrain before you race Glide.",
+        rows: [
+          { label: "Does", detail: "Sets Grassy Terrain on entry." },
+          { label: "Useful", detail: "Heals grounded allies. Enables priority Grassy Glide. Softens Earthquake." },
+          { label: "Answer", detail: "Overwrite terrain. Flying / Levitate ignore grounded rules. Resist Grass. Fake Out or KO the setter." },
+        ],
+        example: { slug: "rillaboom", caption: "Grassy Surge — terrain on entry." },
+        examples: [{ slug: "rillaboom", caption: "Grassy Surge" }],
+      },
+      {
+        title: "Flash Fire",
+        body: "Flash Fire grants immunity to Fire moves and powers up the user’s Fire attacks after absorbing one. It is useful as a hard switch into Torch Song, Flare Blitz, and other Fire STABs — the predicted Fire click becomes their wasted turn and your boost. Other abilities on the same species (Weak Armor, Flame Body) play completely differently, so the reveal matters.",
+        takeaway: "Do not click Fire into Flash Fire. Note the ability the turn it reveals — the species alone is not enough.",
+        rows: [
+          { label: "Does", detail: "Immune to Fire; Fire moves power up after absorbing a hit." },
+          { label: "Useful", detail: "Punishes Fire STAB and setup Fire moves on the switch." },
+          { label: "Answer", detail: "Hit with anything but Fire. Mold Breaker ignores it. Status and coverage." },
+        ],
+        example: { slug: "ceruledge", caption: "Flash Fire — Fire clicks fail." },
+        examples: [
+          { slug: "ceruledge", caption: "Flash Fire" },
+          { slug: "chandelure", caption: "Flash Fire" },
+        ],
       },
     ],
     examples: [
@@ -375,11 +436,10 @@ export const LESSONS: Lesson[] = [
       { slug: "dragonite", caption: "Multiscale" },
       { slug: "whimsicott", caption: "Prankster" },
       { slug: "excadrill", caption: "Mold Breaker" },
-      { slug: "pelipper", caption: "Drizzle" },
       { slug: "skeledirge", caption: "Unaware" },
-      { slug: "ceruledge", caption: "Flash Fire" },
-      { slug: "torkoal", caption: "Drought" },
+      { slug: "pelipper", caption: "Drizzle" },
       { slug: "rillaboom", caption: "Grassy Surge" },
+      { slug: "ceruledge", caption: "Flash Fire" },
     ],
     viz: "ability-field",
     relatedManuals: [
@@ -390,45 +450,7 @@ export const LESSONS: Lesson[] = [
     next: "moves",
   },
   ...MOVE_SHEET_LESSONS,
-  {
-    slug: "training",
-    band: "great-ball",
-    title: "66 points is a statement",
-    thesis: "Max 32 in one stat. Sitrus vs Sash vs Choice vs Mega stone. Leftover 2 lives in HP.",
-    skipIf: "Skip if you already spend 32 Spe on purpose and know why Sash is not Sitrus.",
-    body: [
-      "There are no EVs. 66 Stat Points. One point is +1 at Level 50. 32 in a stat is the cap — that is a statement, not a default. Nature still pluses one stat and minuses another.",
-    ],
-    beats: [
-      {
-        title: "The pile",
-        body: "Classroom default: 32 in the stat that KOs, 32 in Speed if you must move first, leftover 2 in HP. If Tailwind, rain, Trick Room, or Unburden already solves Speed, those 32 move into HP and Defense.",
-        example: { slug: "garchomp", caption: "32 Atk / 32 Spe if the race is the plan. Bulk if Cott already clocked." },
-      },
-      {
-        title: "Sitrus vs Sash",
-        body: "Sitrus is a second HP bar after you take a hit and stay. Sash is one guaranteed live from full — then you are glass. Sash on a Tailwind setter lives the Fake Out. Sitrus on a wall stays in the slot.",
-        example: { slug: "whimsicott", caption: "Sash lives the send you should not have taken. Cloak lives Fake Out without the flinch." },
-      },
-      {
-        title: "Choice vs Mega stone",
-        body: "Choice Specs or Band is power and a lock. Protect and switch punish the lock. The Mega stone is the Omni Ring — once per battle, the form is the wincon. You do not splash a Mega onto a three that already had a closer.",
-        example: { slug: "charizard-mega-y", caption: "Charizardite Y is Drought and the nuke. The item slot is gone." },
-      },
-    ],
-    examples: [
-      { slug: "whimsicott", caption: "Sash clock" },
-      { slug: "garchomp", caption: "32 Spe statement" },
-      { slug: "charizard-mega-y", caption: "The stone" },
-    ],
-    viz: "training",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
-    next: "speed",
-  },
+  ITEMS_LESSON,
   {
     slug: "speed",
     band: "great-ball",
@@ -437,6 +459,7 @@ export const LESSONS: Lesson[] = [
     skipIf: "Skip if you already pack a plan for the race you lose.",
     body: [
       "Whoever moves first often decides the KO. On a three there is no partner Tailwind. If their fastest outruns your fastest and can OHKO it, that race is the match unless you packed priority, a clock, or a field.",
+      "Spend 66 Stat Points with a max of 32 in one stat. 32 Spe is a statement. Choice Scarf is another. If a clock or weather already solves Speed, move those points into bulk.",
     ],
     beats: [
       {

@@ -9,8 +9,37 @@ export const TERMS: GlossaryTerm[] = [
   { t: "Intimidate", d: "Drops the opponent's Attack when you switch in. The reason Incineroar is a job.", href: "/learn/abilities" },
   { t: "Trick Room", d: "Slowest Pokémon move first. Farigiraf can set it. Four turns including the click.", href: "/learn/field-moves" },
   { t: "Protect", d: "Priority +4. A scout and a Sucker Punch stall, not leftover farming.", href: "/learn/defense-moves" },
-  { t: "Stat Points", d: "66 points to spend. Max 32 in one stat. 1 SP is +1 at Level 50.", href: "/learn/training" },
-  { t: "Omni Ring", d: "The device that Mega Evolves. One Mega per battle.", href: "/learn/roles/mega" },
+  {
+    t: "Stat Points",
+    d: "66 points to spend. Max 32 in one stat. 1 SP is +1 at Level 50.",
+    href: "/learn/the-fight",
+  },
+  {
+    t: "Focus Sash",
+    d: "Survive any one hit from full HP at 1 HP. Glass after. Chip and rocks deny it.",
+    href: "/learn/training",
+  },
+  {
+    t: "Sitrus Berry",
+    d: "One burst heal at ≤50% HP. Stay item — not a Sash.",
+    href: "/learn/training",
+  },
+  {
+    t: "Choice item",
+    d: "Scarf, Band, or Specs. Power or Speed, locked into one move until you switch.",
+    href: "/learn/training",
+  },
+  {
+    t: "Life Orb",
+    d: "More damage, self-chip, no lock. Flex power for attackers that need coverage.",
+    href: "/learn/training",
+  },
+  {
+    t: "Assault Vest",
+    d: "Huge SpD. Cannot use status or Protect — damaging moves only.",
+    href: "/learn/training",
+  },
+  { t: "Omni Ring", d: "The device that Mega Evolves. One Mega per battle. The Mega stone fills the item slot.", href: "/learn/training" },
   {
     t: "STAB",
     d: "Same-type attack bonus. 1.5× if the move matches your type. Most kits start here.",

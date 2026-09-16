@@ -6,26 +6,26 @@ import {
 } from "@/components/learn/ClassroomChrome";
 import type { Lesson } from "@/content/curriculum";
 
-export function AbilitiesClassroom({ lesson }: { lesson: Lesson }) {
-  const [intimidate, disguise, prankster, mold, unaware, field, info] = lesson.beats;
+const CALLOUT = new Set(["Disguise", "Multiscale", "Unaware"]);
 
+export function AbilitiesClassroom({ lesson }: { lesson: Lesson }) {
   return (
     <div className="mt-10 space-y-16">
       <ClassroomLead lesson={lesson} />
 
       <RulesGrid
         title="Ability jobs on a three"
-        lede="Six verbs. If it is on their card, the rest of the game should cash it or deny it."
+        lede="Learn the ability first. Faces below are who packs it in ranked — not the definition."
         rules={lesson.rules ?? []}
       />
 
-      {intimidate ? <StrategyBeat beat={intimidate} /> : null}
-      {disguise ? <CalloutBeat beat={disguise} /> : null}
-      {prankster ? <StrategyBeat beat={prankster} flip /> : null}
-      {mold ? <StrategyBeat beat={mold} /> : null}
-      {unaware ? <CalloutBeat beat={unaware} /> : null}
-      {field ? <StrategyBeat beat={field} flip /> : null}
-      {info ? <StrategyBeat beat={info} /> : null}
+      {lesson.beats.map((beat, i) =>
+        CALLOUT.has(beat.title) ? (
+          <CalloutBeat key={beat.title} beat={beat} />
+        ) : (
+          <StrategyBeat key={beat.title} beat={beat} flip={i % 2 === 1} />
+        ),
+      )}
     </div>
   );
 }

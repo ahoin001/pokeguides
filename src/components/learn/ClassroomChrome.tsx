@@ -172,7 +172,16 @@ export function StrategyBeat({ beat, flip }: { beat: LessonBeat; flip?: boolean 
         ) : null}
 
         {beat.takeaway ? <Takeaway text={beat.takeaway} /> : null}
-        <ChipRow examples={beat.examples} />
+        {beat.examples?.length ? (
+          <div className="mt-4">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+              Look out for
+            </p>
+            <ChipRow examples={beat.examples} />
+          </div>
+        ) : (
+          <ChipRow examples={beat.examples} />
+        )}
       </div>
       <div className={flip ? "md:order-1" : undefined}>
         <ExampleLink example={beat.example} />
@@ -200,7 +209,14 @@ export function CalloutBeat({ beat }: { beat: LessonBeat }) {
             </ul>
           ) : null}
           {beat.takeaway ? <Takeaway text={beat.takeaway} /> : null}
-          <ChipRow examples={beat.examples} />
+          {beat.examples?.length ? (
+            <div className="mt-4">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+                Look out for
+              </p>
+              <ChipRow examples={beat.examples} />
+            </div>
+          ) : null}
         </div>
         <ExampleLink example={beat.example} compact />
       </div>

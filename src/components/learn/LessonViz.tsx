@@ -19,7 +19,7 @@ export function LessonViz({ lesson }: { lesson: Lesson }) {
       return (
         <StadiumTray
           you={lesson.examples.slice(0, 3)}
-          youLabel={lesson.track === "doubles" ? "A doubles four" : "Your three"}
+          youLabel={lesson.track === "doubles" ? "A doubles four" : "Your three — open list"}
           themLabel={lesson.track === "doubles" ? "Theirs — empty until you pick four" : undefined}
         />
       );

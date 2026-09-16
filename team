@@ -1,0 +1,2516 @@
+{
+"id": "aggressive-balance-salamence-rotom-wash-kingambit",
+"title": "M-C Pressure Clock",
+"lede": "Register six → read their six → bring the three that attack their structure.",
+"philosophy": "Treat the six as a preview toolbox, not a fixed team. Mega Salamence supplies the primary win condition, Rotom-Wash controls physical pressure and tempo, Kingambit closes games, while Rillaboom, Mimikyu, and Garchomp replace pieces when the opponent's structure demands it. Do not always bring the same three.",
+"archetype": "balance",
+"family": "clock",
+"meta": "Regulation M-C runs from September 9, 2026 through December 2, 2026. Singles uses a six-Pokemon registration, 90-second preview, and three-Pokemon selection at level 50. Mega Evolution is available once per battle, and Mega Salamence is newly available in M-C. The six uses Mega Salamence as its dedicated Mega threat while the other five retain independent value when Salamence is not selected.",
+"skills": [
+"Read the opponent's six before selecting your three.",
+"Identify which opposing structure threatens your default core.",
+"Preserve the correct win condition instead of trading damage blindly.",
+"Use Rotom-Wash to create safe transitions into your breakers.",
+"Use priority from Kingambit, Mimikyu, or Rillaboom to control endgames.",
+"Treat Mega Evolution as a preview-dependent resource rather than an automatic first-turn action.",
+"Recognize when Garchomp's four attacks are more valuable than setup.",
+"Track which opposing Pokémon can stop your selected win condition before committing to it."
+],
+"relatedLessons": [
+"preview",
+"types",
+"turns",
+"switching",
+"win-conditions",
+"the-fight",
+"abilities",
+"moves",
+"speed",
+"hazards",
+"priority",
+"mega"
+],
+"setsNote": "Every Pokémon has exactly 66 SP with no stat above 32. Mega Salamence holds Salamencite and is the team's only Mega option. Items are unique across the six. The default Garchomp is the four-attacks Focus Sash version: Earthquake, Dragon Claw, Rock Slide, and Fire Fang. Do not treat the default three as mandatory; select from the six according to preview.",
+"box": [
+"salamence",
+"kingambit",
+"rotom-wash",
+"rillaboom",
+"mimikyu-disguised",
+"garchomp"
+],
+"core": [
+"salamence",
+"rotom-wash",
+"kingambit"
+],
+"slugs": [
+"salamence",
+"rotom-wash",
+"kingambit"
+],
+"roster": [
+{
+"slug": "salamence",
+"title": "The Sky Hammer",
+"job": "mega",
+"literacy": "sweeper",
+"role": "Use Mega Salamence as the primary offensive win condition when the opponent lacks a clean answer to boosted Aerilate Flying attacks.",
+"ability": "Intimidate",
+"item": "Salamencite",
+"itemWhy": "Enable Mega Salamence and reserve the team's once-per-battle Mega resource for the matchup where its speed, power, and Aerilate pressure matter most.",
+"itemAlts": [
+{
+"name": "None",
+"why": "Do not replace Salamencite if Salamence is intended to remain the team's Mega."
+}
+],
+"nature": "Adamant",
+"training": {
+"label": "Bulky Dragon Dance",
+"why": "Maximize physical damage while investing enough Speed to improve the value of Dragon Dance without abandoning useful bulk.",
+"sp": {
+"hp": 6,
+"atk": 32,
+"def": 0,
+"spa": 0,
+"spd": 0,
+"spe": 28
+},
+"spend": [
+"32 Atk — maximize Aerilate-boosted damage and Earthquake damage.",
+"28 Spe — make Dragon Dance convert Salamence into a decisive cleaner.",
+"6 HP — place the remaining SP into general durability."
+],
+"alts": [
+{
+"name": "Maximum Speed",
+"why": "Prefer this when Speed ties and immediate post-boost positioning matter more than small amounts of bulk.",
+"sp": {
+"hp": 2,
+"atk": 32,
+"def": 0,
+"spa": 0,
+"spd": 0,
+"spe": 32
+},
+"spend": [
+"32 Atk — maximize damage.",
+"32 Spe — maximize unboosted and boosted Speed.",
+"2 HP — use the remaining SP for minor general bulk."
+]
+}
+]
+},
+"moves": [
+{
+"name": "Double-Edge",
+"why": "Turn Salamence's Aerilate ability into a powerful Flying-type STAB attack and punish neutral targets.",
+"alts": [
+{
+"name": "Return",
+"why": "Use when lower recoil is preferred over maximum immediate damage."
+}
+]
+},
+{
+"name": "Dragon Dance",
+"why": "Convert Salamence from an attacker into the team's primary late-game cleaner.",
+"alts": [
+{
+"name": "Dragon Claw",
+"why": "Use when immediate Dragon coverage is more important than setup."
+}
+]
+},
+{
+"name": "Roost",
+"why": "Recover recoil and chip so Salamence can preserve itself for the endgame.",
+"alts": [
+{
+"name": "Protect",
+"why": "Use when scouting and turn control matter more than recovery."
+}
+]
+},
+{
+"name": "Earthquake",
+"why": "Punish Steel-, Rock-, and Electric-type answers that resist Aerilate Flying attacks.",
+"alts": [
+{
+"name": "Fire Fang",
+"why": "Use when Steel targets that are vulnerable to Fire are the primary obstacle."
+}
+]
+}
+],
+"objective": "Create one safe Dragon Dance opportunity, then convert the resulting speed and power into a decisive endgame.",
+"howToPlay": "Do not Mega automatically.\nUse Intimidate to create a safer entry when possible.\nDo not Dragon Dance while the opponent still has an obvious faster revenge killer unless the trade is favorable.\nUse Double-Edge to punish neutral targets and Earthquake to punish Steel or Electric answers.\nRoost when recoil or chip would prevent Salamence from reaching the endgame.\nPreserve Salamence if it is your only reliable route through the opponent's remaining structure."
+},
+{
+"slug": "kingambit",
+"title": "The Guillotine",
+"job": "breaker",
+"literacy": "sweeper",
+"role": "Use Kingambit as the team's endgame cleaner and punish weakened teams with Supreme Overlord and priority.",
+"ability": "Supreme Overlord",
+"item": "Black Glasses",
+"itemWhy": "Increase the damage of Kingambit's Dark attacks without locking it into a move and make Sucker Punch and Kowtow Cleave threatening after setup or teammate losses.",
+"itemAlts": [
+{
+"name": "Lum Berry",
+"why": "Prefer this when status is more dangerous than maximizing Dark-type damage."
+},
+{
+"name": "Leftovers",
+"why": "Prefer this in slower games where repeated switching and passive recovery matter."
+}
+],
+"nature": "Adamant",
+"training": {
+"label": "Bulky Blade",
+"why": "Maximize Attack and give Kingambit enough HP to survive longer while retaining a small amount of special bulk.",
+"sp": {
+"hp": 32,
+"atk": 32,
+"def": 0,
+"spa": 0,
+"spd": 2,
+"spe": 0
+},
+"spend": [
+"32 HP — maximize general durability.",
+"32 Atk — maximize Sucker Punch, Kowtow Cleave, and Iron Head damage.",
+"2 SpD — place the remaining SP into special bulk."
+],
+"alts": [
+{
+"name": "Speed Utility",
+"why": "Prefer this when creeping slower defensive threats is more valuable than maximum bulk.",
+"sp": {
+"hp": 22,
+"atk": 32,
+"def": 0,
+"spa": 0,
+"spd": 0,
+"spe": 12
+},
+"spend": [
+"32 Atk — maximize damage.",
+"22 HP — retain meaningful bulk.",
+"12 Spe — improve positioning against slower targets."
+]
+}
+]
+},
+"moves": [
+{
+"name": "Sucker Punch",
+"why": "Give Kingambit priority so it can finish faster attackers once they are forced to attack.",
+"alts": [
+{
+"name": "Low Kick",
+"why": "Use when opposing Kingambit and heavy Steel targets are more important than priority."
+}
+]
+},
+{
+"name": "Kowtow Cleave",
+"why": "Provide reliable Dark STAB without depending on the opponent choosing an attacking move.",
+"alts": [
+{
+"name": "Night Slash",
+"why": "Use only when critical-hit utility is specifically desired."
+}
+]
+},
+{
+"name": "Swords Dance",
+"why": "Turn a forced switch or passive turn into an immediate endgame threat.",
+"alts": [
+{
+"name": "Stealth Rock",
+"why": "Use when Kingambit is being deployed primarily as a utility lead rather than a cleaner."
+}
+]
+},
+{
+"name": "Iron Head",
+"why": "Provide Steel STAB for Fairy targets and prevent Fairy Pokémon from freely absorbing Dark attacks.",
+"alts": [
+{
+"name": "Low Kick",
+"why": "Use when Steel- and Dark-type targets are the main matchup concern."
+}
+]
+}
+],
+"objective": "Survive long enough for the opponent's team to become weakened, then use Supreme Overlord and priority to close the game.",
+"howToPlay": "Do not expose Kingambit early without a reason.\nUse Sucker Punch only when the opponent must attack.\nUse Kowtow Cleave when you expect a switch or status move.\nSwords Dance when the opponent gives you a genuinely passive turn.\nPreserve Kingambit if faster offensive Pokémon remain healthy.\nTreat the final opposing Pokémon as the ideal Supreme Overlord target."
+},
+{
+"slug": "rotom-wash",
+"title": "The Circuit Breaker",
+"job": "support",
+"literacy": "pivot",
+"role": "Use Rotom-Wash to absorb physical pressure, burn attackers, and create safe entries for Salamence or Kingambit.",
+"ability": "Levitate",
+"item": "Sitrus Berry",
+"itemWhy": "Provide immediate recovery after taking a hit and let Rotom-Wash repeatedly perform its pivot and disruption role.",
+"itemAlts": [
+{
+"name": "Leftovers",
+"why": "Prefer this when the game is expected to involve many turns of switching rather than one critical burst of recovery."
+},
+{
+"name": "Choice Scarf",
+"why": "Prefer this only when immediate Speed and revenge pressure are more valuable than defensive utility."
+}
+],
+"nature": "Bold",
+"training": {
+"label": "Physical Circuit",
+"why": "Maximize physical durability while retaining enough Special Attack to make Hydro Pump and Thunderbolt meaningful.",
+"sp": {
+"hp": 32,
+"atk": 0,
+"def": 24,
+"spa": 10,
+"spd": 0,
+"spe": 0
+},
+"spend": [
+"32 HP — maximize general durability.",
+"24 Def — strengthen the physical matchups Rotom-Wash is assigned to check.",
+"10 SpA — retain offensive pressure with Hydro Pump and Thunderbolt."
+],
+"alts": [
+{
+"name": "Specially Durable",
+"why": "Prefer this when the opposing preview contains several special attackers.",
+"sp": {
+"hp": 32,
+"atk": 0,
+"def": 10,
+"spa": 8,
+"spd": 16,
+"spe": 0
+},
+"spend": [
+"32 HP — maximize general durability.",
+"16 SpD — improve special resilience.",
+"10 Def — retain physical utility.",
+"8 SpA — preserve meaningful offensive pressure."
+]
+}
+]
+},
+"moves": [
+{
+"name": "Volt Switch",
+"why": "Turn favorable matchups into controlled entries for Salamence, Kingambit, or another selected teammate.",
+"alts": [
+{
+"name": "Thunderbolt",
+"why": "Use when staying in and dealing direct Electric damage is more important than pivoting."
+}
+]
+},
+{
+"name": "Hydro Pump",
+"why": "Give Rotom-Wash strong Water STAB against Ground, Fire, Rock, and other targets that expect passive play.",
+"alts": [
+{
+"name": "Hydro Pump",
+"why": "Keep the stronger Water attack unless reliability is the overriding concern."
+}
+]
+},
+{
+"name": "Will-O-Wisp",
+"why": "Cut physical pressure and make opposing attackers easier for the rest of the team to handle.",
+"alts": [
+{
+"name": "Thunder Wave",
+"why": "Use when speed control is more valuable than physical Attack reduction."
+}
+]
+},
+{
+"name": "Thunderbolt",
+"why": "Provide direct Electric pressure when pivoting is unnecessary or when a Water or Flying target must be threatened immediately.",
+"alts": [
+{
+"name": "Protect",
+"why": "Use when scouting and preserving Sitrus recovery opportunities are more important than coverage."
+}
+]
+}
+],
+"objective": "Create safe turns and stop the opponent from freely attacking while keeping the correct breaker healthy.",
+"howToPlay": "Lead Rotom-Wash when the preview shows an immediate physical threat it can comfortably disrupt.\nClick Will-O-Wisp against physical attackers unless the burn is clearly exploitable by the opponent.\nUse Volt Switch when the opponent must respect Hydro Pump or Electric pressure.\nDo not sacrifice Rotom-Wash merely to chip something unless the remaining two can exploit the opening.\nUse Hydro Pump when the opponent expects a passive Volt Switch.\nPreserve Rotom-Wash when it is your safest answer to the opponent's main physical breaker."
+},
+{
+"slug": "rillaboom",
+"title": "The Green Hammer",
+"job": "support",
+"literacy": "pivot",
+"role": "Use Rillaboom as the bulky terrain pivot that pressures Water and Ground structures while giving the team priority.",
+"ability": "Grassy Surge",
+"item": "Assault Vest",
+"itemWhy": "Let Rillaboom absorb special pressure while immediately threatening with terrain-boosted Grass attacks, Fake Out, and U-turn.",
+"itemAlts": [
+{
+"name": "Choice Band",
+"why": "Prefer this when maximum immediate physical pressure matters more than flexible switching."
+},
+{
+"name": "Sitrus Berry",
+"why": "Prefer this when you need recovery but still want to retain flexible moves."
+}
+],
+"nature": "Adamant",
+"training": {
+"label": "Bulky Drum",
+"why": "Maximize physical pressure while investing heavily in HP and enough special bulk to improve Assault Vest value.",
+"sp": {
+"hp": 26,
+"atk": 32,
+"def": 0,
+"spa": 0,
+"spd": 8,
+"spe": 0
+},
+"spend": [
+"32 Atk — maximize Grassy Glide and Wood Hammer damage.",
+"26 HP — improve general durability.",
+"8 SpD — complement Assault Vest and improve special matchups."
+],
+"alts": [
+{
+"name": "Fast Pivot",
+"why": "Prefer this when moving before slower defensive targets matters more than maximum bulk.",
+"sp": {
+"hp": 18,
+"atk": 32,
+"def": 0,
+"spa": 0,
+"spd": 0,
+"spe": 16
+},
+"spend": [
+"32 Atk — maximize damage.",
+"18 HP — retain bulk.",
+"16 Spe — improve pivot positioning."
+]
+}
+]
+},
+"moves": [
+{
+"name": "Grassy Glide",
+"why": "Exploit Grassy Terrain to gain priority and finish weakened targets.",
+"alts": [
+{
+"name": "Drum Beating",
+"why": "Use when lowering the opponent's Speed is more valuable than priority."
+}
+]
+},
+{
+"name": "Wood Hammer",
+"why": "Provide the team's strongest immediate Grass attack for bulky Water and Ground targets.",
+"alts": [
+{
+"name": "Seed Bomb",
+"why": "Use when recoil management is more important than maximum damage."
+}
+]
+},
+{
+"name": "Fake Out",
+"why": "Force one turn of tempo, scout immediate behavior, or place a weakened target into KO range.",
+"alts": [
+{
+"name": "Knock Off",
+"why": "Use when item removal creates more value than Fake Out's immediate tempo."
+}
+]
+},
+{
+"name": "U-turn",
+"why": "Convert favorable terrain matchups into a controlled switch and bring in the correct breaker.",
+"alts": [
+{
+"name": "Knock Off",
+"why": "Use when removing an opposing item is more important than pivoting."
+}
+]
+}
+],
+"objective": "Punish Water and Ground structures while giving the team priority and a second pivoting route.",
+"howToPlay": "Bring Rillaboom when Water or Ground pressure is central to the opponent's structure.\nUse Fake Out to gain information before committing to an attack.\nUse Wood Hammer when the target must be removed rather than merely chipped.\nUse Grassy Glide to finish targets without giving up tempo.\nUse U-turn when the opponent is forced into a switch.\nDo not leave Rillaboom in against a strong Fire-type attack merely because Grassy Terrain is active."
+},
+{
+"slug": "mimikyu-disguised",
+"title": "The Emergency Blade",
+"job": "speed",
+"literacy": "sweeper",
+"role": "Use Mimikyu as the emergency offensive piece that exploits Disguise to survive one critical interaction and threaten a sweep or revenge kill.",
+"ability": "Disguise",
+"item": "Life Orb",
+"itemWhy": "Increase damage across all attacks without sacrificing Mimikyu's flexible role as a setup threat or priority cleaner.",
+"itemAlts": [
+{
+"name": "Lum Berry",
+"why": "Prefer this when status is likely to prevent Mimikyu from functioning as a cleaner."
+},
+{
+"name": "Focus Sash",
+"why": "Prefer this when preserving a guaranteed offensive action is more important than Life Orb damage."
+}
+],
+"nature": "Jolly",
+"training": {
+"label": "Fast Disguise",
+"why": "Maximize Speed and Attack so the single protected turn from Disguise can immediately generate offensive value.",
+"sp": {
+"hp": 0,
+"atk": 32,
+"def": 0,
+"spa": 0,
+"spd": 2,
+"spe": 32
+},
+"spend": [
+"32 Atk — maximize Swords Dance and STAB damage.",
+"32 Spe — maximize revenge and cleanup potential.",
+"2 SpD — place the remaining SP into special bulk."
+],
+"alts": [
+{
+"name": "Bulky Disguise",
+"why": "Prefer this when Mimikyu needs to survive beyond its first protected interaction.",
+"sp": {
+"hp": 16,
+"atk": 32,
+"def": 0,
+"spa": 0,
+"spd": 2,
+"spe": 16
+},
+"spend": [
+"32 Atk — preserve offensive power.",
+"16 Spe — retain useful Speed.",
+"16 HP — improve general durability.",
+"2 SpD — use the remaining SP for special bulk."
+]
+}
+]
+},
+"moves": [
+{
+"name": "Swords Dance",
+"why": "Turn the Disguise-protected opportunity into immediate sweeping power.",
+"alts": [
+{
+"name": "Will-O-Wisp",
+"why": "Use when crippling a physical attacker is more valuable than setting up."
+}
+]
+},
+{
+"name": "Play Rough",
+"why": "Provide strong Fairy STAB for Dragon, Dark, and Fighting targets.",
+"alts": [
+{
+"name": "Drain Punch",
+"why": "Use only when specific coverage and recovery needs justify changing the standard Fairy attack."
+}
+]
+},
+{
+"name": "Shadow Claw",
+"why": "Provide reliable Ghost STAB without forcing Mimikyu into a delayed two-turn attack.",
+"alts": [
+{
+"name": "Phantom Force",
+"why": "Use when the delayed attack creates a specific scouting or protection interaction."
+}
+]
+},
+{
+"name": "Shadow Sneak",
+"why": "Give Mimikyu priority for finishing weakened faster targets.",
+"alts": [
+{
+"name": "Protect",
+"why": "Use when scouting an opposing choice-locked or highly telegraphed attacker is more valuable."
+}
+]
+}
+],
+"objective": "Use Disguise to force one favorable interaction, then either set up or immediately remove a key opposing Pokémon.",
+"howToPlay": "Do not reveal Mimikyu early unless Disguise creates a meaningful advantage.\nUse Disguise to absorb the hit that would otherwise stop your selected plan.\nSwords Dance when the opponent cannot punish the setup turn.\nUse Play Rough against Dragon, Dark, and Fighting targets.\nUse Shadow Sneak to finish faster weakened targets.\nRefuse to trade Mimikyu for minor chip when it is your best emergency answer to the opponent's fastest threat."
+},
+{
+"slug": "garchomp",
+"title": "The Four-Blade",
+"job": "breaker",
+"literacy": "wallbreaker",
+"role": "Use Garchomp as a fast four-attacks breaker that trades setup for immediate coverage against the structures threatening the rest of the team.",
+"ability": "Rough Skin",
+"item": "Focus Sash",
+"itemWhy": "Guarantee Garchomp a chance to act against dangerous offensive threats and make it a reliable lead or revenge piece.",
+"itemAlts": [
+{
+"name": "Clear Amulet",
+"why": "Prefer this when Attack drops and Intimidate-style disruption are more dangerous than surviving one otherwise lethal hit."
+},
+{
+"name": "Choice Scarf",
+"why": "Prefer this when immediate Speed control and revenge killing are more valuable than flexibility."
+}
+],
+"nature": "Jolly",
+"training": {
+"label": "Four-Attack Chomp",
+"why": "Maximize Attack and Speed because this version intentionally forgoes setup for immediate coverage.",
+"sp": {
+"hp": 0,
+"atk": 32,
+"def": 0,
+"spa": 0,
+"spd": 2,
+"spe": 32
+},
+"spend": [
+"32 Atk — maximize Earthquake, Dragon Claw, Rock Slide, and Fire Fang damage.",
+"32 Spe — maximize immediate offensive positioning.",
+"2 SpD — use the remaining SP for minor special durability."
+],
+"alts": [
+{
+"name": "Bulky Chomp",
+"why": "Prefer this when surviving repeated neutral hits is more valuable than maximum Speed.",
+"sp": {
+"hp": 16,
+"atk": 32,
+"def": 0,
+"spa": 0,
+"spd": 2,
+"spe": 16
+},
+"spend": [
+"32 Atk — preserve maximum damage.",
+"16 Spe — retain useful Speed.",
+"16 HP — add general bulk.",
+"2 SpD — use the remaining SP for special durability."
+]
+}
+]
+},
+"moves": [
+{
+"name": "Earthquake",
+"why": "Provide reliable Ground STAB and punish Steel, Fire, Electric, Poison, and Rock targets.",
+"alts": [
+{
+"name": "Stomping Tantrum",
+"why": "Use when a more targeted Ground option is preferred for a specific matchup."
+}
+]
+},
+{
+"name": "Dragon Claw",
+"why": "Provide reliable Dragon STAB without locking Garchomp into an attack or relying on a multi-turn move.",
+"alts": [
+{
+"name": "Scale Shot",
+"why": "Use when turning Garchomp into a setup-speed threat is more valuable than reliable Dragon damage."
+}
+]
+},
+{
+"name": "Rock Slide",
+"why": "Cover Flying and Fire targets while retaining useful flinch potential.",
+"alts": [
+{
+"name": "Stone Edge",
+"why": "Use when maximum Rock-type damage is worth accepting lower accuracy."
+}
+]
+},
+{
+"name": "Fire Fang",
+"why": "Punish Steel and Grass targets that resist or complicate Garchomp's primary STAB attacks.",
+"alts": [
+{
+"name": "Poison Jab",
+"why": "Use when Fairy targets are a greater obstacle than Steel targets."
+}
+]
+}
+],
+"objective": "Attack immediately into the matchup that threatens the rest of the roster instead of spending a turn on setup.",
+"howToPlay": "Lead Garchomp when the preview gives it multiple immediate targets and few safe Ice-type answers.\nUse Earthquake as the default attack when the target does not resist it.\nUse Dragon Claw for reliable Dragon damage without committing to a delayed attack.\nUse Rock Slide against Flying or Fire targets and value its flinch chance when the game is close.\nUse Fire Fang against Steel targets that expect to absorb Dragon or Ground pressure.\nNever send Garchomp into a known strong Ice-type attack unless Focus Sash creates a deliberate trade."
+}
+],
+"packs": [
+{
+"id": "core",
+"label": "Default Clock",
+"when": "Bring this when their six has no single overwhelming anti-Salamence, anti-Rotom, or anti-Kingambit structure.",
+"identity": "Balanced pivot into Mega Salamence setup and Kingambit cleanup.",
+"slugs": [
+"salamence",
+"rotom-wash",
+"kingambit"
+],
+"strategy": {
+"opponentPattern": "Their six is structurally balanced and does not clearly invalidate Salamence, Rotom-Wash, or Kingambit.",
+"bring": [
+"salamence",
+"rotom-wash",
+"kingambit"
+],
+"purpose": "Use Rotom-Wash to control tempo, Salamence to create the primary offensive threat, and Kingambit to close once the opponent is weakened.",
+"targets": [
+"Balanced teams",
+"Physical offense without a clean Rotom-Wash answer",
+"Teams relying on slower Steel or Ground structures",
+"Teams that struggle to prevent Salamence from setting up"
+],
+"refuses": [
+"Do not bring this package when the opponent has multiple strong answers to Salamence and Kingambit simultaneously.",
+"Do not bring this package when Rotom-Wash is obviously overloaded by the opposing six."
+],
+"winCondition": "Create one safe Salamence setup opportunity or use Rotom-Wash to chip and pivot until Kingambit can clean."
+},
+"pilot": {
+"thesis": "Make the opponent answer Salamence without exposing Kingambit until the endgame.",
+"rule": "Do not trade your defensive pivot for early chip unless the trade opens Salamence or Kingambit.",
+"fail": "If Salamence cannot set up and Rotom-Wash cannot maintain tempo, stop forcing the default plan and choose a different pack next battle."
+},
+"meta": "This is the baseline package for learning the team's decision structure. It is not a mandatory trio.",
+"philosophy": "Rotom-Wash buys turns, Salamence converts a safe turn into pressure, and Kingambit turns accumulated damage into a finish.",
+"press": [
+"Make them reveal their Salamence answer before committing to Mega Evolution.",
+"Force physical attackers to respect Will-O-Wisp.",
+"Preserve Kingambit until priority becomes decisive."
+],
+"refuse": [
+"Never Mega Salamence merely because you brought it.",
+"Never spend Kingambit early just to remove a target that another teammate can handle.",
+"Never leave Rotom-Wash in front of an obvious super-effective attack merely to maintain momentum."
+],
+"switches": [
+{
+"into": "physical attacker",
+"send": "Rotom-Wash to reduce physical pressure and create a pivot."
+},
+{
+"into": "Fairy threat",
+"send": "Kingambit to threaten with Steel STAB and resist the opposing Fairy pressure."
+},
+{
+"into": "Ground-type pressure",
+"send": "Salamence when its Ground immunity is safe and the opponent cannot immediately punish the switch."
+}
+],
+"plan": [
+{
+"title": "Clock",
+"goal": "Establish which opposing Pokémon is responsible for stopping Salamence.",
+"play": "Use Rotom-Wash to scout, burn, or Volt Switch while avoiding unnecessary damage.",
+"next": "Once the Salamence answer is weakened or forced out, prepare the setup turn."
+},
+{
+"title": "Shield",
+"goal": "Keep Salamence and Kingambit out of avoidable revenge ranges.",
+"play": "Use Rotom-Wash as the defensive buffer and refuse unnecessary all-in trades.",
+"next": "When the opponent's faster threats are weakened, transition to Salamence or Kingambit."
+},
+{
+"title": "Clean",
+"goal": "Finish with the remaining offensive win condition.",
+"play": "Mega Salamence sweeps if its checks are gone; otherwise preserve Salamence and let Kingambit clean.",
+"next": "Use Sucker Punch when the opponent must attack and Kowtow Cleave when they can safely refuse."
+}
+],
+"loops": [
+{
+"title": "Volt Switch Loop",
+"body": "Threaten Hydro Pump or Will-O-Wisp, force the opponent to respect the threat, then Volt Switch into the breaker that attacks their chosen response."
+},
+{
+"title": "Intimidate Loop",
+"body": "Use Salamence's pre-Mega Intimidate to reduce physical pressure, then preserve the Mega until the opponent's answer has been identified."
+}
+],
+"victims": [
+{
+"name": "Physical attackers",
+"why": "Rotom-Wash can burn them while Salamence and Kingambit exploit the reduced pressure."
+},
+{
+"name": "Balanced slower teams",
+"why": "They can struggle to prevent Dragon Dance Salamence or Swords Dance Kingambit from becoming the final threat."
+},
+{
+"name": "Water and Ground cores",
+"why": "Rotom-Wash can pressure them while Salamence supplies a Ground immunity."
+}
+],
+"counters": [
+{
+"name": "Multiple dedicated Salamence answers",
+"why": "Bring the anti-structure pack instead, especially the Garchomp package."
+},
+{
+"name": "Heavy special offense",
+"why": "Bring the special-spam package with Rillaboom instead."
+}
+],
+"advantages": [
+{
+"title": "Three independent win paths",
+"body": "Salamence can sweep, Kingambit can clean, and Rotom-Wash can generate the turns that let either one function.",
+"watch": "Do not assume all three must survive.",
+"play": "Identify which two are actually needed after preview.",
+"rule": "Sacrifice the least important piece only when it opens the correct win condition."
+},
+{
+"title": "Tempo without recklessness",
+"body": "Volt Switch gives the team a way to turn defensive positioning into offensive positioning.",
+"watch": "Do not Volt Switch automatically.",
+"play": "Use the threat of Hydro Pump or Will-O-Wisp to make the pivot meaningful.",
+"rule": "Pivot because the opponent's response is predictable, not because Volt Switch is available."
+}
+],
+"hazards": [
+{
+"title": "Ice pressure",
+"body": "Salamence and Garchomp are both vulnerable to Ice attacks, so preview any strong Ice attacker before selecting them.",
+"watch": "Never assume Salamence can safely switch into a known Ice attack.",
+"play": "Use Rotom-Wash or Kingambit to absorb the appropriate pressure when possible.",
+"rule": "Do not select both Dragon attackers when the opponent has multiple reliable Ice answers unless their coverage is otherwise exploitable."
+},
+{
+"title": "Fairy pressure",
+"body": "Dragon attacks are unreliable into Fairy targets, making Kingambit's Steel STAB important.",
+"watch": "Track every Fairy Pokémon before committing Salamence or Garchomp.",
+"play": "Use Kingambit to pressure Fairy targets and preserve it when they are central to the opponent's plan.",
+"rule": "Do not throw away Kingambit early if it is your only clean Fairy answer."
+}
+],
+"phases": [
+{
+"id": "preview",
+"title": "Preview",
+"lede": "Find the opponent's Salamence answer and identify which of your three Pokémon can exploit it.",
+"branches": [
+{
+"when": "Their six is balanced and Rotom-Wash has useful defensive targets.",
+"then": "Use the core package.",
+"why": "The default structure has the fewest forced assumptions.",
+"out": "rotom-wash"
+},
+{
+"when": "They show multiple physical attackers but lack strong special pressure.",
+"then": "Still consider the core, but plan Rotom-Wash as the main shield.",
+"why": "Burn and pivoting can dismantle their physical structure.",
+"out": "rotom-wash"
+},
+{
+"when": "They show several hard Salamence answers.",
+"then": "Switch to a package containing Garchomp or Mimikyu instead.",
+"why": "Do not force the Mega into a preview where its win condition is structurally denied.",
+"out": "garchomp"
+}
+]
+},
+{
+"id": "lead",
+"title": "Lead",
+"lede": "Use Rotom-Wash when you need information and tempo; use Salamence or Kingambit only when the matchup is immediately favorable.",
+"branches": [
+{
+"when": "The opposing lead is a physical attacker that Rotom-Wash can safely disrupt.",
+"then": "Use Will-O-Wisp or Volt Switch.",
+"why": "Remove pressure or create the first favorable transition.",
+"out": "rotom-wash"
+},
+{
+"when": "The opposing lead cannot threaten Salamence and must switch.",
+"then": "Pressure with Salamence and consider Mega Evolution only when it creates immediate value.",
+"why": "Do not give the opponent a free turn while preserving the Mega resource.",
+"out": "salamence"
+}
+]
+},
+{
+"id": "mid",
+"title": "Mid",
+"lede": "Turn accumulated chip into the setup window your opponent cannot afford to give you.",
+"branches": [
+{
+"when": "A Salamence answer is weakened or forced out.",
+"then": "Bring Salamence into the favorable turn and set up.",
+"why": "This is the primary conversion point.",
+"out": "salamence"
+},
+{
+"when": "The opponent's faster threats are already weakened.",
+"then": "Preserve Salamence and prepare Kingambit.",
+"why": "Sucker Punch becomes increasingly difficult to play around.",
+"out": "kingambit"
+}
+]
+},
+{
+"id": "late",
+"title": "Late",
+"lede": "Stop preserving pieces that no longer matter and finish with the correct priority or boosted attacker.",
+"branches": [
+{
+"when": "The opponent has no safe answer to Mega Salamence.",
+"then": "Use Salamence to sweep.",
+"why": "Do not give the opponent extra turns.",
+"out": "salamence"
+},
+{
+"when": "The opponent has faster attackers remaining but must attack to win.",
+"then": "Use Kingambit's Sucker Punch to close.",
+"why": "Priority converts chip into a controlled endgame.",
+"out": "kingambit"
+}
+]
+}
+],
+"flows": [
+{
+"id": "lead",
+"title": "Lead",
+"lede": "Start by forcing the opponent to reveal how they intend to stop your core.",
+"forks": [
+{
+"id": "lead-physical-pressure",
+"when": "They lead a physical attacker that Rotom-Wash handles.",
+"then": "Use Will-O-Wisp.",
+"send": "rotom-wash",
+"move": "Will-O-Wisp",
+"why": "Cut the opponent's immediate damage before pivoting.",
+"forks": [
+{
+"id": "lead-physical-burned",
+"when": "The burned attacker remains in.",
+"then": "Use Volt Switch if the opponent cannot punish the pivot.",
+"send": "salamence",
+"move": "Volt Switch",
+"why": "Bring Salamence into a weakened physical structure."
+},
+{
+"id": "lead-physical-switch",
+"when": "The opponent switches to a Salamence answer.",
+"then": "Attack or pivot according to the revealed answer.",
+"send": "kingambit",
+"move": "Volt Switch",
+"why": "Bring the appropriate breaker into the newly revealed structure."
+}
+]
+},
+{
+"id": "lead-free-salamence",
+"when": "Their lead cannot meaningfully threaten Salamence.",
+"then": "Use Salamence to establish offensive pressure.",
+"send": "salamence",
+"why": "Exploit the free matchup before the opponent can reposition.",
+"forks": [
+{
+"id": "lead-free-setup",
+"when": "The opponent cannot punish a setup turn.",
+"then": "Dragon Dance.",
+"send": "salamence",
+"move": "Dragon Dance",
+"why": "Start the primary sweep."
+},
+{
+"id": "lead-free-attack",
+"when": "The opponent can punish setup but is vulnerable to Flying or Ground coverage.",
+"then": "Attack immediately.",
+"send": "salamence",
+"move": "Double-Edge",
+"why": "Take the guaranteed damage rather than gambling on setup."
+}
+]
+}
+]
+},
+{
+"id": "mid",
+"title": "Mid",
+"lede": "Turn the first favorable exchange into a controlled win-condition sequence.",
+"forks": [
+{
+"id": "mid-salamence-window",
+"when": "A Salamence answer is weakened or removed.",
+"then": "Bring Salamence in and set up if safe.",
+"send": "salamence",
+"move": "Dragon Dance",
+"why": "The opponent's structural answer has been removed.",
+"forks": [
+{
+"id": "mid-salamence-sweep",
+"when": "Salamence outspeeds the remaining threats after setup.",
+"then": "Attack until the opponent's final Pokémon is forced into a losing exchange.",
+"send": "salamence",
+"move": "Double-Edge",
+"why": "Do not give the opponent a free recovery turn."
+}
+]
+},
+{
+"id": "mid-kingambit-window",
+"when": "The opponent's faster attackers are weakened and Kingambit can enter safely.",
+"then": "Preserve or bring Kingambit.",
+"send": "kingambit",
+"why": "The endgame is becoming favorable for priority.",
+"forks": [
+{
+"id": "mid-kingambit-setup",
+"when": "The opponent must switch or cannot meaningfully punish setup.",
+"then": "Use Swords Dance.",
+"send": "kingambit",
+"move": "Swords Dance",
+"why": "Convert the favorable endgame into a direct sweep."
+}
+]
+}
+]
+},
+{
+"id": "late",
+"title": "Late",
+"lede": "Choose the attack that prevents the opponent's last viable comeback route.",
+"forks": [
+{
+"id": "late-sucker",
+"when": "The opposing Pokémon must attack and is in Sucker Punch range.",
+"then": "Use Sucker Punch.",
+"send": "kingambit",
+"move": "Sucker Punch",
+"why": "Do not give a faster attacker a free turn."
+},
+{
+"id": "late-kowtow",
+"when": "The opposing Pokémon can safely refuse to attack.",
+"then": "Use Kowtow Cleave.",
+"send": "kingambit",
+"move": "Kowtow Cleave",
+"why": "Sucker Punch is unreliable against passive play."
+},
+{
+"id": "late-salamence",
+"when": "Mega Salamence has the remaining matchup under control.",
+"then": "Keep attacking and use Roost only when recovery changes the outcome.",
+"send": "salamence",
+"move": "Double-Edge",
+"why": "End the battle before recoil or unnecessary turns create counterplay."
+}
+]
+}
+]
+},
+{
+"id": "anti-offense",
+"label": "Emergency Brake",
+"when": "Their six contains multiple fast attackers, setup threats, or immediate offensive pressure.",
+"identity": "Disguise plus defensive pivoting plus priority.",
+"slugs": [
+"mimikyu-disguised",
+"rotom-wash",
+"kingambit"
+],
+"strategy": {
+"opponentPattern": "Their six is built to overwhelm a slower balance core through speed, setup, or immediate offensive trades.",
+"bring": [
+"mimikyu-disguised",
+"rotom-wash",
+"kingambit"
+],
+"purpose": "Mimikyu absorbs one critical interaction, Rotom-Wash disrupts physical pressure, and Kingambit controls the endgame with priority.",
+"targets": [
+"Hyper-offense",
+"Fast physical attackers",
+"Setup-heavy teams",
+"Teams that rely on one primary sweeper"
+],
+"refuses": [
+"Do not bring this package when the opponent is overwhelmingly passive and gives Mimikyu little opportunity to exploit Disguise.",
+"Do not rely on Kingambit's Sucker Punch if the opponent has several ways to refuse attacking."
+],
+"winCondition": "Survive the opponent's first offensive wave, use Mimikyu or Rotom-Wash to remove momentum, then let Kingambit clean."
+},
+"pilot": {
+"thesis": "Make the opponent spend their first wave of offense without allowing a clean sweep.",
+"rule": "Protect Mimikyu's Disguise until it creates a decisive interaction.",
+"fail": "If the opponent's offense is special-heavy and Rotom-Wash cannot absorb it, switch to the special-spam package."
+},
+"philosophy": "Do not race hyper-offense turn for turn. Break its first wave, preserve one priority user, and make the opponent run out of clean attacks.",
+"press": [
+"Preserve Disguise until it stops a real threat.",
+"Burn physical attackers before they snowball.",
+"Keep Kingambit healthy enough to finish."
+],
+"refuse": [
+"Never throw Mimikyu into a minor hit just to reveal Disguise.",
+"Never use Swords Dance with Mimikyu when the opponent can immediately overwhelm it afterward.",
+"Never assume Sucker Punch wins if the opponent has safe status or setup options."
+],
+"switches": [
+{
+"into": "physical setup attacker",
+"send": "Rotom-Wash to burn it before it can accumulate further pressure."
+},
+{
+"into": "faster attacker within priority range",
+"send": "Kingambit when Sucker Punch can secure the trade."
+},
+{
+"into": "single overwhelming sweeper",
+"send": "Mimikyu to exploit Disguise and force a direct interaction."
+}
+],
+"plan": [
+{
+"title": "Clock",
+"goal": "Stop the opponent from snowballing immediately.",
+"play": "Use Rotom-Wash to burn physical threats and Mimikyu to absorb the one attack that would otherwise break the structure.",
+"next": "Preserve whichever piece the opponent still cannot safely answer."
+},
+{
+"title": "Shield",
+"goal": "Prevent the opponent from retaining three functional attackers.",
+"play": "Trade Mimikyu only for a meaningful threat and use Rotom-Wash to deny physical setup.",
+"next": "Bring Kingambit into the weakened offensive field."
+},
+{
+"title": "Clean",
+"goal": "Use priority to stop the final offensive threat.",
+"play": "Sucker Punch weakened faster attackers and use Kowtow Cleave when they refuse to attack.",
+"next": "Do not overpredict when a direct KO is available."
+}
+],
+"loops": [
+{
+"title": "Disguise Loop",
+"body": "Keep Mimikyu hidden until the opponent commits to the attack you need Disguise to absorb, then convert the protected turn into a KO or setup."
+},
+{
+"title": "Burn Loop",
+"body": "Rotom-Wash burns the physical attacker, pivots out, and returns later when the opponent tries to restore offensive pressure."
+}
+],
+"victims": [
+{
+"name": "Physical hyper-offense",
+"why": "Rotom-Wash and Will-O-Wisp can sharply reduce its damage while Mimikyu and Kingambit provide emergency priority."
+},
+{
+"name": "Single setup sweeper",
+"why": "Disguise gives Mimikyu a direct emergency interaction while Kingambit can finish weakened targets."
+}
+],
+"counters": [
+{
+"name": "Special offense",
+"why": "Use the special-spam pack with Rillaboom and Rotom-Wash instead."
+},
+{
+"name": "Passive walls",
+"why": "Use the bully pack with Salamence and Garchomp instead."
+}
+],
+"advantages": [
+{
+"title": "Emergency stop",
+"body": "Disguise gives the package a unique answer to an otherwise unstoppable offensive turn.",
+"watch": "Disguise is one use; do not waste it on meaningless chip.",
+"play": "Identify the one attack you cannot otherwise afford to take.",
+"rule": "Spend Disguise only when it changes the battle."
+}
+],
+"hazards": [
+{
+"title": "Status",
+"body": "Status can destroy Mimikyu's setup plan and undermine Kingambit's late-game role.",
+"watch": "Track status users before selecting the package.",
+"play": "Use Rotom-Wash to disrupt physical threats and avoid unnecessary setup.",
+"rule": "Do not set up into an obvious status sequence."
+}
+],
+"phases": [
+{
+"id": "preview",
+"title": "Preview",
+"lede": "Count their immediate attackers and identify which one cannot be allowed to snowball.",
+"branches": [
+{
+"when": "They have several fast physical attackers.",
+"then": "Bring Mimikyu, Rotom-Wash, and Kingambit.",
+"why": "The package has two priority sources and a physical disruption pivot.",
+"out": "mimikyu-disguised"
+},
+{
+"when": "Their offense is primarily special.",
+"then": "Use the special-spam package instead.",
+"why": "Rotom-Wash should not be forced to absorb all special pressure.",
+"out": "rillaboom"
+}
+]
+},
+{
+"id": "lead",
+"title": "Lead",
+"lede": "Lead with the piece that prevents their first turn from becoming decisive.",
+"branches": [
+{
+"when": "They have an obvious physical lead.",
+"then": "Lead Rotom-Wash and threaten Will-O-Wisp.",
+"why": "Remove immediate physical momentum.",
+"out": "rotom-wash"
+},
+{
+"when": "They have one obvious setup sweeper that Mimikyu can directly confront.",
+"then": "Lead Mimikyu.",
+"why": "Disguise creates the emergency interaction.",
+"out": "mimikyu-disguised"
+}
+]
+},
+{
+"id": "mid",
+"title": "Mid",
+"lede": "Trade only when the trade removes the opponent's route to a sweep.",
+"branches": [
+{
+"when": "The opponent's fastest threat is weakened.",
+"then": "Preserve Mimikyu and transition toward Kingambit.",
+"why": "Priority becomes stronger as the field is chipped.",
+"out": "kingambit"
+}
+]
+},
+{
+"id": "late",
+"title": "Late",
+"lede": "Use Kingambit to end the offensive cycle.",
+"branches": [
+{
+"when": "The opponent must attack.",
+"then": "Use Sucker Punch.",
+"why": "Priority denies their Speed advantage.",
+"out": "kingambit"
+}
+]
+}
+],
+"flows": [
+{
+"id": "lead",
+"title": "Lead",
+"lede": "Stop the first offensive commitment.",
+"forks": [
+{
+"id": "anti-offense-physical-lead",
+"when": "A physical attacker leads.",
+"then": "Burn it.",
+"send": "rotom-wash",
+"move": "Will-O-Wisp",
+"why": "Immediate Attack reduction protects the entire package.",
+"forks": [
+{
+"id": "anti-offense-burn-pivot",
+"when": "The attacker remains weakened.",
+"then": "Pivot into the correct offensive piece.",
+"send": "kingambit",
+"move": "Volt Switch",
+"why": "Turn the defensive advantage into offensive pressure."
+}
+]
+},
+{
+"id": "anti-offense-sweeper-lead",
+"when": "A setup sweeper threatens an immediate snowball.",
+"then": "Use Disguise to absorb its first meaningful attack.",
+"send": "mimikyu-disguised",
+"why": "Force the sweeper to spend its advantage on Mimikyu instead of sweeping."
+}
+]
+},
+{
+"id": "mid",
+"title": "Mid",
+"lede": "Convert the opponent's lost momentum into a favorable trade.",
+"forks": [
+{
+"id": "anti-offense-kingambit-entry",
+"when": "The opponent's faster attackers are weakened.",
+"then": "Bring Kingambit safely.",
+"send": "kingambit",
+"why": "Sucker Punch now controls the pace."
+}
+]
+},
+{
+"id": "late",
+"title": "Late",
+"lede": "End the game before the opponent can regain momentum.",
+"forks": [
+{
+"id": "anti-offense-sucker",
+"when": "The final attacker must attack to win.",
+"then": "Sucker Punch.",
+"send": "kingambit",
+"move": "Sucker Punch",
+"why": "Do not allow Speed to decide the final exchange."
+}
+]
+}
+]
+},
+{
+"id": "bully",
+"label": "Bully Core",
+"when": "Their six contains passive walls, Steel-heavy structures, or obvious Salamence answers that Garchomp can attack immediately.",
+"identity": "Immediate coverage pressure with two physical breakers and a Mega finisher.",
+"slugs": [
+"salamence",
+"garchomp",
+"kingambit"
+],
+"strategy": {
+"opponentPattern": "Their six relies on defensive cores, slower Steel answers, or predictable switches to survive conventional offensive pressure.",
+"bring": [
+"salamence",
+"garchomp",
+"kingambit"
+],
+"purpose": "Garchomp attacks immediately with four coverage moves, Salamence threatens setup, and Kingambit punishes the weakened endgame.",
+"targets": [
+"Passive teams",
+"Steel-heavy teams",
+"Teams relying on predictable switches",
+"Teams with weak immediate answers to Ground and Fire coverage"
+],
+"refuses": [
+"Do not bring this package when the opponent has several strong Ice attackers.",
+"Do not bring it when their physical walls comfortably stop all three attackers."
+],
+"winCondition": "Use Garchomp's coverage to remove or weaken defensive answers, then let Mega Salamence or Kingambit finish."
+},
+"pilot": {
+"thesis": "Do not give passive structures free turns; attack the switch they need.",
+"rule": "Use Garchomp's coverage before giving the opponent time to stabilize.",
+"fail": "If their physical shell survives repeated direct attacks, stop feeding it physical attackers and choose the special-spam package."
+},
+"philosophy": "This package sacrifices some defensive flexibility for immediate offensive compression.",
+"press": [
+"Attack the predicted Steel switch with Fire Fang.",
+"Use Earthquake when the opponent has no safe Ground immunity.",
+"Preserve Kingambit until the opponent's physical answers are weakened."
+],
+"refuse": [
+"Never send Garchomp into known Ice pressure.",
+"Never Dragon Dance Salamence into an obvious immediate revenge KO.",
+"Never sacrifice Kingambit while Fairy targets remain important."
+],
+"switches": [
+{
+"into": "Steel target",
+"send": "Garchomp with Fire Fang or Earthquake according to typing."
+},
+{
+"into": "Ground attack",
+"send": "Salamence when its other weaknesses are not exposed."
+},
+{
+"into": "Fairy target",
+"send": "Kingambit to apply Steel pressure."
+}
+],
+"plan": [
+{
+"title": "Clock",
+"goal": "Force the opponent's defensive answers to reveal themselves.",
+"play": "Lead Garchomp or Salamence according to the preview and attack immediately.",
+"next": "Record which Pokémon they rely on to stop Ground, Dragon, Flying, and Dark pressure."
+},
+{
+"title": "Shield",
+"goal": "Preserve the attacker that the opponent still cannot answer.",
+"play": "Do not trade both breakers into the same defensive wall.",
+"next": "Use the surviving breaker to create the endgame."
+},
+{
+"title": "Clean",
+"goal": "Finish after the defensive structure has been cracked.",
+"play": "Mega Salamence sweeps if its checks are gone; Kingambit cleans if faster threats are weakened.",
+"next": "Choose the win condition based on what remains, not what you planned at preview."
+}
+],
+"loops": [
+{
+"title": "Coverage Loop",
+"body": "Show one attack, force the opponent's defensive response, then use the coverage move that punishes that response."
+},
+{
+"title": "Ground Immunity Loop",
+"body": "Use Salamence to exploit Ground attacks aimed at Garchomp or Kingambit, then attack the newly exposed target."
+}
+],
+"victims": [
+{
+"name": "Steel-heavy structures",
+"why": "Garchomp's Earthquake and Fire Fang force Steel answers to respect multiple coverage routes."
+},
+{
+"name": "Passive defensive cores",
+"why": "Four attacks on Garchomp reduce the number of safe turns the opponent gets."
+}
+],
+"counters": [
+{
+"name": "Ice-heavy offense",
+"why": "Use the anti-offense pack instead of exposing both Dragon attackers."
+},
+{
+"name": "Specially defensive physical walls",
+"why": "Use the special-spam package with Rotom-Wash and Rillaboom."
+}
+],
+"advantages": [
+{
+"title": "Coverage compression",
+"body": "Garchomp carries four attacks specifically so it does not need to spend a turn setting up before threatening common defensive responses.",
+"watch": "Do not overpredict when Earthquake already wins the exchange.",
+"play": "Choose the simplest move that pressures the current target.",
+"rule": "Coverage exists to punish the response, not to justify unnecessary prediction."
+}
+],
+"hazards": [
+{
+"title": "Ice attacks",
+"body": "Garchomp and Salamence share an obvious vulnerability to Ice pressure.",
+"watch": "Preview every strong Ice attacker before selecting this package.",
+"play": "Do not expose both Dragons to the same Ice attacker without a concrete trade plan.",
+"rule": "If Ice pressure is central to their six, use a different pack."
+}
+],
+"phases": [
+{
+"id": "preview",
+"title": "Preview",
+"lede": "Ask whether their defensive structure can withstand immediate Ground, Flying, and Dark pressure.",
+"branches": [
+{
+"when": "They show passive Steel or Ground structures.",
+"then": "Bring Garchomp, Salamence, and Kingambit.",
+"why": "Each attacker attacks a different part of the defensive shell.",
+"out": "garchomp"
+},
+{
+"when": "They show multiple strong Ice attackers.",
+"then": "Avoid this package.",
+"why": "The shared Dragon weakness creates too much structural risk.",
+"out": "rotom-wash"
+}
+]
+},
+{
+"id": "lead",
+"title": "Lead",
+"lede": "Lead the attacker with the fewest safe answers.",
+"branches": [
+{
+"when": "Their lead is vulnerable to Earthquake or has no safe Ground immunity.",
+"then": "Lead Garchomp and attack.",
+"why": "Take immediate value instead of giving a passive team time to set up.",
+"out": "garchomp"
+},
+{
+"when": "Their lead cannot punish Salamence and fears Flying pressure.",
+"then": "Lead Salamence.",
+"why": "Force their Salamence answer into the open.",
+"out": "salamence"
+}
+]
+},
+{
+"id": "mid",
+"title": "Mid",
+"lede": "Exploit the first defensive answer they reveal.",
+"branches": [
+{
+"when": "A Steel answer appears against Garchomp.",
+"then": "Use Fire Fang or Earthquake according to the target.",
+"why": "Punish the defensive response rather than resetting the matchup.",
+"out": "garchomp"
+}
+]
+},
+{
+"id": "late",
+"title": "Late",
+"lede": "Let the least-answerable attacker close.",
+"branches": [
+{
+"when": "Salamence's checks are gone.",
+"then": "Mega Evolve and sweep.",
+"why": "Do not preserve a Mega resource after its purpose has become decisive.",
+"out": "salamence"
+},
+{
+"when": "The opponent retains faster weakened attackers.",
+"then": "Use Kingambit.",
+"why": "Priority becomes the safest closing mechanism.",
+"out": "kingambit"
+}
+]
+}
+],
+"flows": [
+{
+"id": "lead",
+"title": "Lead",
+"lede": "Attack the structure before it can settle.",
+"forks": [
+{
+"id": "bully-ground-lead",
+"when": "The opponent has no reliable Ground immunity in the lead matchup.",
+"then": "Use Earthquake.",
+"send": "garchomp",
+"move": "Earthquake",
+"why": "Take the strongest reliable immediate line.",
+"forks": [
+{
+"id": "bully-steel-switch",
+"when": "They switch to a Steel target that fears Fire.",
+"then": "Use Fire Fang.",
+"send": "garchomp",
+"move": "Fire Fang",
+"why": "Punish the defensive response."
+}
+]
+},
+{
+"id": "bully-salamence-lead",
+"when": "Their lead cannot threaten Salamence immediately.",
+"then": "Pressure with Salamence.",
+"send": "salamence",
+"move": "Double-Edge",
+"why": "Force their answer to reveal itself."
+}
+]
+},
+{
+"id": "mid",
+"title": "Mid",
+"lede": "Use the revealed answer to choose which breaker stays active.",
+"forks": [
+{
+"id": "bully-kingambit-transition",
+"when": "The opponent's Steel and Fairy answers are weakened.",
+"then": "Transition to Kingambit.",
+"send": "kingambit",
+"why": "Kingambit becomes the most efficient endgame threat."
+}
+]
+},
+{
+"id": "late",
+"title": "Late",
+"lede": "Stop attacking with the wrong piece once the opponent's structure has collapsed.",
+"forks": [
+{
+"id": "bully-mega-clean",
+"when": "Salamence can outspeed and KO the remaining structure.",
+"then": "Mega Evolve and attack.",
+"send": "salamence",
+"move": "Double-Edge",
+"why": "Convert the broken structure into a sweep."
+}
+]
+}
+]
+},
+{
+"id": "special-spam",
+"label": "Special Buffer",
+"when": "Their six contains multiple special attackers, Water or Ground targets, or physical walls that make the Bully package unattractive.",
+"identity": "Rotom-Wash plus Rillaboom pressure with Kingambit as the endgame threat.",
+"slugs": [
+"rotom-wash",
+"rillaboom",
+"kingambit"
+],
+"strategy": {
+"opponentPattern": "Their six leans on special offense, bulky Water or Ground targets, or physical walls that resist the default physical pressure.",
+"bring": [
+"rotom-wash",
+"rillaboom",
+"kingambit"
+],
+"purpose": "Rotom-Wash and Rillaboom cover opposing Water, Ground, and special structures while Kingambit provides the final physical threat.",
+"targets": [
+"Special offense",
+"Water-heavy teams",
+"Ground-heavy teams",
+"Physical walls that dislike Grass pressure",
+"Teams vulnerable to priority"
+],
+"refuses": [
+"Do not bring this package when the opponent has overwhelming Fire pressure that Rillaboom cannot safely navigate.",
+"Do not rely on Kingambit as the only answer to several healthy Fighting-type attackers."
+],
+"winCondition": "Use terrain, pivoting, and chip to force the opponent into Kingambit's endgame range."
+},
+"pilot": {
+"thesis": "Let Rotom-Wash and Rillaboom absorb and redirect pressure until Kingambit has a clean endgame.",
+"rule": "Preserve the Grass and Electric coverage needed to stop Water and Ground targets.",
+"fail": "If Fire pressure invalidates Rillaboom and Rotom-Wash is overloaded, use the default or anti-offense package."
+},
+"philosophy": "This package changes the team's damage profile and reduces reliance on Salamence against special-heavy or physically defensive previews.",
+"press": [
+"Use Grassy Terrain to punish Water and Ground structures.",
+"Use Volt Switch and U-turn to control positioning.",
+"Preserve Kingambit until its priority can end the game."
+],
+"refuse": [
+"Never let Rillaboom absorb an unnecessary Fire attack.",
+"Never burn a Water or Ground target with Rotom-Wash when direct damage or pivoting wins the exchange.",
+"Never expose Kingambit to avoidable Fighting pressure."
+],
+"switches": [
+{
+"into": "Water-type target",
+"send": "Rillaboom to apply Grassy Terrain and Grass pressure."
+},
+{
+"into": "Ground-type target",
+"send": "Rotom-Wash or Rillaboom according to the opponent's coverage."
+},
+{
+"into": "weakened faster attacker",
+"send": "Kingambit to threaten Sucker Punch."
+}
+],
+"plan": [
+{
+"title": "Clock",
+"goal": "Establish terrain and force the opponent to respect two different pivot routes.",
+"play": "Use Rillaboom or Rotom-Wash according to the opponent's lead and pivot when their response is predictable.",
+"next": "Accumulate enough chip for Kingambit to close."
+},
+{
+"title": "Shield",
+"goal": "Keep Rillaboom and Rotom-Wash alive long enough to answer Water, Ground, and special threats.",
+"play": "Do not trade both pivots for one target unless that target is the opponent's win condition.",
+"next": "Once the opponent's offensive pressure drops, transition to Kingambit."
+},
+{
+"title": "Clean",
+"goal": "End with Kingambit.",
+"play": "Use Sucker Punch against attacking targets and Kowtow Cleave against passive responses.",
+"next": "Swords Dance only when the opponent cannot punish it."
+}
+],
+"loops": [
+{
+"title": "Terrain Loop",
+"body": "Rillaboom establishes Grassy Terrain, threatens Grass damage, then U-turns when the opponent sends their answer."
+},
+{
+"title": "Pivot Loop",
+"body": "Rotom-Wash threatens Hydro Pump or Will-O-Wisp, Volt Switches on the forced response, and returns later when the opponent's coverage is revealed."
+}
+],
+"victims": [
+{
+"name": "Water-heavy teams",
+"why": "Rillaboom's terrain and Grass attacks force Water targets to respect immediate pressure."
+},
+{
+"name": "Ground-heavy teams",
+"why": "Rotom-Wash and Rillaboom both attack the structure from different angles."
+},
+{
+"name": "Special offense",
+"why": "Rillaboom's Assault Vest and Rotom-Wash's utility give the package more room to absorb and redirect pressure."
+}
+],
+"counters": [
+{
+"name": "Fire-heavy teams",
+"why": "Use the default package if Salamence can exploit the Fire structure or use the anti-offense package if physical pressure dominates."
+},
+{
+"name": "Strong Fighting offense",
+"why": "Use the core package if Salamence gives you a better offensive route."
+}
+],
+"advantages": [
+{
+"title": "Two pivots",
+"body": "Rotom-Wash and Rillaboom can attack different defensive structures while keeping Kingambit protected.",
+"watch": "Do not spend both pivots for small damage.",
+"play": "Use one pivot to create the entry for the other or for Kingambit.",
+"rule": "The pivots exist to preserve the endgame, not to win by themselves."
+}
+],
+"hazards": [
+{
+"title": "Fire pressure",
+"body": "Rillaboom's biggest structural weakness is strong Fire pressure.",
+"watch": "Identify every Fire attacker before selecting Rillaboom.",
+"play": "Use Rotom-Wash as the Fire buffer and pivot Rillaboom only when the Fire threat is controlled.",
+"rule": "Do not select Rillaboom simply because the opponent has Water or Ground Pokémon."
+}
+],
+"phases": [
+{
+"id": "preview",
+"title": "Preview",
+"lede": "Check whether Rillaboom and Rotom-Wash collectively cover the opponent's primary offensive structure.",
+"branches": [
+{
+"when": "They show Water or Ground pressure alongside special attackers.",
+"then": "Bring Rotom-Wash, Rillaboom, and Kingambit.",
+"why": "The package directly attacks the preview's central structure.",
+"out": "rillaboom"
+},
+{
+"when": "They show multiple powerful Fire attackers.",
+"then": "Avoid Rillaboom unless the matchup is specifically favorable.",
+"why": "Do not let one shared weakness dictate the battle.",
+"out": "salamence"
+}
+]
+},
+{
+"id": "lead",
+"title": "Lead",
+"lede": "Lead the pivot that best punishes their first target.",
+"branches": [
+{
+"when": "They lead a Water or Ground target.",
+"then": "Lead Rillaboom.",
+"why": "Grassy Terrain immediately changes the matchup.",
+"out": "rillaboom"
+},
+{
+"when": "They lead a physical attacker or Fire target.",
+"then": "Lead Rotom-Wash.",
+"why": "Will-O-Wisp and Hydro Pump control the interaction.",
+"out": "rotom-wash"
+}
+]
+},
+{
+"id": "mid",
+"title": "Mid",
+"lede": "Use the pivots to identify and weaken the opponent's Kingambit answer.",
+"branches": [
+{
+"when": "The opponent's Fairy or Fighting answer is weakened.",
+"then": "Preserve Kingambit for the endgame.",
+"why": "The package is now transitioning from control to cleanup.",
+"out": "kingambit"
+}
+]
+},
+{
+"id": "late",
+"title": "Late",
+"lede": "Use Kingambit once priority is more valuable than another pivot cycle.",
+"branches": [
+{
+"when": "The remaining opponent must attack.",
+"then": "Use Sucker Punch.",
+"why": "End the game before the opponent regains tempo.",
+"out": "kingambit"
+}
+]
+}
+],
+"flows": [
+{
+"id": "lead",
+"title": "Lead",
+"lede": "Establish the terrain or defensive state that denies the opponent's first plan.",
+"forks": [
+{
+"id": "special-water-lead",
+"when": "They lead Water or Ground.",
+"then": "Apply Grass pressure immediately.",
+"send": "rillaboom",
+"move": "Wood Hammer",
+"why": "Do not allow a favorable matchup to become a free setup turn."
+},
+{
+"id": "special-fire-lead",
+"when": "They lead Fire or a physical attacker.",
+"then": "Use Rotom-Wash.",
+"send": "rotom-wash",
+"move": "Hydro Pump",
+"why": "Threaten the immediate matchup instead of exposing Rillaboom."
+}
+]
+},
+{
+"id": "mid",
+"title": "Mid",
+"lede": "Pivot until the opponent's Kingambit answer is in range.",
+"forks": [
+{
+"id": "special-pivot",
+"when": "The opponent switches to a target that Rillaboom or Rotom-Wash can pressure.",
+"then": "Pivot into the appropriate attacker.",
+"send": "rillaboom",
+"move": "U-turn",
+"why": "Keep momentum while preserving the endgame."
+}
+]
+},
+{
+"id": "late",
+"title": "Late",
+"lede": "Convert chip into priority KOs.",
+"forks": [
+{
+"id": "special-kingambit-clean",
+"when": "The opponent is within Sucker Punch range.",
+"then": "Clean with Kingambit.",
+"send": "kingambit",
+"move": "Sucker Punch",
+"why": "The entire package has been building this endgame."
+}
+]
+}
+]
+}
+],
+"pilot": {
+"thesis": "Use the preview to identify which three of your six attack the opponent's actual structure, then protect that trio's win condition.",
+"rule": "Never select the same three automatically; first identify the opponent's biggest pressure point and your cleanest answer to it.",
+"fail": "If your selected three cannot answer the opponent's obvious win condition without a sequence of low-probability predictions, you selected the wrong pack."
+},
+"press": [
+"Read their six before choosing your three.",
+"Identify their strongest win condition and their answer to yours.",
+"Use Rotom-Wash to create controlled entries when it is part of the package.",
+"Use Garchomp's coverage instead of forcing setup when immediate damage is available.",
+"Preserve Kingambit when priority is your cleanest endgame.",
+"Mega Evolve Salamence only when the Mega changes the matchup."
+],
+"refuse": [
+"Never bring the default three simply because they are the core.",
+"Never Mega Salamence automatically on turn one.",
+"Never send Garchomp into a known strong Ice attack without a deliberate Focus Sash trade.",
+"Never sacrifice Kingambit early when it is your only reliable Fairy answer or endgame priority.",
+"Never use Sucker Punch against a target that can safely refuse to attack unless the alternative line is worse.",
+"Never let Rillaboom absorb an avoidable Fire attack.",
+"Never spend Rotom-Wash merely for chip when it is your safest defensive pivot."
+],
+"switches": [
+{
+"into": "physical attacker",
+"send": "rotom-wash — threaten Will-O-Wisp and create a pivot."
+},
+{
+"into": "Water or Ground target",
+"send": "rillaboom — establish Grassy Terrain and apply immediate Grass pressure."
+},
+{
+"into": "Fairy target",
+"send": "kingambit — use Steel pressure and preserve the team's Dragon attackers."
+},
+{
+"into": "Ground attack",
+"send": "salamence — exploit its Ground immunity when the follow-up is safe."
+},
+{
+"into": "Steel target",
+"send": "garchomp — threaten Earthquake or Fire Fang according to the target."
+}
+],
+"plan": [
+{
+"title": "Clock",
+"goal": "Identify and weaken the Pokémon responsible for stopping your chosen win condition.",
+"play": "Use the appropriate pivot or immediate attacker from the selected package to force their answer into the open.",
+"next": "Preserve the piece the opponent still cannot comfortably answer."
+},
+{
+"title": "Shield",
+"goal": "Protect the win condition from avoidable revenge trades.",
+"play": "Use Rotom-Wash, Disguise, terrain, or defensive positioning to deny the opponent a clean sequence.",
+"next": "Once the opponent's offensive structure is weakened, transition into your cleaner."
+},
+{
+"title": "Clean",
+"goal": "Finish with the offensive piece that has the fewest remaining checks.",
+"play": "Use Mega Salamence to sweep when its checks are gone or Kingambit to close with priority when faster threats remain.",
+"next": "Stop preserving pieces that no longer contribute and take the direct winning line."
+}
+],
+"victims": [
+{
+"name": "Balanced physical structures",
+"why": "The default Salamence, Rotom-Wash, and Kingambit package can disrupt physical pressure and create multiple endgame routes."
+},
+{
+"name": "Passive Steel structures",
+"why": "Garchomp's Earthquake and Fire Fang can punish the defensive responses that protect slower teams."
+},
+{
+"name": "Water and Ground structures",
+"why": "Rillaboom and Rotom-Wash provide overlapping but distinct answers."
+},
+{
+"name": "Fast physical offense",
+"why": "Mimikyu, Rotom-Wash, and Kingambit give the team Disguise, burn, and priority."
+}
+],
+"counters": [
+{
+"name": "Heavy Ice offense",
+"why": "Use the anti-offense or special-buffer package instead of stacking Salamence and Garchomp."
+},
+{
+"name": "Fire-heavy structures",
+"why": "Avoid forcing Rillaboom; use the core package when Salamence can exploit the matchup."
+},
+{
+"name": "Specially defensive physical walls",
+"why": "Use Rotom-Wash and Rillaboom to change the damage profile rather than relying entirely on physical breakers."
+},
+{
+"name": "Fighting-heavy offense",
+"why": "Preserve Mimikyu or Salamence and avoid exposing Kingambit unnecessarily."
+}
+],
+"advantages": [
+{
+"title": "Six-to-three compression",
+"body": "The roster contains three distinct packages rather than one fixed trio: balanced control, anti-offense, and direct physical pressure.",
+"watch": "Do not confuse the roster's strongest six with the correct three for every preview.",
+"play": "Select the package that attacks the opponent's structure.",
+"rule": "Preview decides the trio."
+},
+{
+"title": "Multiple endgames",
+"body": "Mega Salamence, Kingambit, and Mimikyu can all serve as different closing mechanisms depending on which opposing checks are removed.",
+"watch": "Do not preserve every attacker equally.",
+"play": "Identify the one Pokémon that the opponent has the fewest answers to.",
+"rule": "Protect the least replaceable win condition."
+}
+],
+"hazards": [
+{
+"title": "Shared Dragon exposure",
+"body": "Salamence and Garchomp both become difficult to use when the opponent has strong Ice pressure.",
+"watch": "Identify every strong Ice attack before selecting a package containing both.",
+"play": "Use Rotom-Wash, Kingambit, or Mimikyu to change the matchup instead.",
+"rule": "Do not stack Dragon vulnerabilities without a concrete reason."
+},
+{
+"title": "Priority wars",
+"body": "Kingambit, Mimikyu, and Rillaboom all rely partly on priority to control endgames.",
+"watch": "Track opposing priority and Ghost or Dark interactions before assuming a priority move is safe.",
+"play": "Use direct attacks when the opponent can manipulate priority.",
+"rule": "Priority is a closing tool, not an automatic first choice."
+},
+{
+"title": "Mega resource",
+"body": "Mega Salamence is the team's dedicated Mega option, so selecting it does not mean Mega Evolution should happen immediately.",
+"watch": "Ask whether the Mega changes the current matchup or merely adds power you could obtain later.",
+"play": "Preserve the Mega option until the opponent's structure is understood.",
+"rule": "Mega for the win condition, not for habit."
+}
+],
+"phases": [
+{
+"id": "preview",
+"title": "Preview",
+"lede": "Find the opponent's strongest pressure point and choose the three that attack it.",
+"branches": [
+{
+"when": "Their six is balanced without an obvious hard Salamence answer.",
+"then": "Bring Salamence, Rotom-Wash, and Kingambit.",
+"why": "This is the most flexible package.",
+"out": "salamence"
+},
+{
+"when": "Their six is fast and physically aggressive.",
+"then": "Bring Mimikyu, Rotom-Wash, and Kingambit.",
+"why": "Disguise, burn, and priority directly answer the offensive structure.",
+"out": "mimikyu-disguised"
+},
+{
+"when": "Their six is passive or Steel-heavy without strong Ice pressure.",
+"then": "Bring Salamence, Garchomp, and Kingambit.",
+"why": "Immediate Ground, Fire, Flying, and Dark pressure attacks the defensive shell.",
+"out": "garchomp"
+},
+{
+"when": "Their six is special-heavy or centered around Water and Ground targets.",
+"then": "Bring Rotom-Wash, Rillaboom, and Kingambit.",
+"why": "The package changes the damage profile and directly attacks those types.",
+"out": "rillaboom"
+}
+]
+},
+{
+"id": "lead",
+"title": "Lead",
+"lede": "Lead the Pokémon that creates the cleanest first interaction, not automatically your strongest attacker.",
+"branches": [
+{
+"when": "The opponent leads a physical attacker that Rotom-Wash handles.",
+"then": "Lead Rotom-Wash and threaten Will-O-Wisp or Hydro Pump.",
+"why": "Disrupt the first offensive commitment.",
+"out": "rotom-wash"
+},
+{
+"when": "The opponent leads a Water or Ground target and Rillaboom is selected.",
+"then": "Lead Rillaboom and establish Grassy Terrain.",
+"why": "Take immediate type advantage and gain priority pressure.",
+"out": "rillaboom"
+},
+{
+"when": "The opponent leads something Garchomp attacks without requiring prediction.",
+"then": "Lead Garchomp and use the simplest winning coverage move.",
+"why": "Do not give a passive team a free turn.",
+"out": "garchomp"
+},
+{
+"when": "The opponent cannot immediately punish Salamence.",
+"then": "Lead Salamence and decide whether Mega Evolution or Dragon Dance creates more value.",
+"why": "Make the opponent reveal its Salamence answer.",
+"out": "salamence"
+}
+]
+},
+{
+"id": "mid",
+"title": "Mid",
+"lede": "Stop thinking about the original three as equal; identify the one that now wins the remaining matchup.",
+"branches": [
+{
+"when": "Salamence's checks are weakened or removed.",
+"then": "Preserve Salamence for the setup sequence.",
+"why": "The Mega win condition is now closer to activation.",
+"out": "salamence"
+},
+{
+"when": "The opponent's faster attackers are weakened.",
+"then": "Preserve Kingambit for the priority endgame.",
+"why": "Sucker Punch becomes harder to answer.",
+"out": "kingambit"
+},
+{
+"when": "The opponent still relies on physical pressure.",
+"then": "Keep Rotom-Wash healthy.",
+"why": "Its defensive value may be more important than any single attack.",
+"out": "rotom-wash"
+}
+]
+},
+{
+"id": "late",
+"title": "Late",
+"lede": "Close with the remaining Pokémon that has the fewest viable answers.",
+"branches": [
+{
+"when": "Mega Salamence has a clear path through the remaining team.",
+"then": "Mega Evolve and sweep.",
+"why": "Use the once-per-battle resource when it determines the endgame.",
+"out": "salamence"
+},
+{
+"when": "The opponent must attack and Kingambit can KO with priority.",
+"then": "Use Sucker Punch.",
+"why": "Remove the opponent's Speed advantage.",
+"out": "kingambit"
+},
+{
+"when": "The opponent refuses to attack into Sucker Punch.",
+"then": "Use Kowtow Cleave or Swords Dance according to the immediate threat.",
+"why": "Do not let Sucker Punch become predictable and exploitable.",
+"out": "kingambit"
+}
+]
+}
+],
+"flows": [
+{
+"id": "lead",
+"title": "Lead",
+"lede": "Create the first favorable exchange and identify the opponent's response.",
+"forks": [
+{
+"id": "root-lead-physical",
+"when": "They lead a physical attacker.",
+"then": "Send Rotom-Wash and threaten Will-O-Wisp.",
+"send": "rotom-wash",
+"move": "Will-O-Wisp",
+"why": "Reduce immediate physical pressure.",
+"forks": [
+{
+"id": "root-lead-physical-stay",
+"when": "They stay in.",
+"then": "Volt Switch or Hydro Pump according to whether the target can survive the attack.",
+"send": "rotom-wash",
+"move": "Volt Switch",
+"why": "Convert the weakened matchup into a favorable entry."
+},
+{
+"id": "root-lead-physical-switch",
+"when": "They switch to a Water or Ground target.",
+"then": "Bring Rillaboom only if it was selected; otherwise exploit the switch with Hydro Pump or the appropriate teammate.",
+"send": "rillaboom",
+"move": "Wood Hammer",
+"why": "Punish the structural response when the terrain package is active."
+}
+]
+},
+{
+"id": "root-lead-ground",
+"when": "They lead a Ground target and Rillaboom is selected.",
+"then": "Use Wood Hammer or Grassy Glide according to KO range.",
+"send": "rillaboom",
+"move": "Wood Hammer",
+"why": "Take the immediate favorable exchange.",
+"forks": [
+{
+"id": "root-lead-ground-switch",
+"when": "They switch to a Fire answer.",
+"then": "Pivot out rather than sacrificing Rillaboom.",
+"send": "rotom-wash",
+"move": "U-turn",
+"why": "Preserve Rillaboom and place Rotom-Wash into the Fire matchup."
+}
+]
+},
+{
+"id": "root-lead-steel",
+"when": "They lead a Steel target that Garchomp safely attacks.",
+"then": "Use Earthquake or Fire Fang according to the target.",
+"send": "garchomp",
+"move": "Earthquake",
+"why": "Use immediate super-effective pressure rather than setup.",
+"forks": [
+{
+"id": "root-lead-steel-flying",
+"when": "They pivot to a Flying target.",
+"then": "Use Rock Slide if Garchomp remains safely positioned.",
+"send": "garchomp",
+"move": "Rock Slide",
+"why": "Punish the Ground immunity."
+}
+]
+}
+]
+},
+{
+"id": "mid",
+"title": "Mid",
+"lede": "Turn the opponent's revealed answers into a route toward your strongest remaining win condition.",
+"forks": [
+{
+"id": "root-mid-salamence",
+"when": "The opponent's best Salamence answer is weakened or removed.",
+"then": "Bring Salamence into a safe turn.",
+"send": "salamence",
+"why": "Prepare the primary sweep.",
+"forks": [
+{
+"id": "root-mid-salamence-setup",
+"when": "The opponent cannot immediately punish setup.",
+"then": "Dragon Dance.",
+"send": "salamence",
+"move": "Dragon Dance",
+"why": "Convert the structural advantage into Speed and power."
+}
+]
+},
+{
+"id": "root-mid-kingambit",
+"when": "Faster opposing attackers are weakened or forced into range.",
+"then": "Bring Kingambit into a safe turn.",
+"send": "kingambit",
+"why": "Prepare the priority endgame.",
+"forks": [
+{
+"id": "root-mid-kingambit-setup",
+"when": "The opponent cannot punish a setup turn.",
+"then": "Use Swords Dance.",
+"send": "kingambit",
+"move": "Swords Dance",
+"why": "Make the remaining endgame mathematically simpler."
+}
+]
+}
+]
+},
+{
+"id": "late",
+"title": "Late",
+"lede": "Remove the opponent's final comeback route and finish directly.",
+"forks": [
+{
+"id": "root-late-priority",
+"when": "The opposing attacker must attack and is within Sucker Punch range.",
+"then": "Use Sucker Punch.",
+"send": "kingambit",
+"move": "Sucker Punch",
+"why": "Do not allow the opponent's Speed to matter."
+},
+{
+"id": "root-late-passive",
+"when": "The opposing Pokémon can safely refuse to attack.",
+"then": "Use Kowtow Cleave or Swords Dance.",
+"send": "kingambit",
+"move": "Kowtow Cleave",
+"why": "Punish passive play instead of relying on predictable priority."
+},
+{
+"id": "root-late-mega",
+"when": "Mega Salamence has the cleanest route through the remaining Pokémon.",
+"then": "Mega Evolve and attack.",
+"send": "salamence",
+"move": "Double-Edge",
+"why": "Use the team's Mega resource to close rather than preserve it after the matchup is already decided."
+}
+]
+}
+],
+"loops": [
+{
+"title": "Preview → Pack → Win Condition",
+"body": "Read their six, identify what they are trying to bully, select the pack that attacks that structure, then identify which member of your three has the fewest remaining checks."
+},
+{
+"title": "Pivot → Pressure → Pivot",
+"body": "Use Rotom-Wash or Rillaboom to force a response, pivot into the attacker that punishes that response, then preserve the pivot for the next cycle."
+},
+{
+"title": "Chip → Priority → Clean",
+"body": "Accumulate controlled damage without unnecessary trades, then let Kingambit, Mimikyu, or Rillaboom use priority to remove the opponent's faster weakened threats."
+}
+],
+"slots": [
+{
+"slug": "salamence",
+"title": "The Sky Hammer",
+"job": "mega",
+"literacy": "sweeper",
+"role": "Use Mega Salamence as the primary offensive win condition when the opponent lacks a clean answer to boosted Aerilate Flying attacks.",
+"ability": "Intimidate",
+"item": "Salamencite",
+"itemWhy": "Enable Mega Salamence and reserve the team's once-per-battle Mega resource for the matchup where its speed, power, and Aerilate pressure matter most.",
+"itemAlts": [
+{
+"name": "None",
+"why": "Do not replace Salamencite if Salamence is intended to remain the team's Mega."
+}
+],
+"nature": "Adamant",
+"training": {
+"label": "Bulky Dragon Dance",
+"why": "Maximize physical damage while investing enough Speed to improve the value of Dragon Dance without abandoning useful bulk.",
+"sp": {
+"hp": 6,
+"atk": 32,
+"def": 0,
+"spa": 0,
+"spd": 0,
+"spe": 28
+},
+"spend": [
+"32 Atk — maximize Aerilate-boosted damage and Earthquake damage.",
+"28 Spe — make Dragon Dance convert Salamence into a decisive cleaner.",
+"6 HP — place the remaining SP into general durability."
+],
+"alts": [
+{
+"name": "Maximum Speed",
+"why": "Prefer this when Speed ties and immediate post-boost positioning matter more than small amounts of bulk.",
+"sp": {
+"hp": 2,
+"atk": 32,
+"def": 0,
+"spa": 0,
+"spd": 0,
+"spe": 32
+},
+"spend": [
+"32 Atk — maximize damage.",
+"32 Spe — maximize unboosted and boosted Speed.",
+"2 HP — use the remaining SP for minor general bulk."
+]
+}
+]
+},
+"moves": [
+{
+"name": "Double-Edge",
+"why": "Turn Salamence's Aerilate ability into a powerful Flying-type STAB attack and punish neutral targets.",
+"alts": [
+{
+"name": "Return",
+"why": "Use when lower recoil is preferred over maximum immediate damage."
+}
+]
+},
+{
+"name": "Dragon Dance",
+"why": "Convert Salamence from an attacker into the team's primary late-game cleaner.",
+"alts": [
+{
+"name": "Dragon Claw",
+"why": "Use when immediate Dragon coverage is more important than setup."
+}
+]
+},
+{
+"name": "Roost",
+"why": "Recover recoil and chip so Salamence can preserve itself for the endgame.",
+"alts": [
+{
+"name": "Protect",
+"why": "Use when scouting and turn control matter more than recovery."
+}
+]
+},
+{
+"name": "Earthquake",
+"why": "Punish Steel-, Rock-, and Electric-type answers that resist Aerilate Flying attacks.",
+"alts": [
+{
+"name": "Fire Fang",
+"why": "Use when Steel targets that are vulnerable to Fire are the primary obstacle."
+}
+]
+}
+],
+"objective": "Create one safe Dragon Dance opportunity, then convert the resulting speed and power into a decisive endgame.",
+"howToPlay": "Do not Mega automatically.\nUse Intimidate to create a safer entry when possible.\nDo not Dragon Dance while the opponent still has an obvious faster revenge killer unless the trade is favorable.\nUse Double-Edge to punish neutral targets and Earthquake to punish Steel or Electric answers.\nRoost when recoil or chip would prevent Salamence from reaching the endgame.\nPreserve Salamence if it is your only reliable route through the opponent's remaining structure."
+},
+{
+"slug": "rotom-wash",
+"title": "The Circuit Breaker",
+"job": "support",
+"literacy": "pivot",
+"role": "Use Rotom-Wash to absorb physical pressure, burn attackers, and create safe entries for Salamence or Kingambit.",
+"ability": "Levitate",
+"item": "Sitrus Berry",
+"itemWhy": "Provide immediate recovery after taking a hit and let Rotom-Wash repeatedly perform its pivot and disruption role.",
+"itemAlts": [
+{
+"name": "Leftovers",
+"why": "Prefer this when the game is expected to involve many turns of switching rather than one critical burst of recovery."
+},
+{
+"name": "Choice Scarf",
+"why": "Prefer this only when immediate Speed and revenge pressure are more valuable than defensive utility."
+}
+],
+"nature": "Bold",
+"training": {
+"label": "Physical Circuit",
+"why": "Maximize physical durability while retaining enough Special Attack to make Hydro Pump and Thunderbolt meaningful.",
+"sp": {
+"hp": 32,
+"atk": 0,
+"def": 24,
+"spa": 10,
+"spd": 0,
+"spe": 0
+},
+"spend": [
+"32 HP — maximize general durability.",
+"24 Def — strengthen the physical matchups Rotom-Wash is assigned to check.",
+"10 SpA — retain offensive pressure with Hydro Pump and Thunderbolt."
+],
+"alts": [
+{
+"name": "Specially Durable",
+"why": "Prefer this when the opposing preview contains several special attackers.",
+"sp": {
+"hp": 32,
+"atk": 0,
+"def": 10,
+"spa": 8,
+"spd": 16,
+"spe": 0
+},
+"spend": [
+"32 HP — maximize general durability.",
+"16 SpD — improve special resilience.",
+"10 Def — retain physical utility.",
+"8 SpA — preserve meaningful offensive pressure."
+]
+}
+]
+},
+"moves": [
+{
+"name": "Volt Switch",
+"why": "Turn favorable matchups into controlled entries for Salamence, Kingambit, or another selected teammate.",
+"alts": [
+{
+"name": "Thunderbolt",
+"why": "Use when staying in and dealing direct Electric damage is more important than pivoting."
+}
+]
+},
+{
+"name": "Hydro Pump",
+"why": "Give Rotom-Wash strong Water STAB against Ground, Fire, Rock, and other targets that expect passive play.",
+"alts": [
+{
+"name": "Hydro Pump",
+"why": "Keep the stronger Water attack unless reliability is the overriding concern."
+}
+]
+},
+{
+"name": "Will-O-Wisp",
+"why": "Cut physical pressure and make opposing attackers easier for the rest of the team to handle.",
+"alts": [
+{
+"name": "Thunder Wave",
+"why": "Use when speed control is more valuable than physical Attack reduction."
+}
+]
+},
+{
+"name": "Thunderbolt",
+"why": "Provide direct Electric pressure when pivoting is unnecessary or when a Water or Flying target must be threatened immediately.",
+"alts": [
+{
+"name": "Protect",
+"why": "Use when scouting and preserving Sitrus recovery opportunities are more important than coverage."
+}
+]
+}
+],
+"objective": "Create safe turns and stop the opponent from freely attacking while keeping the correct breaker healthy.",
+"howToPlay": "Lead Rotom-Wash when the preview shows an immediate physical threat it can comfortably disrupt.\nClick Will-O-Wisp against physical attackers unless the burn is clearly exploitable by the opponent.\nUse Volt Switch when the opponent must respect Hydro Pump or Electric pressure.\nDo not sacrifice Rotom-Wash merely to chip something unless the remaining two can exploit the opening.\nUse Hydro Pump when the opponent expects a passive Volt Switch.\nPreserve Rotom-Wash when it is your safest answer to the opponent's main physical breaker."
+},
+{
+"slug": "kingambit",
+"title": "The Guillotine",
+"job": "breaker",
+"literacy": "sweeper",
+"role": "Use Kingambit as the team's endgame cleaner and punish weakened teams with Supreme Overlord and priority.",
+"ability": "Supreme Overlord",
+"item": "Black Glasses",
+"itemWhy": "Increase the damage of Kingambit's Dark attacks without locking it into a move and make Sucker Punch and Kowtow Cleave threatening after setup or teammate losses.",
+"itemAlts": [
+{
+"name": "Lum Berry",
+"why": "Prefer this when status is more dangerous than maximizing Dark-type damage."
+},
+{
+"name": "Leftovers",
+"why": "Prefer this in slower games where repeated switching and passive recovery matter."
+}
+],
+"nature": "Adamant",
+"training": {
+"label": "Bulky Blade",
+"why": "Maximize Attack and give Kingambit enough HP to survive longer while retaining a small amount of special bulk.",
+"sp": {
+"hp": 32,
+"atk": 32,
+"def": 0,
+"spa": 0,
+"spd": 2,
+"spe": 0
+},
+"spend": [
+"32 HP — maximize general durability.",
+"32 Atk — maximize Sucker Punch, Kowtow Cleave, and Iron Head damage.",
+"2 SpD — place the remaining SP into special bulk."
+],
+"alts": [
+{
+"name": "Speed Utility",
+"why": "Prefer this when creeping slower defensive threats is more valuable than maximum bulk.",
+"sp": {
+"hp": 22,
+"atk": 32,
+"def": 0,
+"spa": 0,
+"spd": 0,
+"spe": 12
+},
+"spend": [
+"32 Atk — maximize damage.",
+"22 HP — retain meaningful bulk.",
+"12 Spe — improve positioning against slower targets."
+]
+}
+]
+},
+"moves": [
+{
+"name": "Sucker Punch",
+"why": "Give Kingambit priority so it can finish faster attackers once they are forced to attack.",
+"alts": [
+{
+"name": "Low Kick",
+"why": "Use when opposing Kingambit and heavy Steel targets are more important than priority."
+}
+]
+},
+{
+"name": "Kowtow Cleave",
+"why": "Provide reliable Dark STAB without depending on the opponent choosing an attacking move.",
+"alts": [
+{
+"name": "Night Slash",
+"why": "Use only when critical-hit utility is specifically desired."
+}
+]
+},
+{
+"name": "Swords Dance",
+"why": "Turn a forced switch or passive turn into an immediate endgame threat.",
+"alts": [
+{
+"name": "Stealth Rock",
+"why": "Use when Kingambit is being deployed primarily as a utility lead rather than a cleaner."
+}
+]
+},
+{
+"name": "Iron Head",
+"why": "Provide Steel STAB for Fairy targets and prevent Fairy Pokémon from freely absorbing Dark attacks.",
+"alts": [
+{
+"name": "Low Kick",
+"why": "Use when Steel- and Dark-type targets are the main matchup concern."
+}
+]
+}
+],
+"objective": "Survive long enough for the opponent's team to become weakened, then use Supreme Overlord and priority to close the game.",
+"howToPlay": "Do not expose Kingambit early without a reason.\nUse Sucker Punch only when the opponent must attack.\nUse Kowtow Cleave when you expect a switch or status move.\nSwords Dance when the opponent gives you a genuinely passive turn.\nPreserve Kingambit if faster offensive Pokémon remain healthy.\nTreat the final opposing Pokémon as the ideal Supreme Overlord target."
+}
+]
+}

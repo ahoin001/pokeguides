@@ -1,0 +1,33 @@
+---
+description: Learn curriculum copy — clear, human, beginner-friendly
+globs: src/content/curriculum.ts,src/content/**/*.ts,src/components/learn/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Learn page writing
+
+Write for someone opening Champions for the first time. Clarity beats cleverness.
+
+## Do
+
+- Explain the idea in full sentences before any shorthand.
+- Define a term the first time it appears (STAB, resist, hole, wincon).
+- One idea per paragraph or beat. Say what it is, why it matters, what to do.
+- Use concrete Pokémon and moves as examples, not as substitutes for the explanation.
+- Link forward gently: “You’ll cover X in the Holes lesson” — never assume they already know it.
+
+## Don’t
+
+- Cryptic coach-speak or slogan chains (“Two names, one STAB”, “the third slot is the patch or the loss condition”).
+- String fragments that only make sense if the reader already follows the meta.
+- Cross-lesson jargon without a one-line gloss (“check-versus-counter”, “donated KO”, “clock”).
+- Fake progression labels (“Beginners do X. Intermediate players do Y.”).
+- Telegraphic fragments pretending to be punchy: “Immune. Then you Dance.”
+
+## Shape
+
+- Heading names the topic in plain language.
+- Body teaches. Takeaway (optional) is one sentence they can remember.
+- Prefer “what / why / what to do” over metaphors and in-jokes.
+- If a sentence only works after reading three other lessons, rewrite it until it stands alone.
+---

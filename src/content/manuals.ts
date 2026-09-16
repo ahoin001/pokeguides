@@ -3,6 +3,7 @@ import { alt, train } from "@/content/manual-train";
 import { OVERLORD_PIVOT_MANUAL } from "@/content/manuals/overlord-pivot";
 import { PRESSURE_BALANCE_MANUAL } from "@/content/manuals/pressure-balance";
 import { CLOCKWORK_BALANCE_MANUAL } from "@/content/manuals/clockwork-balance";
+import { PRESSURE_CLOCK_MANUAL } from "@/content/manuals/pressure-clock";
 
 export { alt, train };
 
@@ -392,6 +393,7 @@ export function manualFamily(manual: Pick<TeamManual, "family" | "archetype">): 
 export const CANONICAL_MANUALS: TeamManual[] = [
   CLOCKWORK_BALANCE_MANUAL,
   PRESSURE_BALANCE_MANUAL,
+  PRESSURE_CLOCK_MANUAL,
   OVERLORD_PIVOT_MANUAL,
 ];
 

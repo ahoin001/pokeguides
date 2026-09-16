@@ -28,6 +28,15 @@ export type LessonBeat = {
   title: string;
   body: string;
   example?: LessonExample;
+  /** One-line takeaway shown as a pull quote under the body. */
+  takeaway?: string;
+  /** Compact labeled rows — priority lists, compare strips, etc. */
+  rows?: { label: string; detail: string }[];
+};
+
+export type LessonRule = {
+  label: string;
+  detail: string;
 };
 
 export type Lesson = {
@@ -37,6 +46,8 @@ export type Lesson = {
   thesis: string;
   skipIf: string;
   body: string[];
+  /** Compact format facts shown as a rule strip (used by FightClassroom). */
+  rules?: LessonRule[];
   beats: LessonBeat[];
   examples: LessonExample[];
   viz: LessonViz;
@@ -81,39 +92,75 @@ export const LESSONS: Lesson[] = [
     slug: "the-fight",
     band: "poke-ball",
     title: "This is not the story mode",
-    thesis: "3v3, one Pokémon out, 66 Stat Points, one Mega, open lists. Your turn is the whole turn.",
+    thesis:
+      "Ranked singles is 3v3 with one Pokémon on the field. You spend 66 Stat Points, get one Mega, and both team lists are open from the start.",
     skipIf: "Skip if you already play Champions ranked singles.",
     body: [
-      "They see your three. You see theirs. One Pokémon is in the slot. Fake Out, Protect, and U-turn spend your action — there is no partner to click them for you.",
-      "Everyone is Level 50. You have 66 Stat Points, at most 32 in one stat. Mega Evolution happens the same turn you attack. Species clause: no duplicates.",
+      "Story mode hides half the game. Here both sides show their three before anyone leads. One Pokémon fights at a time — Fake Out, Protect, and U-turn all cost your action. Nobody else covers for you.",
+    ],
+    rules: [
+      { label: "Format", detail: "3v3 · one on the field" },
+      { label: "Level", detail: "50 for everyone" },
+      { label: "Stat Points", detail: "66 total · max 32 in one stat" },
+      { label: "Mega", detail: "Once · same turn you attack" },
+      { label: "Lists", detail: "Open at preview" },
+      { label: "Species", detail: "No duplicates" },
     ],
     beats: [
       {
-        title: "Turn order",
-        body: "Switches resolve first. Then Mega. Then moves, fastest to slowest. Priority ignores Speed: Protect is +4, Fake Out is +3, Prankster Tailwind is +1, Sucker Punch is +1 if they attack. Trick Room and Parting Shot go last. If you switch, they still get to hit whoever comes in — unless they also switched.",
-        example: { slug: "incineroar", caption: "Fake Out is +3. It flinches before Tailwind. Ghost is immune." },
+        title: "How a turn resolves",
+        body: "Switches resolve first. Mega Evolution is next. After that, moves go in Speed order — unless priority jumps the line.",
+        takeaway:
+          "If you switch, they still hit whoever comes in — unless they switched too.",
+        rows: [
+          { label: "Protect", detail: "+4 priority" },
+          { label: "Fake Out", detail: "+3 · flinches before Tailwind" },
+          { label: "Prankster Tailwind", detail: "+1" },
+          { label: "Sucker Punch", detail: "+1 only if they attack" },
+          { label: "Trick Room · Parting Shot", detail: "Go last" },
+        ],
+        example: {
+          slug: "incineroar",
+          caption: "Fake Out is +3. Ghost types ignore it.",
+        },
       },
       {
-        title: "One action",
-        body: "Attack or switch. Switching is a turn they get to hit you. Ask whether the damage you would deal this turn is worth more than the switch. Beginners stay in and click super-effective. Intermediate players leave when the next hit KOs and they have the answer in the bag.",
-        example: { slug: "garchomp", caption: "Earthquake is the attack. Coming in on Ice is the donated KO." },
+        title: "Attack or leave",
+        body: "Every turn you either attack or switch. Switching hands them a free hit on whatever comes in. Stay when this turn’s damage matters more than getting out. Leave when the next hit would KO you and you already have the answer waiting.",
+        takeaway: "Super-effective is fine. Donating a KO because you stayed one turn too long is not.",
+        example: {
+          slug: "garchomp",
+          caption: "Earthquake is the attack. Switching into Ice is a free KO for them.",
+        },
       },
       {
-        title: "Physical, special, STAB",
-        body: "Physical hits Defense. Special hits Special Defense. Same-type attack bonus is 1.5× — most kits start with a STAB. A three that only punches Attack loses to one physical wall.",
-        example: { slug: "kingambit", caption: "Kowtow Cleave is physical Dark. Make It Rain on Gholdengo is the special Steel." },
+        title: "Physical, special, and STAB",
+        body: "Physical moves hit Defense. Special moves hit Special Defense. Same-type attack bonus (STAB) is 1.5× — most kits lead with at least one STAB move. A team that only stacks Attack gets stopped cold by one solid physical wall.",
+        rows: [
+          { label: "Physical", detail: "Hits Defense" },
+          { label: "Special", detail: "Hits Special Defense" },
+          { label: "STAB", detail: "1.5× on your own type" },
+        ],
+        example: {
+          slug: "kingambit",
+          caption: "Kowtow Cleave is physical Dark. Make It Rain on Gholdengo is special Steel.",
+        },
       },
       {
-        title: "Open lists, one Mega",
-        body: "Preview is turn 0. You pick the three that answers their list, then the first send. The Omni Ring is once. If two of yours can Mega, preview is where you pick.",
-        example: { slug: "salamence-mega", caption: "Aerilate is the wincon, not a flex. Hide it until Ice is gone." },
+        title: "Open lists and one Mega",
+        body: "Before the fight starts, both sides open their lists. You pick the three that answers theirs, then choose who leads. The Omni Ring Mega is once per game. If two of yours can Mega, decide which one here — not mid-match when you’re already locked in.",
+        takeaway: "Mega is the plan. Tip it early only if you have to — often you wait until the answer for it is gone.",
+        example: {
+          slug: "salamence-mega",
+          caption: "Aerilate is the win condition. Hide it until Ice is off the field.",
+        },
       },
     ],
     examples: [
       { slug: "whimsicott", caption: "Clock" },
       { slug: "corviknight", caption: "Shield" },
-      { slug: "garchomp", caption: "Clean" },
-      { slug: "incineroar", caption: "Fake Out is +3" },
+      { slug: "garchomp", caption: "Cleaner" },
+      { slug: "incineroar", caption: "Fake Out +3" },
     ],
     viz: "stadium",
     relatedManuals: [
@@ -127,32 +174,61 @@ export const LESSONS: Lesson[] = [
     slug: "types",
     band: "poke-ball",
     title: "Types are switch math",
-    thesis: "You are not memorizing a chart. You are asking: can I come in.",
-    skipIf: "Skip if you already switch on type, not on panic.",
+    thesis:
+      "You are not memorizing a chart for a quiz. Every turn, the type chart answers one question: is it safe to switch this Pokémon in?",
+    skipIf: "Skip if you already switch based on types, not panic.",
     body: [
-      "Super-effective is 2×. A resist is ½. Immune is 0. Dual typing multiplies. Garchomp is Dragon/Ground: Ice is 4×, Fairy is 2×, Electric is 0.",
-      "STAB is 1.5× on your own type. Coverage is the one extra type that hits what walls you. The skill is seeing the STAB that hits two of yours.",
+      "Every damaging move has a type. Against the Pokémon on the other side, that type either hits harder, hits softer, or does nothing. Dual-typed Pokémon multiply both numbers — so Garchomp (Dragon/Ground) takes 4× from Ice, 2× from Fairy, and 0 from Electric.",
+    ],
+    rules: [
+      { label: "Super-effective", detail: "2× damage · 4× if both types are weak" },
+      { label: "Resist", detail: "½ damage · ¼ if both types resist" },
+      { label: "Immune", detail: "0 — the move does nothing" },
+      { label: "STAB", detail: "1.5× when the move matches your type" },
+      { label: "Coverage", detail: "An extra type that hits what walls your STAB" },
     ],
     beats: [
       {
-        title: "Come in on a resist",
-        body: "Garchomp into Fairy is a donation. Corviknight into Fairy is a Steel resist. The type chart is a switch list, not trivia.",
-        example: { slug: "corviknight", caption: "Steel/Flying. Fairy is ½. Ground is 0. Ice is 1× — not a resist, still better than Garchomp’s 4×." },
+        title: "Switch in on a resist",
+        body: "When they lock into a Fairy move, sending Garchomp in is a gift — Fairy hits Dragon for 2×. Corviknight is Steel/Flying, so Fairy only does half. Use the chart as a switch list: pick the Pokémon that takes the incoming hit best.",
+        takeaway: "Before you switch, ask: what on my team resists this move?",
+        rows: [
+          { label: "Garchomp in", detail: "Fairy hits Dragon for 2× — bad switch" },
+          { label: "Corviknight in", detail: "Steel resists Fairy (½) — good switch" },
+        ],
+        example: {
+          slug: "corviknight",
+          caption: "Steel/Flying. Fairy is ½. Ground is 0. Ice is neutral — still safer than Garchomp’s 4× Ice.",
+        },
       },
       {
-        title: "Immune is a free turn",
-        body: "Ground into Corviknight does nothing. Ghost Fake Out into Mimikyu does nothing. That is not a resist. That is a turn they spent for free.",
-        example: { slug: "mimikyu-disguised", caption: "Ghost/Fairy. Fake Out is Normal. Immune. Then you Dance." },
+        title: "Immune means a free turn",
+        body: "A resist still takes some damage. An immunity takes none — they spent their turn and nothing happened. Ground moves do nothing to Corviknight. Fake Out is Normal, so it does nothing to Mimikyu (Ghost). That empty turn is yours to use.",
+        takeaway: "Immunity is not “a strong resist.” It is a turn they gave you for free.",
+        example: {
+          slug: "mimikyu-disguised",
+          caption: "Ghost/Fairy. Fake Out does nothing. Then you can set up.",
+        },
       },
       {
-        title: "Two names, one STAB",
-        body: "If Ice hits two of yours super-effectively, they will click Ice. The third slot is the patch or the loss condition. Full check-versus-counter lives in Holes.",
-        example: { slug: "garchomp", caption: "Dragon/Ground plus Salamence is an Ice hole. Corviknight or Incineroar is the patch." },
+        title: "When one type threatens two of yours",
+        body: "Look at your three. If the same attacking type is super-effective against two of them, your opponent will keep clicking that type. Your third Pokémon has to answer it — by resisting it, being immune to it, or knocking out the Pokémon that carries it. If none of those are true, that shared weakness is how games slip away.",
+        takeaway:
+          "You’ll dig into checks and counters later in Holes. For now, just learn to spot a shared weakness on your own three.",
+        rows: [
+          { label: "Garchomp", detail: "Dragon/Ground — weak to Ice" },
+          { label: "Salamence", detail: "Dragon/Flying — also weak to Ice" },
+          { label: "Your answer", detail: "Corviknight or Incineroar takes Ice better" },
+        ],
+        example: {
+          slug: "garchomp",
+          caption: "Two Dragons share an Ice weakness. Something else on the three has to cover Ice.",
+        },
       },
     ],
     examples: [
-      { slug: "garchomp", caption: "4× Ice. Immune Electric." },
-      { slug: "corviknight", caption: "The Fairy and Ground patch." },
+      { slug: "garchomp", caption: "4× Ice. Immune to Electric." },
+      { slug: "corviknight", caption: "Patches Fairy and Ground." },
     ],
     viz: "types",
     relatedManuals: [

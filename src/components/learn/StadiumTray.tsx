@@ -8,7 +8,7 @@ import type { LessonExample } from "@/content/curriculum";
 export function StadiumTray({
   you,
   them = [],
-  youLabel = "Your three",
+  youLabel = "Your three — open list",
   themLabel = "Theirs — empty until preview",
 }: {
   you: LessonExample[];

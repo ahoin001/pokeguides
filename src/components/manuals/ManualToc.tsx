@@ -26,10 +26,12 @@ export function manualJumps(manual: TeamManual, boxed = false) {
     manual.advantages?.some((a) => a.title || a.body) ||
     manual.hazards.some((h) => h.title || h.body);
   const hasPocket = Boolean(manual.pilot?.fail || (manual.switches ?? []).some((s) => s.into || s.send));
+  const hasThesis = Boolean(manual.construction || manual.megaPool || manual.evidence);
 
   return [
     { href: "#top", label: "Top" },
     ...(boxed ? [{ href: "#box", label: "Lineup" }] : []),
+    ...(hasThesis ? [{ href: "#thesis", label: "Thesis" }] : []),
     ...(hasPocket ? [{ href: "#pocket", label: "Pocket" }] : []),
     { href: "#three", label: "The three" },
     { href: "#scout", label: "Scout" },

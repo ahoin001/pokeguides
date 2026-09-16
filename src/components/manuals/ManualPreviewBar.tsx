@@ -159,6 +159,35 @@ function PackStrategyBlock({ pack }: { pack: ManualPack }) {
           </dt>
           <dd className="mt-1 text-sm leading-relaxed text-ink/85">{plan.winCondition}</dd>
         </div>
+        {plan.megaChoice || plan.megaOptions?.length ? (
+          <div>
+            <dt className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+              Mega
+            </dt>
+            <dd className="mt-1 text-sm leading-relaxed text-ink/85">
+              {plan.megaChoice
+                ? `${getPokemon(plan.megaChoice)?.name ?? plan.megaChoice} preferred`
+                : null}
+              {plan.megaOptions && plan.megaOptions.length > 1 ? (
+                <span className="text-muted">
+                  {plan.megaChoice ? " — also " : ""}
+                  {plan.megaOptions
+                    .filter((s) => s !== plan.megaChoice)
+                    .map((s) => getPokemon(s)?.name ?? s)
+                    .join(" / ")}
+                </span>
+              ) : null}
+            </dd>
+          </div>
+        ) : null}
+        {plan.winconMode ? (
+          <div>
+            <dt className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+              Wincon mode
+            </dt>
+            <dd className="mt-1 text-sm leading-relaxed text-ink/85">{plan.winconMode}</dd>
+          </div>
+        ) : null}
       </dl>
       {(plan.targets.length > 0 || plan.refuses.length > 0) && (
         <div className="flex flex-wrap gap-x-6 gap-y-3 pt-1">

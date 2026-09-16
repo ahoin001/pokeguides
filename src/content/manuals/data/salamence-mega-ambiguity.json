@@ -1,0 +1,688 @@
+{
+  "id": "balance-salamence-primarina-gholdengo",
+  "title": "M-C Mega Ambiguity",
+  "lede": "Salamence-centered M-C six: Mega Salamence + Primarina + Gholdengo as the default three, with Garchomp, Golisopod, and Lucario as flex Mega options. Register six → read their six → pick which stone and which support make their plan hardest.",
+  "philosophy": "Teammate frequency is correlation, not a finished six. Build a preview toolbox that can produce several strong threes, not a fixed Salamence + top-five partners list. Four Mega stones create real preview pressure — you only click one.",
+  "archetype": "balance",
+  "family": "clock",
+  "meta": "Regulation M-C (Sept 9–Dec 2, 2026) newly legalized Mega Salamence, Mega Garchomp, Mega Lucario, and Mega Golisopod (plus Mega Absol Z and Mega Baxcalibur). Only one Mega Evolution per battle. Season M-6 ladder after week one put Salamence, Garchomp, Primarina, Golisopod/Hippowdon, and Lucario at the top of Singles — an unusually clean link between the new Mega pool and usage.",
+  "skills": [
+    "Preview pack selection",
+    "Mega as a resource",
+    "Dragon Dance",
+    "Encore",
+    "Nasty Plot",
+    "First Impression",
+    "Fairy resistance",
+    "Priority pressure",
+    "Special / physical split"
+  ],
+  "relatedLessons": [
+    "archetypes",
+    "reading-their-six",
+    "preview",
+    "building",
+    "tempo",
+    "positioning"
+  ],
+  "setsNote": "66 SP, max 32 per stat. Four Mega stones on the six — only one Mega per battle. Default training mirrors current M-C ladder concentrations; swap natures only when Speed tiers demand it.",
+  "evidence": {
+    "season": "M6",
+    "asOf": "2026-09-16",
+    "source": "Pokémon Zone Singles ranked + Champions News M-C Mega pool",
+    "caveat": "One week into Season M-6. This is the Salamence six to build from available evidence — not a claim of proven highest win rate.",
+    "ladderTop": [
+      "Salamence",
+      "Garchomp",
+      "Primarina",
+      "Golisopod",
+      "Hippowdon",
+      "Lucario"
+    ],
+    "stats": [
+      {
+        "label": "Salamencite",
+        "value": "~97.7%",
+        "note": "Almost every ladder Salamence is the Mega."
+      },
+      {
+        "label": "Intimidate",
+        "value": "~99.3%",
+        "note": "Base ability before Mega."
+      },
+      {
+        "label": "Adamant",
+        "value": "~51.7%",
+        "note": "Jolly ~16.5% — start Adamant."
+      },
+      {
+        "label": "DD / DE / EQ / Roost",
+        "value": "73% / 76% / 71% / 66%",
+        "note": "Do not overcomplicate the first Salamence set."
+      },
+      {
+        "label": "Golisopite",
+        "value": "~99%",
+        "note": "Golisopod is basically always the Mega when brought as such."
+      },
+      {
+        "label": "Lucarionite Z",
+        "value": "~91%",
+        "note": "Timid Nasty Plot special is the concentrated ladder set."
+      }
+    ]
+  },
+  "construction": {
+    "thesis": "For a Salamence-centered M-C 3v3 six, build Mega Salamence + Primarina + Gholdengo, then hold Garchomp + Golisopod + Lucario as the three flex / alternate-Mega pieces.",
+    "method": "Start from Salamence's teammate cluster and the top-six ladder, then interpret roles — do not paste the five most common partners. Substitute Hippowdon → Gholdengo so the six gains Fairy resist, special offense, and Recover without stacking three Ground-oriented physical pieces next to Salamence and Garchomp.",
+    "winCondition": "Create one safe Dragon Dance on Mega Salamence, or switch Mega identity (Garchomp / Golisopod / Lucario) when their six makes Salamence the wrong stone.",
+    "substitutions": [
+      {
+        "dropped": "Hippowdon",
+        "kept": "Gholdengo",
+        "why": "Hippowdon is #5 and legitimate, but Salamence + Garchomp + Hippowdon compress into the same physical/Ground defensive story. Gholdengo adds Steel/Ghost special pressure, Fairy resistance, Nasty Plot, Recover, and Air Balloon — things this six wants more than a second Sand wall."
+      }
+    ],
+    "altSlots": [
+      {
+        "slug": "aegislash-shield",
+        "insteadOf": "gholdengo",
+        "why": "Excellent Salamence partner on teammate lists. Prefer Gholdengo here for a cleaner special-offensive complement; keep Aegislash as the first alternate sixth-slot candidate."
+      }
+    ]
+  },
+  "megaPool": {
+    "rule": "One Mega Evolution per battle. Register four stones; choose which stone after the 90-second preview.",
+    "previewPressure": "They see Salamence / Garchomp / Golisopod / Lucario and must guess which one actually Mega Evolves. That ambiguity is the point of the six.",
+    "candidates": [
+      {
+        "slug": "salamence",
+        "stone": "Salamencite",
+        "when": "Default. Physical-heavy foes, Intimidate value, and a clear Dragon Dance window."
+      },
+      {
+        "slug": "garchomp",
+        "stone": "Garchompite Z",
+        "when": "Their six is Ground-vulnerable and Mega Salamence is awkward into their Fairy / Ice answers."
+      },
+      {
+        "slug": "golisopod",
+        "stone": "Golisopite",
+        "when": "You need First Impression / Sucker Punch to deny free turns into fragile offense."
+      },
+      {
+        "slug": "lucario",
+        "stone": "Lucarionite Z",
+        "when": "They are stacked for physical Mega Salamence; special Nasty Plot coverage cracks Fairy/Steel structures."
+      }
+    ]
+  },
+  "box": [
+    "salamence",
+    "primarina",
+    "gholdengo",
+    "garchomp",
+    "golisopod",
+    "lucario"
+  ],
+  "core": ["salamence", "primarina", "gholdengo"],
+  "slugs": ["salamence", "primarina", "gholdengo"],
+  "pilot": {
+    "thesis": "Salamence is the primary win condition when they lack a clean Flying answer — but the six wins by picking the right Mega and the right two supports, not by forcing the default three every game.",
+    "rule": "Do not Mega until you know which stone answers their six. Do not bring three physical Ground-leaning names when Fairy is the hole.",
+    "fail": "Auto-bring Salamence / Primarina / Gholdengo and auto-Mega Salamence into a six that hard-punishes Flying setup."
+  },
+  "press": [
+    "Force them to respect four possible Megas before the lead drops.",
+    "Encore setup and Protect turns with Primarina.",
+    "Split physical and special pressure so stacking Defense does not solve the six."
+  ],
+  "refuse": [
+    "Never Mega two names — you only get one.",
+    "Never treat teammate frequency as a finished roster.",
+    "Never leave Salamence in on Fairy without Gholdengo or a plan."
+  ],
+  "plan": [
+    {
+      "title": "Preview",
+      "goal": "Name which of your four stones they fear most, and which support plugs their wincon.",
+      "play": "Mark Fairy, Ice, priority, and Ground-weak structures. Choose Mega and the three together.",
+      "next": "Lead the piece that denies their first free turn."
+    },
+    {
+      "title": "Clock",
+      "goal": "Create the Dragon Dance window or the priority trade that opens it.",
+      "play": "Primarina Encores, Golisopod First Impressions, Gholdengo Recover-scouts — then Mega when the answer is gone.",
+      "next": "Clean with the remaining special or Ground pressure."
+    },
+    {
+      "title": "Close",
+      "goal": "Finish without donating the Mega to a revenge killer.",
+      "play": "Roost or Recover to stay above revenge ranges. Lucario or Gholdengo clean if Salamence is chipped out.",
+      "next": "If the wrong Mega went down, next game change stone — not the whole six."
+    }
+  ],
+  "switches": [
+    { "into": "Dragon / Fire", "send": "Primarina — Moonblast and Encore punish." },
+    { "into": "Fairy", "send": "Gholdengo — Steel resists Fairy; Make It Rain answers." },
+    { "into": "physical lead", "send": "Salamence for Intimidate, or Golisopod to First Impression." },
+    { "into": "Steel wall", "send": "Garchomp Earthquake / Flamethrower or Lucario Aura Sphere." }
+  ],
+  "victims": [
+    { "name": "Physical Balance without Fairy", "why": "Intimidate Mega + Primarina Encore + Gholdengo Recover outlast midrange." },
+    { "name": "Glass HO", "why": "Golisopod priority and Primarina Aqua Jet punish free turns." },
+    { "name": "Defense-stacked physical cores", "why": "Lucario / Gholdengo Nasty Plot lines ignore the physical wall." }
+  ],
+  "counters": [
+    { "name": "Multiple Fairy + Ice answers", "why": "Salamence dance windows disappear — bring Lucario Mega or refuse the dance." },
+    { "name": "Bulky Ground / Rock into Electric holes", "why": "Gholdengo Balloon helps once; do not donate free entries." },
+    { "name": "Fast special offense into Primarina", "why": "Encore fails if you die first — lead Golisopod or Gholdengo instead." }
+  ],
+  "advantages": [
+    {
+      "title": "Mega ambiguity",
+      "body": "Four stones on preview force a wrong guess. Correct Mega choice is often more valuable than a perfect lead.",
+      "rule": "Decide the stone with the three — not after the lead drops."
+    },
+    {
+      "title": "Physical / special split",
+      "body": "Salamence and Golisopod punch; Gholdengo and Lucario plot. Opponents cannot solve the six with one defensive stack.",
+      "play": "If they show Rocky Helmet / Assault Vest physical answers, lean special packs."
+    }
+  ],
+  "phases": [],
+  "flows": [],
+  "loops": [
+    {
+      "title": "Encore → Dance",
+      "body": "Primarina Encores a setup or Protect turn, then Salamence Dragon Dances into the free window."
+    },
+    {
+      "title": "First Impression → handoff",
+      "body": "Golisopod deletes or chips the lead, U-turns into Salamence or Gholdengo with tempo."
+    },
+    {
+      "title": "Plot race",
+      "body": "Gholdengo or Lucario Nasty Plots while Salamence threatens the physical dance — they cannot answer both cleanly."
+    }
+  ],
+  "hazards": [
+    {
+      "title": "Ice on the kite",
+      "body": "Do not Dragon Dance into known Ice. Chip it with Primarina or Golisopod first.",
+      "watch": "Choice Scarf Ice and priority Ice."
+    },
+    {
+      "title": "Fairy into Salamence",
+      "body": "Gholdengo is the resist. Without it on the three, do not force the Mega Dance.",
+      "rule": "No Fairy answer on the three → different pack."
+    }
+  ],
+  "roster": [
+    {
+      "slug": "salamence",
+      "title": "The Sky Hammer",
+      "job": "mega",
+      "literacy": "sweeper",
+      "role": "Primary physical setup win condition. Intimidate on entry, Mega when the Flying answer is gone, Dragon Dance once.",
+      "ability": "Intimidate",
+      "item": "Salamencite",
+      "itemWhy": "Statistical center of M-C Salamence (~98% stone). Reserves the once-per-battle Mega for the matchup where Aerilate pressure matters most.",
+      "nature": "Adamant",
+      "training": {
+        "label": "Standard DD",
+        "why": "Mirror the ladder: max Attack and Speed with leftover HP. Adamant over Jolly until Speed tiers demand otherwise.",
+        "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+        "spend": [
+          "32 Atk — maximize Double-Edge and Earthquake.",
+          "32 Spe — make Dragon Dance convert into a cleaner.",
+          "2 HP — remaining SP into bulk."
+        ]
+      },
+      "moves": [
+        {
+          "name": "Dragon Dance",
+          "why": "~73% ladder. Converts Salamence from an attacker into the primary cleaner."
+        },
+        {
+          "name": "Double-Edge",
+          "why": "~76% ladder. Aerilate Flying STAB after Mega — the main damage button."
+        },
+        {
+          "name": "Earthquake",
+          "why": "~71% ladder. Punishes Steel, Rock, and Electric answers that resist Flying."
+        },
+        {
+          "name": "Roost",
+          "why": "~66% ladder. Recovers recoil so the endgame stays alive."
+        }
+      ],
+      "objective": "One safe Dragon Dance, then end the game.",
+      "howToPlay": "Do not Mega automatically — Intimidate first when the physical lead matters.\nDo not Dance while a faster Ice or Fairy revenge killer is healthy.\nDouble-Edge neutral targets; Earthquake the Steels.\nRoost before you fall into revenge range.\nIf their six hard-punishes Flying, leave the stone on another Mega this game.",
+      "gives": ["Primary wincon", "Intimidate", "Aerilate snowball"],
+      "answers": ["Neutral midrange", "Physical offense after Intimidate"]
+    },
+    {
+      "slug": "primarina",
+      "title": "The Encore Glue",
+      "job": "breaker",
+      "literacy": "pivot",
+      "role": "Fairy/Water balance piece. Punishes Dragons, Fire, and Ground; Encores setup and Protect turns so Salamence gets the window.",
+      "ability": "Torrent",
+      "item": "Sitrus Berry",
+      "itemWhy": "Keeps Primarina in Encore and Aqua Jet range after chip — the glue needs to live.",
+      "nature": "Modest",
+      "training": {
+        "label": "Fast special",
+        "why": "32 SpA / 32 Spe with leftover HP matches the ladder pressure set.",
+        "sp": { "hp": 2, "atk": 0, "def": 0, "spa": 32, "spd": 0, "spe": 32 },
+        "spend": [
+          "32 SpA — Moonblast and Sparkling Aria damage.",
+          "32 Spe — outpace midrange Dragons and land Encore first.",
+          "2 HP — leftover bulk."
+        ]
+      },
+      "moves": [
+        {
+          "name": "Moonblast",
+          "why": "Primary Fairy STAB — answers Dragons and threatens Salamence's Ice neighbors."
+        },
+        {
+          "name": "Sparkling Aria",
+          "why": "Water STAB that spreads chip and can clear burns in relevant spots."
+        },
+        {
+          "name": "Aqua Jet",
+          "why": "Priority finish on weakened targets when Golisopod is not on the three."
+        },
+        {
+          "name": "Encore",
+          "why": "Punishes setup and Protect — creates the free turn Salamence wants."
+        }
+      ],
+      "objective": "Glue the matchup and create one Encore window for the Mega.",
+      "howToPlay": "Lead or mid-game into Dragons and Fire.\nEncore setup and Protect turns — do not waste it on locked Choice moves you already beat.\nAqua Jet weakened HO names.\nStay healthy enough that Sitrus keeps you in the game.",
+      "gives": ["Fairy STAB", "Encore tempo", "Ice answer support"],
+      "answers": ["Dragon", "Fire", "Ground", "Setup / Protect turns"]
+    },
+    {
+      "slug": "gholdengo",
+      "title": "The Fairy Net",
+      "job": "breaker",
+      "literacy": "wall",
+      "role": "Special attacker and Fairy resist. The piece added instead of Hippowdon so the six is not all physical Ground pressure.",
+      "ability": "Good as Gold",
+      "item": "Air Balloon",
+      "itemWhy": "~65% ladder. Blocks the first Ground hit so Gholdengo can Plot or Make It Rain.",
+      "nature": "Modest",
+      "training": {
+        "label": "Plot special",
+        "why": "Ladder set is extremely concentrated — max SpA and Spe with leftover HP.",
+        "sp": { "hp": 2, "atk": 0, "def": 0, "spa": 32, "spd": 0, "spe": 32 },
+        "spend": [
+          "32 SpA — Make It Rain / Shadow Ball damage.",
+          "32 Spe — outpace midrange after Nasty Plot.",
+          "2 HP — leftover bulk."
+        ]
+      },
+      "moves": [
+        {
+          "name": "Make It Rain",
+          "why": "~92% ladder. Steel STAB that answers Fairy and pressures Neutrals."
+        },
+        {
+          "name": "Shadow Ball",
+          "why": "~99% ladder. Ghost coverage into Fighting and Psychic."
+        },
+        {
+          "name": "Nasty Plot",
+          "why": "~84% ladder. Special setup path opponents cannot ignore while watching Salamence."
+        },
+        {
+          "name": "Recover",
+          "why": "~64% ladder. Longevity so the Fairy net stays on the board."
+        }
+      ],
+      "objective": "Absorb Fairy, force special answers, and Plot when they stack physical Defense.",
+      "howToPlay": "Switch into Fairy aimed at Salamence.\nSpend Balloon deliberately — the second Ground hits.\nNasty Plot when they cannot revenge cleanly.\nRecover before you donate the net.",
+      "gives": ["Fairy resistance", "Special offense", "Recover longevity"],
+      "answers": ["Fairy", "Fighting", "Status (Good as Gold)"]
+    },
+    {
+      "slug": "garchomp",
+      "title": "The Other Mega",
+      "job": "mega",
+      "literacy": "breaker",
+      "role": "Alternative Mega + Ground pressure + hazards. Preview ambiguity next to Salamence is half the value.",
+      "ability": "Rough Skin",
+      "item": "Garchompite Z",
+      "itemWhy": "~35% of ladder Garchomp — the Mega share. On this six it is a deliberate second stone, not Scarf/Sash default.",
+      "itemAlts": [
+        {
+          "name": "Choice Scarf",
+          "why": "If you decide Salamence is always the Mega this event, Scarf Chomp still revenge and pivot."
+        },
+        {
+          "name": "Focus Sash",
+          "why": "Trade into Ice leads when hazards are already up elsewhere."
+        }
+      ],
+      "nature": "Jolly",
+      "training": {
+        "label": "Fast Mega",
+        "why": "Jolly max Attack / Speed so Mega Garchomp races midrange after the stone.",
+        "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+        "spend": [
+          "32 Atk — Earthquake damage.",
+          "32 Spe — outpace unboosted midrange.",
+          "2 HP — leftover."
+        ]
+      },
+      "moves": [
+        {
+          "name": "Earthquake",
+          "why": "Primary Ground STAB — punishes Electric, Fire, Steel, Rock."
+        },
+        {
+          "name": "Stealth Rock",
+          "why": "Chip Flying and Ice answers before Salamence dances."
+        },
+        {
+          "name": "Dragon Tail",
+          "why": "Phaze setup and force switches into Rocks."
+        },
+        {
+          "name": "Flamethrower",
+          "why": "Special coverage into Steel that walls Earthquake."
+        }
+      ],
+      "objective": "Be the Mega when Ground pressure beats Flying setup — or support Salamence with Rocks and phaze.",
+      "howToPlay": "On preview, decide if Chomp or Salamence is the stone.\nLead Chomp into Ground-weak sixes.\nSet Rocks before forcing the dance on Salamence games.\nDo not donate into Ice without a plan.",
+      "gives": ["Alt Mega", "Ground STAB", "Stealth Rock"],
+      "answers": ["Electric", "Fire", "Steel"]
+    },
+    {
+      "slug": "golisopod",
+      "title": "You Don't Get a Turn",
+      "job": "mega",
+      "literacy": "breaker",
+      "role": "Immediate priority pressure. Salamence asks for a turn; Golisopod denies theirs.",
+      "ability": "Emergency Exit",
+      "item": "Golisopite",
+      "itemWhy": "~99% ladder — Golisopod is the Mega when the stone is registered. Tough Claws after Mega.",
+      "nature": "Adamant",
+      "training": {
+        "label": "Bulky priority",
+        "why": "32 HP / 32 Atk keeps First Impression and Sucker Punch hitting while Emergency Exit still functions.",
+        "sp": { "hp": 32, "atk": 32, "def": 2, "spa": 0, "spd": 0, "spe": 0 },
+        "spend": [
+          "32 HP — live to Emergency Exit and keep priority relevant.",
+          "32 Atk — maximize First Impression / Iron Head / Sucker Punch.",
+          "2 Def — leftover."
+        ]
+      },
+      "moves": [
+        {
+          "name": "First Impression",
+          "why": "Opening priority — deletes weakened or frail leads in 3v3."
+        },
+        {
+          "name": "Iron Head",
+          "why": "Steel STAB into Fairy and Ice after Mega Tough Claws."
+        },
+        {
+          "name": "Sucker Punch",
+          "why": "Priority Dark into Psychic and Ghost revenge attempts."
+        },
+        {
+          "name": "U-turn",
+          "why": "Hands Salamence or Gholdengo in safely after the chip."
+        }
+      ],
+      "objective": "Take the first turn of the game away from them, then hand off.",
+      "howToPlay": "Lead when their six is fragile or HO-shaped.\nFirst Impression the name you came for — do not soft-click.\nU-turn into Salamence when Intimidate or Dance is ready.\nMega when Tough Claws Iron Head / Sucker Punch closes better than keeping Emergency Exit mid-game.",
+      "gives": ["Priority", "U-turn tempo", "Alt Mega"],
+      "answers": ["Frail HO leads", "Psychic / Ghost revenge"]
+    },
+    {
+      "slug": "lucario",
+      "title": "The Special Blade",
+      "job": "mega",
+      "literacy": "sweeper",
+      "role": "Second setup sweeper on the special side. Stops opponents from solving the six with physical Defense.",
+      "ability": "Inner Focus",
+      "item": "Lucarionite Z",
+      "itemWhy": "~91% ladder. Timid Nasty Plot Mega is the concentrated special set.",
+      "nature": "Timid",
+      "training": {
+        "label": "Timid Plot",
+        "why": "~73% Timid on ladder — race after Nasty Plot with max SpA.",
+        "sp": { "hp": 2, "atk": 0, "def": 0, "spa": 32, "spd": 0, "spe": 32 },
+        "spend": [
+          "32 SpA — Aura Sphere / Flash Cannon / Dark Pulse.",
+          "32 Spe — outpace midrange after Plot.",
+          "2 HP — leftover."
+        ]
+      },
+      "moves": [
+        {
+          "name": "Nasty Plot",
+          "why": "~80% ladder. The special dance that mirrors Salamence's physical Dance."
+        },
+        {
+          "name": "Aura Sphere",
+          "why": "~79% ladder. Never-miss Fighting into Normal, Rock, Steel, Ice."
+        },
+        {
+          "name": "Flash Cannon",
+          "why": "~75% ladder. Steel into Fairy."
+        },
+        {
+          "name": "Dark Pulse",
+          "why": "~74% ladder. Dark into Psychic and Ghost."
+        }
+      ],
+      "objective": "Be the Mega when Fairy/Steel structures invalidate physical Salamence.",
+      "howToPlay": "Bring with Gholdengo when they look physically prepared.\nPlot once the revenge killer is gone.\nAura Sphere the Neutrals; Flash Cannon the Fairies.\nDo not lead Lucario into a known faster priority Dark or Ghost without Sash support from elsewhere.",
+      "gives": ["Alt Mega", "Special setup", "Fairy/Steel coverage"],
+      "answers": ["Physical walls", "Fairy", "Steel"]
+    }
+  ],
+  "slots": [
+    {
+      "slug": "salamence",
+      "title": "The Sky Hammer",
+      "job": "mega",
+      "literacy": "sweeper",
+      "role": "Primary physical setup win condition.",
+      "moves": [],
+      "objective": "One safe Dragon Dance, then end the game.",
+      "howToPlay": "See roster."
+    },
+    {
+      "slug": "primarina",
+      "title": "The Encore Glue",
+      "job": "breaker",
+      "literacy": "pivot",
+      "role": "Fairy/Water glue.",
+      "moves": [],
+      "objective": "Create one Encore window.",
+      "howToPlay": "See roster."
+    },
+    {
+      "slug": "gholdengo",
+      "title": "The Fairy Net",
+      "job": "breaker",
+      "literacy": "wall",
+      "role": "Special Fairy resist.",
+      "moves": [],
+      "objective": "Hold Fairy and Plot when needed.",
+      "howToPlay": "See roster."
+    }
+  ],
+  "packs": [
+    {
+      "id": "core",
+      "label": "Default balance",
+      "when": "Their six is structurally midrange — no hard Flying wall stack, no pure HO glass that demands Golisopod first.",
+      "identity": "Salamence wincon, Primarina glue, Gholdengo Fairy net and special pressure.",
+      "slugs": ["salamence", "primarina", "gholdengo"],
+      "megaChoice": "salamence",
+      "megaOptions": ["salamence"],
+      "strategy": {
+        "opponentPattern": "Balanced or mildly offensive six without a concentrated anti-Flying core.",
+        "bring": ["salamence", "primarina", "gholdengo"],
+        "purpose": "Default teaching package — glue, Fairy resist, and the primary Mega Dance.",
+        "targets": ["Physical Balance", "Dragon cores", "Midrange without Fairy stack"],
+        "refuses": ["Multiple healthy Fairy + Ice answers", "Pure HO that needs First Impression day one"],
+        "winCondition": "Encore or chip into one safe Dragon Dance on Mega Salamence.",
+        "megaChoice": "salamence"
+      },
+      "pilot": {
+        "thesis": "Make them answer Salamence while Gholdengo holds Fairy and Primarina holds the turn.",
+        "rule": "Mega Salamence only after the Flying answer is weakened or Encore'd.",
+        "fail": "Dance on sight into Scarf Ice."
+      },
+      "philosophy": "This is the starting three to learn — not a mandatory every-game bring.",
+      "press": ["Force the Salamence answer early", "Encore Protect / setup", "Recover on the Fairy net"],
+      "refuse": ["Never auto-Mega on lead", "Never leave Salamence in on Moonblast"],
+      "switches": [
+        { "into": "Fairy", "send": "Gholdengo" },
+        { "into": "Dragon", "send": "Primarina" },
+        { "into": "physical", "send": "Salamence for Intimidate" }
+      ],
+      "plan": [
+        {
+          "title": "Glue",
+          "goal": "Identify their Salamence answer.",
+          "play": "Primarina and Gholdengo scout while chip accumulates.",
+          "next": "Dance when the answer is gone."
+        }
+      ],
+      "loops": [],
+      "hazards": [],
+      "phases": [],
+      "flows": []
+    },
+    {
+      "id": "physical-pressure",
+      "label": "Physical pressure",
+      "when": "They are Ground-vulnerable, Fairy pressure is light, and Garchomp gets immediate value.",
+      "identity": "Salamence + Garchomp Mega ambiguity with Primarina coverage.",
+      "slugs": ["salamence", "garchomp", "primarina"],
+      "megaChoice": "salamence",
+      "megaOptions": ["salamence", "garchomp"],
+      "strategy": {
+        "opponentPattern": "Electric / Fire / Steel-heavy structures that fear Ground, without a hard Fairy wall.",
+        "bring": ["salamence", "garchomp", "primarina"],
+        "purpose": "Force them to guess Salamencite vs Garchompite Z while Primarina handles Dragons and Ice.",
+        "targets": ["Electric cores", "Fire Balance", "Steel without Fairy"],
+        "refuses": ["Double Fairy answers", "Sand teams that invite Hippo wars you are not built for"],
+        "winCondition": "Rocks + phaze or Mega Ground pressure, with Dance as the backup wincon.",
+        "megaChoice": "salamence",
+        "megaOptions": ["salamence", "garchomp"]
+      },
+      "pilot": {
+        "thesis": "Pick the Mega that their six cannot answer — not the one you practiced more.",
+        "rule": "If Fairy is light and Ground is free, Mega Chomp is legal.",
+        "fail": "Mega both in your head and play neither correctly."
+      },
+      "press": ["Stealth Rock before the dance", "Dragon Tail setup"],
+      "refuse": ["Ice leads without Primarina answer ready"],
+      "loops": [],
+      "hazards": [],
+      "phases": [],
+      "flows": []
+    },
+    {
+      "id": "anti-offense",
+      "label": "Anti-offense",
+      "when": "Their six is HO-shaped — glass, Sash, and early KOs.",
+      "identity": "Golisopod denies the turn; Primarina bulk + Aqua Jet; Salamence closes.",
+      "slugs": ["golisopod", "primarina", "salamence"],
+      "megaChoice": "golisopod",
+      "megaOptions": ["golisopod", "salamence"],
+      "strategy": {
+        "opponentPattern": "Hyper Offense or fragile Balance that wins by taking free turns.",
+        "bring": ["golisopod", "primarina", "salamence"],
+        "purpose": "Survive the opening assault with priority and Encore, then convert to Salamence.",
+        "targets": ["HO", "Sash leads", "Multiscale / Disguise openers"],
+        "refuses": ["Fat Balance that walls First Impression"],
+        "winCondition": "First Impression chip into Intimidate / Dance or Aqua Jet cleanup.",
+        "megaChoice": "golisopod",
+        "megaOptions": ["golisopod", "salamence"]
+      },
+      "pilot": {
+        "thesis": "You are not outspeeding everything — you are taking their first turn away.",
+        "rule": "Lead Golisopod when the lead is frail.",
+        "fail": "Leading Salamence into their Sash revenge chain."
+      },
+      "press": ["First Impression the name you came for", "U-turn into Intimidate"],
+      "refuse": ["Soft First Impression into a resist"],
+      "loops": [],
+      "hazards": [],
+      "phases": [],
+      "flows": []
+    },
+    {
+      "id": "special-offense",
+      "label": "Special offense",
+      "when": "They are stacked for physical Mega Salamence — Assault Vest, Rocky Helmet, physical walls.",
+      "identity": "Two Nasty Plot paths plus Salamence Dance — three setup routes.",
+      "slugs": ["lucario", "gholdengo", "salamence"],
+      "megaChoice": "lucario",
+      "megaOptions": ["lucario", "salamence"],
+      "strategy": {
+        "opponentPattern": "Physically prepared sixes that look ready for Aerilate Double-Edge.",
+        "bring": ["lucario", "gholdengo", "salamence"],
+        "purpose": "Force special answers while still threatening a physical Dance if they over-correct.",
+        "targets": ["Physical walls", "Rocky Helmet cores", "Defense-stacked Balance"],
+        "refuses": ["Fast special revenge with multiple priority Darks"],
+        "winCondition": "Nasty Plot on Lucario or Gholdengo, with Salamence as the cross-up.",
+        "megaChoice": "lucario",
+        "megaOptions": ["lucario", "salamence"]
+      },
+      "pilot": {
+        "thesis": "If they solved physical Salamence in preview, do not give them that game.",
+        "rule": "Plot only when revenge is gone.",
+        "fail": "Mega Salamence into the wall they built for it."
+      },
+      "press": ["Flash Cannon Fairy", "Make It Rain after Balloon"],
+      "refuse": ["Plot into Scarf Dark"],
+      "loops": [],
+      "hazards": [],
+      "phases": [],
+      "flows": []
+    },
+    {
+      "id": "max-pressure",
+      "label": "Maximum pressure",
+      "when": "You want to deny free turns and end the game before midrange chess starts.",
+      "identity": "Golisopod opens, Salamence mids, Lucario cleans — stop giving them turns.",
+      "slugs": ["salamence", "golisopod", "lucario"],
+      "megaChoice": "salamence",
+      "megaOptions": ["salamence", "golisopod", "lucario"],
+      "strategy": {
+        "opponentPattern": "Sixes that lose to continuous offense and cannot afford a setup turn.",
+        "bring": ["salamence", "golisopod", "lucario"],
+        "purpose": "Most aggressive bring — priority into Dance into special Plot cleanup.",
+        "targets": ["Passive Balance", "Slow TR without Armor Tail answers", "Clunky midrange"],
+        "refuses": ["Bulky Fairy + priority Dark stacks"],
+        "winCondition": "Early chip → Mega Dance or Mega Lucario Plot while they are on the back foot.",
+        "megaChoice": "salamence",
+        "megaOptions": ["salamence", "golisopod", "lucario"]
+      },
+      "pilot": {
+        "thesis": "Tempo over glue — accept less recovery for more pressure.",
+        "rule": "Every turn should remove a threat or create a Dance/Plot window.",
+        "fail": "Playing this like the default Primarina glue package."
+      },
+      "press": ["No dead turns", "Priority into setup"],
+      "refuse": ["Passive switches"],
+      "loops": [],
+      "hazards": [],
+      "phases": [],
+      "flows": []
+    }
+  ]
+}

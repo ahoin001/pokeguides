@@ -709,12 +709,12 @@
     "tokens": "mega raichu x raichu-mega-x electric electric surge yellow pivot priority setup recovery status",
     "speciesColor": "yellow",
     "palette": {
-      "dominant": "#aa8445",
-      "vibrant": "#d0a050",
-      "muted": "#7e653d",
+      "dominant": "#c4b705",
+      "vibrant": "#f0e000",
+      "muted": "#908811",
       "ink": "#12141a",
-      "wash": "#d0a050",
-      "source": "species-fallback"
+      "wash": "#f0e000",
+      "source": "artwork"
     },
     "source": "pokeapi"
   },
@@ -756,12 +756,12 @@
     "tokens": "mega raichu y raichu-mega-y electric no guard yellow pivot priority setup recovery status",
     "speciesColor": "yellow",
     "palette": {
-      "dominant": "#aa8445",
-      "vibrant": "#d0a050",
-      "muted": "#7e653d",
+      "dominant": "#c4b705",
+      "vibrant": "#f0e000",
+      "muted": "#908811",
       "ink": "#12141a",
-      "wash": "#d0a050",
-      "source": "species-fallback"
+      "wash": "#f0e000",
+      "source": "artwork"
     },
     "source": "pokeapi"
   },
@@ -1096,11 +1096,11 @@
     "tokens": "arcanine arcanine fire intimidate flash fire justified brown pivot priority setup recovery status",
     "speciesColor": "brown",
     "palette": {
-      "dominant": "#aa9e85",
-      "vibrant": "#d0c0a0",
-      "muted": "#7e7769",
+      "dominant": "#c4b79f",
+      "vibrant": "#f0e0c0",
+      "muted": "#90887b",
       "ink": "#12141a",
-      "wash": "#d0c0a0",
+      "wash": "#f0e0c0",
       "source": "artwork"
     },
     "source": "pokeapi",
@@ -1726,11 +1726,11 @@
     "tokens": "jolteon jolteon electric volt absorb quick feet yellow pivot priority setup recovery status",
     "speciesColor": "yellow",
     "palette": {
-      "dominant": "#100e0b",
-      "vibrant": "#100d070",
-      "muted": "#151415",
-      "ink": "#f4f1ea",
-      "wash": "#100d070",
+      "dominant": "#c4aa5f",
+      "vibrant": "#f0d070",
+      "muted": "#907f4f",
+      "ink": "#12141a",
+      "wash": "#f0d070",
       "source": "artwork"
     },
     "source": "pokeapi",
@@ -2497,11 +2497,11 @@
     "tokens": "blaziken blaziken fire fighting blaze speed boost red pivot priority setup recovery status",
     "speciesColor": "red",
     "palette": {
-      "dominant": "#9d4438",
-      "vibrant": "#c05040",
-      "muted": "#753934",
-      "ink": "#f4f1ea",
-      "wash": "#c05040",
+      "dominant": "#c4b76c",
+      "vibrant": "#f0e080",
+      "muted": "#908858",
+      "ink": "#12141a",
+      "wash": "#f0e080",
       "source": "artwork"
     },
     "source": "pokeapi",
@@ -2740,11 +2740,11 @@
     "tokens": "pelipper pelipper water flying keen eye drizzle rain dish yellow pivot priority setup recovery status tailwind",
     "speciesColor": "yellow",
     "palette": {
-      "dominant": "#10100e",
-      "vibrant": "#100f0b0",
-      "muted": "#151517",
-      "ink": "#f4f1ea",
-      "wash": "#100f0b0",
+      "dominant": "#c4c492",
+      "vibrant": "#f0f0b0",
+      "muted": "#909172",
+      "ink": "#12141a",
+      "wash": "#f0f0b0",
       "source": "artwork"
     },
     "source": "pokeapi",
@@ -5066,11 +5066,11 @@
     "tokens": "scrafty scrafty dark fighting shed skin moxie intimidate red priority setup recovery status",
     "speciesColor": "red",
     "palette": {
-      "dominant": "#100e0c",
-      "vibrant": "#100d080",
-      "muted": "#151416",
-      "ink": "#f4f1ea",
-      "wash": "#100d080",
+      "dominant": "#c4aa6c",
+      "vibrant": "#f0d080",
+      "muted": "#907f58",
+      "ink": "#12141a",
+      "wash": "#f0d080",
       "source": "artwork"
     },
     "source": "pokeapi",
@@ -5449,11 +5449,11 @@
     "tokens": "chesnaught chesnaught grass fighting overgrow bulletproof green priority setup recovery status hazards",
     "speciesColor": "green",
     "palette": {
-      "dominant": "#90846c",
-      "vibrant": "#b0a080",
-      "muted": "#6d6558",
+      "dominant": "#c4c4ac",
+      "vibrant": "#f0f0d0",
+      "muted": "#909184",
       "ink": "#12141a",
-      "wash": "#b0a080",
+      "wash": "#f0f0d0",
       "source": "artwork"
     },
     "source": "pokeapi",
@@ -6172,11 +6172,11 @@
     "tokens": "sylveon sylveon fairy cute charm pixilate pink priority setup recovery status",
     "speciesColor": "pink",
     "palette": {
-      "dominant": "#b7b7b8",
-      "vibrant": "#e0e0e0",
-      "muted": "#87888c",
+      "dominant": "#c48492",
+      "vibrant": "#f0a0b0",
+      "muted": "#906572",
       "ink": "#12141a",
-      "wash": "#e0e0e0",
+      "wash": "#f0a0b0",
       "source": "artwork"
     },
     "source": "pokeapi",
@@ -6365,11 +6365,11 @@
     "tokens": "avalugg avalugg ice own tempo ice body sturdy blue setup recovery status",
     "speciesColor": "blue",
     "palette": {
-      "dominant": "#aac412",
-      "vibrant": "#d0f0100",
-      "muted": "#7e911a",
+      "dominant": "#aac4c5",
+      "vibrant": "#d0f0f0",
+      "muted": "#7e9195",
       "ink": "#12141a",
-      "wash": "#d0f0100",
+      "wash": "#d0f0f0",
       "source": "artwork"
     },
     "source": "pokeapi",
@@ -6960,6 +6960,47 @@
     },
     "source": "pokeapi",
     "usageRank": 5
+  },
+  {
+    "id": 10316,
+    "slug": "golisopod-mega",
+    "name": "Mega Golisopod",
+    "dexNo": 768,
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 150,
+      "def": 175,
+      "spa": 70,
+      "spd": 120,
+      "spe": 40,
+      "bst": 630
+    },
+    "speedAt0": 60,
+    "speedAt32": 92,
+    "abilities": [
+      "tough claws"
+    ],
+    "kitTags": [],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10316.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10316.png",
+    "tokens": "mega golisopod golisopod-mega bug steel tough claws gray",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#5d6a6c",
+      "vibrant": "#708080",
+      "muted": "#495358",
+      "ink": "#f4f1ea",
+      "wash": "#708080",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 778,
@@ -7726,11 +7767,11 @@
     "tokens": "alcremie alcremie fairy sweet veil aroma veil white setup recovery status",
     "speciesColor": "white",
     "palette": {
-      "dominant": "#101010",
-      "vibrant": "#100f0e0",
-      "muted": "#151519",
-      "ink": "#f4f1ea",
-      "wash": "#100f0e0",
+      "dominant": "#c4c4b8",
+      "vibrant": "#f0f0e0",
+      "muted": "#90918c",
+      "ink": "#12141a",
+      "wash": "#f0f0e0",
       "source": "artwork"
     },
     "source": "pokeapi",
@@ -8889,11 +8930,11 @@
     "tokens": "espathra espathra psychic opportunist frisk speed boost yellow pivot priority setup recovery status trick-room",
     "speciesColor": "yellow",
     "palette": {
-      "dominant": "#100e09",
-      "vibrant": "#100c050",
-      "muted": "#151414",
-      "ink": "#f4f1ea",
-      "wash": "#100c050",
+      "dominant": "#c49e45",
+      "vibrant": "#f0c050",
+      "muted": "#90773d",
+      "ink": "#12141a",
+      "wash": "#f0c050",
       "source": "artwork"
     },
     "source": "pokeapi",
@@ -9417,11 +9458,11 @@
     "tokens": "farigiraf farigiraf normal psychic cud chew armor tail sap sipper brown setup recovery status trick-room",
     "speciesColor": "brown",
     "palette": {
-      "dominant": "#372a1f",
-      "vibrant": "#403020",
-      "muted": "#2f2723",
-      "ink": "#f4f1ea",
-      "wash": "#403020",
+      "dominant": "#c47745",
+      "vibrant": "#f09050",
+      "muted": "#905c3d",
+      "ink": "#12141a",
+      "wash": "#f09050",
       "source": "artwork"
     },
     "source": "pokeapi",
@@ -9610,11 +9651,11 @@
     "tokens": "gholdengo gholdengo steel ghost good as gold yellow setup recovery status",
     "speciesColor": "yellow",
     "palette": {
-      "dominant": "#b79e38",
-      "vibrant": "#e0c040",
-      "muted": "#877734",
+      "dominant": "#c4aa38",
+      "vibrant": "#f0d040",
+      "muted": "#907f34",
       "ink": "#12141a",
-      "wash": "#e0c040",
+      "wash": "#f0d040",
       "source": "artwork"
     },
     "source": "pokeapi",

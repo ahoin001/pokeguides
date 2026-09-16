@@ -1,0 +1,694 @@
+{
+  "id": "balance-garchomp-primarina-gholdengo",
+  "title": "M-C Garchomp Three-Mode",
+  "lede": "Garchomp-centered M-C six: Primarina + Gholdengo as the balance core, Salamence / Golisopod / Mimikyu as flex. Preview decides Garchomp’s job — Mega breaker, Scarf revenge, or Sash lead — then the other two.",
+  "philosophy": "Garchomp is not one standardized Pokémon in M-C. Roughly seven in ten ladder Garchomps sit in three different offensive identities. Build a toolbox that can support whichever job their six demands — do not paste “Stealth Rock physical Chomp” onto every game.",
+  "archetype": "balance",
+  "family": "clock",
+  "meta": "Season M-6 Singles (as of 2026-09-16, Champions Battle Data): Garchomp is #2 overall behind Salamence. Regulation M-C newly legalized Garchompite Z alongside Mega Salamence, Mega Lucario, and Mega Golisopod. Only one Mega per battle. Golisopod sits #5 on this CBD snapshot (some Zone views still show it #4 — same cluster either way).",
+  "skills": [
+    "Preview mode selection",
+    "Mega as a resource",
+    "Choice Scarf revenge",
+    "Focus Sash leads",
+    "Encore",
+    "First Impression",
+    "Disguise",
+    "Fairy resistance",
+    "Know hazards — don’t force them"
+  ],
+  "relatedLessons": [
+    "archetypes",
+    "reading-their-six",
+    "preview",
+    "building",
+    "tempo",
+    "positioning"
+  ],
+  "setsNote": "66 SP, max 32. Default roster Garchomp is Mega teaching mode (Garchompite Z). Scarf and Sash are first-class preview modes on the same registered species — change the item with the three, not mid-ladder panic.",
+  "evidence": {
+    "season": "M6",
+    "asOf": "2026-09-16",
+    "source": "Champions Battle Data Singles + Pokémon Zone M-C coverage",
+    "caveat": "Item shares below Mega are ordered from CBD but not all rows expose exact percentages in our snapshot. Zone’s ~19.6% Scarf / ~16.8% Sash match the second and third slots we see. Early season — treat as construction evidence, not proven best WR.",
+    "ladderTop": [
+      "Salamence",
+      "Garchomp",
+      "Primarina",
+      "Hippowdon",
+      "Golisopod",
+      "Lucario"
+    ],
+    "stats": [
+      {
+        "label": "Garchompite Z",
+        "value": "35.3%",
+        "note": "Largest single item mode — Mega breaker is real, not mandatory."
+      },
+      {
+        "label": "Scarf / Sash / other",
+        "value": "Next slots",
+        "note": "Choice Scarf and Focus Sash are the clear #2/#3 identities on CBD; Sitrus and Rocky Helmet follow."
+      },
+      {
+        "label": "Earthquake",
+        "value": "~67%",
+        "note": "Only move near universal. Stealth Rock is common but far from mandatory."
+      },
+      {
+        "label": "Top spread",
+        "value": "2 / 32 Atk / 32 Spe",
+        "note": "27.3% on CBD. Special lines (Draco, Earth Power, Flamethrower) prove mixed/special Chomp is not a gimmick."
+      },
+      {
+        "label": "Rough Skin",
+        "value": "99.1%",
+        "note": "Ability is not the ambiguity — item and attacking side are."
+      },
+      {
+        "label": "Top mates",
+        "value": "Primarina · Golisopod · Salamence",
+        "note": "Then Lucario, Baxcalibur, Archaludon. Gholdengo (#9) and Mimikyu (#11) are deliberate glue/flex adds."
+      }
+    ]
+  },
+  "construction": {
+    "thesis": "Start with Garchomp + Primarina + Gholdengo, then hold Salamence, Golisopod, and Mimikyu so the six can support Mega, Scarf, or Sash Garchomp without weather or mandatory Rocks.",
+    "method": "Read Garchomp as a three-mode Pokémon first, then pair clusters: Primarina for Water/Fairy insurance, Golisopod for 3v3 priority finishes, Salamence for Mega ambiguity, Gholdengo for Fairy resist + special plot, Mimikyu for Disguise anti-offense. Skip auto-adding Baxcalibur (Dragon overlap + shared Fairy hole) and skip forcing Archaludon into a rain story.",
+    "winCondition": "Preview → name Garchomp’s job (break / revenge / guarantee a lead action) → pick item/mode → bring the two partners that cash that job.",
+    "substitutions": [
+      {
+        "dropped": "Baxcalibur",
+        "kept": "Mimikyu",
+        "why": "Bax is #7 and a real mate, but stacking Dragon/Ice offense next to Garchomp doubles the Fairy hole without fixing priority or Disguise. Mimikyu gives emergency setup and anti-HO insurance the balance six actually needs."
+      },
+      {
+        "dropped": "Lucario",
+        "kept": "Gholdengo",
+        "why": "Lucario is a top mate and a strong special Mega — but this six already carries Salamence as the alt Mega. Gholdengo covers Fairy without competing for the stone as hard, and still Plots."
+      }
+    ],
+    "altSlots": [
+      {
+        "slug": "lucario",
+        "insteadOf": "mimikyu-disguised",
+        "why": "When you want maximum Mega ambiguity (Chomp / Mence / Lucario) and will accept less defensive glue."
+      },
+      {
+        "slug": "archaludon",
+        "insteadOf": "gholdengo",
+        "why": "Steel special attacker that is not Fairy-immune the same way — use when their six makes Archaludon’s profile better than Good as Gold, not because you drifted into rain."
+      },
+      {
+        "slug": "baxcalibur",
+        "insteadOf": "salamence",
+        "why": "Raw Ice/Dragon pressure into bulky cores — only if you accept more Fairy vulnerability and less Intimidate Mega ambiguity."
+      }
+    ]
+  },
+  "megaPool": {
+    "rule": "One Mega per battle. This six registers Garchompite Z and Salamencite — Golisopite stays off the registered stones so Golisopod can keep Emergency Exit utility unless you consciously swap.",
+    "previewPressure": "They see Garchomp + Salamence and must guess which stone is live. Scarf or Sash Garchomp removes that guess on purpose — that is also a preview tell you can choose to send.",
+    "candidates": [
+      {
+        "slug": "garchomp",
+        "stone": "Garchompite Z",
+        "when": "Their six is Ground-weak, lacks a clean physical wall, or you need the Mega breaker to crack a structure."
+      },
+      {
+        "slug": "salamence",
+        "stone": "Salamencite",
+        "when": "Dragon Dance into their midrange is cleaner than Mega Chomp, or you want Intimidate into physical offense while Chomp is Scarf/Sash."
+      }
+    ]
+  },
+  "box": [
+    "garchomp",
+    "primarina",
+    "gholdengo",
+    "salamence",
+    "golisopod",
+    "mimikyu-disguised"
+  ],
+  "core": ["garchomp", "primarina", "gholdengo"],
+  "slugs": ["garchomp", "primarina", "gholdengo"],
+  "pilot": {
+    "thesis": "Garchomp’s item is a preview decision equal to the three. Primarina and Gholdengo are the default glue; Salamence, Golisopod, and Mimikyu exist so Mega, Scarf, and Sash modes all have partners.",
+    "rule": "Name Chomp’s job before you name the lead. Do not click Stealth Rock because “Garchomp teams set Rocks.”",
+    "fail": "Lock Garchompite Z every game and bring the same three into HO that needed First Impression day one."
+  },
+  "press": [
+    "Force them to respect Mega, Scarf, and Sash Garchomp from the same registered name.",
+    "Use Primarina Encore to create windows for Dance or Swords Dance.",
+    "Finish weakened targets with Golisopod or Mimikyu priority — Chomp does not have to sweep alone."
+  ],
+  "refuse": [
+    "Never treat Stealth Rock as mandatory (~EQ is the only move near 2/3 usage).",
+    "Never Mega Salamence and Mega Garchomp the same battle.",
+    "Never leave Chomp in on Fairy without Gholdengo or a Disguise plan."
+  ],
+  "plan": [
+    {
+      "title": "Preview",
+      "goal": "Decide Chomp’s mode and which Mega stone (if any) is live.",
+      "play": "Mark Speed tiers, Fairy answers, and whether you need a guaranteed lead action. Assign Mega / Scarf / Sash, then pick the three.",
+      "next": "Lead the partner that enables that mode — not the partner you practiced most."
+    },
+    {
+      "title": "Pressure",
+      "goal": "Put something into KO range for priority or the Mega breaker.",
+      "play": "EQ / special coverage from Chomp, Encore from Primarina, Plot from Gholdengo, First Impression or Shadow Sneak to finish.",
+      "next": "If the mode was wrong, change item next game — keep the six."
+    },
+    {
+      "title": "Close",
+      "goal": "Convert chip without donating the wincon to Fairy or Ice revenge.",
+      "play": "Gholdengo holds Fairy; Primarina handles Dragons; Mimikyu Disguise buys the last setup turn when needed.",
+      "next": "Scarf mode cleans; Mega mode breaks; Sash mode already spent — don’t ask it to wall."
+    }
+  ],
+  "switches": [
+    { "into": "Fairy", "send": "Gholdengo — Steel resists; Make It Rain answers." },
+    { "into": "Dragon / Fire / Ice", "send": "Primarina — Moonblast and Encore." },
+    { "into": "Electric", "send": "Garchomp — Ground immunity and pressure." },
+    { "into": "frail HO lead", "send": "Golisopod First Impression or Mimikyu Disguise." }
+  ],
+  "victims": [
+    { "name": "Electric / Steel midrange", "why": "Ground STAB plus Primarina Fairy forces awkward switches." },
+    { "name": "Physical Balance without Fairy", "why": "Mega or Scarf Chomp + Gholdengo Plot outlasts one wall." },
+    { "name": "Glass HO", "why": "Golisopod / Mimikyu priority packages deny free turns." }
+  ],
+  "counters": [
+    { "name": "Double Fairy + Ice", "why": "Chomp and Salamence both suffer — lean Gholdengo/Primarina and consider Scarf revenge over Mega Dance." },
+    { "name": "Bulky Water/Fairy cores", "why": "EQ alone stalls — need special Chomp lines or Lucario/Archaludon alt slots." },
+    { "name": "Priority Dark into Mimikyu", "why": "Disguise is not immortality — don’t lead Mimikyu into known Sucker Punch without a plan." }
+  ],
+  "advantages": [
+    {
+      "title": "Three-mode preview",
+      "body": "Mega, Scarf, and Sash are different Pokémon that share a sprite on their six. Exploit that before the lead drops.",
+      "rule": "Mode first, three second."
+    },
+    {
+      "title": "Hazards optional",
+      "body": "Earthquake is the constant. Stealth Rock is a package tool — bring it when chip helps Mimikyu/Golisopod finishes, skip it when the three needs coverage instead.",
+      "play": "Sash lead Rocks is a mode, not a religion."
+    }
+  ],
+  "phases": [],
+  "flows": [],
+  "loops": [
+    {
+      "title": "Chip → First Impression",
+      "body": "Garchomp puts a name into range; Golisopod finishes. Chomp does not need the KO."
+    },
+    {
+      "title": "Encore → Dance / SD",
+      "body": "Primarina Encores a Protect or setup turn; Mega Chomp or Salamence converts the free turn."
+    },
+    {
+      "title": "Disguise → Shadow Sneak",
+      "body": "Mimikyu eats one hit, then priority cleans what Chomp or Golisopod softened."
+    }
+  ],
+  "hazards": [
+    {
+      "title": "Fairy on Chomp",
+      "body": "Dragon/Ground hates Fairy. Gholdengo is the registered answer — if it’s not on the three, don’t force Mega Chomp into Moonblast.",
+      "rule": "No Fairy answer on the three → different pack or Scarf revenge from a safer slot."
+    },
+    {
+      "title": "Ice into Dragons",
+      "body": "Salamence + Garchomp share Ice pain. Primarina and Mimikyu are the insurance — don’t bring Double Dragon into double Ice.",
+      "watch": "Choice Scarf Ice and priority Ice."
+    }
+  ],
+  "roster": [
+    {
+      "slug": "garchomp",
+      "title": "The Three-Mode Ace",
+      "job": "mega",
+      "literacy": "wallbreaker",
+      "role": "Primary wincon whose item defines the game. Default teaching set is Mega; Scarf and Sash are equal preview identities.",
+      "ability": "Rough Skin",
+      "item": "Garchompite Z",
+      "itemWhy": "35.3% CBD — largest single mode. Teaching default for “break their structure.” Swap to Scarf or Sash when preview says so.",
+      "itemAlts": [
+        {
+          "name": "Choice Scarf",
+          "why": "Second ladder identity — revenge and Speed control when Mega is wrong."
+        },
+        {
+          "name": "Focus Sash",
+          "why": "Third ladder identity — guarantee Rocks or a hit into HO / revenge."
+        }
+      ],
+      "nature": "Jolly",
+      "training": {
+        "label": "Fast physical Mega",
+        "why": "Top CBD spread shape (2 HP / 32 Atk / 32 Spe). Special-oriented training lives on the mixed Mega / coverage sets below.",
+        "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+        "spend": [
+          "32 Atk — Earthquake / Dragon Claw damage.",
+          "32 Spe — race midrange before or after Mega.",
+          "2 HP — leftover."
+        ],
+        "alts": [
+          {
+            "name": "Mixed / special lean",
+            "why": "When Draco Meteor / Earth Power / Flamethrower are the plan — SpA investment matches the large special share Zone reports and the move mix CBD shows.",
+            "sp": { "hp": 2, "atk": 0, "def": 0, "spa": 32, "spd": 0, "spe": 32 },
+            "spend": [
+              "32 SpA — Draco / Earth Power / Flamethrower.",
+              "32 Spe — keep Speed control.",
+              "2 HP — leftover."
+            ]
+          }
+        ]
+      },
+      "moves": [
+        {
+          "name": "Earthquake",
+          "why": "~67% CBD. The constant — Ground STAB into Electric, Fire, Steel, Rock."
+        },
+        {
+          "name": "Dragon Claw",
+          "why": "Reliable Dragon STAB without Outrage lock — default Mega physical line."
+        },
+        {
+          "name": "Rock Slide",
+          "why": "Flying / Fire / Ice coverage; flinch value in 3v3."
+        },
+        {
+          "name": "Swords Dance",
+          "why": "Mega breaker conversion when Primarina or Mimikyu buys the turn."
+        }
+      ],
+      "objective": "Break, revenge, or guarantee a lead action — pick one before the timer ends.",
+      "howToPlay": "On preview, assign Mega, Scarf, or Sash.\nDo not default Stealth Rock — only when the package wants chip.\nEarthquake is the button; coverage and setup change with the mode.\nIf Fairy is healthy and Gholdengo is benched, you picked the wrong three.",
+      "gives": ["Ground STAB", "Dragon pressure", "Three preview identities"],
+      "answers": ["Electric", "Fire", "Steel", "Rock"],
+      "modes": [
+        {
+          "id": "mega-breaker",
+          "label": "Mega Garchomp",
+          "job": "Breaker",
+          "when": "Their six is Ground-vulnerable or needs a high-power flexible attacker, and you are willing to spend the Mega.",
+          "item": "Garchompite Z",
+          "itemWhy": "35.3% — primary ladder mode. Mega also enables special investment more cleanly when you run mixed lines.",
+          "nature": "Jolly",
+          "training": {
+            "label": "Fast Mega",
+            "why": "Physical breaker baseline.",
+            "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+            "spend": ["32 Atk", "32 Spe", "2 HP"]
+          },
+          "moves": [
+            { "name": "Earthquake", "why": "Primary STAB." },
+            { "name": "Dragon Claw", "why": "Reliable Dragon." },
+            { "name": "Rock Slide", "why": "Coverage + flinch." },
+            { "name": "Swords Dance", "why": "Break after a free turn." }
+          ],
+          "objective": "Crack the defensive structure; do not play like a hazard lead.",
+          "howToPlay": "Mega when the breaker job is clear.\nSD only after Encore, Disguise, or a forced switch.\nMixed sets swap Dragon Claw / Rock Slide for Draco / Earth Power / Flamethrower / Power Gem when their walls are physical."
+        },
+        {
+          "id": "scarf-revenge",
+          "label": "Choice Scarf",
+          "job": "Speed control",
+          "when": "Their six has several threats you cannot outspeed otherwise, or Salamence/Golisopod wants the Mega stone more.",
+          "item": "Choice Scarf",
+          "itemWhy": "Clear #2 ladder identity. Locks you into one move — pick the revenge target in preview.",
+          "nature": "Jolly",
+          "training": {
+            "label": "Scarf revenge",
+            "why": "Max Speed Attack for locked Earthquake / Outrage lines.",
+            "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+            "spend": ["32 Atk", "32 Spe", "2 HP"]
+          },
+          "moves": [
+            { "name": "Earthquake", "why": "Default lock into Ground-weak names." },
+            { "name": "Outrage", "why": "Dragon nuke when you accept the lock — Dragon Claw if you need flexibility." },
+            { "name": "Rock Slide", "why": "Flying / Ice revenge." },
+            { "name": "Fire Fang", "why": "Steel that walls EQ — Flamethrower if special lean." }
+          ],
+          "objective": "Be the fast answer after chip — not the lead setup piece.",
+          "howToPlay": "Bring when Speed tiers scare you.\nDo not lead Scarf into known resist walls.\nPair with Primarina/Golisopod so something else creates the chip."
+        },
+        {
+          "id": "sash-lead",
+          "label": "Focus Sash",
+          "job": "Guaranteed action",
+          "when": "You need Rocks, a trade, or a hit into something that would otherwise OHKO — and the Mega stone is elsewhere or unused.",
+          "item": "Focus Sash",
+          "itemWhy": "Clear #3 ladder identity. Guarantees Garchomp does its job once.",
+          "nature": "Jolly",
+          "training": {
+            "label": "Sash utility",
+            "why": "Offense first — Sash is the bulk.",
+            "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+            "spend": ["32 Atk", "32 Spe", "2 HP"]
+          },
+          "moves": [
+            { "name": "Stealth Rock", "why": "The main reason to be Sash lead — chip for Mimikyu/Golisopod." },
+            { "name": "Earthquake", "why": "Guaranteed Ground hit." },
+            { "name": "Dragon Claw", "why": "Dragon pressure without lock." },
+            { "name": "Flamethrower", "why": "Steel coverage / special surprise." }
+          ],
+          "objective": "Guarantee something happens on the lead turn.",
+          "howToPlay": "Lead when HO or revenge would delete un-Sashed Chomp.\nClick Rocks if the package wants them — skip if you needed coverage instead.\nAfter Sash breaks, you are glass — hand off."
+        }
+      ]
+    },
+    {
+      "slug": "primarina",
+      "title": "The Foundational Pair",
+      "job": "breaker",
+      "literacy": "pivot",
+      "role": "Water/Fairy balance glued to Garchomp. Covers Ice/Dragon/Fire pain; Encores windows for Chomp’s mode.",
+      "ability": "Torrent",
+      "item": "Sitrus Berry",
+      "itemWhy": "Keeps Encore and Aqua Jet online after chip.",
+      "nature": "Modest",
+      "training": {
+        "label": "Fast special",
+        "why": "Pressure Dragons and land Encore first.",
+        "sp": { "hp": 2, "atk": 0, "def": 0, "spa": 32, "spd": 0, "spe": 32 },
+        "spend": ["32 SpA", "32 Spe", "2 HP"]
+      },
+      "moves": [
+        { "name": "Moonblast", "why": "Fairy STAB into Dragons — Chomp’s partner answer." },
+        { "name": "Sparkling Aria", "why": "Water STAB and chip." },
+        { "name": "Aqua Jet", "why": "Priority finish when Golisopod is benched." },
+        { "name": "Encore", "why": "Creates SD / Dance / Disguise windows." }
+      ],
+      "objective": "Be the insurance half of Garchomp + Primarina.",
+      "howToPlay": "Switch into Dragons and Fire.\nEncore Protect and setup.\nDo not soft-click into Electric without Chomp ready.",
+      "gives": ["Fairy STAB", "Water glue", "Encore tempo"],
+      "answers": ["Dragon", "Fire", "Ice", "Setup turns"]
+    },
+    {
+      "slug": "gholdengo",
+      "title": "The Fairy Net",
+      "job": "breaker",
+      "literacy": "wall",
+      "role": "Steel/Ghost glue and special Plot. Fixes Chomp’s Fairy problem without turning the six into sand walls.",
+      "ability": "Good as Gold",
+      "item": "Air Balloon",
+      "itemWhy": "Blocks the first Ground; spend it deliberately.",
+      "nature": "Modest",
+      "training": {
+        "label": "Plot special",
+        "why": "Ladder-concentrated special set.",
+        "sp": { "hp": 2, "atk": 0, "def": 0, "spa": 32, "spd": 0, "spe": 32 },
+        "spend": ["32 SpA", "32 Spe", "2 HP"]
+      },
+      "moves": [
+        { "name": "Make It Rain", "why": "Steel STAB into Fairy." },
+        { "name": "Shadow Ball", "why": "Ghost coverage." },
+        { "name": "Nasty Plot", "why": "Second setup path while they watch Chomp." },
+        { "name": "Recover", "why": "Keep the Fairy net alive." }
+      ],
+      "objective": "Hold Fairy and force special answers.",
+      "howToPlay": "Come in on Moonblast aimed at Chomp.\nPlot when revenge is gone.\nBalloon is one Ground — play like it.",
+      "gives": ["Fairy resistance", "Special offense", "Recover"],
+      "answers": ["Fairy", "Fighting", "Status"]
+    },
+    {
+      "slug": "salamence",
+      "title": "The Other Stone",
+      "job": "mega",
+      "literacy": "sweeper",
+      "role": "Intimidate + Dragon Dance + Mega ambiguity with Garchomp. Often the correct Mega when Chomp is Scarf/Sash.",
+      "ability": "Intimidate",
+      "item": "Salamencite",
+      "itemWhy": "Second stone on the six. Preview pressure next to Garchomp is half the value.",
+      "nature": "Adamant",
+      "training": {
+        "label": "DD Mega",
+        "why": "Standard physical Dance.",
+        "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+        "spend": ["32 Atk", "32 Spe", "2 HP"]
+      },
+      "moves": [
+        { "name": "Dragon Dance", "why": "Setup wincon when Mega Mence is the stone." },
+        { "name": "Double-Edge", "why": "Aerilate Flying after Mega." },
+        { "name": "Earthquake", "why": "Steel / Electric coverage." },
+        { "name": "Roost", "why": "Recoil management." }
+      ],
+      "objective": "Be the Mega when Dance beats Mega Chomp’s breaker job.",
+      "howToPlay": "On preview with Garchomp, force the stone guess.\nIf Chomp is Scarf/Sash, Mence is often the Mega.\nDon’t Dance into Ice.",
+      "gives": ["Alt Mega", "Intimidate", "DD wincon"],
+      "answers": ["Physical offense", "Neutral midrange"]
+    },
+    {
+      "slug": "golisopod",
+      "title": "The Finisher",
+      "job": "breaker",
+      "literacy": "wallbreaker",
+      "role": "3v3 priority. Puts the game on a timer after Chomp chips — First Impression / Sucker Punch / U-turn.",
+      "ability": "Emergency Exit",
+      "item": "Sitrus Berry",
+      "itemWhy": "This six already registers two Mega stones on Chomp/Mence. Keep Golisopod as Emergency Exit priority glue unless a pack explicitly wants Golisopite.",
+      "itemAlts": [
+        {
+          "name": "Golisopite",
+          "why": "When you bench Salamencite and want Tough Claws Mega priority instead of Emergency Exit."
+        }
+      ],
+      "nature": "Adamant",
+      "training": {
+        "label": "Bulky priority",
+        "why": "Live to Exit and keep First Impression relevant.",
+        "sp": { "hp": 32, "atk": 32, "def": 2, "spa": 0, "spd": 0, "spe": 0 },
+        "spend": ["32 HP", "32 Atk", "2 Def"]
+      },
+      "moves": [
+        { "name": "First Impression", "why": "Opening priority into frail leads." },
+        { "name": "Iron Head", "why": "Fairy / Ice contact." },
+        { "name": "Sucker Punch", "why": "Priority Dark into revenge." },
+        { "name": "U-turn", "why": "Hand Chomp or Primarina in with tempo." }
+      ],
+      "objective": "Finish what Garchomp starts — Chomp does not have to sweep.",
+      "howToPlay": "Bring anti-offense packs.\nFirst Impression the name you came for.\nU-turn into Intimidate or EQ pressure.",
+      "gives": ["Priority", "U-turn tempo", "HO answer"],
+      "answers": ["Frail leads", "Psychic / Ghost revenge"]
+    },
+    {
+      "slug": "mimikyu-disguised",
+      "title": "Disguise Insurance",
+      "job": "speed",
+      "literacy": "sweeper",
+      "role": "Emergency setup and anti-offense. Disguise buys the turn Sash Chomp or Dance needs.",
+      "ability": "Disguise",
+      "item": "Life Orb",
+      "itemWhy": "Pay HP for KO power after the costume breaks — Sitrus if you want safer Shadow Sneak wars.",
+      "itemAlts": [
+        { "name": "Sitrus Berry", "why": "Bulkier priority cleaner into longer games." }
+      ],
+      "nature": "Adamant",
+      "training": {
+        "label": "Priority cleaner",
+        "why": "Maximize Shadow Sneak / Play Rough after Disguise.",
+        "sp": { "hp": 4, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 30 },
+        "spend": ["32 Atk", "30 Spe", "4 HP"]
+      },
+      "moves": [
+        { "name": "Swords Dance", "why": "Convert Disguise into a sweep turn." },
+        { "name": "Play Rough", "why": "Fairy STAB into Dragons that bother Chomp." },
+        { "name": "Shadow Sneak", "why": "Priority finish." },
+        { "name": "Shadow Claw", "why": "Ghost STAB when Sneak is predicted." }
+      ],
+      "objective": "Be the emergency button against HO and revenge chains.",
+      "howToPlay": "Bring with Golisopod/Chomp into fragile sixes.\nDisguise once — spend it on Dance or a KO.\nDon’t donate into known priority Dark for free.",
+      "gives": ["Disguise turn", "Priority", "Fairy STAB"],
+      "answers": ["HO", "Dragon", "Weakened revenge"]
+    }
+  ],
+  "slots": [
+    {
+      "slug": "garchomp",
+      "title": "The Three-Mode Ace",
+      "job": "mega",
+      "literacy": "wallbreaker",
+      "role": "Primary wincon.",
+      "moves": [],
+      "objective": "Pick a mode, then win.",
+      "howToPlay": "See roster."
+    },
+    {
+      "slug": "primarina",
+      "title": "The Foundational Pair",
+      "job": "breaker",
+      "literacy": "pivot",
+      "role": "Water/Fairy glue.",
+      "moves": [],
+      "objective": "Encore windows.",
+      "howToPlay": "See roster."
+    },
+    {
+      "slug": "gholdengo",
+      "title": "The Fairy Net",
+      "job": "breaker",
+      "literacy": "wall",
+      "role": "Fairy resist.",
+      "moves": [],
+      "objective": "Hold Fairy.",
+      "howToPlay": "See roster."
+    }
+  ],
+  "packs": [
+    {
+      "id": "core",
+      "label": "Balance core",
+      "when": "Midrange sixes without a hard HO open or double Fairy wall.",
+      "identity": "Learn the foundational Garchomp + Primarina + Gholdengo relationship.",
+      "slugs": ["garchomp", "primarina", "gholdengo"],
+      "megaChoice": "garchomp",
+      "winconMode": "mega-breaker",
+      "strategy": {
+        "opponentPattern": "Balanced or mildly offensive structures Ground can crack.",
+        "bring": ["garchomp", "primarina", "gholdengo"],
+        "purpose": "Default teaching three — Fairy net, Water glue, Mega breaker.",
+        "targets": ["Electric cores", "Steel midrange", "Physical Balance"],
+        "refuses": ["Double Fairy", "Pure HO needing First Impression day one"],
+        "winCondition": "Chip or Encore into Mega EQ / SD pressure while Gholdengo holds Fairy.",
+        "megaChoice": "garchomp",
+        "winconMode": "Mega breaker (Garchompite Z)"
+      },
+      "pilot": {
+        "thesis": "This is the first package to learn — not every-game autopilot.",
+        "rule": "Mega Chomp only when Fairy is answered.",
+        "fail": "SD into Scarf Ice."
+      },
+      "philosophy": "Foundational relationship first; flex packs later.",
+      "press": ["Force the Fairy answer", "Encore Protect"],
+      "refuse": ["Auto-Rocks every game"],
+      "loops": [],
+      "hazards": [],
+      "phases": [],
+      "flows": []
+    },
+    {
+      "id": "anti-offense",
+      "label": "Anti-offense",
+      "when": "HO-shaped sixes — glass, Sash, early KOs.",
+      "identity": "Chomp pressure + Golisopod priority + Primarina bulk/Aqua Jet.",
+      "slugs": ["garchomp", "golisopod", "primarina"],
+      "megaChoice": "garchomp",
+      "megaOptions": ["garchomp", "salamence"],
+      "winconMode": "sash-lead",
+      "strategy": {
+        "opponentPattern": "Hyper Offense or fragile Balance that needs the first turn.",
+        "bring": ["garchomp", "golisopod", "primarina"],
+        "purpose": "Deny momentum — First Impression and Aqua Jet finish what EQ starts.",
+        "targets": ["HO", "Sash leads", "Multiscale openers"],
+        "refuses": ["Fat Fairy walls"],
+        "winCondition": "Chip into priority; Sash Chomp if you need a guaranteed lead action.",
+        "winconMode": "Focus Sash lead (or Mega if they lack Fairy)"
+      },
+      "pilot": {
+        "thesis": "Chomp does not sweep — it puts names into Golisopod range.",
+        "rule": "Lead Golisopod or Sash Chomp, not Dance Chomp.",
+        "fail": "Leading Mega Chomp into their revenge chain."
+      },
+      "press": ["First Impression the target", "U-turn into EQ"],
+      "refuse": ["Soft priority into resists"],
+      "loops": [],
+      "hazards": [],
+      "phases": [],
+      "flows": []
+    },
+    {
+      "id": "mega-ambiguity",
+      "label": "Mega ambiguity",
+      "when": "Higher-level opponents who respect both stones.",
+      "identity": "Garchomp + Salamence stone guess with Gholdengo on a third axis.",
+      "slugs": ["garchomp", "salamence", "gholdengo"],
+      "megaChoice": "garchomp",
+      "megaOptions": ["garchomp", "salamence"],
+      "winconMode": "mega-breaker",
+      "strategy": {
+        "opponentPattern": "Sixes weak to Ground or to Dragon Dance — you pick after preview.",
+        "bring": ["garchomp", "salamence", "gholdengo"],
+        "purpose": "Force Mega ambiguity while Fairy is covered.",
+        "targets": ["Electric / Fire structures", "Physical midrange"],
+        "refuses": ["Double Ice + Fairy"],
+        "winCondition": "Correct stone + Gholdengo Plot or Recover glue.",
+        "megaChoice": "garchomp",
+        "megaOptions": ["garchomp", "salamence"],
+        "winconMode": "Mega Chomp or Mega Mence"
+      },
+      "pilot": {
+        "thesis": "The guess is the advantage — don’t waste it by auto-Mega Chomp.",
+        "rule": "Ground-weak → Chomp. Dance-weak → Mence.",
+        "fail": "Mega the wrong Dragon into their prepared answer."
+      },
+      "press": ["Make them guess the stone"],
+      "refuse": ["Both Dragons into Ice"],
+      "loops": [],
+      "hazards": [],
+      "phases": [],
+      "flows": []
+    },
+    {
+      "id": "max-offense",
+      "label": "Maximum offense",
+      "when": "You accept less glue for three offensive axes.",
+      "identity": "Chomp + Salamence + Mimikyu — pressure and Disguise without Primarina.",
+      "slugs": ["garchomp", "salamence", "mimikyu-disguised"],
+      "megaChoice": "salamence",
+      "megaOptions": ["garchomp", "salamence"],
+      "winconMode": "scarf-revenge",
+      "strategy": {
+        "opponentPattern": "Passive or slow sixes that lose to continuous offense.",
+        "bring": ["garchomp", "salamence", "mimikyu-disguised"],
+        "purpose": "Aggressive bring — Scarf Chomp revenge while Mence or Mimikyu sets up.",
+        "targets": ["Passive Balance", "Slow TR without strong Fairy"],
+        "refuses": ["Fairy + priority Dark stacks"],
+        "winCondition": "Disguise or Dance window into Scarf cleanup.",
+        "winconMode": "Choice Scarf Garchomp"
+      },
+      "pilot": {
+        "thesis": "Offense over glue — only when their six can’t punish Fairy holes.",
+        "rule": "Scarf cleans; don’t SD Scarf.",
+        "fail": "Playing this like the Primarina balance package."
+      },
+      "press": ["No dead turns"],
+      "refuse": ["Passive switches into Fairy"],
+      "loops": [],
+      "hazards": [],
+      "phases": [],
+      "flows": []
+    },
+    {
+      "id": "priority-pressure",
+      "label": "Priority pressure",
+      "when": "You want to deny free attacks into HO.",
+      "identity": "Chomp chip + Golisopod First Impression + Mimikyu Disguise/Sneak.",
+      "slugs": ["garchomp", "golisopod", "mimikyu-disguised"],
+      "megaChoice": "garchomp",
+      "winconMode": "sash-lead",
+      "strategy": {
+        "opponentPattern": "Hyper Offense that lives on free turns.",
+        "bring": ["garchomp", "golisopod", "mimikyu-disguised"],
+        "purpose": "You don’t get to freely attack — priority and Disguise everywhere.",
+        "targets": ["HO", "Sash offense", "Fragile Balance"],
+        "refuses": ["Bulky Fairy walls"],
+        "winCondition": "Sash Rocks or EQ chip into First Impression / Shadow Sneak.",
+        "winconMode": "Focus Sash (Rocks optional)"
+      },
+      "pilot": {
+        "thesis": "Deny turns first; sweep second.",
+        "rule": "Disguise is one hit — spend it.",
+        "fail": "Soft First Impression."
+      },
+      "press": ["Priority on cooldown"],
+      "refuse": ["Letting them set up for free"],
+      "loops": [],
+      "hazards": [],
+      "phases": [],
+      "flows": []
+    }
+  ]
+}

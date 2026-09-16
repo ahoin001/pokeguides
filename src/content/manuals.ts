@@ -4,6 +4,8 @@ import { OVERLORD_PIVOT_MANUAL } from "@/content/manuals/overlord-pivot";
 import { PRESSURE_BALANCE_MANUAL } from "@/content/manuals/pressure-balance";
 import { CLOCKWORK_BALANCE_MANUAL } from "@/content/manuals/clockwork-balance";
 import { PRESSURE_CLOCK_MANUAL } from "@/content/manuals/pressure-clock";
+import { SALAMENCE_MEGA_AMBIGUITY_MANUAL } from "@/content/manuals/salamence-mega-ambiguity";
+import { GARCHOMP_THREE_MODE_MANUAL } from "@/content/manuals/garchomp-three-mode";
 
 export { alt, train };
 
@@ -33,6 +35,23 @@ export type SlotTraining = {
   alts?: SlotTrainingAlt[];
 };
 
+/** Alternate job for one species on the registered six (e.g. Mega / Scarf / Sash Garchomp). */
+export type SlotMode = {
+  id: string;
+  label: string;
+  /** Short job name shown in the mode picker. */
+  job: string;
+  /** When preview should pick this mode. */
+  when: string;
+  item: string;
+  itemWhy?: string;
+  nature?: string;
+  training?: SlotTraining;
+  moves: MoveNote[];
+  objective?: string;
+  howToPlay?: string;
+};
+
 export type SlotManual = {
   slug: string;
   title: string;
@@ -48,6 +67,15 @@ export type SlotManual = {
   moves: MoveNote[];
   objective: string;
   howToPlay: string;
+  /** What this slot gives the win condition / six (Fairy resist, priority, etc.). */
+  gives?: string[];
+  /** Threats this slot answers for the primary wincon. */
+  answers?: string[];
+  /**
+   * Distinct preview identities for the same species.
+   * Default item/moves remain the teaching baseline; modes are the real decision tree.
+   */
+  modes?: SlotMode[];
 };
 
 export type ManualBranch = {
@@ -136,6 +164,12 @@ export type ManualPackStrategy = {
   refuses: string[];
   /** How this three wins once selected. */
   winCondition: string;
+  /** Preferred Mega for this bring when the six has multiple stones. */
+  megaChoice?: string;
+  /** Acceptable Mega options when preview still leaves ambiguity. */
+  megaOptions?: string[];
+  /** Which mode of a multi-mode species this pack wants (e.g. garchomp sash). */
+  winconMode?: string;
 };
 
 /** One preview bring of three from the registered six. */
@@ -147,6 +181,12 @@ export type ManualPack = {
   slugs: [string, string, string];
   /** Explicit reason for choosing this three from six. */
   strategy?: ManualPackStrategy;
+  /** Preferred Mega stone / species for this pack (when the six carries several). */
+  megaChoice?: string;
+  /** Acceptable Mega options left ambiguous until mid-preview. */
+  megaOptions?: string[];
+  /** Multi-mode wincon identity this pack assumes (SlotMode.id). */
+  winconMode?: string;
   pilot?: ManualPilot;
   meta?: string;
   philosophy?: string;
@@ -163,9 +203,69 @@ export type ManualPack = {
   hazards: ManualNote[];
 };
 
+/** Ladder / patch evidence behind the construction (optional). */
+export type ManualEvidenceStat = {
+  label: string;
+  value: string;
+  note?: string;
+};
+
+export type ManualEvidence = {
+  season?: string;
+  asOf?: string;
+  source?: string;
+  /** Why this is not claimed as proven best WR. */
+  caveat?: string;
+  ladderTop?: string[];
+  stats?: ManualEvidenceStat[];
+};
+
+/** Conscious substitution vs raw teammate frequency. */
+export type ManualSubstitution = {
+  dropped: string;
+  kept: string;
+  why: string;
+};
+
+export type ManualAltSlot = {
+  slug: string;
+  insteadOf?: string;
+  why: string;
+};
+
+/** How the six was built from meta evidence — not just “top six usage.” */
+export type ManualConstruction = {
+  thesis: string;
+  /** How teammate / usage data was interpreted. */
+  method: string;
+  winCondition: string;
+  substitutions?: ManualSubstitution[];
+  altSlots?: ManualAltSlot[];
+};
+
+export type ManualMegaCandidate = {
+  slug: string;
+  stone: string;
+  when: string;
+};
+
+/** Multiple Mega stones on one six; one Mega per battle. */
+export type ManualMegaPool = {
+  rule: string;
+  previewPressure: string;
+  candidates: ManualMegaCandidate[];
+};
+
 /** Resolve authored strategy, or derive a thin one from pack fields. */
 export function resolvePackStrategy(pack: ManualPack): ManualPackStrategy {
-  if (pack.strategy) return pack.strategy;
+  if (pack.strategy) {
+    return {
+      ...pack.strategy,
+      megaChoice: pack.strategy.megaChoice ?? pack.megaChoice,
+      megaOptions: pack.strategy.megaOptions ?? pack.megaOptions,
+      winconMode: pack.strategy.winconMode ?? pack.winconMode,
+    };
+  }
   return {
     opponentPattern: pack.when,
     bring: pack.slugs,
@@ -173,6 +273,9 @@ export function resolvePackStrategy(pack: ManualPack): ManualPackStrategy {
     targets: pack.press ?? [],
     refuses: pack.refuse ?? [],
     winCondition: pack.pilot?.thesis ?? pack.philosophy ?? pack.identity,
+    megaChoice: pack.megaChoice,
+    megaOptions: pack.megaOptions,
+    winconMode: pack.winconMode,
   };
 }
 
@@ -211,6 +314,12 @@ export type TeamManual = {
   core?: [string, string, string];
   /** Preview packs — threes drawn from the box. */
   packs?: ManualPack[];
+  /** How / why this six was constructed from ladder evidence. */
+  construction?: ManualConstruction;
+  /** Multiple Mega candidates on the registered six. */
+  megaPool?: ManualMegaPool;
+  /** Season / usage evidence supporting the build. */
+  evidence?: ManualEvidence;
 };
 
 export function packList(manual: TeamManual): ManualPack[] {
@@ -394,6 +503,8 @@ export const CANONICAL_MANUALS: TeamManual[] = [
   CLOCKWORK_BALANCE_MANUAL,
   PRESSURE_BALANCE_MANUAL,
   PRESSURE_CLOCK_MANUAL,
+  SALAMENCE_MEGA_AMBIGUITY_MANUAL,
+  GARCHOMP_THREE_MODE_MANUAL,
   OVERLORD_PIVOT_MANUAL,
 ];
 

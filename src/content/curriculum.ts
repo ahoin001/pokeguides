@@ -754,6 +754,8 @@ export const LESSONS: Lesson[] = [
       "balance-salamence-primarina-aegislash",
       "aggressive-balance-garchomp-primarina-corviknight",
       "aggressive-balance-salamence-rotom-wash-kingambit",
+      "balance-salamence-primarina-gholdengo",
+      "balance-garchomp-primarina-gholdengo",
       "balance-garchomp-corviknight-kingambit",
     ],
     next: "abilities",

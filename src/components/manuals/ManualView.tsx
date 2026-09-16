@@ -28,6 +28,7 @@ import { ManualLead } from "@/components/manuals/ManualLead";
 import { ManualPocket } from "@/components/manuals/ManualPocket";
 import { ManualWalkthrough } from "@/components/manuals/ManualWalkthrough";
 import { ManualLineup } from "@/components/manuals/ManualPreviewBar";
+import { ManualThesis } from "@/components/manuals/ManualThesis";
 
 function packForSlug(parent: TeamManual, slug: string): string | undefined {
   const packs = packList(parent);
@@ -122,6 +123,12 @@ export function ManualView({
           />
         </>
       ) : null}
+
+      <ManualThesis
+        construction={parent.construction}
+        megaPool={parent.megaPool}
+        evidence={parent.evidence}
+      />
 
       <div>
         <ManualWalkthrough key={modeKey} manual={manual} />

@@ -24,6 +24,7 @@ import { BuilderAnalysis, type AnalysisTab } from "@/components/team/BuilderAnal
 import { FocusRail } from "@/components/team/FocusRail";
 import { CoachDrawer } from "@/components/team/CoachDrawer";
 import { RegisteredSix } from "@/components/team/RegisteredSix";
+import { NextPicks } from "@/components/team/NextPicks";
 import type { CatalogEntry, TypeId } from "@/types/pokemon";
 
 export function TeamBoard() {
@@ -76,6 +77,10 @@ export function TeamBoard() {
   const suggested = useMemo(
     () => suggestForTeam(considering, activeIntent, slugs.filter(Boolean) as string[]),
     [considering, activeIntent, slugs],
+  );
+  const boardSuggested = useMemo(
+    () => suggestForTeam(filled, activeIntent, slugs.filter(Boolean) as string[]),
+    [filled, activeIntent, slugs],
   );
 
   const threats = useMemo(() => teamThreats(filled), [filled]);
@@ -147,6 +152,12 @@ export function TeamBoard() {
                   Open Live Match
                 </Link>
                 <Link
+                  href="/team/box"
+                  className="rounded-full border border-line px-4 py-2 text-sm transition hover:border-ink/40"
+                >
+                  My box
+                </Link>
+                <Link
                   href="/team/archetypes"
                   className="rounded-full border border-line px-4 py-2 text-sm transition hover:border-ink/40"
                 >
@@ -185,6 +196,25 @@ export function TeamBoard() {
                 checks={checks}
               />
             </div>
+
+            <NextPicks
+              suggestions={boardSuggested}
+              filledCount={filled.length}
+              onPick={(slug) => {
+                const empty = slugs.findIndex((s) => !s);
+                const target = empty >= 0 ? empty : (selectedIndex ?? 0);
+                if (slugs[target] === slug) {
+                  selectBySlug(slug);
+                  return;
+                }
+                if (slugs.includes(slug)) {
+                  selectBySlug(slug);
+                  return;
+                }
+                setSlot(target, slug);
+                setSelectedIndex(target);
+              }}
+            />
 
             <div className="mt-8 grid gap-6 lg:gap-8 xl:grid-cols-[minmax(15rem,18rem)_minmax(0,1fr)_minmax(16rem,19rem)]">
               <div className="order-1">
@@ -231,6 +261,16 @@ export function TeamBoard() {
                     const target = idx >= 0 ? idx : 0;
                     setSelectedIndex(target);
                     setPick(target);
+                  }}
+                  onSuggestPick={(slug) => {
+                    if (slugs.includes(slug)) {
+                      selectBySlug(slug);
+                      return;
+                    }
+                    const empty = slugs.findIndex((s) => !s);
+                    if (empty < 0) return;
+                    setSlot(empty, slug);
+                    setSelectedIndex(empty);
                   }}
                 />
               </div>

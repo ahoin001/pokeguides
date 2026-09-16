@@ -1,14 +1,18 @@
 "use client";
 
+import { useMemo } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Crosshair } from "@phosphor-icons/react";
 import { cssVars } from "@/lib/champions/palette";
 import { level50At0 } from "@/lib/champions/vs-stats";
 import { slotJob } from "@/lib/champions/team-readout";
+import { scorePokemon } from "@/lib/champions/role-score";
 import { ROLE_LABEL } from "@/content/roles";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { TypeBadge } from "@/components/pokemon/TypeBadge";
+import { getPokemon } from "@/lib/catalog/lookup";
+import { rankedPartnerCite, rankedPartnersFor } from "@/lib/ranked/partners";
 import type { ArchetypeId, CatalogEntry, Stats } from "@/types/pokemon";
 
 const STAT_KEYS = [
@@ -32,12 +36,23 @@ export function FocusRail({
   intent,
   onOpenScout,
   onChangeSlot,
+  onSuggestPick,
 }: {
   mon: CatalogEntry | null;
   intent: ArchetypeId | null;
   onOpenScout: () => void;
   onChangeSlot: () => void;
+  /** Optional: tap a usual partner to add it to an empty bench slot. */
+  onSuggestPick?: (slug: string) => void;
 }) {
+  const roleScore = mon ? scorePokemon(mon) : null;
+  const partners = useMemo(() => {
+    if (!mon) return [];
+    return rankedPartnersFor([mon.slug], 4)
+      .map((p) => getPokemon(p.slug))
+      .filter((p): p is CatalogEntry => Boolean(p));
+  }, [mon]);
+
   return (
     <aside className="flex min-h-0 flex-col">
       <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Focus</p>
@@ -68,11 +83,41 @@ export function FocusRail({
                     <TypeBadge key={t} type={t} size="sm" />
                   ))}
                 </div>
-                <p className="mt-2 text-xs text-muted">{ROLE_LABEL[slotJob(mon, intent)]}</p>
+                <p className="mt-2 text-xs text-muted">
+                  {roleScore?.guessed ? "Guessed job: " : "Job: "}
+                  {ROLE_LABEL[slotJob(mon, intent)]}
+                </p>
               </div>
             </div>
 
             <StatBars stats={level50At0(mon.stats)} />
+
+            {partners.length ? (
+              <div className="mt-4">
+                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                  Usually with · {rankedPartnerCite()}
+                </p>
+                <ul className="mt-2 flex flex-wrap gap-1.5">
+                  {partners.map((p) => (
+                    <li key={p.slug}>
+                      {onSuggestPick ? (
+                        <button
+                          type="button"
+                          onClick={() => onSuggestPick(p.slug)}
+                          className="rounded-full bg-white/6 px-2.5 py-1 text-xs text-muted transition hover:bg-white/10 hover:text-ink"
+                        >
+                          {p.name}
+                        </button>
+                      ) : (
+                        <span className="rounded-full bg-white/6 px-2.5 py-1 text-xs text-muted">
+                          {p.name}
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
 
             <div className="mt-auto flex flex-col gap-2 pt-5">
               <button

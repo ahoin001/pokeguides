@@ -61,6 +61,9 @@ export function TeamNavMenu({ path }: { path: string }) {
             <MenuLink href="/team" on={path === "/team"} onNavigate={() => setOpen(false)}>
               Team builder
             </MenuLink>
+            <MenuLink href="/team/box" on={path === "/team/box"} onNavigate={() => setOpen(false)}>
+              My box
+            </MenuLink>
             <p className="mt-2 px-2.5 pb-1 pt-2 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
               Team archetypes
             </p>
@@ -113,17 +116,14 @@ function MenuLink({
   );
 }
 
-/** Mobile / small screens: Builder | Archetypes under /team* */
 export function TeamLocalBar() {
   const path = usePathname();
   if (!path.startsWith("/team")) return null;
   const builder = path === "/team";
+  const box = path === "/team/box";
   const archetypes = path.startsWith("/team/archetypes");
   return (
-    <nav
-      aria-label="Team section"
-      className="mb-6 flex flex-wrap gap-2 md:hidden"
-    >
+    <nav aria-label="Team section" className="mb-6 flex flex-wrap gap-2 md:hidden">
       <Link
         href="/team"
         className={`rounded-full px-3.5 py-1.5 text-sm ${
@@ -131,6 +131,14 @@ export function TeamLocalBar() {
         }`}
       >
         Builder
+      </Link>
+      <Link
+        href="/team/box"
+        className={`rounded-full px-3.5 py-1.5 text-sm ${
+          box ? "bg-ink text-bg" : "bg-white/6 text-muted hover:text-ink"
+        }`}
+      >
+        My box
       </Link>
       <Link
         href="/team/archetypes"

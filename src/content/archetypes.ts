@@ -132,24 +132,52 @@ export const ARCHETYPES: ArchetypeGuide[] = [
     compareTo: ["hyper-offense"],
     tells: [
       {
-        slug: "garchomp",
-        why: "Ground cleaner on a mixed list — classic Balance wincon kept in the bag.",
+        slug: "salamence",
+        why: "#1 M-C. Mega or kite — still Balance when Primarina / Hippo sit beside it.",
       },
       {
-        slug: "kingambit",
-        why: "Dark truck that cracks Steel. Balance and TR both love it; look for the patch next.",
+        slug: "garchomp",
+        why: "#2 Ground cleaner on a mixed list — classic Balance wincon kept in the bag.",
+      },
+      {
+        slug: "primarina",
+        why: "#3 Special Fairy/Water patch. Two attackers plus this is midrange, not HO glass.",
+      },
+      {
+        slug: "golisopod",
+        why: "#4 Emergency Exit pivot. Hands off after the chip — Balance tempo.",
+      },
+      {
+        slug: "hippowdon",
+        why: "#5 Sand wall. Fat Ground that soaks Fire and sets the board for the cleaner.",
       },
       {
         slug: "gholdengo",
-        why: "Ghost/Steel patch. Two attackers plus this is Good Stuff / Balance, not HO glass.",
+        why: "#8 Ghost/Steel patch. Good Stuff glue when the Ice hole needs covering.",
+      },
+      {
+        slug: "aegislash-shield",
+        why: "#11 Stance Change pivot. King’s Shield into the Mega, then Blade.",
+      },
+      {
+        slug: "corviknight",
+        why: "#15 Fat Flying pivot. Honest Balance soaks Ice and hands off to the cleaner.",
+      },
+      {
+        slug: "rotom-wash",
+        why: "#23 Burn + Volt Switch. Classic Balance glue into Ground and Fire.",
+      },
+      {
+        slug: "meowscarada",
+        why: "#13 Protean / Scarf seat. Balance Speed control without going full HO.",
       },
       {
         slug: "whimsicott",
         why: "Prankster Tailwind clock sitting on Balance. Read the four turns before they click.",
       },
       {
-        slug: "corviknight",
-        why: "Fat Flying pivot. Honest Balance soaks Ice and hands off to the cleaner.",
+        slug: "kingambit",
+        why: "#34 Dark truck that cracks Steel. Balance and TR both love it — look for the patch next.",
       },
     ],
     favors: [
@@ -237,23 +265,43 @@ export const ARCHETYPES: ArchetypeGuide[] = [
     tells: [
       {
         slug: "salamence-mega",
-        why: "Mega snowball with no fat pivot beside it. Classic HO wincon.",
+        why: "Aerilate snowball with no fat pivot beside it. Classic HO wincon.",
       },
       {
         slug: "cinderace",
-        why: "Fast Fire that punches first. HO clock without Tailwind.",
+        why: "#21 Libero / Scarf Fire that punches first. HO clock without Tailwind.",
       },
       {
         slug: "dragonite",
-        why: "Multiscale kite. Scale Sweep — Ice is the hole, Excadrill often leads.",
+        why: "#30 Multiscale kite. Scale Sweep — Ice is the hole, Excadrill often leads.",
+      },
+      {
+        slug: "mimikyu-disguised",
+        why: "#10 Disguise Sweep. Costume buys the turn the kite needs.",
       },
       {
         slug: "excadrill",
         why: "Mold Breaker sand lead into Multiscale. HO front-end, not a Balance patch.",
       },
       {
-        slug: "mimikyu-disguised",
-        why: "Disguise Sweep. Costume buys the turn the kite needs.",
+        slug: "greninja",
+        why: "#19 Sash / Protean. Glass that opens HO races before the Mega appears.",
+      },
+      {
+        slug: "gyarados",
+        why: "#14 Intimidate into Dance. HO that still pretends to soak one hit.",
+      },
+      {
+        slug: "baxcalibur",
+        why: "Ice breaker that deletes Dragons. Common HO / Balance hybrid wincon.",
+      },
+      {
+        slug: "glimmora",
+        why: "Sash hazards lead. HO that taxes switches before the snowball.",
+      },
+      {
+        slug: "talonflame",
+        why: "Gale Wings priority into Fire. Pure HO Speed pressure.",
       },
     ],
     favors: [
@@ -341,19 +389,35 @@ export const ARCHETYPES: ArchetypeGuide[] = [
     tells: [
       {
         slug: "farigiraf",
-        why: "Must-appear setter. No Farigiraf, no room — plan as if it is coming.",
+        why: "Must-appear setter. Armor Tail blanks Fake Out — plan as if it is coming.",
       },
       {
         slug: "kingambit",
-        why: "Slow Dark truck next to the setter. Under the room it moves first.",
+        why: "#34 Slow Dark truck next to the setter. Under the room it moves first.",
       },
       {
         slug: "gholdengo",
-        why: "Special Steel that still moves under Trick Room. Common TR patch.",
+        why: "#8 Special Steel that still moves under Trick Room. Common TR patch.",
+      },
+      {
+        slug: "annihilape",
+        why: "Rage Fist truck. Bulk + boost under the room deletes HO glass.",
+      },
+      {
+        slug: "banette",
+        why: "Prankster / Ghost support seen next to Basculegion and Pawmot cores.",
       },
       {
         slug: "whimsicott",
         why: "With Farigiraf: Tail Room hybrid. Two clocks — room or Tailwind race.",
+      },
+      {
+        slug: "basculegion-male",
+        why: "#16 Sometimes cashes TR with Last Respects after early KOs.",
+      },
+      {
+        slug: "armarouge",
+        why: "Expanding Force special under Psychic Terrain hybrids sitting on TR.",
       },
     ],
     favors: [
@@ -438,15 +502,35 @@ export const ARCHETYPES: ArchetypeGuide[] = [
     tells: [
       {
         slug: "pelipper",
-        why: "Must-appear Drizzle. No bird, no rain — plan the lead as if it is coming.",
+        why: "Must-appear Drizzle (~#52). No bird, no rain — plan the lead as if it is coming.",
       },
       {
         slug: "basculegion-male",
-        why: "Swift Swim Wave Crash under rain. The cleaner that cashes the field.",
+        why: "#16 Swift Swim / Last Respects under rain. The cleaner that cashes the field.",
       },
       {
         slug: "archaludon",
-        why: "Electro Shot / special Steel twin. Rain’s Electric answer sitting on the six.",
+        why: "#9 Electro Shot / special Steel twin. Rain’s Electric answer on the six.",
+      },
+      {
+        slug: "swampert",
+        why: "Rain Ground/Water. Common Pelipper mate that punches Electric answers.",
+      },
+      {
+        slug: "golisopod",
+        why: "#4 Often rides rain cores as a pivot / Mega seat next to Pelipper.",
+      },
+      {
+        slug: "garchomp",
+        why: "Ground coverage in rain lists — punches Electric and keeps the board.",
+      },
+      {
+        slug: "greninja",
+        why: "#19 Protean Water under rain when they want Speed without Swift Swim.",
+      },
+      {
+        slug: "kingambit",
+        why: "Dark truck that still shows on rain hybrids when Electric is the hole.",
       },
     ],
     favors: [
@@ -530,8 +614,12 @@ export const ARCHETYPES: ArchetypeGuide[] = [
     compareTo: ["rain", "hyper-offense"],
     tells: [
       {
+        slug: "charizard",
+        why: "#18 with Charizardite Y. Setter and wincon in one registered slot.",
+      },
+      {
         slug: "charizard-mega-y",
-        why: "Must-appear Drought Mega. Setter and wincon in one slot.",
+        why: "Drought form. Solar Beam no charge — plan Rock/Water before it transforms.",
       },
       {
         slug: "garchomp",
@@ -539,7 +627,23 @@ export const ARCHETYPES: ArchetypeGuide[] = [
       },
       {
         slug: "cinderace",
-        why: "Second Fire that keeps pressure if Y is forced out.",
+        why: "#21 Second Fire that keeps pressure if Y is forced out.",
+      },
+      {
+        slug: "mimikyu-disguised",
+        why: "#10 Common Y partner — Disguise buys the turn Drought needs.",
+      },
+      {
+        slug: "hippowdon",
+        why: "#5 Sand / Rock answer seat that still shows next to Charizard cores.",
+      },
+      {
+        slug: "primarina",
+        why: "#3 Special Fairy that patches Dragons while Y pressures Grass.",
+      },
+      {
+        slug: "talonflame",
+        why: "Gale Wings Fire backup when they want priority under or after Drought.",
       },
     ],
     favors: [
@@ -624,15 +728,35 @@ export const ARCHETYPES: ArchetypeGuide[] = [
     tells: [
       {
         slug: "rillaboom",
-        why: "Must-appear Grassy Surge. No Boom, no room — Unburden partners are a bluff.",
+        why: "#12 Must-appear Grassy Surge. No Boom, no room — Unburden without it is a bluff.",
       },
       {
         slug: "sneasler",
-        why: "Unburden cleaner that cashes terrain after the berry pops.",
+        why: "#22 Unburden cleaner that cashes terrain after the berry pops.",
+      },
+      {
+        slug: "indeedee-female",
+        why: "#24 Psychic Terrain partner — Expanding Force cores next to Sneasler.",
       },
       {
         slug: "kingambit",
-        why: "Dark truck that likes weaker Earthquakes under Grassy Terrain.",
+        why: "#34 Dark truck that likes weaker Earthquakes under Grassy Terrain.",
+      },
+      {
+        slug: "armarouge",
+        why: "Expanding Force seat on terrain / Psychic hybrids.",
+      },
+      {
+        slug: "blastoise",
+        why: "Seen with Sneasler cores — Water Mega that soaks Fire answers.",
+      },
+      {
+        slug: "salamence",
+        why: "Often sits on Grassy Balance hybrids as the Mega / kite wincon.",
+      },
+      {
+        slug: "garchomp",
+        why: "Ground cleaner that still shows next to Boom when Ice is patched.",
       },
     ],
     favors: [

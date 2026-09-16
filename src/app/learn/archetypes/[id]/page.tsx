@@ -159,8 +159,8 @@ export default async function ArchetypePage({ params }: { params: Promise<{ id: 
           Next: {next.name}
         </Link>
       ) : (
-        <Link href="/learn/preview" className="mt-12 block text-sm text-muted hover:text-ink">
-          Next: Preview is the first turn
+        <Link href="/learn/abilities" className="mt-12 block text-sm text-muted hover:text-ink">
+          Next: Great Ball — abilities
         </Link>
       )}
     </article>

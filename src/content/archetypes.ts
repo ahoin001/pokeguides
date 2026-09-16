@@ -54,7 +54,7 @@ export const ARCHETYPES: ArchetypeGuide[] = [
     name: "Balance",
     oneLiner: "A breaker, a cleaner, and a patch. If the lead goes wrong, you still have a game.",
     philosophy:
-      "Balance is the default Champions three: something that punches holes, something that finishes, and a typing that covers the other two. You do not try to end the match on the first send. You switch, you chip, and you strike when a threat is gone.",
+      "Balance is the default Champions three: something that punches holes, something that finishes, and a typing that covers the other two. You do not try to end the match on the first send. You switch, you chip, and you strike when a threat is gone. On preview, a Tailwind name — Whimsicott, Murkrow — is a clock you can read before they click it. Balance often hybridizes with that clock.",
     lead: "Calculated. If the matchup is ugly you pivot. You do not donate a KO to prove a point.",
     margin: "forgiving",
     pacing: "chess",
@@ -162,7 +162,7 @@ export const ARCHETYPES: ArchetypeGuide[] = [
     name: "Trick Room",
     oneLiner: "Slowest Pokémon move first. You flip the clock and you cash four turns of it.",
     philosophy:
-      "Trick Room is a mode, not a sprinkle. The three is built slow on purpose. Farigiraf sets the room. Kingambit and a bulky special eat the turns. Fast teams look scary in preview. Under Trick Room they move last.",
+      "Trick Room is a mode, not a sprinkle. The three is built slow on purpose. Farigiraf sets the room. Kingambit and a bulky special eat the turns. Fast teams look scary in preview. Under Trick Room they move last. Some lists pack Tailwind as a backup — Tail Room. If the room gets Taunted they still race. Read both clocks.",
     lead: "Protect the setter. If they Taunt, you needed a backup plan before preview ended.",
     margin: "medium",
     pacing: "clock",
@@ -216,7 +216,7 @@ export const ARCHETYPES: ArchetypeGuide[] = [
     name: "Rain",
     oneLiner: "Drizzle on entry. Water hits harder, Fire wilts, Hurricane always connects.",
     philosophy:
-      "Rain is a weather mode. Pelipper walks in and the field is yours. Swift Swim and Electro Shot partners cash it. The three is built around the field, not around a single cleaner.",
+      "Rain is a weather mode. Pelipper walks in and the field is yours. Swift Swim and Electro Shot partners cash it. The three is built around the field, not around a single cleaner. Rain that still U-turns is a hybrid — the field is still the tell, and Pelipper must appear.",
     lead: "Pelipper plus a rain abuser. Do not donate the bird for free.",
     margin: "medium",
     pacing: "sprint",

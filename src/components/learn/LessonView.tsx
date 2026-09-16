@@ -20,28 +20,55 @@ import {
   BUILDING_PLAN,
   JOB_ROSTER,
   nextLesson,
+  type LearnTrack,
   type Lesson,
 } from "@/content/curriculum";
+import { nextDoublesLesson } from "@/content/curriculum-doubles";
 import { getLearnFlow, LEARN_FLOWS } from "@/content/learn-flows";
 import { CANONICAL_MANUALS, manualHref } from "@/content/manuals";
 import { ARCHETYPES, archetypeHref } from "@/content/archetypes";
 
-export function LessonView({ lesson }: { lesson: Lesson }) {
+export function LessonView({
+  lesson,
+  track = lesson.track ?? "singles",
+}: {
+  lesson: Lesson;
+  track?: LearnTrack;
+}) {
   const wash = getPokemon(lesson.examples[0]?.slug);
-  const manuals = CANONICAL_MANUALS.filter((m) => lesson.relatedManuals.includes(m.id));
+  const doubles = track === "doubles";
+  const manuals = doubles
+    ? []
+    : CANONICAL_MANUALS.filter((m) => lesson.relatedManuals.includes(m.id));
   const extraFlows =
     lesson.slug === "moves"
       ? LEARN_FLOWS.filter((f) => f.id === "they-protect" || f.id === "ice-onto-the-kite")
       : [];
+  const band = lesson.band === "poke-ball"
+    ? "Poké Ball"
+    : lesson.band === "great-ball"
+      ? "Great Ball"
+      : lesson.band === "ultra-ball"
+        ? "Ultra Ball"
+        : "Master Ball";
 
   return (
     <article className="mx-auto w-full max-w-5xl" style={wash ? cssVars(wash.palette) : undefined}>
-      <LessonNav lesson={lesson} />
+      <LessonNav lesson={lesson} track={track} />
 
       <p className="text-sm text-muted">
         <Link href="/learn" className="hover:text-ink">
           Learn
         </Link>
+        {doubles ? (
+          <>
+            {" / "}
+            <Link href="/learn/doubles" className="hover:text-ink">
+              Doubles
+            </Link>
+          </>
+        ) : null}
+        <span className="text-muted"> · {band}</span>
       </p>
       <h1 className="mt-2 max-w-[22ch] text-4xl font-semibold tracking-tight lg:text-5xl">{lesson.title}</h1>
       <p className="mt-4 max-w-[52ch] text-lg text-muted">{lesson.thesis}</p>
@@ -146,13 +173,13 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
         </section>
       ) : null}
 
-      {lesson.slug === "turns" ? (
+      {lesson.slug === "keeping-up" || lesson.slug === "review" || lesson.slug === "positioning" || lesson.slug === "tempo" ? (
         <p className="mt-10 text-sm text-muted">
-          Then the dated snapshot:{" "}
+          Dated snapshot:{" "}
           <Link href="/meta" className="underline">
             Ranked Meta
           </Link>
-          . Words you will hear:{" "}
+          {doubles ? " (singles usage — say so when you use it)" : ""}. Words you will hear:{" "}
           <Link href="/glossary" className="underline">
             Glossary
           </Link>
@@ -160,7 +187,30 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
         </p>
       ) : null}
 
-      <LessonNext slug={lesson.slug} />
+      {doubles && lesson.slug === "doubles-positioning" ? (
+        <section className="mt-16 max-w-3xl">
+          <h2 className="text-2xl font-semibold tracking-tight">After the battle</h2>
+          <p className="mt-2 text-sm text-muted">
+            Review and keeping up are the same skills on singles. Ranked Meta here is a 3v3 snapshot.
+          </p>
+          <ul className="mt-4 divide-y divide-line rounded-[28px] border border-line">
+            <li>
+              <Link href="/learn/review" className="block px-5 py-4 transition hover:bg-raised/70">
+                <p className="font-semibold tracking-tight">Why did that happen?</p>
+                <p className="mt-1 text-sm text-muted">Name the turn. Take the loss. Know when to stop.</p>
+              </Link>
+            </li>
+            <li>
+              <Link href="/learn/keeping-up" className="block px-5 py-4 transition hover:bg-raised/70">
+                <p className="font-semibold tracking-tight">What is everyone using?</p>
+                <p className="mt-1 text-sm text-muted">Usage and sets. Then the Champion practicum on manuals.</p>
+              </Link>
+            </li>
+          </ul>
+        </section>
+      ) : null}
+
+      <LessonNext slug={lesson.slug} track={track} />
     </article>
   );
 }
@@ -168,7 +218,13 @@ export function LessonView({ lesson }: { lesson: Lesson }) {
 function LessonViz({ lesson }: { lesson: Lesson }) {
   switch (lesson.viz) {
     case "stadium":
-      return <StadiumTray you={lesson.examples.slice(0, 3)} />;
+      return (
+        <StadiumTray
+          you={lesson.examples.slice(0, 3)}
+          youLabel={lesson.track === "doubles" ? "A doubles four" : "Your three"}
+          themLabel={lesson.track === "doubles" ? "Theirs — empty until you pick four" : undefined}
+        />
+      );
     case "types":
       return <TypePlayground seed="fairy" />;
     case "ability-field":
@@ -196,8 +252,8 @@ function LessonViz({ lesson }: { lesson: Lesson }) {
   }
 }
 
-function LessonNext({ slug }: { slug: string }) {
-  const next = nextLesson(slug);
+function LessonNext({ slug, track }: { slug: string; track: LearnTrack }) {
+  const next = track === "doubles" ? nextDoublesLesson(slug) : nextLesson(slug);
   if (!next) return null;
   return (
     <Link href={next.href} className="mt-12 block text-sm text-muted hover:text-ink">

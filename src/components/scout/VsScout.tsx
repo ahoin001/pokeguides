@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, LayoutGroup, MotionConfig, motion } from "motion/react";
 import { VsScoutDock, type DockCorner } from "@/components/scout/VsScoutDock";
 import { catalog, getPokemon } from "@/lib/catalog/load";
@@ -45,11 +45,13 @@ function writeSlugs(key: string, slugs: string[], max: number) {
   }
 }
 
-function readDock(): boolean {
+function readDock(fallback = false): boolean {
   try {
-    return sessionStorage.getItem(DOCK_KEY) === "1";
+    const raw = sessionStorage.getItem(DOCK_KEY);
+    if (raw === null) return fallback;
+    return raw === "1";
   } catch {
-    return false;
+    return fallback;
   }
 }
 
@@ -67,12 +69,18 @@ export function VsScout({
   heading = "Vs scout",
   lede = "Search who they have. We show how your three hit them and how they hit you.",
   suggestedFoes = [],
+  defaultDocked = false,
+  scoutRequest = null,
 }: {
   side: ScoutSide[];
   id?: string;
   heading?: string;
   lede?: string;
   suggestedFoes?: string[];
+  /** When no saved dock preference exists, start pinned. */
+  defaultDocked?: boolean;
+  /** Parent bumps `key` to add/focus a foe and open the dock. `openOnly` pins the dock without adding. */
+  scoutRequest?: { slug: string; key: number; openOnly?: boolean } | null;
 }) {
   const exclude = useMemo(() => side.map((s) => s.slug), [side]);
   const excludeKey = exclude.join("|");
@@ -93,6 +101,7 @@ export function VsScout({
   const [dockOpen, setDockOpen] = useState(true);
   const [chromeCollapsed, setChromeCollapsed] = useState(false);
   const [corner, setCorner] = useState<DockCorner>("br");
+  const lastScoutKey = useRef<number | null>(null);
 
   useEffect(() => {
     const stored = readSlugs(FOES_KEY).filter((s) => !exclude.includes(s)).slice(0, MAX_FOES);
@@ -102,12 +111,26 @@ export function VsScout({
     setOpponentSlugs(foes);
     setFocusSlug(foes[0] ?? null);
     setRecent(rec);
-    setDocked(readDock());
+    setDocked(readDock(defaultDocked));
     setCorner(readCorner());
     setHydrated(true);
     // excludeKey is the stable membership signal; exclude array identity is not.
     // eslint-disable-next-line react-hooks/exhaustive-deps -- excludeKey tracks slug membership
   }, [excludeKey]);
+
+  useEffect(() => {
+    if (!hydrated || !scoutRequest) return;
+    if (lastScoutKey.current === scoutRequest.key) return;
+    lastScoutKey.current = scoutRequest.key;
+    if (scoutRequest.openOnly) {
+      setDocked(true);
+      setDockOpen(true);
+      return;
+    }
+    addOpponent(scoutRequest.slug, { forceDock: true, replaceIfFull: true });
+    // addOpponent is stable enough via closure; key is the trigger.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scoutRequest, hydrated]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -187,14 +210,23 @@ export function VsScout({
     });
   }
 
-  function addOpponent(slug: string) {
+  function addOpponent(
+    slug: string,
+    opts: { forceDock?: boolean; replaceIfFull?: boolean } = {},
+  ) {
     if (exclude.includes(slug)) return;
     setOpponentSlugs((prev) => {
       if (prev.includes(slug)) {
         setFocusSlug(slug);
         return prev;
       }
-      if (prev.length >= MAX_FOES) return prev;
+      if (prev.length >= MAX_FOES) {
+        if (!opts.replaceIfFull) return prev;
+        const next = [...prev.slice(1), slug];
+        setFocusSlug(slug);
+        setPickerOpen(false);
+        return next;
+      }
       const next = [...prev, slug];
       setFocusSlug(slug);
       if (next.length >= MAX_FOES) setPickerOpen(false);
@@ -203,6 +235,10 @@ export function VsScout({
     pushRecent(slug);
     setQ("");
     setDockOpen(true);
+    if (opts.forceDock) {
+      setDocked(true);
+      setChromeCollapsed(true);
+    }
   }
 
   function removeOpponent(slug: string) {

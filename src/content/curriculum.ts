@@ -42,6 +42,7 @@ export type Lesson = {
   flowId?: string;
   relatedManuals: string[];
   next?: string;
+  track?: LearnTrack;
 };
 
 export const BANDS: { id: LessonBand; title: string; skipIf: string }[] = [
@@ -183,9 +184,19 @@ export const LESSONS: Lesson[] = [
         example: { slug: "excadrill", caption: "Mold Breaker Earthquake. Sand Force in sand." },
       },
       {
+        title: "Unaware",
+        body: "Skeledirge ignores their Attack and Defense boosts when they hit it. A Moody or Calm Mind stack that looks scary is a Torch Song if you stayed. Unaware does not ignore their Speed, and it does not ignore Special Defense when you attack — do not assume the nuke always lands.",
+        example: { slug: "skeledirge", caption: "Unaware plus Slack Off. Setup is not a wincon into this slot." },
+      },
+      {
         title: "The field",
         body: "Drizzle, Drought, Grassy Surge, Unburden. Weather overwrite is a funeral — one field wins. Unburden only doubles Speed after the item is gone.",
         example: { slug: "pelipper", caption: "Drizzle on entry. Hurricane never misses. Archaludon Electro Shots the same turn." },
+      },
+      {
+        title: "Information",
+        body: "Flame Body vs Flash Fire is a game. Volcarona that burns on contact is not the Volcarona Skeledirge walls. Ceruledge that absorbs Torch Song is not Weak Armor. Write the ability the turn you see it. That is a free knowledge gap.",
+        example: { slug: "ceruledge", caption: "Flash Fire on Torch Song. Not Weak Armor. The rest of the game just changed." },
       },
     ],
     examples: [
@@ -195,6 +206,8 @@ export const LESSONS: Lesson[] = [
       { slug: "whimsicott", caption: "Prankster" },
       { slug: "excadrill", caption: "Mold Breaker" },
       { slug: "pelipper", caption: "Drizzle" },
+      { slug: "skeledirge", caption: "Unaware" },
+      { slug: "ceruledge", caption: "Flash Fire" },
     ],
     viz: "ability-field",
     relatedManuals: [
@@ -226,22 +239,29 @@ export const LESSONS: Lesson[] = [
       },
       {
         title: "U-turn and Parting Shot",
-        body: "Momentum. You leave on your terms. Hard switching is a turn they attack. Parting Shot is −1 Attack and Special Attack, then you leave — they hit the cat, Garchomp is in.",
-        example: { slug: "incineroar", caption: "Parting Shot is −6 priority. They hit Incineroar. The cleaner is already in." },
+        body: "Momentum. You leave on your terms. Hard switching is a turn they attack. Parting Shot is −1 Attack and Special Attack, then you leave — they hit the cat, Garchomp is in. U-turn is also the covering click: if they stay you still damage, if they switch you still leave. Meowscarada Triple Axel into a Ground wall that might be Volcarona is a coin. U-turn covers both.",
+        example: { slug: "meowscarada", caption: "U-turn covers stay and swap. Triple Axel only covers stay." },
       },
       {
         title: "Dance, rocks, priority",
-        body: "Swords Dance, Dragon Dance, Calm Mind need a free turn — Disguise, Intimidate, or a KO. Stealth Rock taxes every switch and pops Multiscale; on a three that is still real. Burn and Life Orb chip the same way. Sucker Punch, Extreme Speed, Aqua Jet win races you already lost.",
-        example: { slug: "kingambit", caption: "Sucker Punch is Dark priority. It fails into Protect and into faster priority." },
+        body: "Swords Dance, Dragon Dance, Calm Mind need a free turn — Disguise, Intimidate, or a KO. Stealth Rock taxes every switch and pops Multiscale; on a three that is still real — do not pivot through rocks just to feel busy. Burn and Life Orb chip the same way. Sucker Punch, Extreme Speed, Aqua Jet win races you already lost. Kingambit that is faster and low will Sucker Punch. Roost or Thunder Wave is the outplay if you outspeed.",
+        example: { slug: "kingambit", caption: "Sucker Punch is Dark priority. It fails into Protect, into status, and into faster priority." },
       },
       {
         title: "Status is tempo",
-        body: "Will-O-Wisp halves Attack. Thunder Wave cuts Speed. Taunt shuts Trick Room and Tailwind. Burn and para are not chip for its own sake — they buy the cleaner a turn.",
-        example: { slug: "incineroar", caption: "Will-O-Wisp on a physical breaker. Taunt on Cott into a setter." },
+        body: "Will-O-Wisp halves Attack. Thunder Wave cuts Speed. Taunt shuts Trick Room and Tailwind. Burn and para are not chip for its own sake — they buy the cleaner a turn. Wisp is the covering status: if they stay on a physical, Attack dies; if they switch to another physical, you still burn the slot that came in. Click it when two of their answers hate the burn.",
+        example: { slug: "skeledirge", caption: "Wisp into a Ground wall that might be Garchomp. Both hate the burn." },
+      },
+      {
+        title: "Once-per-item",
+        body: "Poltergeist hits the held item. After that, that target has no item for Poltergeist to grab. Ceruledge that already Poltergeisted you cannot do it again. Play the second turn as if the nuke is gone. Same family as Fake Out once per send — the verb expired.",
+        example: { slug: "ceruledge", caption: "Poltergeist once. Slack Off on the second send. The item is already spent." },
       },
     ],
     examples: [
       { slug: "incineroar", caption: "Fake Out, Parting Shot" },
+      { slug: "meowscarada", caption: "U-turn covers both" },
+      { slug: "skeledirge", caption: "Wisp covers two switch-ins" },
       { slug: "kingambit", caption: "Sucker Punch, Swords Dance" },
     ],
     viz: "flowchart",
@@ -332,12 +352,18 @@ export const LESSONS: Lesson[] = [
     slug: "jobs",
     band: "great-ball",
     title: "A Pokémon is a job",
-    thesis: "Support, breaker, speed, weather, Mega. Two examples each. Sweeper is a translation, not a slot.",
-    skipIf: "Skip if you already build from the job, not the name.",
+    thesis: "Support, breaker, speed, weather, Mega. Digest your three in four sentences before you queue.",
+    skipIf: "Skip if you already build from the job, not the name, and can say how yours wins.",
     body: [
       "Stats tell the body. Ability and movepool tell the job. High Speed plus Attack looks like a sweeper — without a Dance, priority, or a Scarf story it is just a fast breaker.",
+      "Before you queue, digest the three: what field or clock you force, whether you win by attacking or pivoting, which Mega you pick if two could, and which support verbs you actually click. If you cannot say those four, you do not understand the three yet.",
     ],
     beats: [
+      {
+        title: "Four sentences — Honest Balance",
+        body: "Field: Tailwind, four turns, Cott clicks it then leaves. Offense vs defense: Corvi soaks Ice and Fairy so Garchomp can clean. Mega: none on this three — the Omni Ring is not the wincon. Support verbs: Tailwind, U-turn, Brave Bird chip. Say that out loud. Then queue.",
+        example: { slug: "whimsicott", caption: "Clock. Corvi soaks. Garchomp cleans. No Mega." },
+      },
       {
         title: "Support",
         body: "Buys turns: Intimidate, Fake Out, burn, pivot. Does not win by knocking things out. Incineroar and Whimsicott are both support. One flinches. One clocks.",
@@ -390,8 +416,14 @@ export const LESSONS: Lesson[] = [
     skipIf: "Skip if you already say the sentence out loud before you pick names.",
     body: [
       "Beginners pick three they like. Intermediate players pick a sentence: this three wins if Kingambit gets a free Sucker Punch. That sentence is the win condition. Everything else makes it true, or keeps you alive when it is not.",
+      "Same four sentences as jobs, now as a build check. Field or clock. Offense vs defense. Mega pick. Support verbs. If a slot does not change one of those sentences, cut it.",
     ],
     beats: [
+      {
+        title: "Four sentences on the three you built",
+        body: "Honest Balance: Tailwind is the field. Corvi is the defense so Garchomp can be the offense. No Mega. Support is Tailwind then U-turn. Control Balance swaps Cott for Incineroar — Fake Out and Parting Shot instead of a clock, so Garchomp must spend Speed. If you cannot tell those two threes apart in four sentences, you do not understand either.",
+        example: { slug: "corviknight", caption: "Shield on Honest. The patch that lets Garchomp be the clean." },
+      },
       {
         title: "Name the win condition",
         body: "The Pokémon or mode that ends the match if the plan works. One sentence. If it needs two wincons, you are already asking the three to do too much.",
@@ -399,8 +431,8 @@ export const LESSONS: Lesson[] = [
       },
       {
         title: "The partner that lets it fire",
-        body: "Not a second favorite. Intimidate so the breaker lives. A pivot so you leave on your terms. Trick Room so the truck moves first. If that partner does not change a calculation, cut it.",
-        example: { slug: "garchomp", caption: "The cleaner once Kingambit cracked the wall. Or Cott’s Tailwind so Garchomp races." },
+        body: "Not a second favorite. Intimidate so the breaker lives. A pivot so you leave on your terms. Trick Room so the truck moves first. Name the Pokémon that stops your wincon, then pack the slot that answers it. Meowscarada Triple Axel is how Garchomp does not lead on your Mega. Dragonite is how Scovillain does not burn the Mega. If that partner does not change a calculation, cut it.",
+        example: { slug: "meowscarada", caption: "Ice into Garchomp so the Mega is not the lead. The wincon stays in the bag." },
       },
       {
         title: "Patch the hole those two share",
@@ -538,20 +570,36 @@ export const LESSONS: Lesson[] = [
     slug: "preview",
     band: "ultra-ball",
     title: "Preview is turn 0",
-    thesis: "Name their wincon, their Speed plan, their hole. Then pick a send that respects all three.",
+    thesis: "Name their plan and yours. List the threats. Find the Pokémon that must appear. Then pick a lead that answers both of their modes.",
     skipIf: "Skip if you already write one sentence before you confirm the lead.",
     body: [
       "Open lists. You are looking at three names. Beginners send their strongest Pokémon. Intermediate players send the Pokémon that answers their likely lead, or that forces the switch the wincon needs.",
+      "Bring archetypes and your own digest together. What are they trying to do. What are you trying to do. The lead is the first line of that plan, not a favorite. Ladder rentals are often six — you pick three into their list. The classroom three is the three you already picked. The IQ is the same: name what can come from the back.",
     ],
     beats: [
+      {
+        title: "Name what they want",
+        body: "Before you click, write their likely line: stay and Fake Out, switch to the Ground, switch to the special. A Ground wall into Skeledirge wants Earthquake, rocks, or Yawn — or a switch to Garchomp or Rotom-Wash. If you cannot name two things they want, you do not have a covering click yet.",
+        example: { slug: "skeledirge", caption: "Will-O-Wisp is safe into the stay and into two of the switch-ins." },
+      },
       {
         title: "Six questions",
         body: "What is their wincon. What is their Speed control. Which of yours is compromised. Safe lead or committed. Which of yours must never leave. Say the game in one sentence. If you cannot say it, you do not have a plan.",
         example: { slug: "dragonite", caption: "Scale Sweep’s wincon. Ice is the hole. Excadrill is the likely lead." },
       },
       {
-        title: "Do not lead the kite into Ice",
-        body: "A good lead takes their lead, makes them switch, or sets the field. A bad lead donates the wincon so you can feel aggressive. Safe lead when unsure. Committed lead when you can name theirs.",
+        title: "List the biggest threats",
+        body: "Write the names that actually end you: their weather setter, their Mega, their cleaner. Honest into Scale Sweep: Excadrill Mold Breaker, Primarina Ice/Fairy, Dragonite Extreme Speed. If you cannot name three threats you are guessing the lead.",
+        example: { slug: "excadrill", caption: "Mold Breaker into Multiscale. The threat you answer before the kite comes." },
+      },
+      {
+        title: "The Pokémon that must appear",
+        body: "On a three, some names are on every mode. Pelipper must appear or rain is a lie. Farigiraf must appear or Trick Room never starts. Rillaboom must appear or Grassy Unburden is dead. Your game plan must account for that name even if they bluff the lead. That is the singles version of reading a must-bring.",
+        example: { slug: "pelipper", caption: "No Pelipper, no rain. Plan the lead as if the bird is coming." },
+      },
+      {
+        title: "A lead that answers both modes",
+        body: "Hybrids have two ways to win. Rain that still pivots. Trick Room with a Tailwind backup. Do not lead a Pokémon that only beats one story. Honest into Scale Sweep: Cott Tailwind answers the sand race and still leaves Corvi for Ice. Leading Garchomp into Ice answers nothing.",
         example: { slug: "whimsicott", caption: "Honest clock into Scale Sweep. Tailwind, then Corvi if Ice comes." },
       },
       {
@@ -564,6 +612,7 @@ export const LESSONS: Lesson[] = [
       { slug: "whimsicott", caption: "Your clock" },
       { slug: "corviknight", caption: "Your shield" },
       { slug: "garchomp", caption: "Your clean" },
+      { slug: "skeledirge", caption: "Covering Wisp" },
       { slug: "excadrill", caption: "Their lead" },
       { slug: "primarina", caption: "Their special" },
       { slug: "dragonite", caption: "Their kite" },
@@ -593,8 +642,8 @@ export const LESSONS: Lesson[] = [
       },
       {
         title: "Mid",
-        body: "Momentum vs hard switch. Never-leave stays in. Overprediction is the beginner tax — click what beats the Pokémon in front of you unless the read is cheap to be wrong. If you will not KO, they hit back: chip is only correct when the next hit does not end you.",
-        example: { slug: "incineroar", caption: "Parting Shot is how you leave without donating Earthquake." },
+        body: "Momentum vs hard switch. Never-leave stays in. Overprediction is the beginner tax — click what beats the Pokémon in front of you unless the read is cheap to be wrong. If you will not KO, they hit back: chip is only correct when the next hit does not end you. Do not donate a free Swords Dance: sending Meowscarada to chip Kingambit is tempo you gave away. Send the answer, or Fake Out and leave.",
+        example: { slug: "kingambit", caption: "Do not chip it with a Pokémon it can Dance on. That is donated tempo." },
       },
       {
         title: "Late",
@@ -612,6 +661,192 @@ export const LESSONS: Lesson[] = [
     relatedManuals: [
       "balance-whimsicott-corviknight-garchomp",
       "balance-whimsicott-incineroar-garchomp",
+    ],
+    next: "tempo",
+  },
+  {
+    slug: "tempo",
+    band: "master-ball",
+    title: "Who is forcing the next switch?",
+    thesis: "Name what they want. Click the line that covers two of those wants. Safe when ahead. Predict when behind. Do not donate a Dance.",
+    skipIf: "Skip if you already know when a covering U-turn is better than a heroic Triple Axel.",
+    body: [
+      "Tempo is who decides the next switch. Ahead means they have to leave. Behind means you have to leave. Neutral means both can stay. Singles IQ is reading that, then picking a covering click — a move that still works if they stay and still works if they switch.",
+      "Safe plays win most games. A hard predict is what you spend when you are already behind and a safe click keeps you behind. Information — Flash Fire, Flame Body, Poltergeist spent, Body Press not Brave Bird — is tempo you bank for later.",
+    ],
+    beats: [
+      {
+        title: "Cover two options",
+        body: "Skeledirge into a Ground wall: they stay for Earthquake, rocks, or Yawn, or they switch to Garchomp or Rotom-Wash. Will-O-Wisp burns the stay and two of the physical switch-ins. Meowscarada into that same wall: Triple Axel only covers stay. U-turn covers stay and the Volcarona that would otherwise eat Ice. The covering click is the one that is still correct on two of their lines.",
+        example: { slug: "skeledirge", caption: "Wisp covers stay and the physical switch. Torch Song only covers stay." },
+      },
+      {
+        title: "Do not donate setup",
+        body: "Chip is not free if they can Swords Dance, Moody, or Calm Mind on the Pokémon you sent. Kingambit into Meowscarada is a Dance if you stay for a resisted knock. Fake Out and leave, or send the Fighting answer. Unnecessary chip is tempo you handed them.",
+        example: { slug: "kingambit", caption: "If you are not KOing this turn, you are offering a Dance. Don’t." },
+      },
+      {
+        title: "Behind means you predict",
+        body: "Meowscarada into Corviknight is behind — you cannot hit the bird, so you U-turn. They can U-turn too and keep the tempo. The safe send eats whatever comes in. The steal is reading their pivot and sending the Pokémon that hated seeing Corvi — your Mega — now that the bird is leaving. If you are wrong you ate Brave Bird. That is the tax for being behind. When ahead, do not pay it.",
+        example: { slug: "corviknight", caption: "They U-turn, you send the Mega. The bird was their check. That was the steal." },
+      },
+      {
+        title: "Reset on the right matchup",
+        body: "Skeledirge Slack Off in front of Corviknight is a tempo reset: Ghost is immune to Body Press, U-turn is quad resisted. You do not need a KO. You need HP back and the bird stuck. Do not waste Dragonite’s Multiscale on a Thunder Wave if the hit still KOs. Spend the free turn on damage.",
+        example: { slug: "skeledirge", caption: "Slack Off vs Corvi is the steal. You were behind. Now you are not." },
+      },
+      {
+        title: "Write what you learned",
+        body: "Flame Body vs Flash Fire. Poltergeist already used. They clicked Body Press, not Brave Bird. Kingambit held for Supreme Overlord at the end. Each of those is a covering click next turn. Prediction without that list is a hunch.",
+        example: { slug: "ceruledge", caption: "Flash Fire on Torch Song. The 1v1 just flipped. Bank it." },
+      },
+    ],
+    examples: [
+      { slug: "skeledirge", caption: "Covering Wisp / Slack Off" },
+      { slug: "meowscarada", caption: "Covering U-turn" },
+      { slug: "corviknight", caption: "The bird that puts you behind" },
+      { slug: "kingambit", caption: "Do not donate the Dance" },
+    ],
+    viz: "flowchart",
+    flowId: "tempo",
+    relatedManuals: [
+      "balance-whimsicott-corviknight-garchomp",
+      "balance-whimsicott-incineroar-garchomp",
+    ],
+    next: "positioning",
+  },
+  {
+    slug: "positioning",
+    band: "master-ball",
+    title: "The wincon can change",
+    thesis: "Turn 1’s plan is not turn 10’s. Pivot, Protect, or sacrifice. Count the timers. Steal the field.",
+    skipIf: "Skip if you already change the wincon when the board changes, and you count Tailwind and rain.",
+    body: [
+      "A win condition is the Pokémon or mode you need to win right now. It can change. Tailwind Garchomp is the wincon until Ice is in the slot and Corvi has to become the 3v3. Play the board in front of you, not the preview sentence you wrote.",
+      "After the lead/mid/late classroom: ask what wins this position. Then spend a turn on the line that makes that true.",
+    ],
+    beats: [
+      {
+        title: "Pivot, Protect, or sacrifice",
+        body: "Pivot (U-turn, Parting Shot) takes a hit on the way out so the next Pokémon comes in with an offensive advantage. Protect stalls a timer, scouts coverage, or denies Sucker Punch — consecutive Protect can fail. Sacrifice is sending a Pokémon you know will faint to retake weather, burn a Choice lock, or put the cleaner in for free. All three are positioning. Clicking super-effective because it is in front of you is not.",
+        example: { slug: "incineroar", caption: "Parting Shot is the pivot. Protect is the stall. The cat can also be the sacrifice into a locked Ice." },
+      },
+      {
+        title: "Count the timers",
+        body: "Tailwind is four turns including the click. Trick Room is four including the click. Weather lasts until overwritten or the setter is gone. If they need two more turns of room to KO you, stall. If your Tailwind dies next turn, the cleaner must KO now or you lose the race. Sacrifice exists so you can live to the end of their timer.",
+        example: { slug: "farigiraf", caption: "Room is four. Stall the fifth and their truck is slow again." },
+      },
+      {
+        title: "Steal the field — Electro Shot has to charge",
+        body: "Rain Archaludon Electro Shots the same turn if rain is up. If you walk Tyranitar or Mega Charizard Y in, rain dies. Electro Shot must charge. That turn is the KO window — Archaludon is pinned. Same script as stealing rain so Swift Swim Basculegion is just a Water-type. Weather wars are positioning, not flavor.",
+        example: { slug: "archaludon", caption: "Electro Shot in rain is a nuke. Electro Shot in sand is a charge. Steal Pelipper’s field." },
+      },
+      {
+        title: "Worked board: rain vs a sand answer",
+        body: "They have Pelipper and Archaludon. Rain is up. Your Staraptor or Corvi is in and cannot KO Archaludon this turn. If you stay, Electro Shot KOs. If you switch to the weather setter, you take a hit and rain dies — next turn they charge, you KO. The wincon was not “Garchomp cleans.” The wincon became “I own the weather.” That is the read.",
+        example: { slug: "tyranitar", caption: "Sand Stream overwrite. The sacrifice send if the slot is already lost." },
+      },
+    ],
+    examples: [
+      { slug: "tyranitar", caption: "Steal rain" },
+      { slug: "archaludon", caption: "Charge if rain dies" },
+      { slug: "whimsicott", caption: "Four-turn clock" },
+      { slug: "incineroar", caption: "Pivot or sacrifice" },
+    ],
+    viz: "none",
+    relatedManuals: [
+      "rain-pelipper-archaludon-basculegion",
+      "balance-whimsicott-corviknight-garchomp",
+      "sun-charizard-y-garchomp-cinderace",
+    ],
+    next: "review",
+  },
+  {
+    slug: "review",
+    band: "master-ball",
+    title: "Why did that happen?",
+    thesis: "Wins and losses are both information. Name the turn. Take the loss. Know when to stop.",
+    skipIf: "Skip if you already write why you won or lost before you queue again.",
+    body: [
+      "It is not about the W or the L. It is about why. Bad lead, wrong read, bad positioning, or they outplayed you. If you cannot name the turn, you will repeat it.",
+      "Champions is best-of-one with open lists. One turn can decide it. That is why review is a skill, not a mood.",
+    ],
+    beats: [
+      {
+        title: "Name the turn",
+        body: "Did you lead wrong. Did you click Protect into a KO you needed. Did you donate the never-leave. Did you donate a Dance. Did they have a coverage you refused to scout. Write one sentence. Manual notes exist so that sentence has a home. “I lost to rain” is not a review. “I stayed Corvi into Electro Shot instead of sending the weather steal” is. “I Triple Axelled when U-turn covered the Volcarona” is.",
+        example: { slug: "corviknight", caption: "The turn you stayed is the review, not the match result." },
+      },
+      {
+        title: "Why you won counts too",
+        body: "Do not take a good lead for granted. Did you deduce their archetype. Did you protect the never-leave. Did the wincon you named on preview still fire, or did a new one appear. If you cannot say why you won, you cannot repeat it.",
+        example: { slug: "garchomp", caption: "Clean after Ice was spent. That was the plan. Write that it worked." },
+      },
+      {
+        title: "Take accountability",
+        body: "Crits, 10% burns, and cheese exist. Best players still win more because they review. If every loss is RNG or “broken,” you have boxed yourself: nothing you do can change the next game. The ladder resets often. This morning does not decide this afternoon.",
+        example: { slug: "kingambit", caption: "Sucker Punch into Protect is on you. The crit on the next hit is not the lesson." },
+      },
+      {
+        title: "Know when to stop",
+        body: "Tilt is a lose streak you choose. After a bad loss, if you are clicking without a sentence, log off. Touch grass. A week away is cheaper than rage-queueing Master Ball down to Ultra. Concentration is the wincon you cannot pack in Stat Points.",
+        example: { slug: "whimsicott", caption: "If the next lead is a coin flip you do not care about, you are already gone." },
+      },
+    ],
+    examples: [
+      { slug: "corviknight", caption: "The turn" },
+      { slug: "garchomp", caption: "Why the win" },
+      { slug: "kingambit", caption: "Accountability" },
+    ],
+    viz: "none",
+    relatedManuals: [
+      "balance-whimsicott-corviknight-garchomp",
+      "rain-pelipper-archaludon-basculegion",
+    ],
+    next: "keeping-up",
+  },
+  {
+    slug: "keeping-up",
+    band: "master-ball",
+    title: "What is everyone using?",
+    thesis: "Knowledge is a gap. Ranked Meta is usage. Manuals are the common sets. Then you already know their three.",
+    skipIf: "Skip if you already check usage and a classroom set before you blame the ladder.",
+    body: [
+      "If they bring a meta three and you already know the builds, you have a gap. If you bring something off-kilter and they have never seen it, you have a gap the other way. You only get either if you look.",
+      "This app’s Ranked Meta is the usage board. Classroom manuals are the common sets and the if/then. You do not need a second website to start. After you can read a preview, the snapshot is homework, not trivia.",
+    ],
+    beats: [
+      {
+        title: "Usage is who you must answer",
+        body: "Open Ranked Meta. Sort by how often a name appears. Those are the five on your threatlist, not a vibes list. If Garchomp and Primarina sit at the top, your three needs an Ice or Fairy answer that is not a prayer. Dated snapshot — read the as-of.",
+        example: { slug: "garchomp", caption: "If it is everywhere, write the switch before you queue." },
+      },
+      {
+        title: "Sets are how they actually click",
+        body: "Usage without sets is a name. Manuals show the classroom item, spread, and Never line. Ranked Meta shows common moves and Stat Point piles when we have them. You are looking for the difference between Sitrus Corvi and Helmet Corvi, Specs Primarina and leftover, Archaludon that Electro Shots versus Body Press. That is the knowledge gap.",
+        example: { slug: "primarina", caption: "Moonblast is the name. The item is the set. The set is the preview." },
+      },
+      {
+        title: "Stay a week ahead",
+        body: "When a three gets popular, ladder fills with it. If you already walked the manual — Honest, Scale Sweep, rain — you know the lead, the hole, and the never-leave. That is half the battle. Do not copy a rental you cannot digest in four sentences.",
+        example: { slug: "pelipper", caption: "Rain is on the board. Walk the rain manual before you invent a counter." },
+      },
+      {
+        title: "Then the exam",
+        body: "Keeping up is not a substitute for playing. Ten games, change one thing, review the turn. Manuals are the Champion practicum: load a classroom three, walk the tree, steal the script onto yours.",
+        example: { slug: "whimsicott", caption: "Honest is the exam. Meta is the homework. Review is the habit." },
+      },
+    ],
+    examples: [
+      { slug: "garchomp", caption: "Usage" },
+      { slug: "primarina", caption: "Sets" },
+      { slug: "pelipper", caption: "A three you already studied" },
+    ],
+    viz: "none",
+    relatedManuals: [
+      "balance-whimsicott-corviknight-garchomp",
+      "balance-excadrill-primarina-dragonite",
+      "rain-pelipper-archaludon-basculegion",
     ],
     next: "manuals",
   },

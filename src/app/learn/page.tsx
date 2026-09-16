@@ -7,8 +7,9 @@ export default function LearnIndex() {
   return (
     <div>
       <h1 className="max-w-[12ch] text-4xl font-semibold tracking-tight md:text-5xl">Learn</h1>
-      <p className="mt-4 max-w-[48ch] text-lg text-muted">
-        Four shelves from never-played-competitive to reading a three. Skip any band. Manuals are the exam.
+      <p className="mt-4 max-w-[52ch] text-lg text-muted">
+        Poké Ball to Master Ball for Champions 3v3 singles. Skip any rank. Manuals are the exam. Doubles — pick four,
+        two on the field — is a separate classroom.
       </p>
 
       <div className="mt-14 space-y-16">
@@ -29,20 +30,27 @@ export default function LearnIndex() {
         ))}
       </div>
 
-      <section className="mt-20 grid gap-3 md:grid-cols-3">
+      <section className="mt-20 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <Link
+          href="/learn/doubles"
+          className="block rounded-[28px] border border-line bg-raised/40 p-6 transition hover:bg-raised"
+        >
+          <h2 className="text-xl font-semibold tracking-tight">Doubles</h2>
+          <p className="mt-2 text-sm text-muted">Pick four, two on the field. Perish, dual Mega, pair Protect.</p>
+        </Link>
         <Link
           href="/manuals"
           className="block rounded-[28px] border border-line bg-raised/40 p-6 transition hover:bg-raised"
         >
           <h2 className="text-xl font-semibold tracking-tight">Field manuals</h2>
-          <p className="mt-2 text-sm text-muted">The practicum. If/Then trees on eight classroom threes.</p>
+          <p className="mt-2 text-sm text-muted">The practicum. If/Then trees on classroom threes.</p>
         </Link>
         <Link
           href="/meta"
           className="block rounded-[28px] border border-line bg-raised/40 p-6 transition hover:bg-raised"
         >
           <h2 className="text-xl font-semibold tracking-tight">Ranked Meta</h2>
-          <p className="mt-2 text-sm text-muted">Dated snapshot. What to prepare for after you can read a preview.</p>
+          <p className="mt-2 text-sm text-muted">Dated singles snapshot. Homework after you can read a preview.</p>
         </Link>
         <Link
           href="/glossary"

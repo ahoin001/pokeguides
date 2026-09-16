@@ -14,5 +14,5 @@ export default async function LearnLessonPage({
   const { slug } = await params;
   const lesson = getLesson(slug);
   if (!lesson || LEARN_HUBS.has(lesson.slug)) notFound();
-  return <LessonView lesson={lesson} />;
+  return <LessonView lesson={lesson} track="singles" />;
 }

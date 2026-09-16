@@ -5,5 +5,5 @@ import { LessonView } from "@/components/learn/LessonView";
 export default function ArchetypesLesson() {
   const lesson = getLesson("archetypes");
   if (!lesson) notFound();
-  return <LessonView lesson={lesson} />;
+  return <LessonView lesson={lesson} track="singles" />;
 }

@@ -57,6 +57,16 @@ export const TERMS: GlossaryTerm[] = [
     href: "/learn/moves",
   },
   {
+    t: "Tempo",
+    d: "Who is forcing the next switch. Ahead means they leave. Behind means you leave. Cover two of their options; predict only when you are already behind.",
+    href: "/learn/tempo",
+  },
+  {
+    t: "Covering play",
+    d: "A click that is still correct if they stay and still correct if they switch. Will-O-Wisp into two physicals. U-turn instead of a Triple Axel they can swap on.",
+    href: "/learn/tempo",
+  },
+  {
     t: "Residual",
     d: "Chip that happens without a KO click: Stealth Rock, burn, weather, Life Orb. It pops Multiscale and Sash.",
     href: "/learn/moves",
@@ -134,5 +144,20 @@ export const TERMS: GlossaryTerm[] = [
     t: "Terrain",
     d: "Grassy, Psychic, Electric, or Misty Terrain. Usually set by an ability on entry. Rillaboom is the M-C one that matters.",
     href: "/learn/archetypes/grassy",
+  },
+  {
+    t: "Must-appear",
+    d: "The name both of their modes need. Pelipper on rain. Farigiraf on Trick Room. If it is not coming, the plan is a lie. Plan the lead as if it is.",
+    href: "/learn/preview",
+  },
+  {
+    t: "Positioning",
+    d: "What the wincon is right now. Pivot, Protect, or sacrifice. Count Tailwind, Trick Room, and weather. Steal the field so Electro Shot has to charge.",
+    href: "/learn/positioning",
+  },
+  {
+    t: "Tail Room",
+    d: "Trick Room with a Tailwind backup on the same list. If the room gets Taunted they still race. Read both clocks.",
+    href: "/learn/archetypes",
   },
 ];

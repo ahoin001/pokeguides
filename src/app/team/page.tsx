@@ -2,28 +2,27 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { LayoutGroup, MotionConfig } from "motion/react";
 import { getPokemon } from "@/lib/catalog/load";
-import { cssVars } from "@/lib/champions/palette";
 import { useTeamStore } from "@/stores/team";
-import { PokemonArt } from "@/components/pokemon/PokemonArt";
-import { TypeBadge } from "@/components/pokemon/TypeBadge";
-import { CoverageFlower } from "@/components/viz/CoverageFlower";
-import { SpeedTape } from "@/components/viz/SpeedTape";
 import { PokemonPicker } from "@/components/pokemon/PokemonPicker";
-import { TeamChecklist } from "@/components/team/TeamChecklist";
 import { ManualNotes } from "@/components/manuals/ManualNotes";
 import { TEAM_NOTES_ID } from "@/lib/manuals/field-notes";
 import { VsScout } from "@/components/scout/VsScout";
 import { getCanonicalManual, manualHref } from "@/content/manuals";
 import { useManualsStore } from "@/stores/manuals";
 import { rankedFoesFor } from "@/lib/ranked/foes";
-import type { ArchetypeId, CatalogEntry } from "@/types/pokemon";
-import { LEARN_ROLE_IDS, ROLE_LABEL, roleHref } from "@/content/roles";
-import { ARCHETYPES, ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
-import { readTeam, slotJob } from "@/lib/champions/team-readout";
+import { LEARN_ROLE_IDS } from "@/content/roles";
+import { readTeam } from "@/lib/champions/team-readout";
 import { suggestForTeam } from "@/lib/champions/suggest";
 import { teamChecklist } from "@/lib/champions/team-checklist";
+import { teamThreats } from "@/lib/champions/team-threats";
 import type { ScoutSide } from "@/lib/champions/vs";
+import { BuilderBench } from "@/components/team/BuilderBench";
+import { BuilderAnalysis, type AnalysisTab } from "@/components/team/BuilderAnalysis";
+import { FocusRail } from "@/components/team/FocusRail";
+import { CoachDrawer } from "@/components/team/CoachDrawer";
+import type { CatalogEntry, TypeId } from "@/types/pokemon";
 
 export default function TeamPage() {
   const slugs = useTeamStore((s) => s.slugs);
@@ -32,13 +31,25 @@ export default function TeamPage() {
   const setSlot = useTeamStore((s) => s.setSlot);
   const setIntent = useTeamStore((s) => s.setIntent);
   const localManuals = useManualsStore((s) => s.local);
+
   const [pick, setPick] = useState<number | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(0);
+  const [tab, setTab] = useState<AnalysisTab>("weaknesses");
+  const [weakType, setWeakType] = useState<TypeId | null>(null);
+  const [coachOpen, setCoachOpen] = useState(false);
+  const [scoutRequest, setScoutRequest] = useState<{
+    slug: string;
+    key: number;
+    openOnly?: boolean;
+  } | null>(null);
+
   const playbook = useMemo(() => {
     if (!manualId) return undefined;
     return getCanonicalManual(manualId) ?? localManuals.find((m) => m.id === manualId);
   }, [manualId, localManuals]);
-  const mons = slugs.map((s) => (s ? getPokemon(s) : null));
-  const filled = mons.filter(Boolean) as CatalogEntry[];
+
+  const mons: (CatalogEntry | null)[] = slugs.map((s) => (s ? getPokemon(s) ?? null : null));
+  const filled = mons.filter((p): p is CatalogEntry => Boolean(p));
   const megas = filled.filter((m) => m.form === "mega" || m.form === "mega-z").length;
   const readout = useMemo(() => readTeam(filled, intent), [filled, intent]);
   const activeIntent = intent ?? readout.archetypeId;
@@ -63,6 +74,9 @@ export default function TeamPage() {
     () => suggestForTeam(considering, activeIntent, slugs.filter(Boolean) as string[]),
     [considering, activeIntent, slugs],
   );
+
+  const threats = useMemo(() => teamThreats(filled), [filled]);
+
   const scoutSide: ScoutSide[] = useMemo(
     () =>
       filled.map((p) => {
@@ -76,147 +90,173 @@ export default function TeamPage() {
     [filled, playbook],
   );
 
+  const focusMon =
+    selectedIndex !== null && mons[selectedIndex] ? mons[selectedIndex] : filled[0] ?? null;
+
+  function requestScout(slug: string) {
+    setScoutRequest({ slug, key: Date.now() });
+  }
+
+  function openScoutDock() {
+    setScoutRequest({ slug: "", key: Date.now(), openOnly: true });
+  }
+
+  function selectSlot(index: number) {
+    setSelectedIndex(index);
+  }
+
+  function selectBySlug(slug: string) {
+    const idx = slugs.indexOf(slug);
+    if (idx >= 0) setSelectedIndex(idx);
+  }
+
   return (
-    <div>
-      <h1 className="text-4xl font-semibold tracking-tight">Team</h1>
-      {playbook ? (
-        <p className="mt-2 text-muted">
-          Playing {playbook.title}. This is the bench — the manual is still the coach.{" "}
-          <Link href={manualHref(playbook.id)} className="underline">
-            Open the manual
-          </Link>.
-        </p>
-      ) : (
-        <p className="mt-2 text-muted">
-          Three slots. Species clause. One Mega in battle. They see the list.{" "}
-          <Link href="/manuals" className="underline">
-            Read a field manual
-          </Link>
-          .
-        </p>
-      )}
-      {megas > 1 ? <p className="mt-3 text-sm text-amber-200">Two Megas on the three. Only one can go off.</p> : null}
-
-      <div className="mt-6">
-        <p className="text-xs font-medium uppercase tracking-wide text-muted">Building as</p>
-        <div className="mt-2 flex flex-wrap gap-2">
-          {ARCHETYPES.map((style) => {
-            const on = intent === style.id;
-            return (
-              <button
-                key={style.id}
-                type="button"
-                onClick={() => setIntent(on ? null : (style.id as ArchetypeId))}
-                className={`rounded-full px-3 py-1 text-sm ${on ? "bg-ink text-bg" : "bg-white/5 text-muted"}`}
-              >
-                {style.name}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="mt-8 grid gap-3 md:grid-cols-3">
-        {mons.map((p, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => setPick(i)}
-            className="min-h-36 rounded-3xl border border-line p-4 text-left"
-            style={p ? cssVars(p.palette) : undefined}
-          >
-            {p ? (
-              <>
-                <PokemonArt slug={p.slug} src={p.artwork} name={p.name} share size={96} />
-                <p className="mt-2 font-semibold">{p.name}</p>
-                <div className="mt-1 flex gap-1">
-                  {p.types.map((t) => (
-                    <TypeBadge key={t} type={t} size="sm" />
-                  ))}
-                </div>
-                <p className="mt-2 text-xs text-muted">{ROLE_LABEL[slotJob(p, activeIntent)]}</p>
-              </>
-            ) : (
-              <span className="text-muted">Slot {i + 1}</span>
-            )}
-          </button>
-        ))}
-      </div>
-      <div className="mt-4 flex flex-wrap gap-2 text-sm">
-        {roles.map((r) => (
-          <Link
-            key={r.id}
-            href={roleHref(r.id)}
-            className={`rounded-full px-3 py-1 ${r.on ? "bg-ink text-bg" : "bg-white/5 text-muted"}`}
-          >
-            {ROLE_LABEL[r.id]}
-          </Link>
-        ))}
-      </div>
-      <div className="mt-6 max-w-2xl rounded-3xl border border-line bg-raised/40 p-4">
-        <p className="font-medium">{readout.headline}</p>
-        <p className="mt-1 text-sm text-muted">{readout.detail}</p>
-        {readout.archetypeId ? (
-          <Link href={archetypeHref(readout.archetypeId)} className="mt-3 inline-block text-sm underline">
-            Read {ARCHETYPE_LABEL[readout.archetypeId]}
-          </Link>
-        ) : (
-          <Link href="/learn/archetypes" className="mt-3 inline-block text-sm underline">
-            Find a style that fits
-          </Link>
-        )}
-      </div>
-      {scoutSide.length ? (
-        <VsScout
-          side={scoutSide}
-          lede={
-            playbook
-              ? "Loaded kit from the manual. Search who they have."
-              : "Search who they have. STABs only here — open a field manual for kit clicks."
-          }
-          suggestedFoes={rankedFoesFor(filled.map((p) => p.slug))}
-        />
-      ) : null}
-      <div className="mt-12">
-        <TeamChecklist items={checks} />
-      </div>
-      {filled.length ? (
-        <div className="mt-12 space-y-10">
-          <CoverageFlower teamTypes={filled.map((m) => m.types)} />
-          <SpeedTape mons={filled} />
-        </div>
-      ) : null}
-      <ManualNotes id={TEAM_NOTES_ID} exclude={slugs.filter((s): s is string => Boolean(s))} />
-      {pick !== null ? (
-        <div className="fixed inset-0 z-50 flex items-end bg-black/50 p-4 md:items-center md:justify-center">
-          <div className="w-full max-w-lg rounded-t-3xl bg-raised p-5 md:rounded-3xl">
-            <div className="mb-3 flex justify-between text-sm">
-              <button type="button" onClick={() => setPick(null)} className="text-muted">
-                Close
-              </button>
-              {slugs[pick] ? (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSlot(pick, null);
-                    setPick(null);
-                  }}
-                >
-                  Clear slot
-                </button>
-              ) : null}
+    <MotionConfig reducedMotion="user">
+      <LayoutGroup>
+        <div className="pb-8">
+          <header className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h1 className="text-4xl font-semibold tracking-tight">Team</h1>
+              {playbook ? (
+                <p className="mt-2 max-w-[52ch] text-muted">
+                  Playing {playbook.title}. Bench is the board — the manual is still the coach.{" "}
+                  <Link href={manualHref(playbook.id)} className="underline">
+                    Open the manual
+                  </Link>
+                  .
+                </p>
+              ) : (
+                <p className="mt-2 max-w-[52ch] text-muted">
+                  Three slots. Species clause. One Mega in battle. They see the list.{" "}
+                  <Link href="/manuals" className="underline">
+                    Read a field manual
+                  </Link>
+                  .
+                </p>
+              )}
             </div>
-            <PokemonPicker
-              exclude={slugs.filter(Boolean) as string[]}
-              suggested={suggested}
-              onPick={(slug) => {
-                setSlot(pick, slug);
-                setPick(null);
-              }}
+          </header>
+
+          {megas > 1 ? (
+            <p className="mt-4 text-sm text-amber-200">Two Megas on the three. Only one can go off.</p>
+          ) : null}
+
+          <div className="mt-6">
+            <CoachDrawer
+              open={coachOpen}
+              onToggle={() => setCoachOpen((v) => !v)}
+              intent={intent}
+              onIntent={setIntent}
+              roles={roles}
+              readout={readout}
+              checks={checks}
             />
           </div>
+
+          <div className="mt-8 grid gap-6 lg:gap-8 xl:grid-cols-[minmax(15rem,18rem)_minmax(0,1fr)_minmax(16rem,19rem)]">
+            <div className="order-1">
+              <BuilderBench
+                mons={mons}
+                selectedIndex={selectedIndex}
+                intent={activeIntent}
+                onSelect={selectSlot}
+                onPickSlot={(i) => {
+                  setSelectedIndex(i);
+                  setPick(i);
+                }}
+                onClear={(i) => {
+                  setSlot(i, null);
+                  if (selectedIndex === i) setSelectedIndex(i);
+                }}
+              />
+            </div>
+
+            <div className="order-3 xl:order-2">
+              <BuilderAnalysis
+                tab={tab}
+                onTab={setTab}
+                team={filled}
+                threats={threats}
+                selectedType={weakType}
+                onSelectType={setWeakType}
+                selectedSlug={focusMon?.slug ?? null}
+                onSelectSlug={selectBySlug}
+                onScout={requestScout}
+              />
+            </div>
+
+            <div className="order-2 xl:order-3">
+              <FocusRail
+                mon={focusMon}
+                intent={activeIntent}
+                onOpenScout={openScoutDock}
+                onChangeSlot={() => {
+                  const idx =
+                    selectedIndex !== null
+                      ? selectedIndex
+                      : mons.findIndex((m) => !m);
+                  const target = idx >= 0 ? idx : 0;
+                  setSelectedIndex(target);
+                  setPick(target);
+                }}
+              />
+            </div>
+          </div>
+
+          {scoutSide.length ? (
+            <div className="mt-10">
+              <VsScout
+                side={scoutSide}
+                defaultDocked
+                scoutRequest={scoutRequest}
+                heading="Vs scout"
+                lede={
+                  playbook
+                    ? "Tap a Threat to pin matchups here. Kit clicks come from the manual."
+                    : "Tap a Threat to pin matchups here. STABs only until you load a field manual."
+                }
+                suggestedFoes={rankedFoesFor(filled.map((p) => p.slug))}
+              />
+            </div>
+          ) : null}
+
+          <div className="mt-12">
+            <ManualNotes id={TEAM_NOTES_ID} exclude={slugs.filter((s): s is string => Boolean(s))} />
+          </div>
         </div>
-      ) : null}
-    </div>
+
+        {pick !== null ? (
+          <div className="fixed inset-0 z-50 flex items-end bg-black/50 p-4 md:items-center md:justify-center">
+            <div className="w-full max-w-lg rounded-t-3xl bg-raised p-5 md:rounded-3xl">
+              <div className="mb-3 flex justify-between text-sm">
+                <button type="button" onClick={() => setPick(null)} className="text-muted">
+                  Close
+                </button>
+                {slugs[pick] ? (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSlot(pick, null);
+                      setPick(null);
+                    }}
+                  >
+                    Clear slot
+                  </button>
+                ) : null}
+              </div>
+              <PokemonPicker
+                exclude={slugs.filter(Boolean) as string[]}
+                suggested={suggested}
+                onPick={(slug) => {
+                  setSlot(pick, slug);
+                  setSelectedIndex(pick);
+                  setPick(null);
+                }}
+              />
+            </div>
+          </div>
+        ) : null}
+      </LayoutGroup>
+    </MotionConfig>
   );
 }

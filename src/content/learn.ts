@@ -11,7 +11,7 @@ export type LearnChapter = {
 
 export const LEARN = LESSONS.map((l) => ({
   slug: l.slug,
-  group: l.band === "three" || l.band === "format" ? ("build" as const) : ("play" as const),
+  group: l.band === "poke-ball" || l.band === "ultra-ball" ? ("build" as const) : ("play" as const),
   title: l.title,
   lede: l.thesis,
   body: l.body,

@@ -1,13 +1,33 @@
 import Link from "next/link";
-import { BANDS, getLesson, lessonHref, nextLesson, type Lesson } from "@/content/curriculum";
+import {
+  BANDS,
+  BAND_FIRST,
+  getLesson,
+  lessonHref,
+  nextLesson,
+  type LearnTrack,
+  type Lesson,
+} from "@/content/curriculum";
+import {
+  DOUBLES_BAND_FIRST,
+  DOUBLES_BAND_SKIP,
+  doublesLessonHref,
+  nextDoublesLesson,
+} from "@/content/curriculum-doubles";
 
-export function LessonNav({ lesson }: { lesson: Lesson }) {
-  const next = nextLesson(lesson.slug);
+export function LessonNav({
+  lesson,
+  track = lesson.track ?? "singles",
+}: {
+  lesson: Lesson;
+  track?: LearnTrack;
+}) {
+  const doubles = track === "doubles";
+  const next = doubles ? nextDoublesLesson(lesson.slug) : nextLesson(lesson.slug);
   const band = BANDS.find((b) => b.id === lesson.band);
-  const jumps = BANDS.map((b) => {
-    const first = b.id === "format" ? "the-fight" : b.id === "verbs" ? "abilities" : b.id === "three" ? "jobs" : "preview";
-    return { ...b, href: lessonHref(first) };
-  });
+  const first = doubles ? DOUBLES_BAND_FIRST : BAND_FIRST;
+  const hrefFor = doubles ? doublesLessonHref : lessonHref;
+  const jumps = BANDS.map((b) => ({ ...b, href: hrefFor(first[b.id]) }));
 
   return (
     <nav
@@ -38,7 +58,11 @@ export function LessonNav({ lesson }: { lesson: Lesson }) {
           </Link>
         ) : null}
       </div>
-      {band ? <p className="mt-1 hidden text-[11px] text-muted sm:block">{band.skipIf}</p> : null}
+      {band ? (
+        <p className="mt-1 hidden text-[11px] text-muted sm:block">
+          {doubles ? DOUBLES_BAND_SKIP[band.id] : band.skipIf}
+        </p>
+      ) : null}
     </nav>
   );
 }

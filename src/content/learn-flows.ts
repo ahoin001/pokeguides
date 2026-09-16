@@ -173,6 +173,44 @@ export const LEARN_FLOWS: ManualFlow[] = [
       }),
     ],
   },
+  {
+    id: "tempo",
+    title: "Covering play",
+    lede: "Name what they want. Click the line that still works if they stay and still works if they switch. Predict only when you are already behind.",
+    forks: [
+      q("tp-wisp", "Physical in front, two of their switch-ins also hate burn", {
+        then: "Will-O-Wisp. Covers stay and the physical swap. Torch Song only covers stay.",
+        send: "skeledirge",
+        move: "Will-O-Wisp",
+        why: "A covering click is correct on two of their lines. Super-effective is often correct on one.",
+      }),
+      q("tp-uturn", "You threaten Ice, they might switch to a Fire or a wall", {
+        then: "U-turn. Stay still takes chip. Swap still lets you leave. Triple Axel only covers stay.",
+        send: "meowscarada",
+        move: "U-turn",
+      }),
+      q("tp-dance", "You will not KO, and they can Swords Dance or Moody on this send", {
+        then: "Do not chip. Fake Out and leave, or send the answer. Chip here is a Dance you donated.",
+        send: "incineroar",
+        move: "Fake Out",
+        why: "Kingambit into a resisted knock is a setup turn unless you flinch or leave.",
+      }),
+      q("tp-behind", "You cannot hit what is in front — Corviknight, a wall, a resist", {
+        then: "You are behind. U-turn is forced. If they can pivot too, hard-read the send that hated this slot — your Mega, your cleaner. Wrong means you ate Brave Bird. That is the tax.",
+        send: "corviknight",
+        move: "U-turn",
+      }),
+      q("tp-reset", "You forced the matchup that cannot KO you (Skeledirge vs Corvi, Slack Off vs Body Press)", {
+        then: "Stay and recover. You do not need the KO. Tempo is HP and the bird stuck.",
+        send: "skeledirge",
+        move: "Slack Off",
+      }),
+      q("tp-ahead", "They have to switch, you still threaten", {
+        then: "Do not hero-predict. Click the attack that beats what is in front, or U-turn on your terms. Hard predicts are for when you are behind.",
+        why: "Safe plays win most games. You spend the coin when the safe click keeps you behind.",
+      }),
+    ],
+  },
 ];
 
 export function getLearnFlow(id: string) {

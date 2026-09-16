@@ -48,7 +48,9 @@ export function AbilityCards({ beats }: { beats: LessonBeat[] }) {
               </div>
             </div>
           ) : null}
-          <p className="mt-4 text-[17px] leading-relaxed">{current.body}</p>
+          <p className="mt-4 text-[15px] leading-snug text-muted">
+            {current.takeaway ?? current.example?.caption ?? current.body}
+          </p>
         </div>
       ) : null}
     </div>

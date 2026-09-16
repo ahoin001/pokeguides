@@ -9,6 +9,8 @@ import { LessonViz } from "@/components/learn/LessonViz";
 import { LessonRelated } from "@/components/learn/LessonRelated";
 import { FightClassroom } from "@/components/learn/FightClassroom";
 import { TypesClassroom } from "@/components/learn/TypesClassroom";
+import { AbilitiesClassroom } from "@/components/learn/AbilitiesClassroom";
+import { MovesClassroom } from "@/components/learn/MovesClassroom";
 import { DecisionTree } from "@/components/learn/DecisionTree";
 import { type LearnTrack, type Lesson } from "@/content/curriculum";
 import { LEARN_FLOWS } from "@/content/learn-flows";
@@ -26,6 +28,17 @@ export function LessonView({
     lesson.slug === "moves"
       ? LEARN_FLOWS.filter((f) => f.id === "they-protect" || f.id === "ice-onto-the-kite")
       : [];
+
+  const classroom =
+    lesson.slug === "the-fight" ? (
+      <FightClassroom lesson={lesson} />
+    ) : lesson.slug === "types" ? (
+      <TypesClassroom lesson={lesson} />
+    ) : lesson.slug === "abilities" ? (
+      <AbilitiesClassroom lesson={lesson} />
+    ) : lesson.slug === "moves" ? (
+      <MovesClassroom lesson={lesson} />
+    ) : null;
 
   return (
     <PageFrame
@@ -73,10 +86,8 @@ export function LessonView({
             </p>
           ) : null}
 
-          {lesson.slug === "the-fight" ? (
-            <FightClassroom lesson={lesson} />
-          ) : lesson.slug === "types" ? (
-            <TypesClassroom lesson={lesson} />
+          {classroom ? (
+            classroom
           ) : (
             <>
               <div className="mt-10 max-w-3xl space-y-5 text-[17px] leading-relaxed">

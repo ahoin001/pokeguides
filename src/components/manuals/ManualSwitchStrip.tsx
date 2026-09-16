@@ -1,8 +1,8 @@
 "use client";
 
-import { catalog, getPokemon } from "@/lib/catalog/load";
+import { getPokemon } from "@/lib/catalog/lookup";
 import { TYPE_LABEL } from "@/lib/champions/types";
-import { TYPE_IDS, type TypeId } from "@/types/pokemon";
+import { TYPE_IDS, type CatalogEntry, type TypeId } from "@/types/pokemon";
 import { TypeIcon } from "@/components/pokemon/TypeIcon";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
@@ -19,12 +19,9 @@ function resolveType(into: string): TypeId | undefined {
   return undefined;
 }
 
-function resolveSendMons(send: string) {
+function resolveSendMons(send: string, team: CatalogEntry[]) {
   const head = send.split(/[.—]/)[0] ?? send;
-  const found = catalog.filter((p) => {
-    const name = p.name.toLowerCase();
-    return head.toLowerCase().includes(name);
-  });
+  const found = team.filter((p) => head.toLowerCase().includes(p.name.toLowerCase()));
   found.sort((a, b) => b.name.length - a.name.length);
   const seen = new Set<string>();
   return found.filter((p) => {
@@ -42,7 +39,9 @@ export function ManualSwitchStrip({
   teamSlugs?: string[];
 }) {
   if (!switches.length) return null;
-  const team = teamSlugs.map((s) => getPokemon(s)).filter(Boolean);
+  const team = teamSlugs
+    .map((s) => getPokemon(s))
+    .filter((p): p is CatalogEntry => Boolean(p));
 
   return (
     <section id="switches" className={`mt-8 ${MANUAL_SCROLL_MT}`}>
@@ -54,7 +53,7 @@ export function ManualSwitchStrip({
       <ul className="mt-4 overflow-hidden rounded-[24px] border border-line bg-raised/40">
         {switches.map((row) => {
           const type = resolveType(row.into);
-          let mons = resolveSendMons(row.send);
+          let mons = resolveSendMons(row.send, team);
           if (!mons.length && team.length) {
             mons = team.filter((p) => p && row.send.toLowerCase().includes(p.name.toLowerCase())) as NonNullable<
               (typeof team)[number]

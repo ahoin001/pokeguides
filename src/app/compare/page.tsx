@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { catalog, getPokemon } from "@/lib/catalog/load";
+import { PageFrame } from "@/components/chrome/PageFrame";
+import { getPokemon } from "@/lib/catalog/lookup";
 import { cssVars } from "@/lib/champions/palette";
 import { useCompareStore } from "@/stores/compare";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
@@ -10,6 +11,7 @@ import { StatRadar } from "@/components/viz/StatRadar";
 import { SpeedTape } from "@/components/viz/SpeedTape";
 import { MatchupField } from "@/components/viz/MatchupField";
 import { PokemonPicker } from "@/components/pokemon/PokemonPicker";
+import type { CatalogEntry } from "@/types/pokemon";
 
 export default function ComparePage() {
   const slugs = useCompareStore((s) => s.slugs);
@@ -19,7 +21,7 @@ export default function ComparePage() {
   const mons = useMemo(() => slugs.map((s) => getPokemon(s)).filter(Boolean), [slugs]);
 
   return (
-    <div>
+    <PageFrame variant="tool">
       <h1 className="text-4xl font-semibold tracking-tight">Compare</h1>
       <p className="mt-2 text-muted">Two or three from the catalog. First paint is local.</p>
       <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -54,7 +56,7 @@ export default function ComparePage() {
       </div>
       {mons.length ? (
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
-          <SpeedTape mons={mons as typeof catalog} />
+          <SpeedTape mons={mons as CatalogEntry[]} />
           {mons[0] ? <MatchupField types={mons[0].types} /> : null}
         </div>
       ) : null}
@@ -74,6 +76,6 @@ export default function ComparePage() {
           </div>
         </div>
       ) : null}
-    </div>
+    </PageFrame>
   );
 }

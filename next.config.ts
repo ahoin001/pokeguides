@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: "/usage", destination: "/meta", permanent: true },
+      { source: "/usage/:id", destination: "/meta?mon=:id", permanent: false },
       { source: "/learn/battles", destination: "/learn/preview", permanent: true },
       { source: "/learn/first-team", destination: "/learn/building", permanent: true },
       { source: "/learn/stats", destination: "/learn/speed", permanent: true },

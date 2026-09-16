@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import Link from "next/link";
 import { parseAsString, parseAsStringLiteral, useQueryState } from "nuqs";
+import { PageFrame } from "@/components/chrome/PageFrame";
 import { catalog } from "@/lib/catalog/load";
 import { searchCatalog, sortCatalog, type SortKey } from "@/lib/catalog/search";
 import { PokemonCard } from "@/components/pokemon/PokemonCard";
@@ -30,7 +31,7 @@ export default function PokedexPage() {
   const roleGuide = role ? getRole(role) : undefined;
 
   return (
-    <div>
+    <PageFrame variant="board">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <h1 className="text-4xl font-semibold tracking-tight">Legal roster</h1>
@@ -97,6 +98,6 @@ export default function PokedexPage() {
           <PokemonCard key={p.slug} pokemon={p} job={getEditorial(p.slug)?.job} />
         ))}
       </div>
-    </div>
+    </PageFrame>
   );
 }

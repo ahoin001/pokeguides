@@ -1,8 +1,15 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+  type ReactNode,
+} from "react";
 import { motion, useDragControls } from "motion/react";
-import { CaretDown, CaretUp, DotsSixVertical } from "@phosphor-icons/react";
+import { CaretDown, CaretUp, DotsSixVertical, Crosshair } from "@phosphor-icons/react";
 import { cssVars } from "@/lib/champions/palette";
 import type { ScoutTeamResult } from "@/lib/champions/vs";
 import { motionTokens } from "@/components/motion/tokens";
@@ -11,7 +18,7 @@ import { SpeRaceLegend, VsSpeRace } from "@/components/scout/VsSpeRace";
 import { VsSlotCard } from "@/components/scout/VsSlotCard";
 import type { CatalogEntry } from "@/types/pokemon";
 
-export type DockCorner = "tr" | "br";
+export type DockCorner = "tl" | "tr" | "bl" | "br";
 
 const SIZE_KEY = "ringside-vs-scout-dock-size";
 const MIN_W = 320;
@@ -64,12 +71,39 @@ function writeSize(size: DockSize) {
   }
 }
 
-function cornerFromPoint(y: number): DockCorner {
-  return y < window.innerHeight / 2 ? "tr" : "br";
+export function cornerFromPoint(x: number, y: number): DockCorner {
+  const left = x < window.innerWidth / 2;
+  const top = y < window.innerHeight / 2;
+  if (top && left) return "tl";
+  if (top && !left) return "tr";
+  if (!top && left) return "bl";
+  return "br";
+}
+
+export function isDockCorner(v: string | null): v is DockCorner {
+  return v === "tl" || v === "tr" || v === "bl" || v === "br";
+}
+
+function cornerLabel(c: DockCorner) {
+  switch (c) {
+    case "tl":
+      return "top left";
+    case "tr":
+      return "top right";
+    case "bl":
+      return "bottom left";
+    case "br":
+      return "bottom right";
+  }
 }
 
 function dockPlace(corner: DockCorner) {
-  return corner === "tr" ? "top-3 md:top-[4.75rem]" : "bottom-[4.5rem] md:bottom-6";
+  const y =
+    corner === "tl" || corner === "tr"
+      ? "top-3 md:top-[calc(var(--sticky-shell)+0.75rem)]"
+      : "bottom-[4.5rem] md:bottom-6";
+  const x = corner === "tl" || corner === "bl" ? "left-3 md:left-6" : "right-3 md:right-6";
+  return `${y} ${x}`;
 }
 
 export function VsScoutDock({
@@ -116,7 +150,7 @@ export function VsScoutDock({
   } | null>(null);
 
   const live = dragging ? hoverCorner : corner;
-  const liveLabel = live === "tr" ? "top right" : "bottom right";
+  const liveLabel = cornerLabel(live);
 
   useEffect(() => {
     setSize(readSize());
@@ -147,9 +181,10 @@ export function VsScoutDock({
   const onResizeMove = useCallback((e: PointerEvent) => {
     const job = resizeRef.current;
     if (!job || e.pointerId !== job.pointerId) return;
-    const dx = job.startX - e.clientX; // drag left → wider (right-docked)
-    const dy =
-      job.corner === "tr" ? e.clientY - job.startY : job.startY - e.clientY;
+    const right = job.corner === "tr" || job.corner === "br";
+    const top = job.corner === "tl" || job.corner === "tr";
+    const dx = right ? job.startX - e.clientX : e.clientX - job.startX;
+    const dy = top ? e.clientY - job.startY : job.startY - e.clientY;
     setSize({
       w: clamp(job.startW + dx, MIN_W, maxWidth()),
       h: clamp(job.startH + dy, MIN_H, maxHeight()),
@@ -184,14 +219,105 @@ export function VsScoutDock({
     window.addEventListener("pointercancel", onResizeUp);
   }
 
+  function onKeyMove(e: React.KeyboardEvent) {
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      moveTo(live === "bl" || live === "br" ? (live === "bl" ? "tl" : "tr") : live);
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      moveTo(live === "tl" || live === "tr" ? (live === "tl" ? "bl" : "br") : live);
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      moveTo(live === "tr" || live === "br" ? (live === "tr" ? "tl" : "bl") : live);
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault();
+      moveTo(live === "tl" || live === "bl" ? (live === "tl" ? "tr" : "br") : live);
+    }
+  }
+
   const lift = dragging
     ? "shadow-[0_24px_64px_rgba(0,0,0,0.48)]"
     : "shadow-[0_18px_50px_rgba(0,0,0,0.35)]";
 
+  const place = dockPlace(live);
+
+  // Compact sticky pill when collapsed — always on hand, snaps to corners.
+  if (!dockOpen) {
+    return (
+      <motion.div
+        layout={!dragging}
+        drag
+        dragControls={dragControls}
+        dragListener={false}
+        dragMomentum={false}
+        onDragStart={() => {
+          setDragging(true);
+          setHoverCorner(corner);
+        }}
+        onDrag={(_, info) => setHoverCorner(cornerFromPoint(info.point.x, info.point.y))}
+        onDragEnd={(_, info) => {
+          moveTo(cornerFromPoint(info.point.x, info.point.y));
+          setDragging(false);
+        }}
+        animate={dragging ? undefined : { x: 0, y: 0 }}
+        transition={{
+          type: "spring",
+          stiffness: motionTokens.spring.stiffness,
+          damping: motionTokens.spring.damping,
+        }}
+        className={`fixed z-50 flex max-w-[min(100vw-1.5rem,20rem)] items-center gap-1 rounded-full border border-line bg-bg/95 py-1.5 pl-1.5 pr-2 backdrop-blur-md ${place} ${lift}`}
+      >
+        <button
+          type="button"
+          aria-label={`Move scout pill. Currently ${liveLabel}. Drag, or use arrow keys.`}
+          onPointerDown={(e) => {
+            e.preventDefault();
+            dragControls.start(e);
+          }}
+          onKeyDown={onKeyMove}
+          className={`touch-none rounded-full p-1.5 text-muted hover:bg-white/8 hover:text-ink ${
+            dragging ? "cursor-grabbing" : "cursor-grab"
+          }`}
+        >
+          <DotsSixVertical size={16} weight="bold" />
+        </button>
+        <button
+          type="button"
+          onClick={onToggleOpen}
+          className="flex min-w-0 flex-1 items-center gap-2 rounded-full px-2 py-1 text-left transition hover:bg-white/6"
+        >
+          <Crosshair size={16} weight="bold" className="shrink-0 text-ink" />
+          <span className="min-w-0 truncate text-sm font-medium tracking-tight">
+            {dragging ? `Pin ${liveLabel}` : focusFoe ? focusFoe.name : "Scout"}
+          </span>
+        </button>
+        <button
+          type="button"
+          onClick={onToggleOpen}
+          className="shrink-0 rounded-full bg-ink px-3 py-1 text-xs font-medium text-bg"
+        >
+          Open
+        </button>
+        <span className="sr-only" aria-live="polite">
+          Scout pill pinned to {liveLabel}
+        </span>
+      </motion.div>
+    );
+  }
+
+  const resizeCornerClass =
+    corner === "tr"
+      ? "bottom-1.5 left-1.5 cursor-nesw-resize"
+      : corner === "tl"
+        ? "bottom-1.5 right-1.5 cursor-nwse-resize"
+        : corner === "br"
+          ? "left-1.5 top-1.5 cursor-nwse-resize"
+          : "right-1.5 top-1.5 cursor-nesw-resize";
+
   return (
     <motion.div
       layout={!dragging}
-      drag="y"
+      drag
       dragControls={dragControls}
       dragListener={false}
       dragMomentum={false}
@@ -199,38 +325,34 @@ export function VsScoutDock({
         setDragging(true);
         setHoverCorner(corner);
       }}
-      onDrag={(_, info) => setHoverCorner(cornerFromPoint(info.point.y))}
+      onDrag={(_, info) => setHoverCorner(cornerFromPoint(info.point.x, info.point.y))}
       onDragEnd={(_, info) => {
-        moveTo(cornerFromPoint(info.point.y));
+        moveTo(cornerFromPoint(info.point.x, info.point.y));
         setDragging(false);
       }}
-      animate={dragging ? undefined : { y: 0 }}
-      transition={{ type: "spring", stiffness: motionTokens.spring.stiffness, damping: motionTokens.spring.damping }}
+      animate={dragging ? undefined : { x: 0, y: 0 }}
+      transition={{
+        type: "spring",
+        stiffness: motionTokens.spring.stiffness,
+        damping: motionTokens.spring.damping,
+      }}
       style={{
         width: hydrated ? size.w : undefined,
-        height: dockOpen ? (hydrated ? size.h : undefined) : undefined,
+        height: hydrated ? size.h : undefined,
         maxWidth: "calc(100vw - 1.5rem)",
         maxHeight: "85vh",
       }}
-      className={`fixed inset-x-3 z-50 flex flex-col overflow-hidden rounded-[28px] border border-line bg-bg/95 p-3 backdrop-blur-md md:inset-x-auto md:right-6 md:p-4 ${dockPlace(corner)} ${lift}`}
+      className={`fixed z-50 flex flex-col overflow-hidden rounded-[28px] border border-line bg-bg/95 p-3 backdrop-blur-md md:p-4 ${place} ${lift}`}
     >
       <div className="mb-2 flex shrink-0 items-center gap-1">
         <button
           type="button"
-          aria-label={`Move pinned scout. Currently ${liveLabel}. Drag, or press Arrow Up or Arrow Down.`}
+          aria-label={`Move pinned scout. Currently ${liveLabel}. Drag, or use arrow keys.`}
           onPointerDown={(e) => {
             e.preventDefault();
             dragControls.start(e);
           }}
-          onKeyDown={(e) => {
-            if (e.key === "ArrowUp") {
-              e.preventDefault();
-              moveTo("tr");
-            } else if (e.key === "ArrowDown") {
-              e.preventDefault();
-              moveTo("br");
-            }
-          }}
+          onKeyDown={onKeyMove}
           className={`touch-none rounded-full p-1.5 text-muted hover:bg-white/8 hover:text-ink ${
             dragging ? "cursor-grabbing" : "cursor-grab"
           }`}
@@ -266,64 +388,56 @@ export function VsScoutDock({
           onClick={onToggleOpen}
           className="rounded-full px-3 py-1 text-xs text-muted hover:bg-white/8"
         >
-          {dockOpen ? "Collapse" : "Expand"}
+          Collapse
         </button>
       </div>
 
       <div className="min-h-0 flex-1 space-y-3 overflow-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {!chromeCollapsed ? <div className="space-y-3">{chrome}</div> : null}
 
-        {dockOpen ? (
-          <>
-            <div>
-              <p className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-                Speed legend
-              </p>
-              <SpeRaceLegend compact />
-            </div>
+        <div>
+          <p className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+            Speed legend
+          </p>
+          <SpeRaceLegend compact />
+        </div>
 
-            {focusFoe && focusReport ? (
-              <div className="space-y-3" style={cssVars(focusFoe.palette)}>
-                <SafeSwitchCallout
-                  slug={focusReport.safeSwitchSlug}
-                  holes={focusReport.sharedHoles}
-                  compact
-                />
-                {ourMons.length ? (
-                  <VsSpeRace ours={ourMons} foe={focusFoe} compact showLegend={false} />
-                ) : null}
-                <div className="grid gap-2 sm:grid-cols-3">
-                  {focusReport.slots.map((slot) => (
-                    <VsSlotCard key={slot.slug} result={slot} hasMoves={hasMoves} compact />
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <p className="text-sm text-muted">
-                {chromeCollapsed
-                  ? "Show search to pick an opponent, then expand for the full read."
-                  : "Search an opponent to see speed races and matchups."}
-              </p>
-            )}
-          </>
-        ) : null}
+        {focusFoe && focusReport ? (
+          <div className="space-y-3" style={cssVars(focusFoe.palette)}>
+            <SafeSwitchCallout
+              slug={focusReport.safeSwitchSlug}
+              holes={focusReport.sharedHoles}
+              compact
+            />
+            {ourMons.length ? (
+              <VsSpeRace ours={ourMons} foe={focusFoe} compact showLegend={false} />
+            ) : null}
+            <div className="grid gap-2 sm:grid-cols-3">
+              {focusReport.slots.map((slot) => (
+                <VsSlotCard key={slot.slug} result={slot} hasMoves={hasMoves} compact />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <p className="text-sm text-muted">
+            {chromeCollapsed
+              ? "Show search to pick an opponent."
+              : "Search an opponent to see speed races and matchups."}
+          </p>
+        )}
       </div>
 
-      {dockOpen ? (
-        <button
-          type="button"
-          aria-label="Resize pinned scout"
-          onPointerDown={startResize}
-          className={`absolute z-10 flex h-5 w-5 touch-none items-center justify-center rounded-sm text-muted hover:bg-white/10 hover:text-ink ${
-            corner === "tr" ? "bottom-1.5 left-1.5 cursor-nesw-resize" : "left-1.5 top-1.5 cursor-nwse-resize"
-          }`}
-        >
-          <span
-            aria-hidden
-            className="block h-2.5 w-2.5 border-b-2 border-l-2 border-current opacity-70"
-          />
-        </button>
-      ) : null}
+      <button
+        type="button"
+        aria-label="Resize pinned scout"
+        onPointerDown={startResize}
+        className={`absolute z-10 flex h-5 w-5 touch-none items-center justify-center rounded-sm text-muted hover:bg-white/10 hover:text-ink ${resizeCornerClass}`}
+      >
+        <span
+          aria-hidden
+          className="block h-2.5 w-2.5 border-b-2 border-l-2 border-current opacity-70"
+        />
+      </button>
     </motion.div>
   );
 }

@@ -39,7 +39,13 @@ export function ManualPocket({ manual }: { manual: TeamManual }) {
             {copied === "ok" ? "Copied sets" : copied === "fail" ? "Copy failed" : "Copy sets"}
           </Button>
           {manual.slugs.every(Boolean) ? (
-            <LoadSampleSix slugs={[...manual.slugs]} intent={manual.archetype} stay manualId={manual.id} />
+            <LoadSampleSix
+              slugs={[...manual.slugs]}
+              box={manual.box ? [...manual.box] : undefined}
+              intent={manual.archetype}
+              stay
+              manualId={manual.id}
+            />
           ) : null}
         </div>
       </div>

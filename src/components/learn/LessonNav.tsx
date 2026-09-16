@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { STICKY_LOCAL_BAR } from "@/components/chrome/PageFrame";
 import {
   BANDS,
   BAND_FIRST,
@@ -32,9 +33,10 @@ export function LessonNav({
   return (
     <nav
       aria-label="On this lesson"
-      className="sticky top-0 z-30 -mx-4 -mt-6 border-b border-line/70 bg-bg/90 px-4 py-2 backdrop-blur-md md:top-16 md:-mx-6 md:-mt-10 md:px-6"
+      className={STICKY_LOCAL_BAR}
     >
-      <div className="flex flex-wrap items-center justify-between gap-2">
+      <div className="pointer-events-auto">
+        <div className="flex flex-wrap items-center justify-between gap-2">
         <ul className="flex gap-1.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {jumps.map((j) => {
             const on = j.id === lesson.band;
@@ -63,6 +65,7 @@ export function LessonNav({
           {doubles ? DOUBLES_BAND_SKIP[band.id] : band.skipIf}
         </p>
       ) : null}
+      </div>
     </nav>
   );
 }

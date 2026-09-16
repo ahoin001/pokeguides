@@ -27,7 +27,7 @@ export function BuilderBench({
 }) {
   return (
     <aside className="flex flex-col gap-3">
-      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Bench</p>
+      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Bring three</p>
       <ul className="flex flex-col gap-3">
         {mons.map((p, i) => {
           const selected = selectedIndex === i;

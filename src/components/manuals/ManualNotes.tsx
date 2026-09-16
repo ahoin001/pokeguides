@@ -8,6 +8,7 @@ import { useManualsStore } from "@/stores/manuals";
 import { Button } from "@/components/ui/Button";
 import { FieldNoteCard } from "@/components/manuals/FieldNoteCard";
 import { NoteFoeSearch } from "@/components/manuals/NoteFoeSearch";
+import { STICKY_AFTER_STACK } from "@/components/chrome/PageFrame";
 import { MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
 
@@ -69,7 +70,7 @@ export function ManualNotes({ id, exclude }: { id: string; exclude?: string[] })
         <div
           className={
             sticky
-              ? "sticky top-[4.25rem] z-20 -mx-1 mb-3 bg-bg/90 px-1 py-2 backdrop-blur-md md:top-[8.25rem]"
+              ? `${STICKY_AFTER_STACK} -mx-1 mb-3 bg-bg/90 px-1 py-2 backdrop-blur-md`
               : "mb-3"
           }
         >

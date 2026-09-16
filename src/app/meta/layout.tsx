@@ -1,4 +1,5 @@
 import { Suspense, type ReactNode } from "react";
+import { RankedModeTabs } from "@/components/meta/RankedModeTabs";
 
 function MetaFallback() {
   return (
@@ -10,5 +11,12 @@ function MetaFallback() {
 }
 
 export default function MetaLayout({ children }: { children: ReactNode }) {
-  return <Suspense fallback={<MetaFallback />}>{children}</Suspense>;
+  return (
+    <>
+      <Suspense fallback={null}>
+        <RankedModeTabs />
+      </Suspense>
+      <Suspense fallback={<MetaFallback />}>{children}</Suspense>
+    </>
+  );
 }

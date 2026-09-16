@@ -13,6 +13,15 @@
   --mon-muted: #2a2e38;
   --mon-ink: #f4f1ea;
   --mon-wash: #3f8f5b;
+  --sticky-shell: 0px;
+  --sticky-local: 0px;
+  --sticky-stack: calc(var(--sticky-shell) + var(--sticky-local));
+}
+
+@media (min-width: 768px) {
+  :root {
+    --sticky-shell: 64px;
+  }
 }
 
 @theme inline {

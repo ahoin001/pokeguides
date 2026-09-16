@@ -3,7 +3,7 @@ import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { ARCHETYPE_LABEL } from "@/content/archetypes";
-import { FAMILY_LESSON, MANUAL_FAMILY_LABEL, manualFamily, manualHref, type TeamManual } from "@/content/manuals";
+import { FAMILY_LESSON, MANUAL_FAMILY_LABEL, manualFamily, manualHref, packList, type TeamManual } from "@/content/manuals";
 
 export function ManualCard({
   manual,
@@ -19,7 +19,7 @@ export function ManualCard({
   const never = (manual.pilot?.fail ?? FAMILY_LESSON[manualFamily(manual)].commonFail).trim();
   const lead = manual.slots.find((s) => /lead/i.test(s.role))?.role.trim();
   const pickLine = never || lead;
-  const packCount = manual.packs?.length ?? manual.lineups?.length ?? 0;
+  const packCount = packList(manual).length;
 
   return (
     <Link

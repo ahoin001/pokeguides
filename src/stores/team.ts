@@ -5,9 +5,13 @@ import { persist } from "zustand/middleware";
 import type { ArchetypeId } from "@/types/pokemon";
 
 const EMPTY: (string | null)[] = [null, null, null];
+const EMPTY_BOX: (string | null)[] = [null, null, null, null, null, null];
 
 type TeamState = {
+  /** The three you bring. */
   slugs: (string | null)[];
+  /** Optional registered six from a boxed manual. Empty when sketching a three. */
+  box: (string | null)[];
   intent: ArchetypeId | null;
   /** Canonical or local manual this three was loaded from. Cleared on slot edits. */
   manualId: string | null;
@@ -15,7 +19,12 @@ type TeamState = {
   setIntent: (intent: ArchetypeId | null) => void;
   add: (slug: string) => boolean;
   remove: (slug: string) => void;
-  loadSix: (next: string[], intent?: ArchetypeId | null, manualId?: string | null) => void;
+  loadThree: (
+    next: string[],
+    intent?: ArchetypeId | null,
+    manualId?: string | null,
+    box?: string[],
+  ) => void;
   clear: () => void;
 };
 
@@ -32,6 +41,19 @@ function toThree(next: (string | null)[]) {
   return three;
 }
 
+function toSix(next: (string | null)[]) {
+  const six: (string | null)[] = [null, null, null, null, null, null];
+  const seen = new Set<string>();
+  let i = 0;
+  for (const slug of next) {
+    if (!slug || seen.has(slug) || i >= 6) continue;
+    six[i] = slug;
+    seen.add(slug);
+    i += 1;
+  }
+  return six;
+}
+
 export function sameThree(a: (string | null)[], b: string[]) {
   const left = toThree(a).filter(Boolean) as string[];
   const right = toThree(b).filter(Boolean) as string[];
@@ -43,6 +65,7 @@ export const useTeamStore = create<TeamState>()(
   persist(
     (set, get) => ({
       slugs: EMPTY,
+      box: EMPTY_BOX,
       intent: null,
       manualId: null,
       setSlot: (index, slug) =>
@@ -64,23 +87,30 @@ export const useTeamStore = create<TeamState>()(
       },
       remove: (slug) =>
         set((s) => ({ slugs: toThree(s.slugs.map((x) => (x === slug ? null : x))), manualId: null })),
-      loadSix: (next, intent, manualId) =>
+      loadThree: (next, intent, manualId, box) =>
         set((s) => ({
           slugs: toThree(next),
+          box: box?.length ? toSix(box) : EMPTY_BOX,
           intent: intent === undefined ? s.intent : intent,
           manualId: manualId === undefined ? null : manualId,
         })),
-      clear: () => set({ slugs: EMPTY, intent: null, manualId: null }),
+      clear: () => set({ slugs: EMPTY, box: EMPTY_BOX, intent: null, manualId: null }),
     }),
     {
       name: "ringside-team",
-      version: 4,
+      version: 5,
       migrate: (persisted) => {
         const raw = persisted as
-          | { slugs?: (string | null)[]; intent?: ArchetypeId | null; manualId?: unknown }
+          | {
+              slugs?: (string | null)[];
+              box?: (string | null)[];
+              intent?: ArchetypeId | null;
+              manualId?: unknown;
+            }
           | undefined;
         return {
           slugs: toThree(raw?.slugs ?? []),
+          box: toSix(raw?.box ?? []),
           intent: raw?.intent ?? null,
           manualId: typeof raw?.manualId === "string" ? raw.manualId : null,
         };

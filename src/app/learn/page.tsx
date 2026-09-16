@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { PageFrame } from "@/components/chrome/PageFrame";
 import { getPokemon } from "@/lib/catalog/load";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { BANDS, LESSONS, lessonHref, lessonsByBand } from "@/content/curriculum";
 
 export default function LearnIndex() {
   return (
-    <div>
+    <PageFrame variant="tool">
       <h1 className="max-w-[12ch] text-4xl font-semibold tracking-tight md:text-5xl">Learn</h1>
       <p className="mt-4 max-w-[52ch] text-lg text-muted">
         Poké Ball to Master Ball for Champions 3v3 singles. Skip any rank. Manuals are the exam. Doubles — pick four,
@@ -60,7 +61,7 @@ export default function LearnIndex() {
           <p className="mt-2 text-sm text-muted">Check, counter, never-leave, 50/50. The words other guides use.</p>
         </Link>
       </section>
-    </div>
+    </PageFrame>
   );
 }
 

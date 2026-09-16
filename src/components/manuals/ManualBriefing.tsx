@@ -123,6 +123,9 @@ export function ManualBriefing({ manual }: { manual: TeamManual }) {
         {scoutSide.length ? (
           <VsScout
             side={scoutSide}
+            ourMons={scoutSide
+              .map((s) => getPokemon(s.slug))
+              .filter((p): p is NonNullable<typeof p> => Boolean(p))}
             lede="Search who they previewed — typing and kit before you lead."
             suggestedFoes={rankedFoesFor([...manual.slugs])}
           />

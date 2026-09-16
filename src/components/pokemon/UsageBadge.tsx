@@ -32,7 +32,7 @@ export function UsageBadge({
     return <span className={shell}>{body}</span>;
   }
   return (
-    <Link href={`/usage/${usage.showdownId}`} className={`${shell} transition hover:border-ink/40 hover:text-ink`}>
+    <Link href={`/meta?mon=${usage.showdownId}`} className={`${shell} transition hover:border-ink/40 hover:text-ink`}>
       {body}
     </Link>
   );

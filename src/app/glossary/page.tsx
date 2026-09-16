@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { PageFrame } from "@/components/chrome/PageFrame";
 import { TERMS } from "@/content/glossary";
 
 export default function GlossaryPage() {
   return (
-    <div className="max-w-2xl">
+    <PageFrame variant="reading">
       <h1 className="text-4xl font-semibold tracking-tight">Glossary</h1>
       <p className="mt-3 text-muted">Jobs, styles, and the words other guides use.</p>
       <dl className="mt-10 space-y-8">
@@ -24,6 +25,6 @@ export default function GlossaryPage() {
           </div>
         ))}
       </dl>
-    </div>
+    </PageFrame>
   );
 }

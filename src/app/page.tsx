@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { PageFrame } from "@/components/chrome/PageFrame";
 import { featuredPokemon, getEditorial, regulation } from "@/lib/catalog/load";
 import { PokemonCard } from "@/components/pokemon/PokemonCard";
 
 export default function HomePage() {
   const featured = featuredPokemon().slice(0, 3);
   return (
-    <div className="space-y-16">
+    <PageFrame variant="board" className="space-y-16">
       <section className="grid items-end gap-10 lg:grid-cols-[1.2fr_0.8fr]">
         <div>
           <p className="text-sm text-muted">
@@ -35,8 +36,8 @@ export default function HomePage() {
 
       <section>
         <div className="flex flex-wrap gap-4 text-sm text-muted">
-          <Link href="/usage" className="underline hover:text-ink">
-            Live usage
+          <Link href="/meta" className="underline hover:text-ink">
+            Meta
           </Link>
           <Link href="/regulation">Regulation</Link>
           <Link href="/glossary">Glossary</Link>
@@ -49,6 +50,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-    </div>
+    </PageFrame>
   );
 }

@@ -2,16 +2,32 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Books, House, SquaresFour, UsersThree, ChartLine } from "@phosphor-icons/react";
+import { Books, House, Notebook, SquaresFour, UsersThree } from "@phosphor-icons/react";
 import type { ReactNode } from "react";
 
-const LINKS = [
+const MOBILE = [
   { href: "/", label: "Home", icon: House },
   { href: "/learn", label: "Learn", icon: Books },
   { href: "/pokedex", label: "Dex", icon: SquaresFour },
   { href: "/team", label: "Team", icon: UsersThree },
-  { href: "/usage", label: "Usage", icon: ChartLine },
+  { href: "/manuals", label: "Manuals", icon: Notebook },
 ];
+
+const DESKTOP = [
+  { href: "/learn", label: "Learn" },
+  { href: "/pokedex", label: "Dex" },
+  { href: "/team", label: "Team" },
+  { href: "/meta", label: "Meta" },
+  { href: "/compare", label: "Compare" },
+  { href: "/manuals", label: "Manuals" },
+  { href: "/types", label: "Types" },
+];
+
+function linkOn(path: string, href: string) {
+  if (href === "/") return path === "/";
+  if (href === "/meta") return path.startsWith("/meta") || path.startsWith("/usage");
+  return path.startsWith(href);
+}
 
 export function AppShell({ children }: { children: ReactNode }) {
   const path = usePathname();
@@ -23,27 +39,15 @@ export function AppShell({ children }: { children: ReactNode }) {
             Ringside
           </Link>
           <nav className="flex items-center gap-6 text-sm">
-            {LINKS.slice(1).map((l) => (
+            {DESKTOP.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className={path.startsWith(l.href) ? "text-ink" : "text-muted hover:text-ink"}
+                className={linkOn(path, l.href) ? "text-ink" : "text-muted hover:text-ink"}
               >
                 {l.label}
               </Link>
             ))}
-            <Link href="/meta" className={path.startsWith("/meta") ? "text-ink" : "text-muted hover:text-ink"}>
-              Meta
-            </Link>
-            <Link href="/compare" className={path.startsWith("/compare") ? "text-ink" : "text-muted hover:text-ink"}>
-              Compare
-            </Link>
-            <Link href="/manuals" className={path.startsWith("/manuals") ? "text-ink" : "text-muted hover:text-ink"}>
-              Manuals
-            </Link>
-            <Link href="/types" className={path.startsWith("/types") ? "text-ink" : "text-muted hover:text-ink"}>
-              Types
-            </Link>
           </nav>
         </div>
       </header>
@@ -52,8 +56,8 @@ export function AppShell({ children }: { children: ReactNode }) {
       </main>
       <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-line/70 bg-bg/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-md md:hidden">
         <ul className="grid grid-cols-5">
-          {LINKS.map((l) => {
-            const on = l.href === "/" ? path === "/" : path.startsWith(l.href);
+          {MOBILE.map((l) => {
+            const on = linkOn(path, l.href);
             const Icon = l.icon;
             return (
               <li key={l.href}>

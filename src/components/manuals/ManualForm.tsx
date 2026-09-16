@@ -8,6 +8,7 @@ import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { SlotMatchups } from "@/components/manuals/SlotMatchups";
 import { PokemonPicker } from "@/components/pokemon/PokemonPicker";
 import { Button } from "@/components/ui/Button";
+import { PageFrame } from "@/components/chrome/PageFrame";
 import { ARCHETYPE_IDS } from "@/types/pokemon";
 import type { ArchetypeId, LiteracyRoleId, RoleId } from "@/types/pokemon";
 import { ARCHETYPE_LABEL } from "@/content/archetypes";
@@ -78,10 +79,10 @@ export function ManualForm({
   const exclude = draft.slots.map((s) => s.slug).filter(Boolean);
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <PageFrame variant="reading">
       <h1 className="text-4xl font-semibold tracking-tight">{mode === "create" ? "Write a manual" : "Edit manual"}</h1>
       <p className="mt-3 text-sm text-muted">
-        Singles 3v3. One Pokémon out. If/then trees, not a VGC double lead. This copy stays on this device.
+        Singles 3v3. Author the three you bring. Classroom manuals keep a registered six; this editor does not.
       </p>
 
       <label className="mt-10 block text-sm font-medium">Title</label>
@@ -129,7 +130,7 @@ export function ManualForm({
 
       <PlanList items={draft.plan ?? []} onChange={(plan) => commit({ ...draft, plan })} />
 
-      <h2 className="mt-16 text-2xl font-semibold tracking-tight">Slots</h2>
+      <h2 className="mt-16 text-2xl font-semibold tracking-tight">The three you bring</h2>
       <div className="mt-6 space-y-8">
         {draft.slots.map((slot, i) => {
           const p = slot.slug ? getPokemon(slot.slug) : undefined;
@@ -561,7 +562,7 @@ export function ManualForm({
           </div>
         </div>
       ) : null}
-    </div>
+    </PageFrame>
   );
 
   function updateBranch(pi: number, bi: number, patch: Partial<ManualBranch>) {

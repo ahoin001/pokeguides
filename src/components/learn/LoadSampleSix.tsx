@@ -14,6 +14,7 @@ export function LoadSampleSix({
   intent = null,
   stay = false,
   manualId = null,
+  box,
 }: {
   slugs: string[];
   label?: string;
@@ -21,8 +22,10 @@ export function LoadSampleSix({
   /** Keep the current page open (manuals). Learn still jumps to Team. */
   stay?: boolean;
   manualId?: string | null;
+  /** Optional registered six. Team stays the bring-three. */
+  box?: string[];
 }) {
-  const loadSix = useTeamStore((s) => s.loadSix);
+  const loadThree = useTeamStore((s) => s.loadThree);
   const onTeam = useTeamStore((s) => sameThree(s.slugs, slugs) && (!manualId || s.manualId === manualId));
   const router = useRouter();
   const [justLoaded, setJustLoaded] = useState(false);
@@ -33,7 +36,7 @@ export function LoadSampleSix({
       <Button
         type="button"
         onClick={() => {
-          loadSix(slugs, intent, manualId);
+          loadThree(slugs, intent, manualId, box);
           if (stay) setJustLoaded(true);
           else router.push("/team");
         }}

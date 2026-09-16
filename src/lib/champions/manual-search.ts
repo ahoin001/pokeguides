@@ -3,6 +3,7 @@ import { ARCHETYPE_LABEL } from "@/content/archetypes";
 import {
   MANUAL_FAMILY_LABEL,
   manualFamily,
+  packList,
   type ManualFamilyId,
   type TeamManual,
 } from "@/content/manuals";
@@ -29,7 +30,7 @@ function manualHaystack(manual: TeamManual) {
   const core = manual.slugs.flatMap(monTerms);
   const box = (manual.box ?? []).flatMap(monTerms);
   const roster = (manual.roster ?? []).flatMap((s) => monTerms(s.slug));
-  const packs = manual.packs?.length ? manual.packs : (manual.lineups ?? []);
+  const packs = packList(manual);
   const packMons = packs.flatMap((p) => p.slugs.flatMap(monTerms));
   const packCopy = packs.flatMap((p) => [p.label, p.when, p.identity]);
   return [

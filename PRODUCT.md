@@ -28,4 +28,4 @@ Next.js App Router, TypeScript, Tailwind v4, Motion, TanStack Query, Zustand (ID
 
 ## Open
 
-Brand name may change. Live tournament usage is available via Champions Battle Data (`/usage`) with Next.js fetch revalidation; the teaching meta board remains a committed snapshot refreshed by `npm run sync:ranked`.
+Brand name may change. Ranked meta lives on `/meta` (committed Champions Battle Data snapshot; refresh with `npm run sync:ranked`). `/usage` redirects there.

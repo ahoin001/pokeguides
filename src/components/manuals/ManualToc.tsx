@@ -1,10 +1,18 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { SCROLL_UNDER_STACK, STICKY_LOCAL_BAR } from "@/components/chrome/PageFrame";
 import { flowsFor } from "@/content/classroom-flows";
 import type { TeamManual } from "@/content/manuals";
 
-export const MANUAL_SCROLL_MT = "scroll-mt-[5.5rem] md:scroll-mt-[9.5rem]";
+export const MANUAL_SCROLL_MT = SCROLL_UNDER_STACK;
+
+function stackOffsetPx(node: HTMLElement) {
+  const styles = getComputedStyle(node);
+  const shell = parseFloat(styles.getPropertyValue("--sticky-shell")) || 0;
+  const local = parseFloat(styles.getPropertyValue("--sticky-local")) || 0;
+  return shell + local + 8;
+}
 
 export function manualJumps(manual: TeamManual, boxed = false) {
   const flows = flowsFor(manual);
@@ -39,13 +47,14 @@ export function ManualToc({ manual, boxed = false }: { manual: TeamManual; boxed
 
   useEffect(() => {
     setMounted(true);
+    const nav = document.querySelector<HTMLElement>('[aria-label="On this manual"]');
     const nodes = jumps
       .map((j) => document.getElementById(j.href.slice(1)))
       .filter((el): el is HTMLElement => Boolean(el));
-    if (!nodes.length) return;
+    if (!nodes.length || !nav) return;
 
     const onScroll = () => {
-      const offset = window.matchMedia("(min-width: 768px)").matches ? 160 : 80;
+      const offset = stackOffsetPx(nav);
       let current = jumps[0]?.href ?? "#top";
       for (const el of nodes) {
         if (el.getBoundingClientRect().top - offset <= 0) current = `#${el.id}`;
@@ -61,7 +70,7 @@ export function ManualToc({ manual, boxed = false }: { manual: TeamManual; boxed
   return (
     <nav
       aria-label="On this manual"
-      className="pointer-events-none sticky top-0 z-30 -mx-4 -mt-6 border-b border-line/70 bg-bg/90 px-4 py-2 backdrop-blur-md md:top-16 md:-mx-6 md:-mt-10 md:px-6"
+      className={STICKY_LOCAL_BAR}
     >
       <ul className="pointer-events-auto flex gap-1.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {jumps.map((j) => {

@@ -61,7 +61,7 @@ export default async function PokemonPage({
             <p className="font-mono text-sm text-muted">#{String(pokemon.dexNo).padStart(3, "0")}</p>
             {ranked ? (
               <Link
-                href={`/usage/${ranked.showdownId}`}
+                href={`/meta?mon=${ranked.showdownId}`}
                 className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[11px] text-muted transition hover:border-ink/40 hover:text-ink"
               >
                 Singles #{ranked.rank}
@@ -100,19 +100,18 @@ export default async function PokemonPage({
               </p>
             </div>
             <Link
-              href={`/usage/${ranked!.showdownId}`}
+              href={`/meta?mon=${ranked!.showdownId}`}
               className="rounded-full border border-line px-4 py-2 text-sm transition hover:border-ink/40"
             >
-              Live usage →
+              Open on Meta →
             </Link>
           </div>
           <div className="mt-8">
             <LadderKit
               kit={ladderKit}
-              compact
               teammateHref={(name) => {
                 const hit = rankedByName(name);
-                return hit?.showdownId ? `/usage/${hit.showdownId}` : undefined;
+                return hit?.showdownId ? `/meta?mon=${hit.showdownId}` : undefined;
               }}
             />
           </div>

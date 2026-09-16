@@ -3,6 +3,7 @@
 import { useMemo, type ButtonHTMLAttributes } from "react";
 import Link from "next/link";
 import { parseAsString, parseAsStringLiteral, useQueryState } from "nuqs";
+import { PageFrame } from "@/components/chrome/PageFrame";
 import {
   CANONICAL_MANUALS,
   MANUAL_FAMILY_BLURB,
@@ -103,7 +104,7 @@ export default function ManualsIndex() {
   }
 
   return (
-    <div className="mx-auto w-full">
+    <PageFrame variant="board">
       <header className="max-w-3xl">
         <h1 className="text-4xl font-semibold tracking-tight lg:text-5xl">Field manuals</h1>
         <p className="mt-4 text-lg text-muted">
@@ -219,6 +220,6 @@ export default function ManualsIndex() {
           ask.
         </p>
       )}
-    </div>
+    </PageFrame>
   );
 }

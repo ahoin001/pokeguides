@@ -1,8 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { catalog } from "@/lib/catalog/load";
-import { searchCatalog } from "@/lib/catalog/search";
+import { useEffect, useMemo, useState } from "react";
+import { ensureSearchRoster, searchLegal } from "@/lib/catalog/client-search";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { TypeBadge } from "@/components/pokemon/TypeBadge";
 
@@ -18,13 +17,16 @@ export function NoteFoeSearch({
   onCancel: () => void;
 }) {
   const [q, setQ] = useState("");
-  const results = useMemo(
-    () =>
-      searchCatalog(catalog, q)
-        .filter((p) => !exclude.includes(p.slug))
-        .slice(0, 10),
-    [q, exclude],
-  );
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    void ensureSearchRoster().then(() => setReady(true));
+  }, []);
+
+  const results = useMemo(() => {
+    if (!ready) return [];
+    return searchLegal(q).filter((p) => !exclude.includes(p.slug)).slice(0, 10);
+  }, [q, exclude, ready]);
 
   return (
     <div className="rounded-[24px] border border-line bg-bg/95 p-4">

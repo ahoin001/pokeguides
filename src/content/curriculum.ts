@@ -990,5 +990,4 @@ export function nextLesson(slug: string) {
   return { slug: next.slug, title: next.title, href: lessonHref(next.slug) };
 }
 
-/** Compatibility during migration from LearnChapter. */
 export const LEARN_HUBS = new Set(["roles"]);

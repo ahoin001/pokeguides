@@ -1,23 +1,16 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, LayoutGroup, MotionConfig, motion } from "motion/react";
-import { VsScoutDock, type DockCorner } from "@/components/scout/VsScoutDock";
-import { catalog, getPokemon } from "@/lib/catalog/load";
-import { searchCatalog } from "@/lib/catalog/search";
-import { cssVars } from "@/lib/champions/palette";
+import { AnimatePresence, LayoutGroup, MotionConfig } from "motion/react";
+import { VsScoutDock, type DockCorner, isDockCorner } from "@/components/scout/VsScoutDock";
+import { VsScoutChrome } from "@/components/scout/VsScoutChrome";
+import { VsScoutReport } from "@/components/scout/VsScoutReport";
+import { ensureSearchRoster, pokemonFromSearch, searchLegal } from "@/lib/catalog/client-search";
 import { speBand } from "@/lib/champions/vs-stats";
-import { scoutField, type ScoutFoe, type ScoutSide, type ScoutTeamResult } from "@/lib/champions/vs";
-import { easeOut, motionTokens } from "@/components/motion/tokens";
-import { PokemonArt } from "@/components/pokemon/PokemonArt";
-import { TypeBadge } from "@/components/pokemon/TypeBadge";
+import { scoutField, type ScoutFoe, type ScoutSide } from "@/lib/champions/vs";
+import { STICKY_AFTER_STACK } from "@/components/chrome/PageFrame";
 import { MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
-import { MAX_FOES, VsOpponentTray } from "@/components/scout/VsOpponentTray";
-import { VsStatStrip } from "@/components/scout/VsStatStrip";
-import { VsSpeRace } from "@/components/scout/VsSpeRace";
-import { VsMatchMatrix } from "@/components/scout/VsMatchMatrix";
-import { VsSlotCard } from "@/components/scout/VsSlotCard";
-import { SafeSwitchCallout } from "@/components/scout/SafeSwitchCallout";
+import { MAX_FOES } from "@/components/scout/VsOpponentTray";
 import type { CatalogEntry } from "@/types/pokemon";
 
 const RECENT_KEY = "ringside-vs-scout-recent";
@@ -57,7 +50,9 @@ function readDock(fallback = false): boolean {
 
 function readCorner(): DockCorner {
   try {
-    return sessionStorage.getItem(CORNER_KEY) === "tr" ? "tr" : "br";
+    const raw = sessionStorage.getItem(CORNER_KEY);
+    if (isDockCorner(raw)) return raw;
+    return "br";
   } catch {
     return "br";
   }
@@ -71,6 +66,7 @@ export function VsScout({
   suggestedFoes = [],
   defaultDocked = false,
   scoutRequest = null,
+  ourMons: ourMonsProp,
 }: {
   side: ScoutSide[];
   id?: string;
@@ -81,14 +77,24 @@ export function VsScout({
   defaultDocked?: boolean;
   /** Parent bumps `key` to add/focus a foe and open the dock. `openOnly` pins the dock without adding. */
   scoutRequest?: { slug: string; key: number; openOnly?: boolean } | null;
+  ourMons?: CatalogEntry[];
 }) {
   const exclude = useMemo(() => side.map((s) => s.slug), [side]);
   const excludeKey = exclude.join("|");
   const hasMoves = side.some((s) => (s.moves?.length ?? 0) > 0);
-  const ourMons = useMemo(
-    () => side.map((s) => getPokemon(s.slug)).filter((p): p is NonNullable<typeof p> => Boolean(p)),
-    [side],
-  );
+  const [rosterReady, setRosterReady] = useState(false);
+
+  useEffect(() => {
+    void ensureSearchRoster().then(() => setRosterReady(true));
+  }, []);
+
+  const ourMons = useMemo(() => {
+    if (ourMonsProp?.length) return ourMonsProp;
+    if (!rosterReady) return [];
+    return side
+      .map((s) => pokemonFromSearch(s.slug))
+      .filter((p): p is CatalogEntry => Boolean(p));
+  }, [ourMonsProp, rosterReady, side]);
   const ourSpe = useMemo(() => ourMons.map((m) => speBand(m)), [ourMons]);
 
   const [q, setQ] = useState("");
@@ -98,7 +104,7 @@ export function VsScout({
   const [pickerOpen, setPickerOpen] = useState(false);
   const [hydrated, setHydrated] = useState(false);
   const [docked, setDocked] = useState(false);
-  const [dockOpen, setDockOpen] = useState(true);
+  const [dockOpen, setDockOpen] = useState(false);
   const [chromeCollapsed, setChromeCollapsed] = useState(false);
   const [corner, setCorner] = useState<DockCorner>("br");
   const lastScoutKey = useRef<number | null>(null);
@@ -106,7 +112,7 @@ export function VsScout({
   useEffect(() => {
     const stored = readSlugs(FOES_KEY).filter((s) => !exclude.includes(s)).slice(0, MAX_FOES);
     const rec = readSlugs(RECENT_KEY).filter((s) => !exclude.includes(s));
-    const seed = suggestedFoes.filter((s) => !exclude.includes(s) && getPokemon(s)).slice(0, MAX_FOES);
+    const seed = suggestedFoes.filter((s) => !exclude.includes(s)).slice(0, MAX_FOES);
     const foes = stored.length ? stored : seed;
     setOpponentSlugs(foes);
     setFocusSlug(foes[0] ?? null);
@@ -166,17 +172,18 @@ export function VsScout({
   }, [opponentSlugs, focusSlug]);
 
   const results = useMemo(() => {
-    return searchCatalog(catalog, q)
+    if (!rosterReady) return [];
+    return searchLegal(q)
       .filter((p) => !exclude.includes(p.slug))
       .slice(0, 10);
-  }, [q, exclude]);
+  }, [q, exclude, rosterReady]);
 
   const foes = useMemo(
     () =>
       opponentSlugs
-        .map((s) => getPokemon(s))
-        .filter((p): p is NonNullable<typeof p> => Boolean(p)),
-    [opponentSlugs],
+        .map((s) => pokemonFromSearch(s))
+        .filter((p): p is CatalogEntry => Boolean(p)),
+    [opponentSlugs, rosterReady],
   );
 
   const scoutFoes: ScoutFoe[] = useMemo(
@@ -195,7 +202,7 @@ export function VsScout({
     return scoutField(side, scoutFoes, ourSpe);
   }, [side, scoutFoes, ourSpe]);
 
-  const focusFoe = focusSlug ? getPokemon(focusSlug) : undefined;
+  const focusFoe = focusSlug ? pokemonFromSearch(focusSlug) : undefined;
   const focusIndex = focusSlug ? opponentSlugs.indexOf(focusSlug) : -1;
   const focusReport = field && focusIndex >= 0 ? field.byFoe[focusIndex] : null;
 
@@ -267,108 +274,28 @@ export function VsScout({
   if (!side.length) return null;
 
   const chrome = (
-    <>
-      <VsOpponentTray
-        foes={foes}
-        focusSlug={focusSlug}
-        onFocus={setFocusSlug}
-        onRemove={removeOpponent}
-        onClear={clearOpponents}
-        onTogglePicker={() => setPickerOpen((v) => !v)}
-        pickerOpen={pickerOpen}
-        canAdd={canAdd}
-        docked={docked}
-        onToggleDock={toggleDock}
-      />
-      <AnimatePresence initial={false}>
-        {recent.length && !pickerOpen ? (
-          <motion.ul
-            key="recent"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: motionTokens.state, ease: easeOut }}
-            className="flex flex-wrap gap-2 overflow-hidden px-1"
-          >
-            {recent.map((slug) => {
-              const p = getPokemon(slug);
-              if (!p) return null;
-              const selected = opponentSlugs.includes(slug);
-              const blocked = !selected && !canAdd;
-              return (
-                <li key={slug}>
-                  <button
-                    type="button"
-                    disabled={blocked}
-                    onClick={() => (selected ? setFocusSlug(slug) : addOpponent(slug))}
-                    className={`rounded-full px-3 py-1 text-sm disabled:opacity-40 ${
-                      selected ? "bg-ink text-bg" : "bg-white/6 text-muted hover:bg-white/10"
-                    }`}
-                  >
-                    {p.name}
-                  </button>
-                </li>
-              );
-            })}
-          </motion.ul>
-        ) : null}
-      </AnimatePresence>
-      <AnimatePresence initial={false}>
-        {pickerOpen ? (
-          <motion.div
-            key="picker"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: motionTokens.state, ease: easeOut }}
-            className="rounded-[24px] border border-line bg-bg/95 p-4 backdrop-blur-md"
-          >
-            <input
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder={canAdd ? "Search the legal roster" : "Three selected — remove one to add another"}
-              disabled={!canAdd}
-              className="w-full rounded-2xl border border-line bg-sunken px-4 py-3 text-ink outline-none placeholder:text-muted focus:border-ink/40 disabled:opacity-50"
-              autoFocus
-            />
-            <ul className="mt-2 max-h-56 overflow-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {results.map((p) => {
-                const selected = opponentSlugs.includes(p.slug);
-                const blocked = !selected && !canAdd;
-                return (
-                  <li key={p.slug}>
-                    <button
-                      type="button"
-                      disabled={blocked}
-                      onClick={() => {
-                        if (selected) removeOpponent(p.slug);
-                        else addOpponent(p.slug);
-                      }}
-                      className="flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-left hover:bg-white/5 disabled:opacity-40"
-                    >
-                      <span className="flex items-center gap-3">
-                        <PokemonArt slug={p.slug} src={p.sprite || p.artwork} name={p.name} size={36} />
-                        <span>
-                          {p.name}
-                          {selected ? (
-                            <span className="ml-2 text-xs text-muted">· selected · tap to remove</span>
-                          ) : null}
-                        </span>
-                      </span>
-                      <span className="flex gap-1">
-                        {p.types.map((t) => (
-                          <TypeBadge key={t} type={t} size="sm" />
-                        ))}
-                      </span>
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-    </>
+    <VsScoutChrome
+      foes={foes}
+      focusSlug={focusSlug}
+      onFocus={setFocusSlug}
+      onRemove={removeOpponent}
+      onClear={clearOpponents}
+      pickerOpen={pickerOpen}
+      onTogglePicker={() => setPickerOpen((v) => !v)}
+      canAdd={canAdd}
+      docked={docked}
+      onToggleDock={toggleDock}
+      recent={recent}
+      onPickRecent={(slug, selected) => (selected ? setFocusSlug(slug) : addOpponent(slug))}
+      q={q}
+      onQuery={setQ}
+      results={results}
+      opponentSlugs={opponentSlugs}
+      onToggleResult={(slug, selected) => {
+        if (selected) removeOpponent(slug);
+        else addOpponent(slug);
+      }}
+    />
   );
 
   return (
@@ -379,10 +306,10 @@ export function VsScout({
           {lede ? <p className="mt-2 max-w-[52ch] text-sm text-muted">{lede}</p> : null}
 
           {showDock ? (
-            <p className="mt-5 rounded-[22px] border border-line bg-raised/40 px-4 py-3 text-sm text-muted">
-              Scout pinned.{" "}
+            <p className="mt-5 text-sm text-muted">
+              Scout pinned to a floating pill — drag it to any corner.{" "}
               <button type="button" className="font-medium text-ink underline" onClick={() => setDockOpen(true)}>
-                Open dock
+                Open
               </button>
               {" · "}
               <button type="button" className="font-medium text-ink underline" onClick={toggleDock}>
@@ -390,12 +317,12 @@ export function VsScout({
               </button>
             </p>
           ) : (
-            <div className="sticky top-[3.75rem] z-20 mt-5 space-y-3 md:top-[8rem]">{chrome}</div>
+            <div className={`${STICKY_AFTER_STACK} mt-5 space-y-3`}>{chrome}</div>
           )}
 
           <AnimatePresence mode="wait" initial={false}>
             {foes.length && !showDock ? (
-              <ScoutReport
+              <VsScoutReport
                 multi={foes.length > 1}
                 field={field}
                 opponentSlugs={opponentSlugs}
@@ -432,68 +359,3 @@ export function VsScout({
   );
 }
 
-function ScoutReport({
-  multi,
-  field,
-  opponentSlugs,
-  focusSlug,
-  onFocus,
-  focusFoe,
-  focusReport,
-  ourMons,
-  hasMoves,
-}: {
-  multi: boolean;
-  field: ReturnType<typeof scoutField> | null;
-  opponentSlugs: string[];
-  focusSlug: string | null;
-  onFocus: (slug: string) => void;
-  focusFoe: CatalogEntry | undefined;
-  focusReport: ScoutTeamResult | null;
-  ourMons: CatalogEntry[];
-  hasMoves: boolean;
-}) {
-  return (
-    <motion.div
-      key="report"
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 8 }}
-      transition={{ duration: motionTokens.layout, ease: easeOut }}
-      className="mt-5 space-y-5"
-    >
-      {multi && field ? (
-        <VsMatchMatrix field={field} foeSlugs={opponentSlugs} focusSlug={focusSlug} onFocus={onFocus} />
-      ) : null}
-
-      {focusFoe && focusReport ? (
-        <motion.div
-          key={`detail-${focusFoe.slug}`}
-          layout
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: motionTokens.layout, ease: easeOut }}
-          className="space-y-4"
-          style={cssVars(focusFoe.palette)}
-        >
-          {multi ? (
-            <p className="text-sm">
-              <span className="font-medium">Focused. </span>
-              <span className="text-muted">{focusFoe.name}</span>
-            </p>
-          ) : null}
-
-          <SafeSwitchCallout slug={focusReport.safeSwitchSlug} holes={focusReport.sharedHoles} />
-          <VsStatStrip foe={focusFoe} />
-          {ourMons.length ? <VsSpeRace ours={ourMons} foe={focusFoe} /> : null}
-
-          <div className="grid gap-3 md:grid-cols-3">
-            {focusReport.slots.map((slot) => (
-              <VsSlotCard key={slot.slug} result={slot} hasMoves={hasMoves} />
-            ))}
-          </div>
-        </motion.div>
-      ) : null}
-    </motion.div>
-  );
-}

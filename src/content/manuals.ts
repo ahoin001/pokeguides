@@ -175,9 +175,6 @@ export function resolvePackStrategy(pack: ManualPack): ManualPackStrategy {
   };
 }
 
-/** @deprecated Use ManualPack */
-export type ManualLineup = ManualPack & { slots?: SlotManual[] };
-
 export type TeamManual = {
   id: string;
   title: string;
@@ -213,12 +210,10 @@ export type TeamManual = {
   core?: [string, string, string];
   /** Preview packs — threes drawn from the box. */
   packs?: ManualPack[];
-  /** @deprecated Prefer packs */
-  lineups?: ManualPack[];
 };
 
-function packList(manual: TeamManual): ManualPack[] {
-  return manual.packs?.length ? manual.packs : (manual.lineups ?? []);
+export function packList(manual: TeamManual): ManualPack[] {
+  return manual.packs ?? [];
 }
 
 function slotsForPack(manual: TeamManual, slugs: [string, string, string]): SlotManual[] {
@@ -281,11 +276,6 @@ export function defaultPackId(manual: TeamManual): string | undefined {
     if (match) return match.id;
   }
   return packs[0]?.id;
-}
-
-/** @deprecated Use defaultPackId */
-export function defaultLineupId(manual: TeamManual): string | undefined {
-  return defaultPackId(manual);
 }
 
 export function playLines(howToPlay: string) {

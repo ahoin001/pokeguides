@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { PageFrame } from "@/components/chrome/PageFrame";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
@@ -10,6 +11,7 @@ import {
   MANUAL_FAMILY_LABEL,
   defaultPackId,
   manualFamily,
+  packList,
   resolveManual,
   type TeamManual,
 } from "@/content/manuals";
@@ -28,8 +30,8 @@ import { ManualWalkthrough } from "@/components/manuals/ManualWalkthrough";
 import { ManualLineup } from "@/components/manuals/ManualPreviewBar";
 
 function packForSlug(parent: TeamManual, slug: string): string | undefined {
-  const packs = parent.packs?.length ? parent.packs : parent.lineups;
-  if (!packs?.length) return undefined;
+  const packs = packList(parent);
+  if (!packs.length) return undefined;
   const corePack = packs.find((p) => p.id === "core") ?? packs[0];
   const coreSet = new Set(parent.core ?? corePack?.slugs ?? []);
   if (!coreSet.has(slug)) {
@@ -46,8 +48,8 @@ export function ManualView({
   sourced: "canonical" | "local";
 }) {
   const [packId, setPackId] = useState(() => defaultPackId(parent) ?? "");
-  const packs = parent.packs?.length ? parent.packs : parent.lineups;
-  const activeId = packId && packs?.some((p) => p.id === packId) ? packId : defaultPackId(parent) ?? "";
+  const packs = packList(parent);
+  const activeId = packId && packs.some((p) => p.id === packId) ? packId : defaultPackId(parent) ?? "";
   const manual = resolveManual(parent, activeId || undefined);
 
   const mons = manual.slugs.map((s) => (s ? getPokemon(s) : undefined));
@@ -74,7 +76,8 @@ export function ManualView({
   const boxed = Boolean(box?.length && packs?.length && roster?.length && core);
 
   return (
-    <article className="mx-auto w-full" style={wash ? cssVars(wash.palette) : undefined}>
+    <PageFrame variant="board" sticky="local" style={wash ? cssVars(wash.palette) : undefined}>
+      <article>
       <ManualToc manual={manual} boxed={boxed} />
 
       <header id="top" className={`${MANUAL_SCROLL_MT} max-w-3xl`}>
@@ -176,6 +179,7 @@ export function ManualView({
 
         <ManualInsights victims={victims} counters={counters} advantages={advantages} hazards={hazards} />
       </div>
-    </article>
+      </article>
+    </PageFrame>
   );
 }

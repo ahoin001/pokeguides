@@ -1,8 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { catalog } from "@/lib/catalog/load";
-import { searchCatalog } from "@/lib/catalog/search";
+import { useEffect, useMemo, useState } from "react";
+import { ensureSearchRoster, searchLegal } from "@/lib/catalog/client-search";
 import { usageForSlug } from "@/lib/ranked/usage-client";
 import { TypeBadge } from "./TypeBadge";
 import { ROLE_LABEL } from "@/content/roles";
@@ -20,9 +19,16 @@ export function PokemonPicker({
   autoFocus?: boolean;
 }) {
   const [q, setQ] = useState("");
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    void ensureSearchRoster().then(() => setReady(true));
+  }, []);
+
   const results = useMemo(() => {
-    return searchCatalog(catalog, q).filter((p) => !exclude.includes(p.slug)).slice(0, 12);
-  }, [q, exclude]);
+    if (!ready) return [];
+    return searchLegal(q).filter((p) => !exclude.includes(p.slug)).slice(0, 12);
+  }, [q, exclude, ready]);
 
   const shown = suggested.filter((s) => !exclude.includes(s.pokemon.slug));
 

@@ -170,6 +170,26 @@
     "kit": "Thunderbolt, Fake Out, Nuzzle, Protect"
   },
   {
+    "slug": "raichu-mega-x",
+    "job": "Electric Surge Mega. Physical punch with terrain on the stone.",
+    "role": "mega",
+    "partners": ["garchomp", "whimsicott", "incineroar"],
+    "checks": ["ground"],
+    "checkedBy": ["garchomp", "clodsire", "excadrill"],
+    "sampleSp": { "hp": 4, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 30 },
+    "kit": "Wild Charge, Volt Tackle, Knock Off, Protect"
+  },
+  {
+    "slug": "raichu-mega-y",
+    "job": "No Guard Mega. Special Electric that never misses under the stone.",
+    "role": "mega",
+    "partners": ["whimsicott", "gholdengo", "incineroar"],
+    "checks": ["ground"],
+    "checkedBy": ["garchomp", "clodsire", "excadrill"],
+    "sampleSp": { "hp": 4, "atk": 0, "def": 0, "spa": 32, "spd": 0, "spe": 30 },
+    "kit": "Thunder, Thunderbolt, Focus Blast, Protect"
+  },
+  {
     "slug": "cinderace",
     "job": "Libero attacker new to M-C. It picks a type and commits.",
     "role": "breaker",

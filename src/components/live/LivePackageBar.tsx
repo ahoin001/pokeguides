@@ -6,6 +6,7 @@ import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { useTeamStore } from "@/stores/team";
 import { useLiveMatchStore } from "@/stores/live-match";
+import { LiveBringPresets } from "@/components/live/LiveBringPresets";
 
 /** Registered six → tap to toggle into the bring three. */
 export function LivePackageBar() {
@@ -27,7 +28,6 @@ export function LivePackageBar() {
       return;
     }
     if (!add(slug)) {
-      // Full — swap out first slot
       const first = slugs.find(Boolean);
       if (first) remove(first);
       add(slug);
@@ -36,7 +36,7 @@ export function LivePackageBar() {
 
   return (
     <div className="space-y-3">
-      <div className="flex flex-wrap items-end justify-between gap-2">
+      <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
             Your package
@@ -45,9 +45,12 @@ export function LivePackageBar() {
             Bring {bringFilled.length}/3
           </h2>
         </div>
-        <Link href="/team" className="text-xs text-muted underline hover:text-ink">
-          Edit on Team
-        </Link>
+        <div className="flex flex-wrap items-center gap-3">
+          <LiveBringPresets />
+          <Link href="/team" className="text-xs text-muted underline hover:text-ink">
+            Edit on Team
+          </Link>
+        </div>
       </div>
 
       {!roster.length ? (

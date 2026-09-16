@@ -1,4 +1,5 @@
 import type { ArchetypeSlot } from "@/content/archetypes";
+import { MOVE_SHEET_LESSONS } from "@/content/move-sheets";
 
 export type LearnTrack = "singles" | "doubles";
 
@@ -34,7 +35,25 @@ export type LessonBeat = {
   examples?: LessonExample[];
   /** Compact labeled rows — priority lists, compare strips, etc. */
   rows?: { label: string; detail: string }[];
+  /** Short badge on move sheets — "+3", "Burn", "Field". */
+  tag?: string;
 };
+
+/** Great Ball move-reference pages — verbs first, users second. */
+export const MOVE_SHEET_SLUGS = [
+  "moves",
+  "status-moves",
+  "field-moves",
+  "boost-moves",
+  "pivot-moves",
+  "defense-moves",
+] as const;
+
+export type MoveSheetSlug = (typeof MOVE_SHEET_SLUGS)[number];
+
+export function isMoveSheet(slug: string): slug is MoveSheetSlug {
+  return (MOVE_SHEET_SLUGS as readonly string[]).includes(slug);
+}
 
 export type LessonRule = {
   label: string;
@@ -68,7 +87,7 @@ export const BANDS: { id: LessonBand; title: string; skipIf: string }[] = [
   {
     id: "great-ball",
     title: "Great Ball",
-    skipIf: "Skip if Fake Out, 66 SP, Speed races, and jobs already click.",
+    skipIf: "Skip if priority, status, field, boosts, pivots, defense, 66 SP, and jobs already click.",
   },
   {
     id: "ultra-ball",
@@ -370,122 +389,7 @@ export const LESSONS: Lesson[] = [
     ],
     next: "moves",
   },
-  {
-    slug: "moves",
-    band: "great-ball",
-    title: "Moves that steal turns",
-    thesis: "Fake Out, Protect, U-turn, Dance, rocks, priority. Each one is a sentence, not a slot filler.",
-    skipIf: "Skip if you already know when not to Sucker Punch into Protect.",
-    body: [
-      "In singles these cost your turn. There is no partner Fake Out. Protect is a scout and a Sucker Punch stall — not leftover farming. U-turn is how you leave without donating a hit.",
-      "Click the move that covers two of their answers. A covering U-turn or Will-O-Wisp is often better than the heroic Triple Axel that only works if they stay.",
-    ],
-    rules: [
-      { label: "Fake Out", detail: "+3 flinch, once per send. Ghost immune. Protect wastes it." },
-      { label: "Protect", detail: "+4. Scout coverage, stall Sucker Punch. Consecutive can fail." },
-      { label: "Pivot", detail: "U-turn and Parting Shot leave on your terms. Hard switch donates a hit." },
-      { label: "Setup", detail: "Dance needs a free turn — Disguise, Intimidate, or a KO." },
-      { label: "Priority", detail: "Sucker Punch, Extreme Speed, Aqua Jet win races you already lost." },
-      { label: "Status", detail: "Wisp, Thunder Wave, Taunt buy the cleaner a turn." },
-    ],
-    beats: [
-      {
-        title: "Fake Out",
-        body: "Priority +3, flinch, once per send. Ghost is immune. Armor Tail blanks it. Protect wastes the turn. After a KO they can Fake Out again on the next send — the verb resets. Incineroar is the format’s Fake Out; the flinch is how the cat opens the clock or the pivot.",
-        takeaway: "If Fake Out is on their list, your lead either eats it (Ghost, Armor Tail) or plans around the flinch.",
-        rows: [
-          { label: "Uses it", detail: "Incineroar — then Parting Shot or Flare Blitz." },
-          { label: "Also", detail: "Rillaboom and other +3 users. Same once-per-send rule." },
-          { label: "Blank", detail: "Ghost, Armor Tail, Protect, Substitute." },
-        ],
-        example: { slug: "incineroar", caption: "The format’s Fake Out. Then leave or Blitz." },
-        examples: [
-          { slug: "incineroar", caption: "Fake Out + Parting Shot" },
-          { slug: "rillaboom", caption: "Fake Out in Grassy" },
-        ],
-      },
-      {
-        title: "Protect",
-        body: "Priority +4. Scout a coverage move, stall Sucker Punch, burn a Choice lock. Consecutive Protect can fail — do not chain it as a habit. Clicking Protect to farm HP against a wall donates a free switch. Protect into Ice or Fairy on Garchomp is information; Protect into a passive wall is a wasted KO window.",
-        takeaway: "Protect is a question. If you already know the answer, attack.",
-        rows: [
-          { label: "Scout", detail: "See if they have Ice, Fairy, or coverage this turn." },
-          { label: "Stall", detail: "Sucker Punch fails into Protect. Choice locks waste a turn." },
-          { label: "Fail", detail: "Back-to-back Protect can miss. Do not loop it." },
-        ],
-        example: { slug: "garchomp", caption: "Protect into Ice/Fairy is a scout." },
-      },
-      {
-        title: "U-turn and Parting Shot",
-        body: "Momentum. You leave on your terms. Hard switching is a turn they attack whoever comes in. Parting Shot is −1 Attack and Special Attack, then you leave — they hit the cat, Garchomp is in. U-turn is the covering click: if they stay you still damage, if they switch you still leave. Meowscarada Triple Axel into a Ground wall that might be Volcarona is a coin. U-turn covers both.",
-        takeaway: "If two switch-ins hate different clicks, pivot. Do not donate a free hit with a hard switch.",
-        rows: [
-          { label: "U-turn", detail: "Meowscarada, Corviknight — damage and leave." },
-          { label: "Parting Shot", detail: "Incineroar — drop both offenses, then leave." },
-          { label: "Covering", detail: "U-turn when stay and swap both need an answer." },
-        ],
-        example: { slug: "meowscarada", caption: "U-turn covers stay and swap. Triple Axel only covers stay." },
-        examples: [
-          { slug: "meowscarada", caption: "Covering U-turn" },
-          { slug: "corviknight", caption: "Pivot shield" },
-          { slug: "incineroar", caption: "Parting Shot" },
-        ],
-      },
-      {
-        title: "Dance, rocks, priority",
-        body: "Swords Dance, Dragon Dance, Calm Mind need a free turn — Disguise, Intimidate, or a KO. Stealth Rock taxes every switch and pops Multiscale; on a three that is still real — do not pivot through rocks just to feel busy. Burn and Life Orb chip the same way. Sucker Punch, Extreme Speed, Aqua Jet win races you already lost. Kingambit that is faster and low will Sucker Punch. Roost or Thunder Wave is the outplay if you outspeed and they must click it.",
-        takeaway: "Setup without a free turn is a donation. Priority without a race you lose is a dead slot.",
-        rows: [
-          { label: "Setup", detail: "Mimikyu Dance behind Disguise. Kingambit behind a KO." },
-          { label: "Rocks", detail: "Tax switches. Pop Multiscale. Chip the whole three." },
-          { label: "Priority", detail: "Kingambit Sucker Punch. Dragonite Extreme Speed." },
-        ],
-        example: { slug: "kingambit", caption: "Sucker Punch fails into Protect, status, and faster priority." },
-        examples: [
-          { slug: "kingambit", caption: "Sucker Punch / Dance" },
-          { slug: "dragonite", caption: "Extreme Speed" },
-          { slug: "gholdengo", caption: "Make It Rain after rocks" },
-        ],
-      },
-      {
-        title: "Status is tempo",
-        body: "Will-O-Wisp halves Attack. Thunder Wave cuts Speed. Taunt shuts Trick Room and Tailwind. Burn and para are not chip for its own sake — they buy the cleaner a turn. Wisp is the covering status: if they stay on a physical, Attack dies; if they switch to another physical, you still burn the slot that came in. Click it when two of their answers hate the burn.",
-        takeaway: "Status that covers two switch-ins is a preview click. Status that only works if they stay is a coin.",
-        rows: [
-          { label: "Will-O-Wisp", detail: "Skeledirge — burn physical answers on stay or swap." },
-          { label: "Thunder Wave", detail: "Speed control when you lose the race." },
-          { label: "Taunt", detail: "Shut Trick Room, Tailwind, and Slack Off turns." },
-        ],
-        example: { slug: "skeledirge", caption: "Wisp into a Ground wall that might be Garchomp." },
-      },
-      {
-        title: "Once-per-item",
-        body: "Poltergeist hits the held item. After that, that target has no item for Poltergeist to grab. Ceruledge that already Poltergeisted you cannot do it again on the same target. Play the second turn as if the nuke is gone. Same family as Fake Out once per send — the verb expired.",
-        takeaway: "Once-per verbs reset on KO or new send for Fake Out. Poltergeist is spent on that item forever.",
-        rows: [
-          { label: "Poltergeist", detail: "Ceruledge — one nuke per item. Then Slack Off / Bitter Blade." },
-          { label: "Fake Out", detail: "Resets when they leave and come back." },
-        ],
-        example: { slug: "ceruledge", caption: "Poltergeist once. The item is already spent." },
-      },
-    ],
-    examples: [
-      { slug: "incineroar", caption: "Fake Out, Parting Shot" },
-      { slug: "meowscarada", caption: "U-turn covers both" },
-      { slug: "skeledirge", caption: "Wisp covers two switch-ins" },
-      { slug: "kingambit", caption: "Sucker Punch, Swords Dance" },
-      { slug: "garchomp", caption: "Protect as scout" },
-      { slug: "corviknight", caption: "U-turn pivot" },
-    ],
-    viz: "flowchart",
-    flowId: "they-fake-out",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
-    next: "training",
-  },
+  ...MOVE_SHEET_LESSONS,
   {
     slug: "training",
     band: "great-ball",

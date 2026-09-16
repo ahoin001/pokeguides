@@ -171,6 +171,21 @@ export function offensiveCoverage(attack: TypeId) {
   return { superEffective, resisted, immune };
 }
 
+/** Types either of these STABs hit for 2× (deduped). */
+export function offensiveMatchup(attackTypes: readonly TypeId[]) {
+  const strong: TypeId[] = [];
+  const seen = new Set<TypeId>();
+  for (const attack of attackTypes) {
+    for (const defend of TYPE_IDS) {
+      if (attackMultiplier(attack, defend) > 1 && !seen.has(defend)) {
+        seen.add(defend);
+        strong.push(defend);
+      }
+    }
+  }
+  return { strong };
+}
+
 export function defensiveMatchup(defendTypes: readonly TypeId[]) {
   const weak: { type: TypeId; mult: number }[] = [];
   const resist: { type: TypeId; mult: number }[] = [];

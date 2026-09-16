@@ -1,11 +1,18 @@
-import { TYPE_LABEL, defensiveMatchup } from "@/lib/champions/types";
+import { TYPE_LABEL, defensiveMatchup, offensiveMatchup } from "@/lib/champions/types";
 import type { TypeId } from "@/types/pokemon";
 import { TypeIcon } from "@/components/pokemon/TypeIcon";
 
 export function MatchupField({ types }: { types: readonly TypeId[] }) {
   const { weak, resist, immune } = defensiveMatchup(types);
+  const { strong } = offensiveMatchup(types);
   return (
-    <div className="grid gap-6 md:grid-cols-3">
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <Group
+        title="Strong against"
+        tone="hit"
+        items={strong.map((type) => ({ type, note: "2×" }))}
+        empty="No super-effective STAB"
+      />
       <Group
         title="Hits this hard"
         tone="rose"
@@ -38,9 +45,16 @@ function Group({
   items: { type: TypeId; note?: string }[];
   empty?: string;
   slash?: boolean;
-  tone: "rose" | "mute" | "slash";
+  tone: "hit" | "rose" | "mute" | "slash";
 }) {
-  const rail = tone === "rose" ? "#e23d7a" : tone === "slash" ? "#f4f1ea" : "#8b90a0";
+  const rail =
+    tone === "hit"
+      ? "#5b8def"
+      : tone === "rose"
+        ? "#e23d7a"
+        : tone === "slash"
+          ? "#f4f1ea"
+          : "#8b90a0";
   return (
     <div>
       <h3 className="flex items-center gap-2 text-sm text-muted">

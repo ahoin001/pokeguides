@@ -26,6 +26,8 @@ const ALIAS: Record<string, string> = {
   floetteeternal: "floette-eternal",
   floetteeternalflower: "floette-eternal",
   staraptormega: "staraptor-mega",
+  raichumegax: "raichu-mega-x",
+  raichumegay: "raichu-mega-y",
 };
 
 type BattleTop = {

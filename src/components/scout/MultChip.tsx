@@ -44,7 +44,7 @@ export function MultChip({
       style={{ background: tone.fill, color: tone.ink }}
     >
       {label ? (
-        <span className={`max-w-[10ch] truncate font-sans font-medium ${large ? "text-xs" : "text-[10px]"}`}>
+        <span className={`max-w-[14ch] truncate font-sans font-medium ${large ? "text-xs" : "text-[10px]"}`}>
           {label}
         </span>
       ) : null}

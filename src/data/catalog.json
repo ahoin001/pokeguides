@@ -139,7 +139,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 18
+    "usageRank": 19
   },
   {
     "id": 10034,
@@ -280,7 +280,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 37
+    "usageRank": 31
   },
   {
     "id": 10036,
@@ -427,7 +427,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 155
+    "usageRank": 152
   },
   {
     "id": 10073,
@@ -524,7 +524,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 224
+    "usageRank": 228
   },
   {
     "id": 25,
@@ -572,7 +572,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 169
+    "usageRank": 171
   },
   {
     "id": 26,
@@ -621,7 +621,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 41
+    "usageRank": 40
   },
   {
     "id": 10100,
@@ -669,7 +669,101 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 192
+    "usageRank": 194
+  },
+  {
+    "id": 10304,
+    "slug": "raichu-mega-x",
+    "name": "Mega Raichu X",
+    "dexNo": 26,
+    "types": [
+      "electric"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "role": "mega",
+    "stats": {
+      "hp": 60,
+      "atk": 135,
+      "def": 95,
+      "spa": 90,
+      "spd": 95,
+      "spe": 110,
+      "bst": 585
+    },
+    "speedAt0": 130,
+    "speedAt32": 162,
+    "abilities": [
+      "electric surge"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10304.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10304.png",
+    "tokens": "mega raichu x raichu-mega-x electric electric surge yellow pivot priority setup recovery status",
+    "speciesColor": "yellow",
+    "palette": {
+      "dominant": "#aa8445",
+      "vibrant": "#d0a050",
+      "muted": "#7e653d",
+      "ink": "#12141a",
+      "wash": "#d0a050",
+      "source": "species-fallback"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10305,
+    "slug": "raichu-mega-y",
+    "name": "Mega Raichu Y",
+    "dexNo": 26,
+    "types": [
+      "electric"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "role": "mega",
+    "stats": {
+      "hp": 60,
+      "atk": 100,
+      "def": 55,
+      "spa": 160,
+      "spd": 80,
+      "spe": 130,
+      "bst": 585
+    },
+    "speedAt0": 150,
+    "speedAt32": 182,
+    "abilities": [
+      "no guard"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10305.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10305.png",
+    "tokens": "mega raichu y raichu-mega-y electric no guard yellow pivot priority setup recovery status",
+    "speciesColor": "yellow",
+    "palette": {
+      "dominant": "#aa8445",
+      "vibrant": "#d0a050",
+      "muted": "#7e653d",
+      "ink": "#12141a",
+      "wash": "#d0a050",
+      "source": "species-fallback"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 36,
@@ -718,7 +812,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 47
+    "usageRank": 45
   },
   {
     "id": 38,
@@ -813,7 +907,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 20
+    "usageRank": 23
   },
   {
     "id": 40,
@@ -863,7 +957,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 150
+    "usageRank": 154
   },
   {
     "id": 53,
@@ -912,7 +1006,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 245
+    "usageRank": 244
   },
   {
     "id": 10108,
@@ -961,7 +1055,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 105
+    "usageRank": 108
   },
   {
     "id": 59,
@@ -1010,7 +1104,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 125
+    "usageRank": 126
   },
   {
     "id": 65,
@@ -1059,7 +1153,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 103
+    "usageRank": 98
   },
   {
     "id": 80,
@@ -1109,7 +1203,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 101
+    "usageRank": 103
   },
   {
     "id": 83,
@@ -1160,7 +1254,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 207
+    "usageRank": 214
   },
   {
     "id": 94,
@@ -1209,7 +1303,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 35
+    "usageRank": 36
   },
   {
     "id": 10038,
@@ -1305,7 +1399,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 96
+    "usageRank": 97
   },
   {
     "id": 10039,
@@ -1401,7 +1495,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 66
+    "usageRank": 67
   },
   {
     "id": 122,
@@ -1452,7 +1546,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 209
+    "usageRank": 205
   },
   {
     "id": 130,
@@ -1592,7 +1686,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 79
+    "usageRank": 82
   },
   {
     "id": 135,
@@ -1640,7 +1734,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 189
+    "usageRank": 179
   },
   {
     "id": 142,
@@ -1737,7 +1831,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 68
+    "usageRank": 70
   },
   {
     "id": 149,
@@ -1833,7 +1927,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 204
+    "usageRank": 208
   },
   {
     "id": 168,
@@ -1883,7 +1977,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 213
+    "usageRank": 209
   },
   {
     "id": 181,
@@ -1930,7 +2024,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 178
+    "usageRank": 176
   },
   {
     "id": 184,
@@ -1979,7 +2073,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 90
+    "usageRank": 92
   },
   {
     "id": 186,
@@ -2025,7 +2119,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 83
+    "usageRank": 89
   },
   {
     "id": 197,
@@ -2072,7 +2166,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 40
+    "usageRank": 41
   },
   {
     "id": 199,
@@ -2121,7 +2215,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 120
+    "usageRank": 124
   },
   {
     "id": 208,
@@ -2170,7 +2264,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 181
+    "usageRank": 178
   },
   {
     "id": 212,
@@ -2269,7 +2363,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 55
+    "usageRank": 54
   },
   {
     "id": 254,
@@ -2654,7 +2748,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 52
+    "usageRank": 53
   },
   {
     "id": 282,
@@ -2705,7 +2799,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 86
+    "usageRank": 84
   },
   {
     "id": 10051,
@@ -2802,7 +2896,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 77
+    "usageRank": 76
   },
   {
     "id": 303,
@@ -2852,7 +2946,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 61
+    "usageRank": 60
   },
   {
     "id": 10052,
@@ -2948,7 +3042,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 123
+    "usageRank": 122
   },
   {
     "id": 308,
@@ -2997,7 +3091,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 185
+    "usageRank": 183
   },
   {
     "id": 317,
@@ -3094,7 +3188,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 235
+    "usageRank": 236
   },
   {
     "id": 324,
@@ -3142,7 +3236,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 116
+    "usageRank": 121
   },
   {
     "id": 334,
@@ -3190,7 +3284,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 126
+    "usageRank": 125
   },
   {
     "id": 10067,
@@ -3379,7 +3473,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 46
+    "usageRank": 48
   },
   {
     "id": 373,
@@ -3523,7 +3617,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 29
+    "usageRank": 27
   },
   {
     "id": 10076,
@@ -3670,7 +3764,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 54
+    "usageRank": 52
   },
   {
     "id": 10308,
@@ -3767,7 +3861,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 173
+    "usageRank": 172
   },
   {
     "id": 409,
@@ -3814,7 +3908,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 243
+    "usageRank": 238
   },
   {
     "id": 411,
@@ -3862,7 +3956,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 205
+    "usageRank": 202
   },
   {
     "id": 442,
@@ -3911,7 +4005,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 171
+    "usageRank": 167
   },
   {
     "id": 445,
@@ -4104,52 +4198,6 @@
     "source": "pokeapi"
   },
   {
-    "id": 450,
-    "slug": "hippowdon",
-    "name": "Hippowdon",
-    "dexNo": 450,
-    "types": [
-      "ground"
-    ],
-    "form": "base",
-    "isLegal": true,
-    "featured": false,
-    "role": "support",
-    "stats": {
-      "hp": 108,
-      "atk": 112,
-      "def": 118,
-      "spa": 68,
-      "spd": 72,
-      "spe": 47,
-      "bst": 525
-    },
-    "speedAt0": 67,
-    "speedAt32": 99,
-    "abilities": [
-      "sand stream",
-      "sand force"
-    ],
-    "kitTags": [
-      "recovery",
-      "status",
-      "hazards"
-    ],
-    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/450.png",
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/450.png",
-    "tokens": "hippowdon hippowdon ground sand stream sand force brown recovery status hazards",
-    "speciesColor": "brown",
-    "palette": {
-      "dominant": "#8a6a4a",
-      "vibrant": "#a07850",
-      "muted": "#6e553c",
-      "ink": "#f4f1ea",
-      "wash": "#a07850",
-      "source": "artwork"
-    },
-    "source": "pokeapi"
-  },
-  {
     "id": 460,
     "slug": "abomasnow",
     "name": "Abomasnow",
@@ -4195,7 +4243,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 156
+    "usageRank": 161
   },
   {
     "id": 461,
@@ -4243,7 +4291,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 124
+    "usageRank": 123
   },
   {
     "id": 464,
@@ -4292,7 +4340,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 174
+    "usageRank": 177
   },
   {
     "id": 468,
@@ -4490,7 +4538,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 32
+    "usageRank": 33
   },
   {
     "id": 10009,
@@ -4538,7 +4586,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 23
+    "usageRank": 24
   },
   {
     "id": 10012,
@@ -4586,7 +4634,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 177
+    "usageRank": 180
   },
   {
     "id": 497,
@@ -4681,7 +4729,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 248
+    "usageRank": 247
   },
   {
     "id": 530,
@@ -4730,7 +4778,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 67
+    "usageRank": 68
   },
   {
     "id": 531,
@@ -4778,7 +4826,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 176
+    "usageRank": 185
   },
   {
     "id": 534,
@@ -4826,7 +4874,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 121
+    "usageRank": 120
   },
   {
     "id": 545,
@@ -4928,7 +4976,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 76
+    "usageRank": 78
   },
   {
     "id": 553,
@@ -5026,7 +5074,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 149
+    "usageRank": 144
   },
   {
     "id": 563,
@@ -5120,7 +5168,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 175
+    "usageRank": 174
   },
   {
     "id": 579,
@@ -5168,7 +5216,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 153
+    "usageRank": 156
   },
   {
     "id": 604,
@@ -5214,7 +5262,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 142
+    "usageRank": 138
   },
   {
     "id": 609,
@@ -5263,7 +5311,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 100
+    "usageRank": 101
   },
   {
     "id": 614,
@@ -5311,7 +5359,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 231
+    "usageRank": 229
   },
   {
     "id": 635,
@@ -5360,7 +5408,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 27
+    "usageRank": 29
   },
   {
     "id": 652,
@@ -5457,7 +5505,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 33
+    "usageRank": 37
   },
   {
     "id": 658,
@@ -5507,7 +5555,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 19
+    "usageRank": 21
   },
   {
     "id": 663,
@@ -5650,7 +5698,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 252
+    "usageRank": 253
   },
   {
     "id": 675,
@@ -5700,7 +5748,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 208
+    "usageRank": 210
   },
   {
     "id": 681,
@@ -5747,7 +5795,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 11
+    "usageRank": 13
   },
   {
     "id": 683,
@@ -5794,7 +5842,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 237
+    "usageRank": 246
   },
   {
     "id": 687,
@@ -5843,7 +5891,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 167
+    "usageRank": 164
   },
   {
     "id": 689,
@@ -5892,7 +5940,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 184
+    "usageRank": 186
   },
   {
     "id": 691,
@@ -5941,7 +5989,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 99
+    "usageRank": 100
   },
   {
     "id": 693,
@@ -5988,7 +6036,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 172
+    "usageRank": 170
   },
   {
     "id": 697,
@@ -6036,7 +6084,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 225
+    "usageRank": 226
   },
   {
     "id": 699,
@@ -6084,7 +6132,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 161
+    "usageRank": 153
   },
   {
     "id": 700,
@@ -6132,7 +6180,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 31
+    "usageRank": 32
   },
   {
     "id": 701,
@@ -6229,7 +6277,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 198
+    "usageRank": 193
   },
   {
     "id": 707,
@@ -6278,7 +6326,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 152
+    "usageRank": 149
   },
   {
     "id": 713,
@@ -6325,7 +6373,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 179
+    "usageRank": 182
   },
   {
     "id": 715,
@@ -6375,7 +6423,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 144
+    "usageRank": 147
   },
   {
     "id": 724,
@@ -6425,7 +6473,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 226
+    "usageRank": 231
   },
   {
     "id": 727,
@@ -6475,7 +6523,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 89
+    "usageRank": 90
   },
   {
     "id": 730,
@@ -6573,7 +6621,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 186
+    "usageRank": 191
   },
   {
     "id": 10152,
@@ -6620,7 +6668,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 244
+    "usageRank": 242
   },
   {
     "id": 748,
@@ -6717,7 +6765,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 82
+    "usageRank": 83
   },
   {
     "id": 758,
@@ -6766,7 +6814,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 129
+    "usageRank": 131
   },
   {
     "id": 763,
@@ -6814,7 +6862,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 182
+    "usageRank": 181
   },
   {
     "id": 765,
@@ -6863,7 +6911,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 258
+    "usageRank": 259
   },
   {
     "id": 768,
@@ -6911,7 +6959,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 4
+    "usageRank": 5
   },
   {
     "id": 778,
@@ -6959,7 +7007,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 10
+    "usageRank": 11
   },
   {
     "id": 780,
@@ -7008,7 +7056,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 217
+    "usageRank": 215
   },
   {
     "id": 784,
@@ -7058,7 +7106,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 140
+    "usageRank": 142
   },
   {
     "id": 812,
@@ -7107,7 +7155,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 12
+    "usageRank": 10
   },
   {
     "id": 815,
@@ -7156,7 +7204,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 21
+    "usageRank": 20
   },
   {
     "id": 818,
@@ -7204,7 +7252,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 84
+    "usageRank": 81
   },
   {
     "id": 823,
@@ -7303,7 +7351,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 201
+    "usageRank": 203
   },
   {
     "id": 842,
@@ -7351,7 +7399,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 251
+    "usageRank": 248
   },
   {
     "id": 849,
@@ -7401,7 +7449,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 80
+    "usageRank": 77
   },
   {
     "id": 853,
@@ -7447,7 +7495,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 114
+    "usageRank": 104
   },
   {
     "id": 855,
@@ -7495,7 +7543,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 110
+    "usageRank": 112
   },
   {
     "id": 858,
@@ -7544,7 +7592,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 87
+    "usageRank": 86
   },
   {
     "id": 861,
@@ -7594,7 +7642,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 45
+    "usageRank": 47
   },
   {
     "id": 865,
@@ -7640,7 +7688,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 71
+    "usageRank": 74
   },
   {
     "id": 869,
@@ -7686,7 +7734,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 200
+    "usageRank": 196
   },
   {
     "id": 870,
@@ -7732,7 +7780,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 233
+    "usageRank": 235
   },
   {
     "id": 871,
@@ -7779,7 +7827,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 108
+    "usageRank": 111
   },
   {
     "id": 876,
@@ -7878,7 +7926,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 98
+    "usageRank": 96
   },
   {
     "id": 887,
@@ -7928,7 +7976,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 60
+    "usageRank": 59
   },
   {
     "id": 901,
@@ -8026,7 +8074,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 16
+    "usageRank": 17
   },
   {
     "id": 10248,
@@ -8075,7 +8123,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 107
+    "usageRank": 109
   },
   {
     "id": 903,
@@ -8127,7 +8175,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 22
+    "usageRank": 18
   },
   {
     "id": 904,
@@ -8177,7 +8225,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 109
+    "usageRank": 107
   },
   {
     "id": 908,
@@ -8228,7 +8276,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 13
+    "usageRank": 12
   },
   {
     "id": 911,
@@ -8323,7 +8371,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 137
+    "usageRank": 133
   },
   {
     "id": 927,
@@ -8461,7 +8509,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 164
+    "usageRank": 166
   },
   {
     "id": 936,
@@ -8509,7 +8557,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 49
+    "usageRank": 46
   },
   {
     "id": 937,
@@ -8605,7 +8653,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 48
+    "usageRank": 49
   },
   {
     "id": 941,
@@ -8702,7 +8750,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 166
+    "usageRank": 173
   },
   {
     "id": 945,
@@ -8799,7 +8847,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 64
+    "usageRank": 65
   },
   {
     "id": 956,
@@ -8849,7 +8897,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 73
+    "usageRank": 71
   },
   {
     "id": 959,
@@ -8946,7 +8994,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 135
+    "usageRank": 136
   },
   {
     "id": 967,
@@ -9040,7 +9088,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 97
+    "usageRank": 99
   },
   {
     "id": 970,
@@ -9088,7 +9136,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 17
+    "usageRank": 16
   },
   {
     "id": 973,
@@ -9280,7 +9328,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 78
+    "usageRank": 79
   },
   {
     "id": 980,
@@ -9377,7 +9425,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 210
+    "usageRank": 207
   },
   {
     "id": 982,
@@ -9570,7 +9618,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 8
+    "usageRank": 9
   },
   {
     "id": 1013,
@@ -9669,6 +9717,6 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 9
+    "usageRank": 8
   }
 ]

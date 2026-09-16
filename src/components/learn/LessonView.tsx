@@ -10,9 +10,9 @@ import { LessonRelated } from "@/components/learn/LessonRelated";
 import { FightClassroom } from "@/components/learn/FightClassroom";
 import { TypesClassroom } from "@/components/learn/TypesClassroom";
 import { AbilitiesClassroom } from "@/components/learn/AbilitiesClassroom";
-import { MovesClassroom } from "@/components/learn/MovesClassroom";
+import { MoveSheetClassroom } from "@/components/learn/MoveSheetClassroom";
 import { DecisionTree } from "@/components/learn/DecisionTree";
-import { type LearnTrack, type Lesson } from "@/content/curriculum";
+import { type LearnTrack, type Lesson, isMoveSheet } from "@/content/curriculum";
 import { LEARN_FLOWS } from "@/content/learn-flows";
 
 export function LessonView({
@@ -36,8 +36,8 @@ export function LessonView({
       <TypesClassroom lesson={lesson} />
     ) : lesson.slug === "abilities" ? (
       <AbilitiesClassroom lesson={lesson} />
-    ) : lesson.slug === "moves" ? (
-      <MovesClassroom lesson={lesson} />
+    ) : isMoveSheet(lesson.slug) ? (
+      <MoveSheetClassroom lesson={lesson} />
     ) : null;
 
   return (

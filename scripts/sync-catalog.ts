@@ -92,9 +92,9 @@ async function extractHex(buf: Buffer) {
     const min = Math.min(r, g, b);
     if (max > 245 && min > 230) continue;
     if (max < 18) continue;
-    const qr = Math.round(r / 16) * 16;
-    const qg = Math.round(g / 16) * 16;
-    const qb = Math.round(b / 16) * 16;
+    const qr = Math.min(240, Math.round(r / 16) * 16);
+    const qg = Math.min(240, Math.round(g / 16) * 16);
+    const qb = Math.min(240, Math.round(b / 16) * 16);
     const key = `${qr},${qg},${qb}`;
     const sat = saturation(r, g, b);
     const prev = buckets.get(key);

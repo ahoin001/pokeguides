@@ -7,8 +7,8 @@ export type GlossaryTerm = {
 export const TERMS: GlossaryTerm[] = [
   { t: "Fake Out", d: "Priority +3 flinch on the first turn the user is out. Ghost is immune. Armor Tail blanks it.", href: "/learn/moves" },
   { t: "Intimidate", d: "Drops the opponent's Attack when you switch in. The reason Incineroar is a job.", href: "/learn/abilities" },
-  { t: "Trick Room", d: "Slowest Pokémon move first. Farigiraf can set it. Four turns including the click.", href: "/team/archetypes/trick-room" },
-  { t: "Protect", d: "Priority +4. A scout and a Sucker Punch stall, not leftover farming.", href: "/learn/moves" },
+  { t: "Trick Room", d: "Slowest Pokémon move first. Farigiraf can set it. Four turns including the click.", href: "/learn/field-moves" },
+  { t: "Protect", d: "Priority +4. A scout and a Sucker Punch stall, not leftover farming.", href: "/learn/defense-moves" },
   { t: "Stat Points", d: "66 points to spend. Max 32 in one stat. 1 SP is +1 at Level 50.", href: "/learn/training" },
   { t: "Omni Ring", d: "The device that Mega Evolves. One Mega per battle.", href: "/learn/roles/mega" },
   {
@@ -49,12 +49,12 @@ export const TERMS: GlossaryTerm[] = [
   {
     t: "Revenge",
     d: "A faster or priority Pokémon that KOs whatever just got a KO. Extreme Speed, Sucker Punch, Aqua Jet, a Scarf.",
-    href: "/learn/speed",
+    href: "/learn/moves",
   },
   {
     t: "Momentum",
     d: "Leaving on your terms with U-turn, Volt Switch, or Parting Shot. A hard switch is a turn they attack for free.",
-    href: "/learn/moves",
+    href: "/learn/pivot-moves",
   },
   {
     t: "Tempo",
@@ -69,7 +69,7 @@ export const TERMS: GlossaryTerm[] = [
   {
     t: "Residual",
     d: "Chip that happens without a KO click: Stealth Rock, burn, weather, Life Orb. It pops Multiscale and Sash.",
-    href: "/learn/moves",
+    href: "/learn/field-moves",
   },
   {
     t: "Threatlist",
@@ -79,7 +79,7 @@ export const TERMS: GlossaryTerm[] = [
   {
     t: "Mode",
     d: "A game state your three is trying to force: Trick Room, rain, sun, terrain. The rest of the team cashes that state.",
-    href: "/learn/archetypes",
+    href: "/learn/field-moves",
   },
   {
     t: "Speed",

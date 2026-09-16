@@ -5,6 +5,7 @@ import { useTeamStore } from "@/stores/team";
 import { useLiveMatchStore } from "@/stores/live-match";
 import { LivePackageBar } from "@/components/live/LivePackageBar";
 import { LiveFoeSearch } from "@/components/live/LiveFoeSearch";
+import { LiveBringMoves } from "@/components/live/LiveBringMoves";
 import { LiveFieldStrip } from "@/components/live/LiveFieldStrip";
 import { LiveFocusRail } from "@/components/live/LiveFocusRail";
 import { LiveDamageCalc } from "@/components/live/LiveDamageCalc";
@@ -58,6 +59,8 @@ export function LiveMatchStage() {
           <section className="rounded-[28px] border border-line/60 bg-raised/30 p-4 md:p-5">
             <LiveFoeSearch exclude={exclude} />
           </section>
+
+          {bring.length ? <LiveBringMoves ourSlugs={bring} /> : null}
 
           <LiveFieldStrip
             ourSlugs={bring}

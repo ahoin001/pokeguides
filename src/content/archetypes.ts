@@ -1,4 +1,8 @@
 import type { ArchetypeId, LiteracyRoleId, RoleId } from "@/types/pokemon";
+import {
+  PLAYBOOK_EXTRA,
+  type ArchetypePlaybookExtra,
+} from "@/content/archetype-playbook-extra";
 
 export type ArchetypeSlot = {
   job: RoleId;
@@ -48,6 +52,8 @@ export type ArchetypeGuide = {
   /** Styles this plan is generally weak into. */
   struggles: ArchetypeEdge[];
 };
+
+export type ArchetypePlaybookGuide = ArchetypeGuide & ArchetypePlaybookExtra;
 
 export const ARCHETYPE_LABEL: Record<ArchetypeId, string> = {
   balance: "Balance",
@@ -685,8 +691,19 @@ export function getArchetype(id: string) {
   return ARCHETYPES.find((a) => a.id === id);
 }
 
+/** Guide + playbook extras (staples, answers, scripts) for Team archetype pages. */
+export function getArchetypePlaybook(id: string): ArchetypePlaybookGuide | undefined {
+  const base = getArchetype(id);
+  if (!base) return undefined;
+  return { ...base, ...PLAYBOOK_EXTRA[base.id] };
+}
+
 export function archetypeHref(id: ArchetypeId) {
-  return `/learn/archetypes/${id}` as const;
+  return `/team/archetypes/${id}` as const;
+}
+
+export function archetypeHubHref() {
+  return "/team/archetypes" as const;
 }
 
 /** Styles that list this slug as a preview tell. */

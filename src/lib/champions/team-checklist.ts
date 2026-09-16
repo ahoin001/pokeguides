@@ -31,7 +31,7 @@ export function teamChecklist(
       detail: style
         ? `This three is playing ${ARCHETYPE_LABEL[style]}. Protect the piece that actually ends the match.`
         : "Name the plan first. Balance, Hyper Offense, a weather, or Trick Room — then pick Pokémon that cash it.",
-      href: style ? `/learn/archetypes/${style}` : "/learn/building",
+      href: style ? `/team/archetypes/${style}` : "/learn/building",
     },
     {
       id: "speed",

@@ -23,6 +23,7 @@ const nextConfig: NextConfig = {
       { source: "/learn/team-building", destination: "/learn/building", permanent: true },
       { source: "/learn/playstyles", destination: "/learn/archetypes", permanent: true },
       { source: "/learn/speed-control", destination: "/learn/speed", permanent: true },
+      { source: "/learn/archetypes/:id", destination: "/team/archetypes/:id", permanent: false },
     ];
   },
   images: {

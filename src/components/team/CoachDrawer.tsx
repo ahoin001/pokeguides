@@ -62,11 +62,11 @@ export function CoachDrawer({
               <p className="text-sm text-muted">{readout.detail}</p>
               {readout.archetypeId ? (
                 <Link href={archetypeHref(readout.archetypeId)} className="text-sm underline">
-                  Read {ARCHETYPE_LABEL[readout.archetypeId]}
+                  Read {ARCHETYPE_LABEL[readout.archetypeId]} playbook
                 </Link>
               ) : (
-                <Link href="/learn/archetypes" className="text-sm underline">
-                  Find a style that fits
+                <Link href="/team/archetypes" className="text-sm underline">
+                  Team archetypes
                 </Link>
               )}
 

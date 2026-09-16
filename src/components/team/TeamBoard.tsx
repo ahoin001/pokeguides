@@ -139,12 +139,20 @@ export function TeamBoard() {
                   </p>
                 )}
               </div>
-              <Link
-                href="/live"
-                className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg transition hover:opacity-90"
-              >
-                Open Live Match
-              </Link>
+              <div className="flex flex-wrap gap-2">
+                <Link
+                  href="/live"
+                  className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg transition hover:opacity-90"
+                >
+                  Open Live Match
+                </Link>
+                <Link
+                  href="/team/archetypes"
+                  className="rounded-full border border-line px-4 py-2 text-sm transition hover:border-ink/40"
+                >
+                  Archetypes
+                </Link>
+              </div>
             </header>
 
             {megas > 1 ? (

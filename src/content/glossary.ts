@@ -7,7 +7,7 @@ export type GlossaryTerm = {
 export const TERMS: GlossaryTerm[] = [
   { t: "Fake Out", d: "Priority +3 flinch on the first turn the user is out. Ghost is immune. Armor Tail blanks it.", href: "/learn/moves" },
   { t: "Intimidate", d: "Drops the opponent's Attack when you switch in. The reason Incineroar is a job.", href: "/learn/abilities" },
-  { t: "Trick Room", d: "Slowest Pokémon move first. Farigiraf can set it. Four turns including the click.", href: "/learn/archetypes/trick-room" },
+  { t: "Trick Room", d: "Slowest Pokémon move first. Farigiraf can set it. Four turns including the click.", href: "/team/archetypes/trick-room" },
   { t: "Protect", d: "Priority +4. A scout and a Sucker Punch stall, not leftover farming.", href: "/learn/moves" },
   { t: "Stat Points", d: "66 points to spend. Max 32 in one stat. 1 SP is +1 at Level 50.", href: "/learn/training" },
   { t: "Omni Ring", d: "The device that Mega Evolves. One Mega per battle.", href: "/learn/roles/mega" },
@@ -114,17 +114,17 @@ export const TERMS: GlossaryTerm[] = [
   {
     t: "Hyper Offense",
     d: "A sprint three. Almost no defensive pivot. Win by turn 4 or the glass shatters.",
-    href: "/learn/archetypes/hyper-offense",
+    href: "/team/archetypes/hyper-offense",
   },
   {
     t: "Balance",
     d: "A breaker, a cleaner, and a patch. Control first, clean later. The usual first team. Other sites call this Good Stuff.",
-    href: "/learn/archetypes/balance",
+    href: "/team/archetypes/balance",
   },
   {
     t: "Good Stuff",
     d: "A pile of individually strong Pokémon that cover each other. In Champions that is Balance, not a separate style.",
-    href: "/learn/archetypes/balance",
+    href: "/team/archetypes/balance",
   },
   {
     t: "Stall",
@@ -143,7 +143,7 @@ export const TERMS: GlossaryTerm[] = [
   {
     t: "Terrain",
     d: "Grassy, Psychic, Electric, or Misty Terrain. Usually set by an ability on entry. Rillaboom is the M-C one that matters.",
-    href: "/learn/archetypes/grassy",
+    href: "/team/archetypes/grassy",
   },
   {
     t: "Must-appear",

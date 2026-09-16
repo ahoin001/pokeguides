@@ -8,6 +8,7 @@ import { SpeedClassroom } from "@/components/learn/SpeedClassroom";
 import { WinconStack } from "@/components/learn/WinconStack";
 import { PreviewBoard } from "@/components/learn/PreviewBoard";
 import { HolesCompare } from "@/components/learn/HolesCompare";
+import { ArchetypeTellBoard } from "@/components/learn/ArchetypeTellBoard";
 import { DecisionTree } from "@/components/learn/DecisionTree";
 import { BUILDING_PLAN, JOB_ROSTER, type Lesson } from "@/content/curriculum";
 import { getLearnFlow } from "@/content/learn-flows";
@@ -44,6 +45,8 @@ export function LessonViz({ lesson }: { lesson: Lesson }) {
       return <HolesCompare />;
     case "preview-board":
       return <PreviewBoard />;
+    case "archetype-tells":
+      return <ArchetypeTellBoard />;
     default:
       return null;
   }

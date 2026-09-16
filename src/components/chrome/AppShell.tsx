@@ -17,6 +17,7 @@ const DESKTOP = [
   { href: "/learn", label: "Learn" },
   { href: "/pokedex", label: "Dex" },
   { href: "/team", label: "Team" },
+  { href: "/live", label: "Live" },
   { href: "/meta", label: "Meta" },
   { href: "/compare", label: "Compare" },
   { href: "/manuals", label: "Manuals" },

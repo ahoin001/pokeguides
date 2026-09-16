@@ -22,6 +22,9 @@ export default function HomePage() {
             <Link href="/learn" className="rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-bg">
               Start learning
             </Link>
+            <Link href="/live" className="rounded-full border border-line px-5 py-2.5 text-sm">
+              Live Match
+            </Link>
             <Link href="/pokedex" className="rounded-full border border-line px-5 py-2.5 text-sm">
               Browse the roster
             </Link>

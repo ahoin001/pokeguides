@@ -1623,7 +1623,7 @@ export const PRESSURE_BALANCE_MANUAL: TeamManual = (() => {
     switches: core.switches,
     plan: core.plan,
     skills: ["U-turn", "Sucker Punch", "Stealth Rock", "Protect", "priority management", "preview reading", "double switching"],
-    relatedLessons: ["preview", "types", "turns", "switching", "win conditions"],
+    relatedLessons: ["reading-their-six", "preview", "types", "turns", "switching", "win conditions"],
     setsNote: "All 66 SP on every Pokémon. Mix of fast offensive, bulky pivot, and mixed bulk so six can form different packages. Mega is preview-dependent, not automatic turn one.",
     victims: core.victims,
     counters: core.counters,

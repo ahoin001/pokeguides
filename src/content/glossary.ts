@@ -148,7 +148,7 @@ export const TERMS: GlossaryTerm[] = [
   {
     t: "Must-appear",
     d: "The name both of their modes need. Pelipper on rain. Farigiraf on Trick Room. If it is not coming, the plan is a lie. Plan the lead as if it is.",
-    href: "/learn/preview",
+    href: "/learn/reading-their-six",
   },
   {
     t: "Positioning",

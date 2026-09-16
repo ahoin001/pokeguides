@@ -16,7 +16,8 @@ export type LessonViz =
   | "ability-field"
   | "chooser"
   | "stadium"
-  | "training";
+  | "training"
+  | "archetype-tells";
 
 export type LessonExample = {
   slug: string;
@@ -502,6 +503,7 @@ export const LESSONS: Lesson[] = [
     body: [
       "An archetype is the game plan, not the species list. Ask what their three is trying to accomplish. If you cannot name it, you are already behind on preview.",
       "Squads hybridize. Rain that still pivots is still rain. Trick Room with a Tailwind backup is Tail Room — they win if either clock lands. Read the mode they can force, then the backup.",
+      "Later, Ultra Ball turns the name into a bring plan: if you see these Pokémon, you are likely facing that style — and which styles it beats or loses to.",
     ],
     beats: [
       {
@@ -581,6 +583,65 @@ export const LESSONS: Lesson[] = [
       "aggressive-balance-garchomp-primarina-corviknight",
       "balance-garchomp-corviknight-kingambit",
     ],
+    next: "reading-their-six",
+  },
+  {
+    slug: "reading-their-six",
+    band: "ultra-ball",
+    title: "If you see these, you’re facing that",
+    thesis:
+      "Preview is a classification problem. Signature Pokémon name the plan. Then name what that plan beats, what beats it, and which Pokémon to reach for.",
+    skipIf: "Skip if you already map Pelipper → rain, Farigiraf → room, and know which styles punish each.",
+    body: [
+      "You already learned to name styles. This chapter is the opponent-facing board: tell → archetype → preparation. Ladder sixes still hide three; the IQ is the same — classify what can walk out of the back.",
+      "Tailwind and Tail Room are hybrid clocks, not separate Team picks. Stall is usually fat Balance. Read the mode they can force, then the backup.",
+    ],
+    beats: [
+      {
+        title: "Must-appear setters",
+        body: "Pelipper is rain or the rain is a lie. Farigiraf is Trick Room or the room never starts. Rillaboom is Grassy or Unburden partners are a bluff. Mega Charizard Y is sun. Plan the lead as if that name is coming even if they bluff something else first.",
+        example: { slug: "pelipper", caption: "No bird, no rain. Must appear." },
+      },
+      {
+        title: "Frail HO cores",
+        body: "Mega Salamence, Dragonite, Excadrill, Disguise Mimikyu with no fat pivot beside them — Hyper Offense. They win by turn 4 or the sprint is over. Ice, priority, and walls that shrug both STABs are your prep list.",
+        example: { slug: "salamence-mega", caption: "Snowball Mega. No Corvi beside it → HO." },
+      },
+      {
+        title: "Balance versus Good Stuff",
+        body: "Garchomp plus Kingambit plus a Ghost/Steel patch is Balance. Whimsicott or Corviknight on the same six is still Balance with a readable clock or soak. Good Stuff is the same plan under another name.",
+        example: { slug: "gholdengo", caption: "The patch. Two attackers without this is just HO glass." },
+      },
+      {
+        title: "Weather and terrain fields",
+        body: "The field walks in with the setter. Overwrite is the funeral — Drought versus Drizzle, Fire into Rillaboom. Bring the answer that sits on the field, not only the answer that sits on one attacker.",
+        example: { slug: "charizard-mega-y", caption: "Drought Mega. Rock and Water punish; rain overwrites." },
+      },
+      {
+        title: "Hybrid clocks",
+        body: "Whimsicott next to Farigiraf is Tail Room — they win if either clock lands. Rain that still U-turns is rain with a Balance backup. Do not prepare for only one story.",
+        example: { slug: "whimsicott", caption: "Tailwind clock. On Balance or Tail Room, read both modes." },
+      },
+      {
+        title: "Turn the read into a bring",
+        body: "Once you name their style, open Strong into / Weak into. Reach for the example Pokémon that punish their plan. Then Preview teaches the lead sentence — this chapter only classifies and prepares.",
+        example: { slug: "raichu", caption: "Into rain: Electric is the bring, not a surprise mid-match." },
+      },
+    ],
+    examples: [
+      { slug: "pelipper", caption: "Rain tell" },
+      { slug: "farigiraf", caption: "Room tell" },
+      { slug: "rillaboom", caption: "Grassy tell" },
+      { slug: "charizard-mega-y", caption: "Sun tell" },
+      { slug: "salamence-mega", caption: "HO tell" },
+      { slug: "gholdengo", caption: "Balance patch" },
+    ],
+    viz: "archetype-tells",
+    relatedManuals: [
+      "balance-salamence-primarina-aegislash",
+      "aggressive-balance-garchomp-primarina-corviknight",
+      "balance-garchomp-corviknight-kingambit",
+    ],
     next: "preview",
   },
   {
@@ -591,7 +652,7 @@ export const LESSONS: Lesson[] = [
     skipIf: "Skip if you already write one sentence before you confirm the lead.",
     body: [
       "Open lists. You are looking at three names. Beginners send their strongest Pokémon. Intermediate players send the Pokémon that answers their likely lead, or that forces the switch the wincon needs.",
-      "Bring archetypes and your own digest together. What are they trying to do. What are you trying to do. The lead is the first line of that plan, not a favorite. Ladder rentals are often six — you pick three into their list. The classroom three is the three you already picked. The IQ is the same: name what can come from the back.",
+      "You should already have classified their style and which Pokémon punish it. Bring that digest together with yours. What are they trying to do. What are you trying to do. The lead is the first line of that plan, not a favorite. Ladder rentals are often six — you pick three into their list. The classroom three is the three you already picked. The IQ is the same: name what can come from the back.",
     ],
     beats: [
       {

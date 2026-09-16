@@ -139,6 +139,12 @@ export function TeamBoard() {
                   </p>
                 )}
               </div>
+              <Link
+                href="/live"
+                className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg transition hover:opacity-90"
+              >
+                Open Live Match
+              </Link>
             </header>
 
             {megas > 1 ? (

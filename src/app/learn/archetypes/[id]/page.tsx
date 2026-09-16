@@ -7,6 +7,7 @@ import {
   MARGIN_LABEL,
   PACING_LABEL,
   ARCHETYPE_LABEL,
+  type ArchetypeEdge,
 } from "@/content/archetypes";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
@@ -46,6 +47,48 @@ export default async function ArchetypePage({ params }: { params: Promise<{ id: 
       </p>
 
       <p className="mt-10 text-[17px] leading-relaxed">{style.philosophy}</p>
+
+      <section className="mt-16">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h2 className="text-2xl font-semibold">On preview</h2>
+            <p className="mt-2 text-sm text-muted">
+              If you see these, you are likely facing {style.name}.{" "}
+              <Link href="/learn/reading-their-six" className="underline hover:text-ink">
+                Full tell board
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+        <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+          {style.tells.map((tell) => {
+            const mon = getPokemon(tell.slug);
+            if (!mon) return null;
+            return (
+              <li key={tell.slug}>
+                <Link
+                  href={`/pokemon/${mon.slug}`}
+                  title={tell.why}
+                  className="flex items-start gap-3 rounded-2xl border border-line bg-raised/50 p-3 transition hover:border-ink/40"
+                  style={cssVars(mon.palette)}
+                >
+                  <PokemonArt slug={mon.slug} src={mon.artwork} name={mon.name} size={56} className="shrink-0" />
+                  <span className="min-w-0">
+                    <span className="block font-medium">{mon.name}</span>
+                    <span className="mt-1 text-sm leading-relaxed text-muted">{tell.why}</span>
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+
+        <div className="mt-10 grid gap-8 md:grid-cols-2">
+          <PreviewEdges title="Strong into" edges={style.favors} />
+          <PreviewEdges title="Weak into" edges={style.struggles} />
+        </div>
+      </section>
 
       <section className="mt-12 grid gap-6 md:grid-cols-3">
         <TurnBlock title="Lead" body={style.turnByTurn.lead} />
@@ -172,6 +215,52 @@ function TurnBlock({ title, body }: { title: string; body: string }) {
     <div className="rounded-3xl border border-line bg-raised/40 p-4">
       <h3 className="font-semibold">{title}</h3>
       <p className="mt-2 text-sm text-muted">{body}</p>
+    </div>
+  );
+}
+
+function PreviewEdges({ title, edges }: { title: string; edges: ArchetypeEdge[] }) {
+  return (
+    <div>
+      <h3 className="text-lg font-semibold tracking-tight">{title}</h3>
+      <ul className="mt-4 space-y-5">
+        {edges.map((edge) => (
+          <li key={`${title}-${edge.vs}`} className="border-t border-line/60 pt-4 first:border-t-0 first:pt-0">
+            <Link href={archetypeHref(edge.vs)} className="font-medium underline-offset-4 hover:underline">
+              {ARCHETYPE_LABEL[edge.vs]}
+            </Link>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{edge.why}</p>
+            <EdgeMons label="Reach for" slugs={edge.yourExamples} />
+            <EdgeMons label="Their tells" slugs={edge.theirExamples} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function EdgeMons({ label, slugs }: { label: string; slugs: string[] }) {
+  const mons = slugs.map((s) => getPokemon(s)).filter(Boolean);
+  if (!mons.length) return null;
+  return (
+    <div className="mt-3">
+      <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">{label}</p>
+      <ul className="mt-1.5 flex flex-wrap gap-2">
+        {mons.map((p) =>
+          p ? (
+            <li key={p.slug}>
+              <Link
+                href={`/pokemon/${p.slug}`}
+                className="inline-flex items-center gap-1.5 rounded-full border border-line bg-raised/40 py-1 pl-1 pr-2.5 text-xs"
+                style={cssVars(p.palette)}
+              >
+                <PokemonArt slug={p.slug} src={p.artwork} name={p.name} size={28} />
+                {p.name}
+              </Link>
+            </li>
+          ) : null,
+        )}
+      </ul>
     </div>
   );
 }

@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "sync:catalog": "tsx scripts/sync-catalog.ts",
-    "sync:ranked": "tsx scripts/sync-ranked-singles.ts"
+    "sync:ranked": "tsx scripts/sync-ranked-singles.ts",
+    "sync:moves": "tsx scripts/sync-moves-champions.ts"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

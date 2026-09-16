@@ -1718,7 +1718,7 @@ export const OVERLORD_PIVOT_MANUAL: TeamManual = (() => {
     switches: core.switches,
     plan: core.plan,
     skills: ["U-turn", "Sucker Punch", "Volt Switch"],
-    relatedLessons: ["preview", "types", "turns"],
+    relatedLessons: ["reading-their-six", "preview", "types", "turns"],
     setsNote:
       "Each Pokémon spends 66 Stat Points at Level 50. Cap is 32 in one stat. Garchomp and Meowscarada race Attack and Speed. Kingambit caps Attack and HP with 0 Speed. Corviknight and Rotom spend bulk. Primarina splits HP and SpD.",
     victims: core.victims,

@@ -8,6 +8,22 @@ export type ArchetypeSlot = {
   exampleSlug: string;
 };
 
+/** Preview signal — if you see this Pokémon, you are likely facing the style. */
+export type ArchetypeTell = {
+  slug: string;
+  why: string;
+};
+
+/** Matchup edge with concrete Pokémon examples for preparation. */
+export type ArchetypeEdge = {
+  vs: ArchetypeId;
+  why: string;
+  /** Pokémon to reach for when you are this style into `vs` — or when facing this style, your answers. */
+  yourExamples: string[];
+  /** Pokémon on the opposing style that define the matchup. */
+  theirExamples: string[];
+};
+
 export type ArchetypeGuide = {
   id: ArchetypeId;
   name: string;
@@ -25,6 +41,12 @@ export type ArchetypeGuide = {
   fitsWhen: string[];
   hardWhen: string[];
   compareTo: ArchetypeId[];
+  /** Signature Pokémon that scream this plan on preview. */
+  tells: ArchetypeTell[];
+  /** Styles this plan is generally strong into. */
+  favors: ArchetypeEdge[];
+  /** Styles this plan is generally weak into. */
+  struggles: ArchetypeEdge[];
 };
 
 export const ARCHETYPE_LABEL: Record<ArchetypeId, string> = {
@@ -54,7 +76,7 @@ export const ARCHETYPES: ArchetypeGuide[] = [
     name: "Balance",
     oneLiner: "A breaker, a cleaner, and a patch. If the lead goes wrong, you still have a game.",
     philosophy:
-      "Balance is the default Champions three: something that punches holes, something that finishes, and a typing that covers the other two. You do not try to end the match on the first send. You switch, you chip, and you strike when a threat is gone. On preview, a Tailwind name — Whimsicott, Murkrow — is a clock you can read before they click it. Balance often hybridizes with that clock.",
+      "Balance is the default Champions three: something that punches holes, something that finishes, and a typing that covers the other two. You do not try to end the match on the first send. You switch, you chip, and you strike when a threat is gone. On preview, a Tailwind name — Whimsicott — is a clock you can read before they click it. Balance often hybridizes with that clock.",
     lead: "Calculated. If the matchup is ugly you pivot. You do not donate a KO to prove a point.",
     margin: "forgiving",
     pacing: "chess",
@@ -102,6 +124,56 @@ export const ARCHETYPES: ArchetypeGuide[] = [
       "A Trick Room team that ignores your Speed plan for four turns.",
     ],
     compareTo: ["hyper-offense"],
+    tells: [
+      {
+        slug: "garchomp",
+        why: "Ground cleaner on a mixed list — classic Balance wincon kept in the bag.",
+      },
+      {
+        slug: "kingambit",
+        why: "Dark truck that cracks Steel. Balance and TR both love it; look for the patch next.",
+      },
+      {
+        slug: "gholdengo",
+        why: "Ghost/Steel patch. Two attackers plus this is Good Stuff / Balance, not HO glass.",
+      },
+      {
+        slug: "whimsicott",
+        why: "Prankster Tailwind clock sitting on Balance. Read the four turns before they click.",
+      },
+      {
+        slug: "corviknight",
+        why: "Fat Flying pivot. Honest Balance soaks Ice and hands off to the cleaner.",
+      },
+    ],
+    favors: [
+      {
+        vs: "hyper-offense",
+        why: "You have switches. Their sprint dies if the first KO fails and Corvi or Gholdengo eats the Mega.",
+        yourExamples: ["corviknight", "gholdengo", "primarina"],
+        theirExamples: ["salamence-mega", "cinderace", "dragonite"],
+      },
+      {
+        vs: "sun",
+        why: "Rock and Water answers sit on Y. Drought only hurts if you donate the Mega a free turn.",
+        yourExamples: ["archaludon", "primarina", "hippowdon"],
+        theirExamples: ["charizard-mega-y", "garchomp"],
+      },
+    ],
+    struggles: [
+      {
+        vs: "trick-room",
+        why: "Your Speed plan is the wrong clock. Farigiraf blanks Fake Out and the truck moves first for four turns.",
+        yourExamples: ["meowscarada", "gholdengo", "whimsicott"],
+        theirExamples: ["farigiraf", "kingambit", "gholdengo"],
+      },
+      {
+        vs: "rain",
+        why: "Drizzle plus Swift Swim outruns midrange pivots. Electric and Steel must be in the bring.",
+        yourExamples: ["raichu", "archaludon", "kilowattrel"],
+        theirExamples: ["pelipper", "basculegion-male", "archaludon"],
+      },
+    ],
   },
   {
     id: "hyper-offense",
@@ -156,6 +228,56 @@ export const ARCHETYPES: ArchetypeGuide[] = [
       "Priority into your Mega on the turn you needed the KO.",
     ],
     compareTo: ["balance"],
+    tells: [
+      {
+        slug: "salamence-mega",
+        why: "Mega snowball with no fat pivot beside it. Classic HO wincon.",
+      },
+      {
+        slug: "cinderace",
+        why: "Fast Fire that punches first. HO clock without Tailwind.",
+      },
+      {
+        slug: "dragonite",
+        why: "Multiscale kite. Scale Sweep — Ice is the hole, Excadrill often leads.",
+      },
+      {
+        slug: "excadrill",
+        why: "Mold Breaker sand lead into Multiscale. HO front-end, not a Balance patch.",
+      },
+      {
+        slug: "mimikyu-disguised",
+        why: "Disguise Sweep. Costume buys the turn the kite needs.",
+      },
+    ],
+    favors: [
+      {
+        vs: "balance",
+        why: "If you delete the patch before they pivot, their cleaner never gets a free entry.",
+        yourExamples: ["cinderace", "salamence-mega", "excadrill"],
+        theirExamples: ["gholdengo", "corviknight", "garchomp"],
+      },
+      {
+        vs: "grassy",
+        why: "Fire and Speed pressure Rillaboom before Grassy Glide snowballs.",
+        yourExamples: ["cinderace", "talonflame", "salamence-mega"],
+        theirExamples: ["rillaboom", "sneasler"],
+      },
+    ],
+    struggles: [
+      {
+        vs: "trick-room",
+        why: "Your Speed is the wrong story. Under the room their truck moves first and your Mega dies on entry.",
+        yourExamples: ["meowscarada", "gholdengo", "primarina"],
+        theirExamples: ["farigiraf", "kingambit"],
+      },
+      {
+        vs: "rain",
+        why: "Hurricane always hits and Swift Swim outspeeds glass that expected a dry race.",
+        yourExamples: ["raichu", "archaludon", "kilowattrel"],
+        theirExamples: ["pelipper", "basculegion-male"],
+      },
+    ],
   },
   {
     id: "trick-room",
@@ -210,6 +332,52 @@ export const ARCHETYPES: ArchetypeGuide[] = [
       "Opposing Trick Room. Now it is a room war, not a free four turns.",
     ],
     compareTo: ["hyper-offense", "balance"],
+    tells: [
+      {
+        slug: "farigiraf",
+        why: "Must-appear setter. No Farigiraf, no room — plan as if it is coming.",
+      },
+      {
+        slug: "kingambit",
+        why: "Slow Dark truck next to the setter. Under the room it moves first.",
+      },
+      {
+        slug: "gholdengo",
+        why: "Special Steel that still moves under Trick Room. Common TR patch.",
+      },
+      {
+        slug: "whimsicott",
+        why: "With Farigiraf: Tail Room hybrid. Two clocks — room or Tailwind race.",
+      },
+    ],
+    favors: [
+      {
+        vs: "hyper-offense",
+        why: "Their Speed becomes last. Armor Tail blanks Fake Out; the truck deletes the Mega.",
+        yourExamples: ["farigiraf", "kingambit", "gholdengo"],
+        theirExamples: ["salamence-mega", "cinderace", "dragonite"],
+      },
+      {
+        vs: "balance",
+        why: "Midrange Speed control is irrelevant for four turns. Slow trucks outpace their pivots.",
+        yourExamples: ["farigiraf", "kingambit"],
+        theirExamples: ["garchomp", "whimsicott", "corviknight"],
+      },
+    ],
+    struggles: [
+      {
+        vs: "grassy",
+        why: "Grassy Glide priority and Unburden still threaten under or after the room. Fire answers matter less than speed control disruption.",
+        yourExamples: ["cinderace", "talonflame", "primarina"],
+        theirExamples: ["rillaboom", "sneasler", "kingambit"],
+      },
+      {
+        vs: "sun",
+        why: "Y threatens the setter and the truck with Fire before the room is safe.",
+        yourExamples: ["archaludon", "primarina", "hippowdon"],
+        theirExamples: ["charizard-mega-y", "cinderace"],
+      },
+    ],
   },
   {
     id: "rain",
@@ -261,6 +429,48 @@ export const ARCHETYPES: ArchetypeGuide[] = [
     ],
     hardWhen: ["A fast Electric in the rain.", "Sun on the other side. Drought overwrites Drizzle."],
     compareTo: ["sun", "balance"],
+    tells: [
+      {
+        slug: "pelipper",
+        why: "Must-appear Drizzle. No bird, no rain — plan the lead as if it is coming.",
+      },
+      {
+        slug: "basculegion-male",
+        why: "Swift Swim Wave Crash under rain. The cleaner that cashes the field.",
+      },
+      {
+        slug: "archaludon",
+        why: "Electro Shot / special Steel twin. Rain’s Electric answer sitting on the six.",
+      },
+    ],
+    favors: [
+      {
+        vs: "sun",
+        why: "Drizzle overwrites Drought when Pelipper walks in. Fire wilts; Hurricane never misses.",
+        yourExamples: ["pelipper", "basculegion-male", "archaludon"],
+        theirExamples: ["charizard-mega-y", "garchomp"],
+      },
+      {
+        vs: "hyper-offense",
+        why: "Rain Speed and accuracy punish glass that expected a dry race.",
+        yourExamples: ["basculegion-male", "pelipper"],
+        theirExamples: ["cinderace", "salamence-mega", "dragonite"],
+      },
+    ],
+    struggles: [
+      {
+        vs: "balance",
+        why: "Fat Electric and Steel patches sit on Water. If they bring Raichu or Archaludon, the field is a trap.",
+        yourExamples: ["archaludon", "gholdengo", "corviknight"],
+        theirExamples: ["raichu", "kilowattrel", "hippowdon"],
+      },
+      {
+        vs: "grassy",
+        why: "Terrain cuts Earthquake and Grassy Glide races your midgame. Fire pressure on the bird matters.",
+        yourExamples: ["cinderace", "charizard-mega-y", "talonflame"],
+        theirExamples: ["rillaboom", "sneasler"],
+      },
+    ],
   },
   {
     id: "sun",
@@ -312,6 +522,48 @@ export const ARCHETYPES: ArchetypeGuide[] = [
     ],
     hardWhen: ["Rock and Water on their three.", "Pelipper. Rain and sun cannot share a field."],
     compareTo: ["rain", "hyper-offense"],
+    tells: [
+      {
+        slug: "charizard-mega-y",
+        why: "Must-appear Drought Mega. Setter and wincon in one slot.",
+      },
+      {
+        slug: "garchomp",
+        why: "Ground twin beside Y. Punches Rock and Water answers.",
+      },
+      {
+        slug: "cinderace",
+        why: "Second Fire that keeps pressure if Y is forced out.",
+      },
+    ],
+    favors: [
+      {
+        vs: "grassy",
+        why: "Fire deletes Rillaboom and wilts the terrain story before Unburden cashes.",
+        yourExamples: ["charizard-mega-y", "cinderace", "talonflame"],
+        theirExamples: ["rillaboom", "sneasler"],
+      },
+      {
+        vs: "balance",
+        why: "Drought pressures Grass and Steel patches; Y forces awkward switches on midrange lists.",
+        yourExamples: ["charizard-mega-y", "garchomp"],
+        theirExamples: ["gholdengo", "corviknight", "kingambit"],
+      },
+    ],
+    struggles: [
+      {
+        vs: "rain",
+        why: "Pelipper overwrites Drought. Water hits harder and Fire wilts.",
+        yourExamples: ["hippowdon", "primarina", "archaludon"],
+        theirExamples: ["pelipper", "basculegion-male"],
+      },
+      {
+        vs: "hyper-offense",
+        why: "Faster glass and Rock coverage delete Y before Drought matters. Priority into the Mega ends the plan.",
+        yourExamples: ["primarina", "corviknight", "archaludon"],
+        theirExamples: ["excadrill", "dragonite", "salamence-mega"],
+      },
+    ],
   },
   {
     id: "grassy",
@@ -363,6 +615,48 @@ export const ARCHETYPES: ArchetypeGuide[] = [
     ],
     hardWhen: ["Fire-types that ignore the terrain story.", "A faster priority user that deletes Rillaboom on the send."],
     compareTo: ["balance", "trick-room"],
+    tells: [
+      {
+        slug: "rillaboom",
+        why: "Must-appear Grassy Surge. No Boom, no room — Unburden partners are a bluff.",
+      },
+      {
+        slug: "sneasler",
+        why: "Unburden cleaner that cashes terrain after the berry pops.",
+      },
+      {
+        slug: "kingambit",
+        why: "Dark truck that likes weaker Earthquakes under Grassy Terrain.",
+      },
+    ],
+    favors: [
+      {
+        vs: "trick-room",
+        why: "Grassy Glide priority and Unburden still pressure after the room ends — or through midgame trades.",
+        yourExamples: ["rillaboom", "sneasler", "kingambit"],
+        theirExamples: ["farigiraf", "kingambit"],
+      },
+      {
+        vs: "balance",
+        why: "Terrain softens Earthquake cores and Glide races midrange pivots that expected a chess match.",
+        yourExamples: ["rillaboom", "sneasler"],
+        theirExamples: ["garchomp", "hippowdon", "corviknight"],
+      },
+    ],
+    struggles: [
+      {
+        vs: "sun",
+        why: "Drought Fire deletes Rillaboom and wilts the engine before Sneasler cashes.",
+        yourExamples: ["charizard-mega-y", "cinderace", "talonflame"],
+        theirExamples: ["charizard-mega-y", "cinderace"],
+      },
+      {
+        vs: "hyper-offense",
+        why: "Faster Fire and Mega pressure Boom on send. If the setter dies, Unburden never starts.",
+        yourExamples: ["cinderace", "salamence-mega", "talonflame"],
+        theirExamples: ["cinderace", "salamence-mega", "excadrill"],
+      },
+    ],
   },
 ];
 
@@ -393,4 +687,13 @@ export function getArchetype(id: string) {
 
 export function archetypeHref(id: ArchetypeId) {
   return `/learn/archetypes/${id}` as const;
+}
+
+/** Styles that list this slug as a preview tell. */
+export function tellsForSlug(slug: string) {
+  const needle = slug.toLowerCase();
+  return ARCHETYPES.filter((a) => a.tells.some((t) => t.slug === needle)).map((a) => ({
+    style: a,
+    tell: a.tells.find((t) => t.slug === needle)!,
+  }));
 }

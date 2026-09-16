@@ -498,42 +498,183 @@ export const LESSONS: Lesson[] = [
     slug: "jobs",
     band: "great-ball",
     title: "A Pokémon is a job",
-    thesis: "Support, breaker, speed, weather, Mega. Digest your three in four sentences before you queue.",
+    thesis: "Support, breaker, Speed, weather, Mega. Build the jobs first — names come second.",
     skipIf: "Skip if you already build from the job, not the name, and can say how yours wins.",
     body: [
       "Stats tell the body. Ability and movepool tell the job. High Speed plus Attack looks like a sweeper — without a Dance, priority, or a Scarf story it is just a fast breaker.",
-      "Before you queue, digest the three: what field or clock you force, whether you win by attacking or pivoting, which Mega you pick if two could, and which support verbs you actually click. If you cannot say those four, you do not understand the three yet.",
+      "On a three you only get three slots. Each job answers a different failure mode: no turns bought, no KOs, no Speed plan, no field, no closer. Learn the job, why teambuilding needs it, then who fills it in ranked.",
+    ],
+    rules: [
+      { label: "Support", detail: "Buys turns. Does not win by KOing." },
+      { label: "Breaker", detail: "Takes KOs. Cracks walls and forces progress." },
+      { label: "Speed", detail: "Wins races — Scarf, priority, Unburden, or Room." },
+      { label: "Weather", detail: "Sets the field. The other two must cash it." },
+      { label: "Mega", detail: "Once-per-battle closer. The stone is the wincon slot." },
+      { label: "Digest", detail: "Name the jobs on your three before you queue." },
     ],
     beats: [
       {
-        title: "Four sentences — Honest Balance",
-        body: "Field: Tailwind, four turns, Cott clicks it then leaves. Offense vs defense: Corvi soaks Ice and Fairy so Garchomp can clean. Mega: none on this three — the Omni Ring is not the wincon. Support verbs: Tailwind, U-turn, Brave Bird chip. Say that out loud. Then queue.",
-        example: { slug: "whimsicott", caption: "Clock. Corvi soaks. Garchomp cleans. No Mega." },
-      },
-      {
         title: "Support",
-        body: "Buys turns: Intimidate, Fake Out, burn, pivot. Does not win by knocking things out. Incineroar and Whimsicott are both support. One flinches. One clocks.",
-        example: { slug: "incineroar", caption: "Pivot. The other example is Cott." },
+        body: "Support buys turns so the rest of the three can win. Intimidate, Fake Out, burn, para, Taunt, Tailwind, U-turn, Parting Shot, screens — the verbs that change what the next turn is allowed to be. Support does not exist to rack up KOs. On a three, missing support means your breaker eats every hit raw and your Speed plan never gets a free click.",
+        takeaway: "If the slot only damages and never buys a turn, it is not support — it is a second breaker wearing a bulky name.",
+        rows: [
+          {
+            label: "Does",
+            detail: "Buys turns: tax Attack, flinch, status, pivot, clock, or screens.",
+          },
+          {
+            label: "Why it matters",
+            detail: "Creates the free hit your breaker needs. Without it, every send is a pure damage race you often lose.",
+          },
+          {
+            label: "Build",
+            detail: "Pair with a breaker that cashes the turn. Do not stack three supports with nobody to KO.",
+          },
+        ],
+        example: { slug: "incineroar", caption: "Support — tax, flinch, leave." },
+        examples: [
+          { slug: "incineroar", caption: "Fake Out / Intimidate" },
+          { slug: "whimsicott", caption: "Tailwind / Taunt" },
+          { slug: "grimmsnarl", caption: "Screens / Taunt" },
+          { slug: "rotom-wash", caption: "Wisp / Volt Switch" },
+          { slug: "corviknight", caption: "Pivot shield" },
+          { slug: "farigiraf", caption: "Trick Room support" },
+        ],
       },
       {
         title: "Breaker",
-        body: "Takes KOs. Kingambit cracks walls. Excadrill punches what Steel does not like. You do not ask a breaker to absorb two super-effective hits.",
-        example: { slug: "kingambit", caption: "The truck. Drill is the other." },
+        body: "A breaker exists to take KOs and force progress. Wallbreakers crack fat pivots; cleaners finish whatever is left. You do not ask a breaker to absorb two super-effective hits — you ask it to punch, leave, and punch again. Without a breaker, support only delays the loss: you burn and pivot forever while their wall sits.",
+        takeaway: "Every three needs something that ends Pokémon. Support without a breaker is stall with a timer.",
+        rows: [
+          {
+            label: "Does",
+            detail: "Deletes threats. Forces switches. Turns a free turn into a KO.",
+          },
+          {
+            label: "Why it matters",
+            detail: "Progress. On a three you cannot out-stall forever — someone has to crack the wall.",
+          },
+          {
+            label: "Build",
+            detail: "Give it a Speed plan or priority. Patch the types that wall it. Do not ask it to also be the shield.",
+          },
+        ],
+        example: { slug: "kingambit", caption: "Breaker — the truck that KOs." },
+        examples: [
+          { slug: "kingambit", caption: "Dark truck" },
+          { slug: "garchomp", caption: "Ground cleaner" },
+          { slug: "excadrill", caption: "Mold Breaker punch" },
+          { slug: "dragonite", caption: "Multiscale / Extreme Speed" },
+          { slug: "gholdengo", caption: "Special Steel" },
+          { slug: "meowscarada", caption: "Fast physical break" },
+        ],
       },
       {
         title: "Speed",
-        body: "Outrun, revenge, or flip the clock. Cinderace races. Sneasler Unburdens. Farigiraf sets Trick Room. Without this job you guess every turn.",
-        example: { slug: "cinderace", caption: "The racer. Sneasler is the Unburden clock." },
+        body: "The Speed job answers who moves first. That can be honest 32 Spe, Choice Scarf, priority (Sucker Punch, Extreme Speed, Fake Out), weather Speed (Swift Swim, Chlorophyll), Unburden, Tailwind, or Trick Room. Without a Speed plan you guess every race — and Champions singles punishes guessing. Teambuilding that ignores Speed builds a three that loses to one Scarf cleaner.",
+        takeaway: "Name how you win races you already lose on the number. If you have no answer, rebuild before you queue.",
+        rows: [
+          {
+            label: "Does",
+            detail: "Wins or flips the Speed line: race, revenge, clock, or priority.",
+          },
+          {
+            label: "Why it matters",
+            detail: "Whoever moves first often decides the KO. No Speed job means every turn is a coin.",
+          },
+          {
+            label: "Build",
+            detail: "Spend Speed on the Pokémon that must move first for the wincon. Pack priority or a clock for the rest.",
+          },
+        ],
+        example: { slug: "cinderace", caption: "Speed — the race is the job." },
+        examples: [
+          { slug: "cinderace", caption: "Honest / Scarf race" },
+          { slug: "sneasler", caption: "Unburden" },
+          { slug: "whimsicott", caption: "Tailwind clock" },
+          { slug: "farigiraf", caption: "Trick Room" },
+          { slug: "basculegion-male", caption: "Swift Swim" },
+          { slug: "kingambit", caption: "Sucker Punch revenge" },
+        ],
       },
       {
         title: "Weather",
-        body: "The field is the team. Pelipper is rain. Mega Charizard Y is sun. You do not splash weather. The other two cash it.",
-        example: { slug: "pelipper", caption: "Drizzle. Y is Drought and the nuke." },
+        body: "Weather (and terrain) setters rewrite the board on entry. Drizzle, Drought, Sand Stream, Snow Warning, Grassy Surge — the field is the team. Partners cash Swift Swim, Chlorophyll, Hurricane accuracy, Electro Shot, Grassy Glide. You do not splash a setter onto a three that cannot use the field. Teambuilding around weather means the other two slots exist to win while that field is up — and to survive overwrite.",
+        takeaway: "If the setter is on the list, the other two must cash the field. Ornamental weather is a wasted slot.",
+        rows: [
+          {
+            label: "Does",
+            detail: "Sets rain, sun, sand, snow, or terrain when it enters.",
+          },
+          {
+            label: "Why it matters",
+            detail: "Changes damage, Speed, and accuracy for the whole match until overwritten.",
+          },
+          {
+            label: "Build",
+            detail: "At least one partner that gets stronger in that field. An answer to the opposing weather.",
+          },
+        ],
+        example: { slug: "pelipper", caption: "Weather — the field is the team." },
+        examples: [
+          { slug: "pelipper", caption: "Drizzle" },
+          { slug: "charizard-mega-y", caption: "Drought Mega" },
+          { slug: "torkoal", caption: "Drought" },
+          { slug: "rillaboom", caption: "Grassy Surge" },
+          { slug: "politoed", caption: "Drizzle" },
+        ],
       },
       {
         title: "Mega",
-        body: "One per battle. Mega Salamence Aerilates. Mega Charizard Y Droughts. If it is not the wincon, you spent the Omni Ring on a flex.",
-        example: { slug: "salamence-mega", caption: "The kite. Y is the other stone." },
+        body: "Mega Evolution is a once-per-battle transform via the Omni Ring. The Mega stone fills the item slot — that Pokémon is usually the closer: Aerilate snowball, Drought nuke, raw Mega Attack. Teambuilding treats Mega as the win condition, not a flex. If two on the three can Mega, preview picks which stone fires. If the Mega is not how you win, you spent the Omni Ring on vanity.",
+        takeaway: "The stone is the wincon slot. Build the other two to get that Mega a free turn — or to win without it when the Mega is the wrong send.",
+        rows: [
+          {
+            label: "Does",
+            detail: "Once per match: transform and attack the same turn. Stats and ability jump.",
+          },
+          {
+            label: "Why it matters",
+            detail: "Highest ceiling on many threes. Wrong Mega send often loses the game immediately.",
+          },
+          {
+            label: "Build",
+            detail: "Partners that remove the Mega’s checks. A backup plan if Mega is walled or revenge-KOd.",
+          },
+        ],
+        example: { slug: "salamence-mega", caption: "Mega — the Omni Ring closer." },
+        examples: [
+          { slug: "salamence-mega", caption: "Aerilate kite" },
+          { slug: "charizard-mega-y", caption: "Drought nuke" },
+          { slug: "garchomp", caption: "Mega Chomp lines" },
+          { slug: "lucario", caption: "Mega Lucario" },
+          { slug: "mawile", caption: "Mega Mawile" },
+        ],
+      },
+      {
+        title: "Digest the three",
+        body: "Before you queue, name the jobs out loud: who buys turns, who takes KOs, how you win Speed races, whether a field or Mega is the closer. A three that is “three attackers I like” has no jobs — only hope. Cut any slot that does not change one of those sentences.",
+        takeaway: "If you cannot say the jobs in four sentences, you do not understand the three yet.",
+        rows: [
+          {
+            label: "Ask",
+            detail: "Support verb? Breaker? Speed plan? Field or Mega closer?",
+          },
+          {
+            label: "Fail",
+            detail: "Three names with no jobs = you will invent a plan mid-match and lose.",
+          },
+          {
+            label: "Pass",
+            detail: "Each slot has a job sentence. Then open manuals and play.",
+          },
+        ],
+        example: { slug: "whimsicott", caption: "Clock support. The cleaner inherits the job." },
+        examples: [
+          { slug: "whimsicott", caption: "Support / Speed" },
+          { slug: "corviknight", caption: "Support shield" },
+          { slug: "garchomp", caption: "Breaker" },
+        ],
       },
     ],
     examples: [

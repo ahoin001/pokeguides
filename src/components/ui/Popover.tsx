@@ -105,7 +105,7 @@ export function Popover({
             className={`absolute top-[calc(100%+0.5rem)] z-30 ${ALIGN[align]} ${widthClassName}`}
           >
             <div
-              className={`rounded-2xl border border-line bg-bg p-2 shadow-[0_16px_40px_rgba(0,0,0,0.45)] ${panelClassName}`}
+              className={`rounded-2xl border border-line bg-bg p-2 shadow-[var(--shadow)] ${panelClassName}`}
             >
               {children}
             </div>

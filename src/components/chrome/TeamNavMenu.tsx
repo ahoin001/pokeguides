@@ -96,7 +96,7 @@ function MenuLink({
       href={href}
       onClick={onNavigate}
       className={`block rounded-xl px-2.5 py-2 text-sm transition active:scale-[0.99] ${
-        on ? "bg-white/10 text-ink" : "text-muted hover:bg-white/6 hover:text-ink"
+        on ? "bg-overlay text-ink" : "text-muted hover:bg-overlay hover:text-ink"
       }`}
     >
       {children}
@@ -115,7 +115,7 @@ export function TeamLocalBar() {
       <Link
         href="/team"
         className={`rounded-full px-3.5 py-1.5 text-sm transition active:scale-[0.98] ${
-          builder ? "bg-ink text-bg" : "bg-white/6 text-muted hover:text-ink"
+          builder ? "bg-ink text-bg" : "bg-overlay text-muted hover:text-ink"
         }`}
       >
         Builder
@@ -123,7 +123,7 @@ export function TeamLocalBar() {
       <Link
         href="/team/box"
         className={`rounded-full px-3.5 py-1.5 text-sm transition active:scale-[0.98] ${
-          box ? "bg-ink text-bg" : "bg-white/6 text-muted hover:text-ink"
+          box ? "bg-ink text-bg" : "bg-overlay text-muted hover:text-ink"
         }`}
       >
         My box
@@ -131,7 +131,7 @@ export function TeamLocalBar() {
       <Link
         href="/team/archetypes"
         className={`rounded-full px-3.5 py-1.5 text-sm transition active:scale-[0.98] ${
-          archetypes ? "bg-ink text-bg" : "bg-white/6 text-muted hover:text-ink"
+          archetypes ? "bg-ink text-bg" : "bg-overlay text-muted hover:text-ink"
         }`}
       >
         Archetypes

@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { useState, type ReactNode } from "react";
 import { AppShell } from "@/components/chrome/AppShell";
+import { ThemeProvider } from "@/components/chrome/ThemeProvider";
 
 export function Providers({ children }: { children: ReactNode }) {
   const [client] = useState(
@@ -15,7 +16,9 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <NuqsAdapter>
       <QueryClientProvider client={client}>
-        <AppShell>{children}</AppShell>
+        <ThemeProvider>
+          <AppShell>{children}</AppShell>
+        </ThemeProvider>
       </QueryClientProvider>
     </NuqsAdapter>
   );

@@ -131,7 +131,7 @@ function MoveSearch({
         </p>
       )}
       {open && !disabled ? (
-        <ul className="absolute z-20 mt-1 max-h-56 w-full overflow-auto rounded-xl border border-line bg-bg shadow-[0_16px_40px_rgba(0,0,0,0.45)] md:max-w-[24rem]">
+        <ul className="absolute z-20 mt-1 max-h-56 w-full overflow-auto rounded-xl border border-line bg-bg shadow-[var(--shadow)] md:max-w-[24rem]">
           {results.length === 0 ? (
             <li className="px-3 py-2.5 text-sm text-muted">No damaging moves match.</li>
           ) : (

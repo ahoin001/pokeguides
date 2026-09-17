@@ -83,7 +83,7 @@ export function LiveFoeSearch({ exclude }: { exclude: string[] }) {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={reduce ? undefined : { opacity: 0, y: -4, scale: 0.98 }}
                 transition={{ duration: motionTokens.state, ease: easeOut }}
-                className="absolute inset-x-0 top-[calc(100%+0.35rem)] z-20 origin-top flex flex-wrap gap-2 rounded-2xl border border-line bg-bg p-2 shadow-[0_16px_40px_rgba(0,0,0,0.45)]"
+                className="absolute inset-x-0 top-[calc(100%+0.35rem)] z-20 origin-top flex flex-wrap gap-2 rounded-2xl border border-line bg-bg p-2 shadow-[var(--shadow)]"
               >
                 {hits.map((p) => (
                   <li key={p.slug}>

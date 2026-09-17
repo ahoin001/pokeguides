@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
 import type { CatalogEntry } from "@/types/pokemon";
 import {
@@ -27,29 +28,60 @@ const LEGEND: { kind: SpeRaceKind; blurb: string }[] = [
   { kind: "outsped", blurb: "Their 0 SP Spe still beats your 32 SP Spe." },
 ];
 
-export function SpeRaceLegend({ compact = false }: { compact?: boolean }) {
+/** Cell shell from *your* perspective — not “green on the bigger number.” */
+function shellTone(you: number, them: number) {
+  if (you > them) {
+    return "border-emerald-500/35 bg-emerald-500/15";
+  }
+  if (you < them) {
+    return "border-rose-500/35 bg-rose-500/12";
+  }
+  return "border-line/60 bg-white/5";
+}
+
+export function SpeRaceLegend({
+  compact = false,
+  defaultOpen = false,
+}: {
+  compact?: boolean;
+  /** Dock / inline: start collapsed so it doesn’t eat scroll. */
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+
   return (
-    <ul
-      className={
-        compact
-          ? "grid gap-1.5 sm:grid-cols-2"
-          : "grid gap-2 sm:grid-cols-2 lg:grid-cols-4"
-      }
+    <details
+      open={open}
+      onToggle={(e) => setOpen((e.target as HTMLDetailsElement).open)}
+      className="rounded-xl border border-line/60 bg-white/[0.03]"
     >
-      {LEGEND.map(({ kind, blurb }) => (
-        <li
-          key={kind}
-          className="rounded-xl border border-line/60 bg-white/[0.03] px-2.5 py-2"
-        >
-          <p className={`text-[11px] font-semibold ${KIND_TONE[kind]}`}>
-            {formatSpeRaceShort(kind)}
-          </p>
-          <p className={`mt-0.5 leading-snug text-muted ${compact ? "text-[10px]" : "text-xs"}`}>
-            {blurb}
-          </p>
-        </li>
-      ))}
-    </ul>
+      <summary className="cursor-pointer list-none px-2.5 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted marker:content-none [&::-webkit-details-marker]:hidden">
+        <span className="inline-flex w-full items-center justify-between gap-2">
+          Speed legend
+          <span className="normal-case tracking-normal text-[10px] font-medium text-muted/80">
+            {open ? "Hide" : "Show"}
+          </span>
+        </span>
+      </summary>
+      <ul
+        className={
+          compact
+            ? "grid gap-1.5 border-t border-line/50 px-2.5 pb-2.5 pt-2 sm:grid-cols-2"
+            : "grid gap-2 border-t border-line/50 px-2.5 pb-2.5 pt-2 sm:grid-cols-2 lg:grid-cols-4"
+        }
+      >
+        {LEGEND.map(({ kind, blurb }) => (
+          <li key={kind} className="rounded-lg bg-bg/30 px-2 py-1.5">
+            <p className={`text-[11px] font-semibold ${KIND_TONE[kind]}`}>
+              {formatSpeRaceShort(kind)}
+            </p>
+            <p className={`mt-0.5 leading-snug text-muted ${compact ? "text-[10px]" : "text-xs"}`}>
+              {blurb}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </details>
   );
 }
 
@@ -99,7 +131,7 @@ export function VsSpeRace({
                       {formatSpeRaceShort(race.kind)}
                     </p>
                   </div>
-                  <div className="mt-0.5 flex flex-wrap gap-x-3 gap-y-0.5">
+                  <div className="mt-0.5 flex flex-wrap gap-1.5">
                     <DuelInline label="Base" you={oursBand.at0} them={theirBand.at0} />
                     <DuelInline label="Max" you={oursBand.at32} them={theirBand.at32} />
                   </div>
@@ -167,22 +199,14 @@ export function VsSpeRace({
   );
 }
 
-function speNumClass(you: number, them: number, side: "you" | "them") {
-  const win = side === "you" ? you > them : them > you;
-  const lose = side === "you" ? you < them : them < you;
-  if (win) return "rounded-md bg-emerald-500/25 px-1 font-semibold text-emerald-100";
-  if (lose) return "rounded-md bg-rose-500/20 px-1 font-semibold text-rose-100";
-  return "text-muted";
-}
-
 function DuelCell({ label, you, them }: { label: string; you: number; them: number }) {
   return (
-    <div className="rounded-xl bg-white/5 px-3 py-2 text-center">
+    <div className={`rounded-xl border px-3 py-2 text-center ${shellTone(you, them)}`}>
       <p className="font-mono text-[10px] uppercase tracking-wide text-muted">{label}</p>
       <p className="mt-1 flex items-baseline justify-center gap-1.5 font-mono tabular-nums">
-        <span className={`text-base ${speNumClass(you, them, "you")}`}>{you}</span>
+        <span className="text-base font-semibold text-ink">{you}</span>
         <span className="text-[10px] text-muted">vs</span>
-        <span className={`text-base ${speNumClass(you, them, "them")}`}>{them}</span>
+        <span className="text-base text-ink/70">{them}</span>
       </p>
     </div>
   );
@@ -190,11 +214,13 @@ function DuelCell({ label, you, them }: { label: string; you: number; them: numb
 
 function DuelInline({ label, you, them }: { label: string; you: number; them: number }) {
   return (
-    <span className="inline-flex items-baseline gap-1 font-mono text-xs tabular-nums">
+    <span
+      className={`inline-flex items-baseline gap-1 rounded-md border px-1.5 py-0.5 font-mono text-xs tabular-nums ${shellTone(you, them)}`}
+    >
       <span className="text-[10px] uppercase tracking-wide text-muted">{label}</span>
-      <span className={speNumClass(you, them, "you")}>{you}</span>
+      <span className="font-semibold text-ink">{you}</span>
       <span className="text-[10px] text-muted">vs</span>
-      <span className={speNumClass(you, them, "them")}>{them}</span>
+      <span className="text-ink/70">{them}</span>
     </span>
   );
 }

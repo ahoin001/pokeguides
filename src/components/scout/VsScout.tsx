@@ -236,16 +236,15 @@ export function VsScout({
         if (!opts.replaceIfFull) return prev;
         const next = [...prev.slice(1), slug];
         setFocusSlug(slug);
-        setPickerOpen(false);
         return next;
       }
       const next = [...prev, slug];
       setFocusSlug(slug);
-      if (next.length >= MAX_FOES) setPickerOpen(false);
       return next;
     });
     pushRecent(slug);
     setQ("");
+    setPickerOpen(false);
     setDockOpen(true);
     if (opts.forceDock) {
       setDocked(true);
@@ -287,6 +286,7 @@ export function VsScout({
       onClear={clearOpponents}
       pickerOpen={pickerOpen}
       onTogglePicker={() => setPickerOpen((v) => !v)}
+      onClosePicker={() => setPickerOpen(false)}
       canAdd={canAdd}
       docked={docked}
       onToggleDock={toggleDock}
@@ -298,8 +298,11 @@ export function VsScout({
       results={results}
       opponentSlugs={opponentSlugs}
       onToggleResult={(slug, selected) => {
-        if (selected) removeOpponent(slug);
-        else addOpponent(slug);
+        if (selected) {
+          removeOpponent(slug);
+          return;
+        }
+        addOpponent(slug);
       }}
     />
   );

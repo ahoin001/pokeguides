@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MagnifyingGlass, X } from "@phosphor-icons/react";
 import { ensureSearchRoster, searchLegal } from "@/lib/catalog/client-search";
 import { getPokemon } from "@/lib/catalog/lookup";
+import { megaAltChips, megaChipLabel } from "@/lib/catalog/megas";
 import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { useTeamStore } from "@/stores/team";
@@ -17,6 +18,7 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
   const slugs = useTeamStore((s) => s.slugs);
   const add = useTeamStore((s) => s.add);
   const remove = useTeamStore((s) => s.remove);
+  const setSlot = useTeamStore((s) => s.setSlot);
   const selectBring = useLiveMatchStore((s) => s.selectBring);
   const activeBringSlug = useLiveMatchStore((s) => s.activeBringSlug);
   const clearBringMoves = useLiveMatchStore((s) => s.clearBringMoves);
@@ -66,6 +68,15 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
     clearBringMoves(slug);
   }
 
+  /** In-slot mega / base swap — keeps the slot, updates the compare target. */
+  function swapForm(index: number, from: string, to: string) {
+    if (from === to) return;
+    if (slugs.includes(to)) return;
+    setSlot(index, to);
+    clearBringMoves(from);
+    selectBring(to);
+  }
+
   function togglePackage(slug: string) {
     if (slugs.includes(slug)) {
       drop(slug);
@@ -85,7 +96,8 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
             {bringFilled.length}/3 on the field
           </h2>
           <p className="mt-1 max-w-[40ch] text-sm text-muted">
-            Search or tap your six. Tap a slot to compare. Presets restore a common three.
+            Search or tap your six. Mega chips swap the slot when you evolve mid-fight — or search the mega
+            directly for turn-one.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
@@ -146,8 +158,9 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
             );
           }
           const focused = highlighted === slug;
+          const alts = megaAltChips(slug).filter((alt) => !slugs.includes(alt.slug));
           return (
-            <li key={slug}>
+            <li key={slug} className="space-y-1.5">
               <div
                 className={`relative flex flex-col items-center gap-1.5 rounded-2xl border px-1.5 py-2.5 transition ${
                   focused
@@ -173,6 +186,22 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
                   <X size={12} weight="bold" />
                 </button>
               </div>
+              {alts.length ? (
+                <div className="flex flex-wrap justify-center gap-1">
+                  {alts.map((alt) => (
+                    <button
+                      key={alt.slug}
+                      type="button"
+                      title={`Swap to ${alt.name}`}
+                      onClick={() => swapForm(i, slug, alt.slug)}
+                      className="rounded-full border border-line/70 bg-raised/40 px-2 py-0.5 text-[10px] font-medium text-muted transition hover:border-ink/35 hover:text-ink"
+                      style={cssVars(alt.palette)}
+                    >
+                      {megaChipLabel(alt)}
+                    </button>
+                  ))}
+                </div>
+              ) : null}
             </li>
           );
         })}
@@ -184,25 +213,25 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
             From your six — tap to toggle
           </p>
           <ul className="mt-2 grid grid-cols-3 gap-2 sm:grid-cols-6">
-            {boxFilled.map((slug) => {
-              const p = getPokemon(slug);
-              if (!p) return null;
-              const on = slugs.includes(slug);
+            {boxFilled.map((pkgSlug) => {
+              const mon = getPokemon(pkgSlug);
+              if (!mon) return null;
+              const on = slugs.includes(pkgSlug);
               return (
-                <li key={slug}>
+                <li key={pkgSlug}>
                   <button
                     type="button"
-                    onClick={() => togglePackage(slug)}
-                    title={on ? `Drop ${p.name}` : `Bring ${p.name}`}
+                    onClick={() => togglePackage(pkgSlug)}
+                    title={on ? `Drop ${mon.name}` : `Bring ${mon.name}`}
                     className={`flex w-full flex-col items-center gap-1 rounded-2xl border px-1 py-2 transition ${
                       on
                         ? "border-ink/35 bg-white/10"
                         : "border-line/70 bg-bg/30 opacity-75 hover:opacity-100"
                     }`}
-                    style={cssVars(p.palette)}
+                    style={cssVars(mon.palette)}
                   >
-                    <PokemonArt slug={p.slug} src={p.sprite || p.artwork} name={p.name} size={40} />
-                    <span className="max-w-full truncate text-[10px] font-medium">{p.name}</span>
+                    <PokemonArt slug={mon.slug} src={mon.sprite || mon.artwork} name={mon.name} size={40} />
+                    <span className="max-w-full truncate text-[10px] font-medium">{mon.name}</span>
                   </button>
                 </li>
               );

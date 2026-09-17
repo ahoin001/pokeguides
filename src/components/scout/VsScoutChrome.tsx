@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
@@ -16,6 +17,7 @@ export function VsScoutChrome({
   onClear,
   pickerOpen,
   onTogglePicker,
+  onClosePicker,
   canAdd,
   docked,
   onToggleDock,
@@ -35,6 +37,7 @@ export function VsScoutChrome({
   onClear: () => void;
   pickerOpen: boolean;
   onTogglePicker: () => void;
+  onClosePicker: () => void;
   canAdd: boolean;
   docked: boolean;
   onToggleDock: () => void;
@@ -48,6 +51,30 @@ export function VsScoutChrome({
   onToggleResult: (slug: string, selected: boolean) => void;
 }) {
   const chips = [...suggested, ...recent.filter((s) => !suggested.includes(s))];
+  const pickerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!pickerOpen) return;
+
+    function onPointerDown(e: PointerEvent) {
+      const t = e.target as HTMLElement | null;
+      if (!t) return;
+      if (pickerRef.current?.contains(t)) return;
+      if (t.closest("[data-vs-picker-toggle]")) return;
+      onClosePicker();
+    }
+
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") onClosePicker();
+    }
+
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [pickerOpen, onClosePicker]);
 
   return (
     <>
@@ -100,6 +127,7 @@ export function VsScoutChrome({
         {pickerOpen ? (
           <motion.div
             key="picker"
+            ref={pickerRef}
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}

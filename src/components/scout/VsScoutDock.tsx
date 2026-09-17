@@ -388,12 +388,7 @@ export function VsScoutDock({
       <div className="min-h-0 flex-1 space-y-3 overflow-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {!chromeCollapsed ? <div className="space-y-3">{chrome}</div> : null}
 
-        <div>
-          <p className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-            Speed legend
-          </p>
-          <SpeRaceLegend compact />
-        </div>
+        <SpeRaceLegend compact />
 
         {focusFoe && focusReport ? (
           <div className="space-y-3" style={cssVars(focusFoe.palette)}>

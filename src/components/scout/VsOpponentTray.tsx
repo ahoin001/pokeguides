@@ -122,6 +122,8 @@ export function VsOpponentTray({
         <div className="flex shrink-0 flex-wrap gap-2">
           <button
             type="button"
+            data-vs-picker-toggle=""
+            onPointerDown={(e) => e.stopPropagation()}
             onClick={onTogglePicker}
             disabled={!canAdd && !pickerOpen}
             className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg disabled:opacity-40"

@@ -4150,6 +4150,46 @@
     "source": "pokeapi"
   },
   {
+    "id": 10309,
+    "slug": "garchomp-mega-z",
+    "name": "Mega Garchomp Z",
+    "dexNo": 445,
+    "types": [
+      "dragon"
+    ],
+    "form": "mega-z",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 108,
+      "atk": 130,
+      "def": 85,
+      "spa": 141,
+      "spd": 85,
+      "spe": 151,
+      "bst": 700
+    },
+    "speedAt0": 171,
+    "speedAt32": 203,
+    "abilities": [
+      "levitate"
+    ],
+    "kitTags": [],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10309.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10309.png",
+    "tokens": "mega garchomp z garchomp-mega-z dragon levitate blue",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#2a2a38",
+      "vibrant": "#303040",
+      "muted": "#262734",
+      "ink": "#f4f1ea",
+      "wash": "#303040",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 448,
     "slug": "lucario",
     "name": "Lucario",

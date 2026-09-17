@@ -8,7 +8,7 @@ import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { useTeamStore } from "@/stores/team";
 import { useLiveMatchStore } from "@/stores/live-match";
 
-/** Save / load bring threes (+ moves) for the Live clock. */
+/** Save / load bring threes for the Live clock. */
 export function LiveBringPresets() {
   const slugs = useTeamStore((s) => s.slugs);
   const box = useTeamStore((s) => s.box);
@@ -19,7 +19,7 @@ export function LiveBringPresets() {
   const deleteBringPreset = useLiveMatchStore((s) => s.deleteBringPreset);
   const setBringMoves = useLiveMatchStore((s) => s.setBringMoves);
   const clearBringMoves = useLiveMatchStore((s) => s.clearBringMoves);
-  const setFocus = useLiveMatchStore((s) => s.setFocus);
+  const selectBring = useLiveMatchStore((s) => s.selectBring);
 
   const bring = useMemo(() => slugs.filter(Boolean) as string[], [slugs]);
   const [name, setName] = useState("");
@@ -55,7 +55,7 @@ export function LiveBringPresets() {
       const moves = preset.moves[slug];
       if (moves?.length) setBringMoves(slug, moves);
     }
-    setFocus(preset.slugs[0] ?? null);
+    if (preset.slugs[0]) selectBring(preset.slugs[0]);
     setOpen(false);
   }
 

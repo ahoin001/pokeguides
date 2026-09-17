@@ -17,8 +17,8 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
   const slugs = useTeamStore((s) => s.slugs);
   const add = useTeamStore((s) => s.add);
   const remove = useTeamStore((s) => s.remove);
-  const setFocus = useLiveMatchStore((s) => s.setFocus);
-  const focusSlug = useLiveMatchStore((s) => s.focusSlug);
+  const selectBring = useLiveMatchStore((s) => s.selectBring);
+  const activeBringSlug = useLiveMatchStore((s) => s.activeBringSlug);
   const clearBringMoves = useLiveMatchStore((s) => s.clearBringMoves);
 
   const boxFilled = box.filter(Boolean) as string[];
@@ -44,7 +44,7 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
   }, [q, ready, blocked]);
 
   function bringIn(slug: string) {
-    setFocus(slug);
+    selectBring(slug);
     if (slugs.includes(slug)) return;
     if (!add(slug)) {
       const first = slugs.find(Boolean);
@@ -60,10 +60,6 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
   function drop(slug: string) {
     remove(slug);
     clearBringMoves(slug);
-    if (focusSlug === slug) {
-      const next = slugs.find((s) => s && s !== slug) ?? null;
-      setFocus(next);
-    }
   }
 
   function togglePackage(slug: string) {
@@ -85,7 +81,7 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
             {bringFilled.length}/3 on the field
           </h2>
           <p className="mt-1 max-w-[40ch] text-sm text-muted">
-            Search any legal mon, or tap your registered six. Presets restore a full bring + moves.
+            Search or tap your six. Tap a slot to compare. Presets restore a common three.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
@@ -145,7 +141,7 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
               </li>
             );
           }
-          const focused = focusSlug === slug;
+          const focused = activeBringSlug === slug;
           return (
             <li key={slug}>
               <div
@@ -158,7 +154,7 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
               >
                 <button
                   type="button"
-                  onClick={() => setFocus(slug)}
+                  onClick={() => selectBring(slug)}
                   className="flex w-full flex-col items-center gap-1.5"
                 >
                   <PokemonArt slug={p.slug} src={p.sprite || p.artwork} name={p.name} size={56} />

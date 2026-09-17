@@ -3,12 +3,12 @@ import { LiveMatchStage } from "@/components/live/LiveMatchStage";
 
 export const metadata = {
   title: "Live Match · Ringside",
-  description: "Stadium tool — your six, their preview, kits, and Champions damage calc.",
+  description: "Log their lead, compare Spe and stats, read the kit — stadium tool for the clock.",
 };
 
 export default function LiveMatchPage() {
   return (
-    <PageFrame variant="board" sticky="shell" className="pb-52 md:pb-44">
+    <PageFrame variant="board" sticky="shell" className="pb-28 md:pb-24">
       <LiveMatchStage />
     </PageFrame>
   );

@@ -22,7 +22,12 @@ export type BringPreset = {
 type LiveMatchState = {
   foes: string[];
   recent: string[];
+  /** Last-tapped mon for palette wash. */
   focusSlug: string | null;
+  /** Your selected bring for the duel. */
+  activeBringSlug: string | null;
+  /** Their selected / lead foe for the duel. */
+  activeFoeSlug: string | null;
   attackerSlug: string | null;
   defenderSlug: string | null;
   weather: LiveWeather;
@@ -30,13 +35,21 @@ type LiveMatchState = {
   screens: boolean;
   attackerPreset: SpPreset;
   defenderPreset: SpPreset;
-  /** Selected damaging moves per bring slug (up to 4). Used for field coverage. */
+  /** Damage calc drawer open. */
+  calcOpen: boolean;
+  /** Legacy bring moves (presets may still store them). */
   bringMoves: Record<string, string[]>;
   bringPresets: BringPreset[];
   addFoe: (slug: string) => void;
   removeFoe: (slug: string) => void;
   clearFoes: () => void;
   setFocus: (slug: string | null) => void;
+  setActiveBring: (slug: string | null) => void;
+  setActiveFoe: (slug: string | null) => void;
+  /** Tap a bring mon: select for duel + wash. */
+  selectBring: (slug: string) => void;
+  /** Tap a foe: select for duel + wash. */
+  selectFoe: (slug: string) => void;
   setAttacker: (slug: string | null) => void;
   setDefender: (slug: string | null) => void;
   setWeather: (w: LiveWeather) => void;
@@ -44,6 +57,7 @@ type LiveMatchState = {
   setScreens: (v: boolean) => void;
   setAttackerPreset: (p: SpPreset) => void;
   setDefenderPreset: (p: SpPreset) => void;
+  setCalcOpen: (open: boolean) => void;
   swapCalcSides: () => void;
   setBringMoves: (slug: string, moves: string[]) => void;
   toggleBringMove: (slug: string, move: string) => void;
@@ -83,6 +97,8 @@ export const useLiveMatchStore = create<LiveMatchState>()(
       foes: [],
       recent: [],
       focusSlug: null,
+      activeBringSlug: null,
+      activeFoeSlug: null,
       attackerSlug: null,
       defenderSlug: null,
       weather: "none",
@@ -90,12 +106,17 @@ export const useLiveMatchStore = create<LiveMatchState>()(
       screens: false,
       attackerPreset: "ranked",
       defenderPreset: "ranked",
+      calcOpen: false,
       bringMoves: {},
       bringPresets: [],
       addFoe: (slug) => {
         const { foes, recent } = get();
         if (foes.includes(slug)) {
-          set({ focusSlug: slug, recent: uniqCap(recent, slug, MAX_RECENT) });
+          set({
+            focusSlug: slug,
+            activeFoeSlug: slug,
+            recent: uniqCap(recent, slug, MAX_RECENT),
+          });
           return;
         }
         const next =
@@ -103,18 +124,31 @@ export const useLiveMatchStore = create<LiveMatchState>()(
         set({
           foes: next,
           focusSlug: slug,
+          activeFoeSlug: slug,
           recent: uniqCap(recent, slug, MAX_RECENT),
         });
       },
       removeFoe: (slug) =>
-        set((s) => ({
-          foes: s.foes.filter((f) => f !== slug),
-          focusSlug: s.focusSlug === slug ? s.foes.find((f) => f !== slug) ?? null : s.focusSlug,
-          attackerSlug: s.attackerSlug === slug ? null : s.attackerSlug,
-          defenderSlug: s.defenderSlug === slug ? null : s.defenderSlug,
-        })),
-      clearFoes: () => set({ foes: [], focusSlug: null }),
+        set((s) => {
+          const foes = s.foes.filter((f) => f !== slug);
+          const fallback = foes[foes.length - 1] ?? foes[0] ?? null;
+          return {
+            foes,
+            focusSlug: s.focusSlug === slug ? fallback : s.focusSlug,
+            activeFoeSlug: s.activeFoeSlug === slug ? fallback : s.activeFoeSlug,
+            attackerSlug: s.attackerSlug === slug ? null : s.attackerSlug,
+            defenderSlug: s.defenderSlug === slug ? null : s.defenderSlug,
+          };
+        }),
+      clearFoes: () =>
+        set({ foes: [], focusSlug: null, activeFoeSlug: null }),
       setFocus: (slug) => set({ focusSlug: slug }),
+      setActiveBring: (slug) => set({ activeBringSlug: slug }),
+      setActiveFoe: (slug) => set({ activeFoeSlug: slug }),
+      selectBring: (slug) =>
+        set({ activeBringSlug: slug, focusSlug: slug }),
+      selectFoe: (slug) =>
+        set({ activeFoeSlug: slug, focusSlug: slug }),
       setAttacker: (slug) => set({ attackerSlug: slug }),
       setDefender: (slug) => set({ defenderSlug: slug }),
       setWeather: (weather) => set({ weather }),
@@ -122,6 +156,7 @@ export const useLiveMatchStore = create<LiveMatchState>()(
       setScreens: (screens) => set({ screens }),
       setAttackerPreset: (attackerPreset) => set({ attackerPreset }),
       setDefenderPreset: (defenderPreset) => set({ defenderPreset }),
+      setCalcOpen: (calcOpen) => set({ calcOpen }),
       swapCalcSides: () =>
         set((s) => ({
           attackerSlug: s.defenderSlug,
@@ -186,13 +221,15 @@ export const useLiveMatchStore = create<LiveMatchState>()(
     }),
     {
       name: "ringside-live-match",
-      version: 2,
+      version: 3,
       migrate: (persisted) => {
         const raw = persisted as Partial<LiveMatchState> | undefined;
         return {
           foes: raw?.foes ?? [],
           recent: raw?.recent ?? [],
           focusSlug: raw?.focusSlug ?? null,
+          activeBringSlug: raw?.activeBringSlug ?? null,
+          activeFoeSlug: raw?.activeFoeSlug ?? raw?.focusSlug ?? null,
           attackerSlug: raw?.attackerSlug ?? null,
           defenderSlug: raw?.defenderSlug ?? null,
           weather: raw?.weather ?? "none",
@@ -200,6 +237,7 @@ export const useLiveMatchStore = create<LiveMatchState>()(
           screens: raw?.screens ?? false,
           attackerPreset: raw?.attackerPreset ?? "ranked",
           defenderPreset: raw?.defenderPreset ?? "ranked",
+          calcOpen: false,
           bringMoves: raw?.bringMoves ?? {},
           bringPresets: raw?.bringPresets ?? [],
         };
@@ -208,6 +246,8 @@ export const useLiveMatchStore = create<LiveMatchState>()(
         foes: s.foes,
         recent: s.recent,
         focusSlug: s.focusSlug,
+        activeBringSlug: s.activeBringSlug,
+        activeFoeSlug: s.activeFoeSlug,
         attackerSlug: s.attackerSlug,
         defenderSlug: s.defenderSlug,
         weather: s.weather,

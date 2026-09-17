@@ -11,10 +11,10 @@ import { MAX_FOES, useLiveMatchStore } from "@/stores/live-match";
 export function LiveFoeSearch({ exclude }: { exclude: string[] }) {
   const foes = useLiveMatchStore((s) => s.foes);
   const recent = useLiveMatchStore((s) => s.recent);
-  const focusSlug = useLiveMatchStore((s) => s.focusSlug);
+  const activeFoeSlug = useLiveMatchStore((s) => s.activeFoeSlug);
   const addFoe = useLiveMatchStore((s) => s.addFoe);
   const removeFoe = useLiveMatchStore((s) => s.removeFoe);
-  const setFocus = useLiveMatchStore((s) => s.setFocus);
+  const selectFoe = useLiveMatchStore((s) => s.selectFoe);
   const clearFoes = useLiveMatchStore((s) => s.clearFoes);
 
   const [q, setQ] = useState("");
@@ -38,9 +38,11 @@ export function LiveFoeSearch({ exclude }: { exclude: string[] }) {
       <div className="flex flex-wrap items-end justify-between gap-2">
         <div>
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
-            Their preview
+            Their three
           </p>
-          <h2 className="mt-1 text-lg font-semibold tracking-tight">Up to {MAX_FOES}</h2>
+          <h2 className="mt-1 text-lg font-semibold tracking-tight">
+            Log as revealed · {foes.length}/{MAX_FOES}
+          </h2>
         </div>
         {foes.length ? (
           <button type="button" onClick={() => clearFoes()} className="text-xs text-muted underline hover:text-ink">
@@ -88,7 +90,7 @@ export function LiveFoeSearch({ exclude }: { exclude: string[] }) {
         {foes.map((slug) => {
           const p = getPokemon(slug) ?? pokemonFromSearch(slug);
           if (!p) return null;
-          const on = focusSlug === slug;
+          const on = activeFoeSlug === slug;
           return (
             <li key={slug}>
               <div
@@ -99,7 +101,7 @@ export function LiveFoeSearch({ exclude }: { exclude: string[] }) {
               >
                 <button
                   type="button"
-                  onClick={() => setFocus(slug)}
+                  onClick={() => selectFoe(slug)}
                   className="inline-flex items-center gap-2 pr-1 text-sm"
                 >
                   <PokemonArt slug={p.slug} src={p.sprite || p.artwork} name={p.name} size={32} />

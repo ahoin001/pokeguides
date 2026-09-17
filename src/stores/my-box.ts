@@ -17,7 +17,6 @@ export const OWNER_BOX_SEED: string[] = [
   "salamence",
   "sableye",
   "rotom-wash",
-  "rotom-heat", // "Rotom" — Heat as the second appliance form
   "rillaboom",
   "raichu-alola",
   "primarina",
@@ -34,7 +33,6 @@ export const OWNER_BOX_SEED: string[] = [
   "armarouge",
   "arcanine",
   "absol",
-  "hippowdon",
   "aegislash-shield",
   "meowscarada",
   "basculegion-male",
@@ -42,6 +40,9 @@ export const OWNER_BOX_SEED: string[] = [
   "skeledirge",
   "raichu",
   "charizard",
+  "golisopod",
+  "lucario",
+  "gholdengo",
 ];
 
 export type BoxExtra = {
@@ -52,9 +53,11 @@ export type BoxExtra = {
 export const OWNER_BOX_EXTRAS_SEED: BoxExtra[] = [
   { name: "Hisuian Zoroark", note: "Owned — catalog uses Unovan Zoroark until Hisuian is legal." },
   { name: "Hisuian Samurott", note: "Owned — catalog uses Unovan Samurott until Hisuian is legal." },
+  { name: "Rotom", note: "Owned base form — Champions catalog only lists appliance forms (Wash is in the legal box)." },
   { name: "Perrserker", note: "Owned — not on the current Champions legal roster." },
   { name: "Froslass", note: "Owned — not on the current Champions legal roster." },
   { name: "Scorbunny", note: "Owned — unevolved; not Champions-legal as Scorbunny." },
+  { name: "Hippowdon", note: "Owned — not on the current Champions legal roster." },
 ];
 
 type MyBoxState = {
@@ -117,11 +120,19 @@ export const useMyBoxStore = create<MyBoxState>()(
     }),
     {
       name: "ringside-my-box",
-      version: 1,
-      migrate: (persisted) => {
+      version: 2,
+      migrate: (persisted, fromVersion) => {
         const raw = persisted as
           | { owned?: string[]; extras?: BoxExtra[]; filterBuilders?: boolean }
           | undefined;
+        // v2 refreshes the owner seed (Golisopod, Lucario, Gholdengo, etc.).
+        if (fromVersion < 2) {
+          return {
+            owned: uniqSorted(OWNER_BOX_SEED),
+            extras: OWNER_BOX_EXTRAS_SEED,
+            filterBuilders: raw?.filterBuilders ?? true,
+          };
+        }
         return {
           owned: uniqSorted(raw?.owned?.length ? raw.owned : OWNER_BOX_SEED),
           extras: raw?.extras?.length ? raw.extras : OWNER_BOX_EXTRAS_SEED,

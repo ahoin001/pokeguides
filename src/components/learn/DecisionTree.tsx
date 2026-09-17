@@ -76,9 +76,12 @@ function MoveChip({ name }: { name: string }) {
 export function DecisionTree({
   flow,
   compact = false,
+  embed = false,
 }: {
   flow: ManualFlow;
   compact?: boolean;
+  /** Hide outer title — parent already frames the stage. */
+  embed?: boolean;
 }) {
   const [path, setPath] = useState<string[]>([]);
   const [mode, setMode] = useState<"path" | "all">("path");
@@ -98,21 +101,25 @@ export function DecisionTree({
   return (
     <MotionConfig reducedMotion="user">
       <section
-        id={`flow-${flow.id}`}
-        className={compact ? "mt-8" : `mt-10 ${MANUAL_SCROLL_MT}`}
+        id={embed ? undefined : `flow-${flow.id}`}
+        className={embed || compact ? "" : `mt-10 ${MANUAL_SCROLL_MT}`}
         style={mon ? cssVars(mon.palette) : undefined}
         tabIndex={0}
         onKeyDown={onKey}
       >
-        <div className="flex flex-wrap items-end justify-between gap-3">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight">{flow.title}</h2>
-            {flow.lede ? <p className="mt-2 max-w-[52ch] text-sm text-muted">{flow.lede}</p> : null}
-          </div>
+        <div className={`flex flex-wrap items-end justify-between gap-3`}>
+          {embed ? (
+            <span className="sr-only">{flow.title}</span>
+          ) : (
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight">{flow.title}</h2>
+              {flow.lede ? <p className="mt-2 max-w-[52ch] text-sm text-muted">{flow.lede}</p> : null}
+            </div>
+          )}
           <Button
             type="button"
             variant="ghost"
-            className="shrink-0 text-xs"
+            className={`shrink-0 text-xs ${embed ? "ml-auto" : ""}`}
             onClick={() => {
               if (mode === "path") {
                 setMode("all");

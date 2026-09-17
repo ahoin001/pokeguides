@@ -370,7 +370,7 @@ export function ManualPackDossier({
           .filter(Boolean)
           .join(" · ")}{" "}
         —{" "}
-        <Link href="#three" className="underline hover:text-ink">
+        <Link href="#team" className="underline hover:text-ink">
           jump to kits
         </Link>
       </p>

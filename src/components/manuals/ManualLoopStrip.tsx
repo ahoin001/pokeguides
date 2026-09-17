@@ -19,18 +19,26 @@ function splitWhen(body: string): { when?: string; steps: string[] } {
   return { steps };
 }
 
-export function ManualLoopStrip({ loops }: { loops: { title: string; body: string }[] }) {
+export function ManualLoopStrip({
+  loops,
+  embed = false,
+}: {
+  loops: { title: string; body: string }[];
+  embed?: boolean;
+}) {
   if (!loops.length) return null;
 
   return (
-    <section id="loops" className={`mt-8 ${MANUAL_SCROLL_MT}`}>
-      <div className="flex flex-wrap items-end justify-between gap-2">
-        <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Named plays</p>
-          <h3 className="mt-1 text-lg font-semibold tracking-tight">Recipes you repeat</h3>
+    <section id={embed ? undefined : "loops"} className={embed ? "" : `mt-8 ${MANUAL_SCROLL_MT}`}>
+      {embed ? null : (
+        <div className="flex flex-wrap items-end justify-between gap-2">
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Named plays</p>
+            <h3 className="mt-1 text-lg font-semibold tracking-tight">Recipes you repeat</h3>
+          </div>
         </div>
-      </div>
-      <ul className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+      )}
+      <ul className={`${embed ? "mt-0" : "mt-4"} grid gap-3 md:grid-cols-2 xl:grid-cols-3`}>
         {loops.map((loop) => {
           const { when, steps } = splitWhen(loop.body);
           const list = steps.length ? steps : [loop.body];

@@ -21,18 +21,13 @@ export function manualJumps(manual: TeamManual, boxed = false, parent?: TeamManu
   const hasGame =
     flows.some((f) => f.id !== "macro" && !f.title.toLowerCase().includes("package")) ||
     manual.loops.some((l) => l.title || l.body) ||
-    (manual.switches ?? []).some((s) => s.into || s.send);
+    (manual.switches ?? []).some((s) => s.into || s.send) ||
+    Boolean(source.packs?.some((p) => (p.gameStates?.length ?? 0) > 0 || (p.flows?.length ?? 0) > 0));
   const hasMatchups =
     manual.victims?.some((v) => v.name || v.why) ||
     manual.counters?.some((c) => c.name || c.why) ||
     manual.advantages?.some((a) => a.title || a.body) ||
     manual.hazards.some((h) => h.title || h.body);
-  const hasPocket = Boolean(
-    manual.pilot?.fail ||
-      family?.commonFail ||
-      (manual.switches ?? []).some((s) => s.into || s.send),
-  );
-  const hasThesis = Boolean(source.construction || source.megaPool || source.evidence);
   const hasDoctrine = Boolean(
     manual.pilot?.thesis ||
       manual.pilot?.rule ||
@@ -43,24 +38,14 @@ export function manualJumps(manual: TeamManual, boxed = false, parent?: TeamManu
       manual.philosophy?.trim() ||
       manual.meta?.trim(),
   );
-  const canLoad = manual.slugs.every(Boolean) && hasPocket;
 
   return [
     { href: "#top", label: "Top" },
     ...(hasDoctrine ? [{ href: "#doctrine", label: "Doctrine" }] : []),
-    ...(boxed ? [{ href: "#six", label: "The six" }] : []),
-    ...(source.architecture?.length ? [{ href: "#architecture", label: "Architecture" }] : []),
-    ...(hasThesis ? [{ href: "#thesis", label: "Thesis" }] : []),
+    ...(boxed ? [{ href: "#team", label: "Team" }] : []),
     ...(source.construction?.endgames?.length
       ? [{ href: "#endgames", label: "Endgames" }]
       : []),
-    ...(source.speedBenchmarks?.length
-      ? [{ href: "#benchmarks", label: "Spe" }]
-      : []),
-    ...(boxed ? [{ href: "#packages", label: "Packages" }] : []),
-    ...(hasPocket ? [{ href: "#pocket", label: "Pocket" }] : []),
-    ...(canLoad ? [{ href: "#load", label: "Load" }] : []),
-    { href: "#three", label: "Kits" },
     { href: "#scout", label: "Scout" },
     ...(manual.plan?.some((b) => b.title || b.play) ? [{ href: "#plan", label: "Plan" }] : []),
     ...(hasGame ? [{ href: "#game", label: "Game" }] : []),

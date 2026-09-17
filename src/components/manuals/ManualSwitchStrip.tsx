@@ -34,9 +34,11 @@ function resolveSendMons(send: string, team: CatalogEntry[]) {
 export function ManualSwitchStrip({
   switches,
   teamSlugs = [],
+  embed = false,
 }: {
   switches: ManualSwitch[];
   teamSlugs?: string[];
+  embed?: boolean;
 }) {
   if (!switches.length) return null;
   const team = teamSlugs
@@ -44,13 +46,20 @@ export function ManualSwitchStrip({
     .filter((p): p is CatalogEntry => Boolean(p));
 
   return (
-    <section id="switches" className={`mt-8 ${MANUAL_SCROLL_MT}`}>
-      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Switch board</p>
-      <h3 className="mt-1 text-lg font-semibold tracking-tight">They click a type — who walks in</h3>
-      <p className="mt-1.5 max-w-[52ch] text-sm text-muted">
-        Read the attack type on their Pokémon, then send the partner that takes it best. Reasons stay on the row so you know why.
-      </p>
-      <ul className="mt-4 overflow-hidden rounded-[24px] border border-line bg-raised/40">
+    <section
+      id={embed ? undefined : "switches"}
+      className={embed ? "" : `mt-8 ${MANUAL_SCROLL_MT}`}
+    >
+      {embed ? null : (
+        <>
+          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Switch board</p>
+          <h3 className="mt-1 text-lg font-semibold tracking-tight">They click a type — who walks in</h3>
+          <p className="mt-1.5 max-w-[52ch] text-sm text-muted">
+            Read the attack type on their Pokémon, then send the partner that takes it best. Reasons stay on the row so you know why.
+          </p>
+        </>
+      )}
+      <ul className={`${embed ? "mt-0" : "mt-4"} overflow-hidden rounded-[24px] border border-line bg-raised/40`}>
         {switches.map((row) => {
           const type = resolveType(row.into);
           let mons = resolveSendMons(row.send, team);

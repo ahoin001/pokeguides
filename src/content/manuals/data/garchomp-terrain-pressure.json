@@ -1,0 +1,1674 @@
+{
+  "id": "terrain-garchomp-rillaboom-sneasler",
+  "title": "M-C Terrain Pressure (Chomp Spine)",
+  "lede": "Garchomp-centered M-C six: Primarina + Gholdengo as the balance spine, Rillaboom + Sneasler + Mimikyu as flex. Preview names the Speed story — Mega/Scarf/Sash Chomp, Grassy Glide, or Unburden — then brings the two partners that cash it.",
+  "philosophy": "Same Garchomp three-mode spine as the Golisopod/Salamence manual, but the flex wins are terrain offense and Unburden races — not First Impression or double-stone Mega ambiguity. Meta foundation + two disrupting axes.",
+  "archetype": "grassy",
+  "family": "terrain",
+  "meta": "Season M-6 Singles (as of 2026-09-16, Champions Battle Data): Salamence #1, Garchomp #2, Primarina #3, Golisopod #5, Archaludon #8, Gholdengo #9, Rillaboom #10, Mimikyu #11, Sneasler #18. Regulation M-C legalized Garchompite Z; this six registers only that stone. Rillaboom’s CBD teammates already include Primarina and Garchomp — the construction is a re-weight of flex, not an invented core.",
+  "skills": [
+    "Preview mode selection",
+    "Speed-story triage",
+    "Mega as a resource",
+    "Choice Scarf revenge",
+    "Focus Sash leads",
+    "Grassy Glide races",
+    "Unburden timing",
+    "Encore",
+    "Disguise",
+    "Fairy resistance",
+    "Know hazards — don’t force them"
+  ],
+  "relatedLessons": [
+    "archetypes",
+    "reading-their-six",
+    "preview",
+    "building",
+    "tempo",
+    "positioning",
+    "priority",
+    "field"
+  ],
+  "setsNote": "66 SP, max 32. Default roster Garchomp is Mega teaching mode (Garchompite Z). Scarf and Sash are first-class preview modes. Rillaboom defaults Life Orb; swap Grassy Seed when you want bulk and a Seed pop for Sneasler Unburden. Sneasler defaults Grassy Seed on this six — Psychic Seed / Gem / Sash when Boom is not on the three.",
+  "evidence": {
+    "season": "M6",
+    "asOf": "2026-09-16",
+    "source": "Champions Battle Data Singles",
+    "caveat": "Construction evidence from Singles CBD — not VGC doubles cores. Early season; treat as teachable structure, not proven best WR.",
+    "ladderTop": [
+      "Salamence",
+      "Garchomp",
+      "Primarina",
+      "Hippowdon",
+      "Golisopod",
+      "Lucario",
+      "Baxcalibur",
+      "Archaludon",
+      "Gholdengo",
+      "Rillaboom",
+      "Mimikyu"
+    ],
+    "stats": [
+      {
+        "label": "Garchompite Z",
+        "value": "35.3%",
+        "note": "Largest Chomp item mode — Mega breaker is real, not mandatory."
+      },
+      {
+        "label": "Rillaboom Grassy Glide",
+        "value": "96.2%",
+        "note": "Near-universal. Priority under terrain is the lever."
+      },
+      {
+        "label": "Sneasler Unburden",
+        "value": "94.9%",
+        "note": "Psychic Seed leads ladder items; this six prefers Grassy Seed with Boom."
+      },
+      {
+        "label": "Sneasler Close Combat",
+        "value": "98.5%",
+        "note": "Dire Claw and Swords Dance follow — Fighting pressure is the job."
+      },
+      {
+        "label": "Mimikyu Life Orb",
+        "value": "81.7%",
+        "note": "Play Rough ~97% — Disguise into Fairy STAB / Shadow Sneak."
+      },
+      {
+        "label": "Top Boom mates",
+        "value": "Salamence · Primarina · Garchomp",
+        "note": "Then Lucario, Hippowdon, Golisopod. Spine already exists on ladder."
+      }
+    ]
+  },
+  "construction": {
+    "thesis": "Start with Garchomp + Primarina + Gholdengo, then hold Rillaboom, Sneasler, and Mimikyu so Mega, Scarf, and Sash Chomp all have partners — and so the six can attack Water/Ground density and Steel sits without Golisopod or Salamence.",
+    "method": "Keep the proven balance triangle. Replace Golisopod’s priority finisher job with Grassy Glide and Mimikyu Shadow Sneak. Replace Salamence’s alt Mega / Dance with Unburden Sneasler as the second Speed story. Skip auto-adding Baxcalibur (Dragon overlap + Fairy hole) and skip forcing Archaludon into a rain story.",
+    "winCondition": "Preview → name the Speed story (Mega break / Scarf revenge / Glide race / Unburden race) → pick Chomp’s item if Chomp is in → bring the two partners that cash that story.",
+    "substitutions": [
+      {
+        "dropped": "Golisopod",
+        "kept": "Rillaboom",
+        "why": "Golisopod is #5 and a real mate, but this six wants anti-Water/Ground pressure and terrain as a lever. Glide fills the priority-finisher class with different typing."
+      },
+      {
+        "dropped": "Salamence",
+        "kept": "Sneasler",
+        "why": "Salamence gives Mega ambiguity; this manual accepts a single stone so Unburden can be the second Speed axis without competing for Mega."
+      }
+    ],
+    "altSlots": [
+      {
+        "slug": "golisopod",
+        "insteadOf": "mimikyu-disguised",
+        "why": "When you want First Impression / Emergency Exit over Disguise into a specific HO."
+      },
+      {
+        "slug": "salamence",
+        "insteadOf": "sneasler",
+        "why": "When you want double-stone Mega ambiguity back — use the Three-Mode Chomp manual instead."
+      },
+      {
+        "slug": "meowscarada",
+        "insteadOf": "sneasler",
+        "why": "Fast Dark/Grass pivot when Unburden Seed lines feel wrong and you still need anti-Water Speed."
+      }
+    ]
+  },
+  "megaPool": {
+    "rule": "One Mega per battle. This six registers Garchompite Z only — Scarf or Sash Garchomp is an intentional tell that the stone is off.",
+    "previewPressure": "They see Garchomp and must still guess Mega / Scarf / Sash. The new preview question is which Speed story is live: Chomp mode, Boom Glide, or Sneasler Unburden.",
+    "candidates": [
+      {
+        "slug": "garchomp",
+        "stone": "Garchompite Z",
+        "when": "Their six is Ground-weak, Fairy is answered on the three, and Mega breaker beats Scarf revenge or a Boom/Sneasler race."
+      }
+    ]
+  },
+  "box": [
+    "garchomp",
+    "primarina",
+    "gholdengo",
+    "rillaboom",
+    "sneasler",
+    "mimikyu-disguised"
+  ],
+  "core": ["garchomp", "primarina", "gholdengo"],
+  "slugs": ["garchomp", "primarina", "gholdengo"],
+  "pilot": {
+    "thesis": "Name the Speed story before the lead. Chomp’s item is a preview decision equal to the three; Boom and Sneasler exist so Glide and Unburden can be the win without locking Chomp to Scarf every game.",
+    "rule": "One primary Speed story per game — Mega break, Scarf revenge, Glide race, or Unburden race.",
+    "fail": "Auto-bring Chomp / Primarina / Gholdengo into fat Water, or Grassy Seed Sneasler without Boom on the three."
+  },
+  "press": [
+    "Force them to respect Mega, Scarf, and Sash Garchomp from the same registered name.",
+    "Use Rillaboom to attack Primarina / Hippo / Ground-heavy structures the balance spine struggles with.",
+    "Use Sneasler so Chomp does not have to be Scarf every Speed-critical game.",
+    "Use Primarina Encore to create SD / Unburden / Disguise windows."
+  ],
+  "refuse": [
+    "Never treat Stealth Rock as mandatory.",
+    "Never Mega Chomp into healthy Fairy without Gholdengo on the three.",
+    "Never leave Primarina home vs Mega Salamence.",
+    "Never soft Grassy Glide into Fire / Flying resists.",
+    "Never lead Unburden into known priority Dark without Mimikyu or Primarina backup."
+  ],
+  "plan": [
+    {
+      "title": "Preview",
+      "goal": "Decide the Speed story and Chomp’s mode if Chomp is in.",
+      "play": "Mark Water/Ground density, Fairy answers, HO shape, Steel sits, and Mega Salamence. Assign Mega / Scarf / Sash / leave-Chomp, then pick Boom, Sneasler, or Mimikyu.",
+      "next": "Lead the partner that enables that story — not the partner you practiced most."
+    },
+    {
+      "title": "Pressure",
+      "goal": "Put something into KO range for Glide, Shadow Sneak, Aqua Jet, or the Mega breaker.",
+      "play": "EQ / coverage from Chomp, Knock / Glide from Boom, Encore from Primarina, Plot from Gholdengo, Unburden SD from Sneasler, Disguise from Mimikyu.",
+      "next": "If the Speed story was wrong, change item or pack next game — keep the six."
+    },
+    {
+      "title": "Close",
+      "goal": "Convert chip without donating the wincon to Fairy, Ice, or priority Dark.",
+      "play": "Gholdengo holds Fairy; Primarina handles Dragons; Boom Glides; Mimikyu Sneaks; Scarf Chomp cleans.",
+      "next": "Mega breaks; Scarf cleans; Sash already spent — don’t ask it to wall; Unburden is glass after the pop."
+    }
+  ],
+  "switches": [
+    { "into": "Fairy", "send": "Gholdengo — Steel resists; Make It Rain answers." },
+    { "into": "Dragon / Fire / Ice", "send": "Primarina — Moonblast and Encore." },
+    { "into": "Electric", "send": "Garchomp — Ground immunity and pressure (Boom if Chomp benched)." },
+    { "into": "Water / Ground sit", "send": "Rillaboom — Knock Off or Grassy Glide." },
+    { "into": "Steel / Normal wall", "send": "Sneasler — Close Combat / Dire Claw." },
+    { "into": "frail HO lead", "send": "Mimikyu Disguise or Rillaboom Glide." }
+  ],
+  "victims": [
+    { "name": "Electric / Steel midrange", "why": "Ground STAB plus Primarina Fairy forces awkward switches; Sneasler cracks leftover Steel." },
+    { "name": "Water / Ground fat", "why": "Boom Glide and Knock attack the sits that stall EQ." },
+    { "name": "Glass HO", "why": "Mimikyu Disguise plus Glide / Jet / Sneak deny free turns." },
+    { "name": "Physical Balance without Fairy", "why": "Mega or Scarf Chomp + Gholdengo Plot outlasts one wall." }
+  ],
+  "counters": [
+    { "name": "Double Fairy + Ice", "why": "Chomp and Sneasler both suffer — lean Gholdengo/Primarina/Boom and Scarf revenge over Mega SD." },
+    { "name": "Mega Salamence + Ice backup", "why": "Primarina + Gholdengo mandatory; leave Chomp often." },
+    { "name": "Priority Dark into Mimikyu / Unburden", "why": "Disguise and Seed pops are not immortality — don’t lead them into known Sucker / First Impression Dark." }
+  ],
+  "advantages": [
+    {
+      "title": "Three Speed stories",
+      "body": "Mega/Scarf/Sash Chomp, Grassy Glide, and Unburden are incompatible answers from one registered six. Exploit that before the lead drops.",
+      "rule": "Speed story first, three second."
+    },
+    {
+      "title": "Terrain as a lever",
+      "body": "Boom is not a dedicated Grassy archetype chapter. Fake Out / Glide / Knock pressure Water and Ground; Seed can enable Sneasler when both are registered.",
+      "play": "Bring Boom when Water/Ground density is the problem — not every game."
+    },
+    {
+      "title": "Hazards optional",
+      "body": "Earthquake is the Chomp constant. Stealth Rock is a package tool for Mimikyu/Glide chip — skip when the three needs coverage.",
+      "play": "Sash lead Rocks is a mode, not a religion."
+    }
+  ],
+  "phases": [],
+  "flows": [
+    {
+      "id": "preview",
+      "title": "Preview",
+      "lede": "Name the Speed story, then the three.",
+      "forks": [
+        {
+          "id": "preview-mence",
+          "when": "Mega Salamence or strong Ice + Fairy on their six.",
+          "then": "Bring Primarina + Gholdengo + Boom or Sneasler. Leave Chomp often; if Chomp, Scarf only.",
+          "why": "Moonblast / Fairy net first. Ground Dance into Aerilate Flying is a bad story."
+        },
+        {
+          "id": "preview-water-ground",
+          "when": "Water / Ground fat — Primarina, Hippowdon, Chomp mirrors.",
+          "then": "Bring Rillaboom + Primarina + Chomp Mega or Gholdengo.",
+          "why": "Glide and Knock are the levers the balance spine lacks."
+        },
+        {
+          "id": "preview-steel",
+          "when": "Archaludon / Stamina / fat Steel.",
+          "then": "Bring Sneasler + Rillaboom + Primarina.",
+          "why": "Close Combat and Knock crack sits EQ alone stalls on."
+        },
+        {
+          "id": "preview-ho",
+          "when": "HO / Golisopod / Sash offense.",
+          "then": "Bring Mimikyu + Primarina + Boom or Sneasler. Chomp Sash only if you need a guaranteed action.",
+          "why": "Disguise and priority deny free turns — not Mega Chomp lead."
+        },
+        {
+          "id": "preview-midrange",
+          "when": "Passive midrange, Fairy light.",
+          "then": "Bring Chomp Mega + Primarina + Gholdengo.",
+          "why": "Default teaching three."
+        },
+        {
+          "id": "preview-max",
+          "when": "Need max Speed pressure and accept less glue.",
+          "then": "Bring Chomp Scarf + Sneasler + Mimikyu.",
+          "why": "Offense over glue — refuse Fairy + priority Dark stacks."
+        }
+      ]
+    }
+  ],
+  "loops": [
+    {
+      "title": "Encore → SD / Unburden",
+      "body": "Primarina Encores Protect or setup; Mega Chomp or Sneasler converts the free turn."
+    },
+    {
+      "title": "Knock → Glide",
+      "body": "Boom strips Sitrus / Leftovers / Balloon; Grassy Glide finishes the chipped Water or Ground."
+    },
+    {
+      "title": "Chip → Shadow Sneak / Aqua Jet",
+      "body": "Chomp or Boom puts a name in range; Mimikyu or Primarina priority closes."
+    },
+    {
+      "title": "Disguise → Scarf clean",
+      "body": "Mimikyu eats one hit; Scarf Chomp revenge the switch or the weakened attacker."
+    },
+    {
+      "title": "Seed pop → Unburden SD",
+      "body": "Grassy Seed (or Psychic Seed) pops; Sneasler Swords Dance or immediately Close Combats."
+    }
+  ],
+  "hazards": [
+    {
+      "title": "Fairy on Chomp",
+      "body": "Dragon/Ground hates Fairy. Gholdengo is the registered answer — if it is not on the three, do not force Mega Chomp into Moonblast.",
+      "rule": "No Fairy answer on the three → different pack or Scarf revenge from a safer slot."
+    },
+    {
+      "title": "Grassy Seed without Boom",
+      "body": "Sneasler’s Team A default is Grassy Seed because Boom sets terrain. On packs without Boom, swap Psychic Seed, Normal Gem, or Focus Sash.",
+      "rule": "Item must match the three — not the registered six fantasy."
+    },
+    {
+      "title": "Ice into Dragons / Unburden",
+      "body": "Chomp shares Ice pain with many Dragons; Sneasler hates Ice priority after the Seed pop. Primarina and Mimikyu are insurance.",
+      "watch": "Choice Scarf Ice and priority Ice."
+    }
+  ],
+  "roster": [
+    {
+      "slug": "garchomp",
+      "title": "The Three-Mode Ace",
+      "job": "mega",
+      "literacy": "wallbreaker",
+      "role": "Primary wincon whose item defines one Speed story. Default teaching set is Mega; Scarf and Sash are equal preview identities.",
+      "ability": "Rough Skin",
+      "item": "Garchompite Z",
+      "itemWhy": "35.3% CBD — largest single mode. Teaching default for break their structure. Swap to Scarf or Sash when preview says so.",
+      "itemAlts": [
+        {
+          "name": "Choice Scarf",
+          "why": "Second ladder identity — revenge and Speed control when Mega is wrong or Boom/Sneasler need the setup turn."
+        },
+        {
+          "name": "Focus Sash",
+          "why": "Third ladder identity — guarantee Rocks or a hit into HO / revenge."
+        }
+      ],
+      "nature": "Jolly",
+      "training": {
+        "label": "Fast physical Mega",
+        "why": "Top CBD spread shape (2 HP / 32 Atk / 32 Spe).",
+        "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+        "spend": [
+          "32 Atk — Earthquake / Dragon Claw damage.",
+          "32 Spe — race midrange before or after Mega.",
+          "2 HP — leftover."
+        ],
+        "alts": [
+          {
+            "name": "Mixed / special lean",
+            "why": "When Draco Meteor / Earth Power / Flamethrower are the plan.",
+            "sp": { "hp": 2, "atk": 0, "def": 0, "spa": 32, "spd": 0, "spe": 32 },
+            "spend": ["32 SpA", "32 Spe", "2 HP"]
+          }
+        ]
+      },
+      "moves": [
+        { "name": "Earthquake", "why": "~67% CBD. The constant — Ground STAB into Electric, Fire, Steel, Rock." },
+        { "name": "Dragon Claw", "why": "Reliable Dragon STAB without Outrage lock — default Mega physical line." },
+        { "name": "Rock Slide", "why": "Flying / Fire / Ice coverage; flinch value in 3v3." },
+        { "name": "Swords Dance", "why": "Mega breaker conversion when Primarina or Mimikyu buys the turn." }
+      ],
+      "objective": "Break, revenge, or guarantee a lead action — pick one before the timer ends.",
+      "howToPlay": "On preview, assign Mega, Scarf, Sash, or leave home.\nDo not default Stealth Rock — only when the package wants chip for Mimikyu/Glide.\nIf Fairy is healthy and Gholdengo is benched, you picked the wrong three.\nVs Mega Salamence, Scarf revenge or leave — not Mega Dance.",
+      "gives": ["Ground STAB", "Dragon pressure", "Three preview identities"],
+      "answers": ["Electric", "Fire", "Steel", "Rock"],
+      "modes": [
+        {
+          "id": "mega-breaker",
+          "label": "Mega Garchomp",
+          "job": "Breaker",
+          "when": "Their six is Ground-vulnerable, Fairy is answered, and Mega breaker beats a Glide or Unburden race.",
+          "item": "Garchompite Z",
+          "itemWhy": "35.3% — primary ladder mode.",
+          "nature": "Jolly",
+          "training": {
+            "label": "Fast Mega",
+            "why": "Physical breaker baseline.",
+            "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+            "spend": ["32 Atk", "32 Spe", "2 HP"]
+          },
+          "moves": [
+            { "name": "Earthquake", "why": "Primary STAB." },
+            { "name": "Dragon Claw", "why": "Reliable Dragon." },
+            { "name": "Rock Slide", "why": "Coverage + flinch." },
+            { "name": "Swords Dance", "why": "Break after a free turn." }
+          ],
+          "objective": "Crack the defensive structure; do not play like a hazard lead.",
+          "howToPlay": "Mega when the breaker job is clear.\nSD only after Encore, Disguise, or a forced switch.\nMixed sets swap coverage for Draco / Earth Power / Flamethrower when their walls are physical."
+        },
+        {
+          "id": "scarf-revenge",
+          "label": "Choice Scarf",
+          "job": "Speed control",
+          "when": "Need revenge vs Mega Salamence / Unburden / fast special, or Boom/Mimikyu create chip while you clean.",
+          "item": "Choice Scarf",
+          "itemWhy": "Clear #2 ladder identity. Locks you into one move — pick the revenge target in preview.",
+          "nature": "Jolly",
+          "training": {
+            "label": "Scarf revenge",
+            "why": "Max Speed Attack for locked Earthquake / Outrage lines.",
+            "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+            "spend": ["32 Atk", "32 Spe", "2 HP"]
+          },
+          "moves": [
+            { "name": "Earthquake", "why": "Default lock into Ground-weak names." },
+            { "name": "Outrage", "why": "Dragon nuke when you accept the lock — Dragon Claw if you need flexibility." },
+            { "name": "Rock Slide", "why": "Flying / Ice revenge." },
+            { "name": "Fire Fang", "why": "Steel that walls EQ." }
+          ],
+          "objective": "Be the fast answer after chip — not the lead setup piece.",
+          "howToPlay": "Bring when Speed tiers scare you.\nDo not lead Scarf into known resist walls.\nPair with Primarina/Boom/Mimikyu so something else creates the chip."
+        },
+        {
+          "id": "sash-lead",
+          "label": "Focus Sash",
+          "job": "Guaranteed action",
+          "when": "You need Rocks, a trade, or a hit into something that would otherwise OHKO — and Glide or Shadow Sneak finishes.",
+          "item": "Focus Sash",
+          "itemWhy": "Clear #3 ladder identity. Guarantees Garchomp does its job once.",
+          "nature": "Jolly",
+          "training": {
+            "label": "Sash utility",
+            "why": "Offense first — Sash is the bulk.",
+            "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+            "spend": ["32 Atk", "32 Spe", "2 HP"]
+          },
+          "moves": [
+            { "name": "Stealth Rock", "why": "Chip for Mimikyu / Glide finishes — skip if you needed coverage." },
+            { "name": "Earthquake", "why": "Guaranteed Ground hit." },
+            { "name": "Dragon Claw", "why": "Dragon pressure without lock." },
+            { "name": "Flamethrower", "why": "Steel coverage / special surprise." }
+          ],
+          "objective": "Guarantee something happens on the lead turn.",
+          "howToPlay": "Lead when HO or revenge would delete un-Sashed Chomp.\nAfter Sash breaks, you are glass — hand off to Boom or Mimikyu."
+        }
+      ]
+    },
+    {
+      "slug": "primarina",
+      "title": "The Foundational Pair",
+      "job": "breaker",
+      "literacy": "pivot",
+      "role": "Water/Fairy balance glued to Garchomp. Covers Ice/Dragon/Fire pain; Encores windows for Mega SD, Unburden, or Disguise.",
+      "ability": "Torrent",
+      "item": "Sitrus Berry",
+      "itemWhy": "40.2% CBD — keeps Encore and Aqua Jet online after chip.",
+      "itemAlts": [
+        { "name": "Leftovers", "why": "Longer Encore sits into midrange." },
+        { "name": "Lum Berry", "why": "Status-heavy previews." }
+      ],
+      "nature": "Modest",
+      "training": {
+        "label": "Fast special",
+        "why": "Pressure Dragons and land Encore first.",
+        "sp": { "hp": 2, "atk": 0, "def": 0, "spa": 32, "spd": 0, "spe": 32 },
+        "spend": ["32 SpA", "32 Spe", "2 HP"],
+        "alts": [
+          {
+            "name": "Bulky Encore sit",
+            "why": "When Encore longevity matters more than Speed — matches common CBD bulky lines.",
+            "sp": { "hp": 32, "atk": 0, "def": 20, "spa": 14, "spd": 0, "spe": 0 },
+            "spend": ["32 HP", "20 Def", "14 SpA"]
+          }
+        ]
+      },
+      "moves": [
+        { "name": "Moonblast", "why": "98% CBD. Fairy STAB into Dragons — Chomp’s partner answer." },
+        { "name": "Sparkling Aria", "why": "Water STAB and chip." },
+        { "name": "Aqua Jet", "why": "Priority finish when Boom/Mimikyu are benched." },
+        { "name": "Encore", "why": "Creates SD / Unburden / Disguise windows." }
+      ],
+      "objective": "Be the insurance half of the spine — and mandatory vs Mega Salamence.",
+      "howToPlay": "Switch into Dragons and Fire.\nEncore Protect and setup.\nDo not soft-click into Electric without Chomp or Boom ready.\nNever leave home vs Mega Salamence.",
+      "gives": ["Fairy STAB", "Water glue", "Encore tempo"],
+      "answers": ["Dragon", "Fire", "Ice", "Setup turns"]
+    },
+    {
+      "slug": "gholdengo",
+      "title": "The Fairy Net",
+      "job": "breaker",
+      "literacy": "wall",
+      "role": "Steel/Ghost glue and special Plot. Fixes Chomp’s Fairy problem without sand walls.",
+      "ability": "Good as Gold",
+      "item": "Air Balloon",
+      "itemWhy": "66.2% CBD — blocks the first Ground; spend it deliberately.",
+      "itemAlts": [
+        { "name": "Leftovers", "why": "Longer Recover wars when Balloon is unnecessary." },
+        { "name": "Choice Scarf", "why": "Revenge special when Unburden/Chomp Scarf are wrong." }
+      ],
+      "nature": "Modest",
+      "training": {
+        "label": "Plot special",
+        "why": "Ladder-concentrated special set (2 / 32 SpA / 32 Spe).",
+        "sp": { "hp": 2, "atk": 0, "def": 0, "spa": 32, "spd": 0, "spe": 32 },
+        "spend": ["32 SpA", "32 Spe", "2 HP"]
+      },
+      "moves": [
+        { "name": "Make It Rain", "why": "Steel STAB into Fairy." },
+        { "name": "Shadow Ball", "why": "~99% CBD. Ghost coverage." },
+        { "name": "Nasty Plot", "why": "Second setup path while they watch Chomp / Sneasler." },
+        { "name": "Recover", "why": "Keep the Fairy net alive." }
+      ],
+      "objective": "Hold Fairy and force special answers.",
+      "howToPlay": "Come in on Moonblast aimed at Chomp.\nPlot when revenge is gone.\nBalloon is one Ground — play like it.\nThunderbolt / Focus Blast are coverage alts vs Water / Steel sits.",
+      "gives": ["Fairy resistance", "Special offense", "Recover", "Status immunity"],
+      "answers": ["Fairy", "Fighting", "Status"]
+    },
+    {
+      "slug": "rillaboom",
+      "title": "The Terrain Lever",
+      "job": "breaker",
+      "literacy": "wallbreaker",
+      "role": "Anti-Water/Ground pressure and Grassy Glide priority. Sets terrain as a lever — not a full Grassy archetype mandate.",
+      "ability": "Grassy Surge",
+      "item": "Life Orb",
+      "itemWhy": "24.6% CBD — max Glide damage. Teaching default for the finisher job.",
+      "itemAlts": [
+        {
+          "name": "Grassy Seed",
+          "why": "Bulk on entry and Seed pop synergy when Sneasler is also on the registered six."
+        },
+        {
+          "name": "Miracle Seed",
+          "why": "Safer Grass power without Life Orb recoil."
+        },
+        {
+          "name": "Focus Sash",
+          "why": "Guarantee Knock or Glide into HO."
+        }
+      ],
+      "nature": "Adamant",
+      "training": {
+        "label": "Bulky Glide",
+        "why": "CBD top spread — 32 HP / 32 Atk / 2 Spe. Bulk + Glide, not a Speed race mon.",
+        "sp": { "hp": 32, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 2 },
+        "spend": ["32 HP", "32 Atk", "2 Spe"]
+      },
+      "moves": [
+        { "name": "Grassy Glide", "why": "96.2% CBD. Priority under terrain — the finisher that replaces Golisopod’s job class." },
+        { "name": "Knock Off", "why": "Strip Sitrus / Leftovers / Balloon before Glide." },
+        { "name": "U-turn", "why": "Hand Chomp Mega or Sneasler Unburden with tempo." },
+        { "name": "High Horsepower", "why": "Ground coverage into Fire / Poison / Steel that resist Grass." }
+      ],
+      "objective": "Threaten Water/Ground structures; Glide finishes; set terrain as a lever.",
+      "howToPlay": "Bring vs Primarina / Hippo / fat Water / Chomp mirrors.\nGlide after chip — do not soft Glide into Fire/Flying.\nU-turn into Mega Chomp or Sneasler.\nYou are not mandatory every game.",
+      "gives": ["Priority Grass", "Knock Off", "Terrain", "Anti-Water/Ground"],
+      "answers": ["Primarina", "Hippowdon", "Garchomp mirrors", "Bulky Water"],
+      "modes": [
+        {
+          "id": "glide-finisher",
+          "label": "Glide finisher",
+          "job": "Priority",
+          "when": "You need max Grassy Glide damage into chipped Waters and Grounds.",
+          "item": "Life Orb",
+          "itemWhy": "Teaching default — pay HP for KOs.",
+          "nature": "Adamant",
+          "training": {
+            "label": "Bulky Glide",
+            "why": "CBD baseline.",
+            "sp": { "hp": 32, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 2 },
+            "spend": ["32 HP", "32 Atk", "2 Spe"]
+          },
+          "moves": [
+            { "name": "Grassy Glide", "why": "Priority finish." },
+            { "name": "Knock Off", "why": "Strip items." },
+            { "name": "U-turn", "why": "Tempo." },
+            { "name": "High Horsepower", "why": "Coverage." }
+          ],
+          "objective": "Finish what the spine softens.",
+          "howToPlay": "Knock first when items matter.\nGlide when in range.\nU-turn when the matchup flips."
+        },
+        {
+          "id": "seed-enabler",
+          "label": "Seed enabler",
+          "job": "Support",
+          "when": "Sneasler is on the six and you want terrain + Seed bulk more than raw Orb damage.",
+          "item": "Grassy Seed",
+          "itemWhy": "Defense boost on terrain; enables partner Unburden plans.",
+          "nature": "Adamant",
+          "training": {
+            "label": "Bulky Glide",
+            "why": "Same SP — Seed is the bulk tool.",
+            "sp": { "hp": 32, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 2 },
+            "spend": ["32 HP", "32 Atk", "2 Spe"]
+          },
+          "moves": [
+            { "name": "Grassy Glide", "why": "Still the finisher." },
+            { "name": "Knock Off", "why": "Strip items." },
+            { "name": "U-turn", "why": "Hand Sneasler in after terrain is up." },
+            { "name": "High Horsepower", "why": "Coverage." }
+          ],
+          "objective": "Set the field and live to hand Unburden a window.",
+          "howToPlay": "Lead or mid when Sneasler is the wincon.\nU-turn into Sneasler after Seed/terrain context is live."
+        },
+        {
+          "id": "sash-deny",
+          "label": "Sash deny",
+          "job": "Guaranteed action",
+          "when": "HO would delete Boom before Glide or Knock lands.",
+          "item": "Focus Sash",
+          "itemWhy": "Guarantee one action into fragile offense.",
+          "nature": "Adamant",
+          "training": {
+            "label": "Sash utility",
+            "why": "Offense first.",
+            "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+            "spend": ["32 Atk", "32 Spe", "2 HP"]
+          },
+          "moves": [
+            { "name": "Grassy Glide", "why": "Guaranteed priority attempt." },
+            { "name": "Knock Off", "why": "Strip on the Sash turn." },
+            { "name": "U-turn", "why": "Exit after." },
+            { "name": "Wood Hammer", "why": "Raw Grass when Glide is resisted." }
+          ],
+          "objective": "Guarantee Knock or Glide once.",
+          "howToPlay": "Lead into HO when Mimikyu is the wrong answer.\nHand off after Sash breaks."
+        }
+      ]
+    },
+    {
+      "slug": "sneasler",
+      "title": "The Unburden Race",
+      "job": "speed",
+      "literacy": "sweeper",
+      "role": "Second Speed story so Chomp is not always Scarf. Fighting/Poison pressure into Steel and special sits.",
+      "ability": "Unburden",
+      "item": "Grassy Seed",
+      "itemWhy": "Team A default with Rillaboom on the six — terrain pops the Seed for Unburden. Ladder often runs Psychic Seed (49%); swap when Boom is not on the three.",
+      "itemAlts": [
+        {
+          "name": "Psychic Seed",
+          "why": "Ladder default — use vs Psychic terrain / Indeedee structures or when Boom is benched."
+        },
+        {
+          "name": "Normal Gem",
+          "why": "One Acrobatics nuke then glass."
+        },
+        {
+          "name": "Focus Sash",
+          "why": "Guarantee SD or Dire Claw once into HO."
+        },
+        {
+          "name": "White Herb",
+          "why": "CC drop recovery when you need repeated Close Combats."
+        }
+      ],
+      "nature": "Adamant",
+      "training": {
+        "label": "Fast Unburden",
+        "why": "CBD shape — 2 HP / 32 Atk / 32 Spe.",
+        "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+        "spend": ["32 Atk", "32 Spe", "2 HP"]
+      },
+      "moves": [
+        { "name": "Close Combat", "why": "98.5% CBD. Fighting STAB into Steel / Normal / Dark." },
+        { "name": "Dire Claw", "why": "Poison STAB + status chance into walls that sit on CC." },
+        { "name": "Swords Dance", "why": "Convert Seed pop / Encore into a sweep." },
+        { "name": "Throat Chop", "why": "Dark coverage into Ghost — sound move denial." }
+      ],
+      "objective": "Be the Speed story when Chomp’s Ground plan is awkward.",
+      "howToPlay": "Preview must include a Seed/Gem/Sash plan that matches the three.\nSD only after item pop or Encore.\nLeave home vs stacked Fairy + priority Dark without Mimikyu.\nFire Punch / Acrobatics are coverage alts.",
+      "gives": ["Fighting pressure", "Unburden Speed", "Dire Claw status"],
+      "answers": ["Steel", "Normal", "Dark", "Some Gholdengo sits"],
+      "modes": [
+        {
+          "id": "grassy-unburden",
+          "label": "Grassy Unburden",
+          "job": "Sweeper",
+          "when": "Rillaboom is on the six (ideally the three) and terrain will pop Grassy Seed.",
+          "item": "Grassy Seed",
+          "itemWhy": "Team A synergy default.",
+          "nature": "Adamant",
+          "training": {
+            "label": "Fast Unburden",
+            "why": "Baseline.",
+            "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+            "spend": ["32 Atk", "32 Spe", "2 HP"]
+          },
+          "moves": [
+            { "name": "Close Combat", "why": "Primary STAB." },
+            { "name": "Dire Claw", "why": "Poison + status." },
+            { "name": "Swords Dance", "why": "After pop." },
+            { "name": "Throat Chop", "why": "Ghost coverage." }
+          ],
+          "objective": "Race after terrain + Seed.",
+          "howToPlay": "Enter after Boom sets terrain or on terrain already up.\nPop → SD or attack.\nDo not soft into Fairy."
+        },
+        {
+          "id": "psychic-unburden",
+          "label": "Psychic Unburden",
+          "job": "Sweeper",
+          "when": "Psychic terrain / Indeedee structures, or Boom is not on the three.",
+          "item": "Psychic Seed",
+          "itemWhy": "49% CBD — ladder default identity.",
+          "nature": "Adamant",
+          "training": {
+            "label": "Fast Unburden",
+            "why": "Baseline.",
+            "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+            "spend": ["32 Atk", "32 Spe", "2 HP"]
+          },
+          "moves": [
+            { "name": "Close Combat", "why": "Primary STAB." },
+            { "name": "Dire Claw", "why": "Poison + status." },
+            { "name": "Swords Dance", "why": "After pop." },
+            { "name": "Throat Chop", "why": "Ghost coverage." }
+          ],
+          "objective": "Race under Psychic terrain or on Seed entry.",
+          "howToPlay": "Same as Grassy mode — item must actually pop."
+        },
+        {
+          "id": "gem-burst",
+          "label": "Gem burst",
+          "job": "Breaker",
+          "when": "You want one Acrobatics nuke without relying on terrain.",
+          "item": "Normal Gem",
+          "itemWhy": "Consumes on Acrobatics for a burst turn.",
+          "nature": "Adamant",
+          "training": {
+            "label": "Fast Unburden",
+            "why": "Baseline.",
+            "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+            "spend": ["32 Atk", "32 Spe", "2 HP"]
+          },
+          "moves": [
+            { "name": "Acrobatics", "why": "Gem-boosted Flying nuke." },
+            { "name": "Close Combat", "why": "Fighting STAB." },
+            { "name": "Dire Claw", "why": "Poison." },
+            { "name": "Swords Dance", "why": "If you get a free turn before the burst." }
+          ],
+          "objective": "Delete one name, then Unburden cleans.",
+          "howToPlay": "Click Acrobatics into the preview target.\nDo not save the Gem for a dream turn."
+        },
+        {
+          "id": "sash-force",
+          "label": "Sash force",
+          "job": "Guaranteed action",
+          "when": "HO would delete Sneasler before Seed value.",
+          "item": "Focus Sash",
+          "itemWhy": "Guarantee SD or Dire Claw once.",
+          "nature": "Adamant",
+          "training": {
+            "label": "Sash utility",
+            "why": "Offense first.",
+            "sp": { "hp": 2, "atk": 32, "def": 0, "spa": 0, "spd": 0, "spe": 32 },
+            "spend": ["32 Atk", "32 Spe", "2 HP"]
+          },
+          "moves": [
+            { "name": "Swords Dance", "why": "Guaranteed setup attempt." },
+            { "name": "Close Combat", "why": "STAB." },
+            { "name": "Dire Claw", "why": "Status into walls." },
+            { "name": "Throat Chop", "why": "Ghost." }
+          ],
+          "objective": "Force one action into fragile offense.",
+          "howToPlay": "Lead only when Mimikyu is wrong and you still need Fighting pressure."
+        }
+      ]
+    },
+    {
+      "slug": "mimikyu-disguised",
+      "title": "Disguise Insurance",
+      "job": "speed",
+      "literacy": "sweeper",
+      "role": "Emergency setup and anti-offense. Disguise buys the turn Sash Chomp, Glide, or Unburden needs.",
+      "ability": "Disguise",
+      "item": "Life Orb",
+      "itemWhy": "81.7% CBD — pay HP for KO power after the costume breaks.",
+      "itemAlts": [
+        { "name": "Lum Berry", "why": "Status-heavy HO." },
+        { "name": "Spell Tag", "why": "Ghost power for Shadow Sneak wars." }
+      ],
+      "nature": "Adamant",
+      "training": {
+        "label": "Priority cleaner",
+        "why": "CBD shape — maximize Play Rough / Shadow Sneak after Disguise.",
+        "sp": { "hp": 1, "atk": 32, "def": 1, "spa": 0, "spd": 0, "spe": 32 },
+        "spend": ["32 Atk", "32 Spe", "1 HP", "1 Def"]
+      },
+      "moves": [
+        { "name": "Play Rough", "why": "96.7% CBD. Fairy STAB into Dragons." },
+        { "name": "Shadow Sneak", "why": "Priority finish after chip." },
+        { "name": "Swords Dance", "why": "Convert Disguise into a sweep turn." },
+        { "name": "Shadow Claw", "why": "Ghost STAB when Sneak is predicted." }
+      ],
+      "objective": "Be the emergency button against HO and revenge chains.",
+      "howToPlay": "Bring anti-HO packs.\nDisguise once — spend it on Dance or a KO.\nDon’t lead into known Sucker Punch / First Impression Dark for free.\nPriority cleans what Boom/Chomp softened.",
+      "gives": ["Disguise turn", "Priority", "Fairy STAB"],
+      "answers": ["HO", "Dragon", "Weakened revenge"]
+    }
+  ],
+  "slots": [
+    {
+      "slug": "garchomp",
+      "title": "The Three-Mode Ace",
+      "job": "mega",
+      "literacy": "wallbreaker",
+      "role": "Primary wincon.",
+      "moves": [],
+      "objective": "Pick a mode, then win.",
+      "howToPlay": "See roster."
+    },
+    {
+      "slug": "primarina",
+      "title": "The Foundational Pair",
+      "job": "breaker",
+      "literacy": "pivot",
+      "role": "Water/Fairy glue.",
+      "moves": [],
+      "objective": "Encore windows.",
+      "howToPlay": "See roster."
+    },
+    {
+      "slug": "gholdengo",
+      "title": "The Fairy Net",
+      "job": "breaker",
+      "literacy": "wall",
+      "role": "Fairy resist.",
+      "moves": [],
+      "objective": "Hold Fairy.",
+      "howToPlay": "See roster."
+    }
+  ],
+  "packs": [
+    {
+      "id": "core",
+      "label": "Balance core",
+      "when": "Midrange sixes without a hard HO open or double Fairy wall.",
+      "identity": "Foundational Garchomp + Primarina + Gholdengo — Fairy net, Water glue, Mega breaker.",
+      "slugs": ["garchomp", "primarina", "gholdengo"],
+      "megaChoice": "garchomp",
+      "winconMode": "mega-breaker",
+      "strategy": {
+        "opponentPattern": "Balanced or mildly offensive structures Ground can crack.",
+        "bring": ["garchomp", "primarina", "gholdengo"],
+        "purpose": "Default teaching three — learn the spine before flex packs.",
+        "targets": ["Electric cores", "Steel midrange", "Physical Balance"],
+        "refuses": ["Double Fairy", "Fat Water without Boom", "Pure HO needing Disguise day one"],
+        "winCondition": "Chip or Encore into Mega EQ / SD while Gholdengo holds Fairy.",
+        "megaChoice": "garchomp",
+        "winconMode": "mega-breaker"
+      },
+      "pilot": {
+        "thesis": "First package to learn — not every-game autopilot.",
+        "rule": "Mega Chomp only when Fairy is answered.",
+        "fail": "SD into Scarf Ice, or bringing this into fat Water."
+      },
+      "philosophy": "Foundational relationship first; terrain and Unburden packs later.",
+      "press": ["Force the Fairy answer", "Encore Protect"],
+      "refuse": ["Auto-Rocks every game", "This pack into Primarina walls"],
+      "loops": [
+        { "title": "Encore → SD", "body": "Primarina Encores; Mega Chomp Swords Dances." },
+        { "title": "Balloon soak → Plot", "body": "Gholdengo holds Fairy; Plot when revenge is gone." }
+      ],
+      "hazards": [
+        {
+          "title": "Fat Water",
+          "body": "EQ stalls — switch to terrain-pressure pack.",
+          "rule": "Water density on preview → Boom pack."
+        }
+      ],
+      "phases": [],
+      "flows": [
+        {
+          "id": "lead",
+          "title": "Lead",
+          "lede": "Open with the matchup that forces their Fairy or Dragon answer.",
+          "forks": [
+            {
+              "id": "core-lead-dragon",
+              "when": "They lead Dragon / Fire / Ice.",
+              "then": "Send Primarina.",
+              "send": "primarina",
+              "move": "Moonblast",
+              "why": "Answer the Dragon and look for Encore.",
+              "forks": [
+                {
+                  "id": "core-lead-dragon-encore",
+                  "when": "They Protect or set up.",
+                  "then": "Encore, then hand Mega Chomp a free turn.",
+                  "send": "primarina",
+                  "move": "Encore",
+                  "why": "Convert the lock into SD or EQ."
+                },
+                {
+                  "id": "core-lead-dragon-stay",
+                  "when": "They stay in to attack.",
+                  "then": "Moonblast or Sparkling Aria until a window.",
+                  "send": "primarina",
+                  "move": "Sparkling Aria",
+                  "why": "Chip while holding the matchup."
+                }
+              ]
+            },
+            {
+              "id": "core-lead-ground-weak",
+              "when": "They lead Electric / Fire / Steel that fears Ground.",
+              "then": "Send Garchomp and pressure with Earthquake.",
+              "send": "garchomp",
+              "move": "Earthquake",
+              "why": "Force the Fairy answer or take free damage.",
+              "forks": [
+                {
+                  "id": "core-lead-fairy-switch",
+                  "when": "They switch to Fairy.",
+                  "then": "Bring Gholdengo.",
+                  "send": "gholdengo",
+                  "move": "Make It Rain",
+                  "why": "Fairy net enters on the predicted Moonblast."
+                },
+                {
+                  "id": "core-lead-mega",
+                  "when": "Fairy is absent and the breaker job is clear.",
+                  "then": "Mega and continue EQ / Rock Slide pressure.",
+                  "send": "garchomp",
+                  "move": "Earthquake",
+                  "why": "Spend the stone when the structure is crackable."
+                }
+              ]
+            },
+            {
+              "id": "core-lead-fairy",
+              "when": "They lead Fairy.",
+              "then": "Send Gholdengo.",
+              "send": "gholdengo",
+              "move": "Make It Rain",
+              "why": "Hold Fairy immediately.",
+              "forks": [
+                {
+                  "id": "core-lead-balloon",
+                  "when": "They click Ground and pop Balloon.",
+                  "then": "Recover or Plot if revenge is gone.",
+                  "send": "gholdengo",
+                  "move": "Recover",
+                  "why": "Balloon was one Ground — play the sit."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mid",
+          "title": "Mid",
+          "lede": "Turn Encore or chip into Mega breaker damage.",
+          "forks": [
+            {
+              "id": "core-mid-encore",
+              "when": "Encore has landed.",
+              "then": "Mega Chomp Swords Dance or EQ.",
+              "send": "garchomp",
+              "move": "Swords Dance",
+              "why": "Free turn conversion."
+            },
+            {
+              "id": "core-mid-chip-jet",
+              "when": "A Dragon or Fire is in Aqua Jet range.",
+              "then": "Primarina Aqua Jet.",
+              "send": "primarina",
+              "move": "Aqua Jet",
+              "why": "Priority finish without Boom on this pack."
+            },
+            {
+              "id": "core-mid-fairy-hold",
+              "when": "Fairy is still healthy.",
+              "then": "Do not force Mega Chomp — Gholdengo holds.",
+              "send": "gholdengo",
+              "move": "Make It Rain",
+              "why": "Wrong stone timing loses the game."
+            }
+          ]
+        },
+        {
+          "id": "late",
+          "title": "Late",
+          "lede": "Close with Mega pressure, Jet, or Plot — this pack is not Scarf.",
+          "forks": [
+            {
+              "id": "core-late-eq",
+              "when": "Fairy is gone and something is Ground-weak.",
+              "then": "Mega Earthquake.",
+              "send": "garchomp",
+              "move": "Earthquake",
+              "why": "Breaker close."
+            },
+            {
+              "id": "core-late-jet",
+              "when": "Weakened Dragon / Fire remains.",
+              "then": "Aqua Jet.",
+              "send": "primarina",
+              "move": "Aqua Jet",
+              "why": "Priority cleanup."
+            },
+            {
+              "id": "core-late-shadow",
+              "when": "Ghost sit or Plot is live.",
+              "then": "Shadow Ball or Make It Rain.",
+              "send": "gholdengo",
+              "move": "Shadow Ball",
+              "why": "Special close."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "terrain-pressure",
+      "label": "Terrain pressure",
+      "when": "Water / Ground fat — Primarina, Hippowdon, Chomp mirrors.",
+      "identity": "Boom Glide + Knock attack the sits that stall EQ; Primarina covers Dragons; Chomp Mega or Sash as needed.",
+      "slugs": ["garchomp", "rillaboom", "primarina"],
+      "megaChoice": "garchomp",
+      "winconMode": "mega-breaker",
+      "strategy": {
+        "opponentPattern": "Water/Ground-heavy structures that wall pure Chomp spine.",
+        "bring": ["garchomp", "rillaboom", "primarina"],
+        "purpose": "Put the Grass axis live — Glide races and Knock strip.",
+        "targets": ["Primarina balance", "Hippowdon", "Ground mirrors", "Bulky Water"],
+        "refuses": ["Double Flying Dance + Ice with no Boom value"],
+        "winCondition": "Knock / chip into Grassy Glide, or Encore into Mega SD.",
+        "megaChoice": "garchomp",
+        "winconMode": "mega-breaker"
+      },
+      "pilot": {
+        "thesis": "Boom is the reason this six exists — bring it when Water/Ground density is the problem.",
+        "rule": "Glide after chip; soft Glide into Fire/Flying loses.",
+        "fail": "Leaving Boom home into fat Primarina."
+      },
+      "press": ["Knock Off items", "Grassy Glide finishes", "U-turn into Mega"],
+      "refuse": ["Soft Glide into resists"],
+      "loops": [
+        { "title": "Knock → Glide", "body": "Strip then priority finish under terrain." },
+        { "title": "Encore → Mega SD", "body": "Primarina locks; Chomp converts." },
+        { "title": "U-turn → EQ", "body": "Boom hands Mega Chomp into Electric." }
+      ],
+      "hazards": [],
+      "phases": [],
+      "flows": [
+        {
+          "id": "lead",
+          "title": "Lead",
+          "lede": "Open with Boom into Water/Ground or Primarina into Dragons.",
+          "forks": [
+            {
+              "id": "tp-lead-water",
+              "when": "They lead fat Water or Primarina.",
+              "then": "Send Rillaboom — Knock Off or Glide.",
+              "send": "rillaboom",
+              "move": "Knock Off",
+              "why": "Attack the sit that stalls Chomp.",
+              "forks": [
+                {
+                  "id": "tp-lead-water-stripped",
+                  "when": "Item stripped or already chipped.",
+                  "then": "Grassy Glide or U-turn to Chomp.",
+                  "send": "rillaboom",
+                  "move": "Grassy Glide",
+                  "why": "Priority finish or hand Mega."
+                },
+                {
+                  "id": "tp-lead-water-fire",
+                  "when": "They switch to Fire / Flying.",
+                  "then": "Bring Primarina or Chomp.",
+                  "send": "primarina",
+                  "move": "Moonblast",
+                  "why": "Punish the Grass answer."
+                }
+              ]
+            },
+            {
+              "id": "tp-lead-mirror",
+              "when": "Ground / Chomp mirror lead.",
+              "then": "Boom Glide (terrain tax) or Mega Chomp if calcs win.",
+              "send": "rillaboom",
+              "move": "Grassy Glide",
+              "why": "Glide is the mirror lever."
+            },
+            {
+              "id": "tp-lead-dragon",
+              "when": "They lead Dragon.",
+              "then": "Primarina Moonblast.",
+              "send": "primarina",
+              "move": "Moonblast",
+              "why": "Hold the Dragon; look for Encore."
+            }
+          ]
+        },
+        {
+          "id": "mid",
+          "title": "Mid",
+          "lede": "Convert chip into Glide or Mega windows.",
+          "forks": [
+            {
+              "id": "tp-mid-glide",
+              "when": "A Water/Ground is in Glide range.",
+              "then": "Grassy Glide.",
+              "send": "rillaboom",
+              "move": "Grassy Glide",
+              "why": "Priority under terrain."
+            },
+            {
+              "id": "tp-mid-encore",
+              "when": "Encore landed.",
+              "then": "Mega Chomp Swords Dance.",
+              "send": "garchomp",
+              "move": "Swords Dance",
+              "why": "Free turn breaker."
+            },
+            {
+              "id": "tp-mid-uturn",
+              "when": "Electric is in and Boom should leave.",
+              "then": "U-turn into Mega Chomp.",
+              "send": "rillaboom",
+              "move": "U-turn",
+              "why": "Hand Ground immunity with tempo."
+            }
+          ]
+        },
+        {
+          "id": "late",
+          "title": "Late",
+          "lede": "Glide, Jet, or Mega EQ — Fairy was never Gholdengo’s job this game.",
+          "forks": [
+            {
+              "id": "tp-late-glide",
+              "when": "Anything remains in Glide range.",
+              "then": "Grassy Glide.",
+              "send": "rillaboom",
+              "move": "Grassy Glide",
+              "why": "Priority close."
+            },
+            {
+              "id": "tp-late-jet",
+              "when": "Leftover Dragon / Fire.",
+              "then": "Aqua Jet.",
+              "send": "primarina",
+              "move": "Aqua Jet",
+              "why": "Priority cleanup."
+            },
+            {
+              "id": "tp-late-eq",
+              "when": "Fairy is gone.",
+              "then": "Mega Earthquake.",
+              "send": "garchomp",
+              "move": "Earthquake",
+              "why": "Breaker close."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unburden-race",
+      "label": "Unburden race",
+      "when": "Chomp’s Ground story is awkward — Steel sits, special walls, or Flying Dance without free EQ.",
+      "identity": "Sneasler is the wincon; Primarina Encores; Gholdengo holds Fairy. Chomp sits out.",
+      "slugs": ["sneasler", "primarina", "gholdengo"],
+      "winconMode": "psychic-unburden",
+      "strategy": {
+        "opponentPattern": "Structures where Mega Chomp is wrong and Fighting/Poison pressure is right.",
+        "bring": ["sneasler", "primarina", "gholdengo"],
+        "purpose": "Second Speed story without locking Chomp to Scarf.",
+        "targets": ["Steel walls", "Special sits", "Archaludon support"],
+        "refuses": ["Priority Dark + Fairy stack without Mimikyu", "Grassy Seed with no terrain plan"],
+        "winCondition": "Seed pop → SD / CC while Primarina and Gholdengo hold answers.",
+        "winconMode": "psychic-unburden"
+      },
+      "pilot": {
+        "thesis": "Item must match the three — Psychic Seed / Gem / Sash when Boom is absent.",
+        "rule": "Do not bring Grassy Seed Sneasler on this pack without a terrain plan.",
+        "fail": "Soft SD into Fairy revenge."
+      },
+      "press": ["Seed pop", "Encore → SD", "Dire Claw status"],
+      "refuse": ["Grassy Seed stranded", "Lead into priority Dark"],
+      "loops": [
+        { "title": "Encore → Unburden SD", "body": "Primarina locks; Sneasler converts." },
+        { "title": "Dire Claw → CC", "body": "Status softens; Close Combat cracks." }
+      ],
+      "hazards": [
+        {
+          "title": "Wrong Seed",
+          "body": "Boom is not on this three — use Psychic Seed, Normal Gem, or Focus Sash.",
+          "rule": "Change item with the pack."
+        }
+      ],
+      "phases": [],
+      "flows": [
+        {
+          "id": "lead",
+          "title": "Lead",
+          "lede": "Open with the safe Fighting matchup or Fairy/Dragon answers.",
+          "forks": [
+            {
+              "id": "ub-lead-safe",
+              "when": "Their lead is safe for Fighting / Seed entry.",
+              "then": "Send Sneasler and pop the Seed.",
+              "send": "sneasler",
+              "move": "Close Combat",
+              "why": "Start the Unburden clock.",
+              "forks": [
+                {
+                  "id": "ub-lead-pop-sd",
+                  "when": "Seed popped and they cannot punish setup.",
+                  "then": "Swords Dance.",
+                  "send": "sneasler",
+                  "move": "Swords Dance",
+                  "why": "Convert Speed into a sweep."
+                },
+                {
+                  "id": "ub-lead-pop-attack",
+                  "when": "They can punish SD.",
+                  "then": "Close Combat or Dire Claw immediately.",
+                  "send": "sneasler",
+                  "move": "Dire Claw",
+                  "why": "Take damage now; setup later."
+                }
+              ]
+            },
+            {
+              "id": "ub-lead-dragon",
+              "when": "They lead Dragon / Fire.",
+              "then": "Primarina.",
+              "send": "primarina",
+              "move": "Moonblast",
+              "why": "Hold until Sneasler can enter."
+            },
+            {
+              "id": "ub-lead-fairy",
+              "when": "They lead Fairy.",
+              "then": "Gholdengo.",
+              "send": "gholdengo",
+              "move": "Make It Rain",
+              "why": "Fairy net first."
+            }
+          ]
+        },
+        {
+          "id": "mid",
+          "title": "Mid",
+          "lede": "Encore and Seed windows become the sweep.",
+          "forks": [
+            {
+              "id": "ub-mid-encore",
+              "when": "Encore landed.",
+              "then": "Sneasler Swords Dance.",
+              "send": "sneasler",
+              "move": "Swords Dance",
+              "why": "Free turn Unburden conversion."
+            },
+            {
+              "id": "ub-mid-plot",
+              "when": "Sneasler softened Fairy revenge.",
+              "then": "Gholdengo Nasty Plot if safe.",
+              "send": "gholdengo",
+              "move": "Nasty Plot",
+              "why": "Second win path while they watch Fighting."
+            },
+            {
+              "id": "ub-mid-hold",
+              "when": "Fairy revenge is still healthy.",
+              "then": "Gholdengo holds; do not soft SD.",
+              "send": "gholdengo",
+              "move": "Recover",
+              "why": "Keep the net alive."
+            }
+          ]
+        },
+        {
+          "id": "late",
+          "title": "Late",
+          "lede": "Unburden + boosts close; Jet and Rain as backup.",
+          "forks": [
+            {
+              "id": "ub-late-cc",
+              "when": "Unburden is up and a Steel / Normal remains.",
+              "then": "Close Combat.",
+              "send": "sneasler",
+              "move": "Close Combat",
+              "why": "Primary close."
+            },
+            {
+              "id": "ub-late-jet",
+              "when": "Weakened Dragon / Fire.",
+              "then": "Aqua Jet.",
+              "send": "primarina",
+              "move": "Aqua Jet",
+              "why": "Priority cleanup."
+            },
+            {
+              "id": "ub-late-rain",
+              "when": "Fairy remains.",
+              "then": "Make It Rain.",
+              "send": "gholdengo",
+              "move": "Make It Rain",
+              "why": "Fairy close."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anti-ho",
+      "label": "Anti-HO",
+      "when": "HO-shaped sixes — Golisopod, Sash, glass, early KOs.",
+      "identity": "Disguise + Glide + Primarina Jet — deny free turns. No Mega Chomp lead into revenge chains.",
+      "slugs": ["mimikyu-disguised", "rillaboom", "primarina"],
+      "strategy": {
+        "opponentPattern": "Hyper Offense or fragile Balance that wins by taking free turns.",
+        "bring": ["mimikyu-disguised", "rillaboom", "primarina"],
+        "purpose": "Disguise eats the opener; Glide and Jet finish.",
+        "targets": ["HO", "Golisopod", "Sash leads", "Fragile Balance"],
+        "refuses": ["Fat Fairy walls that laugh at Disguise"],
+        "winCondition": "Disguise / Knock chip into Glide, Shadow Sneak, or Aqua Jet."
+      },
+      "pilot": {
+        "thesis": "Deny turns first; sweep second.",
+        "rule": "Disguise is one hit — spend it.",
+        "fail": "Leading Mega Chomp into their revenge chain."
+      },
+      "press": ["Disguise the opener", "Glide the chip", "Encore setup"],
+      "refuse": ["Soft priority into resists", "Saving Disguise forever"],
+      "loops": [
+        { "title": "Disguise → SD", "body": "Eat the hit; Swords Dance." },
+        { "title": "Chip → Glide", "body": "Boom finishes under terrain." },
+        { "title": "Encore → Sneak", "body": "Primarina locks; Mimikyu priority." }
+      ],
+      "hazards": [],
+      "phases": [],
+      "flows": [
+        {
+          "id": "lead",
+          "title": "Lead",
+          "lede": "Disguise frail openers; Boom when Knock/Glide is needed day one.",
+          "forks": [
+            {
+              "id": "ho-lead-frail",
+              "when": "Frail lead or likely First Impression.",
+              "then": "Send Mimikyu — eat the hit.",
+              "send": "mimikyu-disguised",
+              "move": "Swords Dance",
+              "why": "Disguise buys the turn.",
+              "forks": [
+                {
+                  "id": "ho-lead-disguise-sd",
+                  "when": "Costume breaks and they cannot punish.",
+                  "then": "Swords Dance.",
+                  "send": "mimikyu-disguised",
+                  "move": "Swords Dance",
+                  "why": "Convert Disguise."
+                },
+                {
+                  "id": "ho-lead-disguise-sneak",
+                  "when": "Already in Shadow Sneak range.",
+                  "then": "Shadow Sneak.",
+                  "send": "mimikyu-disguised",
+                  "move": "Shadow Sneak",
+                  "why": "Take the KO now."
+                }
+              ]
+            },
+            {
+              "id": "ho-lead-knock",
+              "when": "Need Knock or Glide immediately.",
+              "then": "Boom lead; Mimikyu mid.",
+              "send": "rillaboom",
+              "move": "Knock Off",
+              "why": "Strip and chip HO items."
+            },
+            {
+              "id": "ho-lead-dragon",
+              "when": "Dragon opener.",
+              "then": "Primarina.",
+              "send": "primarina",
+              "move": "Moonblast",
+              "why": "Hold Dragons off the HO core."
+            }
+          ]
+        },
+        {
+          "id": "mid",
+          "title": "Mid",
+          "lede": "Spend Disguise; Glide chipped names.",
+          "forks": [
+            {
+              "id": "ho-mid-spend",
+              "when": "Disguise already spent.",
+              "then": "Play Rough or Shadow Sneak — do not soft.",
+              "send": "mimikyu-disguised",
+              "move": "Play Rough",
+              "why": "Costume is gone; convert."
+            },
+            {
+              "id": "ho-mid-glide",
+              "when": "HO name is chipped.",
+              "then": "Grassy Glide.",
+              "send": "rillaboom",
+              "move": "Grassy Glide",
+              "why": "Priority finish."
+            },
+            {
+              "id": "ho-mid-encore",
+              "when": "They Protect or set up.",
+              "then": "Encore into Mimikyu SD.",
+              "send": "primarina",
+              "move": "Encore",
+              "why": "Free Disguise conversion."
+            }
+          ]
+        },
+        {
+          "id": "late",
+          "title": "Late",
+          "lede": "Priority cascade — Sneak, Glide, Jet. No Mega Dance.",
+          "forks": [
+            {
+              "id": "ho-late-sneak",
+              "when": "In Shadow Sneak range.",
+              "then": "Shadow Sneak.",
+              "send": "mimikyu-disguised",
+              "move": "Shadow Sneak",
+              "why": "Priority close."
+            },
+            {
+              "id": "ho-late-glide",
+              "when": "In Glide range.",
+              "then": "Grassy Glide.",
+              "send": "rillaboom",
+              "move": "Grassy Glide",
+              "why": "Priority close."
+            },
+            {
+              "id": "ho-late-jet",
+              "when": "Weakened Dragon / Fire.",
+              "then": "Aqua Jet.",
+              "send": "primarina",
+              "move": "Aqua Jet",
+              "why": "Priority cleanup."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "max-pressure",
+      "label": "Maximum pressure",
+      "when": "Passive sixes; you accept less glue for three offensive axes.",
+      "identity": "Scarf Chomp revenge + Unburden Sneasler + Mimikyu Disguise — continuous offense.",
+      "slugs": ["garchomp", "sneasler", "mimikyu-disguised"],
+      "megaChoice": "garchomp",
+      "winconMode": "scarf-revenge",
+      "strategy": {
+        "opponentPattern": "Passive or slow sixes that lose to continuous offense.",
+        "bring": ["garchomp", "sneasler", "mimikyu-disguised"],
+        "purpose": "Aggressive bring — Scarf cleans while Mimikyu or Sneasler sets up.",
+        "targets": ["Passive Balance", "Slow structures without strong Fairy"],
+        "refuses": ["Fairy + priority Dark stacks", "Mega Salamence + Ice"],
+        "winCondition": "Disguise or Seed window into Scarf cleanup.",
+        "megaChoice": "garchomp",
+        "winconMode": "scarf-revenge"
+      },
+      "pilot": {
+        "thesis": "Offense over glue — only when their six cannot punish Fairy holes.",
+        "rule": "Scarf cleans; don’t SD Scarf. One setup piece at a time.",
+        "fail": "Playing this like the Primarina balance package."
+      },
+      "press": ["No dead turns", "Disguise → Scarf clean", "Seed → SD → Scarf"],
+      "refuse": ["Double setup soft turns", "Fairy-blind leads"],
+      "loops": [
+        { "title": "Disguise → Scarf clean", "body": "Mimikyu eats one; Scarf Chomp revenge." },
+        { "title": "Seed → SD → Scarf", "body": "Sneasler boosts; Scarf cleans the answer." }
+      ],
+      "hazards": [],
+      "phases": [],
+      "flows": [
+        {
+          "id": "lead",
+          "title": "Lead",
+          "lede": "Guaranteed action or Seed pressure — Scarf is usually the mid cleaner.",
+          "forks": [
+            {
+              "id": "max-lead-disguise",
+              "when": "Need a guaranteed action into their lead.",
+              "then": "Mimikyu or Sash Chomp.",
+              "send": "mimikyu-disguised",
+              "move": "Swords Dance",
+              "why": "Buy the turn."
+            },
+            {
+              "id": "max-lead-seed",
+              "when": "Seed entry is safe.",
+              "then": "Sneasler pressure.",
+              "send": "sneasler",
+              "move": "Close Combat",
+              "why": "Start Unburden."
+            },
+            {
+              "id": "max-lead-scarf-seat",
+              "when": "Speed control is the preview plan.",
+              "then": "Keep Scarf Chomp as revenge; chip with Mimikyu/Sneasler first.",
+              "send": "mimikyu-disguised",
+              "why": "Scarf is the cleaner, not always the lead."
+            }
+          ]
+        },
+        {
+          "id": "mid",
+          "title": "Mid",
+          "lede": "One setup path — Disguise SD or Unburden SD — then Scarf.",
+          "forks": [
+            {
+              "id": "max-mid-mimikyu",
+              "when": "Disguise window is live.",
+              "then": "Mimikyu SD — do not also soft SD Sneasler.",
+              "send": "mimikyu-disguised",
+              "move": "Swords Dance",
+              "why": "One conversion."
+            },
+            {
+              "id": "max-mid-sneasler",
+              "when": "Seed popped and Mimikyu is not the setup.",
+              "then": "Sneasler SD or attack.",
+              "send": "sneasler",
+              "move": "Swords Dance",
+              "why": "Unburden race."
+            },
+            {
+              "id": "max-mid-scarf",
+              "when": "They send into Disguise or a weakened name.",
+              "then": "Scarf Chomp Earthquake / Outrage.",
+              "send": "garchomp",
+              "move": "Earthquake",
+              "why": "Revenge clean."
+            }
+          ]
+        },
+        {
+          "id": "late",
+          "title": "Late",
+          "lede": "Scarf, Shadow Sneak, or Unburden CC.",
+          "forks": [
+            {
+              "id": "max-late-scarf",
+              "when": "Scarf outspeeds the remainder.",
+              "then": "Earthquake or Outrage.",
+              "send": "garchomp",
+              "move": "Earthquake",
+              "why": "Locked revenge."
+            },
+            {
+              "id": "max-late-sneak",
+              "when": "In Shadow Sneak range.",
+              "then": "Shadow Sneak.",
+              "send": "mimikyu-disguised",
+              "move": "Shadow Sneak",
+              "why": "Priority close."
+            },
+            {
+              "id": "max-late-cc",
+              "when": "Unburden is up.",
+              "then": "Close Combat.",
+              "send": "sneasler",
+              "move": "Close Combat",
+              "why": "Fighting close."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "steel-crack",
+      "label": "Steel crack",
+      "when": "Archaludon / Stamina / fat Steel walls.",
+      "identity": "Sneasler CC + Boom Knock/Glide + Primarina — no Chomp required.",
+      "slugs": ["sneasler", "rillaboom", "primarina"],
+      "winconMode": "grassy-unburden",
+      "strategy": {
+        "opponentPattern": "Stamina / Leftovers Steel and Archaludon-shaped structures.",
+        "bring": ["sneasler", "rillaboom", "primarina"],
+        "purpose": "Knock strips; Close Combat cracks; Glide races; Primarina covers Dragons.",
+        "targets": ["Archaludon", "Corviknight-like walls", "Stamina Steel"],
+        "refuses": ["Pure Fairy offense with no Steel to crack"],
+        "winCondition": "Knock stripped → CC / Glide while Encore denies Protect.",
+        "winconMode": "grassy-unburden"
+      },
+      "pilot": {
+        "thesis": "Chomp EQ alone stalls Stamina — bring the Fighting/Grass axes.",
+        "rule": "Knock first when Leftovers/Stamina items matter.",
+        "fail": "Forcing Mega Chomp into Electro Shot rain without Boom/Sneasler."
+      },
+      "press": ["Knock Off Stamina", "Close Combat", "Encore Protect"],
+      "refuse": ["Chomp-only answers into Archaludon"],
+      "loops": [
+        { "title": "Knock → CC", "body": "Strip then Fighting crack." },
+        { "title": "Encore → Unburden SD", "body": "Primarina locks; Sneasler converts under terrain." }
+      ],
+      "hazards": [],
+      "phases": [],
+      "flows": [
+        {
+          "id": "lead",
+          "title": "Lead",
+          "lede": "Knock Stamina/Leftovers or enter Fighting-free.",
+          "forks": [
+            {
+              "id": "sc-lead-knock",
+              "when": "Stamina / Leftovers Steel is likely.",
+              "then": "Boom Knock Off.",
+              "send": "rillaboom",
+              "move": "Knock Off",
+              "why": "Strip before CC."
+            },
+            {
+              "id": "sc-lead-fighting",
+              "when": "Fighting is free on the lead.",
+              "then": "Sneasler Close Combat.",
+              "send": "sneasler",
+              "move": "Close Combat",
+              "why": "Immediate crack."
+            },
+            {
+              "id": "sc-lead-dragon",
+              "when": "Dragon / Fire support is the real problem.",
+              "then": "Primarina.",
+              "send": "primarina",
+              "move": "Moonblast",
+              "why": "Hold support; crack Steel mid."
+            }
+          ]
+        },
+        {
+          "id": "mid",
+          "title": "Mid",
+          "lede": "After Knock, CC and Glide; Encore Protect.",
+          "forks": [
+            {
+              "id": "sc-mid-cc",
+              "when": "Item stripped.",
+              "then": "Close Combat or Glide.",
+              "send": "sneasler",
+              "move": "Close Combat",
+              "why": "Crack the sit."
+            },
+            {
+              "id": "sc-mid-encore",
+              "when": "They Protect.",
+              "then": "Encore into SD Sneasler.",
+              "send": "primarina",
+              "move": "Encore",
+              "why": "Free Unburden window under terrain."
+            },
+            {
+              "id": "sc-mid-knock-more",
+              "when": "Another item still matters.",
+              "then": "Keep Knock pressure.",
+              "send": "rillaboom",
+              "move": "Knock Off",
+              "why": "Do not let Stamina rebuild the game."
+            }
+          ]
+        },
+        {
+          "id": "late",
+          "title": "Late",
+          "lede": "Unburden CC, Glide, Moonblast — Chomp never needed.",
+          "forks": [
+            {
+              "id": "sc-late-cc",
+              "when": "Unburden up.",
+              "then": "Close Combat.",
+              "send": "sneasler",
+              "move": "Close Combat",
+              "why": "Fighting close."
+            },
+            {
+              "id": "sc-late-glide",
+              "when": "In Glide range.",
+              "then": "Grassy Glide.",
+              "send": "rillaboom",
+              "move": "Grassy Glide",
+              "why": "Priority close."
+            },
+            {
+              "id": "sc-late-moon",
+              "when": "Dragon remains.",
+              "then": "Moonblast.",
+              "send": "primarina",
+              "move": "Moonblast",
+              "why": "Fairy close."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

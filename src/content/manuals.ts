@@ -6,6 +6,7 @@ import { CLOCKWORK_BALANCE_MANUAL } from "@/content/manuals/clockwork-balance";
 import { PRESSURE_CLOCK_MANUAL } from "@/content/manuals/pressure-clock";
 import { SALAMENCE_MEGA_AMBIGUITY_MANUAL } from "@/content/manuals/salamence-mega-ambiguity";
 import { GARCHOMP_THREE_MODE_MANUAL } from "@/content/manuals/garchomp-three-mode";
+import { GARCHOMP_TERRAIN_PRESSURE_MANUAL } from "@/content/manuals/garchomp-terrain-pressure";
 
 export { alt, train };
 
@@ -371,9 +372,17 @@ export function resolveManual(manual: TeamManual, packId?: string | null): TeamM
     counters: pack.counters ?? manual.counters,
     advantages: pack.advantages ?? manual.advantages,
     phases: pack.phases ?? manual.phases,
-    flows: pack.flows ?? manual.flows,
-    loops: pack.loops,
-    hazards: pack.hazards,
+    flows: (() => {
+      const packFlows = pack.flows ?? [];
+      if (!packFlows.length) return manual.flows;
+      const packIds = new Set(packFlows.map((f) => f.id));
+      const extras = (manual.flows ?? []).filter(
+        (f) => !packIds.has(f.id) && (f.forks?.length ?? 0) > 0,
+      );
+      return extras.length ? [...extras, ...packFlows] : packFlows;
+    })(),
+    loops: pack.loops?.length ? pack.loops : manual.loops,
+    hazards: pack.hazards?.length ? pack.hazards : manual.hazards,
   };
 }
 
@@ -505,6 +514,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
   PRESSURE_CLOCK_MANUAL,
   SALAMENCE_MEGA_AMBIGUITY_MANUAL,
   GARCHOMP_THREE_MODE_MANUAL,
+  GARCHOMP_TERRAIN_PRESSURE_MANUAL,
   OVERLORD_PIVOT_MANUAL,
 ];
 

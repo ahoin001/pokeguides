@@ -23,6 +23,10 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
 
   const boxFilled = box.filter(Boolean) as string[];
   const bringFilled = slugs.filter(Boolean) as string[];
+  const highlighted =
+    activeBringSlug && bringFilled.includes(activeBringSlug)
+      ? activeBringSlug
+      : bringFilled[0] ?? null;
 
   const [q, setQ] = useState("");
   const [ready, setReady] = useState(false);
@@ -141,7 +145,7 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
               </li>
             );
           }
-          const focused = activeBringSlug === slug;
+          const focused = highlighted === slug;
           return (
             <li key={slug}>
               <div

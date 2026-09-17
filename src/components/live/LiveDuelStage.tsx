@@ -122,14 +122,12 @@ export function LiveDuelStage() {
                 You
               </p>
               <div className="mt-3 flex items-start gap-3">
-                <motion.div layoutId={`live-mon-${bringSlug}`}>
                   <PokemonArt
                     slug={our.slug}
                     src={our.artwork}
                     name={our.name}
                     size={96}
                   />
-                </motion.div>
                 <div className="min-w-0 pt-1">
                   <p className="text-xl font-semibold tracking-tight">{our.name}</p>
                   <ul className="mt-2 flex flex-wrap gap-1">
@@ -190,14 +188,12 @@ export function LiveDuelStage() {
                 Them
               </p>
               <div className="mt-3 flex items-start gap-3 md:flex-row-reverse md:text-right">
-                <motion.div layoutId={`live-mon-${foeSlug}`}>
                   <PokemonArt
                     slug={their.slug}
                     src={their.artwork}
                     name={their.name}
                     size={96}
                   />
-                </motion.div>
                 <div className="min-w-0 pt-1 md:flex md:flex-col md:items-end">
                   <p className="text-xl font-semibold tracking-tight">{their.name}</p>
                   <ul className="mt-2 flex flex-wrap gap-1 md:justify-end">

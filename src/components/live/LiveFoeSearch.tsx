@@ -17,6 +17,11 @@ export function LiveFoeSearch({ exclude }: { exclude: string[] }) {
   const selectFoe = useLiveMatchStore((s) => s.selectFoe);
   const clearFoes = useLiveMatchStore((s) => s.clearFoes);
 
+  const highlighted =
+    activeFoeSlug && foes.includes(activeFoeSlug)
+      ? activeFoeSlug
+      : foes[0] ?? null;
+
   const [q, setQ] = useState("");
   const [ready, setReady] = useState(false);
 
@@ -90,7 +95,7 @@ export function LiveFoeSearch({ exclude }: { exclude: string[] }) {
         {foes.map((slug) => {
           const p = getPokemon(slug) ?? pokemonFromSearch(slug);
           if (!p) return null;
-          const on = activeFoeSlug === slug;
+          const on = highlighted === slug;
           return (
             <li key={slug}>
               <div

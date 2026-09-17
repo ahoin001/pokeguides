@@ -4,8 +4,10 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { liveDebug } from "@/lib/live/debug";
 
-const MAX_FOES = 3;
-const MAX_RECENT = 6;
+const MAX_FOES = 6;
+const MAX_BRING = 6;
+/** Shared MRU of foe + bring picks — about a meta’s worth without clutter. */
+const MAX_RECENT = 10;
 const MAX_MOVES = 4;
 const MAX_PRESETS = 12;
 
@@ -21,6 +23,8 @@ export type BringPreset = {
 };
 
 type LiveMatchState = {
+  /** Your side on the clock — up to the full registered six. */
+  bring: string[];
   foes: string[];
   recent: string[];
   /** Last-tapped mon for palette wash. */
@@ -41,6 +45,11 @@ type LiveMatchState = {
   /** Legacy bring moves (presets may still store them). */
   bringMoves: Record<string, string[]>;
   bringPresets: BringPreset[];
+  addBring: (slug: string) => void;
+  removeBring: (slug: string) => void;
+  setBringSlot: (index: number, slug: string | null) => void;
+  loadBring: (slugs: string[]) => void;
+  clearBring: () => void;
   addFoe: (slug: string) => void;
   removeFoe: (slug: string) => void;
   clearFoes: () => void;
@@ -73,6 +82,18 @@ function uniqCap(list: string[], slug: string, max: number) {
   return next.slice(0, max);
 }
 
+function normalizeBring(slugs: string[]) {
+  const seen = new Set<string>();
+  const next: string[] = [];
+  for (const slug of slugs) {
+    if (!slug || seen.has(slug)) continue;
+    seen.add(slug);
+    next.push(slug);
+    if (next.length >= MAX_BRING) break;
+  }
+  return next;
+}
+
 function normalizeMoves(moves: string[]) {
   const seen = new Set<string>();
   const next: string[] = [];
@@ -95,6 +116,7 @@ function newPresetId() {
 export const useLiveMatchStore = create<LiveMatchState>()(
   persist(
     (set, get) => ({
+      bring: [],
       foes: [],
       recent: [],
       focusSlug: null,
@@ -110,6 +132,86 @@ export const useLiveMatchStore = create<LiveMatchState>()(
       calcOpen: false,
       bringMoves: {},
       bringPresets: [],
+      addBring: (slug) => {
+        const { bring, recent } = get();
+        liveDebug("[live/store] addBring", { slug, before: bring });
+        if (bring.includes(slug)) {
+          set({
+            focusSlug: slug,
+            activeBringSlug: slug,
+            recent: uniqCap(recent, slug, MAX_RECENT),
+          });
+          return;
+        }
+        if (bring.length >= MAX_BRING) {
+          const next = [...bring.slice(1), slug];
+          set({
+            bring: next,
+            focusSlug: slug,
+            activeBringSlug: slug,
+            recent: uniqCap(recent, slug, MAX_RECENT),
+          });
+          return;
+        }
+        set({
+          bring: [...bring, slug],
+          focusSlug: slug,
+          activeBringSlug: slug,
+          recent: uniqCap(recent, slug, MAX_RECENT),
+        });
+      },
+      removeBring: (slug) => {
+        liveDebug("[live/store] removeBring", { slug });
+        set((s) => {
+          const bring = s.bring.filter((b) => b !== slug);
+          const fallback = bring[bring.length - 1] ?? bring[0] ?? null;
+          return {
+            bring,
+            focusSlug: s.focusSlug === slug ? fallback : s.focusSlug,
+            activeBringSlug: s.activeBringSlug === slug ? fallback : s.activeBringSlug,
+            attackerSlug: s.attackerSlug === slug ? null : s.attackerSlug,
+            defenderSlug: s.defenderSlug === slug ? null : s.defenderSlug,
+          };
+        });
+      },
+      setBringSlot: (index, slug) => {
+        if (index < 0 || index >= MAX_BRING) return;
+        set((s) => {
+          const padded = [...s.bring];
+          while (padded.length <= index) padded.push("");
+          const prev = padded[index] || null;
+          if (!slug) {
+            const next = padded.map((x, i) => (i === index ? "" : x)).filter(Boolean);
+            return {
+              bring: next,
+              activeBringSlug:
+                s.activeBringSlug === prev
+                  ? next[next.length - 1] ?? null
+                  : s.activeBringSlug,
+            };
+          }
+          if (padded.includes(slug) && padded[index] !== slug) return s;
+          padded[index] = slug;
+          return {
+            bring: padded.filter(Boolean),
+            activeBringSlug: slug,
+            focusSlug: slug,
+          };
+        });
+      },
+      loadBring: (slugs) => {
+        const bring = normalizeBring(slugs);
+        liveDebug("[live/store] loadBring", { bring });
+        set({
+          bring,
+          activeBringSlug: bring[0] ?? null,
+          focusSlug: bring[0] ?? get().focusSlug,
+        });
+      },
+      clearBring: () => {
+        liveDebug("[live/store] clearBring");
+        set({ bring: [], activeBringSlug: null });
+      },
       addFoe: (slug) => {
         const { foes, recent } = get();
         liveDebug("[live/store] addFoe", { slug, before: foes });
@@ -195,10 +297,10 @@ export const useLiveMatchStore = create<LiveMatchState>()(
         }),
       saveBringPreset: (name, slugs, moves) => {
         const trimmed = name.trim();
-        const three = slugs.filter(Boolean).slice(0, 3);
-        if (!trimmed || three.length === 0) return null;
+        const party = normalizeBring(slugs);
+        if (!trimmed || party.length === 0) return null;
         const scopedMoves: Record<string, string[]> = {};
-        for (const slug of three) {
+        for (const slug of party) {
           const list = moves[slug];
           if (list?.length) scopedMoves[slug] = normalizeMoves(list);
         }
@@ -206,7 +308,7 @@ export const useLiveMatchStore = create<LiveMatchState>()(
         const preset: BringPreset = {
           id,
           name: trimmed.slice(0, 40),
-          slugs: three,
+          slugs: party,
           moves: scopedMoves,
           savedAt: Date.now(),
         };
@@ -231,11 +333,12 @@ export const useLiveMatchStore = create<LiveMatchState>()(
     }),
     {
       name: "ringside-live-match",
-      version: 3,
+      version: 4,
       migrate: (persisted) => {
-        const raw = persisted as Partial<LiveMatchState> | undefined;
+        const raw = persisted as (Partial<LiveMatchState> & { bring?: string[] }) | undefined;
         return {
-          foes: raw?.foes ?? [],
+          bring: normalizeBring(raw?.bring ?? []),
+          foes: (raw?.foes ?? []).slice(0, MAX_FOES),
           recent: raw?.recent ?? [],
           focusSlug: raw?.focusSlug ?? null,
           activeBringSlug: raw?.activeBringSlug ?? null,
@@ -253,6 +356,7 @@ export const useLiveMatchStore = create<LiveMatchState>()(
         };
       },
       partialize: (s) => ({
+        bring: s.bring,
         foes: s.foes,
         recent: s.recent,
         focusSlug: s.focusSlug,
@@ -272,4 +376,4 @@ export const useLiveMatchStore = create<LiveMatchState>()(
   ),
 );
 
-export { MAX_FOES, MAX_MOVES };
+export { MAX_FOES, MAX_BRING, MAX_MOVES, MAX_RECENT };

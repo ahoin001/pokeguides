@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
-import { useTeamStore } from "@/stores/team";
 import { useLiveMatchStore } from "@/stores/live-match";
 import { LivePackageBar } from "@/components/live/LivePackageBar";
 import { LiveFoeSearch } from "@/components/live/LiveFoeSearch";
@@ -16,7 +15,7 @@ export function LiveMatchStage() {
   const renderCount = useRef(0);
   renderCount.current += 1;
 
-  const slugs = useTeamStore((s) => s.slugs);
+  const bring = useLiveMatchStore((s) => s.bring);
   const foes = useLiveMatchStore((s) => s.foes);
   const activeBringSlug = useLiveMatchStore((s) => s.activeBringSlug);
   const activeFoeSlug = useLiveMatchStore((s) => s.activeFoeSlug);
@@ -24,8 +23,6 @@ export function LiveMatchStage() {
   const selectBring = useLiveMatchStore((s) => s.selectBring);
   const selectFoe = useLiveMatchStore((s) => s.selectFoe);
 
-  // Stable snapshot — never filter inside the zustand selector (React #185).
-  const bring = useMemo(() => slugs.filter(Boolean) as string[], [slugs]);
   const exclude = useMemo(() => [...bring, ...foes], [bring, foes]);
 
   useEffect(() => {
@@ -85,11 +82,11 @@ export function LiveMatchStage() {
       </header>
 
       <div className="mt-10 space-y-8">
-        <div className="grid gap-4 lg:grid-cols-2">
-          <section className="rounded-[28px] border border-line/60 bg-raised/30 p-4 md:p-5">
+        <div className="grid items-stretch gap-4 lg:grid-cols-2">
+          <section className="flex min-h-0 flex-col rounded-[28px] border border-line/60 bg-raised/30 p-4 md:p-5">
             <LivePackageBar exclude={foes} />
           </section>
-          <section className="rounded-[28px] border border-line/60 bg-raised/30 p-4 md:p-5">
+          <section className="flex min-h-0 flex-col rounded-[28px] border border-line/60 bg-raised/30 p-4 md:p-5">
             <LiveFoeSearch exclude={exclude} />
           </section>
         </div>

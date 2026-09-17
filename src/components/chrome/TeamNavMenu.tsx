@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { CaretDown } from "@phosphor-icons/react";
 import { ARCHETYPES, ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
 import type { ArchetypeId } from "@/types/pokemon";
+import { Popover } from "@/components/ui/Popover";
 
 function linkOn(path: string, href: string) {
   if (href === "/") return path === "/";
@@ -15,78 +16,65 @@ function linkOn(path: string, href: string) {
 
 export function TeamNavMenu({ path }: { path: string }) {
   const [open, setOpen] = useState(false);
-  const root = useRef<HTMLDivElement>(null);
-  const menuId = useId();
   const on = linkOn(path, "/team");
-
-  useEffect(() => {
-    function onDoc(e: MouseEvent) {
-      if (!root.current?.contains(e.target as Node)) setOpen(false);
-    }
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
-    }
-    document.addEventListener("mousedown", onDoc);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onDoc);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, []);
 
   return (
     <div
-      ref={root}
-      className="relative"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <button
-        type="button"
-        aria-expanded={open}
-        aria-controls={menuId}
-        onClick={() => setOpen((v) => !v)}
-        className={`inline-flex items-center gap-1 ${on ? "text-ink" : "text-muted hover:text-ink"}`}
+      <Popover
+        open={open}
+        onOpenChange={setOpen}
+        align="center"
+        role="menu"
+        widthClassName="w-56"
+        panelClassName="border-line/80 bg-bg/95 p-2 backdrop-blur-md"
+        trigger={({ open: isOpen, toggle, triggerProps }) => (
+          <button
+            type="button"
+            {...triggerProps}
+            onClick={toggle}
+            className={`inline-flex items-center gap-1 transition ${
+              on ? "text-ink" : "text-muted hover:text-ink"
+            }`}
+          >
+            Team
+            <CaretDown
+              size={12}
+              weight="bold"
+              className={`transition-transform duration-200 ease-out ${isOpen ? "rotate-180" : ""}`}
+            />
+          </button>
+        )}
       >
-        Team
-        <CaretDown size={12} weight="bold" className={`transition ${open ? "rotate-180" : ""}`} />
-      </button>
-      {open ? (
-        <div
-          id={menuId}
-          role="menu"
-          className="absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-2"
+        <MenuLink href="/team" on={path === "/team"} onNavigate={() => setOpen(false)}>
+          Team builder
+        </MenuLink>
+        <MenuLink href="/team/box" on={path === "/team/box"} onNavigate={() => setOpen(false)}>
+          My box
+        </MenuLink>
+        <p className="mt-2 px-2.5 pb-1 pt-2 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+          Team archetypes
+        </p>
+        <MenuLink
+          href="/team/archetypes"
+          on={path === "/team/archetypes"}
+          onNavigate={() => setOpen(false)}
         >
-          <div className="rounded-2xl border border-line/80 bg-bg/95 p-2 shadow-lg backdrop-blur-md">
-            <MenuLink href="/team" on={path === "/team"} onNavigate={() => setOpen(false)}>
-              Team builder
-            </MenuLink>
-            <MenuLink href="/team/box" on={path === "/team/box"} onNavigate={() => setOpen(false)}>
-              My box
-            </MenuLink>
-            <p className="mt-2 px-2.5 pb-1 pt-2 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
-              Team archetypes
-            </p>
-            <MenuLink
-              href="/team/archetypes"
-              on={path === "/team/archetypes"}
-              onNavigate={() => setOpen(false)}
-            >
-              All archetypes
-            </MenuLink>
-            {ARCHETYPES.map((a) => (
-              <MenuLink
-                key={a.id}
-                href={archetypeHref(a.id)}
-                on={path === archetypeHref(a.id)}
-                onNavigate={() => setOpen(false)}
-              >
-                {ARCHETYPE_LABEL[a.id as ArchetypeId]}
-              </MenuLink>
-            ))}
-          </div>
-        </div>
-      ) : null}
+          All archetypes
+        </MenuLink>
+        {ARCHETYPES.map((a) => (
+          <MenuLink
+            key={a.id}
+            href={archetypeHref(a.id)}
+            on={path === archetypeHref(a.id)}
+            onNavigate={() => setOpen(false)}
+          >
+            {ARCHETYPE_LABEL[a.id as ArchetypeId]}
+          </MenuLink>
+        ))}
+      </Popover>
     </div>
   );
 }
@@ -107,7 +95,7 @@ function MenuLink({
       role="menuitem"
       href={href}
       onClick={onNavigate}
-      className={`block rounded-xl px-2.5 py-2 text-sm transition ${
+      className={`block rounded-xl px-2.5 py-2 text-sm transition active:scale-[0.99] ${
         on ? "bg-white/10 text-ink" : "text-muted hover:bg-white/6 hover:text-ink"
       }`}
     >
@@ -126,7 +114,7 @@ export function TeamLocalBar() {
     <nav aria-label="Team section" className="mb-6 flex flex-wrap gap-2 md:hidden">
       <Link
         href="/team"
-        className={`rounded-full px-3.5 py-1.5 text-sm ${
+        className={`rounded-full px-3.5 py-1.5 text-sm transition active:scale-[0.98] ${
           builder ? "bg-ink text-bg" : "bg-white/6 text-muted hover:text-ink"
         }`}
       >
@@ -134,7 +122,7 @@ export function TeamLocalBar() {
       </Link>
       <Link
         href="/team/box"
-        className={`rounded-full px-3.5 py-1.5 text-sm ${
+        className={`rounded-full px-3.5 py-1.5 text-sm transition active:scale-[0.98] ${
           box ? "bg-ink text-bg" : "bg-white/6 text-muted hover:text-ink"
         }`}
       >
@@ -142,7 +130,7 @@ export function TeamLocalBar() {
       </Link>
       <Link
         href="/team/archetypes"
-        className={`rounded-full px-3.5 py-1.5 text-sm ${
+        className={`rounded-full px-3.5 py-1.5 text-sm transition active:scale-[0.98] ${
           archetypes ? "bg-ink text-bg" : "bg-white/6 text-muted hover:text-ink"
         }`}
       >

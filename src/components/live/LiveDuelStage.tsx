@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { getPokemon } from "@/lib/catalog/lookup";
 import { cssVars } from "@/lib/champions/palette";
 import { defensiveMatchup, offensiveMatchup } from "@/lib/champions/types";
@@ -21,38 +21,40 @@ import {
 import { speBand } from "@/lib/champions/vs-stats";
 import { liveDebug } from "@/lib/live/debug";
 import { useLiveMatchStore } from "@/stores/live-match";
-import { useTeamStore } from "@/stores/team";
 
 function TypeStrip({
   label,
   types,
+  empty = false,
 }: {
   label: string;
   types: { type: Parameters<typeof TypeBadge>[0]["type"]; mark?: string }[];
+  /** Keep the label visible when the list is empty (typing pillars). */
+  empty?: boolean;
 }) {
-  if (!types.length) return null;
+  if (!types.length && !empty) return null;
   return (
     <div>
       <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted">
         {label}
       </p>
-      <ul className="mt-1.5 flex flex-wrap gap-1">
-        {types.slice(0, 6).map((t) => (
-          <li key={`${label}-${t.type}`}>
-            <TypeBadge type={t.type} size="sm" mark={t.mark} />
-          </li>
-        ))}
-      </ul>
+      {types.length ? (
+        <ul className="mt-1.5 flex flex-wrap gap-1">
+          {types.slice(0, 8).map((t) => (
+            <li key={`${label}-${t.type}`}>
+              <TypeBadge type={t.type} size="sm" mark={t.mark} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="mt-1.5 text-xs text-muted">—</p>
+      )}
     </div>
   );
 }
 
 export function LiveDuelStage() {
-  const slugs = useTeamStore((s) => s.slugs);
-  const bringSlugs = useMemo(
-    () => slugs.filter(Boolean) as string[],
-    [slugs],
-  );
+  const bringSlugs = useLiveMatchStore((s) => s.bring);
   const foes = useLiveMatchStore((s) => s.foes);
   const activeBringSlug = useLiveMatchStore((s) => s.activeBringSlug);
   const activeFoeSlug = useLiveMatchStore((s) => s.activeFoeSlug);
@@ -90,7 +92,7 @@ export function LiveDuelStage() {
           Duel
         </p>
         <p className="mt-3 text-sm text-muted">
-          Set your three, then log their lead. Spe and stats land here.
+          Set your six, then log theirs. Spe and stats land here.
         </p>
       </section>
     );
@@ -104,7 +106,7 @@ export function LiveDuelStage() {
         </p>
         <p className="mt-3 max-w-[40ch] text-sm text-muted">
           {!our
-            ? "Pick your bring above — tap a Pokémon to set the active."
+            ? "Pick your side above — tap a Pokémon to set the active."
             : "Log their lead above. The compare stage opens as soon as both sides are set."}
         </p>
       </section>
@@ -166,10 +168,22 @@ export function LiveDuelStage() {
                     type: w.type,
                     mark: `${w.mult}×`,
                   }))}
+                  empty
                 />
                 <TypeStrip
                   label="Strong into"
                   types={ourOff.strong.map((t) => ({ type: t }))}
+                  empty
+                />
+                <TypeStrip
+                  label="Not affected by"
+                  types={ourDef.immune.map((t) => ({ type: t }))}
+                  empty
+                />
+                <TypeStrip
+                  label="Has no effect on"
+                  types={ourOff.fails.map((t) => ({ type: t }))}
+                  empty
                 />
               </div>
             </div>
@@ -232,10 +246,22 @@ export function LiveDuelStage() {
                     type: w.type,
                     mark: `${w.mult}×`,
                   }))}
+                  empty
                 />
                 <TypeStrip
                   label="Strong into"
                   types={theirOff.strong.map((t) => ({ type: t }))}
+                  empty
+                />
+                <TypeStrip
+                  label="Not affected by"
+                  types={theirDef.immune.map((t) => ({ type: t }))}
+                  empty
+                />
+                <TypeStrip
+                  label="Has no effect on"
+                  types={theirOff.fails.map((t) => ({ type: t }))}
+                  empty
                 />
               </div>
             </div>

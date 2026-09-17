@@ -2,32 +2,36 @@ import { TYPE_LABEL, defensiveMatchup, offensiveMatchup } from "@/lib/champions/
 import type { TypeId } from "@/types/pokemon";
 import { TypeIcon } from "@/components/pokemon/TypeIcon";
 
+/** The four typing pillars: Weak to · Strong into · Not affected by · Has no effect on. */
 export function MatchupField({ types }: { types: readonly TypeId[] }) {
-  const { weak, resist, immune } = defensiveMatchup(types);
-  const { strong } = offensiveMatchup(types);
+  const { weak, immune } = defensiveMatchup(types);
+  const { strong, fails } = offensiveMatchup(types);
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       <Group
-        title="Strong against"
+        title="Weak to"
+        tone="rose"
+        items={weak.map((w) => ({ type: w.type, note: `${w.mult}×` }))}
+        empty="No weaknesses"
+      />
+      <Group
+        title="Strong into"
         tone="hit"
-        items={strong.map((type) => ({ type, note: "2×" }))}
+        items={strong.map((type) => ({ type, note: "2×+" }))}
         empty="No super-effective STAB"
       />
       <Group
-        title="Hits this hard"
-        tone="rose"
-        items={weak.map((w) => ({ type: w.type, note: `${w.mult}x` }))}
-      />
-      <Group
-        title="Not very effective"
-        tone="mute"
-        items={resist.map((r) => ({ type: r.type, note: `${r.mult}x` }))}
-      />
-      <Group
-        title="No effect"
+        title="Not affected by"
         tone="slash"
         items={immune.map((t) => ({ type: t }))}
         empty="No immunities"
+        slash
+      />
+      <Group
+        title="Has no effect on"
+        tone="mute"
+        items={fails.map((t) => ({ type: t }))}
+        empty="STAB hits everything"
         slash
       />
     </div>

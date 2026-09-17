@@ -30,12 +30,27 @@ export type LiveSpeScenarios = {
   max: number;
 };
 
+/** Choice Scarf multiplies Spe by 1.5 after SP + nature (floored). */
+export function applyChoiceScarf(spe: number) {
+  return Math.floor(spe * 1.5);
+}
+
 export function liveSpeScenarios(mon: CatalogEntry): LiveSpeScenarios {
   const baseSpe = mon.stats.spe;
   return {
     base: speedAt(baseSpe, 0, 1),
     invest: speedAt(baseSpe, 32, 1),
     max: speedAt(baseSpe, 32, 1.1),
+  };
+}
+
+/** Same invest rows with Choice Scarf on that side. */
+export function liveSpeScenariosScarfed(mon: CatalogEntry): LiveSpeScenarios {
+  const bare = liveSpeScenarios(mon);
+  return {
+    base: applyChoiceScarf(bare.base),
+    invest: applyChoiceScarf(bare.invest),
+    max: applyChoiceScarf(bare.max),
   };
 }
 
@@ -49,6 +64,8 @@ export const SPE_SCENARIO_META: Record<
   invest: { label: "+32 Spe", hint: "Max Spe SP · still neutral nature" },
   max: { label: "+32 + nature", hint: "Max Spe SP · Timid / Jolly / Hasty / Naive (+10%)" },
 };
+
+export const SPE_SCENARIO_ORDER: SpeScenarioKey[] = ["base", "invest", "max"];
 
 /** Level-50 stats using ranked leading SP + nature when available. */
 export function liveStatsForSlug(slug: string, mon: CatalogEntry): {

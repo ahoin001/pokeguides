@@ -74,8 +74,7 @@ export function LiveFieldStrip({
     return (
       <div className="rounded-[28px] border border-dashed border-line/80 bg-bg/30 px-5 py-8 text-center">
         <p className="text-sm text-muted">
-          Load your six from Team, pick a bring of three, then search their preview — the field fills
-          in.
+          Load your six and theirs — the type matrix fills in once both sides have names.
         </p>
       </div>
     );
@@ -90,7 +89,7 @@ export function LiveFieldStrip({
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
             Field
           </p>
-          <h2 className="mt-1 text-lg font-semibold tracking-tight">Bring vs preview</h2>
+          <h2 className="mt-1 text-lg font-semibold tracking-tight">Your six vs theirs</h2>
           <p className="mt-1 max-w-[48ch] text-sm text-muted">
             Each cell is one of yours vs one of theirs: how hard you hit, how hard they hit back, and
             who outspeeds.
@@ -98,11 +97,11 @@ export function LiveFieldStrip({
         </div>
         {shared.length ? (
           <p className="max-w-[28ch] text-sm text-muted">
-            Shared weakness across your bring:{" "}
+            Shared weakness across your six:{" "}
             <span className="text-ink">{shared.map((t) => TYPE_LABEL[t]).join(", ")}</span>
           </p>
         ) : (
-          <p className="text-sm text-muted">No type hits every bring mon super-effectively.</p>
+          <p className="text-sm text-muted">No type hits every mon on your six super-effectively.</p>
         )}
       </div>
 
@@ -111,7 +110,7 @@ export function LiveFieldStrip({
           <thead>
             <tr>
               <th className="pb-3 pr-3 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted">
-                Your bring
+                You
               </th>
               {foes.map((f) => (
                 <th key={f.slug} className="pb-3 px-1.5 font-normal">

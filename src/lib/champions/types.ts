@@ -171,19 +171,22 @@ export function offensiveCoverage(attack: TypeId) {
   return { superEffective, resisted, immune };
 }
 
-/** Types either of these STABs hit for 2× (deduped). */
+/**
+ * STAB pillars for a mon's attack types:
+ * - strong: any STAB hits for >1×
+ * - fails: every STAB is 0× (has no effect on)
+ */
 export function offensiveMatchup(attackTypes: readonly TypeId[]) {
   const strong: TypeId[] = [];
-  const seen = new Set<TypeId>();
-  for (const attack of attackTypes) {
-    for (const defend of TYPE_IDS) {
-      if (attackMultiplier(attack, defend) > 1 && !seen.has(defend)) {
-        seen.add(defend);
-        strong.push(defend);
-      }
-    }
+  const fails: TypeId[] = [];
+  if (!attackTypes.length) return { strong, fails };
+
+  for (const defend of TYPE_IDS) {
+    const mults = attackTypes.map((attack) => attackMultiplier(attack, defend));
+    if (mults.some((m) => m > 1)) strong.push(defend);
+    else if (mults.every((m) => m === 0)) fails.push(defend);
   }
-  return { strong };
+  return { strong, fails };
 }
 
 export function defensiveMatchup(defendTypes: readonly TypeId[]) {

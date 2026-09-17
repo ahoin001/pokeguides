@@ -168,7 +168,7 @@ export function LiveFoeKit({ foeSlug }: { foeSlug: string }) {
                         : logged
                           ? "Already logged"
                           : full
-                            ? "Their three is full"
+                            ? "Their six is full"
                             : `Add ${name}`
                     }
                     className="inline-flex items-center gap-2 rounded-full border border-line/70 bg-raised/40 py-1 pl-1 pr-3 text-left text-sm transition enabled:hover:border-ink/40 disabled:opacity-50"

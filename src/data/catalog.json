@@ -376,7 +376,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 190
+    "usageRank": 189
   },
   {
     "id": 18,
@@ -427,7 +427,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 153
+    "usageRank": 152
   },
   {
     "id": 10073,
@@ -524,7 +524,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 228
+    "usageRank": 229
   },
   {
     "id": 25,
@@ -1883,6 +1883,53 @@
     "usageRank": 30
   },
   {
+    "id": 10281,
+    "slug": "dragonite-mega",
+    "name": "Mega Dragonite",
+    "dexNo": 149,
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 91,
+      "atk": 124,
+      "def": 115,
+      "spa": 145,
+      "spd": 125,
+      "spe": 100,
+      "bst": 700
+    },
+    "speedAt0": 120,
+    "speedAt32": 152,
+    "abilities": [
+      "multiscale"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "tailwind"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10281.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10281.png",
+    "tokens": "mega dragonite dragonite-mega dragon flying multiscale brown priority setup recovery status tailwind",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#c49e52",
+      "vibrant": "#f0c060",
+      "muted": "#907746",
+      "ink": "#12141a",
+      "wash": "#f0c060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 157,
     "slug": "typhlosion",
     "name": "Typhlosion",
@@ -1977,7 +2024,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 207
+    "usageRank": 208
   },
   {
     "id": 181,
@@ -3042,7 +3089,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 122
+    "usageRank": 123
   },
   {
     "id": 308,
@@ -3188,7 +3235,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 236
+    "usageRank": 237
   },
   {
     "id": 324,
@@ -3425,7 +3472,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 152
+    "usageRank": 153
   },
   {
     "id": 359,
@@ -3861,7 +3908,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 171
+    "usageRank": 172
   },
   {
     "id": 409,
@@ -4005,7 +4052,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 166
+    "usageRank": 165
   },
   {
     "id": 445,
@@ -4291,7 +4338,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 123
+    "usageRank": 122
   },
   {
     "id": 464,
@@ -4681,7 +4728,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 107
+    "usageRank": 106
   },
   {
     "id": 503,
@@ -4826,7 +4873,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 186
+    "usageRank": 190
   },
   {
     "id": 534,
@@ -5168,7 +5215,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 173
+    "usageRank": 171
   },
   {
     "id": 579,
@@ -5404,7 +5451,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 229
+    "usageRank": 230
   },
   {
     "id": 635,
@@ -5793,7 +5840,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 210
+    "usageRank": 212
   },
   {
     "id": 681,
@@ -5936,7 +5983,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 164
+    "usageRank": 163
   },
   {
     "id": 689,
@@ -6081,7 +6128,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 172
+    "usageRank": 173
   },
   {
     "id": 697,
@@ -6129,7 +6176,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 226
+    "usageRank": 223
   },
   {
     "id": 699,
@@ -6956,7 +7003,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 259
+    "usageRank": 258
   },
   {
     "id": 768,
@@ -7820,7 +7867,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 196
+    "usageRank": 195
   },
   {
     "id": 870,
@@ -8012,7 +8059,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 96
+    "usageRank": 95
   },
   {
     "id": 887,
@@ -8062,7 +8109,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 59
+    "usageRank": 58
   },
   {
     "id": 901,
@@ -8311,7 +8358,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 106
+    "usageRank": 107
   },
   {
     "id": 908,
@@ -8836,7 +8883,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 174
+    "usageRank": 175
   },
   {
     "id": 945,
@@ -9080,7 +9127,7 @@
       "source": "artwork"
     },
     "source": "pokeapi",
-    "usageRank": 134
+    "usageRank": 135
   },
   {
     "id": 967,

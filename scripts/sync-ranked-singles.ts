@@ -29,6 +29,7 @@ const ALIAS: Record<string, string> = {
   raichumegax: "raichu-mega-x",
   raichumegay: "raichu-mega-y",
   eelektrossmega: "eelektross-mega",
+  dragonitemega: "dragonite-mega",
 };
 
 type BattleTop = {

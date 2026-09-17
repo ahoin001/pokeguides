@@ -59,7 +59,7 @@ export function AppShell({ children }: { children: ReactNode }) {
               href="/compare"
               className={linkOn(path, "/compare") ? "text-ink" : "text-muted hover:text-ink"}
             >
-              Compare
+              Coverage Checker
             </Link>
             <Link
               href="/manuals"

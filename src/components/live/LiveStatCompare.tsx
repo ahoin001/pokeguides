@@ -9,6 +9,14 @@ import {
 } from "@/lib/live/compare";
 import type { Stats } from "@/types/pokemon";
 
+/** Fixed win/lose palette — readable without glasses; ignores Pokémon wash. */
+const WIN = "#3ecf8e";
+const WIN_SOFT = "color-mix(in srgb, #3ecf8e 55%, transparent)";
+const LOSE = "#6b2430";
+const LOSE_SOFT = "color-mix(in srgb, #6b2430 70%, transparent)";
+const TIE = "color-mix(in srgb, var(--ink) 28%, transparent)";
+const TIE_TEXT = "var(--muted)";
+
 type Side = {
   stats: Stats;
   wash: string;
@@ -40,24 +48,25 @@ export function LiveStatCompare({
         const ov = ours.stats[key];
         const tv = theirs.stats[key];
         const who = winner(key, ov, tv);
-        const ourPct = Math.max(8, (ov / max) * 100);
-        const theirPct = Math.max(8, (tv / max) * 100);
-        const ourColor = who === "us" ? ours.vibrant : who === "tie" ? "color-mix(in srgb, var(--ink) 28%, transparent)" : "color-mix(in srgb, var(--ink) 14%, transparent)";
-        const theirColor = who === "them" ? theirs.vibrant : who === "tie" ? "color-mix(in srgb, var(--ink) 28%, transparent)" : "color-mix(in srgb, var(--ink) 14%, transparent)";
+        const ourPct = Math.max(10, (ov / max) * 100);
+        const theirPct = Math.max(10, (tv / max) * 100);
+
+        const ourBar =
+          who === "us" ? WIN : who === "them" ? LOSE : TIE;
+        const theirBar =
+          who === "them" ? WIN : who === "us" ? LOSE : TIE;
+        const ourNum =
+          who === "us" ? WIN : who === "them" ? LOSE_SOFT : TIE_TEXT;
+        const theirNum =
+          who === "them" ? WIN : who === "us" ? LOSE_SOFT : TIE_TEXT;
         const labelColor =
-          who === "us"
-            ? ours.vibrant
-            : who === "them"
-              ? theirs.vibrant
-              : undefined;
+          who === "us" ? WIN : who === "them" ? WIN : TIE_TEXT;
 
         return (
-          <li key={key} className="grid grid-cols-[2.5rem_1fr_2.5rem] items-center gap-2">
+          <li key={key} className="grid grid-cols-[2.75rem_1fr_2.75rem] items-center gap-2">
             <span
-              className={`text-right font-mono text-[11px] font-semibold tabular-nums ${
-                who === "us" ? "text-ink" : "text-muted"
-              }`}
-              style={who === "us" ? { color: ours.vibrant } : undefined}
+              className="text-right font-mono text-[12px] font-semibold tabular-nums"
+              style={{ color: ourNum }}
             >
               {ov}
             </span>
@@ -65,25 +74,33 @@ export function LiveStatCompare({
               <div className="mb-1 flex items-center justify-center gap-2">
                 <span
                   className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em]"
-                  style={labelColor ? { color: labelColor } : undefined}
+                  style={{ color: labelColor }}
                 >
                   {LIVE_STAT_LABEL[key]}
                 </span>
               </div>
-              <div className="grid grid-cols-2 gap-1">
-                <div className="flex justify-end overflow-hidden rounded-full bg-white/[0.04]">
+              <div className="grid grid-cols-2 gap-1.5">
+                <div className="flex justify-end overflow-hidden rounded-full bg-black/35">
                   <motion.div
-                    className="h-2 rounded-full"
-                    style={{ background: ourColor, width: `${ourPct}%` }}
+                    className={`rounded-full ${who === "us" ? "h-2.5" : "h-2"}`}
+                    style={{
+                      background: ourBar,
+                      width: `${ourPct}%`,
+                      boxShadow: who === "us" ? `0 0 12px ${WIN_SOFT}` : undefined,
+                    }}
                     initial={reduce ? false : { scaleX: 0.2, originX: 1 }}
                     animate={{ scaleX: 1 }}
                     transition={{ duration: motionTokens.layout, ease: easeOut }}
                   />
                 </div>
-                <div className="overflow-hidden rounded-full bg-white/[0.04]">
+                <div className="overflow-hidden rounded-full bg-black/35">
                   <motion.div
-                    className="h-2 rounded-full"
-                    style={{ background: theirColor, width: `${theirPct}%` }}
+                    className={`rounded-full ${who === "them" ? "h-2.5" : "h-2"}`}
+                    style={{
+                      background: theirBar,
+                      width: `${theirPct}%`,
+                      boxShadow: who === "them" ? `0 0 12px ${WIN_SOFT}` : undefined,
+                    }}
                     initial={reduce ? false : { scaleX: 0.2, originX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ duration: motionTokens.layout, ease: easeOut }}
@@ -92,10 +109,8 @@ export function LiveStatCompare({
               </div>
             </div>
             <span
-              className={`font-mono text-[11px] font-semibold tabular-nums ${
-                who === "them" ? "text-ink" : "text-muted"
-              }`}
-              style={who === "them" ? { color: theirs.vibrant } : undefined}
+              className="font-mono text-[12px] font-semibold tabular-nums"
+              style={{ color: theirNum }}
             >
               {tv}
             </span>

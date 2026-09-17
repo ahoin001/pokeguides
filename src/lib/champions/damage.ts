@@ -126,6 +126,70 @@ export function calcDamage(
   };
 }
 
+/** Plain-English KO / chip readout for first-time calc users. */
+export type DamageVerdict = {
+  headline: string;
+  detail: string;
+  tone: "ko" | "likely" | "chip" | "immune" | "weak";
+};
+
+export function damageVerdict(result: DamageResult): DamageVerdict {
+  if (result.effectiveness === 0) {
+    return {
+      headline: "No damage",
+      detail: "This type does not hit that defender. Pick another move.",
+      tone: "immune",
+    };
+  }
+  if (result.min >= result.defenderHp) {
+    return {
+      headline: "Always KOs",
+      detail: "Even the weakest roll KOs from full HP.",
+      tone: "ko",
+    };
+  }
+  if (result.max >= result.defenderHp) {
+    return {
+      headline: "Sometimes KOs",
+      detail: "A high roll KOs; a low roll leaves them alive. Damage rolls randomly each hit.",
+      tone: "likely",
+    };
+  }
+  if (result.min * 2 >= result.defenderHp) {
+    return {
+      headline: "Always 2HKOs",
+      detail: "Two hits KO from full HP, even on low rolls — if nothing heals between them.",
+      tone: "ko",
+    };
+  }
+  if (result.max * 2 >= result.defenderHp) {
+    return {
+      headline: "Often 2HKOs",
+      detail: "Two hits usually KO from full HP, but a low roll can leave them in range to strike back.",
+      tone: "likely",
+    };
+  }
+  if (result.maxPct >= 40) {
+    return {
+      headline: "Heavy chip",
+      detail: "Does not KO alone from full HP. Use it to put them into priority or a follow-up range.",
+      tone: "chip",
+    };
+  }
+  if (result.effectiveness < 1) {
+    return {
+      headline: "Resisted",
+      detail: "They take reduced damage from this type. Expect a long fight unless you switch moves.",
+      tone: "weak",
+    };
+  }
+  return {
+    headline: "Light chip",
+    detail: "Small dent from full HP. Better as coverage, residual, or after they are already hurt.",
+    tone: "chip",
+  };
+}
+
 /** 66 SP max-offense: 32 into attacking stat, 32 Spe, 2 HP (or remaining). */
 export function maxOffenseSp(category: MoveCategory): SampleSp {
   const offense = category === "special" ? "spa" : "atk";

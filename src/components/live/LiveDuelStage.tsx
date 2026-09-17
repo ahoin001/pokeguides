@@ -8,6 +8,7 @@ import { defensiveMatchup, offensiveMatchup } from "@/lib/champions/types";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { TypeBadge } from "@/components/pokemon/TypeBadge";
 import { LiveStatCompare } from "@/components/live/LiveStatCompare";
+import { LiveSpeHero } from "@/components/live/LiveSpeHero";
 import { LiveFoeKit } from "@/components/live/LiveFoeKit";
 import { LiveArchetypeHint } from "@/components/live/LiveArchetypeHint";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
@@ -195,7 +196,7 @@ export function LiveDuelStage() {
                 }}
                 className="mt-2 rounded-full border border-line px-3 py-1.5 text-xs text-muted transition hover:border-ink/40 hover:text-ink"
               >
-                Open damage calc
+                Will this KO? Open calc
               </button>
             </div>
 
@@ -241,11 +242,13 @@ export function LiveDuelStage() {
           </div>
 
           <div className="border-t border-line/60 px-5 py-5 md:px-6">
-            <p className="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
-              Stats · ladder SP when known
+            <LiveSpeHero ours={our} theirs={their} />
+
+            <p className="mb-3 mt-6 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+              Other stats · ladder SP when known
             </p>
             <p className="mb-4 text-xs text-muted">
-              Your color wins the row · their color loses it. Skim Spe, Atk, SpA for threats; HP/Def/SpD for bulk.
+              Green wins the row · red loses it. Skim Atk / SpA for threats; HP / Def / SpD for bulk.
             </p>
             <LiveStatCompare
               ours={{

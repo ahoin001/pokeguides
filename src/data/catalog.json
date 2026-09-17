@@ -44,8 +44,7 @@
       "wash": "#408080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 63
+    "source": "pokeapi"
   },
   {
     "id": 10033,
@@ -138,8 +137,7 @@
       "wash": "#d09050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 19
+    "source": "pokeapi"
   },
   {
     "id": 10034,
@@ -279,8 +277,7 @@
       "wash": "#706050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 31
+    "source": "pokeapi"
   },
   {
     "id": 10036,
@@ -375,8 +372,55 @@
       "wash": "#c0a050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 189
+    "source": "pokeapi"
+  },
+  {
+    "id": 10090,
+    "slug": "beedrill-mega",
+    "name": "Mega Beedrill",
+    "dexNo": 15,
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 150,
+      "def": 40,
+      "spa": 15,
+      "spd": 80,
+      "spe": 145,
+      "bst": 495
+    },
+    "speedAt0": 165,
+    "speedAt32": 197,
+    "abilities": [
+      "adaptability"
+    ],
+    "kitTags": [
+      "pivot",
+      "setup",
+      "recovery",
+      "status",
+      "tailwind",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10090.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10090.png",
+    "tokens": "mega beedrill beedrill-mega bug poison adaptability yellow pivot setup recovery status tailwind hazards",
+    "speciesColor": "yellow",
+    "palette": {
+      "dominant": "#b7c4c5",
+      "vibrant": "#e0f0f0",
+      "muted": "#879195",
+      "ink": "#12141a",
+      "wash": "#e0f0f0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 18,
@@ -426,8 +470,7 @@
       "wash": "#d0c0a0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 152
+    "source": "pokeapi"
   },
   {
     "id": 10073,
@@ -523,8 +566,7 @@
       "wash": "#908090",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 229
+    "source": "pokeapi"
   },
   {
     "id": 25,
@@ -571,8 +613,7 @@
       "wash": "#f0d080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 170
+    "source": "pokeapi"
   },
   {
     "id": 26,
@@ -620,8 +661,7 @@
       "wash": "#d0a050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 40
+    "source": "pokeapi"
   },
   {
     "id": 10100,
@@ -668,8 +708,7 @@
       "wash": "#a07040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 194
+    "source": "pokeapi"
   },
   {
     "id": 10304,
@@ -811,8 +850,53 @@
       "wash": "#f0e0d0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 45
+    "source": "pokeapi"
+  },
+  {
+    "id": 10278,
+    "slug": "clefable-mega",
+    "name": "Mega Clefable",
+    "dexNo": 36,
+    "types": [
+      "fairy",
+      "flying"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 95,
+      "atk": 80,
+      "def": 93,
+      "spa": 135,
+      "spd": 110,
+      "spe": 70,
+      "bst": 583
+    },
+    "speedAt0": 90,
+    "speedAt32": 122,
+    "abilities": [
+      "magic bounce"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10278.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10278.png",
+    "tokens": "mega clefable clefable-mega fairy flying magic bounce pink setup recovery status hazards",
+    "speciesColor": "pink",
+    "palette": {
+      "dominant": "#c47785",
+      "vibrant": "#f090a0",
+      "muted": "#905c69",
+      "ink": "#12141a",
+      "wash": "#f090a0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 38,
@@ -858,8 +942,7 @@
       "wash": "#f0e0a0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 168
+    "source": "pokeapi"
   },
   {
     "id": 10104,
@@ -906,8 +989,7 @@
       "wash": "#d0e0f0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 23
+    "source": "pokeapi"
   },
   {
     "id": 40,
@@ -956,8 +1038,7 @@
       "wash": "#f0f0f0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 155
+    "source": "pokeapi"
   },
   {
     "id": 53,
@@ -1005,8 +1086,7 @@
       "wash": "#f0e0b0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 244
+    "source": "pokeapi"
   },
   {
     "id": 10108,
@@ -1054,8 +1134,7 @@
       "wash": "#d0d0e0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 108
+    "source": "pokeapi"
   },
   {
     "id": 59,
@@ -1103,8 +1182,7 @@
       "wash": "#f0e0c0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 126
+    "source": "pokeapi"
   },
   {
     "id": 65,
@@ -1152,8 +1230,148 @@
       "wash": "#a09050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 98
+    "source": "pokeapi"
+  },
+  {
+    "id": 10037,
+    "slug": "alakazam-mega",
+    "name": "Mega Alakazam",
+    "dexNo": 65,
+    "types": [
+      "psychic"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 55,
+      "atk": 50,
+      "def": 65,
+      "spa": 175,
+      "spd": 105,
+      "spe": 150,
+      "bst": 600
+    },
+    "speedAt0": 170,
+    "speedAt32": 202,
+    "abilities": [
+      "trace"
+    ],
+    "kitTags": [
+      "pivot",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10037.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10037.png",
+    "tokens": "mega alakazam alakazam-mega psychic trace brown pivot setup recovery status trick-room",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#845e78",
+      "vibrant": "#a07090",
+      "muted": "#644b60",
+      "ink": "#f4f1ea",
+      "wash": "#a07090",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 71,
+    "slug": "victreebel",
+    "name": "Victreebel",
+    "dexNo": 71,
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 105,
+      "def": 65,
+      "spa": 100,
+      "spd": 70,
+      "spe": 70,
+      "bst": 490
+    },
+    "speedAt0": 90,
+    "speedAt32": 122,
+    "abilities": [
+      "chlorophyll",
+      "gluttony"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/71.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png",
+    "tokens": "victreebel victreebel grass poison chlorophyll gluttony green priority setup recovery status hazards",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#77aa78",
+      "vibrant": "#90d090",
+      "muted": "#5b7f60",
+      "ink": "#12141a",
+      "wash": "#90d090",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10279,
+    "slug": "victreebel-mega",
+    "name": "Mega Victreebel",
+    "dexNo": 71,
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 125,
+      "def": 85,
+      "spa": 135,
+      "spd": 95,
+      "spe": 70,
+      "bst": 590
+    },
+    "speedAt0": 90,
+    "speedAt32": 122,
+    "abilities": [
+      "innards out"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10279.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10279.png",
+    "tokens": "mega victreebel victreebel-mega grass poison innards out green priority setup recovery status hazards",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#c4c452",
+      "vibrant": "#f0f060",
+      "muted": "#909146",
+      "ink": "#12141a",
+      "wash": "#f0f060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 80,
@@ -1202,8 +1420,54 @@
       "wash": "#e0a0b0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 103
+    "source": "pokeapi"
+  },
+  {
+    "id": 10071,
+    "slug": "slowbro-mega",
+    "name": "Mega Slowbro",
+    "dexNo": 80,
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 95,
+      "atk": 75,
+      "def": 180,
+      "spa": 130,
+      "spd": 80,
+      "spe": 30,
+      "bst": 590
+    },
+    "speedAt0": 50,
+    "speedAt32": 82,
+    "abilities": [
+      "shell armor"
+    ],
+    "kitTags": [
+      "pivot",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10071.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10071.png",
+    "tokens": "mega slowbro slowbro-mega water psychic shell armor pink pivot setup recovery status trick-room",
+    "speciesColor": "pink",
+    "palette": {
+      "dominant": "#777778",
+      "vibrant": "#909090",
+      "muted": "#5b5c60",
+      "ink": "#12141a",
+      "wash": "#909090",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 83,
@@ -1253,8 +1517,7 @@
       "wash": "#a09090",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 213
+    "source": "pokeapi"
   },
   {
     "id": 94,
@@ -1302,8 +1565,7 @@
       "wash": "#8080a0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 36
+    "source": "pokeapi"
   },
   {
     "id": 10038,
@@ -1398,8 +1660,7 @@
       "wash": "#d0c0a0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 97
+    "source": "pokeapi"
   },
   {
     "id": 10039,
@@ -1494,8 +1755,55 @@
       "wash": "#606070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 67
+    "source": "pokeapi"
+  },
+  {
+    "id": 10280,
+    "slug": "starmie-mega",
+    "name": "Mega Starmie",
+    "dexNo": 121,
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 60,
+      "atk": 100,
+      "def": 105,
+      "spa": 130,
+      "spd": 105,
+      "spe": 120,
+      "bst": 620
+    },
+    "speedAt0": 140,
+    "speedAt32": 172,
+    "abilities": [
+      "huge power"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10280.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10280.png",
+    "tokens": "mega starmie starmie-mega water psychic huge power purple pivot priority setup recovery status trick-room",
+    "speciesColor": "purple",
+    "palette": {
+      "dominant": "#5d5e85",
+      "vibrant": "#7070a0",
+      "muted": "#494b69",
+      "ink": "#f4f1ea",
+      "wash": "#7070a0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 122,
@@ -1545,8 +1853,102 @@
       "wash": "#305070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 205
+    "source": "pokeapi"
+  },
+  {
+    "id": 127,
+    "slug": "pinsir",
+    "name": "Pinsir",
+    "dexNo": 127,
+    "types": [
+      "bug"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 125,
+      "def": 100,
+      "spa": 55,
+      "spd": 70,
+      "spe": 85,
+      "bst": 500
+    },
+    "speedAt0": 105,
+    "speedAt32": 137,
+    "abilities": [
+      "hyper cutter",
+      "mold breaker",
+      "moxie"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/127.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/127.png",
+    "tokens": "pinsir pinsir bug hyper cutter mold breaker moxie brown priority setup recovery status hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#5d5152",
+      "vibrant": "#706060",
+      "muted": "#494246",
+      "ink": "#f4f1ea",
+      "wash": "#706060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10040,
+    "slug": "pinsir-mega",
+    "name": "Mega Pinsir",
+    "dexNo": 127,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 155,
+      "def": 120,
+      "spa": 65,
+      "spd": 90,
+      "spe": 105,
+      "bst": 600
+    },
+    "speedAt0": 125,
+    "speedAt32": 157,
+    "abilities": [
+      "aerilate"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10040.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10040.png",
+    "tokens": "mega pinsir pinsir-mega bug flying aerilate brown priority setup recovery status hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#776a5f",
+      "vibrant": "#908070",
+      "muted": "#5b534f",
+      "ink": "#f4f1ea",
+      "wash": "#908070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 130,
@@ -1592,8 +1994,7 @@
       "wash": "#4090b0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 14
+    "source": "pokeapi"
   },
   {
     "id": 10041,
@@ -1685,8 +2086,7 @@
       "wash": "#80d0e0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 82
+    "source": "pokeapi"
   },
   {
     "id": 135,
@@ -1733,8 +2133,7 @@
       "wash": "#f0d070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 178
+    "source": "pokeapi"
   },
   {
     "id": 142,
@@ -1783,8 +2182,54 @@
       "wash": "#b090c0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 145
+    "source": "pokeapi"
+  },
+  {
+    "id": 10042,
+    "slug": "aerodactyl-mega",
+    "name": "Mega Aerodactyl",
+    "dexNo": 142,
+    "types": [
+      "rock",
+      "flying"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 135,
+      "def": 85,
+      "spa": 70,
+      "spd": 95,
+      "spe": 150,
+      "bst": 615
+    },
+    "speedAt0": 170,
+    "speedAt32": 202,
+    "abilities": [
+      "tough claws"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "tailwind",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10042.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10042.png",
+    "tokens": "mega aerodactyl aerodactyl-mega rock flying tough claws purple setup recovery status tailwind hazards",
+    "speciesColor": "purple",
+    "palette": {
+      "dominant": "#503752",
+      "vibrant": "#604060",
+      "muted": "#413046",
+      "ink": "#f4f1ea",
+      "wash": "#604060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 143,
@@ -1830,8 +2275,7 @@
       "wash": "#f0e0d0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 71
+    "source": "pokeapi"
   },
   {
     "id": 149,
@@ -1879,8 +2323,7 @@
       "wash": "#f0b070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 30
+    "source": "pokeapi"
   },
   {
     "id": 10281,
@@ -1930,6 +2373,98 @@
     "source": "pokeapi"
   },
   {
+    "id": 154,
+    "slug": "meganium",
+    "name": "Meganium",
+    "dexNo": 154,
+    "types": [
+      "grass"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 82,
+      "def": 100,
+      "spa": 83,
+      "spd": 100,
+      "spe": 80,
+      "bst": 525
+    },
+    "speedAt0": 100,
+    "speedAt32": 132,
+    "abilities": [
+      "overgrow",
+      "leaf guard"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/154.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png",
+    "tokens": "meganium meganium grass overgrow leaf guard green priority setup recovery status",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#77845f",
+      "vibrant": "#90a070",
+      "muted": "#5b654f",
+      "ink": "#12141a",
+      "wash": "#90a070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10282,
+    "slug": "meganium-mega",
+    "name": "Mega Meganium",
+    "dexNo": 154,
+    "types": [
+      "grass",
+      "fairy"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 92,
+      "def": 115,
+      "spa": 143,
+      "spd": 115,
+      "spe": 80,
+      "bst": 625
+    },
+    "speedAt0": 100,
+    "speedAt32": 132,
+    "abilities": [
+      "mega sol"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10282.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10282.png",
+    "tokens": "mega meganium meganium-mega grass fairy mega sol green priority setup recovery status",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#aab778",
+      "vibrant": "#d0e090",
+      "muted": "#7e8860",
+      "ink": "#12141a",
+      "wash": "#d0e090",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 157,
     "slug": "typhlosion",
     "name": "Typhlosion",
@@ -1973,8 +2508,100 @@
       "wash": "#c0b080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 209
+    "source": "pokeapi"
+  },
+  {
+    "id": 160,
+    "slug": "feraligatr",
+    "name": "Feraligatr",
+    "dexNo": 160,
+    "types": [
+      "water"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 85,
+      "atk": 105,
+      "def": 100,
+      "spa": 79,
+      "spd": 83,
+      "spe": 78,
+      "bst": 530
+    },
+    "speedAt0": 98,
+    "speedAt32": 130,
+    "abilities": [
+      "torrent",
+      "sheer force"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/160.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/160.png",
+    "tokens": "feraligatr feraligatr water torrent sheer force blue pivot priority setup recovery status",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#50aac5",
+      "vibrant": "#60d0f0",
+      "muted": "#417f95",
+      "ink": "#12141a",
+      "wash": "#60d0f0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10283,
+    "slug": "feraligatr-mega",
+    "name": "Mega Feraligatr",
+    "dexNo": 160,
+    "types": [
+      "water",
+      "dragon"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 85,
+      "atk": 160,
+      "def": 125,
+      "spa": 89,
+      "spd": 93,
+      "spe": 78,
+      "bst": 630
+    },
+    "speedAt0": 98,
+    "speedAt32": 130,
+    "abilities": [
+      "dragonize"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10283.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10283.png",
+    "tokens": "mega feraligatr feraligatr-mega water dragon dragonize blue pivot priority setup recovery",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#771e2c",
+      "vibrant": "#902030",
+      "muted": "#5b1f2c",
+      "ink": "#f4f1ea",
+      "wash": "#902030",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 168,
@@ -2023,8 +2650,7 @@
       "wash": "#b05060",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 208
+    "source": "pokeapi"
   },
   {
     "id": 181,
@@ -2070,8 +2696,53 @@
       "wash": "#f0d050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 176
+    "source": "pokeapi"
+  },
+  {
+    "id": 10045,
+    "slug": "ampharos-mega",
+    "name": "Mega Ampharos",
+    "dexNo": 181,
+    "types": [
+      "electric",
+      "dragon"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 90,
+      "atk": 95,
+      "def": 105,
+      "spa": 165,
+      "spd": 110,
+      "spe": 45,
+      "bst": 610
+    },
+    "speedAt0": 65,
+    "speedAt32": 97,
+    "abilities": [
+      "mold breaker"
+    ],
+    "kitTags": [
+      "pivot",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10045.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10045.png",
+    "tokens": "mega ampharos ampharos-mega electric dragon mold breaker yellow pivot setup recovery status",
+    "speciesColor": "yellow",
+    "palette": {
+      "dominant": "#c4b76c",
+      "vibrant": "#f0e080",
+      "muted": "#908858",
+      "ink": "#12141a",
+      "wash": "#f0e080",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 184,
@@ -2119,8 +2790,7 @@
       "wash": "#40a0d0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 92
+    "source": "pokeapi"
   },
   {
     "id": 186,
@@ -2165,8 +2835,7 @@
       "wash": "#90d060",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 90
+    "source": "pokeapi"
   },
   {
     "id": 197,
@@ -2212,8 +2881,7 @@
       "wash": "#405050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 41
+    "source": "pokeapi"
   },
   {
     "id": 199,
@@ -2261,8 +2929,7 @@
       "wash": "#d09090",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 124
+    "source": "pokeapi"
   },
   {
     "id": 208,
@@ -2310,8 +2977,53 @@
       "wash": "#606080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 177
+    "source": "pokeapi"
+  },
+  {
+    "id": 10072,
+    "slug": "steelix-mega",
+    "name": "Mega Steelix",
+    "dexNo": 208,
+    "types": [
+      "steel",
+      "ground"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 125,
+      "def": 230,
+      "spa": 55,
+      "spd": 95,
+      "spe": 30,
+      "bst": 610
+    },
+    "speedAt0": 50,
+    "speedAt32": 82,
+    "abilities": [
+      "sand force"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10072.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10072.png",
+    "tokens": "mega steelix steelix-mega steel ground sand force gray setup recovery status hazards",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#778492",
+      "vibrant": "#90a0b0",
+      "muted": "#5b6572",
+      "ink": "#12141a",
+      "wash": "#90a0b0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 212,
@@ -2361,8 +3073,341 @@
       "wash": "#a04040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 44
+    "source": "pokeapi"
+  },
+  {
+    "id": 10046,
+    "slug": "scizor-mega",
+    "name": "Mega Scizor",
+    "dexNo": 212,
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 150,
+      "def": 140,
+      "spa": 65,
+      "spd": 100,
+      "spe": 75,
+      "bst": 600
+    },
+    "speedAt0": 95,
+    "speedAt32": 127,
+    "abilities": [
+      "technician"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "tailwind"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10046.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10046.png",
+    "tokens": "mega scizor scizor-mega bug steel technician red pivot priority setup recovery status tailwind",
+    "speciesColor": "red",
+    "palette": {
+      "dominant": "#9d5145",
+      "vibrant": "#c06050",
+      "muted": "#75423d",
+      "ink": "#f4f1ea",
+      "wash": "#c06050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 214,
+    "slug": "heracross",
+    "name": "Heracross",
+    "dexNo": 214,
+    "types": [
+      "bug",
+      "fighting"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 125,
+      "def": 75,
+      "spa": 40,
+      "spd": 95,
+      "spe": 85,
+      "bst": 500
+    },
+    "speedAt0": 105,
+    "speedAt32": 137,
+    "abilities": [
+      "swarm",
+      "guts",
+      "moxie"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/214.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/214.png",
+    "tokens": "heracross heracross bug fighting swarm guts moxie blue priority setup recovery status hazards",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#446a85",
+      "vibrant": "#5080a0",
+      "muted": "#385369",
+      "ink": "#f4f1ea",
+      "wash": "#5080a0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10047,
+    "slug": "heracross-mega",
+    "name": "Mega Heracross",
+    "dexNo": 214,
+    "types": [
+      "bug",
+      "fighting"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 185,
+      "def": 115,
+      "spa": 40,
+      "spd": 105,
+      "spe": 75,
+      "bst": 600
+    },
+    "speedAt0": 95,
+    "speedAt32": 127,
+    "abilities": [
+      "skill link"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10047.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10047.png",
+    "tokens": "mega heracross heracross-mega bug fighting skill link blue priority setup recovery status hazards",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#37516c",
+      "vibrant": "#406080",
+      "muted": "#2f4258",
+      "ink": "#f4f1ea",
+      "wash": "#406080",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 227,
+    "slug": "skarmory",
+    "name": "Skarmory",
+    "dexNo": 227,
+    "types": [
+      "steel",
+      "flying"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 80,
+      "def": 140,
+      "spa": 40,
+      "spd": 70,
+      "spe": 70,
+      "bst": 465
+    },
+    "speedAt0": 90,
+    "speedAt32": 122,
+    "abilities": [
+      "keen eye",
+      "sturdy",
+      "weak armor"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "tailwind",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/227.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/227.png",
+    "tokens": "skarmory skarmory steel flying keen eye sturdy weak armor gray setup recovery status tailwind hazards",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#773738",
+      "vibrant": "#904040",
+      "muted": "#5b3034",
+      "ink": "#f4f1ea",
+      "wash": "#904040",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10284,
+    "slug": "skarmory-mega",
+    "name": "Mega Skarmory",
+    "dexNo": 227,
+    "types": [
+      "steel",
+      "flying"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 140,
+      "def": 110,
+      "spa": 40,
+      "spd": 100,
+      "spe": 110,
+      "bst": 565
+    },
+    "speedAt0": 130,
+    "speedAt32": 162,
+    "abilities": [
+      "stalwart"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "tailwind",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10284.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10284.png",
+    "tokens": "mega skarmory skarmory-mega steel flying stalwart gray setup recovery status tailwind hazards",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#50371f",
+      "vibrant": "#604020",
+      "muted": "#413023",
+      "ink": "#f4f1ea",
+      "wash": "#604020",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 229,
+    "slug": "houndoom",
+    "name": "Houndoom",
+    "dexNo": 229,
+    "types": [
+      "dark",
+      "fire"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 90,
+      "def": 50,
+      "spa": 110,
+      "spd": 80,
+      "spe": 95,
+      "bst": 500
+    },
+    "speedAt0": 115,
+    "speedAt32": 147,
+    "abilities": [
+      "early bird",
+      "flash fire",
+      "unnerve"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/229.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/229.png",
+    "tokens": "houndoom houndoom dark fire early bird flash fire unnerve black priority setup recovery status",
+    "speciesColor": "black",
+    "palette": {
+      "dominant": "#443738",
+      "vibrant": "#504040",
+      "muted": "#383034",
+      "ink": "#f4f1ea",
+      "wash": "#504040",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10048,
+    "slug": "houndoom-mega",
+    "name": "Mega Houndoom",
+    "dexNo": 229,
+    "types": [
+      "dark",
+      "fire"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 90,
+      "def": 90,
+      "spa": 140,
+      "spd": 90,
+      "spe": 115,
+      "bst": 600
+    },
+    "speedAt0": 135,
+    "speedAt32": 167,
+    "abilities": [
+      "solar power"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10048.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10048.png",
+    "tokens": "mega houndoom houndoom-mega dark fire solar power black priority setup recovery status",
+    "speciesColor": "black",
+    "palette": {
+      "dominant": "#444445",
+      "vibrant": "#505050",
+      "muted": "#38393d",
+      "ink": "#f4f1ea",
+      "wash": "#505050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 248,
@@ -2409,8 +3454,53 @@
       "wash": "#a0b090",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 54
+    "source": "pokeapi"
+  },
+  {
+    "id": 10049,
+    "slug": "tyranitar-mega",
+    "name": "Mega Tyranitar",
+    "dexNo": 248,
+    "types": [
+      "rock",
+      "dark"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 100,
+      "atk": 164,
+      "def": 150,
+      "spa": 95,
+      "spd": 120,
+      "spe": 71,
+      "bst": 700
+    },
+    "speedAt0": 91,
+    "speedAt32": 123,
+    "abilities": [
+      "sand stream"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10049.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10049.png",
+    "tokens": "mega tyranitar tyranitar-mega rock dark sand stream green setup recovery status hazards",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#6a7752",
+      "vibrant": "#809060",
+      "muted": "#525c46",
+      "ink": "#12141a",
+      "wash": "#809060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 254,
@@ -2456,8 +3546,7 @@
       "wash": "#90d090",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 118
+    "source": "pokeapi"
   },
   {
     "id": 10065,
@@ -2551,8 +3640,7 @@
       "wash": "#f0e080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 38
+    "source": "pokeapi"
   },
   {
     "id": 10050,
@@ -2647,8 +3735,7 @@
       "wash": "#607080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 39
+    "source": "pokeapi"
   },
   {
     "id": 10064,
@@ -2794,8 +3881,7 @@
       "wash": "#f0f0b0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 53
+    "source": "pokeapi"
   },
   {
     "id": 282,
@@ -2845,8 +3931,7 @@
       "wash": "#f0f0f0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 84
+    "source": "pokeapi"
   },
   {
     "id": 10051,
@@ -2942,8 +4027,53 @@
       "wash": "#9070b0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 77
+    "source": "pokeapi"
+  },
+  {
+    "id": 10066,
+    "slug": "sableye-mega",
+    "name": "Mega Sableye",
+    "dexNo": 302,
+    "types": [
+      "dark",
+      "ghost"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 50,
+      "atk": 85,
+      "def": 125,
+      "spa": 85,
+      "spd": 115,
+      "spe": 20,
+      "bst": 480
+    },
+    "speedAt0": 40,
+    "speedAt32": 72,
+    "abilities": [
+      "magic bounce"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10066.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10066.png",
+    "tokens": "mega sableye sableye-mega dark ghost magic bounce purple priority setup recovery status",
+    "speciesColor": "purple",
+    "palette": {
+      "dominant": "#50445f",
+      "vibrant": "#605070",
+      "muted": "#41394f",
+      "ink": "#f4f1ea",
+      "wash": "#605070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 303,
@@ -2992,8 +4122,7 @@
       "wash": "#707070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 60
+    "source": "pokeapi"
   },
   {
     "id": 10052,
@@ -3088,8 +4217,52 @@
       "wash": "#707070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 123
+    "source": "pokeapi"
+  },
+  {
+    "id": 10053,
+    "slug": "aggron-mega",
+    "name": "Mega Aggron",
+    "dexNo": 306,
+    "types": [
+      "steel"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 140,
+      "def": 230,
+      "spa": 60,
+      "spd": 80,
+      "spe": 50,
+      "bst": 630
+    },
+    "speedAt0": 70,
+    "speedAt32": 102,
+    "abilities": [
+      "filter"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10053.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10053.png",
+    "tokens": "mega aggron aggron-mega steel filter gray setup recovery status hazards",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#5d6a78",
+      "vibrant": "#708090",
+      "muted": "#495360",
+      "ink": "#f4f1ea",
+      "wash": "#708090",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 308,
@@ -3137,8 +4310,148 @@
       "wash": "#e08090",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 182
+    "source": "pokeapi"
+  },
+  {
+    "id": 10054,
+    "slug": "medicham-mega",
+    "name": "Mega Medicham",
+    "dexNo": 308,
+    "types": [
+      "fighting",
+      "psychic"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 60,
+      "atk": 100,
+      "def": 85,
+      "spa": 80,
+      "spd": 85,
+      "spe": 100,
+      "bst": 510
+    },
+    "speedAt0": 120,
+    "speedAt32": 152,
+    "abilities": [
+      "pure power"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10054.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10054.png",
+    "tokens": "mega medicham medicham-mega fighting psychic pure power red priority setup recovery status trick-room",
+    "speciesColor": "red",
+    "palette": {
+      "dominant": "#b7b7b8",
+      "vibrant": "#e0e0e0",
+      "muted": "#87888c",
+      "ink": "#12141a",
+      "wash": "#e0e0e0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 310,
+    "slug": "manectric",
+    "name": "Manectric",
+    "dexNo": 310,
+    "types": [
+      "electric"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 75,
+      "def": 60,
+      "spa": 105,
+      "spd": 60,
+      "spe": 105,
+      "bst": 475
+    },
+    "speedAt0": 125,
+    "speedAt32": 157,
+    "abilities": [
+      "static",
+      "lightning rod",
+      "minus"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/310.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/310.png",
+    "tokens": "manectric manectric electric static lightning rod minus yellow pivot priority setup recovery status",
+    "speciesColor": "yellow",
+    "palette": {
+      "dominant": "#c4b785",
+      "vibrant": "#f0e0a0",
+      "muted": "#908869",
+      "ink": "#12141a",
+      "wash": "#f0e0a0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10055,
+    "slug": "manectric-mega",
+    "name": "Mega Manectric",
+    "dexNo": 310,
+    "types": [
+      "electric"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 75,
+      "def": 80,
+      "spa": 135,
+      "spd": 80,
+      "spe": 135,
+      "bst": 575
+    },
+    "speedAt0": 155,
+    "speedAt32": 187,
+    "abilities": [
+      "intimidate"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10055.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10055.png",
+    "tokens": "mega manectric manectric-mega electric intimidate yellow pivot priority setup recovery status",
+    "speciesColor": "yellow",
+    "palette": {
+      "dominant": "#c4c46c",
+      "vibrant": "#f0f080",
+      "muted": "#909158",
+      "ink": "#12141a",
+      "wash": "#f0f080",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 317,
@@ -3185,8 +4498,102 @@
       "wash": "#9080b0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 187
+    "source": "pokeapi"
+  },
+  {
+    "id": 319,
+    "slug": "sharpedo",
+    "name": "Sharpedo",
+    "dexNo": 319,
+    "types": [
+      "water",
+      "dark"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 120,
+      "def": 40,
+      "spa": 95,
+      "spd": 40,
+      "spe": 95,
+      "bst": 460
+    },
+    "speedAt0": 115,
+    "speedAt32": 147,
+    "abilities": [
+      "rough skin",
+      "speed boost"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/319.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/319.png",
+    "tokens": "sharpedo sharpedo water dark rough skin speed boost blue pivot priority setup recovery status",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#04445f",
+      "vibrant": "#005070",
+      "muted": "#0c394f",
+      "ink": "#f4f1ea",
+      "wash": "#005070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10070,
+    "slug": "sharpedo-mega",
+    "name": "Mega Sharpedo",
+    "dexNo": 319,
+    "types": [
+      "water",
+      "dark"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 140,
+      "def": 70,
+      "spa": 110,
+      "spd": 65,
+      "spe": 105,
+      "bst": 560
+    },
+    "speedAt0": 125,
+    "speedAt32": 157,
+    "abilities": [
+      "strong jaw"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10070.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10070.png",
+    "tokens": "mega sharpedo sharpedo-mega water dark strong jaw blue pivot priority setup recovery status",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#90919f",
+      "vibrant": "#b0b0c0",
+      "muted": "#6d6e7b",
+      "ink": "#12141a",
+      "wash": "#b0b0c0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 323,
@@ -3234,8 +4641,53 @@
       "wash": "#e09080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 237
+    "source": "pokeapi"
+  },
+  {
+    "id": 10087,
+    "slug": "camerupt-mega",
+    "name": "Mega Camerupt",
+    "dexNo": 323,
+    "types": [
+      "fire",
+      "ground"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 120,
+      "def": 100,
+      "spa": 145,
+      "spd": 105,
+      "spe": 20,
+      "bst": 560
+    },
+    "speedAt0": 40,
+    "speedAt32": 72,
+    "abilities": [
+      "sheer force"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10087.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10087.png",
+    "tokens": "mega camerupt camerupt-mega fire ground sheer force red setup recovery status hazards",
+    "speciesColor": "red",
+    "palette": {
+      "dominant": "#c46a5f",
+      "vibrant": "#f08070",
+      "muted": "#90534f",
+      "ink": "#12141a",
+      "wash": "#f08070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 324,
@@ -3282,8 +4734,7 @@
       "wash": "#d0c0a0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 121
+    "source": "pokeapi"
   },
   {
     "id": 334,
@@ -3330,8 +4781,7 @@
       "wash": "#e0e0f0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 125
+    "source": "pokeapi"
   },
   {
     "id": 10067,
@@ -3425,8 +4875,53 @@
       "wash": "#909090",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 42
+    "source": "pokeapi"
+  },
+  {
+    "id": 10056,
+    "slug": "banette-mega",
+    "name": "Mega Banette",
+    "dexNo": 354,
+    "types": [
+      "ghost"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 64,
+      "atk": 165,
+      "def": 75,
+      "spa": 93,
+      "spd": 83,
+      "spe": 75,
+      "bst": 555
+    },
+    "speedAt0": 95,
+    "speedAt32": 127,
+    "abilities": [
+      "prankster"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10056.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10056.png",
+    "tokens": "mega banette banette-mega ghost prankster black priority setup recovery status trick-room",
+    "speciesColor": "black",
+    "palette": {
+      "dominant": "#5d5e5f",
+      "vibrant": "#707070",
+      "muted": "#494b4f",
+      "ink": "#f4f1ea",
+      "wash": "#707070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 358,
@@ -3471,8 +4966,53 @@
       "wash": "#c07080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 153
+    "source": "pokeapi"
+  },
+  {
+    "id": 10306,
+    "slug": "chimecho-mega",
+    "name": "Mega Chimecho",
+    "dexNo": 358,
+    "types": [
+      "psychic",
+      "steel"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 50,
+      "def": 110,
+      "spa": 135,
+      "spd": 120,
+      "spe": 65,
+      "bst": 555
+    },
+    "speedAt0": 85,
+    "speedAt32": 117,
+    "abilities": [
+      "levitate"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10306.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10306.png",
+    "tokens": "mega chimecho chimecho-mega psychic steel levitate blue setup recovery status trick-room",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#b73752",
+      "vibrant": "#e04060",
+      "muted": "#873046",
+      "ink": "#f4f1ea",
+      "wash": "#e04060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 359,
@@ -3519,8 +5059,185 @@
       "wash": "#e0e0f0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 48
+    "source": "pokeapi"
+  },
+  {
+    "id": 10057,
+    "slug": "absol-mega",
+    "name": "Mega Absol",
+    "dexNo": 359,
+    "types": [
+      "dark"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 150,
+      "def": 60,
+      "spa": 115,
+      "spd": 60,
+      "spe": 115,
+      "bst": 565
+    },
+    "speedAt0": 135,
+    "speedAt32": 167,
+    "abilities": [
+      "magic bounce"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10057.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10057.png",
+    "tokens": "mega absol absol-mega dark magic bounce white priority setup recovery status",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#9d9eb8",
+      "vibrant": "#c0c0e0",
+      "muted": "#75778c",
+      "ink": "#12141a",
+      "wash": "#c0c0e0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10307,
+    "slug": "absol-mega-z",
+    "name": "Mega Absol Z",
+    "dexNo": 359,
+    "types": [
+      "dark",
+      "ghost"
+    ],
+    "form": "mega-z",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 154,
+      "def": 60,
+      "spa": 75,
+      "spd": 60,
+      "spe": 151,
+      "bst": 565
+    },
+    "speedAt0": 171,
+    "speedAt32": 203,
+    "abilities": [
+      "sharpness"
+    ],
+    "kitTags": [],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10307.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10307.png",
+    "tokens": "mega absol z absol-mega-z dark ghost sharpness white",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#041e2c",
+      "vibrant": "#002030",
+      "muted": "#0c1f2c",
+      "ink": "#f4f1ea",
+      "wash": "#002030",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 362,
+    "slug": "glalie",
+    "name": "Glalie",
+    "dexNo": 362,
+    "types": [
+      "ice"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 80,
+      "def": 80,
+      "spa": 80,
+      "spd": 80,
+      "spe": 80,
+      "bst": 480
+    },
+    "speedAt0": 100,
+    "speedAt32": 132,
+    "abilities": [
+      "inner focus",
+      "ice body",
+      "moody"
+    ],
+    "kitTags": [
+      "priority",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/362.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/362.png",
+    "tokens": "glalie glalie ice inner focus ice body moody gray priority recovery status hazards",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#b7b7c5",
+      "vibrant": "#e0e0f0",
+      "muted": "#878895",
+      "ink": "#12141a",
+      "wash": "#e0e0f0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10074,
+    "slug": "glalie-mega",
+    "name": "Mega Glalie",
+    "dexNo": 362,
+    "types": [
+      "ice"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 120,
+      "def": 80,
+      "spa": 120,
+      "spd": 80,
+      "spe": 100,
+      "bst": 580
+    },
+    "speedAt0": 120,
+    "speedAt32": 152,
+    "abilities": [
+      "refrigerate"
+    ],
+    "kitTags": [
+      "priority",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10074.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10074.png",
+    "tokens": "mega glalie glalie-mega ice refrigerate gray priority recovery status hazards",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#2a4452",
+      "vibrant": "#305060",
+      "muted": "#263946",
+      "ink": "#f4f1ea",
+      "wash": "#305060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 373,
@@ -3567,8 +5284,7 @@
       "wash": "#a05060",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 1
+    "source": "pokeapi"
   },
   {
     "id": 10089,
@@ -3663,8 +5379,7 @@
       "wash": "#6090a0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 27
+    "source": "pokeapi"
   },
   {
     "id": 10076,
@@ -3760,8 +5475,7 @@
       "wash": "#d08060",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 146
+    "source": "pokeapi"
   },
   {
     "id": 398,
@@ -3810,8 +5524,7 @@
       "wash": "#505050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 52
+    "source": "pokeapi"
   },
   {
     "id": 10308,
@@ -3907,8 +5620,7 @@
       "wash": "#f07080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 172
+    "source": "pokeapi"
   },
   {
     "id": 409,
@@ -3954,8 +5666,7 @@
       "wash": "#707070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 238
+    "source": "pokeapi"
   },
   {
     "id": 411,
@@ -4002,8 +5713,102 @@
       "wash": "#707070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 202
+    "source": "pokeapi"
+  },
+  {
+    "id": 428,
+    "slug": "lopunny",
+    "name": "Lopunny",
+    "dexNo": 428,
+    "types": [
+      "normal"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 76,
+      "def": 84,
+      "spa": 54,
+      "spd": 96,
+      "spe": 105,
+      "bst": 480
+    },
+    "speedAt0": 125,
+    "speedAt32": 157,
+    "abilities": [
+      "cute charm",
+      "klutz",
+      "limber"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/428.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/428.png",
+    "tokens": "lopunny lopunny normal cute charm klutz limber brown pivot priority setup recovery status",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#c4b792",
+      "vibrant": "#f0e0b0",
+      "muted": "#908872",
+      "ink": "#12141a",
+      "wash": "#f0e0b0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10088,
+    "slug": "lopunny-mega",
+    "name": "Mega Lopunny",
+    "dexNo": 428,
+    "types": [
+      "normal",
+      "fighting"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 136,
+      "def": 94,
+      "spa": 54,
+      "spd": 96,
+      "spe": 135,
+      "bst": 580
+    },
+    "speedAt0": 155,
+    "speedAt32": 187,
+    "abilities": [
+      "scrappy"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10088.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10088.png",
+    "tokens": "mega lopunny lopunny-mega normal fighting scrappy brown pivot priority setup recovery status",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#845e52",
+      "vibrant": "#a07060",
+      "muted": "#644b46",
+      "ink": "#f4f1ea",
+      "wash": "#a07060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 442,
@@ -4051,8 +5856,7 @@
       "wash": "#e0b0c0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 165
+    "source": "pokeapi"
   },
   {
     "id": 445,
@@ -4100,8 +5904,7 @@
       "wash": "#607090",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 2
+    "source": "pokeapi"
   },
   {
     "id": 10058,
@@ -4235,8 +6038,7 @@
       "wash": "#606060",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 6
+    "source": "pokeapi"
   },
   {
     "id": 10059,
@@ -4280,6 +6082,47 @@
       "muted": "#495c69",
       "ink": "#12141a",
       "wash": "#7090a0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10310,
+    "slug": "lucario-mega-z",
+    "name": "Mega Lucario Z",
+    "dexNo": 448,
+    "types": [
+      "fighting",
+      "steel"
+    ],
+    "form": "mega-z",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 100,
+      "def": 70,
+      "spa": 164,
+      "spd": 70,
+      "spe": 151,
+      "bst": 625
+    },
+    "speedAt0": 171,
+    "speedAt32": 203,
+    "abilities": [
+      "aura guard"
+    ],
+    "kitTags": [],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10310.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10310.png",
+    "tokens": "mega lucario z lucario-mega-z fighting steel aura guard blue",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#377785",
+      "vibrant": "#4090a0",
+      "muted": "#2f5c69",
+      "ink": "#12141a",
+      "wash": "#4090a0",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -4329,8 +6172,53 @@
       "wash": "#608080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 161
+    "source": "pokeapi"
+  },
+  {
+    "id": 10060,
+    "slug": "abomasnow-mega",
+    "name": "Mega Abomasnow",
+    "dexNo": 460,
+    "types": [
+      "grass",
+      "ice"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 90,
+      "atk": 132,
+      "def": 105,
+      "spa": 132,
+      "spd": 105,
+      "spe": 30,
+      "bst": 594
+    },
+    "speedAt0": 50,
+    "speedAt32": 82,
+    "abilities": [
+      "snow warning"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10060.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10060.png",
+    "tokens": "mega abomasnow abomasnow-mega grass ice snow warning white priority setup recovery status",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#b7b7b8",
+      "vibrant": "#e0e0e0",
+      "muted": "#87888c",
+      "ink": "#12141a",
+      "wash": "#e0e0e0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 461,
@@ -4377,8 +6265,7 @@
       "wash": "#d07070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 122
+    "source": "pokeapi"
   },
   {
     "id": 464,
@@ -4426,8 +6313,7 @@
       "wash": "#706060",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 179
+    "source": "pokeapi"
   },
   {
     "id": 468,
@@ -4527,8 +6413,7 @@
       "wash": "#404040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 127
+    "source": "pokeapi"
   },
   {
     "id": 473,
@@ -4576,8 +6461,200 @@
       "wash": "#a07040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 50
+    "source": "pokeapi"
+  },
+  {
+    "id": 475,
+    "slug": "gallade",
+    "name": "Gallade",
+    "dexNo": 475,
+    "types": [
+      "psychic",
+      "fighting"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 68,
+      "atk": 125,
+      "def": 65,
+      "spa": 65,
+      "spd": 115,
+      "spe": 80,
+      "bst": 518
+    },
+    "speedAt0": 100,
+    "speedAt32": 132,
+    "abilities": [
+      "steadfast",
+      "sharpness",
+      "justified"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/475.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/475.png",
+    "tokens": "gallade gallade psychic fighting steadfast sharpness justified white pivot priority setup recovery status trick-room",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#376a45",
+      "vibrant": "#408050",
+      "muted": "#2f533d",
+      "ink": "#f4f1ea",
+      "wash": "#408050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10068,
+    "slug": "gallade-mega",
+    "name": "Mega Gallade",
+    "dexNo": 475,
+    "types": [
+      "psychic",
+      "fighting"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 68,
+      "atk": 165,
+      "def": 95,
+      "spa": 65,
+      "spd": 115,
+      "spe": 110,
+      "bst": 618
+    },
+    "speedAt0": 130,
+    "speedAt32": 162,
+    "abilities": [
+      "inner focus"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10068.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10068.png",
+    "tokens": "mega gallade gallade-mega psychic fighting inner focus white pivot priority setup recovery status trick-room",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#77aaac",
+      "vibrant": "#90d0d0",
+      "muted": "#5b7f84",
+      "ink": "#12141a",
+      "wash": "#90d0d0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 478,
+    "slug": "froslass",
+    "name": "Froslass",
+    "dexNo": 478,
+    "types": [
+      "ice",
+      "ghost"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 80,
+      "def": 70,
+      "spa": 80,
+      "spd": 70,
+      "spe": 110,
+      "bst": 480
+    },
+    "speedAt0": 130,
+    "speedAt32": 162,
+    "abilities": [
+      "snow cloak",
+      "cursed body"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/478.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/478.png",
+    "tokens": "froslass froslass ice ghost snow cloak cursed body white priority setup recovery status hazards",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#c4c4c5",
+      "vibrant": "#f0f0f0",
+      "muted": "#909195",
+      "ink": "#12141a",
+      "wash": "#f0f0f0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10285,
+    "slug": "froslass-mega",
+    "name": "Mega Froslass",
+    "dexNo": 478,
+    "types": [
+      "ice",
+      "ghost"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 80,
+      "def": 70,
+      "spa": 140,
+      "spd": 100,
+      "spe": 120,
+      "bst": 580
+    },
+    "speedAt0": 140,
+    "speedAt32": 172,
+    "abilities": [
+      "snow warning"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10285.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10285.png",
+    "tokens": "mega froslass froslass-mega ice ghost snow warning white priority setup recovery status hazards",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#b7c4c5",
+      "vibrant": "#e0f0f0",
+      "muted": "#879195",
+      "ink": "#12141a",
+      "wash": "#e0f0f0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 10008,
@@ -4624,8 +6701,7 @@
       "wash": "#e08060",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 33
+    "source": "pokeapi"
   },
   {
     "id": 10009,
@@ -4672,8 +6748,7 @@
       "wash": "#40a0c0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 24
+    "source": "pokeapi"
   },
   {
     "id": 10012,
@@ -4720,8 +6795,7 @@
       "wash": "#e08060",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 181
+    "source": "pokeapi"
   },
   {
     "id": 497,
@@ -4767,8 +6841,100 @@
       "wash": "#009050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 106
+    "source": "pokeapi"
+  },
+  {
+    "id": 500,
+    "slug": "emboar",
+    "name": "Emboar",
+    "dexNo": 500,
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 110,
+      "atk": 123,
+      "def": 65,
+      "spa": 100,
+      "spd": 65,
+      "spe": 65,
+      "bst": 528
+    },
+    "speedAt0": 85,
+    "speedAt32": 117,
+    "abilities": [
+      "blaze",
+      "reckless"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/500.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/500.png",
+    "tokens": "emboar emboar fire fighting blaze reckless red priority setup recovery status",
+    "speciesColor": "red",
+    "palette": {
+      "dominant": "#444445",
+      "vibrant": "#505050",
+      "muted": "#38393d",
+      "ink": "#f4f1ea",
+      "wash": "#505050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10286,
+    "slug": "emboar-mega",
+    "name": "Mega Emboar",
+    "dexNo": 500,
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 110,
+      "atk": 148,
+      "def": 75,
+      "spa": 110,
+      "spd": 110,
+      "spe": 75,
+      "bst": 628
+    },
+    "speedAt0": 95,
+    "speedAt32": 127,
+    "abilities": [
+      "mold breaker"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10286.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10286.png",
+    "tokens": "mega emboar emboar-mega fire fighting mold breaker red priority setup recovery status",
+    "speciesColor": "red",
+    "palette": {
+      "dominant": "#b75145",
+      "vibrant": "#e06050",
+      "muted": "#87423d",
+      "ink": "#12141a",
+      "wash": "#e06050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 503,
@@ -4815,8 +6981,7 @@
       "wash": "#4070b0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 247
+    "source": "pokeapi"
   },
   {
     "id": 530,
@@ -4864,8 +7029,52 @@
       "wash": "#605050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 68
+    "source": "pokeapi"
+  },
+  {
+    "id": 10287,
+    "slug": "excadrill-mega",
+    "name": "Mega Excadrill",
+    "dexNo": 530,
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 110,
+      "atk": 165,
+      "def": 100,
+      "spa": 65,
+      "spd": 65,
+      "spe": 103,
+      "bst": 608
+    },
+    "speedAt0": 123,
+    "speedAt32": 155,
+    "abilities": [
+      "piercing drill"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10287.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10287.png",
+    "tokens": "mega excadrill excadrill-mega ground steel piercing drill gray setup recovery hazards",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#5d5e6c",
+      "vibrant": "#707080",
+      "muted": "#494b58",
+      "ink": "#f4f1ea",
+      "wash": "#707080",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 531,
@@ -4912,8 +7121,53 @@
       "wash": "#f0a0b0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 190
+    "source": "pokeapi"
+  },
+  {
+    "id": 10069,
+    "slug": "audino-mega",
+    "name": "Mega Audino",
+    "dexNo": 531,
+    "types": [
+      "normal",
+      "fairy"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 103,
+      "atk": 60,
+      "def": 126,
+      "spa": 80,
+      "spd": 126,
+      "spe": 50,
+      "bst": 545
+    },
+    "speedAt0": 70,
+    "speedAt32": 102,
+    "abilities": [
+      "healer"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10069.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10069.png",
+    "tokens": "mega audino audino-mega normal fairy healer pink setup recovery status trick-room",
+    "speciesColor": "pink",
+    "palette": {
+      "dominant": "#c4c4c5",
+      "vibrant": "#f0f0f0",
+      "muted": "#909195",
+      "ink": "#12141a",
+      "wash": "#f0f0f0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 534,
@@ -4960,8 +7214,7 @@
       "wash": "#707070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 120
+    "source": "pokeapi"
   },
   {
     "id": 545,
@@ -5009,8 +7262,53 @@
       "wash": "#804050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 93
+    "source": "pokeapi"
+  },
+  {
+    "id": 10288,
+    "slug": "scolipede-mega",
+    "name": "Mega Scolipede",
+    "dexNo": 545,
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 60,
+      "atk": 140,
+      "def": 149,
+      "spa": 75,
+      "spd": 99,
+      "spe": 62,
+      "bst": 585
+    },
+    "speedAt0": 82,
+    "speedAt32": 114,
+    "abilities": [
+      "shell armor"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10288.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10288.png",
+    "tokens": "mega scolipede scolipede-mega bug poison shell armor red setup recovery status hazards",
+    "speciesColor": "red",
+    "palette": {
+      "dominant": "#847785",
+      "vibrant": "#a090a0",
+      "muted": "#645c69",
+      "ink": "#12141a",
+      "wash": "#a090a0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 547,
@@ -5062,8 +7360,7 @@
       "wash": "#f0f0d0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 78
+    "source": "pokeapi"
   },
   {
     "id": 553,
@@ -5111,8 +7408,7 @@
       "wash": "#b07080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 160
+    "source": "pokeapi"
   },
   {
     "id": 560,
@@ -5160,8 +7456,53 @@
       "wash": "#f0d080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 144
+    "source": "pokeapi"
+  },
+  {
+    "id": 10289,
+    "slug": "scrafty-mega",
+    "name": "Mega Scrafty",
+    "dexNo": 560,
+    "types": [
+      "dark",
+      "fighting"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 130,
+      "def": 135,
+      "spa": 55,
+      "spd": 135,
+      "spe": 68,
+      "bst": 588
+    },
+    "speedAt0": 88,
+    "speedAt32": 120,
+    "abilities": [
+      "intimidate"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10289.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10289.png",
+    "tokens": "mega scrafty scrafty-mega dark fighting intimidate red priority setup recovery status",
+    "speciesColor": "red",
+    "palette": {
+      "dominant": "#c4c4c5",
+      "vibrant": "#f0f0f0",
+      "muted": "#909195",
+      "ink": "#12141a",
+      "wash": "#f0f0f0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 563,
@@ -5207,8 +7548,7 @@
       "wash": "#505050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 162
+    "source": "pokeapi"
   },
   {
     "id": 571,
@@ -5254,8 +7594,7 @@
       "wash": "#903040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 171
+    "source": "pokeapi"
   },
   {
     "id": 579,
@@ -5302,8 +7641,7 @@
       "wash": "#80c0a0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 157
+    "source": "pokeapi"
   },
   {
     "id": 604,
@@ -5348,8 +7686,7 @@
       "wash": "#506080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 138
+    "source": "pokeapi"
   },
   {
     "id": 10290,
@@ -5442,8 +7779,53 @@
       "wash": "#404040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 101
+    "source": "pokeapi"
+  },
+  {
+    "id": 10291,
+    "slug": "chandelure-mega",
+    "name": "Mega Chandelure",
+    "dexNo": 609,
+    "types": [
+      "ghost",
+      "fire"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 60,
+      "atk": 75,
+      "def": 110,
+      "spa": 175,
+      "spd": 110,
+      "spe": 90,
+      "bst": 620
+    },
+    "speedAt0": 110,
+    "speedAt32": 142,
+    "abilities": [
+      "infiltrator"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10291.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10291.png",
+    "tokens": "mega chandelure chandelure-mega ghost fire infiltrator black setup recovery status trick-room",
+    "speciesColor": "black",
+    "palette": {
+      "dominant": "#444485",
+      "vibrant": "#5050a0",
+      "muted": "#383969",
+      "ink": "#f4f1ea",
+      "wash": "#5050a0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 614,
@@ -5490,8 +7872,100 @@
       "wash": "#e0f0f0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 230
+    "source": "pokeapi"
+  },
+  {
+    "id": 623,
+    "slug": "golurk",
+    "name": "Golurk",
+    "dexNo": 623,
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 89,
+      "atk": 124,
+      "def": 80,
+      "spa": 55,
+      "spd": 80,
+      "spe": 55,
+      "bst": 483
+    },
+    "speedAt0": 75,
+    "speedAt32": 107,
+    "abilities": [
+      "iron fist",
+      "klutz",
+      "no guard"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/623.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/623.png",
+    "tokens": "golurk golurk ground ghost iron fist klutz no guard green setup recovery status hazards",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#506a6c",
+      "vibrant": "#608080",
+      "muted": "#415358",
+      "ink": "#f4f1ea",
+      "wash": "#608080",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10313,
+    "slug": "golurk-mega",
+    "name": "Mega Golurk",
+    "dexNo": 623,
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 89,
+      "atk": 159,
+      "def": 105,
+      "spa": 70,
+      "spd": 105,
+      "spe": 55,
+      "bst": 583
+    },
+    "speedAt0": 75,
+    "speedAt32": 107,
+    "abilities": [
+      "unseen fist"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10313.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10313.png",
+    "tokens": "mega golurk golurk-mega ground ghost unseen fist green setup recovery hazards",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#775178",
+      "vibrant": "#906090",
+      "muted": "#5b4260",
+      "ink": "#f4f1ea",
+      "wash": "#906090",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 635,
@@ -5539,8 +8013,7 @@
       "wash": "#505050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 29
+    "source": "pokeapi"
   },
   {
     "id": 652,
@@ -5588,8 +8061,54 @@
       "wash": "#f0f0d0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 158
+    "source": "pokeapi"
+  },
+  {
+    "id": 10292,
+    "slug": "chesnaught-mega",
+    "name": "Mega Chesnaught",
+    "dexNo": 652,
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 88,
+      "atk": 137,
+      "def": 172,
+      "spa": 74,
+      "spd": 115,
+      "spe": 44,
+      "bst": 630
+    },
+    "speedAt0": 64,
+    "speedAt32": 96,
+    "abilities": [
+      "bulletproof"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10292.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10292.png",
+    "tokens": "mega chesnaught chesnaught-mega grass fighting bulletproof green priority setup recovery status hazards",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#c4c4b8",
+      "vibrant": "#f0f0e0",
+      "muted": "#90918c",
+      "ink": "#12141a",
+      "wash": "#f0f0e0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 655,
@@ -5636,8 +8155,53 @@
       "wash": "#a05040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 37
+    "source": "pokeapi"
+  },
+  {
+    "id": 10293,
+    "slug": "delphox-mega",
+    "name": "Mega Delphox",
+    "dexNo": 655,
+    "types": [
+      "fire",
+      "psychic"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 69,
+      "def": 72,
+      "spa": 159,
+      "spd": 125,
+      "spe": 134,
+      "bst": 634
+    },
+    "speedAt0": 154,
+    "speedAt32": 186,
+    "abilities": [
+      "levitate"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10293.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10293.png",
+    "tokens": "mega delphox delphox-mega fire psychic levitate red setup recovery status trick-room",
+    "speciesColor": "red",
+    "palette": {
+      "dominant": "#372a38",
+      "vibrant": "#403040",
+      "muted": "#2f2734",
+      "ink": "#f4f1ea",
+      "wash": "#403040",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 658,
@@ -5686,8 +8250,55 @@
       "wash": "#304090",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 21
+    "source": "pokeapi"
+  },
+  {
+    "id": 10294,
+    "slug": "greninja-mega",
+    "name": "Mega Greninja",
+    "dexNo": 658,
+    "types": [
+      "water",
+      "dark"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 72,
+      "atk": 125,
+      "def": 77,
+      "spa": 133,
+      "spd": 81,
+      "spe": 142,
+      "bst": 630
+    },
+    "speedAt0": 162,
+    "speedAt32": 194,
+    "abilities": [
+      "protean"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10294.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10294.png",
+    "tokens": "mega greninja greninja-mega water dark protean blue pivot priority setup recovery status hazards",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#77aac5",
+      "vibrant": "#90d0f0",
+      "muted": "#5b7f95",
+      "ink": "#12141a",
+      "wash": "#90d0f0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 663,
@@ -5736,8 +8347,98 @@
       "wash": "#e07040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 132
+    "source": "pokeapi"
+  },
+  {
+    "id": 668,
+    "slug": "pyroar-male",
+    "name": "Pyroar M",
+    "dexNo": 668,
+    "types": [
+      "fire",
+      "normal"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 86,
+      "atk": 68,
+      "def": 72,
+      "spa": 109,
+      "spd": 66,
+      "spe": 106,
+      "bst": 507
+    },
+    "speedAt0": 126,
+    "speedAt32": 158,
+    "abilities": [
+      "rivalry",
+      "unnerve",
+      "moxie"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/668.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/668.png",
+    "tokens": "pyroar m pyroar-male fire normal rivalry unnerve moxie brown setup recovery status",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#b7372c",
+      "vibrant": "#e04030",
+      "muted": "#87302c",
+      "ink": "#f4f1ea",
+      "wash": "#e04030",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10295,
+    "slug": "pyroar-mega",
+    "name": "Mega Pyroar",
+    "dexNo": 668,
+    "types": [
+      "fire",
+      "normal"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 86,
+      "atk": 88,
+      "def": 92,
+      "spa": 129,
+      "spd": 86,
+      "spe": 126,
+      "bst": 607
+    },
+    "speedAt0": 146,
+    "speedAt32": 178,
+    "abilities": [
+      "fire mane"
+    ],
+    "kitTags": [
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10295.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10295.png",
+    "tokens": "mega pyroar pyroar-mega fire normal fire mane brown recovery status",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#c4b752",
+      "vibrant": "#f0e060",
+      "muted": "#908846",
+      "ink": "#12141a",
+      "wash": "#f0e060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 10061,
@@ -5782,8 +8483,50 @@
       "wash": "#102020",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 57
+    "source": "pokeapi"
+  },
+  {
+    "id": 10296,
+    "slug": "floette-mega",
+    "name": "Mega Floette",
+    "dexNo": 670,
+    "types": [
+      "fairy"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 74,
+      "atk": 85,
+      "def": 87,
+      "spa": 155,
+      "spd": 148,
+      "spe": 102,
+      "bst": 651
+    },
+    "speedAt0": 122,
+    "speedAt32": 154,
+    "abilities": [
+      "fairy aura"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10296.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10296.png",
+    "tokens": "mega floette floette-mega fairy fairy aura white setup recovery",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#2a2a2c",
+      "vibrant": "#303030",
+      "muted": "#26272c",
+      "ink": "#f4f1ea",
+      "wash": "#303030",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 673,
@@ -5829,8 +8572,7 @@
       "wash": "#009050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 253
+    "source": "pokeapi"
   },
   {
     "id": 675,
@@ -5879,8 +8621,195 @@
       "wash": "#606060",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 212
+    "source": "pokeapi"
+  },
+  {
+    "id": 678,
+    "slug": "meowstic-male",
+    "name": "Meowstic M",
+    "dexNo": 678,
+    "types": [
+      "psychic"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 74,
+      "atk": 48,
+      "def": 76,
+      "spa": 83,
+      "spd": 81,
+      "spe": 104,
+      "bst": 466
+    },
+    "speedAt0": 124,
+    "speedAt32": 156,
+    "abilities": [
+      "keen eye",
+      "infiltrator",
+      "prankster"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/678.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/678.png",
+    "tokens": "meowstic m meowstic-male psychic keen eye infiltrator prankster blue priority setup recovery status trick-room",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#2a4478",
+      "vibrant": "#305090",
+      "muted": "#263960",
+      "ink": "#f4f1ea",
+      "wash": "#305090",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10025,
+    "slug": "meowstic-female",
+    "name": "Meowstic F",
+    "dexNo": 678,
+    "types": [
+      "psychic"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 74,
+      "atk": 48,
+      "def": 76,
+      "spa": 83,
+      "spd": 81,
+      "spe": 104,
+      "bst": 466
+    },
+    "speedAt0": 124,
+    "speedAt32": 156,
+    "abilities": [
+      "keen eye",
+      "infiltrator",
+      "competitive"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10025.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10025.png",
+    "tokens": "meowstic f meowstic-female psychic keen eye infiltrator competitive blue priority setup recovery status trick-room",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#b7b7b8",
+      "vibrant": "#e0e0e0",
+      "muted": "#87888c",
+      "ink": "#12141a",
+      "wash": "#e0e0e0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10314,
+    "slug": "meowstic-male-mega",
+    "name": "Mega Meowstic",
+    "dexNo": 678,
+    "types": [
+      "psychic"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 74,
+      "atk": 48,
+      "def": 76,
+      "spa": 143,
+      "spd": 101,
+      "spe": 124,
+      "bst": 566
+    },
+    "speedAt0": 144,
+    "speedAt32": 176,
+    "abilities": [
+      "trace"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10314.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10314.png",
+    "tokens": "mega meowstic meowstic-male-mega psychic trace blue priority setup recovery status trick-room",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#c4c4c5",
+      "vibrant": "#f0f0f0",
+      "muted": "#909195",
+      "ink": "#12141a",
+      "wash": "#f0f0f0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10326,
+    "slug": "meowstic-female-mega",
+    "name": "Mega Meowstic",
+    "dexNo": 678,
+    "types": [
+      "psychic"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 74,
+      "atk": 48,
+      "def": 76,
+      "spa": 143,
+      "spd": 101,
+      "spe": 124,
+      "bst": 566
+    },
+    "speedAt0": 144,
+    "speedAt32": 176,
+    "abilities": [
+      "trace"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10326.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10326.png",
+    "tokens": "mega meowstic meowstic-female-mega psychic trace blue priority setup recovery status trick-room",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#c4c4c5",
+      "vibrant": "#f0f0f0",
+      "muted": "#909195",
+      "ink": "#12141a",
+      "wash": "#f0f0f0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 681,
@@ -5926,8 +8855,7 @@
       "wash": "#a09080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 13
+    "source": "pokeapi"
   },
   {
     "id": 683,
@@ -5973,8 +8901,7 @@
       "wash": "#c07080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 246
+    "source": "pokeapi"
   },
   {
     "id": 687,
@@ -6022,8 +8949,53 @@
       "wash": "#8080b0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 163
+    "source": "pokeapi"
+  },
+  {
+    "id": 10297,
+    "slug": "malamar-mega",
+    "name": "Mega Malamar",
+    "dexNo": 687,
+    "types": [
+      "dark",
+      "psychic"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 86,
+      "atk": 102,
+      "def": 88,
+      "spa": 98,
+      "spd": 120,
+      "spe": 88,
+      "bst": 582
+    },
+    "speedAt0": 108,
+    "speedAt32": 140,
+    "abilities": [
+      "contrary"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10297.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10297.png",
+    "tokens": "mega malamar malamar-mega dark psychic contrary blue setup recovery status trick-room",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#9d5185",
+      "vibrant": "#c060a0",
+      "muted": "#754269",
+      "ink": "#f4f1ea",
+      "wash": "#c060a0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 689,
@@ -6071,8 +9043,53 @@
       "wash": "#605040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 188
+    "source": "pokeapi"
+  },
+  {
+    "id": 10298,
+    "slug": "barbaracle-mega",
+    "name": "Mega Barbaracle",
+    "dexNo": 689,
+    "types": [
+      "rock",
+      "fighting"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 72,
+      "atk": 140,
+      "def": 130,
+      "spa": 64,
+      "spd": 106,
+      "spe": 88,
+      "bst": 600
+    },
+    "speedAt0": 108,
+    "speedAt32": 140,
+    "abilities": [
+      "tough claws"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10298.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10298.png",
+    "tokens": "mega barbaracle barbaracle-mega rock fighting tough claws brown setup recovery status hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#1d2a2c",
+      "vibrant": "#203030",
+      "muted": "#1d272c",
+      "ink": "#f4f1ea",
+      "wash": "#203030",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 691,
@@ -6120,8 +9137,53 @@
       "wash": "#604030",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 100
+    "source": "pokeapi"
+  },
+  {
+    "id": 10299,
+    "slug": "dragalge-mega",
+    "name": "Mega Dragalge",
+    "dexNo": 691,
+    "types": [
+      "poison",
+      "dragon"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 85,
+      "def": 105,
+      "spa": 132,
+      "spd": 163,
+      "spe": 44,
+      "bst": 594
+    },
+    "speedAt0": 64,
+    "speedAt32": 96,
+    "abilities": [
+      "regenerator"
+    ],
+    "kitTags": [
+      "pivot",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10299.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10299.png",
+    "tokens": "mega dragalge dragalge-mega poison dragon regenerator brown pivot recovery status hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#9d4452",
+      "vibrant": "#c05060",
+      "muted": "#753946",
+      "ink": "#f4f1ea",
+      "wash": "#c05060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 693,
@@ -6167,8 +9229,7 @@
       "wash": "#0070c0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 173
+    "source": "pokeapi"
   },
   {
     "id": 697,
@@ -6215,8 +9276,7 @@
       "wash": "#a05050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 223
+    "source": "pokeapi"
   },
   {
     "id": 699,
@@ -6263,8 +9323,7 @@
       "wash": "#7090c0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 151
+    "source": "pokeapi"
   },
   {
     "id": 700,
@@ -6311,8 +9370,7 @@
       "wash": "#f0a0b0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 32
+    "source": "pokeapi"
   },
   {
     "id": 701,
@@ -6362,8 +9420,54 @@
       "wash": "#509070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 143
+    "source": "pokeapi"
+  },
+  {
+    "id": 10300,
+    "slug": "hawlucha-mega",
+    "name": "Mega Hawlucha",
+    "dexNo": 701,
+    "types": [
+      "fighting",
+      "flying"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 78,
+      "atk": 137,
+      "def": 100,
+      "spa": 74,
+      "spd": 93,
+      "spe": 118,
+      "bst": 600
+    },
+    "speedAt0": 138,
+    "speedAt32": 170,
+    "abilities": [
+      "no guard"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10300.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10300.png",
+    "tokens": "mega hawlucha hawlucha-mega fighting flying no guard green pivot priority setup recovery status",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#375e52",
+      "vibrant": "#407060",
+      "muted": "#2f4b46",
+      "ink": "#f4f1ea",
+      "wash": "#407060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 706,
@@ -6408,8 +9512,7 @@
       "wash": "#e0d0e0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 193
+    "source": "pokeapi"
   },
   {
     "id": 707,
@@ -6457,8 +9560,7 @@
       "wash": "#c0c0d0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 149
+    "source": "pokeapi"
   },
   {
     "id": 713,
@@ -6504,8 +9606,7 @@
       "wash": "#d0f0f0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 183
+    "source": "pokeapi"
   },
   {
     "id": 715,
@@ -6554,8 +9655,7 @@
       "wash": "#8060a0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 147
+    "source": "pokeapi"
   },
   {
     "id": 724,
@@ -6604,8 +9704,7 @@
       "wash": "#a07050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 231
+    "source": "pokeapi"
   },
   {
     "id": 727,
@@ -6654,8 +9753,7 @@
       "wash": "#e05050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 89
+    "source": "pokeapi"
   },
   {
     "id": 730,
@@ -6703,8 +9801,7 @@
       "wash": "#60a0b0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 3
+    "source": "pokeapi"
   },
   {
     "id": 740,
@@ -6752,8 +9849,52 @@
       "wash": "#e0e0e0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 191
+    "source": "pokeapi"
+  },
+  {
+    "id": 10315,
+    "slug": "crabominable-mega",
+    "name": "Mega Crabominable",
+    "dexNo": 740,
+    "types": [
+      "fighting",
+      "ice"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 97,
+      "atk": 157,
+      "def": 122,
+      "spa": 62,
+      "spd": 107,
+      "spe": 33,
+      "bst": 578
+    },
+    "speedAt0": 53,
+    "speedAt32": 85,
+    "abilities": [
+      "iron fist"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10315.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10315.png",
+    "tokens": "mega crabominable crabominable-mega fighting ice iron fist white priority setup recovery",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#44445f",
+      "vibrant": "#505070",
+      "muted": "#38394f",
+      "ink": "#f4f1ea",
+      "wash": "#505070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 10152,
@@ -6799,8 +9940,7 @@
       "wash": "#b0a0a0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 242
+    "source": "pokeapi"
   },
   {
     "id": 748,
@@ -6848,8 +9988,7 @@
       "wash": "#7060a0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 43
+    "source": "pokeapi"
   },
   {
     "id": 752,
@@ -6896,8 +10035,7 @@
       "wash": "#d0e0f0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 83
+    "source": "pokeapi"
   },
   {
     "id": 758,
@@ -6945,8 +10083,7 @@
       "wash": "#606060",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 131
+    "source": "pokeapi"
   },
   {
     "id": 763,
@@ -6993,8 +10130,7 @@
       "wash": "#b0d080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 180
+    "source": "pokeapi"
   },
   {
     "id": 765,
@@ -7042,8 +10178,7 @@
       "wash": "#60a050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 258
+    "source": "pokeapi"
   },
   {
     "id": 768,
@@ -7090,8 +10225,7 @@
       "wash": "#d0e0d0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 5
+    "source": "pokeapi"
   },
   {
     "id": 10316,
@@ -7179,8 +10313,7 @@
       "wash": "#a09070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 11
+    "source": "pokeapi"
   },
   {
     "id": 780,
@@ -7228,8 +10361,52 @@
       "wash": "#f0f0e0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 215
+    "source": "pokeapi"
+  },
+  {
+    "id": 10302,
+    "slug": "drampa-mega",
+    "name": "Mega Drampa",
+    "dexNo": 780,
+    "types": [
+      "normal",
+      "dragon"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 78,
+      "atk": 85,
+      "def": 110,
+      "spa": 160,
+      "spd": 116,
+      "spe": 36,
+      "bst": 585
+    },
+    "speedAt0": 56,
+    "speedAt32": 88,
+    "abilities": [
+      "berserk"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10302.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10302.png",
+    "tokens": "mega drampa drampa-mega normal dragon berserk white setup recovery status",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#373745",
+      "vibrant": "#404050",
+      "muted": "#2f303d",
+      "ink": "#f4f1ea",
+      "wash": "#404050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 784,
@@ -7278,8 +10455,7 @@
       "wash": "#a0a0a0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 142
+    "source": "pokeapi"
   },
   {
     "id": 812,
@@ -7327,8 +10503,7 @@
       "wash": "#008040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 10
+    "source": "pokeapi"
   },
   {
     "id": 815,
@@ -7376,8 +10551,7 @@
       "wash": "#c05030",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 20
+    "source": "pokeapi"
   },
   {
     "id": 818,
@@ -7424,8 +10598,7 @@
       "wash": "#404040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 81
+    "source": "pokeapi"
   },
   {
     "id": 823,
@@ -7474,8 +10647,7 @@
       "wash": "#404060",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 15
+    "source": "pokeapi"
   },
   {
     "id": 828,
@@ -7523,8 +10695,7 @@
       "wash": "#302020",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 203
+    "source": "pokeapi"
   },
   {
     "id": 842,
@@ -7571,8 +10742,7 @@
       "wash": "#507050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 248
+    "source": "pokeapi"
   },
   {
     "id": 849,
@@ -7621,8 +10791,7 @@
       "wash": "#705080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 76
+    "source": "pokeapi"
   },
   {
     "id": 853,
@@ -7667,8 +10836,7 @@
       "wash": "#305090",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 104
+    "source": "pokeapi"
   },
   {
     "id": 855,
@@ -7715,8 +10883,7 @@
       "wash": "#a0d0d0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 111
+    "source": "pokeapi"
   },
   {
     "id": 858,
@@ -7764,8 +10931,7 @@
       "wash": "#80a0b0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 87
+    "source": "pokeapi"
   },
   {
     "id": 861,
@@ -7814,8 +10980,7 @@
       "wash": "#303050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 47
+    "source": "pokeapi"
   },
   {
     "id": 865,
@@ -7860,8 +11025,7 @@
       "wash": "#90b060",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 74
+    "source": "pokeapi"
   },
   {
     "id": 869,
@@ -7906,8 +11070,7 @@
       "wash": "#f0f0e0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 195
+    "source": "pokeapi"
   },
   {
     "id": 870,
@@ -7952,8 +11115,51 @@
       "wash": "#b09040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 234
+    "source": "pokeapi"
+  },
+  {
+    "id": 10303,
+    "slug": "falinks-mega",
+    "name": "Mega Falinks",
+    "dexNo": 870,
+    "types": [
+      "fighting"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 135,
+      "def": 135,
+      "spa": 70,
+      "spd": 65,
+      "spe": 100,
+      "bst": 570
+    },
+    "speedAt0": 120,
+    "speedAt32": 152,
+    "abilities": [
+      "defiant"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10303.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10303.png",
+    "tokens": "mega falinks falinks-mega fighting defiant yellow priority setup recovery",
+    "speciesColor": "yellow",
+    "palette": {
+      "dominant": "#c49e38",
+      "vibrant": "#f0c040",
+      "muted": "#907734",
+      "ink": "#12141a",
+      "wash": "#f0c040",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 871,
@@ -7999,8 +11205,7 @@
       "wash": "#504050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 112
+    "source": "pokeapi"
   },
   {
     "id": 876,
@@ -8098,8 +11303,7 @@
       "wash": "#605070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 95
+    "source": "pokeapi"
   },
   {
     "id": 887,
@@ -8148,8 +11352,7 @@
       "wash": "#70c0c0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 58
+    "source": "pokeapi"
   },
   {
     "id": 901,
@@ -8246,8 +11449,7 @@
       "wash": "#709070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 17
+    "source": "pokeapi"
   },
   {
     "id": 10248,
@@ -8295,8 +11497,7 @@
       "wash": "#e0f0f0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 110
+    "source": "pokeapi"
   },
   {
     "id": 903,
@@ -8347,8 +11548,7 @@
       "wash": "#505080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 18
+    "source": "pokeapi"
   },
   {
     "id": 904,
@@ -8397,8 +11597,7 @@
       "wash": "#303040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 107
+    "source": "pokeapi"
   },
   {
     "id": 908,
@@ -8448,8 +11647,7 @@
       "wash": "#308040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 12
+    "source": "pokeapi"
   },
   {
     "id": 911,
@@ -8494,8 +11692,7 @@
       "wash": "#c04030",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 28
+    "source": "pokeapi"
   },
   {
     "id": 914,
@@ -8543,8 +11740,7 @@
       "wash": "#3050a0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 133
+    "source": "pokeapi"
   },
   {
     "id": 927,
@@ -8634,8 +11830,7 @@
       "wash": "#50a030",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 91
+    "source": "pokeapi"
   },
   {
     "id": 934,
@@ -8681,8 +11876,7 @@
       "wash": "#f0f0f0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 167
+    "source": "pokeapi"
   },
   {
     "id": 936,
@@ -8729,8 +11923,7 @@
       "wash": "#e02010",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 46
+    "source": "pokeapi"
   },
   {
     "id": 937,
@@ -8777,8 +11970,7 @@
       "wash": "#202040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 51
+    "source": "pokeapi"
   },
   {
     "id": 939,
@@ -8825,8 +12017,7 @@
       "wash": "#20b090",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 49
+    "source": "pokeapi"
   },
   {
     "id": 941,
@@ -8922,8 +12113,7 @@
       "wash": "#807060",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 175
+    "source": "pokeapi"
   },
   {
     "id": 945,
@@ -9019,8 +12209,53 @@
       "wash": "#407050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 65
+    "source": "pokeapi"
+  },
+  {
+    "id": 10320,
+    "slug": "scovillain-mega",
+    "name": "Mega Scovillain",
+    "dexNo": 952,
+    "types": [
+      "grass",
+      "fire"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 138,
+      "def": 85,
+      "spa": 138,
+      "spd": 85,
+      "spe": 75,
+      "bst": 586
+    },
+    "speedAt0": 95,
+    "speedAt32": 127,
+    "abilities": [
+      "spicy spray"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10320.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10320.png",
+    "tokens": "mega scovillain scovillain-mega grass fire spicy spray green priority setup recovery status",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#375e45",
+      "vibrant": "#407050",
+      "muted": "#2f4b3d",
+      "ink": "#f4f1ea",
+      "wash": "#407050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 956,
@@ -9069,8 +12304,7 @@
       "wash": "#f0c050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 70
+    "source": "pokeapi"
   },
   {
     "id": 959,
@@ -9119,8 +12353,7 @@
       "wash": "#806080",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 102
+    "source": "pokeapi"
   },
   {
     "id": 964,
@@ -9166,8 +12399,7 @@
       "wash": "#60c0d0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 135
+    "source": "pokeapi"
   },
   {
     "id": 967,
@@ -9260,8 +12492,7 @@
       "wash": "#e06050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 99
+    "source": "pokeapi"
   },
   {
     "id": 970,
@@ -9308,8 +12539,53 @@
       "wash": "#3050a0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 16
+    "source": "pokeapi"
+  },
+  {
+    "id": 10321,
+    "slug": "glimmora-mega",
+    "name": "Mega Glimmora",
+    "dexNo": 970,
+    "types": [
+      "rock",
+      "poison"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 83,
+      "atk": 90,
+      "def": 105,
+      "spa": 150,
+      "spd": 96,
+      "spe": 101,
+      "bst": 625
+    },
+    "speedAt0": 121,
+    "speedAt32": 153,
+    "abilities": [
+      "adaptability"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10321.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10321.png",
+    "tokens": "mega glimmora glimmora-mega rock poison adaptability blue setup recovery status hazards",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#102a5f",
+      "vibrant": "#103070",
+      "muted": "#15274f",
+      "ink": "#f4f1ea",
+      "wash": "#103070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 973,
@@ -9500,8 +12776,7 @@
       "wash": "#a0a0b0",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 79
+    "source": "pokeapi"
   },
   {
     "id": 980,
@@ -9597,8 +12872,7 @@
       "wash": "#f09050",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 206
+    "source": "pokeapi"
   },
   {
     "id": 982,
@@ -9696,8 +12970,7 @@
       "wash": "#202020",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 34
+    "source": "pokeapi"
   },
   {
     "id": 998,
@@ -9743,8 +13016,48 @@
       "wash": "#406070",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 7
+    "source": "pokeapi"
+  },
+  {
+    "id": 10325,
+    "slug": "baxcalibur-mega",
+    "name": "Mega Baxcalibur",
+    "dexNo": 998,
+    "types": [
+      "dragon",
+      "ice"
+    ],
+    "form": "mega",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 115,
+      "atk": 175,
+      "def": 117,
+      "spa": 105,
+      "spd": 101,
+      "spe": 87,
+      "bst": 700
+    },
+    "speedAt0": 107,
+    "speedAt32": 139,
+    "abilities": [
+      "thermal exchange"
+    ],
+    "kitTags": [],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10325.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10325.png",
+    "tokens": "mega baxcalibur baxcalibur-mega dragon ice thermal exchange gray",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#2a516c",
+      "vibrant": "#306080",
+      "muted": "#264258",
+      "ink": "#f4f1ea",
+      "wash": "#306080",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
   },
   {
     "id": 1000,
@@ -9790,8 +13103,7 @@
       "wash": "#f0d040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 9
+    "source": "pokeapi"
   },
   {
     "id": 1013,
@@ -9839,8 +13151,7 @@
       "wash": "#303030",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 119
+    "source": "pokeapi"
   },
   {
     "id": 1018,
@@ -9889,7 +13200,6 @@
       "wash": "#102040",
       "source": "artwork"
     },
-    "source": "pokeapi",
-    "usageRank": 8
+    "source": "pokeapi"
   }
 ]

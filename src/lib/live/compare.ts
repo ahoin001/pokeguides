@@ -8,7 +8,8 @@ const ZERO_SP: SampleSp = { hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0 };
 
 export type LiveStatKey = "hp" | "atk" | "def" | "spa" | "spd" | "spe";
 
-export const LIVE_STAT_KEYS: LiveStatKey[] = ["hp", "atk", "def", "spa", "spd", "spe"];
+/** Body stats only — Spe lives in LiveSpeHero. */
+export const LIVE_STAT_KEYS: LiveStatKey[] = ["hp", "atk", "def", "spa", "spd"];
 
 export const LIVE_STAT_LABEL: Record<LiveStatKey, string> = {
   hp: "HP",
@@ -17,6 +18,36 @@ export const LIVE_STAT_LABEL: Record<LiveStatKey, string> = {
   spa: "SpA",
   spd: "SpD",
   spe: "Spe",
+};
+
+/** Nature-neutral and Spe-boosted Spe floors for race assessment. */
+export type LiveSpeScenarios = {
+  /** 0 Spe SP, neutral nature */
+  base: number;
+  /** 32 Spe SP, neutral nature */
+  invest: number;
+  /** 32 Spe SP + Spe-up nature (+10%) */
+  max: number;
+};
+
+export function liveSpeScenarios(mon: CatalogEntry): LiveSpeScenarios {
+  const baseSpe = mon.stats.spe;
+  return {
+    base: speedAt(baseSpe, 0, 1),
+    invest: speedAt(baseSpe, 32, 1),
+    max: speedAt(baseSpe, 32, 1.1),
+  };
+}
+
+export type SpeScenarioKey = keyof LiveSpeScenarios;
+
+export const SPE_SCENARIO_META: Record<
+  SpeScenarioKey,
+  { label: string; hint: string }
+> = {
+  base: { label: "Base Spe", hint: "0 Spe SP · neutral nature" },
+  invest: { label: "+32 Spe", hint: "Max Spe SP · still neutral nature" },
+  max: { label: "+32 + nature", hint: "Max Spe SP · Timid / Jolly / Hasty / Naive (+10%)" },
 };
 
 /** Level-50 stats using ranked leading SP + nature when available. */

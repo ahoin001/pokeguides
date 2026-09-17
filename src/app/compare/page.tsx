@@ -22,7 +22,7 @@ export default function ComparePage() {
 
   return (
     <PageFrame variant="tool">
-      <h1 className="text-4xl font-semibold tracking-tight">Compare</h1>
+      <h1 className="text-4xl font-semibold tracking-tight">Coverage Checker</h1>
       <p className="mt-2 text-muted">Two or three from the catalog. First paint is local.</p>
       <div className="mt-8 grid gap-4 md:grid-cols-3">
         {mons.map(

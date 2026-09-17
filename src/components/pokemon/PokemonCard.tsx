@@ -73,7 +73,7 @@ export function PokemonCard({
             onClick={() => toggleCompare(pokemon.slug)}
             className={`rounded-full px-3 py-1 text-xs ${compared ? "bg-ink text-bg" : "bg-white/5"}`}
           >
-            Compare
+            Coverage
           </button>
           <button
             type="button"

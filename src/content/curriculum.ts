@@ -185,11 +185,7 @@ export const LESSONS: Lesson[] = [
       { slug: "incineroar", caption: "Fake Out +3" },
     ],
     viz: "stadium",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "types",
   },
   {
@@ -253,11 +249,7 @@ export const LESSONS: Lesson[] = [
       { slug: "corviknight", caption: "Patches Fairy and Ground." },
     ],
     viz: "types",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "archetypes",
   },
   {
@@ -442,11 +434,7 @@ export const LESSONS: Lesson[] = [
       { slug: "ceruledge", caption: "Flash Fire" },
     ],
     viz: "ability-field",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "moves",
   },
   ...MOVE_SHEET_LESSONS,
@@ -487,11 +475,7 @@ export const LESSONS: Lesson[] = [
       { slug: "dragonite", caption: "Multiscale kite" },
     ],
     viz: "speed-tape",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "jobs",
   },
   {
@@ -689,11 +673,7 @@ export const LESSONS: Lesson[] = [
       { slug: "salamence-mega", caption: "Mega" },
     ],
     viz: "roster",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "building",
   },
   {
@@ -759,11 +739,7 @@ export const LESSONS: Lesson[] = [
       { slug: "gholdengo", caption: "The patch" },
     ],
     viz: "wincon-stack",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "holes",
   },
   {
@@ -891,14 +867,7 @@ export const LESSONS: Lesson[] = [
       { slug: "rillaboom", caption: "Grassy" },
     ],
     viz: "chooser",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "aggressive-balance-salamence-rotom-wash-kingambit",
-      "balance-salamence-primarina-gholdengo",
-      "balance-garchomp-primarina-gholdengo",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "abilities",
   },
   {
@@ -933,11 +902,7 @@ export const LESSONS: Lesson[] = [
       { slug: "gholdengo", caption: "The patch" },
     ],
     viz: "matchup",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "reading-their-six",
   },
   {
@@ -992,11 +957,7 @@ export const LESSONS: Lesson[] = [
       { slug: "gholdengo", caption: "Balance patch" },
     ],
     viz: "archetype-tells",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "preview",
   },
   {
@@ -1051,11 +1012,7 @@ export const LESSONS: Lesson[] = [
       { slug: "dragonite", caption: "Their kite" },
     ],
     viz: "preview-board",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "turns",
   },
   {
@@ -1092,11 +1049,7 @@ export const LESSONS: Lesson[] = [
     ],
     viz: "flowchart",
     flowId: "turns",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "tempo",
   },
   {
@@ -1144,11 +1097,7 @@ export const LESSONS: Lesson[] = [
     ],
     viz: "flowchart",
     flowId: "tempo",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "positioning",
   },
   {
@@ -1190,11 +1139,7 @@ export const LESSONS: Lesson[] = [
       { slug: "incineroar", caption: "Pivot or sacrifice" },
     ],
     viz: "none",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "review",
   },
   {
@@ -1235,11 +1180,7 @@ export const LESSONS: Lesson[] = [
       { slug: "kingambit", caption: "Accountability" },
     ],
     viz: "none",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "keeping-up",
   },
   {
@@ -1280,11 +1221,7 @@ export const LESSONS: Lesson[] = [
       { slug: "pelipper", caption: "A three you already studied" },
     ],
     viz: "none",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "manuals",
   },
 ];

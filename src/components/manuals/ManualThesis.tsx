@@ -43,6 +43,51 @@ export function ManualThesis({
             </div>
           </dl>
 
+          {construction.endgames?.length ? (
+            <div className="border-t border-line/70 pt-4">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+                Endgames
+              </p>
+              <ul className="mt-3 grid gap-2 sm:grid-cols-3">
+                {construction.endgames.map((e) => (
+                  <li
+                    key={e.id}
+                    className="rounded-2xl border border-line/50 bg-bg/40 px-3 py-2.5"
+                  >
+                    <p className="text-sm font-semibold tracking-tight">{e.label}</p>
+                    <p className="mt-1 text-[11px] text-muted">{e.path}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {construction.omissions?.length ? (
+            <div className="border-t border-line/70 pt-4">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+                Left off this six
+              </p>
+              <ul className="mt-3 space-y-3">
+                {construction.omissions.map((o) => {
+                  const dropped = getPokemon(o.slug);
+                  const kept = getPokemon(o.insteadKept);
+                  return (
+                    <li key={o.slug} className="text-sm leading-relaxed">
+                      <p className="font-medium tracking-tight">
+                        {dropped?.name ?? o.slug}
+                        <span className="font-normal text-muted">
+                          {" "}
+                          → kept {kept?.name ?? o.insteadKept}
+                        </span>
+                      </p>
+                      <p className="mt-1 text-muted">{o.why}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ) : null}
+
           {construction.substitutions?.length ? (
             <div className="border-t border-line/70 pt-4">
               <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
@@ -111,6 +156,11 @@ export function ManualThesis({
           <h3 className="text-lg font-semibold tracking-tight">Mega pool</h3>
           <p className="mt-2 text-sm leading-relaxed text-muted">{megaPool.rule}</p>
           <p className="mt-2 text-sm leading-relaxed text-ink/85">{megaPool.previewPressure}</p>
+          {megaPool.cost ? (
+            <p className="mt-2 rounded-2xl border border-line/50 bg-bg/40 px-3 py-2 text-sm text-muted">
+              Cost: {megaPool.cost}
+            </p>
+          ) : null}
           <ul className="mt-4 space-y-3">
             {megaPool.candidates.map((c) => {
               const mon = getPokemon(c.slug);

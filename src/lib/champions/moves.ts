@@ -264,14 +264,30 @@ export function isDamagingMove(name: string): boolean {
 export function damagingMoveTypes(names: readonly string[]): TypeId[] {
   const seen = new Set<TypeId>();
   const out: TypeId[] = [];
+  for (const hit of damagingMoves(names)) {
+    if (seen.has(hit.type)) continue;
+    seen.add(hit.type);
+    out.push(hit.type);
+  }
+  return out;
+}
+
+/** Damaging kit entries with resolved type (for coverage attribution). */
+export function damagingMoves(
+  names: readonly string[],
+): { name: string; type: TypeId }[] {
+  const out: { name: string; type: TypeId }[] = [];
+  const seen = new Set<string>();
   for (const raw of names) {
     const parts = raw.split(/\s*(?:[/]|,\s*| or )\s*/).map((s) => s.trim()).filter(Boolean);
     for (const name of parts) {
       if (!isDamagingMove(name)) continue;
       const type = moveType(name);
-      if (!type || seen.has(type)) continue;
-      seen.add(type);
-      out.push(type);
+      if (!type) continue;
+      const key = `${name.toLowerCase()}|${type}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push({ name, type });
     }
   }
   return out;

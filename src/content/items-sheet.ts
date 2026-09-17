@@ -288,10 +288,6 @@ export const ITEMS_LESSON: Lesson = {
     { slug: "gholdengo", caption: "Balloon" },
   ],
   viz: "training",
-  relatedManuals: [
-    "balance-salamence-primarina-aegislash",
-    "aggressive-balance-garchomp-primarina-corviknight",
-    "balance-garchomp-corviknight-kingambit",
-  ],
+  relatedManuals: ["ultra-garchompz-salamence-gholdengo", "balance-garchomp-corviknight-kingambit"],
   next: "speed",
 };

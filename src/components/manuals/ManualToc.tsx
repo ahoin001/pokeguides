@@ -14,11 +14,12 @@ function stackOffsetPx(node: HTMLElement) {
   return shell + local + 8;
 }
 
-export function manualJumps(manual: TeamManual, boxed = false) {
+export function manualJumps(manual: TeamManual, boxed = false, parent?: TeamManual) {
+  const source = parent ?? manual;
   const flows = flowsFor(manual);
   const family = FAMILY_LESSON[manualFamily(manual)];
   const hasGame =
-    flows.length > 0 ||
+    flows.some((f) => f.id !== "macro" && !f.title.toLowerCase().includes("package")) ||
     manual.loops.some((l) => l.title || l.body) ||
     (manual.switches ?? []).some((s) => s.into || s.send);
   const hasMatchups =
@@ -31,7 +32,7 @@ export function manualJumps(manual: TeamManual, boxed = false) {
       family?.commonFail ||
       (manual.switches ?? []).some((s) => s.into || s.send),
   );
-  const hasThesis = Boolean(manual.construction || manual.megaPool || manual.evidence);
+  const hasThesis = Boolean(source.construction || source.megaPool || source.evidence);
   const hasDoctrine = Boolean(
     manual.pilot?.thesis ||
       manual.pilot?.rule ||
@@ -46,12 +47,20 @@ export function manualJumps(manual: TeamManual, boxed = false) {
 
   return [
     { href: "#top", label: "Top" },
-    ...(boxed ? [{ href: "#packages", label: "Packages" }] : []),
-    ...(hasThesis ? [{ href: "#thesis", label: "Thesis" }] : []),
     ...(hasDoctrine ? [{ href: "#doctrine", label: "Doctrine" }] : []),
+    ...(boxed ? [{ href: "#six", label: "The six" }] : []),
+    ...(source.architecture?.length ? [{ href: "#architecture", label: "Architecture" }] : []),
+    ...(hasThesis ? [{ href: "#thesis", label: "Thesis" }] : []),
+    ...(source.construction?.endgames?.length
+      ? [{ href: "#endgames", label: "Endgames" }]
+      : []),
+    ...(source.speedBenchmarks?.length
+      ? [{ href: "#benchmarks", label: "Spe" }]
+      : []),
+    ...(boxed ? [{ href: "#packages", label: "Packages" }] : []),
     ...(hasPocket ? [{ href: "#pocket", label: "Pocket" }] : []),
     ...(canLoad ? [{ href: "#load", label: "Load" }] : []),
-    { href: "#three", label: "The three" },
+    { href: "#three", label: "Kits" },
     { href: "#scout", label: "Scout" },
     ...(manual.plan?.some((b) => b.title || b.play) ? [{ href: "#plan", label: "Plan" }] : []),
     ...(hasGame ? [{ href: "#game", label: "Game" }] : []),
@@ -64,13 +73,18 @@ export function ManualToc({
   manual,
   boxed = false,
   packKey = "",
+  parent,
 }: {
   manual: TeamManual;
   boxed?: boolean;
   /** Remount scroll-spy when the active pack changes. */
   packKey?: string;
+  parent?: TeamManual;
 }) {
-  const jumps = useMemo(() => manualJumps(manual, boxed), [manual, boxed]);
+  const jumps = useMemo(
+    () => manualJumps(manual, boxed, parent),
+    [manual, boxed, parent],
+  );
   const [active, setActive] = useState("#top");
   const [mounted, setMounted] = useState(false);
 

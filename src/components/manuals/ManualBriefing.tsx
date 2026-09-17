@@ -120,6 +120,8 @@ export function ManualBriefing({ manual }: { manual: TeamManual }) {
               },
             ];
           })}
+          defaultOpen={false}
+          title="Active kits · coverage"
         />
       </ManualSection>
 

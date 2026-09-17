@@ -4830,6 +4830,53 @@
     "source": "pokeapi"
   },
   {
+    "id": 350,
+    "slug": "milotic",
+    "name": "Milotic",
+    "dexNo": 350,
+    "types": [
+      "water"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 95,
+      "atk": 60,
+      "def": 79,
+      "spa": 100,
+      "spd": 125,
+      "spe": 81,
+      "bst": 540
+    },
+    "speedAt0": 101,
+    "speedAt32": 133,
+    "abilities": [
+      "marvel scale",
+      "competitive",
+      "cute charm"
+    ],
+    "kitTags": [
+      "pivot",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/350.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/350.png",
+    "tokens": "milotic milotic water marvel scale competitive cute charm pink pivot setup recovery status",
+    "speciesColor": "pink",
+    "palette": {
+      "dominant": "#c4c4ac",
+      "vibrant": "#f0f0d0",
+      "muted": "#909184",
+      "ink": "#12141a",
+      "wash": "#f0f0d0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 354,
     "slug": "banette",
     "name": "Banette",

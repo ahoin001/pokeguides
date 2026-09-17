@@ -1,12 +1,6 @@
 import type { ArchetypeId, LiteracyRoleId, RoleId, SampleSp } from "@/types/pokemon";
 import { alt, train } from "@/content/manual-train";
-import { OVERLORD_PIVOT_MANUAL } from "@/content/manuals/overlord-pivot";
-import { PRESSURE_BALANCE_MANUAL } from "@/content/manuals/pressure-balance";
-import { CLOCKWORK_BALANCE_MANUAL } from "@/content/manuals/clockwork-balance";
-import { PRESSURE_CLOCK_MANUAL } from "@/content/manuals/pressure-clock";
-import { SALAMENCE_MEGA_AMBIGUITY_MANUAL } from "@/content/manuals/salamence-mega-ambiguity";
-import { GARCHOMP_THREE_MODE_MANUAL } from "@/content/manuals/garchomp-three-mode";
-import { GARCHOMP_TERRAIN_PRESSURE_MANUAL } from "@/content/manuals/garchomp-terrain-pressure";
+import { ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL } from "@/content/manuals/ultra-garchompz-salamence-gholdengo";
 
 export { alt, train };
 
@@ -31,6 +25,8 @@ export type SlotTrainingAlt = {
 export type SlotTraining = {
   sp: SampleSp;
   why: string;
+  /** Nature / SP rule of thumb (e.g. Modest until a 204 Spe target appears). */
+  rule?: string;
   label?: string;
   spend?: string[];
   alts?: SlotTrainingAlt[];
@@ -59,6 +55,8 @@ export type SlotManual = {
   job: RoleId;
   literacy?: LiteracyRoleId;
   role: string;
+  /** Freeform six-table job (e.g. "Special breaker / speed"). */
+  primaryJob?: string;
   ability?: string;
   item?: string;
   itemWhy?: string;
@@ -165,12 +163,31 @@ export type ManualPackStrategy = {
   refuses: string[];
   /** How this three wins once selected. */
   winCondition: string;
+  /** Short chain: Break → Control → Finish. */
+  gamePlan?: string;
   /** Preferred Mega for this bring when the six has multiple stones. */
   megaChoice?: string;
   /** Acceptable Mega options when preview still leaves ambiguity. */
   megaOptions?: string[];
   /** Which mode of a multi-mode species this pack wants (e.g. garchomp sash). */
   winconMode?: string;
+};
+
+/** Per-mon job inside one preview package. */
+export type ManualPackRole = {
+  slug: string;
+  /** Macro step on the package flowchart (Break / Control / Finish). */
+  macro: string;
+  /** One-line micro job in this bring. */
+  micro: string;
+  /** What this mon uniquely gives the package. */
+  gives?: string;
+};
+
+export type ManualCoverageNote = {
+  title: string;
+  body: string;
+  watch?: string;
 };
 
 /** One preview bring of three from the registered six. */
@@ -182,6 +199,10 @@ export type ManualPack = {
   slugs: [string, string, string];
   /** Explicit reason for choosing this three from six. */
   strategy?: ManualPackStrategy;
+  /** Macro + micro jobs for each bring member (boxed guides). */
+  roles?: ManualPackRole[];
+  /** Pack-specific coverage narrative (supplements computed kit coverage). */
+  coverageNotes?: ManualCoverageNote[];
   /** Preferred Mega stone / species for this pack (when the six carries several). */
   megaChoice?: string;
   /** Acceptable Mega options left ambiguous until mid-preview. */
@@ -234,12 +255,45 @@ export type ManualAltSlot = {
   why: string;
 };
 
+export type ManualEndgame = {
+  id: string;
+  label: string;
+  /** Who closes (slug or short name). */
+  path: string;
+  how: string;
+};
+
+export type ManualOmission = {
+  slug: string;
+  /** Who stayed on the six instead. */
+  insteadKept: string;
+  why: string;
+};
+
+export type ManualArchitectureLayer = {
+  title: string;
+  body: string;
+  slugs?: string[];
+};
+
+export type ManualSpeedBenchmark = {
+  target: string;
+  theirSpe: string;
+  yourSpe: string;
+  natureImplication: string;
+};
+
 /** How the six was built from meta evidence — not just “top six usage.” */
 export type ManualConstruction = {
   thesis: string;
   /** How teammate / usage data was interpreted. */
   method: string;
+  /** One-line summary of the primary win path. */
   winCondition: string;
+  /** Distinct late-game closes this six can pursue. */
+  endgames?: ManualEndgame[];
+  /** Species deliberately left off this six. */
+  omissions?: ManualOmission[];
   substitutions?: ManualSubstitution[];
   altSlots?: ManualAltSlot[];
 };
@@ -254,6 +308,8 @@ export type ManualMegaCandidate = {
 export type ManualMegaPool = {
   rule: string;
   previewPressure: string;
+  /** Cost of carrying two stones (item slot on the non-Mega). */
+  cost?: string;
   candidates: ManualMegaCandidate[];
 };
 
@@ -262,6 +318,7 @@ export function resolvePackStrategy(pack: ManualPack): ManualPackStrategy {
   if (pack.strategy) {
     return {
       ...pack.strategy,
+      gamePlan: pack.strategy.gamePlan,
       megaChoice: pack.strategy.megaChoice ?? pack.megaChoice,
       megaOptions: pack.strategy.megaOptions ?? pack.megaOptions,
       winconMode: pack.strategy.winconMode ?? pack.winconMode,
@@ -333,26 +390,51 @@ export type TeamManual = {
   megaPool?: ManualMegaPool;
   /** Season / usage evidence supporting the build. */
   evidence?: ManualEvidence;
+  /** Layered read of the six (speed / setup / glue / cleaner). */
+  architecture?: ManualArchitectureLayer[];
+  /** Nature / Spe decision records before locking SP. */
+  speedBenchmarks?: ManualSpeedBenchmark[];
+  /** Authored six-wide coverage notes (supplements computed kit coverage). */
+  coverageNotes?: ManualCoverageNote[];
 };
 
 export function packList(manual: TeamManual): ManualPack[] {
   return manual.packs ?? [];
 }
 
-function slotsForPack(manual: TeamManual, slugs: [string, string, string]): SlotManual[] {
+function slotsForPack(
+  manual: TeamManual,
+  slugs: [string, string, string],
+  winconMode?: string | null,
+): SlotManual[] {
   const roster = manual.roster ?? manual.slots;
   const bySlug = new Map(roster.map((s) => [s.slug, s]));
   return slugs.map((slug) => {
     const hit = bySlug.get(slug);
-    if (hit) return hit;
+    if (!hit) {
+      return {
+        slug,
+        title: slug,
+        job: "breaker" as RoleId,
+        role: "",
+        moves: [],
+        objective: "",
+        howToPlay: "",
+      };
+    }
+    if (!winconMode || !hit.modes?.length) return hit;
+    const mode = hit.modes.find((m) => m.id === winconMode);
+    if (!mode) return hit;
     return {
-      slug,
-      title: slug,
-      job: "breaker" as RoleId,
-      role: "",
-      moves: [],
-      objective: "",
-      howToPlay: "",
+      ...hit,
+      item: mode.item,
+      itemWhy: mode.itemWhy ?? hit.itemWhy,
+      nature: mode.nature ?? hit.nature,
+      training: mode.training ?? hit.training,
+      moves: mode.moves,
+      objective: mode.objective ?? hit.objective,
+      howToPlay: mode.howToPlay ?? hit.howToPlay,
+      role: mode.job || hit.role,
     };
   });
 }
@@ -363,11 +445,13 @@ export function resolveManual(manual: TeamManual, packId?: string | null): TeamM
   if (!packs.length) return manual;
   const pack = (packId ? packs.find((p) => p.id === packId) : undefined) ?? packs[0];
   if (!pack) return manual;
+  const strategy = resolvePackStrategy(pack);
+  const winconMode = strategy.winconMode ?? pack.winconMode;
   const resolvedSlots = manual.roster?.length
-    ? slotsForPack(manual, pack.slugs)
+    ? slotsForPack(manual, pack.slugs, winconMode)
     : manual.slots.length === 3 && manual.slots.every((s, i) => s.slug === pack.slugs[i])
-      ? manual.slots
-      : slotsForPack(manual, pack.slugs);
+      ? slotsForPack(manual, pack.slugs, winconMode)
+      : slotsForPack(manual, pack.slugs, winconMode);
 
   return {
     ...manual,
@@ -395,6 +479,7 @@ export function resolveManual(manual: TeamManual, packId?: string | null): TeamM
     })(),
     loops: pack.loops?.length ? pack.loops : manual.loops,
     hazards: pack.hazards?.length ? pack.hazards : manual.hazards,
+    coverageNotes: pack.coverageNotes?.length ? pack.coverageNotes : manual.coverageNotes,
   };
 }
 
@@ -607,13 +692,7 @@ export function manualFamily(manual: Pick<TeamManual, "family" | "archetype">): 
 }
 
 export const CANONICAL_MANUALS: TeamManual[] = [
-  CLOCKWORK_BALANCE_MANUAL,
-  PRESSURE_BALANCE_MANUAL,
-  PRESSURE_CLOCK_MANUAL,
-  SALAMENCE_MEGA_AMBIGUITY_MANUAL,
-  GARCHOMP_THREE_MODE_MANUAL,
-  GARCHOMP_TERRAIN_PRESSURE_MANUAL,
-  OVERLORD_PIVOT_MANUAL,
+  ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL,
 ];
 
 export function getCanonicalManual(id: string) {

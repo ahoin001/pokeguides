@@ -158,11 +158,7 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
     ],
     viz: "flowchart",
     flowId: "they-fake-out",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo", "balance-garchomp-corviknight-kingambit"],
     next: "status-moves",
   },
   {
@@ -277,10 +273,7 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
       { slug: "rotom-wash", caption: "Wisp pivot" },
     ],
     viz: "none",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "field-moves",
   },
   {
@@ -415,10 +408,7 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
       { slug: "glimmora", caption: "Rocks" },
     ],
     viz: "none",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo"],
     next: "boost-moves",
   },
   {
@@ -552,10 +542,7 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
       { slug: "skeledirge", caption: "Unaware reset" },
     ],
     viz: "none",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo", "balance-garchomp-corviknight-kingambit"],
     next: "pivot-moves",
   },
   {
@@ -668,10 +655,7 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
       { slug: "corviknight", caption: "U-turn shield" },
     ],
     viz: "none",
-    relatedManuals: [
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo", "balance-garchomp-corviknight-kingambit"],
     next: "defense-moves",
   },
   {
@@ -804,11 +788,7 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
       { slug: "mimikyu-disguised", caption: "Substitute" },
     ],
     viz: "none",
-    relatedManuals: [
-      "balance-salamence-primarina-aegislash",
-      "aggressive-balance-garchomp-primarina-corviknight",
-      "balance-garchomp-corviknight-kingambit",
-    ],
+    relatedManuals: ["ultra-garchompz-salamence-gholdengo", "balance-garchomp-corviknight-kingambit"],
     next: "training",
   },
 ];

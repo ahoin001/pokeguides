@@ -1,5 +1,5 @@
 import type { TypeId } from "@/types/pokemon";
-import { damagingMoveTypes } from "@/lib/champions/moves";
+import { damagingMoves } from "@/lib/champions/moves";
 import {
   TYPE_IDS_ALPHA,
   TYPE_LABEL,
@@ -12,10 +12,18 @@ export type CoverageMember = {
   moves?: readonly string[];
 };
 
+export type CoverageSource = {
+  name: string;
+  move: string;
+  /** True if the move type matches one of this mon's types. */
+  stab: boolean;
+};
+
 export type CoverageClick = {
   type: TypeId;
-  /** Damaging type nobody on the three is. Ice Beam on Primarina. */
+  /** Non-STAB for the team as a whole (coverage move). */
   extra: boolean;
+  sources: CoverageSource[];
 };
 
 export type CoverageSit = {
@@ -36,23 +44,42 @@ export type TeamCoverageSummary = {
   threats: CoverageThreat[];
 };
 
-function attackTypesFor(member: CoverageMember): TypeId[] {
-  const fromKit = damagingMoveTypes(member.moves ?? []);
-  return fromKit.length ? fromKit : [...member.types];
+function stabSet(members: readonly CoverageMember[]) {
+  return new Set(members.flatMap((m) => m.types));
 }
 
 export function summarizeTeamCoverage(members: readonly CoverageMember[]): TeamCoverageSummary {
-  const stab = new Set(members.flatMap((m) => m.types));
-  const seen = new Set<TypeId>();
-  const clicks: CoverageClick[] = [];
+  const teamStab = stabSet(members);
+  const byType = new Map<TypeId, CoverageSource[]>();
+
   for (const member of members) {
-    for (const type of attackTypesFor(member)) {
-      if (seen.has(type)) continue;
-      seen.add(type);
-      clicks.push({ type, extra: !stab.has(type) });
+    const kit = damagingMoves(member.moves ?? []);
+    if (!kit.length) {
+      for (const type of member.types) {
+        const list = byType.get(type) ?? [];
+        list.push({ name: member.name, move: "STAB", stab: true });
+        byType.set(type, list);
+      }
+      continue;
+    }
+    for (const move of kit) {
+      const list = byType.get(move.type) ?? [];
+      list.push({
+        name: member.name,
+        move: move.name,
+        stab: member.types.includes(move.type),
+      });
+      byType.set(move.type, list);
     }
   }
-  clicks.sort((a, b) => TYPE_LABEL[a.type].localeCompare(TYPE_LABEL[b.type]));
+
+  const clicks: CoverageClick[] = [...byType.entries()]
+    .map(([type, sources]) => ({
+      type,
+      extra: !teamStab.has(type),
+      sources,
+    }))
+    .sort((a, b) => TYPE_LABEL[a.type].localeCompare(TYPE_LABEL[b.type]));
 
   const threats: CoverageThreat[] = [];
   for (const attack of TYPE_IDS_ALPHA) {

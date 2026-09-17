@@ -11790,6 +11790,55 @@
     "source": "pokeapi"
   },
   {
+    "id": 923,
+    "slug": "pawmot",
+    "name": "Pawmot",
+    "dexNo": 923,
+    "types": [
+      "electric",
+      "fighting"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 115,
+      "def": 70,
+      "spa": 70,
+      "spd": 60,
+      "spe": 105,
+      "bst": 490
+    },
+    "speedAt0": 125,
+    "speedAt32": 157,
+    "abilities": [
+      "volt absorb",
+      "natural cure",
+      "iron fist"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/923.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/923.png",
+    "tokens": "pawmot pawmot electric fighting volt absorb natural cure iron fist yellow pivot priority setup recovery status",
+    "speciesColor": "yellow",
+    "palette": {
+      "dominant": "#c48412",
+      "vibrant": "#f0a010",
+      "muted": "#90651a",
+      "ink": "#12141a",
+      "wash": "#f0a010",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 927,
     "slug": "dachsbun",
     "name": "Dachsbun",

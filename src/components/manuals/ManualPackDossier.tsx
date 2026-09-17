@@ -6,8 +6,10 @@ import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import type {
   ManualArchitectureLayer,
+  ManualCheatRow,
   ManualCoverageNote,
   ManualEndgame,
+  ManualGameState,
   ManualPack,
   ManualPackRole,
   ManualSpeedBenchmark,
@@ -142,6 +144,18 @@ export function ManualPackRoles({ roles }: { roles: ManualPackRole[] }) {
             {role.gives ? (
               <p className="mt-2 text-[12px] text-ink/80">Gives: {role.gives}</p>
             ) : null}
+            {role.threatens?.length ? (
+              <ul className="mt-3 flex flex-wrap gap-1">
+                {role.threatens.map((t) => (
+                  <li
+                    key={t}
+                    className="rounded-full border border-line/50 bg-raised/40 px-2 py-0.5 text-[10px] text-muted"
+                  >
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </li>
         );
       })}
@@ -189,6 +203,34 @@ export function ManualMacroJobStrip({
   );
 }
 
+export function ManualCheatTable({ rows }: { rows: ManualCheatRow[] }) {
+  if (!rows.length) return null;
+  return (
+    <div className="overflow-x-auto rounded-[24px] border border-line/70">
+      <table className="w-full min-w-[28rem] border-collapse text-left text-sm">
+        <thead>
+          <tr className="border-b border-line/70 bg-raised/40">
+            <th className="px-4 py-3 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+              Situation
+            </th>
+            <th className="px-4 py-3 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+              Preferred thought
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.situation} className="border-b border-line/50 last:border-0 align-top">
+              <td className="px-4 py-3 text-muted">{r.situation}</td>
+              <td className="px-4 py-3 font-medium text-ink/90">{r.thought}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export function ManualPackDossier({
   pack,
   coverageMembers,
@@ -202,6 +244,12 @@ export function ManualPackDossier({
   const roles = pack.roles ?? [];
   const macroFlow = pack.flows?.find(
     (f) => f.id === "macro" || f.title.toLowerCase().includes("package"),
+  );
+  const dossierFlows = (pack.flows ?? []).filter(
+    (f) =>
+      f !== macroFlow &&
+      !["lead", "mid", "late"].includes(f.id) &&
+      (f.forks?.length ?? 0) > 0,
   );
 
   return (
@@ -267,6 +315,49 @@ export function ManualPackDossier({
             Package flow
           </p>
           <ManualFlowchart flow={macroFlow} />
+        </div>
+      ) : null}
+
+      {dossierFlows.length ? (
+        <div className="space-y-6">
+          {dossierFlows.map((flow) => (
+            <div key={flow.id}>
+              <p className="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+                {flow.title}
+              </p>
+              {flow.lede ? <p className="mb-3 max-w-[52ch] text-sm text-muted">{flow.lede}</p> : null}
+              <ManualFlowchart flow={flow} />
+            </div>
+          ))}
+        </div>
+      ) : null}
+
+      {pack.gameStates?.length ? (
+        <div>
+          <p className="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+            Four game states
+          </p>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {pack.gameStates.map((s) => (
+              <li
+                key={s.id}
+                className="rounded-[24px] border border-line/70 bg-raised/25 px-4 py-3"
+              >
+                <p className="text-sm font-semibold tracking-tight">{s.label}</p>
+                <p className="mt-1 text-[12px] text-muted">{s.trigger}</p>
+                <p className="mt-2 text-sm text-ink/85">{s.play}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {pack.cheatSheet?.length ? (
+        <div>
+          <p className="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+            Cheat sheet
+          </p>
+          <ManualCheatTable rows={pack.cheatSheet} />
         </div>
       ) : null}
 

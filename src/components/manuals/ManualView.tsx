@@ -121,8 +121,23 @@ export function ManualView({
   const leadFlow = flows.find((f) => f.id.includes("lead") || f.title.toLowerCase() === "lead");
   const midFlow = flows.find((f) => f.id.includes("mid") || f.title.toLowerCase() === "mid");
   const lateFlow = flows.find((f) => f.id.includes("late") || f.title.toLowerCase() === "late");
+  const dossierFlowIds = new Set(
+    (activePack?.flows ?? [])
+      .filter(
+        (f) =>
+          f.id !== "macro" &&
+          !["lead", "mid", "late"].includes(f.id) &&
+          (f.forks?.length ?? 0) > 0,
+      )
+      .map((f) => f.id),
+  );
   const otherFlows = flows.filter(
-    (f) => f !== leadFlow && f !== midFlow && f !== lateFlow && f !== macroFlow,
+    (f) =>
+      f !== leadFlow &&
+      f !== midFlow &&
+      f !== lateFlow &&
+      f !== macroFlow &&
+      !dossierFlowIds.has(f.id),
   );
   const hasGame = flows.length > 0 || loops.length > 0 || switches.length > 0;
   const teamSlugs = manual.slugs.filter((s): s is string => Boolean(s));

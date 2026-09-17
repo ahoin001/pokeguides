@@ -182,12 +182,28 @@ export type ManualPackRole = {
   micro: string;
   /** What this mon uniquely gives the package. */
   gives?: string;
+  /** What this mon's setup / presence threatens (short chips). */
+  threatens?: string[];
 };
 
 export type ManualCoverageNote = {
   title: string;
   body: string;
   watch?: string;
+};
+
+/** Compact situation → thought row for a pack cheat sheet. */
+export type ManualCheatRow = {
+  situation: string;
+  thought: string;
+};
+
+/** Named game state for scannable pilot training. */
+export type ManualGameState = {
+  id: string;
+  label: string;
+  trigger: string;
+  play: string;
 };
 
 /** One preview bring of three from the registered six. */
@@ -203,6 +219,10 @@ export type ManualPack = {
   roles?: ManualPackRole[];
   /** Pack-specific coverage narrative (supplements computed kit coverage). */
   coverageNotes?: ManualCoverageNote[];
+  /** Situation → preferred thought (cheat sheet). */
+  cheatSheet?: ManualCheatRow[];
+  /** High-level states the pilot should recognize mid-game. */
+  gameStates?: ManualGameState[];
   /** Preferred Mega stone / species for this pack (when the six carries several). */
   megaChoice?: string;
   /** Acceptable Mega options left ambiguous until mid-preview. */

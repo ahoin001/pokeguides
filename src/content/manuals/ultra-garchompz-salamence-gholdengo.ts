@@ -404,145 +404,521 @@ const PACKS: ManualPack[] = [
   {
     id: "respect-setup",
     label: "Respect setup",
-    when: "They lack one blanket answer to DD, NP, and SD.",
-    identity: "Three setup wincons they cannot cover with one wall.",
+    when: "They lack one blanket answer to DD, NP, and SD — force a setup dilemma.",
+    identity: "Create multiple setup threats → force their answer → exploit the commitment.",
     slugs: ["salamence-mega", "gholdengo", "kingambit"],
     megaChoice: "salamence-mega",
+    philosophy:
+      "Package A damages progressively. Package B exhausts answers. You are not solving one problem three times — they are.",
+    pilot: {
+      thesis: "Make them respect Dragon Dance, Nasty Plot, and Swords Dance at once.",
+      rule: "When they reveal an answer, do not fight it — pivot to the setup that makes that answer uncomfortable.",
+      fail: "Greedy setup into a KO, or stubbornly attacking into the dedicated counter.",
+    },
     strategy: {
-      opponentPattern: "Balance that answers one setup style but not three",
+      opponentPattern: "Balance that stops one setup style but not three different ones",
       bring: ["salamence-mega", "gholdengo", "kingambit"],
-      purpose: "Force them to respect DD, Nasty Plot, and Swords Dance at once.",
-      targets: ["One-wall balance", "Passive special sponges", "Status cores"],
-      refuses: ["Triple setup hate + strong priority Dark", "Hard Fairy + Fighting stack"],
-      winCondition: "One of the three setups sticks; the others punish the answer.",
-      gamePlan: "DD wincon → NP wincon → SD cleaner",
+      purpose:
+        "Create a setup dilemma: they must choose which threat to respect, then you exploit the commitment.",
+      targets: [
+        "One-wall balance",
+        "Passive special sponges",
+        "Status cores",
+        "Answer-overlap teams",
+      ],
+      refuses: [
+        "Triple setup hate + strong priority Dark",
+        "Hard Fairy + Fighting stack",
+        "Dedicated stoppers for all three with no overlap to punish",
+      ],
+      winCondition:
+        "One setup sticks after they reveal; the other two punish or finish the answer.",
+      gamePlan: "Create opportunity → Set up → Force answer → Pivot → Set up again → Clean",
       megaChoice: "salamence-mega",
     },
     roles: [
       {
         slug: "salamence-mega",
-        macro: "Setup",
-        micro: "Intimidate into Dragon Dance",
-        gives: "Physical Mega wincon",
+        macro: "Create opportunity",
+        micro: "Intimidate tax → safe Dragon Dance when they cannot punish",
+        gives: "Physical Mega wincon + flexible Roost",
+        threatens: ["Speed", "Physical damage", "Ground coverage", "Long games via Roost"],
       },
       {
         slug: "gholdengo",
         macro: "Force answers",
-        micro: "Nasty Plot behind Good as Gold / Balloon",
-        gives: "Special setup + status blank",
+        micro: "Nasty Plot when status/passive/Balloon buys a free turn",
+        gives: "Special setup + Good as Gold + Balloon Ground sit",
+        threatens: ["Special damage", "Steel STAB", "Ghost STAB", "Status cores"],
       },
       {
         slug: "kingambit",
         macro: "Clean",
-        micro: "SD or Sucker after trades",
-        gives: "Third setup + priority",
+        micro: "Sit back while others fragment answers; SD or Sucker late",
+        gives: "Third setup + priority Dark finish",
+        threatens: ["Physical nuke", "Dark STAB", "Steel STAB", "Sucker Punch"],
       },
     ],
     coverageNotes: [
       {
         title: "Ground muddle",
-        body: "Salamence Flying + Gholdengo Balloon make EQ awkward; Kingambit still hates it after Balloon pops.",
-        watch: "Double Ground pressure",
+        body: "Flying Mence + Balloon Gholdengo make EQ awkward until Balloon pops; then Kingambit needs the Ground answers gone.",
+        watch: "Double Ground after Balloon",
+      },
+      {
+        title: "Answer overlap",
+        body: "Use Salamence to draw the physical/Fairy answer, then Gholdengo enters into that commitment.",
+      },
+    ],
+    gameStates: [
+      {
+        id: "setup-opportunity",
+        label: "1 · Setup opportunity",
+        trigger: "Opponent cannot punish the turn.",
+        play: "Set up (DD / NP / SD).",
+      },
+      {
+        id: "force-response",
+        label: "2 · Force response",
+        trigger: "You already have boosts.",
+        play: "Attack or position until they must answer.",
+      },
+      {
+        id: "answer-revealed",
+        label: "3 · Answer revealed",
+        trigger: "They send the dedicated stopper.",
+        play: "Do not fight it — switch to the mon that makes it uncomfortable.",
+      },
+      {
+        id: "endgame",
+        label: "4 · Endgame",
+        trigger: "Their team is fragmented / chipped.",
+        play: "Kingambit enters — Sucker / Kowtow / optional SD.",
+      },
+    ],
+    cheatSheet: [
+      {
+        situation: "Physical attacker into Salamence",
+        thought: "Intimidate → look for DD",
+      },
+      {
+        situation: "Passive Pokémon into Gholdengo",
+        thought: "Look for Nasty Plot",
+      },
+      {
+        situation: "Opponent forced to attack Kingambit",
+        thought: "Sucker Punch becomes powerful",
+      },
+      {
+        situation: "Salamence answer revealed",
+        thought: "Pivot to Gholdengo / Kingambit",
+      },
+      {
+        situation: "Gholdengo answer revealed",
+        thought: "Pivot to Salamence / Kingambit",
+      },
+      {
+        situation: "Kingambit answer revealed",
+        thought: "Preserve Gambit; use the others",
+      },
+      {
+        situation: "Free setup turn",
+        thought: "Set up",
+      },
+      {
+        situation: "Guaranteed KO available",
+        thought: "Take the KO instead of boosting",
+      },
+      {
+        situation: "Setup would expose a KO",
+        thought: "Don't set up",
+      },
+      {
+        situation: "Opponent heavily weakened",
+        thought: "Kingambit endgame",
+      },
+      {
+        situation: "Unsure which threat to preserve",
+        thought: "Preserve the one whose answer is already weakened/removed",
+      },
+    ],
+    plan: [
+      {
+        title: "Preview lists",
+        goal: "Name who stops each setup",
+        play: "Salamence: Fairy/Ice/phys wall/revenge. Gholdengo: Dark/Ground/Fire/special wall. Kingambit: Fighting/Ground/Fire/setup denial.",
+        next: "Find answer overlap",
+      },
+      {
+        title: "Lead",
+        goal: "Open the dilemma",
+        play: "Physical threat → Mence. Passive lead → Gholdengo. Aggressive / Sucker-vulnerable → Kingambit.",
+      },
+      {
+        title: "Mid",
+        goal: "Force and read answers",
+        play: "One safe boost → they commit → pivot to the other setup threat.",
+      },
+      {
+        title: "Late",
+        goal: "Exhaust answers, then clean",
+        play: "Do not force Mence→Ghold→Gambit order. Preserve the live wincon; Kingambit finishes.",
       },
     ],
     flows: [
-      macroFlow("rs", [
+      {
+        id: "macro",
+        title: "Package flow",
+        lede: "Create opportunity → set up → force answer → exploit → clean. Not Break→Pivot→Clean.",
+        forks: [
+          {
+            id: "rs-preview",
+            when: "90s preview",
+            then: "List who stops Mence, Gholdengo, and Kingambit. Find overlap.",
+            forks: [
+              {
+                id: "rs-lead-pick",
+                when: "Lead chosen",
+                then: "Create a free setup turn (Intimidate / Balloon / status blank / chip).",
+                forks: [
+                  {
+                    id: "rs-boost",
+                    when: "Free turn exists",
+                    then: "+1 Mence, +2 Gholdengo, or +2 Gambit — only if they cannot KO.",
+                    forks: [
+                      {
+                        id: "rs-reveal",
+                        when: "They answer the boost",
+                        then: "Name the answer. Pivot to the mon it does not stop.",
+                        forks: [
+                          {
+                            id: "rs-clean",
+                            when: "Answers exhausted / board soft",
+                            then: "Kingambit Sucker / Kowtow — or let the live sweeper close.",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      phaseFlow("lead", "Lead", "Three legitimate leads — pick from preview.", [
         {
-          title: "Setup",
-          when: "Intimidate turn is free",
-          then: "Mega Salamence and Dragon Dance.",
-        },
-        {
-          title: "Force answers",
-          when: "They sit a special wall or status",
-          then: "Gholdengo Nasty Plot / Make It Rain.",
-        },
-        {
-          title: "Clean",
-          when: "Board is damaged",
-          then: "Kingambit SD or Sucker Punch.",
-        },
-      ]),
-      phaseFlow("lead", "Lead", "Tax Attack or blank status.", [
-        {
-          id: "rs-lead-mence",
-          when: "Physical lead",
-          then: "Lead Salamence for Intimidate.",
+          id: "rs-lead-phys",
+          when: "Obvious physical threat on their lead",
+          then: "Lead Salamence — Intimidate has immediate value.",
           send: "salamence-mega",
+          forks: [
+            {
+              id: "rs-lead-phys-dd",
+              when: "They cannot threaten KO after Intimidate",
+              then: "Look for Dragon Dance.",
+              move: "Dragon Dance",
+            },
+            {
+              id: "rs-lead-phys-atk",
+              when: "They can KO on the DD turn",
+              then: "Attack or switch — do not greedy DD.",
+            },
+          ],
         },
         {
-          id: "rs-lead-ghold",
-          when: "Status or Fairy lead",
+          id: "rs-lead-passive",
+          when: "No physical threat — opponent looks passive / status-reliant",
           then: "Lead Gholdengo.",
           send: "gholdengo",
-          move: "Make It Rain",
+          forks: [
+            {
+              id: "rs-lead-passive-np",
+              when: "Free turn (switch, weak hit, blocked status)",
+              then: "Nasty Plot.",
+              move: "Nasty Plot",
+            },
+            {
+              id: "rs-lead-passive-mir",
+              when: "They stay in soft",
+              then: "Make It Rain or Shadow Ball.",
+              move: "Make It Rain",
+            },
+          ],
         },
         {
-          id: "rs-lead-gambit",
-          when: "They lead a hard Mega check",
-          then: "Keep Mega in pocket; lead Gholdengo or Gambit.",
-          why: "Do not burn the stone into a dead slot.",
+          id: "rs-lead-aggro",
+          when: "Neither — they look aggressive / Sucker-vulnerable",
+          then: "Lead Kingambit if Fighting response is weak.",
+          send: "kingambit",
+          why: "Force respect for SD / Sucker without burning Mega early.",
         },
       ]),
-      phaseFlow("mid", "Mid", "Swap which setup they must answer.", [
+      {
+        id: "mence",
+        title: "Salamence tree",
+        lede: "DD only when the worst punish is acceptable — not because you can.",
+        forks: [
+          {
+            id: "rs-mence-intim",
+            when: "Salamence enters",
+            then: "Intimidate taxes Attack.",
+            send: "salamence-mega",
+            forks: [
+              {
+                id: "rs-mence-ko",
+                when: "They can immediately threaten KO",
+                then: "Do not set up — attack or switch.",
+              },
+              {
+                id: "rs-mence-safe",
+                when: "No immediate KO",
+                then: "Ask: free DD turn?",
+                forks: [
+                  {
+                    id: "rs-mence-dd",
+                    when: "Worst case is chip (~20%)",
+                    then: "Dragon Dance.",
+                    move: "Dragon Dance",
+                    forks: [
+                      {
+                        id: "rs-mence-ans",
+                        when: "They switch to the Mence answer",
+                        then: "Great — pivot to Gholdengo or Kingambit.",
+                        why: "Answer revealed; do not fight the counter.",
+                      },
+                      {
+                        id: "rs-mence-atk",
+                        when: "They attack and you live",
+                        then: "Double-Edge / Earthquake — or Roost if chip is high.",
+                        move: "Double-Edge",
+                      },
+                    ],
+                  },
+                  {
+                    id: "rs-mence-nodd",
+                    when: "Worst case is Fairy in / KO",
+                    then: "Attack or leave. Setup is a tool, not the objective.",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "gholdengo",
+        title: "Gholdengo tree",
+        lede: "NP when they switch, click weak, or waste status into Good as Gold. +2 is usually enough.",
+        forks: [
+          {
+            id: "rs-ghold-in",
+            when: "Gholdengo on the field",
+            then: "Can they threaten KO?",
+            send: "gholdengo",
+            forks: [
+              {
+                id: "rs-ghold-ko",
+                when: "Yes — real damage incoming",
+                then: "Attack or switch. Do not NP.",
+              },
+              {
+                id: "rs-ghold-free",
+                when: "No — free turn (passive / blocked status / soft switch)",
+                then: "Nasty Plot.",
+                move: "Nasty Plot",
+                forks: [
+                  {
+                    id: "rs-ghold-plus2",
+                    when: "+2 Gholdengo",
+                    then: "What switches in?",
+                    forks: [
+                      {
+                        id: "rs-ghold-dark",
+                        when: "Dark answer",
+                        then: "Shadow Ball or pivot — do not NP again.",
+                        move: "Shadow Ball",
+                      },
+                      {
+                        id: "rs-ghold-ground",
+                        when: "Ground answer",
+                        then: "Make It Rain if Balloon up; else leave.",
+                        move: "Make It Rain",
+                        why: "Do not reveal Balloon unless needed.",
+                      },
+                      {
+                        id: "rs-ghold-fast",
+                        when: "Fast attacker",
+                        then: "Can they KO? If yes attack; if no, one hit then evaluate.",
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                id: "rs-ghold-status",
+                when: "They click status into Good as Gold",
+                then: "Free turn — Nasty Plot.",
+                move: "Nasty Plot",
+              },
+              {
+                id: "rs-ghold-recover",
+                when: "Damaged vs slow wall that cannot KO",
+                then: "Recover to keep the setup threat alive.",
+                move: "Recover",
+                why: "If Recover lets a dangerous attacker in free, attack instead.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "kingambit",
+        title: "Kingambit tree",
+        lede: "Ideal entry is late — after Mence/Ghold fragment physical and special checks.",
+        forks: [
+          {
+            id: "rs-gambit-in",
+            when: "Kingambit enters",
+            then: "Can they KO?",
+            send: "kingambit",
+            forks: [
+              {
+                id: "rs-gambit-ko",
+                when: "Yes — Fighting / strong physical",
+                then: "Attack or switch. Do not SD into the stopper.",
+              },
+              {
+                id: "rs-gambit-sd",
+                when: "No — soft board / forced attack",
+                then: "Swords Dance if safe; else Kowtow / Sucker.",
+                forks: [
+                  {
+                    id: "rs-gambit-dance",
+                    when: "Safe SD turn",
+                    then: "Swords Dance.",
+                    move: "Swords Dance",
+                  },
+                  {
+                    id: "rs-gambit-sucker",
+                    when: "Foe must click damage / chipped fast mon",
+                    then: "Sucker Punch.",
+                    move: "Sucker Punch",
+                  },
+                  {
+                    id: "rs-gambit-kowtow",
+                    when: "Neutral switch or wall chip",
+                    then: "Kowtow Cleave.",
+                    move: "Kowtow Cleave",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: "wincon",
+        title: "Which setup wins?",
+        lede: "Do not force Mence → Ghold → Gambit. Preserve the live wincon.",
+        forks: [
+          {
+            id: "rs-win-easiest",
+            when: "Which mon has the easiest setup right now?",
+            then: "Set that one up first.",
+            forks: [
+              {
+                id: "rs-win-mence-ans",
+                when: "They reveal a Mence answer",
+                then: "Pivot to Gholdengo; set up there.",
+                send: "gholdengo",
+              },
+              {
+                id: "rs-win-ghold-ans",
+                when: "They reveal a Gholdengo answer",
+                then: "Pivot to Kingambit (or Mence if that answer is soft to DD).",
+                send: "kingambit",
+              },
+              {
+                id: "rs-win-gambit-ans",
+                when: "They reveal a Kingambit answer",
+                then: "Preserve Gambit — use Mence/Ghold to remove that piece.",
+              },
+              {
+                id: "rs-win-sweep",
+                when: "One sweeper is already rolling",
+                then: "Do not force the third setup — take KOs.",
+                why: "Setup is a tool. Guaranteed KO beats another boost.",
+              },
+            ],
+          },
+        ],
+      },
+      phaseFlow("mid", "Mid", "Setup chain and pivots.", [
         {
-          id: "rs-mid-dd",
-          when: "Safe DD turn",
-          then: "Dragon Dance.",
-          move: "Dragon Dance",
-          send: "salamence-mega",
+          id: "rs-mid-chain",
+          when: "Mence drew the Fairy / phys wall",
+          then: "Leave into Gholdengo — their answer faces the wrong problem.",
+          send: "gholdengo",
         },
         {
           id: "rs-mid-np",
-          when: "They brought a physical answer",
-          then: "Gholdengo Nasty Plot.",
+          when: "They switch or click weak into Gholdengo",
+          then: "Nasty Plot once.",
           move: "Nasty Plot",
           send: "gholdengo",
         },
         {
-          id: "rs-mid-roost",
-          when: "Chipped after Intimidate",
-          then: "Roost, then re-press DD.",
-          move: "Roost",
+          id: "rs-mid-take-ko",
+          when: "Foe sits at ~35% and Double-Edge KOs",
+          then: "Take the KO — skip DD.",
+          move: "Double-Edge",
           send: "salamence-mega",
         },
       ]),
-      phaseFlow("late", "Late", "Execute the stuck setup.", [
+      phaseFlow("late", "Late", "Endgame classification.", [
         {
-          id: "rs-late-de",
-          when: "Mence is +1 and healthy",
-          then: "Double-Edge the softest target.",
+          id: "rs-late-gambit",
+          when: "Board is chipped; Fighting answer gone",
+          then: "Kingambit — SD if free, else Sucker / Kowtow.",
+          send: "kingambit",
+        },
+        {
+          id: "rs-late-mence",
+          when: "Mence is the live wincon",
+          then: "Double-Edge / EQ — do not donate into Ice/Fairy.",
           move: "Double-Edge",
           send: "salamence-mega",
         },
         {
-          id: "rs-late-mir",
-          when: "Gholdengo is +2",
-          then: "Make It Rain or Shadow Ball.",
+          id: "rs-late-ghold",
+          when: "Gholdengo is +2 and healthy",
+          then: "Make It Rain / Shadow Ball — one NP is enough.",
           move: "Make It Rain",
           send: "gholdengo",
-        },
-        {
-          id: "rs-late-sucker",
-          when: "Foe must click damage",
-          then: "Sucker Punch.",
-          move: "Sucker Punch",
-          send: "kingambit",
         },
       ]),
     ],
     loops: [
       {
-        title: "Setup ping-pong",
-        body: "They answer Mence → Gholdengo NP. They answer Steel → Mence DD or Gambit SD.",
+        title: "Mental loop",
+        body: "Create opportunity → Set up → Force answer → Identify → Don't fight it → Switch setup threat → Set up again → Defense collapses → Kingambit clean.",
       },
       {
-        title: "Intimidate bank",
-        body: "Intimidate → Roost → DD when the physical threat is taxed.",
+        title: "Answer overlap",
+        body: "Mence draws the stopper → commit revealed → Gholdengo enters into that Pokémon.",
       },
       {
-        title: "Overlord clean",
-        body: "Trade one ally → Supreme Overlord Sucker the last revenge.",
+        title: "Free-turn test",
+        body: "Before DD/NP/SD: what is the worst punish? Chip → ok. KO or hard counter in → don't.",
+      },
+      {
+        title: "Uncertainty tax",
+        body: "Sometimes just attack. Making them guess DD / NP / SD has value even without the boost.",
+      },
+      {
+        title: "Never",
+        body: "DD every free chance. NP twice greedily. SD into Fighting. Fight the dedicated answer. Reveal Gambit early when it is the endgame.",
       },
     ],
     hazards: [],

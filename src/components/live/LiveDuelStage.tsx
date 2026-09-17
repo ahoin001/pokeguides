@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useEffect, useMemo } from "react";
 import { getPokemon } from "@/lib/catalog/lookup";
 import { cssVars } from "@/lib/champions/palette";
 import { defensiveMatchup, offensiveMatchup } from "@/lib/champions/types";
@@ -17,6 +18,7 @@ import {
   liveStatsForSlug,
 } from "@/lib/live/compare";
 import { speBand } from "@/lib/champions/vs-stats";
+import { liveDebug } from "@/lib/live/debug";
 import { useLiveMatchStore } from "@/stores/live-match";
 import { useTeamStore } from "@/stores/team";
 
@@ -45,7 +47,11 @@ function TypeStrip({
 }
 
 export function LiveDuelStage() {
-  const bringSlugs = useTeamStore((s) => s.slugs.filter(Boolean) as string[]);
+  const slugs = useTeamStore((s) => s.slugs);
+  const bringSlugs = useMemo(
+    () => slugs.filter(Boolean) as string[],
+    [slugs],
+  );
   const foes = useLiveMatchStore((s) => s.foes);
   const activeBringSlug = useLiveMatchStore((s) => s.activeBringSlug);
   const activeFoeSlug = useLiveMatchStore((s) => s.activeFoeSlug);
@@ -54,6 +60,16 @@ export function LiveDuelStage() {
   const setDefender = useLiveMatchStore((s) => s.setDefender);
   const setCalcOpen = useLiveMatchStore((s) => s.setCalcOpen);
   const reduce = useReducedMotion();
+
+  useEffect(() => {
+    liveDebug("[live/duel]", {
+      bringSlugs,
+      foes,
+      activeBringSlug,
+      activeFoeSlug,
+      reduce,
+    });
+  }, [bringSlugs, foes, activeBringSlug, activeFoeSlug, reduce]);
 
   const bringSlug =
     (activeBringSlug && bringSlugs.includes(activeBringSlug)

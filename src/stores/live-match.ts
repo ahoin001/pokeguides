@@ -2,6 +2,7 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { liveDebug } from "@/lib/live/debug";
 
 const MAX_FOES = 3;
 const MAX_RECENT = 6;
@@ -111,6 +112,7 @@ export const useLiveMatchStore = create<LiveMatchState>()(
       bringPresets: [],
       addFoe: (slug) => {
         const { foes, recent } = get();
+        liveDebug("[live/store] addFoe", { slug, before: foes });
         if (foes.includes(slug)) {
           set({
             focusSlug: slug,
@@ -128,7 +130,8 @@ export const useLiveMatchStore = create<LiveMatchState>()(
           recent: uniqCap(recent, slug, MAX_RECENT),
         });
       },
-      removeFoe: (slug) =>
+      removeFoe: (slug) => {
+        liveDebug("[live/store] removeFoe", { slug });
         set((s) => {
           const foes = s.foes.filter((f) => f !== slug);
           const fallback = foes[foes.length - 1] ?? foes[0] ?? null;
@@ -139,16 +142,23 @@ export const useLiveMatchStore = create<LiveMatchState>()(
             attackerSlug: s.attackerSlug === slug ? null : s.attackerSlug,
             defenderSlug: s.defenderSlug === slug ? null : s.defenderSlug,
           };
-        }),
-      clearFoes: () =>
-        set({ foes: [], focusSlug: null, activeFoeSlug: null }),
+        });
+      },
+      clearFoes: () => {
+        liveDebug("[live/store] clearFoes");
+        set({ foes: [], focusSlug: null, activeFoeSlug: null });
+      },
       setFocus: (slug) => set({ focusSlug: slug }),
       setActiveBring: (slug) => set({ activeBringSlug: slug }),
       setActiveFoe: (slug) => set({ activeFoeSlug: slug }),
-      selectBring: (slug) =>
-        set({ activeBringSlug: slug, focusSlug: slug }),
-      selectFoe: (slug) =>
-        set({ activeFoeSlug: slug, focusSlug: slug }),
+      selectBring: (slug) => {
+        liveDebug("[live/store] selectBring", { slug });
+        set({ activeBringSlug: slug, focusSlug: slug });
+      },
+      selectFoe: (slug) => {
+        liveDebug("[live/store] selectFoe", { slug });
+        set({ activeFoeSlug: slug, focusSlug: slug });
+      },
       setAttacker: (slug) => set({ attackerSlug: slug }),
       setDefender: (slug) => set({ defenderSlug: slug }),
       setWeather: (weather) => set({ weather }),

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useTeamStore } from "@/stores/team";
 import { useLiveMatchStore } from "@/stores/live-match";
 import { LivePackageBar } from "@/components/live/LivePackageBar";
@@ -10,8 +10,12 @@ import { LiveFieldStrip } from "@/components/live/LiveFieldStrip";
 import { LiveDamageCalc } from "@/components/live/LiveDamageCalc";
 import { getPokemon } from "@/lib/catalog/lookup";
 import { cssVars } from "@/lib/champions/palette";
+import { liveDebug, liveDebugError } from "@/lib/live/debug";
 
 export function LiveMatchStage() {
+  const renderCount = useRef(0);
+  renderCount.current += 1;
+
   const slugs = useTeamStore((s) => s.slugs);
   const foes = useLiveMatchStore((s) => s.foes);
   const activeBringSlug = useLiveMatchStore((s) => s.activeBringSlug);
@@ -20,8 +24,38 @@ export function LiveMatchStage() {
   const selectBring = useLiveMatchStore((s) => s.selectBring);
   const selectFoe = useLiveMatchStore((s) => s.selectFoe);
 
+  // Stable snapshot — never filter inside the zustand selector (React #185).
   const bring = useMemo(() => slugs.filter(Boolean) as string[], [slugs]);
   const exclude = useMemo(() => [...bring, ...foes], [bring, foes]);
+
+  useEffect(() => {
+    liveDebug("[live/stage] mount", {
+      bring,
+      foes,
+      activeBringSlug,
+      activeFoeSlug,
+      focusSlug,
+    });
+    return () => liveDebug("[live/stage] unmount");
+    // Mount-only diagnostics.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const payload = {
+      count: renderCount.current,
+      bring,
+      foes,
+      activeBringSlug,
+      activeFoeSlug,
+      focusSlug,
+    };
+    if (renderCount.current > 40) {
+      liveDebugError("[live/stage] render storm — likely unstable store selector", payload);
+    } else if (renderCount.current <= 5 || renderCount.current % 10 === 0) {
+      liveDebug("[live/stage] render", payload);
+    }
+  });
 
   const washSlug =
     (activeFoeSlug && foes.includes(activeFoeSlug) ? activeFoeSlug : null) ??
@@ -73,6 +107,7 @@ export function LiveMatchStage() {
                 foeSlugs={foes}
                 focusSlug={focusSlug}
                 onFocus={(slug) => {
+                  liveDebug("[live/stage] field focus", { slug });
                   if (bring.includes(slug)) selectBring(slug);
                   else if (foes.includes(slug)) selectFoe(slug);
                 }}

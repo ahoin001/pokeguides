@@ -10,6 +10,31 @@ export const TERMS: GlossaryTerm[] = [
   { t: "Trick Room", d: "Slowest Pokémon move first. Farigiraf can set it. Four turns including the click.", href: "/learn/field-moves" },
   { t: "Protect", d: "Priority +4. A scout and a Sucker Punch stall, not leftover farming.", href: "/learn/defense-moves" },
   {
+    t: "Miss",
+    d: "Accuracy below 100% can fail even when the matchup is correct. Rain makes Thunder and Hurricane never miss.",
+    href: "/learn/blank-turns",
+  },
+  {
+    t: "Levitate",
+    d: "Ground moves fail. Mold Breaker ignores it. Air Balloon is the item version — one pop.",
+    href: "/learn/blank-turns",
+  },
+  {
+    t: "Flash Fire",
+    d: "Immune to Fire; absorbing a Fire hit powers up the user’s Fire attacks. Do not Autopilot STAB into it.",
+    href: "/learn/blank-turns",
+  },
+  {
+    t: "Air Balloon",
+    d: "One-time Ground immunity until damage pops it. Read Balloon vs Boots on preview.",
+    href: "/learn/blank-turns",
+  },
+  {
+    t: "Mold Breaker",
+    d: "Your moves ignore the target’s ability — Levitate, Flash Fire, Multiscale, Disguise, and similar soft walls.",
+    href: "/learn/abilities",
+  },
+  {
     t: "Stat Points",
     d: "66 points to spend. Max 32 in one stat. 1 SP is +1 at Level 50.",
     href: "/learn/the-fight",

@@ -42,6 +42,10 @@ const SHEET_LEDES: Record<MoveSheetSlug, { rulesTitle: string; rulesLede: string
     rulesTitle: "Deny the turn",
     rulesLede: "Protect is a question. Encore locks a mistake. Punish the shield — do not feed it.",
   },
+  "blank-turns": {
+    rulesTitle: "Why the hit failed",
+    rulesLede: "Miss, Protect, type 0×, ability, or item — name the blank before you click. Free turns win games.",
+  },
 };
 
 export function MoveSheetClassroom({ lesson }: { lesson: Lesson }) {
@@ -103,6 +107,7 @@ function shortTitle(title: string) {
   if (title.startsWith("Boosts")) return "Boosts";
   if (title.startsWith("Pivots")) return "Pivots";
   if (title.startsWith("Defense")) return "Defense";
+  if (title.startsWith("When attacks")) return "Blanks";
   return title;
 }
 

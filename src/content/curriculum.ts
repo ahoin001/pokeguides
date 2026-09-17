@@ -48,6 +48,7 @@ export const MOVE_SHEET_SLUGS = [
   "boost-moves",
   "pivot-moves",
   "defense-moves",
+  "blank-turns",
 ] as const;
 
 export type MoveSheetSlug = (typeof MOVE_SHEET_SLUGS)[number];
@@ -88,7 +89,7 @@ export const BANDS: { id: LessonBand; title: string; skipIf: string }[] = [
   {
     id: "great-ball",
     title: "Great Ball",
-    skipIf: "Skip if priority, status, field, boosts, pivots, defense, items, and jobs already click.",
+    skipIf: "Skip if priority, status, field, boosts, pivots, defense, blanks, items, and jobs already click.",
   },
   {
     id: "ultra-ball",

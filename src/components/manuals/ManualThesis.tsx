@@ -4,7 +4,6 @@ import Link from "next/link";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
-import { MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
 import type {
   ManualConstruction,
   ManualEvidence,
@@ -23,14 +22,7 @@ export function ManualThesis({
   if (!construction && !megaPool && !evidence) return null;
 
   return (
-    <section id="thesis" className={`mt-10 max-w-3xl space-y-6 ${MANUAL_SCROLL_MT}`}>
-      <div>
-        <h2 className="text-2xl font-semibold tracking-tight">How this six was built</h2>
-        <p className="mt-2 max-w-[52ch] text-sm text-muted">
-          Ladder evidence interpreted into a preview toolbox — not a paste of the top six usage.
-        </p>
-      </div>
-
+    <div className="max-w-3xl space-y-6">
       {construction ? (
         <div className="space-y-4 rounded-[28px] border border-line bg-raised/40 p-5">
           <p className="text-[17px] leading-relaxed text-pretty">{construction.thesis}</p>
@@ -190,6 +182,6 @@ export function ManualThesis({
           ) : null}
         </div>
       ) : null}
-    </section>
+    </div>
   );
 }

@@ -182,16 +182,10 @@ export function ManualInsights({
 
   return (
     <MotionConfig reducedMotion="user">
-      <section id="matchups" className={`mt-10 ${MANUAL_SCROLL_MT}`}>
-        <h2 className="text-2xl font-semibold tracking-tight">Matchups</h2>
-        <p className="mt-2 max-w-[52ch] text-sm text-muted">
-          Favored lines you want to force. Trap lines that end the game if you mis-send — open each for Watch, Do, and Never.
-        </p>
-        <div className="mt-4 grid gap-4 md:grid-cols-2">
-          <Board id="you-press" title="You press" tone="good" items={good} />
-          <Board id="they-press" title="They press you" tone="bad" items={bad} />
-        </div>
-      </section>
+      <div className="grid gap-4 md:grid-cols-2">
+        <Board id="you-press" title="You press" tone="good" items={good} />
+        <Board id="they-press" title="They press you" tone="bad" items={bad} />
+      </div>
     </MotionConfig>
   );
 }

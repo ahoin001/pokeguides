@@ -6,6 +6,7 @@ import { defaultPackId, getCanonicalManual, isCanonicalManualId, resolveManual }
 import { useManualsStore } from "@/stores/manuals";
 import { ManualView } from "@/components/manuals/ManualView";
 import { ManualNotes } from "@/components/manuals/ManualNotes";
+import { ManualNavStrip } from "@/components/manuals/ManualNavStrip";
 import { Button } from "@/components/ui/Button";
 
 export function ManualDetail({ id }: { id: string }) {
@@ -64,6 +65,7 @@ export function ManualDetail({ id }: { id: string }) {
         </div>
       ) : null}
       <ManualNotes id={id} exclude={noteExclude} />
+      {canonical ? <ManualNavStrip manualId={id} /> : null}
     </div>
   );
 }

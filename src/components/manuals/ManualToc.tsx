@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { SCROLL_UNDER_STACK, STICKY_LOCAL_BAR } from "@/components/chrome/PageFrame";
 import { flowsFor } from "@/content/classroom-flows";
-import type { TeamManual } from "@/content/manuals";
+import { FAMILY_LESSON, manualFamily, type TeamManual } from "@/content/manuals";
 
 export const MANUAL_SCROLL_MT = SCROLL_UNDER_STACK;
 
@@ -16,6 +16,7 @@ function stackOffsetPx(node: HTMLElement) {
 
 export function manualJumps(manual: TeamManual, boxed = false) {
   const flows = flowsFor(manual);
+  const family = FAMILY_LESSON[manualFamily(manual)];
   const hasGame =
     flows.length > 0 ||
     manual.loops.some((l) => l.title || l.body) ||
@@ -25,14 +26,31 @@ export function manualJumps(manual: TeamManual, boxed = false) {
     manual.counters?.some((c) => c.name || c.why) ||
     manual.advantages?.some((a) => a.title || a.body) ||
     manual.hazards.some((h) => h.title || h.body);
-  const hasPocket = Boolean(manual.pilot?.fail || (manual.switches ?? []).some((s) => s.into || s.send));
+  const hasPocket = Boolean(
+    manual.pilot?.fail ||
+      family?.commonFail ||
+      (manual.switches ?? []).some((s) => s.into || s.send),
+  );
   const hasThesis = Boolean(manual.construction || manual.megaPool || manual.evidence);
+  const hasDoctrine = Boolean(
+    manual.pilot?.thesis ||
+      manual.pilot?.rule ||
+      manual.pilot?.fail ||
+      family?.thesis ||
+      family?.clockRule ||
+      family?.commonFail ||
+      manual.philosophy?.trim() ||
+      manual.meta?.trim(),
+  );
+  const canLoad = manual.slugs.every(Boolean) && hasPocket;
 
   return [
     { href: "#top", label: "Top" },
-    ...(boxed ? [{ href: "#box", label: "Lineup" }] : []),
+    ...(boxed ? [{ href: "#packages", label: "Packages" }] : []),
     ...(hasThesis ? [{ href: "#thesis", label: "Thesis" }] : []),
+    ...(hasDoctrine ? [{ href: "#doctrine", label: "Doctrine" }] : []),
     ...(hasPocket ? [{ href: "#pocket", label: "Pocket" }] : []),
+    ...(canLoad ? [{ href: "#load", label: "Load" }] : []),
     { href: "#three", label: "The three" },
     { href: "#scout", label: "Scout" },
     ...(manual.plan?.some((b) => b.title || b.play) ? [{ href: "#plan", label: "Plan" }] : []),
@@ -42,7 +60,16 @@ export function manualJumps(manual: TeamManual, boxed = false) {
   ];
 }
 
-export function ManualToc({ manual, boxed = false }: { manual: TeamManual; boxed?: boolean }) {
+export function ManualToc({
+  manual,
+  boxed = false,
+  packKey = "",
+}: {
+  manual: TeamManual;
+  boxed?: boolean;
+  /** Remount scroll-spy when the active pack changes. */
+  packKey?: string;
+}) {
   const jumps = useMemo(() => manualJumps(manual, boxed), [manual, boxed]);
   const [active, setActive] = useState("#top");
   const [mounted, setMounted] = useState(false);
@@ -67,13 +94,10 @@ export function ManualToc({ manual, boxed = false }: { manual: TeamManual; boxed
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [jumps]);
+  }, [jumps, packKey]);
 
   return (
-    <nav
-      aria-label="On this manual"
-      className={STICKY_LOCAL_BAR}
-    >
+    <nav aria-label="On this manual" className={STICKY_LOCAL_BAR}>
       <ul className="pointer-events-auto flex gap-1.5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {jumps.map((j) => {
           const on = mounted && active === j.href;

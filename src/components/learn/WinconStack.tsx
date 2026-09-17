@@ -57,20 +57,24 @@ export function WinconStack({
   plan: ManualPlanBeat[];
   heading?: string;
   lede?: string;
-  id?: string;
+  /** Pass `false` when nested under ManualSection so the outer chapter owns the anchor. */
+  id?: string | false;
 }) {
   const beats = plan.filter((b) => b.title || b.play || b.goal);
   const [openId, setOpenId] = useState<string | null>(null);
 
   if (!beats.length) return null;
 
+  const sectionId = id === false ? undefined : id;
+  const Tag = sectionId ? "section" : "div";
+
   return (
     <MotionConfig reducedMotion="user">
-      <section id={id} className={`mt-10 ${MANUAL_SCROLL_MT}`}>
+      <Tag id={sectionId} className={sectionId ? `mt-10 ${MANUAL_SCROLL_MT}` : undefined}>
         {heading ? <h2 className="text-2xl font-semibold tracking-tight">{heading}</h2> : null}
         {lede ? <p className="mt-2 max-w-prose text-sm text-muted">{lede}</p> : null}
 
-        <ol className={`${heading || lede ? "mt-5" : "mt-6"} max-w-2xl list-none space-y-0`}>
+        <ol className={`${heading || lede ? "mt-5" : "mt-0"} max-w-2xl list-none space-y-0`}>
           {beats.map((beat, i) => {
             const stance = stanceFor(beat.title || "");
             const last = i === beats.length - 1;
@@ -164,7 +168,7 @@ export function WinconStack({
             );
           })}
         </ol>
-      </section>
+      </Tag>
     </MotionConfig>
   );
 }

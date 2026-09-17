@@ -38,20 +38,21 @@ export function ManualLineup({
 
   return (
     <section
-      id="box"
+      id="packages"
       className={`relative mt-10 max-w-3xl overflow-hidden rounded-[32px] border border-ink/20 bg-sunken shadow-[0_22px_60px_rgba(0,0,0,0.42)] ${MANUAL_SCROLL_MT}`}
       style={wash ? cssVars(wash.palette) : undefined}
     >
       <div className="relative p-5 sm:p-6">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight">Lineup</h2>
+            <h2 className="text-2xl font-semibold tracking-tight">Packages from the six</h2>
             <p className="mt-1 max-w-[48ch] text-sm text-muted">
-              Core is who the three is built around. Flex is the slot you swap after preview.
+              Core is who the three is built around. Flex is the slot you swap after preview. Each
+              pack is a bring you can cut from this six.
             </p>
           </div>
           <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
-            {coreRow.length} core · {flexRow.length} flex
+            {coreRow.length} core · {flexRow.length} flex · {packs.length} packs
           </p>
         </div>
 
@@ -98,7 +99,9 @@ export function ManualLineup({
                     }`}
                   >
                     <span className="block text-sm font-medium tracking-tight">{p.label}</span>
-                    {on ? <span className="mt-0.5 block max-w-[28ch] text-xs text-bg/70">{p.when}</span> : null}
+                    {on ? (
+                      <span className="mt-0.5 block max-w-[28ch] text-xs text-bg/70">{p.when}</span>
+                    ) : null}
                   </button>
                 </li>
               );

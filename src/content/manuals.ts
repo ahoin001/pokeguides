@@ -280,6 +280,18 @@ export function resolvePackStrategy(pack: ManualPack): ManualPackStrategy {
   };
 }
 
+/**
+ * Classroom field manual.
+ *
+ * Ownership layers (boxed manuals):
+ * - Manual (`box` / `roster` / `core` / construction / megaPool / evidence):
+ *   the registered six, sets authored once, and build thesis.
+ * - Pack (`slugs` / `strategy` / optional pilot·plan·flows·loops):
+ *   one preview bring of three and pack-specific gameplan when it differs.
+ * - Shared fallback: when a pack omits flows/loops/phases, `resolveManual`
+ *   inherits the team-level gameplan — UI must label that with
+ *   `packUsesSharedGameplan`.
+ */
 export type TeamManual = {
   id: string;
   title: string;
@@ -395,6 +407,92 @@ export function defaultPackId(manual: TeamManual): string | undefined {
     if (match) return match.id;
   }
   return packs[0]?.id;
+}
+
+/** Registered six + roster + packs + core — pack-first reading model. */
+export function isBoxedManual(manual: TeamManual): boolean {
+  return Boolean(manual.box?.length && manual.packs?.length && manual.roster?.length && manual.core);
+}
+
+/**
+ * True when this pack has no own flowchart/loops/phases and will inherit
+ * the parent manual's gameplan via resolveManual.
+ */
+export function packUsesSharedGameplan(manual: TeamManual, packId?: string | null): boolean {
+  const packs = packList(manual);
+  if (!packs.length) return false;
+  const pack = (packId ? packs.find((p) => p.id === packId) : undefined) ?? packs[0];
+  if (!pack) return false;
+  const hasOwn =
+    (pack.flows?.length ?? 0) > 0 ||
+    (pack.loops?.length ?? 0) > 0 ||
+    (pack.phases?.length ?? 0) > 0;
+  if (hasOwn) return false;
+  const parentHas =
+    (manual.flows?.length ?? 0) > 0 ||
+    (manual.loops?.length ?? 0) > 0 ||
+    (manual.phases?.length ?? 0) > 0;
+  return parentHas;
+}
+
+export function manualPackHref(id: string, packId?: string | null) {
+  if (!packId) return manualHref(id);
+  return `/manuals/${id}?pack=${encodeURIComponent(packId)}` as const;
+}
+
+export function validatePackId(manual: TeamManual, packId?: string | null): string | undefined {
+  const packs = packList(manual);
+  if (!packs.length) return undefined;
+  if (packId && packs.some((p) => p.id === packId)) return packId;
+  return defaultPackId(manual);
+}
+
+/** Prev/next within the same family (canonical shelf order). */
+export function siblingManuals(id: string): {
+  family: ManualFamilyId;
+  prev?: TeamManual;
+  next?: TeamManual;
+} {
+  const current = getCanonicalManual(id);
+  const family = current ? manualFamily(current) : "clock";
+  if (!current) return { family };
+  const peers = CANONICAL_MANUALS.filter((m) => manualFamily(m) === family);
+  const i = peers.findIndex((m) => m.id === id);
+  if (i < 0) return { family };
+  return {
+    family,
+    prev: i > 0 ? peers[i - 1] : undefined,
+    next: i < peers.length - 1 ? peers[i + 1] : undefined,
+  };
+}
+
+/**
+ * Related classroom manuals: prefer ≥2 shared box/bring slugs, then same family.
+ */
+export function relatedManuals(id: string, limit = 4): TeamManual[] {
+  const current = getCanonicalManual(id);
+  if (!current) return [];
+  const family = manualFamily(current);
+  const ours = new Set(
+    [...(current.box ?? []), ...current.slugs].filter((s): s is string => Boolean(s)),
+  );
+
+  return CANONICAL_MANUALS.filter((m) => m.id !== id)
+    .map((m) => {
+      const theirs = new Set(
+        [...(m.box ?? []), ...m.slugs].filter((s): s is string => Boolean(s)),
+      );
+      let shared = 0;
+      for (const slug of ours) {
+        if (theirs.has(slug)) shared += 1;
+      }
+      const sameFamily = manualFamily(m) === family;
+      return { m, shared, score: shared * 3 + (sameFamily ? 1 : 0) };
+    })
+    .filter((row) => row.shared >= 2 || row.score >= 1)
+    .sort((a, b) => b.score - a.score || a.m.title.localeCompare(b.m.title))
+    .slice(0, limit)
+    .map((row) => row.m);
 }
 
 export function playLines(howToPlay: string) {

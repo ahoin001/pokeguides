@@ -4,7 +4,6 @@ import { useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { CaretDown } from "@phosphor-icons/react";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
-import { MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
 
 export function ManualLead({
   thesis,
@@ -28,10 +27,9 @@ export function ManualLead({
   if (!thesis && !rule && !fail && !theory.length) return null;
 
   return (
-    <aside id="doctrine" className={`mt-6 max-w-3xl overflow-hidden rounded-[28px] border border-line bg-raised/40 ${MANUAL_SCROLL_MT}`}>
+    <aside className="max-w-3xl overflow-hidden rounded-[28px] border border-line bg-raised/40">
       <div className="px-5 py-4">
-        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-muted">Doctrine</p>
-        {thesis ? <p className="mt-2 text-xl font-semibold tracking-tight md:text-2xl">{thesis}</p> : null}
+        {thesis ? <p className="text-xl font-semibold tracking-tight md:text-2xl">{thesis}</p> : null}
         {lessons ? <div className="mt-3">{lessons}</div> : null}
       </div>
       {rule ? (

@@ -77,6 +77,9 @@ export function ManualNotes({ id, exclude }: { id: string; exclude?: string[] })
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
               <h2 className="text-2xl font-semibold tracking-tight">Your notes</h2>
+              <p className="mt-1 max-w-[48ch] text-sm text-muted">
+                Matchup cards and scratch lines for this manual — stays on this device.
+              </p>
               {notes.length ? (
                 <p className="mt-0.5 text-sm text-muted">
                   {notes.length} {notes.length === 1 ? "card" : "cards"}

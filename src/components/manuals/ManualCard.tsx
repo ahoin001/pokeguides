@@ -3,7 +3,15 @@ import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { ARCHETYPE_LABEL } from "@/content/archetypes";
-import { FAMILY_LESSON, MANUAL_FAMILY_LABEL, manualFamily, manualHref, packList, type TeamManual } from "@/content/manuals";
+import {
+  FAMILY_LESSON,
+  MANUAL_FAMILY_LABEL,
+  manualFamily,
+  manualHref,
+  manualPackHref,
+  packList,
+  type TeamManual,
+} from "@/content/manuals";
 
 export function ManualCard({
   manual,
@@ -19,53 +27,64 @@ export function ManualCard({
   const never = (manual.pilot?.fail ?? FAMILY_LESSON[manualFamily(manual)].commonFail).trim();
   const lead = manual.slots.find((s) => /lead/i.test(s.role))?.role.trim();
   const pickLine = never || lead;
-  const packCount = packList(manual).length;
+  const packs = packList(manual);
 
   return (
-    <Link
-      href={manualHref(manual.id)}
+    <article
       className="flex h-full flex-col rounded-[28px] border border-line bg-raised/50 p-5 transition hover:bg-raised"
       style={wash ? cssVars(wash.palette) : undefined}
     >
-      <div className="flex flex-wrap items-end gap-1.5">
-        {mons.map((p, i) =>
-          p ? (
-            <PokemonArt key={p.slug} slug={p.slug} src={p.artwork} name={p.name} size={manual.box?.length ? 48 : 64} />
-          ) : (
-            <span key={i} className="grid h-12 w-12 place-items-center rounded-2xl bg-white/5 text-xs text-muted">
-              —
+      <Link href={manualHref(manual.id)} className="min-w-0 flex-1">
+        <div className="flex flex-wrap items-end gap-1.5">
+          {mons.map((p, i) =>
+            p ? (
+              <PokemonArt key={p.slug} slug={p.slug} src={p.artwork} name={p.name} size={manual.box?.length ? 48 : 64} />
+            ) : (
+              <span key={i} className="grid h-12 w-12 place-items-center rounded-2xl bg-white/5 text-xs text-muted">
+                —
+              </span>
+            ),
+          )}
+        </div>
+        <p className="mt-4 text-xs text-muted">
+          {MANUAL_FAMILY_LABEL[manualFamily(manual)]} · {ARCHETYPE_LABEL[manual.archetype]}
+          {sourced === "local" ? " · Yours" : ""}
+        </p>
+        <h2 className="mt-1 text-xl font-semibold tracking-tight">{manual.title || "Untitled three"}</h2>
+        <p className="mt-2 text-sm text-muted">{manual.lede}</p>
+        {pickLine ? (
+          <p className="mt-3 text-sm leading-snug">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-[#f0c040]">
+              {never ? "Never" : "Lead"}
             </span>
-          ),
-        )}
-      </div>
-      <p className="mt-4 text-xs text-muted">
-        {MANUAL_FAMILY_LABEL[manualFamily(manual)]} · {ARCHETYPE_LABEL[manual.archetype]}
-        {sourced === "local" ? " · Yours" : ""}
-      </p>
-      <h2 className="mt-1 text-xl font-semibold tracking-tight">{manual.title || "Untitled three"}</h2>
-      <p className="mt-2 text-sm text-muted">{manual.lede}</p>
-      {packCount > 0 ? (
-        <p className="mt-2 text-xs text-muted">
-          {showSlugs.length}-box · {packCount} preview pack{packCount === 1 ? "" : "s"}
-        </p>
-      ) : null}
-      {pickLine ? (
-        <p className="mt-3 text-sm leading-snug">
-          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-[#f0c040]">
-            {never ? "Never" : "Lead"}
-          </span>
-          <span className="mt-0.5 block text-muted">{pickLine}</span>
-        </p>
-      ) : null}
-      {press.length ? (
-        <ul className="mt-3 flex flex-wrap gap-1.5">
-          {press.map((chip) => (
-            <li key={chip} className="rounded-full bg-white/5 px-2.5 py-0.5 text-xs text-muted">
-              {chip}
+            <span className="mt-0.5 block text-muted">{pickLine}</span>
+          </p>
+        ) : null}
+        {press.length ? (
+          <ul className="mt-3 flex flex-wrap gap-1.5">
+            {press.map((chip) => (
+              <li key={chip} className="rounded-full bg-white/5 px-2.5 py-0.5 text-xs text-muted">
+                {chip}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </Link>
+
+      {packs.length ? (
+        <ul className="mt-4 flex flex-wrap gap-1.5 border-t border-line/60 pt-3" aria-label="Preview packs">
+          {packs.map((pack) => (
+            <li key={pack.id}>
+              <Link
+                href={manualPackHref(manual.id, pack.id)}
+                className="inline-flex rounded-full border border-line bg-bg/40 px-2.5 py-1 text-xs font-medium text-muted transition hover:border-ink/40 hover:text-ink"
+              >
+                {pack.label}
+              </Link>
             </li>
           ))}
         </ul>
       ) : null}
-    </Link>
+    </article>
   );
 }

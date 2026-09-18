@@ -156,6 +156,16 @@ export function ManualSpotlight({
                     <p className="mt-2 max-w-[60ch] text-sm leading-relaxed text-muted">
                       {strategy.purpose}
                     </p>
+                    {strategy.mantra ? (
+                      <p className="mt-3 max-w-[56ch] text-sm font-medium leading-relaxed text-ink/90">
+                        {strategy.mantra}
+                      </p>
+                    ) : null}
+                    {strategy.contrast ? (
+                      <p className="mt-2 max-w-[60ch] text-[13px] leading-relaxed text-muted">
+                        {strategy.contrast}
+                      </p>
+                    ) : null}
                   </div>
                   <dl className="grid gap-0 sm:grid-cols-2 lg:grid-cols-4">
                     <Fact label="Saw" body={strategy.opponentPattern} />
@@ -176,7 +186,61 @@ export function ManualSpotlight({
                       {strategy.gamePlan}
                     </p>
                   ) : null}
+                  {strategy.defaultLead ? (
+                    <p className="border-t border-line/60 px-5 py-3 text-sm text-muted">
+                      <span className="font-medium text-ink">Default lead: </span>
+                      {getPokemon(strategy.defaultLead)?.name ?? strategy.defaultLead}
+                      {strategy.defaultLeadWhy ? ` — ${strategy.defaultLeadWhy}` : null}
+                    </p>
+                  ) : null}
+                  {strategy.preserveRule ? (
+                    <p className="border-t border-line/60 px-5 py-3 text-sm text-muted">
+                      <span className="font-medium text-ink">Preserve: </span>
+                      {strategy.preserveRule}
+                    </p>
+                  ) : null}
                 </div>
+
+                {(strategy.previewQuestions?.length || strategy.turnChecklist?.length) ? (
+                  <div className="grid gap-3 md:grid-cols-2">
+                    {strategy.previewQuestions?.length ? (
+                      <PilotList
+                        title="Preview questions"
+                        items={strategy.previewQuestions}
+                      />
+                    ) : null}
+                    {strategy.turnChecklist?.length ? (
+                      <PilotList
+                        title="5-second turn checklist"
+                        items={strategy.turnChecklist}
+                      />
+                    ) : null}
+                  </div>
+                ) : null}
+
+                {strategy.healthPriority?.length ? (
+                  <div>
+                    <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+                      Health priorities
+                    </p>
+                    <ul className="mt-3 grid gap-2 sm:grid-cols-3">
+                      {strategy.healthPriority.map((h) => {
+                        const mon = getPokemon(h.slug);
+                        return (
+                          <li
+                            key={h.slug}
+                            className="rounded-2xl border border-line/60 bg-raised/25 px-3 py-3"
+                          >
+                            <p className="text-sm font-semibold tracking-tight">
+                              {mon?.name ?? h.slug}
+                            </p>
+                            <p className="mt-1 text-[12px] leading-relaxed text-muted">{h.why}</p>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                ) : null}
 
                 <div>
                   <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
@@ -212,7 +276,7 @@ export function ManualSpotlight({
                                 {mon.name}
                               </span>
                               <span className="mt-0.5 block font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                                {role?.macro ?? slot.primaryJob ?? slot.role}
+                                {role?.primary ?? role?.macro ?? slot.primaryJob ?? slot.role}
                               </span>
                               {role?.micro ? (
                                 <span className="mt-1.5 line-clamp-2 block text-[12px] text-muted">
@@ -236,7 +300,10 @@ export function ManualSpotlight({
                       <div>
                         <p className="text-xl font-semibold tracking-tight">{focusMon.name}</p>
                         <p className="mt-1 text-sm text-muted">
-                          {focusRole?.micro ?? focusSlot.role}
+                          {focusRole?.primary ?? focusRole?.micro ?? focusSlot.role}
+                          {focusRole?.secondary ? (
+                            <span className="text-muted"> · {focusRole.secondary}</span>
+                          ) : null}
                         </p>
                       </div>
                       {focusRole?.threatens?.length ? (
@@ -252,6 +319,32 @@ export function ManualSpotlight({
                         </ul>
                       ) : null}
                     </div>
+                    {focusRole?.watch?.length ? (
+                      <ul className="border-b border-line/60 px-5 py-3">
+                        {focusRole.watch.map((w) => (
+                          <li key={w} className="text-sm leading-relaxed text-muted">
+                            <span className="font-medium text-ink/85">Watch: </span>
+                            {w}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                    {focusRole?.states?.length ? (
+                      <ul className="grid gap-0 border-b border-line/60 sm:grid-cols-3">
+                        {focusRole.states.map((st) => (
+                          <li
+                            key={st.id}
+                            className="border-t border-line/50 px-4 py-3 sm:border-t-0 sm:border-l sm:first:border-l-0"
+                          >
+                            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                              {st.label}
+                            </p>
+                            <p className="mt-1 text-[12px] text-muted">{st.when}</p>
+                            <p className="mt-1.5 text-sm font-medium leading-snug">{st.play}</p>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
                     <SlotCardBody slot={focusSlot} identity={false} />
                   </div>
                 ) : null}
@@ -323,6 +416,40 @@ export function ManualSpotlight({
 
                 {roles.length ? <RoleChain roles={roles} /> : null}
 
+                {pack.decisionRules?.length ? (
+                  <div>
+                    <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+                      Signature buttons
+                    </p>
+                    <ul className="mt-3 grid gap-3 md:grid-cols-3">
+                      {pack.decisionRules.map((rule) => (
+                        <li
+                          key={rule.id}
+                          className="rounded-[24px] border border-line/70 bg-raised/25 px-4 py-4"
+                        >
+                          <p className="text-sm font-semibold tracking-tight">{rule.title}</p>
+                          <p className="mt-2 text-[12px] leading-relaxed text-muted">
+                            <span className="font-medium text-ink/85">Ask: </span>
+                            {rule.ask}
+                          </p>
+                          <p className="mt-3 text-[12px] leading-relaxed text-ink/85">
+                            <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+                              Good{" "}
+                            </span>
+                            {rule.good}
+                          </p>
+                          <p className="mt-2 text-[12px] leading-relaxed text-muted">
+                            <span className="font-mono text-[10px] uppercase tracking-[0.12em]">
+                              Bad{" "}
+                            </span>
+                            {rule.bad}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+
                 <TeamCoverage
                   members={coverageMembers}
                   notes={coverageNotes}
@@ -346,6 +473,26 @@ export function ManualSpotlight({
         </div>
       </ManualSection>
     </MotionConfig>
+  );
+}
+
+function PilotList({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div className="rounded-[24px] border border-line/70 bg-raised/25 px-4 py-4">
+      <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+        {title}
+      </p>
+      <ol className="mt-3 space-y-2">
+        {items.map((item, i) => (
+          <li key={item} className="flex gap-3 text-sm leading-relaxed">
+            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/8 font-mono text-[10px] text-muted">
+              {i + 1}
+            </span>
+            <span className="text-ink/90">{item}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }
 

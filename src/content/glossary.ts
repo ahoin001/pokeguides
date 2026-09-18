@@ -10,6 +10,31 @@ export const TERMS: GlossaryTerm[] = [
   { t: "Trick Room", d: "Slowest Pokémon move first. Farigiraf can set it. Four turns including the click.", href: "/learn/field-moves" },
   { t: "Protect", d: "Priority +4. A scout and a Sucker Punch stall, not leftover farming.", href: "/learn/defense-moves" },
   {
+    t: "Destiny Bond",
+    d: "If they KO you while Bond is active, they faint too. Never finish into a known Bond — switch, status, or wait.",
+    href: "/learn/defense-moves",
+  },
+  {
+    t: "Perish Song",
+    d: "Shared faint countdown. Switch before count three or win the race first.",
+    href: "/learn/defense-moves",
+  },
+  {
+    t: "Cursed Body",
+    d: "Contact can Disable the move that just hit. Prefer non-contact coverage into Ghosts that carry it.",
+    href: "/learn/abilities",
+  },
+  {
+    t: "Armor Tail",
+    d: "Priority aimed at the user fails. Why Farigiraf ignores Fake Out on the Trick Room turn.",
+    href: "/learn/abilities",
+  },
+  {
+    t: "Flame Body",
+    d: "Contact may burn the attacker. Not Flash Fire — the hit lands; the tax is the burn.",
+    href: "/learn/abilities",
+  },
+  {
     t: "Miss",
     d: "Accuracy below 100% can fail even when the matchup is correct. Rain makes Thunder and Hurricane never miss.",
     href: "/learn/blank-turns",

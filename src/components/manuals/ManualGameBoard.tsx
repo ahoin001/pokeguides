@@ -6,6 +6,7 @@ import { DecisionTree } from "@/components/learn/DecisionTree";
 import { ManualLoopStrip } from "@/components/manuals/ManualLoopStrip";
 import { ManualSwitchStrip } from "@/components/manuals/ManualSwitchStrip";
 import { ManualSection } from "@/components/manuals/ManualSection";
+import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { flowsFor } from "@/content/classroom-flows";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
@@ -263,19 +264,35 @@ function StateMap({ states }: { states: ManualGameState[] }) {
         </p>
       </div>
       <ul className="grid gap-3 sm:grid-cols-2">
-        {states.map((s, i) => (
-          <li
-            key={s.id}
-            className="relative overflow-hidden rounded-[24px] border border-line/70 bg-raised/35 px-4 py-4"
-          >
-            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
-              State {String(i + 1).padStart(2, "0")}
-            </p>
-            <p className="mt-2 text-lg font-semibold tracking-tight">{s.label}</p>
-            <p className="mt-1 text-[12px] text-muted">{s.trigger}</p>
-            <p className="mt-3 text-sm leading-relaxed text-ink/90">{s.play}</p>
-          </li>
-        ))}
+        {states.map((s, i) => {
+          const mon = s.slug ? getPokemon(s.slug) : undefined;
+          return (
+            <li
+              key={s.id}
+              className="relative overflow-hidden rounded-[24px] border border-line/70 bg-raised/35 px-4 py-4"
+              style={mon ? cssVars(mon.palette) : undefined}
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">
+                    State {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <p className="mt-2 text-lg font-semibold tracking-tight">{s.label}</p>
+                </div>
+                {mon ? (
+                  <PokemonArt
+                    slug={mon.slug}
+                    src={mon.sprite || mon.artwork}
+                    name={mon.name}
+                    size={40}
+                  />
+                ) : null}
+              </div>
+              <p className="mt-1 text-[12px] text-muted">{s.trigger}</p>
+              <p className="mt-3 text-sm leading-relaxed text-ink/90">{s.play}</p>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

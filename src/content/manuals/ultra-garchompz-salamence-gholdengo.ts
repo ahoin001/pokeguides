@@ -925,152 +925,565 @@ const PACKS: ManualPack[] = [
   },
   {
     id: "balanced-pressure",
-    label: "Balanced pressure",
-    when: "Preview does not scream a specific hole — default three.",
-    identity: "Physical Mega + Fairy stabilizer + special setup glue.",
+    label: "Control the board",
+    when: "Preview is unclear — default / blind balanced bring.",
+    identity:
+      "Salamence controls physical threats → Primarina stabilizes and punishes overcommitment → Gholdengo exploits passive turns as the special wincon.",
     slugs: ["salamence-mega", "primarina", "gholdengo"],
     megaChoice: "salamence-mega",
+    philosophy:
+      "You are not trying to overwhelm immediately like Package A, and not forcing a three-way setup dilemma like Package B. Make good trades, keep defensive options, and gradually make one of the three impossible to stop.",
+    pilot: {
+      thesis:
+        "Stabilize → gain information → improve positioning → apply pressure → identify the endgame.",
+      rule: "Every turn: who has positional advantage right now — and which of my three currently has the best remaining endgame?",
+      fail: "Sacrificing options for chip like Package A, greedy setup into a KO, or fighting a dedicated answer instead of rotating the triangle.",
+    },
     strategy: {
-      opponentPattern: "Standard balance / unclear preview",
+      opponentPattern: "Standard balance / unclear preview / midladder that does not scream a specific hole",
       bring: ["salamence-mega", "primarina", "gholdengo"],
-      purpose: "Controlled pressure with typing, Intimidate, Encore, and dual setup.",
-      targets: ["Midladder balance", "Dragon stacks", "Status + physical mixes"],
-      refuses: ["Hard Fairy + Fighting that blanks Mence and Gholdengo together"],
-      winCondition: "Mence or Gholdengo setup lands while Primarina Encores the answer.",
-      gamePlan: "Physical pressure → Stabilizer / Encore → Special setup",
+      purpose:
+        "Control the matchup until one of your three can take over. Tools for many situations without needing a hard read of how the battle unfolds.",
+      targets: [
+        "Midladder balance",
+        "Dragon stacks",
+        "Status + physical mixes",
+        "Teams without a blanket answer to Mence + Prima + Gholdengo",
+      ],
+      refuses: [
+        "Hard Fairy + Fighting that blanks Mence and Gholdengo together",
+        "Dedicated stoppers for all three with no rotation to punish",
+      ],
+      winCondition:
+        "One of the three loses its remaining checks — then stop playing balanced and convert that mon into the win.",
+      gamePlan: "Physical control → Matchup stabilize / Encore → Special pressure → Find the wincon",
+      mantra:
+        "Stabilize → gain information → improve positioning → apply pressure → identify the endgame.",
+      contrast:
+        "Package A (Chomp / Rilla / Gambit) breaks them down. Package B (Mence / Ghold / Gambit) exhausts their answers. Package C controls until one of three takes over — the blind/default balanced bring.",
+      defaultLead: "salamence-mega",
+      defaultLeadWhy:
+        "Intimidate gives information and defensive flexibility immediately. You do not have to commit to offense — you observe.",
+      previewQuestions: [
+        "What on their team hits me physically?",
+        "What hits me specially?",
+        "What can set up?",
+        "What is their best answer to each of my three?",
+      ],
+      turnChecklist: [
+        "What can kill my active Pokémon?",
+        "What is their safest switch?",
+        "Do I have a free setup turn?",
+        "Do I need to preserve this Pokémon?",
+        "Which of my three currently has the best endgame?",
+      ],
+      healthPriority: [
+        {
+          slug: "salamence-mega",
+          why: "Intimidate opportunities, Dragon Dance, Roost, and physical checking.",
+        },
+        {
+          slug: "primarina",
+          why: "Stabilizer that must switch into threats; Sitrus longevity; Aqua Jet late.",
+        },
+        {
+          slug: "gholdengo",
+          why: "Needs setup windows; Recover keeps the special wincon live — do not chip it for free.",
+        },
+      ],
+      preserveRule:
+        "Package A is comfortable trading Chomp after it breaks. Package C prefers keeping all three healthy enough that you retain the ability to choose your response.",
       megaChoice: "salamence-mega",
     },
     roles: [
       {
         slug: "salamence-mega",
-        macro: "Pressure",
-        micro: "Intimidate and DD physical threat",
-        gives: "Mega wincon",
+        macro: "Physical control",
+        micro: "Intimidate tax → evaluate → DD or pivot",
+        primary: "Physical pressure / setup",
+        secondary: "Intimidate + Ground immunity + Roost",
+        gives: "Mega wincon + scout lead",
+        threatens: ["Physical attackers", "Speed via DD", "Ground coverage", "Long games via Roost"],
+        watch: [
+          "Do not DD into a special attacker Intimidate does not touch",
+          "Fairy answers — rotate to Primarina, do not stubbornly stay",
+        ],
+        states: [
+          {
+            id: "mence-defend",
+            label: "Defend",
+            when: "Physical threat is on the field and damage is unclear",
+            play: "Intimidate / Roost — evaluate before committing.",
+          },
+          {
+            id: "mence-pressure",
+            label: "Pressure",
+            when: "You can attack or force a switch without dying",
+            play: "Attack / Earthquake — force the answer.",
+          },
+          {
+            id: "mence-sweep",
+            label: "Sweep",
+            when: "They cannot KO after Intimidate and physical checks are soft",
+            play: "Dragon Dance → Double-Edge / EQ.",
+          },
+        ],
       },
       {
         slug: "primarina",
-        macro: "Stabilize",
-        micro: "Moonblast Dragons; Encore bad clicks",
-        gives: "Fairy Water glue",
+        macro: "Matchup control",
+        micro: "Reset button — Encore commitments, Fairy/Water sit, Aqua Jet cleans",
+        primary: "Defensive stabilizer",
+        secondary: "Fairy pressure + Encore + priority",
+        gives: "Fairy Water glue + disruption",
+        threatens: ["Dragons", "Setup spam", "Protect loops", "Chipped fast foes"],
+        watch: [
+          "Encore damaging moves that they happily repeat",
+          "Do not throw Primarina away — it is the reset button for the whole three",
+        ],
+        states: [
+          {
+            id: "prima-check",
+            label: "Check",
+            when: "Salamence (or Gholdengo) faces an awkward matchup",
+            play: "Switch in safely — Moonblast / Aria as needed.",
+          },
+          {
+            id: "prima-punish",
+            label: "Punish",
+            when: "They click setup, Protect, or another predictable non-attack",
+            play: "Encore — lock the commitment, then exploit.",
+          },
+          {
+            id: "prima-clean",
+            label: "Clean",
+            when: "Foes are chipped and speed races matter",
+            play: "Aqua Jet / Moonblast — convert chip into KOs.",
+          },
+        ],
       },
       {
         slug: "gholdengo",
-        macro: "Setup",
-        micro: "Nasty Plot Steel/Ghost pressure",
-        gives: "Special wincon + Balloon",
+        macro: "Special control",
+        micro: "Pressure release — NP when they go passive",
+        primary: "Special breaker / setup",
+        secondary: "Status immunity + Balloon Ground sit",
+        gives: "Special wincon + Good as Gold",
+        threatens: ["Passive play", "Status cores", "Steel STAB", "Ghost STAB"],
+        watch: [
+          "Do not NP into a faster KO",
+          "When threatened, rotate to Primarina — Gholdengo can return later",
+        ],
+        states: [
+          {
+            id: "ghold-pivot",
+            label: "Pivot",
+            when: "Opponent became passive or does not threaten KO",
+            play: "Enter safely — Recover if Balloon still buys time.",
+          },
+          {
+            id: "ghold-setup",
+            label: "Setup",
+            when: "Free turn exists",
+            play: "Nasty Plot → force the response.",
+          },
+          {
+            id: "ghold-clean",
+            label: "Clean",
+            when: "+2 and checks are gone or soft",
+            play: "Make It Rain / Shadow Ball — close.",
+          },
+        ],
       },
     ],
     coverageNotes: [
       {
         title: "Ground answers",
-        body: "Flying Mence + Balloon Gholdengo; Primarina still takes EQ after.",
+        body: "Flying Mence + Balloon Gholdengo; Primarina still takes EQ after Balloon pops.",
       },
       {
         title: "Dragon insurance",
         body: "Primarina Moonblast is why this three sits Dragons without Kingambit.",
       },
+      {
+        title: "Priority gap vs Package A",
+        body: "Aqua Jet is your late priority — chip conversion matters more here than Glide / Sucker.",
+        watch: "Fast healthy revenge",
+      },
+    ],
+    decisionRules: [
+      {
+        id: "dd",
+        title: "When to Dragon Dance",
+        ask: "Did Intimidate actually make their damage manageable — and can they still KO?",
+        good: "Physical attacker → Intimidate → damage manageable → they cannot KO → Dragon Dance.",
+        bad: "Strong special attacker → Intimidate does nothing → they threaten huge damage → DD into a KO.",
+      },
+      {
+        id: "encore",
+        title: "When to Encore",
+        ask: "Did they just give me a move that becomes terrible if repeated?",
+        good: "Dragon Dance / Swords Dance / Nasty Plot / Protect / Substitute → Encore → they are committed → exploit.",
+        bad: "Damaging move → Encore → they keep attacking → you gained little.",
+      },
+      {
+        id: "np",
+        title: "When to Nasty Plot",
+        ask: "Do I have a setup opportunity — or only the setup move?",
+        good: "Opponent passive / cannot threaten KO → Nasty Plot → force response.",
+        bad: "Faster attacker can KO → NP into a KO.",
+      },
+    ],
+    gameStates: [
+      {
+        id: "scout-pressure",
+        label: "Scout → pressure",
+        trigger: "Salamence just Intimidated.",
+        play: "Evaluate their move. Stay and pressure if safe; Primarina if the matchup is awkward.",
+        slug: "salamence-mega",
+      },
+      {
+        id: "reset",
+        label: "Reset button",
+        trigger: "Active mon faces an unfavorable matchup.",
+        play: "Ask: does Primarina make this simpler? If yes, go Primarina.",
+        slug: "primarina",
+      },
+      {
+        id: "pressure-valve",
+        label: "Pressure valve",
+        trigger: "Opponent went passive or cannot threaten Gholdengo.",
+        play: "Gholdengo enters → look for Nasty Plot.",
+        slug: "gholdengo",
+      },
+      {
+        id: "triangle",
+        label: "Decision triangle",
+        trigger: "One mon is uncomfortable.",
+        play: "Rotate to another corner — do not force one mon to do everything.",
+      },
+      {
+        id: "wincon-ask",
+        label: "Who is my wincon?",
+        trigger: "Midgame — checks are disappearing.",
+        play: "Preserve the mon with the fewest remaining checks; remove those checks; convert.",
+      },
+      {
+        id: "momentum-loss",
+        label: "Regain momentum",
+        trigger: "Opponent has momentum.",
+        play: "Primarina stabilize → Salamence physical pressure → Gholdengo special pressure.",
+      },
+    ],
+    cheatSheet: [
+      {
+        situation: "Physical attacker appears",
+        thought: "Salamence / Intimidate",
+      },
+      {
+        situation: "Salamence gets an unfavorable matchup",
+        thought: "Primarina",
+      },
+      {
+        situation: "Opponent uses predictable setup / Protect",
+        thought: "Encore",
+      },
+      {
+        situation: "Opponent is passive",
+        thought: "Gholdengo",
+      },
+      {
+        situation: "Gholdengo gets a free turn",
+        thought: "Nasty Plot",
+      },
+      {
+        situation: "Opponent is weakened",
+        thought: "Aqua Jet can convert damage into KOs",
+      },
+      {
+        situation: "You don't know what they'll do",
+        thought: "Preserve positioning — do not overpredict",
+      },
+      {
+        situation: "One Pokémon's checks are disappearing",
+        thought: "That Pokémon becomes your win condition",
+      },
+      {
+        situation: "Your active is threatened",
+        thought: "Don't stay just because you want setup",
+      },
+      {
+        situation: "You're ahead",
+        thought: "Preserve three-way flexibility",
+      },
+      {
+        situation: "You're behind",
+        thought: "Look for Encore / setup / matchup reversal",
+      },
+    ],
+    plan: [
+      {
+        title: "Preview map",
+        goal: "Build a matchup map — not just a lead",
+        play: "List physical threats, special threats, setup threats, and their best answer to each of your three.",
+        next: "Choose lead",
+      },
+      {
+        title: "Lead",
+        goal: "Open with information",
+        play: "Default Salamence unless preview screams Primarina (Dragon/Fighting) or Gholdengo (status/Fairy).",
+      },
+      {
+        title: "Mid",
+        goal: "Force commitments, learn structure",
+        play: "Scout → pressure → Primarina reset → Gholdengo valve. Every switch teaches item, speed, and preferred answers.",
+      },
+      {
+        title: "Late",
+        goal: "Convert the live wincon",
+        play: "Count remaining checks. Boost or Aqua Jet the mon whose answers are gone — stop playing balanced.",
+      },
     ],
     flows: [
-      macroFlow("bp", [
-        {
-          title: "Pressure",
-          when: "Physical side is open",
-          then: "Salamence Intimidate / DD.",
-        },
-        {
-          title: "Control",
-          when: "They click setup or Protect",
-          then: "Primarina Encore or Moonblast.",
-        },
-        {
-          title: "Finish",
-          when: "Special wall or Fairy appears",
-          then: "Gholdengo NP into Make It Rain.",
-        },
-      ]),
-      phaseFlow("lead", "Lead", "Default: tax or Fairy sit.", [
+      {
+        id: "macro",
+        title: "Control the board",
+        lede: "Preview map → stabilize → force responses → learn structure → find the wincon → clean.",
+        forks: [
+          {
+            id: "bp-preview",
+            when: "Team preview",
+            then: "Identify physical attackers, special attackers, setup threats, and their answers to each of your three.",
+            forks: [
+              {
+                id: "bp-lead",
+                when: "Choose lead",
+                then: "Default Salamence for Intimidate scouting unless preview forces Prima or Gholdengo.",
+                forks: [
+                  {
+                    id: "bp-stabilize",
+                    when: "Board opened",
+                    then: "Create a good switch, apply pressure, then ask who has positional edge.",
+                    forks: [
+                      {
+                        id: "bp-pressure-fork",
+                        when: "Pressure available",
+                        then: "Mence DD, Primarina Encore, or Gholdengo NP — only if the turn is free.",
+                        forks: [
+                          {
+                            id: "bp-response",
+                            when: "Opponent responds",
+                            then: "Maintain favorable positioning. Update the matchup map.",
+                            forks: [
+                              {
+                                id: "bp-wincon",
+                                when: "One mon has the fewest remaining checks",
+                                then: "Preserve it, remove those checks, convert — stop rotating for balance.",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      phaseFlow("lead", "Lead", "Default Salamence — Intimidate first, commit second.", [
         {
           id: "bp-lead-mence",
-          when: "Physical or neutral lead",
-          then: "Lead Salamence.",
+          when: "Physical or neutral lead — or unclear",
+          then: "Lead Salamence. Intimidate, then evaluate before DD.",
           send: "salamence-mega",
+          forks: [
+            {
+              id: "bp-lead-phys",
+              when: "They led a physical attacker",
+              then: "Evaluate damage. Safe DD if they cannot KO; else attack or switch.",
+              move: "Dragon Dance",
+            },
+            {
+              id: "bp-lead-spec",
+              when: "They led a special attacker",
+              then: "Intimidate does little — Primarina often simplifies.",
+              send: "primarina",
+            },
+            {
+              id: "bp-lead-passive",
+              when: "They led a passive Pokémon",
+              then: "Consider DD if free; otherwise stay flexible.",
+              move: "Dragon Dance",
+            },
+          ],
         },
         {
           id: "bp-lead-prima",
           when: "Dragon or Fighting lead",
-          then: "Lead Primarina.",
+          then: "Lead Primarina — Moonblast / stabilize immediately.",
           send: "primarina",
           move: "Moonblast",
         },
         {
           id: "bp-lead-ghold",
           when: "Status or Fairy lead",
-          then: "Lead Gholdengo.",
+          then: "Lead Gholdengo — Good as Gold / special pressure.",
           send: "gholdengo",
         },
       ]),
-      phaseFlow("mid", "Mid", "Encore the commitment, then setup.", [
+      phaseFlow("mid", "Mid", "Triangle rotation — reset, then pressure.", [
+        {
+          id: "bp-mid-scout",
+          when: "Salamence is active after Intimidate",
+          then: "Can Mence stay? If yes, pressure or DD. If no, Primarina.",
+          send: "salamence-mega",
+          forks: [
+            {
+              id: "bp-mid-stay",
+              when: "Matchup is fine",
+              then: "DD if free, otherwise attack.",
+              move: "Dragon Dance",
+            },
+            {
+              id: "bp-mid-reset",
+              when: "Matchup is awkward (e.g. Fairy)",
+              then: "Primarina — does this make the board simpler?",
+              send: "primarina",
+            },
+          ],
+        },
         {
           id: "bp-mid-encore",
-          when: "They Protect or DD",
-          then: "Encore.",
+          when: "They Protect or set up",
+          then: "Encore only if the lock creates board advantage.",
           move: "Encore",
+          send: "primarina",
+          forks: [
+            {
+              id: "bp-mid-encore-exploit",
+              when: "They are locked",
+              then: "Salamence DD or Gholdengo NP on the free turn.",
+            },
+          ],
+        },
+        {
+          id: "bp-mid-valve",
+          when: "Opponent went passive or soft into Steel/Ghost",
+          then: "Gholdengo — can I force them to react? Look for NP.",
+          send: "gholdengo",
+          move: "Nasty Plot",
+        },
+        {
+          id: "bp-mid-return",
+          when: "Gholdengo is threatened",
+          then: "Primarina — do not force Gholdengo to stay. Learn their answer, return later.",
           send: "primarina",
         },
         {
-          id: "bp-mid-dd",
-          when: "Encore locked a soft move",
-          then: "Salamence Dragon Dance.",
+          id: "bp-mid-steel",
+          when: "Passive Steel blanks Primarina",
+          then: "Gholdengo NP into Make It Rain / Shadow Ball.",
+          send: "gholdengo",
+          move: "Nasty Plot",
+        },
+      ]),
+      phaseFlow("late", "Late", "Count remaining checks — convert the live wincon.", [
+        {
+          id: "bp-late-mence",
+          when: "Salamence checks are gone or soft",
+          then: "Preserve Mence → Dragon Dance → clean.",
           move: "Dragon Dance",
           send: "salamence-mega",
         },
         {
-          id: "bp-mid-recover",
-          when: "Balloon still up and they chip",
-          then: "Gholdengo Recover, then NP.",
-          move: "Recover",
-          send: "gholdengo",
-        },
-      ]),
-      phaseFlow("late", "Late", "Close with the live wincon.", [
-        {
-          id: "bp-late-de",
-          when: "Mence is boosted",
-          then: "Double-Edge.",
-          move: "Double-Edge",
-          send: "salamence-mega",
-        },
-        {
-          id: "bp-late-mir",
-          when: "Gholdengo is boosted",
-          then: "Make It Rain.",
-          move: "Make It Rain",
+          id: "bp-late-ghold",
+          when: "Gholdengo checks are gone",
+          then: "Preserve Gholdengo → Nasty Plot → Make It Rain.",
+          move: "Nasty Plot",
           send: "gholdengo",
         },
         {
           id: "bp-late-jet",
-          when: "Fast foe is chipped",
-          then: "Aqua Jet.",
+          when: "Board is chipped and speed races matter",
+          then: "Primarina Aqua Jet / Moonblast — convert chip into KOs.",
           move: "Aqua Jet",
           send: "primarina",
         },
       ]),
+      {
+        id: "safe-hierarchy",
+        title: "When unsure",
+        lede: "Safe-move hierarchy — avoid losing to overprediction.",
+        forks: [
+          {
+            id: "bp-safe-ko",
+            when: "Can I get a KO?",
+            then: "Usually take it.",
+            forks: [
+              {
+                id: "bp-safe-setup",
+                when: "No KO — can I set up safely?",
+                then: "Consider DD / NP / Encore.",
+                forks: [
+                  {
+                    id: "bp-safe-switch",
+                    when: "No free setup — can I make a safe switch?",
+                    then: "Preserve structure.",
+                    forks: [
+                      {
+                        id: "bp-safe-info",
+                        when: "Still unsure",
+                        then: "Gather information (positioning / Encore). High-risk prediction is last.",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
     ],
     loops: [
       {
-        title: "Encore → DD",
-        body: "Primarina Encore → Salamence DD on the locked turn.",
+        title: "Scout → pressure",
+        body: "Salamence Intimidate → evaluate their move → stay and pressure if safe, or Primarina if not. Repeat: who has positional advantage?",
       },
       {
-        title: "Fairy pivot",
-        body: "Moonblast the Dragon → Gholdengo NP on the Fairy answer.",
+        title: "Three-step cycle",
+        body: "If when: Mence applies physical pressure. When: they bring special/anti-Mence. Then: Primarina stabilizes. When: they become predictable. Then: Gholdengo Nasty Plot. The cycle can reverse.",
       },
       {
-        title: "Balloon sit",
-        body: "Gholdengo Recover on Ground until Balloon pops, then rotate Mence.",
+        title: "Encore → exploit",
+        body: "If when: they click setup or Protect. Then: Encore only if the lock is terrible for them. Then: DD or NP on the free turn.",
+      },
+      {
+        title: "Gholdengo → Primarina return",
+        body: "If when: Gholdengo is threatened. Then: Primarina. Their response reveals information — Gholdengo returns later. Do not force one linear plan.",
+      },
+      {
+        title: "Force commitment",
+        body: "Make a safe positioning play → they respond and commit → choose the mon that exploits that commitment → repeat.",
+      },
+      {
+        title: "Information loop",
+        body: "Every turn updates speed, damage, and switch info. By turns 5–7 you should know items, speed relations, preferred switches, and emergency checks.",
       },
     ],
-    hazards: [],
+    hazards: [
+      {
+        title: "Do not sacrifice options",
+        body: "Healthy three-way flexibility is the package's resource. Chip trades that delete a rotation path are Package A thinking.",
+        rule: "Preserve the ability to choose your response.",
+      },
+      {
+        title: "Setup ≠ opportunity",
+        body: "Having Dragon Dance or Nasty Plot is not the same as having a free turn to click it.",
+        watch: "Greedy DD / NP into KO",
+      },
+    ],
   },
   {
     id: "anti-ground",

@@ -146,6 +146,12 @@ export type ManualPilot = {
   fail: string;
 };
 
+/** Why this mon's HP is precious in this package. */
+export type ManualHealthNote = {
+  slug: string;
+  why: string;
+};
+
 /**
  * First-class preview counter-plan: identify what their six bullies,
  * then bring the three that bully that structure back.
@@ -165,12 +171,39 @@ export type ManualPackStrategy = {
   winCondition: string;
   /** Short chain: Break → Control → Finish. */
   gamePlan?: string;
+  /** One-line mantra a new pilot can recite mid-game. */
+  mantra?: string;
+  /** How this pack differs from sibling packs on the same six. */
+  contrast?: string;
+  /** Default lead slug when preview is unclear. */
+  defaultLead?: string;
+  /** Why that lead is the soft default. */
+  defaultLeadWhy?: string;
+  /** Preview questions before locking the bring / lead. */
+  previewQuestions?: string[];
+  /** Per-turn checklist (keep short — 5 lines max). */
+  turnChecklist?: string[];
+  /** Which HP pools matter most and why. */
+  healthPriority?: ManualHealthNote[];
+  /** Core preservation rule (e.g. do not trade options like Package A). */
+  preserveRule?: string;
   /** Preferred Mega for this bring when the six has multiple stones. */
   megaChoice?: string;
   /** Acceptable Mega options when preview still leaves ambiguity. */
   megaOptions?: string[];
   /** Which mode of a multi-mode species this pack wants (e.g. garchomp sash). */
   winconMode?: string;
+};
+
+/**
+ * Operating mode for one mon inside a pack (Defend / Pressure / Sweep).
+ * Lets a new pilot ask "which state am I in?" instead of memorizing lines.
+ */
+export type ManualMonState = {
+  id: string;
+  label: string;
+  when: string;
+  play: string;
 };
 
 /** Per-mon job inside one preview package. */
@@ -180,10 +213,18 @@ export type ManualPackRole = {
   macro: string;
   /** One-line micro job in this bring. */
   micro: string;
+  /** Explicit primary role label (e.g. "Physical pressure / setup"). */
+  primary?: string;
+  /** Explicit secondary role label (e.g. "Intimidate + Roost + Ground immunity"). */
+  secondary?: string;
   /** What this mon uniquely gives the package. */
   gives?: string;
   /** What this mon's setup / presence threatens (short chips). */
   threatens?: string[];
+  /** What to be wary of while piloting this mon in this pack. */
+  watch?: string[];
+  /** Named states this mon cycles through mid-game. */
+  states?: ManualMonState[];
 };
 
 export type ManualCoverageNote = {
@@ -204,6 +245,21 @@ export type ManualGameState = {
   label: string;
   trigger: string;
   play: string;
+  /** Optional mon this state is about. */
+  slug?: string;
+};
+
+/**
+ * Good/bad call for a signature button (DD, NP, Encore).
+ * New players need the ask, not just "press the setup move."
+ */
+export type ManualDecisionRule = {
+  id: string;
+  title: string;
+  /** The real question before clicking. */
+  ask: string;
+  good: string;
+  bad: string;
 };
 
 /** One preview bring of three from the registered six. */
@@ -223,6 +279,8 @@ export type ManualPack = {
   cheatSheet?: ManualCheatRow[];
   /** High-level states the pilot should recognize mid-game. */
   gameStates?: ManualGameState[];
+  /** Signature button rules — when the click is free vs suicide. */
+  decisionRules?: ManualDecisionRule[];
   /** Preferred Mega stone / species for this pack (when the six carries several). */
   megaChoice?: string;
   /** Acceptable Mega options left ambiguous until mid-preview. */

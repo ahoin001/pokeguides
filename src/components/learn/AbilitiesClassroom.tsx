@@ -6,7 +6,7 @@ import {
 } from "@/components/learn/ClassroomChrome";
 import type { Lesson } from "@/content/curriculum";
 
-const CALLOUT = new Set(["Disguise", "Multiscale", "Unaware"]);
+const CALLOUT = new Set(["Disguise", "Multiscale", "Unaware", "Cursed Body", "Armor Tail"]);
 
 export function AbilitiesClassroom({ lesson }: { lesson: Lesson }) {
   return (

@@ -39,12 +39,12 @@ const SHEET_LEDES: Record<MoveSheetSlug, { rulesTitle: string; rulesLede: string
     rulesLede: "Hard switch donates a hit. Pivot when stay and swap both need an answer.",
   },
   "defense-moves": {
-    rulesTitle: "Deny the turn",
-    rulesLede: "Protect is a question. Encore locks a mistake. Punish the shield — do not feed it.",
+    rulesTitle: "Denial reference",
+    rulesLede: "Each move: what it does, when they click it, how you counter it, and who often carries it.",
   },
   "blank-turns": {
     rulesTitle: "Why the hit failed",
-    rulesLede: "Miss, Protect, type 0×, ability, or item — name the blank before you click. Free turns win games.",
+    rulesLede: "Miss, Protect, type 0×, ability, or item — name the blank, counter it, and know the faces.",
   },
 };
 
@@ -138,7 +138,7 @@ function MoveVerb({ beat }: { beat: LessonBeat }) {
               >
                 <span
                   className={`font-mono text-[11px] font-semibold uppercase tracking-[0.1em] ${
-                    row.label === "Answer" ? "text-ink" : "text-muted"
+                    row.label === "Counter" || row.label === "Answer" ? "text-ink" : "text-muted"
                   }`}
                 >
                   {row.label}
@@ -154,7 +154,7 @@ function MoveVerb({ beat }: { beat: LessonBeat }) {
         {users?.length ? (
           <div className="mt-6">
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
-              Common in ranked
+              Common faces
             </p>
             <ChipRow examples={users} />
           </div>

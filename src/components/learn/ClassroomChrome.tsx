@@ -162,7 +162,11 @@ export function StrategyBeat({ beat, flip }: { beat: LessonBeat; flip?: boolean 
                   i > 0 ? "border-t border-line" : ""
                 } bg-raised/40`}
               >
-                <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.1em] text-muted">
+                <span
+                  className={`font-mono text-[11px] font-semibold uppercase tracking-[0.1em] ${
+                    row.label === "Counter" || row.label === "Answer" ? "text-ink" : "text-muted"
+                  }`}
+                >
                   {row.label}
                 </span>
                 <span className="text-sm leading-snug text-ink">{row.detail}</span>
@@ -175,7 +179,7 @@ export function StrategyBeat({ beat, flip }: { beat: LessonBeat; flip?: boolean 
         {beat.examples?.length ? (
           <div className="mt-4">
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
-              Look out for
+              Common faces
             </p>
             <ChipRow examples={beat.examples} />
           </div>
@@ -199,11 +203,22 @@ export function CalloutBeat({ beat }: { beat: LessonBeat }) {
           <h2 className="text-2xl font-semibold tracking-tight">{beat.title}</h2>
           <p className="mt-3 max-w-[54ch] text-[17px] leading-relaxed text-muted">{beat.body}</p>
           {beat.rows?.length ? (
-            <ul className="mt-5 space-y-2">
-              {beat.rows.map((row) => (
-                <li key={row.label} className="text-sm">
-                  <span className="font-medium tracking-tight">{row.label}. </span>
-                  <span className="text-muted">{row.detail}</span>
+            <ul className="mt-5 overflow-hidden rounded-2xl border border-line">
+              {beat.rows.map((row, i) => (
+                <li
+                  key={row.label}
+                  className={`grid gap-1 px-4 py-3 sm:grid-cols-[7.5rem_1fr] sm:gap-3 ${
+                    i > 0 ? "border-t border-line" : ""
+                  } bg-raised/40`}
+                >
+                  <span
+                    className={`font-mono text-[11px] font-semibold uppercase tracking-[0.1em] ${
+                      row.label === "Counter" || row.label === "Answer" ? "text-ink" : "text-muted"
+                    }`}
+                  >
+                    {row.label}
+                  </span>
+                  <span className="text-sm leading-snug text-ink">{row.detail}</span>
                 </li>
               ))}
             </ul>
@@ -212,7 +227,7 @@ export function CalloutBeat({ beat }: { beat: LessonBeat }) {
           {beat.examples?.length ? (
             <div className="mt-4">
               <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
-                Look out for
+                Common faces
               </p>
               <ChipRow examples={beat.examples} />
             </div>

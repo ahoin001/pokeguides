@@ -14,8 +14,8 @@ export function AbilitiesClassroom({ lesson }: { lesson: Lesson }) {
       <ClassroomLead lesson={lesson} />
 
       <RulesGrid
-        title="Ability jobs on a three"
-        lede="Learn the ability first. Faces below are who packs it in ranked — not the definition."
+        title="Ability reference"
+        lede="Each ability below: what it does, how you counter it, and which faces often carry it in ranked."
         rules={lesson.rules ?? []}
       />
 

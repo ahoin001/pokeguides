@@ -257,6 +257,7 @@ const PACKS: ManualPack[] = [
     identity: "Garchomp breaks → Rillaboom controls → Kingambit finishes.",
     slugs: ["garchomp-mega-z", "rillaboom", "kingambit"],
     megaChoice: "garchomp-mega-z",
+    endgameIds: ["garchomp", "kingambit-clean"],
     strategy: {
       opponentPattern: "Frail offense / speed cores / soft Ground-Water without a Chomp answer",
       bring: ["garchomp-mega-z", "rillaboom", "kingambit"],
@@ -408,6 +409,7 @@ const PACKS: ManualPack[] = [
     identity: "Create multiple setup threats → force their answer → exploit the commitment.",
     slugs: ["salamence-mega", "gholdengo", "kingambit"],
     megaChoice: "salamence-mega",
+    endgameIds: ["salamence-dd", "kingambit-clean"],
     philosophy:
       "Package A damages progressively. Package B exhausts answers. You are not solving one problem three times — they are.",
     pilot: {
@@ -931,6 +933,7 @@ const PACKS: ManualPack[] = [
       "Salamence controls physical threats → Primarina stabilizes and punishes overcommitment → Gholdengo exploits passive turns as the special wincon.",
     slugs: ["salamence-mega", "primarina", "gholdengo"],
     megaChoice: "salamence-mega",
+    endgameIds: ["salamence-dd"],
     philosophy:
       "You are not trying to overwhelm immediately like Package A, and not forcing a three-way setup dilemma like Package B. Make good trades, keep defensive options, and gradually make one of the three impossible to stop.",
     pilot: {
@@ -1491,6 +1494,7 @@ const PACKS: ManualPack[] = [
     when: "Ground-heavy or bulky item cores on preview.",
     identity: "Balloon Steel + terrain tempo + Fairy Water glue.",
     slugs: ["gholdengo", "rillaboom", "primarina"],
+    endgameIds: [],
     strategy: {
       opponentPattern: "Ground spam, bulky Water/Ground, item-reliant walls",
       bring: ["gholdengo", "rillaboom", "primarina"],
@@ -1641,6 +1645,7 @@ const PACKS: ManualPack[] = [
     identity: "Immediate special Chomp + Fairy insurance + late Sucker.",
     slugs: ["garchomp-mega-z", "primarina", "kingambit"],
     megaChoice: "garchomp-mega-z",
+    endgameIds: ["garchomp", "kingambit-clean"],
     strategy: {
       opponentPattern: "Ice/Fairy tools aimed at Dragon Megas; multi-Dragon hate",
       bring: ["garchomp-mega-z", "primarina", "kingambit"],
@@ -1790,6 +1795,8 @@ export const ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL: TeamManual = {
   id: "ultra-garchompz-salamence-gholdengo",
   title: "Ultra Ball Toolbox",
   lede: "Six Pokémon, five preview threes. Pick the package that bullies their structure — not your favorite three.",
+  sixSummary:
+    "Three endgames (Mega Chomp, Mega Mence DD, Kingambit clean) share one registered six. Preview asks which package of three bullies their structure — then play that three’s win path.",
   philosophy:
     "Endgames are Garchomp nuke, Salamence DD, or Kingambit clean. Preview asks which path their six forces.",
   archetype: "balance",

@@ -8,12 +8,15 @@ import {
 
 export type CoverageMember = {
   name: string;
+  /** Catalog slug for art / palette lookup. */
+  slug?: string;
   types: readonly TypeId[];
   moves?: readonly string[];
 };
 
 export type CoverageSource = {
   name: string;
+  slug?: string;
   move: string;
   /** True if the move type matches one of this mon's types. */
   stab: boolean;
@@ -28,6 +31,7 @@ export type CoverageClick = {
 
 export type CoverageSit = {
   name: string;
+  slug?: string;
   how: "ignores" | "resists";
 };
 
@@ -35,7 +39,7 @@ export type CoverageThreat = {
   type: TypeId;
   count: number;
   worst: number;
-  weak: string[];
+  weak: { name: string; slug?: string }[];
   sits: CoverageSit[];
 };
 
@@ -57,7 +61,7 @@ export function summarizeTeamCoverage(members: readonly CoverageMember[]): TeamC
     if (!kit.length) {
       for (const type of member.types) {
         const list = byType.get(type) ?? [];
-        list.push({ name: member.name, move: "STAB", stab: true });
+        list.push({ name: member.name, slug: member.slug, move: "STAB", stab: true });
         byType.set(type, list);
       }
       continue;
@@ -66,6 +70,7 @@ export function summarizeTeamCoverage(members: readonly CoverageMember[]): TeamC
       const list = byType.get(move.type) ?? [];
       list.push({
         name: member.name,
+        slug: member.slug,
         move: move.name,
         stab: member.types.includes(move.type),
       });
@@ -83,18 +88,18 @@ export function summarizeTeamCoverage(members: readonly CoverageMember[]): TeamC
 
   const threats: CoverageThreat[] = [];
   for (const attack of TYPE_IDS_ALPHA) {
-    const weak: string[] = [];
+    const weak: CoverageThreat["weak"] = [];
     const sits: CoverageSit[] = [];
     let worst = 1;
     for (const member of members) {
       const mult = defenseMultiplier(member.types, attack);
       if (mult > 1) {
-        weak.push(member.name);
+        weak.push({ name: member.name, slug: member.slug });
         worst = Math.max(worst, mult);
       } else if (mult === 0) {
-        sits.push({ name: member.name, how: "ignores" });
+        sits.push({ name: member.name, slug: member.slug, how: "ignores" });
       } else if (mult < 1) {
-        sits.push({ name: member.name, how: "resists" });
+        sits.push({ name: member.name, slug: member.slug, how: "resists" });
       }
     }
     if (weak.length >= 2 || worst >= 4) {
@@ -108,7 +113,7 @@ export function summarizeTeamCoverage(members: readonly CoverageMember[]): TeamC
 
 export function threatLine(threat: CoverageThreat) {
   const type = TYPE_LABEL[threat.type];
-  const names = joinAnd(threat.weak);
+  const names = joinAnd(threat.weak.map((w) => w.name));
   const hit =
     threat.worst >= 4 && threat.weak.length === 1
       ? `${type} hits ${names} four times as hard.`

@@ -287,6 +287,8 @@ export type ManualPack = {
   megaOptions?: string[];
   /** Multi-mode wincon identity this pack assumes (SlotMode.id). */
   winconMode?: string;
+  /** Which construction.endgames this bring pursues (by ManualEndgame.id). */
+  endgameIds?: string[];
   pilot?: ManualPilot;
   meta?: string;
   philosophy?: string;
@@ -431,6 +433,11 @@ export type TeamManual = {
   id: string;
   title: string;
   lede: string;
+  /**
+   * Why these six are registered together (1–2 sentences).
+   * Shown under the title before package selection.
+   */
+  sixSummary?: string;
   philosophy: string;
   archetype: ArchetypeId;
   family?: ManualFamilyId;
@@ -572,9 +579,13 @@ export function defaultPackId(manual: TeamManual): string | undefined {
   return packs[0]?.id;
 }
 
-/** Registered six + roster + packs + core — pack-first reading model. */
+/** Registered six + roster + packs — pack-first reading model. */
 export function isBoxedManual(manual: TeamManual): boolean {
-  return Boolean(manual.box?.length && manual.packs?.length && manual.roster?.length && manual.core);
+  return Boolean(
+    (manual.box?.length ?? 0) >= 3 &&
+      (manual.packs?.length ?? 0) > 0 &&
+      ((manual.roster?.length ?? 0) >= 3 || (manual.slots?.length ?? 0) >= 3),
+  );
 }
 
 /**
@@ -859,5 +870,126 @@ export function emptyManual(id: string): TeamManual {
         rule: "Do not ignore  — it ends games on this three.",
       },
     ],
+  };
+}
+
+export function emptyPack(id: string, slugs: [string, string, string] = ["", "", ""]): ManualPack {
+  return {
+    id,
+    label: "",
+    when: "",
+    identity: "",
+    slugs,
+    strategy: {
+      opponentPattern: "",
+      bring: slugs,
+      purpose: "",
+      targets: [],
+      refuses: [],
+      winCondition: "",
+      gamePlan: "",
+      mantra: "",
+    },
+    roles: slugs.filter(Boolean).map((slug) => ({
+      slug,
+      macro: "",
+      micro: "",
+    })),
+    endgameIds: [],
+    plan: [
+      { title: "Lead", goal: "", play: "" },
+      { title: "Mid", goal: "", play: "" },
+      { title: "Late", goal: "", play: "" },
+    ],
+    loops: [{ title: "", body: "" }],
+    hazards: [],
+  };
+}
+
+/** Promote a flat 3v3 draft into a boxed six + one starter pack. */
+export function toBoxedDraft(manual: TeamManual): TeamManual {
+  if (isBoxedManual(manual)) return manual;
+  const three = manual.slots.map((s) => s.slug).filter(Boolean);
+  const box = [
+    three[0] ?? "",
+    three[1] ?? "",
+    three[2] ?? "",
+    "",
+    "",
+    "",
+  ] as [string, string, string, string, string, string];
+  const roster = [
+    ...manual.slots,
+    emptySlot(),
+    emptySlot(),
+    emptySlot(),
+  ].slice(0, 6);
+  while (roster.length < 6) roster.push(emptySlot());
+  const core: [string, string, string] = [
+    box[0] || "",
+    box[1] || "",
+    box[2] || "",
+  ];
+  const pack = emptyPack("pack-a", core);
+  pack.label = manual.title ? `${manual.title} A` : "Package A";
+  pack.when = manual.meta || "Default bring";
+  pack.identity = manual.lede || "";
+  pack.strategy = {
+    opponentPattern: pack.when,
+    bring: core,
+    purpose: manual.meta || "",
+    targets: (manual.press ?? []).filter(Boolean),
+    refuses: (manual.refuse ?? []).filter(Boolean),
+    winCondition: "",
+    gamePlan: "",
+    mantra: "",
+  };
+  pack.plan = manual.plan?.length ? manual.plan : pack.plan;
+  pack.loops = manual.loops?.length ? manual.loops : pack.loops;
+  pack.phases = manual.phases;
+  return {
+    ...manual,
+    sixSummary: manual.sixSummary || manual.lede,
+    box,
+    roster,
+    core,
+    packs: [pack],
+    construction: manual.construction ?? {
+      thesis: "",
+      method: "",
+      winCondition: "",
+      endgames: [],
+    },
+  };
+}
+
+/** Flatten boxed draft back to a single three (first pack / core). */
+export function toFlatDraft(manual: TeamManual): TeamManual {
+  const pack = manual.packs?.[0];
+  const slugs = pack?.slugs ?? manual.core ?? manual.slugs;
+  const roster = manual.roster ?? manual.slots;
+  const bySlug = new Map(roster.map((s) => [s.slug, s]));
+  const slots = (slugs as string[]).slice(0, 3).map((slug) => {
+    const hit = bySlug.get(slug);
+    return hit ?? { ...emptySlot(), slug };
+  });
+  while (slots.length < 3) slots.push(emptySlot());
+  return {
+    id: manual.id,
+    title: manual.title,
+    lede: manual.lede || manual.sixSummary || "",
+    philosophy: manual.philosophy,
+    archetype: manual.archetype,
+    family: manual.family,
+    meta: manual.meta,
+    slugs: [slots[0]?.slug ?? "", slots[1]?.slug ?? "", slots[2]?.slug ?? ""],
+    slots,
+    phases: manual.phases,
+    plan: pack?.plan ?? manual.plan,
+    loops: pack?.loops ?? manual.loops,
+    hazards: manual.hazards,
+    press: pack?.strategy?.targets ?? manual.press,
+    refuse: pack?.strategy?.refuses ?? manual.refuse,
+    switches: manual.switches,
   };
 }

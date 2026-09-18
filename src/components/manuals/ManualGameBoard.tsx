@@ -12,6 +12,7 @@ import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
 import type { ManualFlow, ManualGameState, ManualPack, TeamManual } from "@/content/manuals";
+import { packUsesSharedGameplan } from "@/content/manuals";
 
 type Stage = {
   id: string;
@@ -27,11 +28,25 @@ function buildStages(
   switches: { into: string; send: string }[],
   gameStates: ManualGameState[],
 ): Stage[] {
+  const macro = flows.find(
+    (f) => f.id === "macro" || f.title.toLowerCase().includes("package"),
+  );
   const lead = flows.find((f) => f.id === "lead" || f.title.toLowerCase() === "lead");
   const mid = flows.find((f) => f.id === "mid" || f.title.toLowerCase() === "mid");
   const late = flows.find((f) => f.id === "late" || f.title.toLowerCase() === "late");
-  const used = new Set([lead?.id, mid?.id, late?.id].filter(Boolean));
+  const used = new Set([macro?.id, lead?.id, mid?.id, late?.id].filter(Boolean));
   const stages: Stage[] = [];
+
+  // Package spine first — calm whole-match path before lead/mid/late splits.
+  if (macro && (macro.forks?.length ?? 0) > 0) {
+    stages.push({
+      id: macro.id,
+      label: "Spine",
+      hint: macro.lede ?? "Whole-package path",
+      kind: "flow",
+      flow: macro,
+    });
+  }
 
   if (lead) {
     stages.push({
@@ -63,16 +78,6 @@ function buildStages(
 
   for (const flow of flows) {
     if (used.has(flow.id)) continue;
-    if (flow.id === "macro" || flow.title.toLowerCase().includes("package")) {
-      stages.push({
-        id: flow.id,
-        label: flow.title || "Package",
-        hint: flow.lede ?? "Whole-package path",
-        kind: "flow",
-        flow,
-      });
-      continue;
-    }
     if ((flow.forks?.length ?? 0) === 0) continue;
     stages.push({
       id: flow.id,
@@ -83,14 +88,6 @@ function buildStages(
     });
   }
 
-  if (switches.length) {
-    stages.push({
-      id: "switches",
-      label: "Switches",
-      hint: "They click a type — who walks in",
-      kind: "switches",
-    });
-  }
   if (loops.length) {
     stages.push({
       id: "plays",
@@ -107,15 +104,26 @@ function buildStages(
       kind: "states",
     });
   }
+  if (switches.length) {
+    stages.push({
+      id: "switches",
+      label: "Switches",
+      hint: "They click a type — who walks in",
+      kind: "switches",
+    });
+  }
   return stages;
 }
 
 export function ManualGameBoard({
   manual,
   pack,
+  parent,
 }: {
   manual: TeamManual;
   pack?: ManualPack;
+  /** Boxed six — used to detect shared gameplan inheritance. */
+  parent?: TeamManual;
 }) {
   const switches = (manual.switches ?? []).filter((s) => s.into || s.send);
   const loops = manual.loops.filter((l) => l.title || l.body);
@@ -140,14 +148,20 @@ export function ManualGameBoard({
   const stage = stages.find((s) => s.id === stageId) ?? stages[0];
   const teamSlugs = manual.slugs.filter((s): s is string => Boolean(s));
   const wash = getPokemon(teamSlugs[0]);
+  const shared = packUsesSharedGameplan(parent ?? manual, pack?.id);
 
   return (
     <MotionConfig reducedMotion="user">
       <ManualSection
         id="game"
-        title="Game"
-        purpose="Walk the match from a situation. Tap a stage, then follow one branch."
+        title="Situations"
+        purpose="Stay calm: walk one branch from the package spine, then drill Lead · Mid · Late."
       >
+        {shared ? (
+          <p className="mb-4 max-w-[52ch] text-sm text-muted">
+            This package inherits the six-wide gameplan flowchart — pack-specific Plays and States still apply below.
+          </p>
+        ) : null}
         <div
           className="relative overflow-hidden rounded-[32px] border border-line/70 bg-sunken/60 shadow-[0_22px_60px_rgba(0,0,0,0.28)]"
           style={wash ? cssVars(wash.palette) : undefined}

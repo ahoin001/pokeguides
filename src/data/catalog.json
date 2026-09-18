@@ -1041,6 +1041,53 @@
     "source": "pokeapi"
   },
   {
+    "id": 45,
+    "slug": "vileplume",
+    "name": "Vileplume",
+    "dexNo": 45,
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 80,
+      "def": 85,
+      "spa": 110,
+      "spd": 90,
+      "spe": 50,
+      "bst": 490
+    },
+    "speedAt0": 70,
+    "speedAt32": 102,
+    "abilities": [
+      "chlorophyll",
+      "effect spore"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/45.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/45.png",
+    "tokens": "vileplume vileplume grass poison chlorophyll effect spore red priority setup recovery status",
+    "speciesColor": "red",
+    "palette": {
+      "dominant": "#aa5e6c",
+      "vibrant": "#d07080",
+      "muted": "#7e4b58",
+      "ink": "#12141a",
+      "wash": "#d07080",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 53,
     "slug": "persian",
     "name": "Persian",
@@ -1185,6 +1232,55 @@
     "source": "pokeapi"
   },
   {
+    "id": 10230,
+    "slug": "arcanine-hisui",
+    "name": "Hisuian Arcanine",
+    "dexNo": 59,
+    "types": [
+      "fire",
+      "rock"
+    ],
+    "form": "hisuian",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 95,
+      "atk": 115,
+      "def": 80,
+      "spa": 95,
+      "spd": 80,
+      "spe": 90,
+      "bst": 555
+    },
+    "speedAt0": 110,
+    "speedAt32": 142,
+    "abilities": [
+      "intimidate",
+      "flash fire",
+      "rock head"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10230.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10230.png",
+    "tokens": "hisuian arcanine arcanine-hisui fire rock intimidate flash fire rock head brown priority setup recovery status hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#444445",
+      "vibrant": "#505050",
+      "muted": "#38393d",
+      "ink": "#f4f1ea",
+      "wash": "#505050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 65,
     "slug": "alakazam",
     "name": "Alakazam",
@@ -1274,6 +1370,53 @@
       "muted": "#644b60",
       "ink": "#f4f1ea",
       "wash": "#a07090",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 68,
+    "slug": "machamp",
+    "name": "Machamp",
+    "dexNo": 68,
+    "types": [
+      "fighting"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 90,
+      "atk": 130,
+      "def": 80,
+      "spa": 65,
+      "spd": 85,
+      "spe": 55,
+      "bst": 505
+    },
+    "speedAt0": 75,
+    "speedAt32": 107,
+    "abilities": [
+      "guts",
+      "no guard",
+      "steadfast"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/68.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/68.png",
+    "tokens": "machamp machamp fighting guts no guard steadfast gray priority setup recovery status",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#84919f",
+      "vibrant": "#a0b0c0",
+      "muted": "#646e7b",
+      "ink": "#12141a",
+      "wash": "#a0b0c0",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -1465,6 +1608,55 @@
       "muted": "#5b5c60",
       "ink": "#12141a",
       "wash": "#909090",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10165,
+    "slug": "slowbro-galar",
+    "name": "Galarian Slowbro",
+    "dexNo": 80,
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "form": "galarian",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 95,
+      "atk": 100,
+      "def": 95,
+      "spa": 100,
+      "spd": 70,
+      "spe": 30,
+      "bst": 490
+    },
+    "speedAt0": 50,
+    "speedAt32": 82,
+    "abilities": [
+      "quick draw",
+      "own tempo",
+      "regenerator"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "trick-room",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10165.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10165.png",
+    "tokens": "galarian slowbro slowbro-galar poison psychic quick draw own tempo regenerator pink setup recovery status trick-room hazards",
+    "speciesColor": "pink",
+    "palette": {
+      "dominant": "#b7849f",
+      "vibrant": "#e0a0c0",
+      "muted": "#87657b",
+      "ink": "#12141a",
+      "wash": "#e0a0c0",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -1951,6 +2143,191 @@
     "source": "pokeapi"
   },
   {
+    "id": 128,
+    "slug": "tauros",
+    "name": "Tauros",
+    "dexNo": 128,
+    "types": [
+      "normal"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 100,
+      "def": 95,
+      "spa": 40,
+      "spd": 70,
+      "spe": 110,
+      "bst": 490
+    },
+    "speedAt0": 130,
+    "speedAt32": 162,
+    "abilities": [
+      "intimidate",
+      "anger point",
+      "sheer force"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/128.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/128.png",
+    "tokens": "tauros tauros normal intimidate anger point sheer force brown setup recovery status",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#aa845f",
+      "vibrant": "#d0a070",
+      "muted": "#7e654f",
+      "ink": "#12141a",
+      "wash": "#d0a070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10250,
+    "slug": "tauros-paldea-combat-breed",
+    "name": "Tauros Paldea Combat Breed",
+    "dexNo": 128,
+    "types": [
+      "fighting"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 110,
+      "def": 105,
+      "spa": 30,
+      "spd": 70,
+      "spe": 100,
+      "bst": 490
+    },
+    "speedAt0": 120,
+    "speedAt32": 152,
+    "abilities": [
+      "intimidate",
+      "anger point",
+      "cud chew"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10250.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10250.png",
+    "tokens": "tauros paldea combat breed tauros-paldea-combat-breed fighting intimidate anger point cud chew brown setup recovery",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#2a2a2c",
+      "vibrant": "#303030",
+      "muted": "#26272c",
+      "ink": "#f4f1ea",
+      "wash": "#303030",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10251,
+    "slug": "tauros-paldea-blaze-breed",
+    "name": "Tauros Paldea Blaze Breed",
+    "dexNo": 128,
+    "types": [
+      "fighting",
+      "fire"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 110,
+      "def": 105,
+      "spa": 30,
+      "spd": 70,
+      "spe": 100,
+      "bst": 490
+    },
+    "speedAt0": 120,
+    "speedAt32": 152,
+    "abilities": [
+      "intimidate",
+      "anger point",
+      "cud chew"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10251.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10251.png",
+    "tokens": "tauros paldea blaze breed tauros-paldea-blaze-breed fighting fire intimidate anger point cud chew brown setup recovery status",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#2a2a2c",
+      "vibrant": "#303030",
+      "muted": "#26272c",
+      "ink": "#f4f1ea",
+      "wash": "#303030",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10252,
+    "slug": "tauros-paldea-aqua-breed",
+    "name": "Tauros Paldea Aqua Breed",
+    "dexNo": 128,
+    "types": [
+      "fighting",
+      "water"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 110,
+      "def": 105,
+      "spa": 30,
+      "spd": 70,
+      "spe": 100,
+      "bst": 490
+    },
+    "speedAt0": 120,
+    "speedAt32": 152,
+    "abilities": [
+      "intimidate",
+      "anger point",
+      "cud chew"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10252.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10252.png",
+    "tokens": "tauros paldea aqua breed tauros-paldea-aqua-breed fighting water intimidate anger point cud chew brown priority setup recovery",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#1d1e1f",
+      "vibrant": "#202020",
+      "muted": "#1d1f23",
+      "ink": "#f4f1ea",
+      "wash": "#202020",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 130,
     "slug": "gyarados",
     "name": "Gyarados",
@@ -2037,6 +2414,47 @@
       "muted": "#0c5372",
       "ink": "#f4f1ea",
       "wash": "#0080b0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 132,
+    "slug": "ditto",
+    "name": "Ditto",
+    "dexNo": 132,
+    "types": [
+      "normal"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 48,
+      "atk": 48,
+      "def": 48,
+      "spa": 48,
+      "spd": 48,
+      "spe": 48,
+      "bst": 288
+    },
+    "speedAt0": 68,
+    "speedAt32": 100,
+    "abilities": [
+      "limber",
+      "imposter"
+    ],
+    "kitTags": [],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+    "tokens": "ditto ditto normal limber imposter purple",
+    "speciesColor": "purple",
+    "palette": {
+      "dominant": "#847792",
+      "vibrant": "#a090b0",
+      "muted": "#645c72",
+      "ink": "#12141a",
+      "wash": "#a090b0",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -2131,6 +2549,52 @@
       "muted": "#907f4f",
       "ink": "#12141a",
       "wash": "#f0d070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 136,
+    "slug": "flareon",
+    "name": "Flareon",
+    "dexNo": 136,
+    "types": [
+      "fire"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 130,
+      "def": 60,
+      "spa": 95,
+      "spd": 110,
+      "spe": 65,
+      "bst": 525
+    },
+    "speedAt0": 85,
+    "speedAt32": 117,
+    "abilities": [
+      "flash fire",
+      "guts"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/136.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/136.png",
+    "tokens": "flareon flareon fire flash fire guts red priority setup recovery status",
+    "speciesColor": "red",
+    "palette": {
+      "dominant": "#c46a45",
+      "vibrant": "#f08050",
+      "muted": "#90533d",
+      "ink": "#12141a",
+      "wash": "#f08050",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -2511,6 +2975,53 @@
     "source": "pokeapi"
   },
   {
+    "id": 10233,
+    "slug": "typhlosion-hisui",
+    "name": "Hisuian Typhlosion",
+    "dexNo": 157,
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "form": "hisuian",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 73,
+      "atk": 84,
+      "def": 78,
+      "spa": 119,
+      "spd": 85,
+      "spe": 95,
+      "bst": 534
+    },
+    "speedAt0": 115,
+    "speedAt32": 147,
+    "abilities": [
+      "blaze",
+      "frisk"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10233.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10233.png",
+    "tokens": "hisuian typhlosion typhlosion-hisui fire ghost blaze frisk yellow priority setup recovery status",
+    "speciesColor": "yellow",
+    "palette": {
+      "dominant": "#c4c492",
+      "vibrant": "#f0f0b0",
+      "muted": "#909172",
+      "ink": "#12141a",
+      "wash": "#f0f0b0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 160,
     "slug": "feraligatr",
     "name": "Feraligatr",
@@ -2838,6 +3349,53 @@
     "source": "pokeapi"
   },
   {
+    "id": 196,
+    "slug": "espeon",
+    "name": "Espeon",
+    "dexNo": 196,
+    "types": [
+      "psychic"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 65,
+      "def": 60,
+      "spa": 130,
+      "spd": 95,
+      "spe": 110,
+      "bst": 525
+    },
+    "speedAt0": 130,
+    "speedAt32": 162,
+    "abilities": [
+      "synchronize",
+      "magic bounce"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/196.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/196.png",
+    "tokens": "espeon espeon psychic synchronize magic bounce purple priority setup recovery status trick-room",
+    "speciesColor": "purple",
+    "palette": {
+      "dominant": "#b79eac",
+      "vibrant": "#e0c0d0",
+      "muted": "#877784",
+      "ink": "#12141a",
+      "wash": "#e0c0d0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 197,
     "slug": "umbreon",
     "name": "Umbreon",
@@ -2932,6 +3490,103 @@
     "source": "pokeapi"
   },
   {
+    "id": 10172,
+    "slug": "slowking-galar",
+    "name": "Galarian Slowking",
+    "dexNo": 199,
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "form": "galarian",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 95,
+      "atk": 65,
+      "def": 80,
+      "spa": 110,
+      "spd": 110,
+      "spe": 30,
+      "bst": 490
+    },
+    "speedAt0": 50,
+    "speedAt32": 82,
+    "abilities": [
+      "curious medicine",
+      "own tempo",
+      "regenerator"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "trick-room",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10172.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10172.png",
+    "tokens": "galarian slowking slowking-galar poison psychic curious medicine own tempo regenerator pink setup recovery status trick-room hazards",
+    "speciesColor": "pink",
+    "palette": {
+      "dominant": "#b7849f",
+      "vibrant": "#e0a0c0",
+      "muted": "#87657b",
+      "ink": "#12141a",
+      "wash": "#e0a0c0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 205,
+    "slug": "forretress",
+    "name": "Forretress",
+    "dexNo": 205,
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 90,
+      "def": 140,
+      "spa": 60,
+      "spd": 60,
+      "spe": 40,
+      "bst": 465
+    },
+    "speedAt0": 60,
+    "speedAt32": 92,
+    "abilities": [
+      "sturdy",
+      "overcoat"
+    ],
+    "kitTags": [
+      "pivot",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/205.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/205.png",
+    "tokens": "forretress forretress bug steel sturdy overcoat purple pivot setup recovery status hazards",
+    "speciesColor": "purple",
+    "palette": {
+      "dominant": "#908485",
+      "vibrant": "#b0a0a0",
+      "muted": "#6d6569",
+      "ink": "#12141a",
+      "wash": "#b0a0a0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 208,
     "slug": "steelix",
     "name": "Steelix",
@@ -3021,6 +3676,56 @@
       "muted": "#5b6572",
       "ink": "#12141a",
       "wash": "#90a0b0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 211,
+    "slug": "qwilfish",
+    "name": "Qwilfish",
+    "dexNo": 211,
+    "types": [
+      "water",
+      "poison"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 95,
+      "def": 85,
+      "spa": 55,
+      "spd": 55,
+      "spe": 85,
+      "bst": 440
+    },
+    "speedAt0": 105,
+    "speedAt32": 137,
+    "abilities": [
+      "poison point",
+      "swift swim",
+      "intimidate"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/211.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/211.png",
+    "tokens": "qwilfish qwilfish water poison poison point swift swim intimidate gray pivot priority setup recovery status hazards",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#909e78",
+      "vibrant": "#b0c090",
+      "muted": "#6d7760",
+      "ink": "#12141a",
+      "wash": "#b0c090",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -4877,6 +5582,51 @@
     "source": "pokeapi"
   },
   {
+    "id": 351,
+    "slug": "castform",
+    "name": "Castform",
+    "dexNo": 351,
+    "types": [
+      "normal"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 70,
+      "def": 70,
+      "spa": 70,
+      "spd": 70,
+      "spe": 70,
+      "bst": 420
+    },
+    "speedAt0": 90,
+    "speedAt32": 122,
+    "abilities": [
+      "forecast"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "tailwind"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/351.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/351.png",
+    "tokens": "castform castform normal forecast gray setup recovery status tailwind",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#aaaab8",
+      "vibrant": "#d0d0e0",
+      "muted": "#7e7f8c",
+      "ink": "#12141a",
+      "wash": "#d0d0e0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 354,
     "slug": "banette",
     "name": "Banette",
@@ -5476,6 +6226,54 @@
     "source": "pokeapi"
   },
   {
+    "id": 389,
+    "slug": "torterra",
+    "name": "Torterra",
+    "dexNo": 389,
+    "types": [
+      "grass",
+      "ground"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 95,
+      "atk": 109,
+      "def": 105,
+      "spa": 75,
+      "spd": 85,
+      "spe": 56,
+      "bst": 525
+    },
+    "speedAt0": 76,
+    "speedAt32": 108,
+    "abilities": [
+      "overgrow",
+      "shell armor"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/389.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/389.png",
+    "tokens": "torterra torterra grass ground overgrow shell armor green priority setup recovery status hazards",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#375e38",
+      "vibrant": "#407040",
+      "muted": "#2f4b34",
+      "ink": "#f4f1ea",
+      "wash": "#407040",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 392,
     "slug": "infernape",
     "name": "Infernape",
@@ -5520,6 +6318,55 @@
       "muted": "#7e5346",
       "ink": "#12141a",
       "wash": "#d08060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 395,
+    "slug": "empoleon",
+    "name": "Empoleon",
+    "dexNo": 395,
+    "types": [
+      "water",
+      "steel"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 84,
+      "atk": 86,
+      "def": 88,
+      "spa": 111,
+      "spd": 101,
+      "spe": 60,
+      "bst": 530
+    },
+    "speedAt0": 80,
+    "speedAt32": 112,
+    "abilities": [
+      "torrent",
+      "competitive"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/395.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/395.png",
+    "tokens": "empoleon empoleon water steel torrent competitive blue pivot priority setup recovery status hazards",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#1d2a2c",
+      "vibrant": "#203030",
+      "muted": "#1d272c",
+      "ink": "#f4f1ea",
+      "wash": "#203030",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -5616,6 +6463,54 @@
       "muted": "#41393d",
       "ink": "#f4f1ea",
       "wash": "#605050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 405,
+    "slug": "luxray",
+    "name": "Luxray",
+    "dexNo": 405,
+    "types": [
+      "electric"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 120,
+      "def": 79,
+      "spa": 95,
+      "spd": 79,
+      "spe": 70,
+      "bst": 523
+    },
+    "speedAt0": 90,
+    "speedAt32": 122,
+    "abilities": [
+      "rivalry",
+      "intimidate",
+      "guts"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/405.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/405.png",
+    "tokens": "luxray luxray electric rivalry intimidate guts blue pivot priority setup recovery status",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#373738",
+      "vibrant": "#404040",
+      "muted": "#2f3034",
+      "ink": "#f4f1ea",
+      "wash": "#404040",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -6175,6 +7070,99 @@
     "source": "pokeapi"
   },
   {
+    "id": 450,
+    "slug": "hippowdon",
+    "name": "Hippowdon",
+    "dexNo": 450,
+    "types": [
+      "ground"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 108,
+      "atk": 112,
+      "def": 118,
+      "spa": 68,
+      "spd": 72,
+      "spe": 47,
+      "bst": 525
+    },
+    "speedAt0": 67,
+    "speedAt32": 99,
+    "abilities": [
+      "sand stream",
+      "sand force"
+    ],
+    "kitTags": [
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/450.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/450.png",
+    "tokens": "hippowdon hippowdon ground sand stream sand force brown recovery status hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#b7aa78",
+      "vibrant": "#e0d090",
+      "muted": "#877f60",
+      "ink": "#12141a",
+      "wash": "#e0d090",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 454,
+    "slug": "toxicroak",
+    "name": "Toxicroak",
+    "dexNo": 454,
+    "types": [
+      "poison",
+      "fighting"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 83,
+      "atk": 106,
+      "def": 65,
+      "spa": 86,
+      "spd": 65,
+      "spe": 85,
+      "bst": 490
+    },
+    "speedAt0": 105,
+    "speedAt32": 137,
+    "abilities": [
+      "anticipation",
+      "dry skin",
+      "poison touch"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/454.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/454.png",
+    "tokens": "toxicroak toxicroak poison fighting anticipation dry skin poison touch blue priority setup recovery status",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#50779f",
+      "vibrant": "#6090c0",
+      "muted": "#415c7b",
+      "ink": "#12141a",
+      "wash": "#6090c0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 460,
     "slug": "abomasnow",
     "name": "Abomasnow",
@@ -6407,6 +7395,98 @@
       "muted": "#6d6e72",
       "ink": "#12141a",
       "wash": "#b0b0b0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 470,
+    "slug": "leafeon",
+    "name": "Leafeon",
+    "dexNo": 470,
+    "types": [
+      "grass"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 110,
+      "def": 130,
+      "spa": 60,
+      "spd": 65,
+      "spe": 95,
+      "bst": 525
+    },
+    "speedAt0": 115,
+    "speedAt32": 147,
+    "abilities": [
+      "leaf guard",
+      "chlorophyll"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/470.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/470.png",
+    "tokens": "leafeon leafeon grass leaf guard chlorophyll green priority setup recovery status",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#c4b792",
+      "vibrant": "#f0e0b0",
+      "muted": "#908872",
+      "ink": "#12141a",
+      "wash": "#f0e0b0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 471,
+    "slug": "glaceon",
+    "name": "Glaceon",
+    "dexNo": 471,
+    "types": [
+      "ice"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 60,
+      "def": 110,
+      "spa": 130,
+      "spd": 95,
+      "spe": 65,
+      "bst": 525
+    },
+    "speedAt0": 85,
+    "speedAt32": 117,
+    "abilities": [
+      "snow cloak",
+      "ice body"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/471.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/471.png",
+    "tokens": "glaceon glaceon ice snow cloak ice body blue priority setup recovery status",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#9db7b8",
+      "vibrant": "#c0e0e0",
+      "muted": "#75888c",
+      "ink": "#12141a",
+      "wash": "#c0e0e0",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -6704,6 +7784,53 @@
     "source": "pokeapi"
   },
   {
+    "id": 479,
+    "slug": "rotom",
+    "name": "Rotom",
+    "dexNo": 479,
+    "types": [
+      "electric",
+      "ghost"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 50,
+      "atk": 50,
+      "def": 77,
+      "spa": 95,
+      "spd": 77,
+      "spe": 91,
+      "bst": 440
+    },
+    "speedAt0": 111,
+    "speedAt32": 143,
+    "abilities": [
+      "levitate"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/479.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/479.png",
+    "tokens": "rotom rotom electric ghost levitate red pivot priority setup recovery status",
+    "speciesColor": "red",
+    "palette": {
+      "dominant": "#6aaaac",
+      "vibrant": "#80d0d0",
+      "muted": "#527f84",
+      "ink": "#12141a",
+      "wash": "#80d0d0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 10008,
     "slug": "rotom-heat",
     "name": "Rotom Heat",
@@ -6793,6 +7920,100 @@
       "muted": "#2f657b",
       "ink": "#12141a",
       "wash": "#40a0c0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10010,
+    "slug": "rotom-frost",
+    "name": "Rotom Frost",
+    "dexNo": 479,
+    "types": [
+      "electric",
+      "ice"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 50,
+      "atk": 65,
+      "def": 107,
+      "spa": 105,
+      "spd": 107,
+      "spe": 86,
+      "bst": 520
+    },
+    "speedAt0": 106,
+    "speedAt32": 138,
+    "abilities": [
+      "levitate"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10010.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10010.png",
+    "tokens": "rotom frost rotom-frost electric ice levitate red pivot priority setup recovery status",
+    "speciesColor": "red",
+    "palette": {
+      "dominant": "#846a92",
+      "vibrant": "#a080b0",
+      "muted": "#645372",
+      "ink": "#12141a",
+      "wash": "#a080b0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10011,
+    "slug": "rotom-fan",
+    "name": "Rotom Fan",
+    "dexNo": 479,
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 50,
+      "atk": 65,
+      "def": 107,
+      "spa": 105,
+      "spd": 107,
+      "spe": 86,
+      "bst": 520
+    },
+    "speedAt0": 106,
+    "speedAt32": 138,
+    "abilities": [
+      "levitate"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10011.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10011.png",
+    "tokens": "rotom fan rotom-fan electric flying levitate red pivot priority setup recovery status",
+    "speciesColor": "red",
+    "palette": {
+      "dominant": "#c4aa6c",
+      "vibrant": "#f0d080",
+      "muted": "#907f58",
+      "ink": "#12141a",
+      "wash": "#f0d080",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -7026,6 +8247,334 @@
       "muted": "#2f4b72",
       "ink": "#f4f1ea",
       "wash": "#4070b0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10236,
+    "slug": "samurott-hisui",
+    "name": "Hisuian Samurott",
+    "dexNo": 503,
+    "types": [
+      "water",
+      "dark"
+    ],
+    "form": "hisuian",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 90,
+      "atk": 108,
+      "def": 80,
+      "spa": 100,
+      "spd": 65,
+      "spe": 85,
+      "bst": 528
+    },
+    "speedAt0": 105,
+    "speedAt32": 137,
+    "abilities": [
+      "torrent",
+      "sharpness"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10236.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10236.png",
+    "tokens": "hisuian samurott samurott-hisui water dark torrent sharpness blue pivot priority setup recovery status",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#2a5185",
+      "vibrant": "#3060a0",
+      "muted": "#264269",
+      "ink": "#f4f1ea",
+      "wash": "#3060a0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 505,
+    "slug": "watchog",
+    "name": "Watchog",
+    "dexNo": 505,
+    "types": [
+      "normal"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 60,
+      "atk": 85,
+      "def": 69,
+      "spa": 60,
+      "spd": 69,
+      "spe": 77,
+      "bst": 420
+    },
+    "speedAt0": 97,
+    "speedAt32": 129,
+    "abilities": [
+      "illuminate",
+      "keen eye",
+      "analytic"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/505.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/505.png",
+    "tokens": "watchog watchog normal illuminate keen eye analytic brown setup recovery status",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#5d2a2c",
+      "vibrant": "#703030",
+      "muted": "#49272c",
+      "ink": "#f4f1ea",
+      "wash": "#703030",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 510,
+    "slug": "liepard",
+    "name": "Liepard",
+    "dexNo": 510,
+    "types": [
+      "dark"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 64,
+      "atk": 88,
+      "def": 50,
+      "spa": 88,
+      "spd": 50,
+      "spe": 106,
+      "bst": 446
+    },
+    "speedAt0": 126,
+    "speedAt32": 158,
+    "abilities": [
+      "limber",
+      "unburden",
+      "prankster"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/510.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/510.png",
+    "tokens": "liepard liepard dark limber unburden prankster purple pivot priority setup recovery status",
+    "speciesColor": "purple",
+    "palette": {
+      "dominant": "#5d516c",
+      "vibrant": "#706080",
+      "muted": "#494258",
+      "ink": "#f4f1ea",
+      "wash": "#706080",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 512,
+    "slug": "simisage",
+    "name": "Simisage",
+    "dexNo": 512,
+    "types": [
+      "grass"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 98,
+      "def": 63,
+      "spa": 98,
+      "spd": 63,
+      "spe": 101,
+      "bst": 498
+    },
+    "speedAt0": 121,
+    "speedAt32": 153,
+    "abilities": [
+      "gluttony",
+      "overgrow"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/512.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/512.png",
+    "tokens": "simisage simisage grass gluttony overgrow green priority setup recovery status",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#37916c",
+      "vibrant": "#40b080",
+      "muted": "#2f6e58",
+      "ink": "#12141a",
+      "wash": "#40b080",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 514,
+    "slug": "simisear",
+    "name": "Simisear",
+    "dexNo": 514,
+    "types": [
+      "fire"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 98,
+      "def": 63,
+      "spa": 98,
+      "spd": 63,
+      "spe": 101,
+      "bst": 498
+    },
+    "speedAt0": 121,
+    "speedAt32": 153,
+    "abilities": [
+      "gluttony",
+      "blaze"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/514.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/514.png",
+    "tokens": "simisear simisear fire gluttony blaze red priority setup recovery status",
+    "speciesColor": "red",
+    "palette": {
+      "dominant": "#b75e5f",
+      "vibrant": "#e07070",
+      "muted": "#874b4f",
+      "ink": "#12141a",
+      "wash": "#e07070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 516,
+    "slug": "simipour",
+    "name": "Simipour",
+    "dexNo": 516,
+    "types": [
+      "water"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 98,
+      "def": 63,
+      "spa": 98,
+      "spd": 63,
+      "spe": 101,
+      "bst": 498
+    },
+    "speedAt0": 121,
+    "speedAt32": 153,
+    "abilities": [
+      "gluttony",
+      "torrent"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/516.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/516.png",
+    "tokens": "simipour simipour water gluttony torrent blue pivot priority setup recovery status",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#379eb8",
+      "vibrant": "#40c0e0",
+      "muted": "#2f778c",
+      "ink": "#12141a",
+      "wash": "#40c0e0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 518,
+    "slug": "musharna",
+    "name": "Musharna",
+    "dexNo": 518,
+    "types": [
+      "psychic"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 116,
+      "atk": 55,
+      "def": 85,
+      "spa": 107,
+      "spd": 95,
+      "spe": 29,
+      "bst": 487
+    },
+    "speedAt0": 49,
+    "speedAt32": 81,
+    "abilities": [
+      "forewarn",
+      "synchronize",
+      "telepathy"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/518.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/518.png",
+    "tokens": "musharna musharna psychic forewarn synchronize telepathy pink setup recovery status trick-room",
+    "speciesColor": "pink",
+    "palette": {
+      "dominant": "#c47785",
+      "vibrant": "#f090a0",
+      "muted": "#905c69",
+      "ink": "#12141a",
+      "wash": "#f090a0",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -7598,6 +9147,53 @@
     "source": "pokeapi"
   },
   {
+    "id": 569,
+    "slug": "garbodor",
+    "name": "Garbodor",
+    "dexNo": 569,
+    "types": [
+      "poison"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 95,
+      "def": 82,
+      "spa": 60,
+      "spd": 82,
+      "spe": 75,
+      "bst": 474
+    },
+    "speedAt0": 95,
+    "speedAt32": 127,
+    "abilities": [
+      "stench",
+      "weak armor",
+      "aftermath"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/569.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/569.png",
+    "tokens": "garbodor garbodor poison stench weak armor aftermath green setup recovery status hazards",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#908478",
+      "vibrant": "#b0a090",
+      "muted": "#6d6560",
+      "ink": "#12141a",
+      "wash": "#b0a090",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 571,
     "slug": "zoroark",
     "name": "Zoroark",
@@ -7639,6 +9235,53 @@
       "muted": "#5b2734",
       "ink": "#f4f1ea",
       "wash": "#903040",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10239,
+    "slug": "zoroark-hisui",
+    "name": "Hisuian Zoroark",
+    "dexNo": 571,
+    "types": [
+      "normal",
+      "ghost"
+    ],
+    "form": "hisuian",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 55,
+      "atk": 100,
+      "def": 60,
+      "spa": 125,
+      "spd": 60,
+      "spe": 110,
+      "bst": 510
+    },
+    "speedAt0": 130,
+    "speedAt32": 162,
+    "abilities": [
+      "illusion"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10239.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10239.png",
+    "tokens": "hisuian zoroark zoroark-hisui normal ghost illusion gray pivot priority setup recovery status",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#b7b7b8",
+      "vibrant": "#e0e0e0",
+      "muted": "#87888c",
+      "ink": "#12141a",
+      "wash": "#e0e0e0",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -7686,6 +9329,102 @@
       "muted": "#527769",
       "ink": "#12141a",
       "wash": "#80c0a0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 584,
+    "slug": "vanilluxe",
+    "name": "Vanilluxe",
+    "dexNo": 584,
+    "types": [
+      "ice"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 71,
+      "atk": 95,
+      "def": 85,
+      "spa": 110,
+      "spd": 95,
+      "spe": 79,
+      "bst": 535
+    },
+    "speedAt0": 99,
+    "speedAt32": 131,
+    "abilities": [
+      "ice body",
+      "snow warning",
+      "weak armor"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/584.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/584.png",
+    "tokens": "vanilluxe vanilluxe ice ice body snow warning weak armor white priority setup recovery status",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#aac4c5",
+      "vibrant": "#d0f0f0",
+      "muted": "#7e9195",
+      "ink": "#12141a",
+      "wash": "#d0f0f0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 587,
+    "slug": "emolga",
+    "name": "Emolga",
+    "dexNo": 587,
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 55,
+      "atk": 75,
+      "def": 60,
+      "spa": 75,
+      "spd": 60,
+      "spe": 103,
+      "bst": 428
+    },
+    "speedAt0": 123,
+    "speedAt32": 155,
+    "abilities": [
+      "static",
+      "motor drive"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "tailwind"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/587.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/587.png",
+    "tokens": "emolga emolga electric flying static motor drive white pivot priority setup recovery status tailwind",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#444445",
+      "vibrant": "#505050",
+      "muted": "#38393d",
+      "ink": "#f4f1ea",
+      "wash": "#505050",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -7922,6 +9661,101 @@
     "source": "pokeapi"
   },
   {
+    "id": 618,
+    "slug": "stunfisk",
+    "name": "Stunfisk",
+    "dexNo": 618,
+    "types": [
+      "ground",
+      "electric"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 109,
+      "atk": 66,
+      "def": 84,
+      "spa": 81,
+      "spd": 99,
+      "spe": 32,
+      "bst": 471
+    },
+    "speedAt0": 52,
+    "speedAt32": 84,
+    "abilities": [
+      "static",
+      "limber",
+      "sand veil"
+    ],
+    "kitTags": [
+      "priority",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/618.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/618.png",
+    "tokens": "stunfisk stunfisk ground electric static limber sand veil brown priority recovery status hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#aa775f",
+      "vibrant": "#d09070",
+      "muted": "#7e5c4f",
+      "ink": "#12141a",
+      "wash": "#d09070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10180,
+    "slug": "stunfisk-galar",
+    "name": "Galarian Stunfisk",
+    "dexNo": 618,
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "form": "galarian",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 109,
+      "atk": 81,
+      "def": 99,
+      "spa": 66,
+      "spd": 84,
+      "spe": 32,
+      "bst": 471
+    },
+    "speedAt0": 52,
+    "speedAt32": 84,
+    "abilities": [
+      "mimicry"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10180.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10180.png",
+    "tokens": "galarian stunfisk stunfisk-galar ground steel mimicry brown priority setup recovery status hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#505152",
+      "vibrant": "#606060",
+      "muted": "#414246",
+      "ink": "#f4f1ea",
+      "wash": "#606060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 623,
     "slug": "golurk",
     "name": "Golurk",
@@ -8058,6 +9892,54 @@
       "muted": "#38393d",
       "ink": "#f4f1ea",
       "wash": "#505050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 637,
+    "slug": "volcarona",
+    "name": "Volcarona",
+    "dexNo": 637,
+    "types": [
+      "bug",
+      "fire"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 85,
+      "atk": 60,
+      "def": 65,
+      "spa": 135,
+      "spd": 105,
+      "spe": 100,
+      "bst": 550
+    },
+    "speedAt0": 120,
+    "speedAt32": 152,
+    "abilities": [
+      "flame body",
+      "swarm"
+    ],
+    "kitTags": [
+      "pivot",
+      "setup",
+      "recovery",
+      "status",
+      "tailwind"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/637.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/637.png",
+    "tokens": "volcarona volcarona bug fire flame body swarm white pivot setup recovery status tailwind",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#c46a52",
+      "vibrant": "#f08060",
+      "muted": "#905346",
+      "ink": "#12141a",
+      "wash": "#f08060",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -8348,6 +10230,56 @@
     "source": "pokeapi"
   },
   {
+    "id": 660,
+    "slug": "diggersby",
+    "name": "Diggersby",
+    "dexNo": 660,
+    "types": [
+      "normal",
+      "ground"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 85,
+      "atk": 56,
+      "def": 77,
+      "spa": 50,
+      "spd": 77,
+      "spe": 78,
+      "bst": 423
+    },
+    "speedAt0": 98,
+    "speedAt32": 130,
+    "abilities": [
+      "pickup",
+      "cheek pouch",
+      "huge power"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/660.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/660.png",
+    "tokens": "diggersby diggersby normal ground pickup cheek pouch huge power brown pivot priority setup recovery status hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#6a5138",
+      "vibrant": "#806040",
+      "muted": "#524234",
+      "ink": "#f4f1ea",
+      "wash": "#806040",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 663,
     "slug": "talonflame",
     "name": "Talonflame",
@@ -8392,6 +10324,55 @@
       "muted": "#874b34",
       "ink": "#12141a",
       "wash": "#e07040",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 666,
+    "slug": "vivillon",
+    "name": "Vivillon",
+    "dexNo": 666,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 52,
+      "def": 50,
+      "spa": 90,
+      "spd": 50,
+      "spe": 89,
+      "bst": 411
+    },
+    "speedAt0": 109,
+    "speedAt32": 141,
+    "abilities": [
+      "shield dust",
+      "compound eyes",
+      "friend guard"
+    ],
+    "kitTags": [
+      "pivot",
+      "setup",
+      "recovery",
+      "status",
+      "tailwind"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/666.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/666.png",
+    "tokens": "vivillon vivillon bug flying shield dust compound eyes friend guard white pivot setup recovery status tailwind",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#b76a92",
+      "vibrant": "#e080b0",
+      "muted": "#875372",
+      "ink": "#12141a",
+      "wash": "#e080b0",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -8576,6 +10557,52 @@
     "source": "pokeapi"
   },
   {
+    "id": 671,
+    "slug": "florges",
+    "name": "Florges",
+    "dexNo": 671,
+    "types": [
+      "fairy"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 78,
+      "atk": 65,
+      "def": 68,
+      "spa": 112,
+      "spd": 154,
+      "spe": 75,
+      "bst": 552
+    },
+    "speedAt0": 95,
+    "speedAt32": 127,
+    "abilities": [
+      "flower veil",
+      "symbiosis"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/671.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/671.png",
+    "tokens": "florges florges fairy flower veil symbiosis white priority setup recovery status",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#04846c",
+      "vibrant": "#00a080",
+      "muted": "#0c6558",
+      "ink": "#12141a",
+      "wash": "#00a080",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 673,
     "slug": "gogoat",
     "name": "Gogoat",
@@ -8666,6 +10693,52 @@
       "muted": "#414246",
       "ink": "#f4f1ea",
       "wash": "#606060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 676,
+    "slug": "furfrou",
+    "name": "Furfrou",
+    "dexNo": 676,
+    "types": [
+      "normal"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 80,
+      "def": 60,
+      "spa": 65,
+      "spd": 90,
+      "spe": 102,
+      "bst": 472
+    },
+    "speedAt0": 122,
+    "speedAt32": 154,
+    "abilities": [
+      "fur coat"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/676.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/676.png",
+    "tokens": "furfrou furfrou normal fur coat white pivot priority setup recovery status",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#b7c4b8",
+      "vibrant": "#e0f0e0",
+      "muted": "#87918c",
+      "ink": "#12141a",
+      "wash": "#e0f0e0",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -8946,6 +11019,52 @@
       "muted": "#754b58",
       "ink": "#12141a",
       "wash": "#c07080",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 685,
+    "slug": "slurpuff",
+    "name": "Slurpuff",
+    "dexNo": 685,
+    "types": [
+      "fairy"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 82,
+      "atk": 80,
+      "def": 86,
+      "spa": 85,
+      "spd": 75,
+      "spe": 72,
+      "bst": 480
+    },
+    "speedAt0": 92,
+    "speedAt32": 124,
+    "abilities": [
+      "sweet veil",
+      "unburden"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/685.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/685.png",
+    "tokens": "slurpuff slurpuff fairy sweet veil unburden white setup recovery status hazards",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#b79eac",
+      "vibrant": "#e0c0d0",
+      "muted": "#877784",
+      "ink": "#12141a",
+      "wash": "#e0c0d0",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -9279,6 +11398,55 @@
     "source": "pokeapi"
   },
   {
+    "id": 695,
+    "slug": "heliolisk",
+    "name": "Heliolisk",
+    "dexNo": 695,
+    "types": [
+      "electric",
+      "normal"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 62,
+      "atk": 55,
+      "def": 52,
+      "spa": 109,
+      "spd": 94,
+      "spe": 109,
+      "bst": 481
+    },
+    "speedAt0": 129,
+    "speedAt32": 161,
+    "abilities": [
+      "dry skin",
+      "sand veil",
+      "solar power"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/695.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/695.png",
+    "tokens": "heliolisk heliolisk electric normal dry skin sand veil solar power yellow pivot priority setup recovery status",
+    "speciesColor": "yellow",
+    "palette": {
+      "dominant": "#c4b75f",
+      "vibrant": "#f0e070",
+      "muted": "#90884f",
+      "ink": "#12141a",
+      "wash": "#f0e070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 697,
     "slug": "tyrantrum",
     "name": "Tyrantrum",
@@ -9517,6 +11685,54 @@
     "source": "pokeapi"
   },
   {
+    "id": 702,
+    "slug": "dedenne",
+    "name": "Dedenne",
+    "dexNo": 702,
+    "types": [
+      "electric",
+      "fairy"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 67,
+      "atk": 58,
+      "def": 57,
+      "spa": 81,
+      "spd": 67,
+      "spe": 101,
+      "bst": 431
+    },
+    "speedAt0": 121,
+    "speedAt32": 153,
+    "abilities": [
+      "cheek pouch",
+      "pickup",
+      "plus"
+    ],
+    "kitTags": [
+      "pivot",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/702.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/702.png",
+    "tokens": "dedenne dedenne electric fairy cheek pouch pickup plus yellow pivot setup recovery status",
+    "speciesColor": "yellow",
+    "palette": {
+      "dominant": "#b7841f",
+      "vibrant": "#e0a020",
+      "muted": "#876523",
+      "ink": "#12141a",
+      "wash": "#e0a020",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 706,
     "slug": "goodra",
     "name": "Goodra",
@@ -9557,6 +11773,51 @@
       "muted": "#877f8c",
       "ink": "#12141a",
       "wash": "#e0d0e0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10242,
+    "slug": "goodra-hisui",
+    "name": "Hisuian Goodra",
+    "dexNo": 706,
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "form": "hisuian",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 100,
+      "def": 100,
+      "spa": 110,
+      "spd": 150,
+      "spe": 60,
+      "bst": 600
+    },
+    "speedAt0": 80,
+    "speedAt32": 112,
+    "abilities": [
+      "sap sipper",
+      "shell armor",
+      "gooey"
+    ],
+    "kitTags": [
+      "recovery"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10242.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10242.png",
+    "tokens": "hisuian goodra goodra-hisui steel dragon sap sipper shell armor gooey purple recovery",
+    "speciesColor": "purple",
+    "palette": {
+      "dominant": "#b7b7b8",
+      "vibrant": "#e0e0e0",
+      "muted": "#87888c",
+      "ink": "#12141a",
+      "wash": "#e0e0e0",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -9610,6 +11871,251 @@
     "source": "pokeapi"
   },
   {
+    "id": 709,
+    "slug": "trevenant",
+    "name": "Trevenant",
+    "dexNo": 709,
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 85,
+      "atk": 110,
+      "def": 76,
+      "spa": 65,
+      "spd": 82,
+      "spe": 56,
+      "bst": 474
+    },
+    "speedAt0": 76,
+    "speedAt32": 108,
+    "abilities": [
+      "natural cure",
+      "frisk",
+      "harvest"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/709.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/709.png",
+    "tokens": "trevenant trevenant ghost grass natural cure frisk harvest brown priority setup recovery status trick-room",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#2a6a52",
+      "vibrant": "#308060",
+      "muted": "#265346",
+      "ink": "#f4f1ea",
+      "wash": "#308060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 711,
+    "slug": "gourgeist-average",
+    "name": "Gourgeist Average",
+    "dexNo": 711,
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 65,
+      "atk": 90,
+      "def": 122,
+      "spa": 58,
+      "spd": 75,
+      "spe": 84,
+      "bst": 494
+    },
+    "speedAt0": 104,
+    "speedAt32": 136,
+    "abilities": [
+      "pickup",
+      "frisk",
+      "insomnia"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/711.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/711.png",
+    "tokens": "gourgeist average gourgeist-average ghost grass pickup frisk insomnia brown priority setup recovery status trick-room",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#504438",
+      "vibrant": "#605040",
+      "muted": "#413934",
+      "ink": "#f4f1ea",
+      "wash": "#605040",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10030,
+    "slug": "gourgeist-small",
+    "name": "Gourgeist Small",
+    "dexNo": 711,
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 55,
+      "atk": 85,
+      "def": 122,
+      "spa": 58,
+      "spd": 75,
+      "spe": 99,
+      "bst": 494
+    },
+    "speedAt0": 119,
+    "speedAt32": 151,
+    "abilities": [
+      "pickup",
+      "frisk",
+      "insomnia"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10030.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10030.png",
+    "tokens": "gourgeist small gourgeist-small ghost grass pickup frisk insomnia brown priority setup recovery status trick-room",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#504438",
+      "vibrant": "#605040",
+      "muted": "#413934",
+      "ink": "#f4f1ea",
+      "wash": "#605040",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10031,
+    "slug": "gourgeist-large",
+    "name": "Gourgeist Large",
+    "dexNo": 711,
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 95,
+      "def": 122,
+      "spa": 58,
+      "spd": 75,
+      "spe": 69,
+      "bst": 494
+    },
+    "speedAt0": 89,
+    "speedAt32": 121,
+    "abilities": [
+      "pickup",
+      "frisk",
+      "insomnia"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10031.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10031.png",
+    "tokens": "gourgeist large gourgeist-large ghost grass pickup frisk insomnia brown priority setup recovery status trick-room",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#504438",
+      "vibrant": "#605040",
+      "muted": "#413934",
+      "ink": "#f4f1ea",
+      "wash": "#605040",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10032,
+    "slug": "gourgeist-super",
+    "name": "Gourgeist Super",
+    "dexNo": 711,
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 85,
+      "atk": 100,
+      "def": 122,
+      "spa": 58,
+      "spd": 75,
+      "spe": 54,
+      "bst": 494
+    },
+    "speedAt0": 74,
+    "speedAt32": 106,
+    "abilities": [
+      "pickup",
+      "frisk",
+      "insomnia"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10032.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10032.png",
+    "tokens": "gourgeist super gourgeist-super ghost grass pickup frisk insomnia brown priority setup recovery status trick-room",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#504438",
+      "vibrant": "#605040",
+      "muted": "#413934",
+      "ink": "#f4f1ea",
+      "wash": "#605040",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 713,
     "slug": "avalugg",
     "name": "Avalugg",
@@ -9651,6 +12157,54 @@
       "muted": "#7e9195",
       "ink": "#12141a",
       "wash": "#d0f0f0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10243,
+    "slug": "avalugg-hisui",
+    "name": "Hisuian Avalugg",
+    "dexNo": 713,
+    "types": [
+      "ice",
+      "rock"
+    ],
+    "form": "hisuian",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 95,
+      "atk": 127,
+      "def": 184,
+      "spa": 34,
+      "spd": 36,
+      "spe": 38,
+      "bst": 514
+    },
+    "speedAt0": 58,
+    "speedAt32": 90,
+    "abilities": [
+      "strong jaw",
+      "ice body",
+      "sturdy"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10243.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10243.png",
+    "tokens": "hisuian avalugg avalugg-hisui ice rock strong jaw ice body sturdy blue priority setup recovery hazards",
+    "speciesColor": "blue",
+    "palette": {
+      "dominant": "#aab7c5",
+      "vibrant": "#d0e0f0",
+      "muted": "#7e8895",
+      "ink": "#12141a",
+      "wash": "#d0e0f0",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -9754,6 +12308,56 @@
     "source": "pokeapi"
   },
   {
+    "id": 10244,
+    "slug": "decidueye-hisui",
+    "name": "Hisuian Decidueye",
+    "dexNo": 724,
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "form": "hisuian",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 88,
+      "atk": 112,
+      "def": 80,
+      "spa": 95,
+      "spd": 95,
+      "spe": 60,
+      "bst": 530
+    },
+    "speedAt0": 80,
+    "speedAt32": 112,
+    "abilities": [
+      "overgrow",
+      "scrappy"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "tailwind",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10244.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10244.png",
+    "tokens": "hisuian decidueye decidueye-hisui grass fighting overgrow scrappy brown pivot priority setup recovery status tailwind hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#6a5145",
+      "vibrant": "#806050",
+      "muted": "#52423d",
+      "ink": "#f4f1ea",
+      "wash": "#806050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 727,
     "slug": "incineroar",
     "name": "Incineroar",
@@ -9846,6 +12450,55 @@
       "muted": "#416572",
       "ink": "#12141a",
       "wash": "#60a0b0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 733,
+    "slug": "toucannon",
+    "name": "Toucannon",
+    "dexNo": 733,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 120,
+      "def": 75,
+      "spa": 75,
+      "spd": 75,
+      "spe": 60,
+      "bst": 485
+    },
+    "speedAt0": 80,
+    "speedAt32": 112,
+    "abilities": [
+      "keen eye",
+      "skill link",
+      "sheer force"
+    ],
+    "kitTags": [
+      "pivot",
+      "setup",
+      "recovery",
+      "status",
+      "tailwind"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/733.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/733.png",
+    "tokens": "toucannon toucannon normal flying keen eye skill link sheer force black pivot setup recovery status tailwind",
+    "speciesColor": "black",
+    "palette": {
+      "dominant": "#373738",
+      "vibrant": "#404040",
+      "muted": "#2f3034",
+      "ink": "#f4f1ea",
+      "wash": "#404040",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -9944,6 +12597,102 @@
     "source": "pokeapi"
   },
   {
+    "id": 745,
+    "slug": "lycanroc-midday",
+    "name": "Lycanroc Midday",
+    "dexNo": 745,
+    "types": [
+      "rock"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 115,
+      "def": 65,
+      "spa": 55,
+      "spd": 65,
+      "spe": 112,
+      "bst": 487
+    },
+    "speedAt0": 132,
+    "speedAt32": 164,
+    "abilities": [
+      "keen eye",
+      "sand rush",
+      "steadfast"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/745.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/745.png",
+    "tokens": "lycanroc midday lycanroc-midday rock keen eye sand rush steadfast brown priority setup recovery status hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#aa9e92",
+      "vibrant": "#d0c0b0",
+      "muted": "#7e7772",
+      "ink": "#12141a",
+      "wash": "#d0c0b0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10126,
+    "slug": "lycanroc-midnight",
+    "name": "Lycanroc Midnight",
+    "dexNo": 745,
+    "types": [
+      "rock"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 85,
+      "atk": 115,
+      "def": 75,
+      "spa": 55,
+      "spd": 75,
+      "spe": 82,
+      "bst": 487
+    },
+    "speedAt0": 102,
+    "speedAt32": 134,
+    "abilities": [
+      "keen eye",
+      "vital spirit",
+      "no guard"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10126.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10126.png",
+    "tokens": "lycanroc midnight lycanroc-midnight rock keen eye vital spirit no guard brown priority setup recovery status hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#6a5e5f",
+      "vibrant": "#807070",
+      "muted": "#524b4f",
+      "ink": "#f4f1ea",
+      "wash": "#807070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 10152,
     "slug": "lycanroc-dusk",
     "name": "Lycanroc Dusk",
@@ -10033,6 +12782,53 @@
       "muted": "#494269",
       "ink": "#f4f1ea",
       "wash": "#7060a0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 750,
+    "slug": "mudsdale",
+    "name": "Mudsdale",
+    "dexNo": 750,
+    "types": [
+      "ground"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 100,
+      "atk": 125,
+      "def": 100,
+      "spa": 55,
+      "spd": 85,
+      "spe": 35,
+      "bst": 500
+    },
+    "speedAt0": 55,
+    "speedAt32": 87,
+    "abilities": [
+      "own tempo",
+      "stamina",
+      "inner focus"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/750.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/750.png",
+    "tokens": "mudsdale mudsdale ground own tempo stamina inner focus brown setup recovery status hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#374445",
+      "vibrant": "#405050",
+      "muted": "#2f393d",
+      "ink": "#f4f1ea",
+      "wash": "#405050",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -10223,6 +13019,53 @@
       "muted": "#41653d",
       "ink": "#12141a",
       "wash": "#60a050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 766,
+    "slug": "passimian",
+    "name": "Passimian",
+    "dexNo": 766,
+    "types": [
+      "fighting"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 100,
+      "atk": 120,
+      "def": 90,
+      "spa": 40,
+      "spd": 60,
+      "spe": 80,
+      "bst": 490
+    },
+    "speedAt0": 100,
+    "speedAt32": 132,
+    "abilities": [
+      "receiver",
+      "defiant"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/766.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/766.png",
+    "tokens": "passimian passimian fighting receiver defiant white pivot priority setup recovery status",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#505145",
+      "vibrant": "#606050",
+      "muted": "#41423d",
+      "ink": "#f4f1ea",
+      "wash": "#606050",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -10745,6 +13588,54 @@
     "source": "pokeapi"
   },
   {
+    "id": 841,
+    "slug": "flapple",
+    "name": "Flapple",
+    "dexNo": 841,
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 110,
+      "def": 80,
+      "spa": 95,
+      "spd": 60,
+      "spe": 70,
+      "bst": 485
+    },
+    "speedAt0": 90,
+    "speedAt32": 122,
+    "abilities": [
+      "ripen",
+      "gluttony",
+      "hustle"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/841.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/841.png",
+    "tokens": "flapple flapple grass dragon ripen gluttony hustle green pivot priority setup recovery",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#907752",
+      "vibrant": "#b09060",
+      "muted": "#6d5c46",
+      "ink": "#12141a",
+      "wash": "#b09060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 842,
     "slug": "appletun",
     "name": "Appletun",
@@ -10787,6 +13678,53 @@
       "muted": "#384b3d",
       "ink": "#f4f1ea",
       "wash": "#507050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 844,
+    "slug": "sandaconda",
+    "name": "Sandaconda",
+    "dexNo": 844,
+    "types": [
+      "ground"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 72,
+      "atk": 107,
+      "def": 125,
+      "spa": 65,
+      "spd": 70,
+      "spe": 71,
+      "bst": 510
+    },
+    "speedAt0": 91,
+    "speedAt32": 123,
+    "abilities": [
+      "sand spit",
+      "shed skin",
+      "sand veil"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/844.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/844.png",
+    "tokens": "sandaconda sandaconda ground sand spit shed skin sand veil green setup recovery status hazards",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#50512c",
+      "vibrant": "#606030",
+      "muted": "#41422c",
+      "ink": "#f4f1ea",
+      "wash": "#606030",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -10836,6 +13774,54 @@
       "muted": "#493958",
       "ink": "#f4f1ea",
       "wash": "#705080",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10184,
+    "slug": "toxtricity-low-key",
+    "name": "Toxtricity Low Key",
+    "dexNo": 849,
+    "types": [
+      "electric",
+      "poison"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 75,
+      "atk": 98,
+      "def": 70,
+      "spa": 114,
+      "spd": 70,
+      "spe": 75,
+      "bst": 502
+    },
+    "speedAt0": 95,
+    "speedAt32": 127,
+    "abilities": [
+      "punk rock",
+      "minus",
+      "technician"
+    ],
+    "kitTags": [
+      "pivot",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10184.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10184.png",
+    "tokens": "toxtricity low key toxtricity-low-key electric poison punk rock minus technician purple pivot recovery status hazards",
+    "speciesColor": "purple",
+    "palette": {
+      "dominant": "#44375f",
+      "vibrant": "#504070",
+      "muted": "#38304f",
+      "ink": "#f4f1ea",
+      "wash": "#504070",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -11030,6 +14016,55 @@
     "source": "pokeapi"
   },
   {
+    "id": 863,
+    "slug": "perrserker",
+    "name": "Perrserker",
+    "dexNo": 863,
+    "types": [
+      "steel"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 110,
+      "def": 100,
+      "spa": 50,
+      "spd": 60,
+      "spe": 50,
+      "bst": 440
+    },
+    "speedAt0": 70,
+    "speedAt32": 102,
+    "abilities": [
+      "battle armor",
+      "tough claws",
+      "steely spirit"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/863.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/863.png",
+    "tokens": "perrserker perrserker steel battle armor tough claws steely spirit brown pivot priority setup recovery status hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#909192",
+      "vibrant": "#b0b0b0",
+      "muted": "#6d6e72",
+      "ink": "#12141a",
+      "wash": "#b0b0b0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 865,
     "slug": "sirfetchd",
     "name": "Sirfetchd",
@@ -11070,6 +14105,102 @@
       "muted": "#5b6e46",
       "ink": "#12141a",
       "wash": "#90b060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 866,
+    "slug": "mr-rime",
+    "name": "Mr Rime",
+    "dexNo": 866,
+    "types": [
+      "ice",
+      "psychic"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 80,
+      "atk": 85,
+      "def": 75,
+      "spa": 110,
+      "spd": 100,
+      "spe": 70,
+      "bst": 520
+    },
+    "speedAt0": 90,
+    "speedAt32": 122,
+    "abilities": [
+      "tangled feet",
+      "screen cleaner",
+      "ice body"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/866.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/866.png",
+    "tokens": "mr rime mr-rime ice psychic tangled feet screen cleaner ice body purple priority setup recovery status trick-room",
+    "speciesColor": "purple",
+    "palette": {
+      "dominant": "#44445f",
+      "vibrant": "#505070",
+      "muted": "#38394f",
+      "ink": "#f4f1ea",
+      "wash": "#505070",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 867,
+    "slug": "runerigus",
+    "name": "Runerigus",
+    "dexNo": 867,
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 58,
+      "atk": 95,
+      "def": 145,
+      "spa": 50,
+      "spd": 105,
+      "spe": 30,
+      "bst": 483
+    },
+    "speedAt0": 50,
+    "speedAt32": 82,
+    "abilities": [
+      "wandering spirit"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "trick-room",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/867.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/867.png",
+    "tokens": "runerigus runerigus ground ghost wandering spirit gray setup recovery status trick-room hazards",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#444445",
+      "vibrant": "#505050",
+      "muted": "#38393d",
+      "ink": "#f4f1ea",
+      "wash": "#505050",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -11353,6 +14484,53 @@
     "source": "pokeapi"
   },
   {
+    "id": 877,
+    "slug": "morpeko-full-belly",
+    "name": "Morpeko Full Belly",
+    "dexNo": 877,
+    "types": [
+      "electric",
+      "dark"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 58,
+      "atk": 95,
+      "def": 58,
+      "spa": 70,
+      "spd": 58,
+      "spe": 97,
+      "bst": 436
+    },
+    "speedAt0": 117,
+    "speedAt32": 149,
+    "abilities": [
+      "hunger switch"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/877.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/877.png",
+    "tokens": "morpeko full belly morpeko-full-belly electric dark hunger switch yellow pivot priority setup recovery status",
+    "speciesColor": "yellow",
+    "palette": {
+      "dominant": "#c4c485",
+      "vibrant": "#f0f0a0",
+      "muted": "#909169",
+      "ink": "#12141a",
+      "wash": "#f0f0a0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 887,
     "slug": "dragapult",
     "name": "Dragapult",
@@ -11397,6 +14575,104 @@
       "muted": "#49777b",
       "ink": "#12141a",
       "wash": "#70c0c0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 899,
+    "slug": "wyrdeer",
+    "name": "Wyrdeer",
+    "dexNo": 899,
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 103,
+      "atk": 105,
+      "def": 72,
+      "spa": 105,
+      "spd": 75,
+      "spe": 65,
+      "bst": 525
+    },
+    "speedAt0": 85,
+    "speedAt32": 117,
+    "abilities": [
+      "intimidate",
+      "frisk",
+      "sap sipper"
+    ],
+    "kitTags": [
+      "setup",
+      "recovery",
+      "status",
+      "trick-room"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/899.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/899.png",
+    "tokens": "wyrdeer wyrdeer normal psychic intimidate frisk sap sipper gray setup recovery status trick-room",
+    "speciesColor": "gray",
+    "palette": {
+      "dominant": "#aaaaac",
+      "vibrant": "#d0d0d0",
+      "muted": "#7e7f84",
+      "ink": "#12141a",
+      "wash": "#d0d0d0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 900,
+    "slug": "kleavor",
+    "name": "Kleavor",
+    "dexNo": 900,
+    "types": [
+      "bug",
+      "rock"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 70,
+      "atk": 135,
+      "def": 95,
+      "spa": 45,
+      "spd": 70,
+      "spe": 85,
+      "bst": 500
+    },
+    "speedAt0": 105,
+    "speedAt32": 137,
+    "abilities": [
+      "swarm",
+      "sheer force",
+      "sharpness"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "setup",
+      "recovery",
+      "tailwind",
+      "hazards"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/900.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/900.png",
+    "tokens": "kleavor kleavor bug rock swarm sheer force sharpness brown pivot priority setup recovery tailwind hazards",
+    "speciesColor": "brown",
+    "palette": {
+      "dominant": "#372a2c",
+      "vibrant": "#403030",
+      "muted": "#2f272c",
+      "ink": "#f4f1ea",
+      "wash": "#403030",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -11839,6 +15115,53 @@
     "source": "pokeapi"
   },
   {
+    "id": 925,
+    "slug": "maushold-family-of-four",
+    "name": "Maushold Family Of Four",
+    "dexNo": 925,
+    "types": [
+      "normal"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 74,
+      "atk": 75,
+      "def": 70,
+      "spa": 65,
+      "spd": 75,
+      "spe": 111,
+      "bst": 470
+    },
+    "speedAt0": 131,
+    "speedAt32": 163,
+    "abilities": [
+      "friend guard",
+      "cheek pouch",
+      "technician"
+    ],
+    "kitTags": [
+      "pivot",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/925.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/925.png",
+    "tokens": "maushold family of four maushold-family-of-four normal friend guard cheek pouch technician white pivot setup recovery status",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#9d9e9f",
+      "vibrant": "#c0c0c0",
+      "muted": "#75777b",
+      "ink": "#12141a",
+      "wash": "#c0c0c0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 927,
     "slug": "dachsbun",
     "name": "Dachsbun",
@@ -11924,6 +15247,202 @@
       "muted": "#38652c",
       "ink": "#12141a",
       "wash": "#50a030",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 931,
+    "slug": "squawkabilly-green-plumage",
+    "name": "Squawkabilly Green Plumage",
+    "dexNo": 931,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 82,
+      "atk": 96,
+      "def": 51,
+      "spa": 45,
+      "spd": 51,
+      "spe": 92,
+      "bst": 417
+    },
+    "speedAt0": 112,
+    "speedAt32": 144,
+    "abilities": [
+      "intimidate",
+      "hustle",
+      "guts"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "recovery",
+      "status",
+      "tailwind"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/931.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/931.png",
+    "tokens": "squawkabilly green plumage squawkabilly-green-plumage normal flying intimidate hustle guts green pivot priority recovery status tailwind",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#5d9e45",
+      "vibrant": "#70c050",
+      "muted": "#49773d",
+      "ink": "#12141a",
+      "wash": "#70c050",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10260,
+    "slug": "squawkabilly-blue-plumage",
+    "name": "Squawkabilly Blue Plumage",
+    "dexNo": 931,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 82,
+      "atk": 96,
+      "def": 51,
+      "spa": 45,
+      "spd": 51,
+      "spe": 92,
+      "bst": 417
+    },
+    "speedAt0": 112,
+    "speedAt32": 144,
+    "abilities": [
+      "intimidate",
+      "hustle",
+      "guts"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "recovery",
+      "status",
+      "tailwind"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10260.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10260.png",
+    "tokens": "squawkabilly blue plumage squawkabilly-blue-plumage normal flying intimidate hustle guts green pivot priority recovery status tailwind",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#3791c5",
+      "vibrant": "#40b0f0",
+      "muted": "#2f6e95",
+      "ink": "#12141a",
+      "wash": "#40b0f0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10261,
+    "slug": "squawkabilly-yellow-plumage",
+    "name": "Squawkabilly Yellow Plumage",
+    "dexNo": 931,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 82,
+      "atk": 96,
+      "def": 51,
+      "spa": 45,
+      "spd": 51,
+      "spe": 92,
+      "bst": 417
+    },
+    "speedAt0": 112,
+    "speedAt32": 144,
+    "abilities": [
+      "intimidate",
+      "hustle",
+      "sheer force"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "recovery",
+      "status",
+      "tailwind"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10261.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10261.png",
+    "tokens": "squawkabilly yellow plumage squawkabilly-yellow-plumage normal flying intimidate hustle sheer force green pivot priority recovery status tailwind",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#c4b752",
+      "vibrant": "#f0e060",
+      "muted": "#908846",
+      "ink": "#12141a",
+      "wash": "#f0e060",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 10262,
+    "slug": "squawkabilly-white-plumage",
+    "name": "Squawkabilly White Plumage",
+    "dexNo": 931,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 82,
+      "atk": 96,
+      "def": 51,
+      "spa": 45,
+      "spd": 51,
+      "spe": 92,
+      "bst": 417
+    },
+    "speedAt0": 112,
+    "speedAt32": 144,
+    "abilities": [
+      "intimidate",
+      "hustle",
+      "sheer force"
+    ],
+    "kitTags": [
+      "pivot",
+      "priority",
+      "recovery",
+      "status",
+      "tailwind"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10262.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10262.png",
+    "tokens": "squawkabilly white plumage squawkabilly-white-plumage normal flying intimidate hustle sheer force green pivot priority recovery status tailwind",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#aaaab8",
+      "vibrant": "#d0d0e0",
+      "muted": "#7e7f8c",
+      "ink": "#12141a",
+      "wash": "#d0d0e0",
       "source": "artwork"
     },
     "source": "pokeapi"
@@ -12684,6 +16203,51 @@
     "source": "pokeapi"
   },
   {
+    "id": 972,
+    "slug": "houndstone",
+    "name": "Houndstone",
+    "dexNo": 972,
+    "types": [
+      "ghost"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 72,
+      "atk": 101,
+      "def": 100,
+      "spa": 50,
+      "spd": 97,
+      "spe": 68,
+      "bst": 488
+    },
+    "speedAt0": 88,
+    "speedAt32": 120,
+    "abilities": [
+      "sand rush",
+      "fluffy"
+    ],
+    "kitTags": [
+      "priority",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/972.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/972.png",
+    "tokens": "houndstone houndstone ghost sand rush fluffy white priority recovery status",
+    "speciesColor": "white",
+    "palette": {
+      "dominant": "#9091ac",
+      "vibrant": "#b0b0d0",
+      "muted": "#6d6e84",
+      "ink": "#12141a",
+      "wash": "#b0b0d0",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
     "id": 973,
     "slug": "flamigo",
     "name": "Flamigo",
@@ -13294,6 +16858,54 @@
       "muted": "#151f34",
       "ink": "#f4f1ea",
       "wash": "#102040",
+      "source": "artwork"
+    },
+    "source": "pokeapi"
+  },
+  {
+    "id": 1019,
+    "slug": "hydrapple",
+    "name": "Hydrapple",
+    "dexNo": 1019,
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "form": "base",
+    "isLegal": true,
+    "featured": false,
+    "stats": {
+      "hp": 106,
+      "atk": 80,
+      "def": 110,
+      "spa": 120,
+      "spd": 80,
+      "spe": 44,
+      "bst": 540
+    },
+    "speedAt0": 64,
+    "speedAt32": 96,
+    "abilities": [
+      "supersweet syrup",
+      "regenerator",
+      "sticky hold"
+    ],
+    "kitTags": [
+      "priority",
+      "setup",
+      "recovery",
+      "status"
+    ],
+    "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1019.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1019.png",
+    "tokens": "hydrapple hydrapple grass dragon supersweet syrup regenerator sticky hold green priority setup recovery status",
+    "speciesColor": "green",
+    "palette": {
+      "dominant": "#842a2c",
+      "vibrant": "#a03030",
+      "muted": "#64272c",
+      "ink": "#f4f1ea",
+      "wash": "#a03030",
       "source": "artwork"
     },
     "source": "pokeapi"

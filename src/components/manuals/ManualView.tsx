@@ -1,33 +1,36 @@
 "use client";
 
 import Link from "next/link";
-import { parseAsString, useQueryState } from "nuqs";
+import { parseAsString, parseAsStringLiteral, useQueryState } from "nuqs";
 import { PageFrame } from "@/components/chrome/PageFrame";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
 import {
-  FAMILY_LESSON,
   MANUAL_FAMILY_LABEL,
   isBoxedManual,
   manualFamily,
   packList,
   resolveManual,
+  resolvePackStrategy,
   validatePackId,
   type TeamManual,
 } from "@/content/manuals";
-import { getLesson, lessonHref } from "@/content/curriculum";
 import { flowsFor } from "@/content/classroom-flows";
 import { ManualToc, MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
-import { ManualPlan } from "@/components/manuals/ManualPlan";
+import { ManualGameplan } from "@/components/manuals/ManualGameplan";
 import { ManualInsights } from "@/components/manuals/ManualInsights";
-import { ManualLead } from "@/components/manuals/ManualLead";
-import { ManualSpotlight } from "@/components/manuals/ManualSpotlight";
+import {
+  ManualPackageHero,
+  type PackageViewMode,
+} from "@/components/manuals/ManualPackageHero";
 import { ManualGameBoard } from "@/components/manuals/ManualGameBoard";
 import { ManualSection } from "@/components/manuals/ManualSection";
-import { ManualEndgameTiles } from "@/components/manuals/ManualPackDossier";
+import { ManualWinPath } from "@/components/manuals/ManualWinPath";
 import { ManualBriefing } from "@/components/manuals/ManualBriefing";
 import type { CoverageMember } from "@/lib/champions/team-coverage";
+
+const VIEW_MODES = ["carousel", "menu"] as const;
 
 function coverageFromSlots(manual: TeamManual): CoverageMember[] {
   const out: CoverageMember[] = [];
@@ -36,6 +39,7 @@ function coverageFromSlots(manual: TeamManual): CoverageMember[] {
     if (!p) continue;
     out.push({
       name: p.name,
+      slug: p.slug,
       types: p.types,
       moves: slot.moves.map((m) => m.name),
     });
@@ -56,9 +60,14 @@ export function ManualView({
     "pack",
     parseAsString.withDefault(validatePackId(parent) ?? ""),
   );
+  const [viewParam, setViewParam] = useQueryState(
+    "view",
+    parseAsStringLiteral(VIEW_MODES).withDefault("carousel"),
+  );
   const activeId = validatePackId(parent, packParam) ?? "";
   const manual = resolveManual(parent, activeId || undefined);
   const activePack = packs.find((p) => p.id === activeId);
+  const viewMode = viewParam as PackageViewMode;
 
   function selectPack(id: string) {
     void setPackParam(id);
@@ -70,8 +79,6 @@ export function ManualView({
   const advantages = (manual.advantages ?? []).filter((a) => a.title || a.body);
   const victims = (manual.victims ?? []).filter((v) => v.name || v.why);
   const counters = (manual.counters ?? []).filter((c) => c.name || c.why);
-  const family = manual.pilot ? undefined : FAMILY_LESSON[manualFamily(manual)];
-  const lessons = (manual.relatedLessons ?? []).map((slug) => getLesson(slug)).filter(Boolean);
   const flows = flowsFor(manual);
   const hasGame =
     flows.length > 0 ||
@@ -79,24 +86,26 @@ export function ManualView({
     (manual.switches ?? []).some((s) => s.into || s.send) ||
     Boolean(activePack?.gameStates?.length);
   const modeKey = activeId || "default";
-  const hasDoctrine = Boolean(
-    manual.pilot?.thesis ||
-      manual.pilot?.rule ||
-      manual.pilot?.fail ||
-      family?.thesis ||
-      family?.clockRule ||
-      family?.commonFail ||
-      manual.philosophy?.trim() ||
-      manual.meta?.trim(),
-  );
   const hasMatchups = Boolean(victims.length || counters.length || advantages.length || hazards.length);
   const endgames = parent.construction?.endgames ?? [];
   const packCoverage = coverageFromSlots(manual);
+  const strategy = activePack ? resolvePackStrategy(activePack) : null;
+  const hasGameplan = Boolean(
+    strategy || manual.plan?.some((b) => b.title || b.play),
+  );
+  const sixSummary = parent.sixSummary?.trim() || parent.lede?.trim();
 
   return (
     <PageFrame variant="board" sticky="local" style={wash ? cssVars(wash.palette) : undefined}>
       <article>
-        <ManualToc manual={manual} boxed={boxed} packKey={modeKey} parent={parent} />
+        <ManualToc
+          manual={manual}
+          boxed={boxed}
+          packKey={modeKey}
+          parent={parent}
+          packLabel={activePack?.label}
+          packSlugs={activePack?.slugs}
+        />
 
         <header id="top" className={`${MANUAL_SCROLL_MT} max-w-3xl`}>
           <p className="text-sm text-muted">
@@ -123,79 +132,50 @@ export function ManualView({
               </span>
             ) : null}
           </p>
+          {sixSummary ? (
+            <p className="mt-5 max-w-[54ch] text-lg leading-relaxed text-muted">{sixSummary}</p>
+          ) : null}
         </header>
 
-        {hasDoctrine ? (
-          <ManualSection
-            id="doctrine"
-            title="Doctrine"
-            purpose="The idea, the hard rule, and what you never do."
-          >
-            <ManualLead
-              thesis={manual.pilot?.thesis ?? family?.thesis}
-              rule={manual.pilot?.rule ?? family?.clockRule}
-              fail={manual.pilot?.fail ?? family?.commonFail}
-              failLabel={manual.pilot ? "Never." : "Common fail."}
-              philosophy={manual.philosophy}
-              meta={manual.meta}
-              lessons={
-                lessons.length ? (
-                  <p className="text-sm text-muted">
-                    If this word is new:{" "}
-                    {lessons.slice(0, 2).map((l, i) =>
-                      l ? (
-                        <span key={l.slug}>
-                          {i ? ", " : ""}
-                          <Link href={lessonHref(l.slug)} className="underline">
-                            {l.title}
-                          </Link>
-                        </span>
-                      ) : null,
-                    )}
-                  </p>
-                ) : undefined
-              }
-            />
-          </ManualSection>
-        ) : null}
-
         {boxed && packs.length && activeId ? (
-          <ManualSpotlight
+          <ManualPackageHero
             parent={parent}
             manual={manual}
             packs={packs}
             activeId={activeId}
             onSelectPack={selectPack}
+            viewMode={viewMode}
+            onViewMode={(mode) => void setViewParam(mode)}
             coverageMembers={packCoverage}
             coverageNotes={activePack?.coverageNotes ?? manual.coverageNotes}
           />
         ) : null}
 
-        {endgames.length ? (
+        {endgames.length || strategy?.winCondition ? (
           <ManualSection
             id="endgames"
-            title="Three endgames"
-            purpose="Which close this preview wants — not which three look strongest on paper."
+            title="Win path"
+            purpose="How this package closes — and which endgames on the six it pursues."
           >
-            <ManualEndgameTiles endgames={endgames} />
+            <ManualWinPath parent={parent} pack={activePack} />
           </ManualSection>
         ) : null}
 
-        <ManualBriefing manual={manual} />
-
-        {manual.plan?.length ? (
+        {hasGameplan ? (
           <ManualSection
             id="plan"
-            title="Plan"
-            purpose="How the three wins across the clock."
+            title="Gameplan"
+            purpose="Mantra, checklist, and the Lead → Mid → Late clock for this three."
           >
-            <ManualPlan plan={manual.plan} />
+            <ManualGameplan parent={parent} pack={activePack} plan={manual.plan ?? []} />
           </ManualSection>
         ) : null}
 
         {hasGame ? (
-          <ManualGameBoard key={modeKey} manual={manual} pack={activePack} />
+          <ManualGameBoard key={modeKey} manual={manual} pack={activePack} parent={parent} />
         ) : null}
+
+        <ManualBriefing manual={manual} />
 
         {hasMatchups ? (
           <ManualSection

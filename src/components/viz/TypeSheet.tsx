@@ -11,7 +11,7 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import { type TypeId } from "@/types/pokemon";
-import { TYPE_LABEL, TYPE_SHEET_ROWS, typeSheet } from "@/lib/champions/types";
+import { TYPE_IDS_ALPHA, TYPE_LABEL, TYPE_SHEET_ROWS, typeSheet } from "@/lib/champions/types";
 import { TypeIcon } from "@/components/pokemon/TypeIcon";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
 import { TypePlayground } from "./TypePlayground";
@@ -50,6 +50,7 @@ type Tip = {
 export function TypeSheet() {
   const [open, setOpen] = useState<TypeId>("fire");
   const [tip, setTip] = useState<Tip | null>(null);
+  const [caption, setCaption] = useState<Omit<Tip, "x" | "y" | "w" | "h"> | null>(null);
   const hideTimer = useRef<number | null>(null);
 
   const showTip = useCallback((next: Tip) => {
@@ -68,33 +69,140 @@ export function TypeSheet() {
     }, delay);
   }, []);
 
+  const sheet = typeSheet(open);
+
   return (
     <div>
-      <div className="type-sheet overflow-hidden rounded-[28px] shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
-        <Legend />
-        <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-          {TYPE_SHEET_ROWS.map(([left, right]) => (
-            <div key={left} className="contents">
-              <TypeRow
-                type={left}
-                selected={open === left}
-                onSelect={() => setOpen(left)}
-                onShowTip={showTip}
-                onHideTip={hideTip}
-              />
-              <TypeRow
-                type={right}
-                selected={open === right}
-                onSelect={() => setOpen(right)}
-                onShowTip={showTip}
-                onHideTip={hideTip}
-              />
+      {/* Mobile instrument */}
+      <div className="md:hidden">
+        <p className="text-sm text-muted">
+          Pink = danger to you · Blue = you hit hard · Tap a glyph for the call.
+        </p>
+        <ul className="mt-4 grid grid-cols-6 gap-2">
+          {TYPE_IDS_ALPHA.map((t) => {
+            const on = open === t;
+            return (
+              <li key={t}>
+                <button
+                  type="button"
+                  aria-pressed={on}
+                  onClick={() => {
+                    setOpen(t);
+                    setCaption(null);
+                  }}
+                  title={TYPE_LABEL[t]}
+                  className={`flex min-h-12 w-full items-center justify-center rounded-2xl p-2 transition ${
+                    on ? "bg-white/10 ring-2 ring-ink" : "opacity-50 hover:opacity-100"
+                  }`}
+                >
+                  <TypeIcon type={t} size="md" />
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+
+        <div
+          className="mt-5 overflow-hidden rounded-[28px] border border-line/70 shadow-[0_18px_50px_rgba(0,0,0,0.28)]"
+          style={{
+            background: `color-mix(in srgb, var(--type-${open}) 28%, var(--bg-raised))`,
+          }}
+        >
+          <div className="flex items-center gap-3 border-b border-black/10 px-4 py-4">
+            <TypeIcon type={open} size="hero" />
+            <div>
+              <p className="text-xl font-semibold tracking-tight">{TYPE_LABEL[open]}</p>
+              <p className="mt-0.5 text-sm text-muted">Matchup bands for this type</p>
             </div>
-          ))}
+          </div>
+          <MobileBand
+            title="Takes 2×"
+            tone="onYou"
+            types={sheet.weak}
+            host={open}
+            dir="in"
+            onPick={(other) =>
+              setCaption({ host: open, other, tone: "onYou", dir: "in" })
+            }
+          />
+          <MobileBand
+            title="Takes ½× / 0×"
+            tone="resist"
+            types={[...sheet.resist, ...sheet.immuneIn]}
+            immune={sheet.immuneIn}
+            host={open}
+            dir="in"
+            onPick={(other) =>
+              setCaption({
+                host: open,
+                other,
+                tone: sheet.immuneIn.includes(other) ? "immune" : "resist",
+                dir: "in",
+                slash: sheet.immuneIn.includes(other),
+              })
+            }
+          />
+          <MobileBand
+            title="Hits 2×"
+            tone="youHit"
+            types={sheet.hits}
+            host={open}
+            dir="out"
+            onPick={(other) =>
+              setCaption({ host: open, other, tone: "youHit", dir: "out" })
+            }
+          />
+          <MobileBand
+            title="Hits ½× / 0×"
+            tone="youSoft"
+            types={[...sheet.soft, ...sheet.fails]}
+            immune={sheet.fails}
+            host={open}
+            dir="out"
+            onPick={(other) =>
+              setCaption({
+                host: open,
+                other,
+                tone: sheet.fails.includes(other) ? "immune" : "youSoft",
+                dir: "out",
+                slash: sheet.fails.includes(other),
+              })
+            }
+          />
         </div>
+
+        <MobileCaption tip={caption} onDismiss={() => setCaption(null)} />
       </div>
-      <MatchupPopover tip={tip} />
-      <section className="mt-16">
+
+      {/* Desktop sheet */}
+      <div className="hidden md:block">
+        <div className="type-sheet overflow-hidden rounded-[28px] shadow-[0_18px_50px_rgba(0,0,0,0.35)]">
+          <Legend />
+          <div className="grid md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+            {TYPE_SHEET_ROWS.map(([left, right]) => (
+              <div key={left} className="contents">
+                <TypeRow
+                  type={left}
+                  selected={open === left}
+                  onSelect={() => setOpen(left)}
+                  onShowTip={showTip}
+                  onHideTip={hideTip}
+                />
+                <TypeRow
+                  type={right}
+                  selected={open === right}
+                  onSelect={() => setOpen(right)}
+                  onShowTip={showTip}
+                  onHideTip={hideTip}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <MatchupPopover tip={tip} />
+      </div>
+
+      <section className="mt-12 md:mt-16">
         <h2 className="text-2xl font-semibold tracking-tight">Mix two types</h2>
         <p className="mt-2 max-w-[50ch] text-sm text-muted">
           Preview is often a pair. The sheet above is one type at a time. Mix here after you can read a row.
@@ -104,6 +212,118 @@ export function TypeSheet() {
         </div>
       </section>
     </div>
+  );
+}
+
+function MobileBand({
+  title,
+  tone,
+  types,
+  immune = [],
+  host,
+  onPick,
+}: {
+  title: string;
+  tone: Tone;
+  types: TypeId[];
+  immune?: TypeId[];
+  host: TypeId;
+  dir: Dir;
+  onPick: (t: TypeId) => void;
+}) {
+  const { fill, ink } = TONE[tone];
+  return (
+    <div className="border-t border-black/10 px-4 py-3.5">
+      <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em]" style={{ color: ink }}>
+        {title}
+      </p>
+      {types.length ? (
+        <ul className="mt-2.5 flex flex-wrap gap-2">
+          {types.map((t) => {
+            const slash = immune.includes(t);
+            return (
+              <li key={`${title}-${t}`}>
+                <button
+                  type="button"
+                  onClick={() => onPick(t)}
+                  className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full px-2"
+                  style={{ background: fill }}
+                  aria-label={`${TYPE_LABEL[t]} vs ${TYPE_LABEL[host]}`}
+                >
+                  <TypeIcon type={t} size="sheet" slash={slash} title={false} />
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p className="mt-2 text-sm text-muted">None</p>
+      )}
+    </div>
+  );
+}
+
+function MobileCaption({
+  tip,
+  onDismiss,
+}: {
+  tip: Omit<Tip, "x" | "y" | "w" | "h"> | null;
+  onDismiss: () => void;
+}) {
+  if (typeof document === "undefined") return null;
+  const incoming = Boolean(
+    tip && (tip.tone === "onYou" || tip.tone === "resist" || (tip.tone === "immune" && tip.dir === "in")),
+  );
+  const from = tip ? (incoming ? tip.other : tip.host) : "normal";
+  const into = tip ? (incoming ? tip.host : tip.other) : "normal";
+  const match = tip ? MATCH[tip.tone] : MATCH.onYou;
+  const glow = tip ? TONE[tip.tone].glow : TONE.onYou.glow;
+
+  return createPortal(
+    <MotionConfig reducedMotion="user">
+      <AnimatePresence>
+        {tip ? (
+          <motion.div
+            key="mobile-caption"
+            role="status"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 12 }}
+            transition={{ duration: motionTokens.state, ease: easeOut }}
+            className="fixed inset-x-0 bottom-[calc(4.25rem+env(safe-area-inset-bottom))] z-[55] px-3 md:hidden"
+          >
+            <div
+              className="mx-auto flex max-w-lg items-center gap-3 rounded-[22px] px-4 py-3 shadow-[0_16px_40px_rgba(0,0,0,0.45)]"
+              style={{ background: "#1c243c" }}
+            >
+              <div className="flex items-center gap-2">
+                <TypeIcon type={from} size="sm" slash={Boolean(tip.slash && incoming)} title={false} />
+                <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#9aa3bc]">
+                  into
+                </span>
+                <TypeIcon type={into} size="sm" slash={Boolean(tip.slash && !incoming)} title={false} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="font-mono text-2xl font-semibold leading-none tracking-tight" style={{ color: glow }}>
+                  {match.mult}
+                </p>
+                <p className="mt-1 truncate text-sm font-medium" style={{ color: glow }}>
+                  {match.call}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={onDismiss}
+                className="min-h-11 shrink-0 rounded-full px-3 text-xs text-[#c5cbe0]"
+              >
+                Close
+              </button>
+            </div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </MotionConfig>,
+    document.body,
   );
 }
 

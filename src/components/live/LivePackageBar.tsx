@@ -19,7 +19,13 @@ import { easeOut, motionTokens } from "@/components/motion/tokens";
 const SLOT_INDEXES = [0, 1, 2, 3, 4, 5] as const;
 
 /** Freely pick up to six on Live — Team box/three are shortcuts, presets recall kits. */
-export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
+export function LivePackageBar({
+  exclude = [],
+  compact = false,
+}: {
+  exclude?: string[];
+  compact?: boolean;
+}) {
   const box = useTeamStore((s) => s.box);
   const teamSlugs = useTeamStore((s) => s.slugs);
   const bring = useLiveMatchStore((s) => s.bring);
@@ -111,9 +117,10 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
 
   return (
     <LiveSideShell
+      compact={compact}
       eyebrow="Your six"
       title={`${bring.length}/${MAX_BRING} on the field`}
-      lede="Tap a mon for the duel. Mega chips swap mid-fight."
+      lede={compact ? "Tap for duel · Mega chips swap forms" : "Tap a mon for the duel. Mega chips swap mid-fight."}
       action={
         <Link href="/team" className="text-xs text-muted underline hover:text-ink">
           Edit on Team
@@ -148,7 +155,7 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
                     <button
                       type="button"
                       onClick={() => bringIn(p.slug)}
-                      className="inline-flex items-center gap-2 rounded-full border border-line bg-raised/50 py-1 pl-1 pr-3 text-sm transition hover:border-ink/40 active:scale-[0.98]"
+                      className="inline-flex min-h-11 items-center gap-2 rounded-full border border-line bg-raised/50 py-1 pl-1 pr-3 text-sm transition hover:border-ink/40 active:scale-[0.98]"
                       style={cssVars(p.palette)}
                     >
                       <PokemonArt slug={p.slug} src={p.sprite || p.artwork} name={p.name} size={28} />
@@ -162,78 +169,145 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
         </div>
       }
       recents={
-        <LiveRecentStrip
-          slugs={recent}
-          exclude={[...exclude, ...bring]}
-          onPick={bringIn}
-          emptyHint="Optional quick adds — presets cover full teams."
-        />
+        compact ? undefined : (
+          <LiveRecentStrip
+            slugs={recent}
+            exclude={[...exclude, ...bring]}
+            onPick={bringIn}
+            emptyHint="Optional quick adds — presets cover full teams."
+          />
+        )
       }
       slots={
-        <ul className="grid grid-cols-3 gap-2 sm:grid-cols-6">
-          {SLOT_INDEXES.map((i) => {
-            const slug = bring[i];
-            const p = slug ? getPokemon(slug) : undefined;
-            if (!p || !slug) {
+        compact ? (
+          <ul className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {SLOT_INDEXES.map((i) => {
+              const slug = bring[i];
+              const p = slug ? getPokemon(slug) : undefined;
+              if (!p || !slug) {
+                return (
+                  <li key={`empty-${i}`} className="shrink-0">
+                    <div className="flex h-[5.5rem] w-[4.5rem] flex-col items-center justify-center rounded-2xl border border-dashed border-line/80 bg-bg/20">
+                      <span className="font-mono text-[10px] text-muted">{i + 1}</span>
+                    </div>
+                  </li>
+                );
+              }
+              const focused = highlighted === slug;
+              const alts = megaAltChips(slug).filter((alt) => !bring.includes(alt.slug));
               return (
-                <li key={`empty-${i}`} className="flex flex-col gap-1.5">
-                  <div className="flex min-h-[5.75rem] flex-col items-center justify-center rounded-2xl border border-dashed border-line/80 bg-bg/20 px-2 py-3 text-center">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
-                      Slot {i + 1}
-                    </span>
-                    <span className="mt-1 text-xs text-muted">Search</span>
+                <li key={slug} className="flex shrink-0 flex-col gap-1">
+                  <div
+                    className={`relative flex h-[5.5rem] w-[4.5rem] flex-col items-center justify-center rounded-2xl border transition ${
+                      focused
+                        ? "border-ink/40 bg-white/10"
+                        : "border-[color-mix(in_srgb,var(--mon-vibrant)_45%,transparent)] bg-[color-mix(in_srgb,var(--mon-wash)_18%,transparent)]"
+                    }`}
+                    style={cssVars(p.palette)}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => selectBring(slug)}
+                      className="flex min-h-11 w-full flex-col items-center gap-1 px-1"
+                    >
+                      <PokemonArt slug={p.slug} src={p.sprite || p.artwork} name={p.name} size={40} />
+                      <span className="max-w-full truncate text-[10px] font-medium">{p.name}</span>
+                    </button>
+                    <button
+                      type="button"
+                      aria-label={`Remove ${p.name}`}
+                      onClick={() => drop(slug)}
+                      className="absolute right-0.5 top-0.5 rounded-full bg-bg/70 p-1.5 text-muted"
+                    >
+                      <X size={10} weight="bold" />
+                    </button>
                   </div>
-                  <div className="min-h-[1.35rem]" aria-hidden />
+                  {alts.length ? (
+                    <div className="flex max-w-[4.5rem] flex-wrap justify-center gap-0.5">
+                      {alts.map((alt) => (
+                        <button
+                          key={alt.slug}
+                          type="button"
+                          title={`Swap to ${alt.name}`}
+                          onClick={() => swapForm(i, slug, alt.slug)}
+                          className="rounded-full border border-line/70 bg-raised/40 px-1.5 py-0.5 text-[9px] font-medium text-muted"
+                          style={cssVars(alt.palette)}
+                        >
+                          {megaChipLabel(alt)}
+                        </button>
+                      ))}
+                    </div>
+                  ) : null}
                 </li>
               );
-            }
-            const focused = highlighted === slug;
-            const alts = megaAltChips(slug).filter((alt) => !bring.includes(alt.slug));
-            return (
-              <li key={slug} className="flex flex-col gap-1.5">
-                <div
-                  className={`relative flex min-h-[5.75rem] flex-col items-center justify-center gap-1.5 rounded-2xl border px-1.5 py-2.5 transition ${
-                    focused
-                      ? "border-ink/40 bg-white/10"
-                      : "border-[color-mix(in_srgb,var(--mon-vibrant)_45%,transparent)] bg-[color-mix(in_srgb,var(--mon-wash)_18%,transparent)]"
-                  }`}
-                  style={cssVars(p.palette)}
-                >
-                  <button
-                    type="button"
-                    onClick={() => selectBring(slug)}
-                    className="flex w-full flex-col items-center gap-1.5"
+            })}
+          </ul>
+        ) : (
+          <ul className="grid grid-cols-3 gap-2 sm:grid-cols-6">
+            {SLOT_INDEXES.map((i) => {
+              const slug = bring[i];
+              const p = slug ? getPokemon(slug) : undefined;
+              if (!p || !slug) {
+                return (
+                  <li key={`empty-${i}`} className="flex flex-col gap-1.5">
+                    <div className="flex min-h-[5.75rem] flex-col items-center justify-center rounded-2xl border border-dashed border-line/80 bg-bg/20 px-2 py-3 text-center">
+                      <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+                        Slot {i + 1}
+                      </span>
+                      <span className="mt-1 text-xs text-muted">Search</span>
+                    </div>
+                    <div className="min-h-[1.35rem]" aria-hidden />
+                  </li>
+                );
+              }
+              const focused = highlighted === slug;
+              const alts = megaAltChips(slug).filter((alt) => !bring.includes(alt.slug));
+              return (
+                <li key={slug} className="flex flex-col gap-1.5">
+                  <div
+                    className={`relative flex min-h-[5.75rem] flex-col items-center justify-center gap-1.5 rounded-2xl border px-1.5 py-2.5 transition ${
+                      focused
+                        ? "border-ink/40 bg-white/10"
+                        : "border-[color-mix(in_srgb,var(--mon-vibrant)_45%,transparent)] bg-[color-mix(in_srgb,var(--mon-wash)_18%,transparent)]"
+                    }`}
+                    style={cssVars(p.palette)}
                   >
-                    <PokemonArt slug={p.slug} src={p.sprite || p.artwork} name={p.name} size={48} />
-                    <span className="max-w-full truncate text-[11px] font-medium">{p.name}</span>
-                  </button>
-                  <button
-                    type="button"
-                    aria-label={`Remove ${p.name}`}
-                    onClick={() => drop(slug)}
-                    className="absolute right-1.5 top-1.5 rounded-full bg-bg/70 p-1 text-muted hover:bg-bg hover:text-ink"
-                  >
-                    <X size={12} weight="bold" />
-                  </button>
-                </div>
-                <div className="flex min-h-[1.35rem] flex-wrap justify-center gap-1">
-                  {alts.map((alt) => (
                     <button
-                      key={alt.slug}
                       type="button"
-                      title={`Swap to ${alt.name}`}
-                      onClick={() => swapForm(i, slug, alt.slug)}
-                      className="rounded-full border border-line/70 bg-raised/40 px-2 py-0.5 text-[10px] font-medium text-muted transition hover:border-ink/35 hover:text-ink"
-                      style={cssVars(alt.palette)}
+                      onClick={() => selectBring(slug)}
+                      className="flex w-full flex-col items-center gap-1.5"
                     >
-                      {megaChipLabel(alt)}
+                      <PokemonArt slug={p.slug} src={p.sprite || p.artwork} name={p.name} size={48} />
+                      <span className="max-w-full truncate text-[11px] font-medium">{p.name}</span>
                     </button>
-                  ))}
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+                    <button
+                      type="button"
+                      aria-label={`Remove ${p.name}`}
+                      onClick={() => drop(slug)}
+                      className="absolute right-1.5 top-1.5 rounded-full bg-bg/70 p-1 text-muted hover:bg-bg hover:text-ink"
+                    >
+                      <X size={12} weight="bold" />
+                    </button>
+                  </div>
+                  <div className="flex min-h-[1.35rem] flex-wrap justify-center gap-1">
+                    {alts.map((alt) => (
+                      <button
+                        key={alt.slug}
+                        type="button"
+                        title={`Swap to ${alt.name}`}
+                        onClick={() => swapForm(i, slug, alt.slug)}
+                        className="rounded-full border border-line/70 bg-raised/40 px-2 py-0.5 text-[10px] font-medium text-muted transition hover:border-ink/35 hover:text-ink"
+                        style={cssVars(alt.palette)}
+                      >
+                        {megaChipLabel(alt)}
+                      </button>
+                    ))}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        )
       }
       footer={
         fromTeam.length ? (
@@ -241,18 +315,26 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
             <p className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
               From Team — tap to toggle
             </p>
-            <ul className="mt-2 grid grid-cols-3 gap-2 sm:grid-cols-6">
+            <ul
+              className={
+                compact
+                  ? "mt-2 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                  : "mt-2 grid grid-cols-3 gap-2 sm:grid-cols-6"
+              }
+            >
               {fromTeam.map((pkgSlug) => {
                 const mon = getPokemon(pkgSlug);
                 if (!mon) return null;
                 const on = bring.includes(pkgSlug);
                 return (
-                  <li key={pkgSlug}>
+                  <li key={pkgSlug} className={compact ? "shrink-0" : undefined}>
                     <button
                       type="button"
                       onClick={() => togglePackage(pkgSlug)}
                       title={on ? `Drop ${mon.name}` : `Add ${mon.name}`}
-                      className={`flex w-full flex-col items-center gap-1 rounded-2xl border px-1 py-2 transition ${
+                      className={`flex min-h-11 flex-col items-center gap-1 rounded-2xl border px-2 py-2 transition ${
+                        compact ? "w-[3.75rem]" : "w-full px-1"
+                      } ${
                         on
                           ? "border-ink/35 bg-white/10"
                           : "border-line/70 bg-bg/30 opacity-75 hover:opacity-100"
@@ -263,7 +345,7 @@ export function LivePackageBar({ exclude = [] }: { exclude?: string[] }) {
                         slug={mon.slug}
                         src={mon.sprite || mon.artwork}
                         name={mon.name}
-                        size={36}
+                        size={compact ? 32 : 36}
                       />
                       <span className="max-w-full truncate text-[10px] font-medium">{mon.name}</span>
                     </button>

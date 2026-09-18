@@ -120,12 +120,13 @@ export const useMyBoxStore = create<MyBoxState>()(
     }),
     {
       name: "ringside-my-box",
-      version: 2,
+      version: 3,
       migrate: (persisted, fromVersion) => {
         const raw = persisted as
           | { owned?: string[]; extras?: BoxExtra[]; filterBuilders?: boolean }
           | undefined;
-        // v2 refreshes the owner seed (Golisopod, Lucario, Gholdengo, etc.).
+        // v2 refreshed the owner seed. v3 unions seed again so new legal faces
+        // (e.g. Gholdengo) appear in My box search without wiping custom adds.
         if (fromVersion < 2) {
           return {
             owned: uniqSorted(OWNER_BOX_SEED),
@@ -133,8 +134,12 @@ export const useMyBoxStore = create<MyBoxState>()(
             filterBuilders: raw?.filterBuilders ?? true,
           };
         }
+        const owned = uniqSorted([
+          ...(raw?.owned?.length ? raw.owned : []),
+          ...OWNER_BOX_SEED,
+        ]);
         return {
-          owned: uniqSorted(raw?.owned?.length ? raw.owned : OWNER_BOX_SEED),
+          owned: owned.length ? owned : uniqSorted(OWNER_BOX_SEED),
           extras: raw?.extras?.length ? raw.extras : OWNER_BOX_EXTRAS_SEED,
           filterBuilders: raw?.filterBuilders ?? true,
         };

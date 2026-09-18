@@ -218,6 +218,17 @@ export const TERMS: GlossaryTerm[] = [
   {
     t: "Screens",
     d: "Light Screen, Reflect, or Aurora Veil. Cut damage for a few turns so an attacker can set up. Not a stall plan.",
+    href: "/learn/defense-moves",
+  },
+  {
+    t: "Aurora Veil",
+    d: "Both Reflect and Light Screen in one click — only while snow is up. Snow Warning Alolan Ninetales is the usual lead into it.",
+    href: "/learn/defense-moves",
+  },
+  {
+    t: "Snow",
+    d: "Weather that enables Aurora Veil and buffs Ice Defense. Overwrite it and the Veil package collapses.",
+    href: "/learn/field-moves",
   },
   {
     t: "Terrain",

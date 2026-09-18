@@ -52,6 +52,7 @@ type LiveMatchState = {
   clearBring: () => void;
   addFoe: (slug: string) => void;
   removeFoe: (slug: string) => void;
+  setFoeSlot: (index: number, slug: string | null) => void;
   clearFoes: () => void;
   setFocus: (slug: string | null) => void;
   setActiveBring: (slug: string | null) => void;
@@ -243,6 +244,34 @@ export const useLiveMatchStore = create<LiveMatchState>()(
             activeFoeSlug: s.activeFoeSlug === slug ? fallback : s.activeFoeSlug,
             attackerSlug: s.attackerSlug === slug ? null : s.attackerSlug,
             defenderSlug: s.defenderSlug === slug ? null : s.defenderSlug,
+          };
+        });
+      },
+      setFoeSlot: (index, slug) => {
+        if (index < 0 || index >= MAX_FOES) return;
+        set((s) => {
+          const padded = [...s.foes];
+          while (padded.length <= index) padded.push("");
+          const prev = padded[index] || null;
+          if (!slug) {
+            const next = padded.map((x, i) => (i === index ? "" : x)).filter(Boolean);
+            return {
+              foes: next,
+              activeFoeSlug:
+                s.activeFoeSlug === prev ? next[next.length - 1] ?? null : s.activeFoeSlug,
+              focusSlug: s.focusSlug === prev ? next[next.length - 1] ?? null : s.focusSlug,
+              attackerSlug: s.attackerSlug === prev ? null : s.attackerSlug,
+              defenderSlug: s.defenderSlug === prev ? null : s.defenderSlug,
+            };
+          }
+          if (padded.includes(slug) && padded[index] !== slug) return s;
+          padded[index] = slug;
+          return {
+            foes: padded.filter(Boolean),
+            activeFoeSlug: slug,
+            focusSlug: slug,
+            attackerSlug: s.attackerSlug === prev ? slug : s.attackerSlug,
+            defenderSlug: s.defenderSlug === prev ? slug : s.defenderSlug,
           };
         });
       },

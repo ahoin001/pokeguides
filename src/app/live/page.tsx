@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function LiveMatchPage() {
   return (
-    <PageFrame variant="board" sticky="shell" className="pb-28 md:pb-24">
+    <PageFrame variant="board" sticky="shell" className="pb-20 md:pb-24">
       <LiveMatchStage />
     </PageFrame>
   );

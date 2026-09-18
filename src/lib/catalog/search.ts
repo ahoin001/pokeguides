@@ -1,17 +1,52 @@
 import MiniSearch from "minisearch";
 import type { CatalogEntry, RoleId, TypeId } from "@/types/pokemon";
 
-let index: MiniSearch<CatalogEntry> | null = null;
+/** One MiniSearch index per roster array reference (avoids stale singleton misses). */
+const indexes = new WeakMap<object, MiniSearch<CatalogEntry>>();
 
 function getIndex(list: CatalogEntry[]) {
-  if (index) return index;
-  index = new MiniSearch({
+  const key = list as object;
+  const cached = indexes.get(key);
+  if (cached) return cached;
+
+  const index = new MiniSearch<CatalogEntry>({
+    idField: "slug",
     fields: ["name", "tokens", "slug"],
     storeFields: ["slug"],
-    searchOptions: { prefix: true, fuzzy: 0.15 },
+    searchOptions: { prefix: true, fuzzy: 0.15, boost: { name: 3, slug: 2, tokens: 1 } },
   });
   index.addAll(list);
+  indexes.set(key, index);
   return index;
+}
+
+function substringHits(list: CatalogEntry[], query: string) {
+  const q = query.trim().toLowerCase();
+  if (!q) return [];
+  const exact: CatalogEntry[] = [];
+  const prefix: CatalogEntry[] = [];
+  const soft: CatalogEntry[] = [];
+  for (const p of list) {
+    const name = p.name.toLowerCase();
+    const slug = p.slug.toLowerCase();
+    if (name === q || slug === q) {
+      exact.push(p);
+      continue;
+    }
+    if (name.startsWith(q) || slug.startsWith(q)) {
+      prefix.push(p);
+      continue;
+    }
+    if (
+      name.includes(q) ||
+      slug.includes(q) ||
+      p.tokens.toLowerCase().includes(q) ||
+      p.abilities.some((a) => a.toLowerCase().includes(q))
+    ) {
+      soft.push(p);
+    }
+  }
+  return [...exact, ...prefix, ...soft];
 }
 
 export function searchCatalog(
@@ -25,12 +60,26 @@ export function searchCatalog(
   } = {},
 ) {
   const q = query.trim();
-  let rows = q
-    ? getIndex(list)
-        .search(q)
-        .map((hit) => list.find((p) => p.slug === hit.slug))
-        .filter((p): p is CatalogEntry => Boolean(p))
-    : [...list];
+  let rows: CatalogEntry[];
+
+  if (!q) {
+    rows = [...list];
+  } else {
+    const fromIndex = getIndex(list)
+      .search(q)
+      .map((hit) => list.find((p) => p.slug === hit.slug))
+      .filter((p): p is CatalogEntry => Boolean(p));
+
+    // Substring pass catches anything MiniSearch ranks out or misses (new legal faces, odd tokens).
+    const fromSub = substringHits(list, q);
+    const seen = new Set<string>();
+    rows = [];
+    for (const p of [...fromSub, ...fromIndex]) {
+      if (seen.has(p.slug)) continue;
+      seen.add(p.slug);
+      rows.push(p);
+    }
+  }
 
   if (filters.type) {
     rows = rows.filter((p) => p.types.includes(filters.type as TypeId));

@@ -60,10 +60,18 @@ export function PokemonPicker({
             !needle ||
             p.name.toLowerCase().includes(needle) ||
             p.slug.includes(needle) ||
+            p.tokens.toLowerCase().includes(needle) ||
             p.types.some((t) => t.includes(needle)),
         )
         .sort((a, b) => a.name.localeCompare(b.name))
         .slice(0, 24);
+
+      // Box miss — still surface legal roster hits so Gholdengo etc. are findable.
+      if (needle && list.length === 0) {
+        list = searchLegal(q)
+          .filter((p) => !exclude.includes(p.slug))
+          .slice(0, 12);
+      }
     } else {
       list = searchLegal(q)
         .filter((p) => !exclude.includes(p.slug))

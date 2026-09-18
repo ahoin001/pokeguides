@@ -289,6 +289,7 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
     rules: [
       { label: "Rain", detail: "Water up, Fire down, and rain abilities activate." },
       { label: "Sun", detail: "Fire up, Water down, and sun abilities activate." },
+      { label: "Snow", detail: "Enables Aurora Veil — both screens in one click." },
       { label: "Terrain", detail: "Changes recovery, priority, status, or move power." },
       { label: "Tailwind", detail: "Doubles the user’s side Speed for a short clock." },
       { label: "Trick Room", detail: "Makes slower Pokémon act first within their priority bracket." },
@@ -327,6 +328,23 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
           { slug: "charizard-mega-y", caption: "Drought" },
           { slug: "torkoal", caption: "Drought support" },
           { slug: "venusaur", caption: "Chlorophyll / Growth" },
+        ],
+      },
+      {
+        title: "Snow",
+        tag: "Weather",
+        body: "Snow (Snow Warning) is the board that makes Aurora Veil legal — both Reflect and Light Screen in one click. Alolan Ninetales sets snow on entry, then Veil turns the remaining turns into a fortress for a setup cleaner. Ice-type Defense also rises under snow in modern rules. Overwrite snow and Veil fails; without Veil, snow alone is a weaker package than rain or sun.",
+        takeaway: "Snow on the list means Aurora Veil is coming. Deny the Veil or overwrite before they Dance.",
+        rows: [
+          { label: "Does", detail: "Sets snow on entry (Snow Warning). Enables Aurora Veil; buffs Ice Defense." },
+          { label: "When", detail: "Alolan Ninetales / Abomasnow / Snow Warning Mega leads into a screen + cleaner plan." },
+          { label: "Answer", detail: "Sun, rain, or sand overwrite. Taunt / Fake Out the Veil. KO the setter. Pressure before both screens are up." },
+        ],
+        example: { slug: "ninetales-alola", caption: "Snow Warning. Then Aurora Veil." },
+        examples: [
+          { slug: "ninetales-alola", caption: "Snow + Veil" },
+          { slug: "abomasnow", caption: "Snow Warning" },
+          { slug: "froslass-mega", caption: "Snow Warning Mega" },
         ],
       },
       {
@@ -402,6 +420,7 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
     examples: [
       { slug: "pelipper", caption: "Rain" },
       { slug: "charizard-mega-y", caption: "Sun" },
+      { slug: "ninetales-alola", caption: "Snow / Veil" },
       { slug: "rillaboom", caption: "Grassy" },
       { slug: "whimsicott", caption: "Tailwind" },
       { slug: "farigiraf", caption: "Trick Room" },
@@ -675,6 +694,7 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
       { label: "Destiny Bond", detail: "Finishing into Bond is a double KO. Do not take the bait." },
       { label: "Perish Song", detail: "Shared faint clock. Switch before count three." },
       { label: "Protect", detail: "+4 scout. Do not Sucker or Fake Out into it." },
+      { label: "Aurora Veil", detail: "Both screens in one click — only while snow is up." },
     ],
     beats: [
       {
@@ -786,20 +806,38 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
         ],
       },
       {
-        title: "Reflect · Light Screen · Aurora Veil",
+        title: "Reflect · Light Screen",
         tag: "Screens",
-        body: "Reflect cuts physical damage, Light Screen cuts special damage, and Aurora Veil cuts both under snow. Screens buy safer setup and extra lives for the remaining team. They are timed — stall the turns, remove the setter, or attack from the uncovered category.",
+        body: "Reflect cuts physical damage and Light Screen cuts special damage for several turns. Prankster setters like Grimmsnarl click them to buy a setup turn or an extra life for the truck. They are timed — stall the turns, remove the setter, or attack from the uncovered category. Aurora Veil is the snow version that does both at once — its own beat below.",
         takeaway: "Set the screen that lets the next win condition survive its answer.",
         rows: [
-          { label: "Does", detail: "Reduces physical, special, or both damage for several turns." },
+          { label: "Does", detail: "Reflect softens physical hits; Light Screen softens special hits for several turns." },
           { label: "When", detail: "Creates a setup turn or lets a cleaner survive revenge." },
           { label: "Counter", detail: "Stall turns. Taunt / KO the setter. Hit the uncovered side. Brick Break / screen removal when available." },
         ],
         example: { slug: "grimmsnarl", caption: "Prankster screens. Then the truck." },
         examples: [
           { slug: "grimmsnarl", caption: "Screens (#47)" },
-          { slug: "ninetales-alola", caption: "Aurora Veil" },
           { slug: "klefki", caption: "Screens support" },
+          { slug: "whimsicott", caption: "Screen / clock hybrids" },
+        ],
+      },
+      {
+        title: "Aurora Veil",
+        tag: "Snow screen",
+        body: "Aurora Veil is both Reflect and Light Screen in one click — but it only works while snow (or hail) is on the board. Alolan Ninetales sets Snow Warning on entry, then Veil turns the team into a double-screen fortress for the clock. It is the reason snow packages feel unfair on a three: one turn of support cuts both physical and special revenge. Without snow, Veil fails — overwrite weather or remove the setter and the fortress collapses.",
+        takeaway: "Snow Warning + Aurora Veil = both screens in one click. Overwrite snow or Taunt the Veil before the cleaner boosts.",
+        rows: [
+          { label: "Does", detail: "Under snow, cuts both physical and special damage for several turns (one move)." },
+          { label: "When", detail: "After Snow Warning / snow is up. Alolan Ninetales leads into a setup cleaner." },
+          { label: "Counter", detail: "Overwrite snow (sun, rain, sand). Taunt / Fake Out the Veil click. KO the setter. Stall Veil turns. Brick Break / screen clear when available." },
+        ],
+        example: { slug: "ninetales-alola", caption: "Snow Warning → Aurora Veil." },
+        examples: [
+          { slug: "ninetales-alola", caption: "Snow + Aurora Veil" },
+          { slug: "froslass", caption: "Snow / Veil support" },
+          { slug: "froslass-mega", caption: "Snow Warning Mega" },
+          { slug: "abomasnow", caption: "Snow Warning setter" },
         ],
       },
       {
@@ -825,7 +863,7 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
       { slug: "garchomp", caption: "Protect" },
       { slug: "banette", caption: "Destiny Bond" },
       { slug: "whimsicott", caption: "Encore" },
-      { slug: "altaria", caption: "Perish Song" },
+      { slug: "ninetales-alola", caption: "Aurora Veil" },
       { slug: "corviknight", caption: "Roost" },
       { slug: "grimmsnarl", caption: "Screens" },
     ],

@@ -12,13 +12,18 @@ type MovesFile = {
       category: MoveCategory;
       basePower: number;
       priority?: number;
+      shortEffect?: string;
     }
   >;
 };
 
 const file = movesJson as MovesFile;
 
-export function getChampionsMove(name: string): DamageMove | undefined {
+export type ChampionsMove = DamageMove & {
+  shortEffect?: string;
+};
+
+export function getChampionsMove(name: string): ChampionsMove | undefined {
   const direct = file.moves[name];
   const row =
     direct ??
@@ -26,7 +31,6 @@ export function getChampionsMove(name: string): DamageMove | undefined {
   if (!row) {
     const type = MOVE_TYPE[name.toLowerCase()];
     if (!type || !isDamagingMove(name)) return undefined;
-    // Fallback estimate when sync missed a name
     return { name, type, category: "physical", basePower: 80 };
   }
   return {
@@ -35,6 +39,7 @@ export function getChampionsMove(name: string): DamageMove | undefined {
     category: row.category,
     basePower: row.basePower,
     priority: row.priority,
+    shortEffect: row.shortEffect,
   };
 }
 

@@ -22,6 +22,8 @@ type MoveRow = {
   category: "physical" | "special" | "status";
   basePower: number;
   priority: number;
+  /** English short effect from PokeAPI (plain-English what the move does). */
+  shortEffect?: string;
 };
 
 function pokeSlug(name: string) {
@@ -32,12 +34,19 @@ function pokeSlug(name: string) {
     .replace(/^-|-$/g, "");
 }
 
+function cleanEffect(raw: string, chance?: number | null) {
+  return raw
+    .replace(/\$effect_chance/g, chance != null ? String(chance) : "a")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 async function fetchMove(name: string): Promise<MoveRow | null> {
   const slug = pokeSlug(name);
   const cachePath = path.join(CACHE, `${slug}.json`);
   try {
     const cached = JSON.parse(await readFile(cachePath, "utf8")) as MoveRow;
-    return cached;
+    if (cached.shortEffect) return { ...cached, name };
   } catch {
     /* fetch */
   }
@@ -53,13 +62,23 @@ async function fetchMove(name: string): Promise<MoveRow | null> {
     damage_class: { name: string };
     power: number | null;
     priority: number;
+    effect_chance: number | null;
+    effect_entries?: { language: { name: string }; short_effect: string; effect: string }[];
   };
+  const en =
+    data.effect_entries?.find((e) => e.language.name === "en") ??
+    data.effect_entries?.[0];
+  const chance = data.effect_chance;
+  const shortEffect = en?.short_effect
+    ? cleanEffect(en.short_effect, chance)
+    : undefined;
   const row: MoveRow = {
     name,
     type: data.type.name,
     category: data.damage_class.name as MoveRow["category"],
     basePower: data.power ?? 0,
     priority: data.priority ?? 0,
+    shortEffect,
   };
   await writeFile(cachePath, JSON.stringify(row), "utf8");
   return row;
@@ -81,7 +100,6 @@ async function main() {
   for (const name of sorted) {
     const row = await fetchMove(name);
     if (row) byName[name] = row;
-    // light throttle
     await new Promise((r) => setTimeout(r, 40));
   }
 

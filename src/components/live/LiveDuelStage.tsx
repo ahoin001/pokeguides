@@ -10,6 +10,7 @@ import { TypeBadge } from "@/components/pokemon/TypeBadge";
 import { LiveStatCompare } from "@/components/live/LiveStatCompare";
 import { LiveSpeHero } from "@/components/live/LiveSpeHero";
 import { LiveFoeKit } from "@/components/live/LiveFoeKit";
+import { LiveFoeUsage } from "@/components/live/LiveFoeUsage";
 import { LiveArchetypeHint } from "@/components/live/LiveArchetypeHint";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
 import {
@@ -300,6 +301,9 @@ export function LiveDuelStage({ showKit = true }: { showKit?: boolean }) {
                 types={theirOff.strong.map((t) => ({ type: t }))}
               />
             </div>
+            <div className="px-4 pb-4">
+              <LiveFoeUsage foeSlug={foeSlug} align="start" />
+            </div>
 
             <details className="border-t border-line/60">
               <summary className="cursor-pointer list-none px-4 py-3.5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted marker:content-none [&::-webkit-details-marker]:hidden">
@@ -429,6 +433,7 @@ export function LiveDuelStage({ showKit = true }: { showKit?: boolean }) {
                     types={theirOff.fails.map((t) => ({ type: t }))}
                     empty
                   />
+                  <LiveFoeUsage foeSlug={foeSlug} align="end" />
                 </div>
               </div>
             </div>

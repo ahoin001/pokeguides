@@ -18,7 +18,9 @@ import { easeOut, motionTokens } from "@/components/motion/tokens";
 
 const SLOT_INDEXES = [0, 1, 2, 3, 4, 5] as const;
 
-/** Freely pick up to six on Live — Team box/three are shortcuts, presets recall kits. */
+/** Freely pick up to six on Live — Team box/three are shortcuts, presets recall kits.
+ *  `exclude` is only for same-side duplicates / soft blocks. Do not pass the foe list —
+ *  the same species on both sides is legal (mirrors, Ditto). */
 export function LivePackageBar({
   exclude = [],
   compact = false,

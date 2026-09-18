@@ -14,10 +14,11 @@ import { LiveRecentStrip } from "@/components/live/LiveRecentStrip";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
 
 export function LiveFoeSearch({
-  exclude,
+  exclude = [],
   compact = false,
 }: {
-  exclude: string[];
+  /** Slugs already on this side (or otherwise blocked). Do not pass the other side — mirrors are legal. */
+  exclude?: string[];
   compact?: boolean;
 }) {
   const foes = useLiveMatchStore((s) => s.foes);

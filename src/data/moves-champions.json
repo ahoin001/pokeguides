@@ -1,55 +1,62 @@
 {
-  "fetchedAt": "2026-09-16T14:17:30.619Z",
-  "count": 345,
+  "fetchedAt": "2026-09-18T15:51:50.791Z",
+  "count": 344,
   "moves": {
     "Accelerock": {
       "name": "Accelerock",
       "type": "rock",
       "category": "physical",
       "basePower": 40,
-      "priority": 1
+      "priority": 1,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Acid Armor": {
       "name": "Acid Armor",
       "type": "poison",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Defense by two stages."
     },
     "Acid Spray": {
       "name": "Acid Spray",
       "type": "poison",
       "category": "special",
       "basePower": 40,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the target’s Special Defense by two stages."
     },
     "Acrobatics": {
       "name": "Acrobatics",
       "type": "flying",
       "category": "physical",
       "basePower": 55,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has double power if the user has no held item."
     },
     "Agility": {
       "name": "Agility",
       "type": "psychic",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Speed by two stages."
     },
     "Air Cutter": {
       "name": "Air Cutter",
       "type": "flying",
       "category": "special",
       "basePower": 60,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has an increased chance for a critical hit."
     },
     "Air Slash": {
       "name": "Air Slash",
       "type": "flying",
       "category": "special",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to make the target flinch."
     },
     "Alluring Voice": {
       "name": "Alluring Voice",
@@ -63,21 +70,24 @@
       "type": "psychic",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Special Defense by two stages."
     },
     "Ancient Power": {
       "name": "Ancient Power",
       "type": "rock",
       "category": "special",
       "basePower": 60,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to raise all of the user’s stats by one stage."
     },
     "Apple Acid": {
       "name": "Apple Acid",
       "type": "grass",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lower the targets Special Defense by 1 stage."
     },
     "Aqua Cutter": {
       "name": "Aqua Cutter",
@@ -91,7 +101,8 @@
       "type": "water",
       "category": "physical",
       "basePower": 40,
-      "priority": 1
+      "priority": 1,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Aqua Step": {
       "name": "Aqua Step",
@@ -112,42 +123,48 @@
       "type": "fighting",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Never misses."
     },
     "Aura Wheel": {
       "name": "Aura Wheel",
       "type": "electric",
       "category": "physical",
       "basePower": 110,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user's Speed by 1 stage. In Full Belly Mode, this move is Electric type. In Hangry Mode, this move is Dark type."
     },
     "Aurora Veil": {
       "name": "Aurora Veil",
       "type": "ice",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Reduces damage five turns, but must be used during hail."
     },
     "Avalanche": {
       "name": "Avalanche",
       "type": "ice",
       "category": "physical",
       "basePower": 60,
-      "priority": -4
+      "priority": -4,
+      "shortEffect": "Inflicts double damage if the user takes damage before attacking this turn."
     },
     "Baby-Doll Eyes": {
       "name": "Baby-Doll Eyes",
       "type": "fairy",
       "category": "status",
       "basePower": 0,
-      "priority": 1
+      "priority": 1,
+      "shortEffect": "Lowers the target’s Attack by one stage."
     },
     "Baneful Bunker": {
       "name": "Baneful Bunker",
       "type": "poison",
       "category": "status",
       "basePower": 0,
-      "priority": 4
+      "priority": 4,
+      "shortEffect": "Grants the user protection for the rest of the turn and poisons any Pokémon that tries to use a contact move on it."
     },
     "Barb Barrage": {
       "name": "Barb Barrage",
@@ -161,28 +178,32 @@
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Allows the trainer to switch out the user and pass effects along to its replacement."
     },
     "Beak Blast": {
       "name": "Beak Blast",
       "type": "flying",
       "category": "physical",
       "basePower": 100,
-      "priority": -3
+      "priority": -3,
+      "shortEffect": "Inflicts a burn on any Pokémon that makes contact before the attack."
     },
     "Belly Drum": {
       "name": "Belly Drum",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User pays half its max HP to max out its Attack."
     },
     "Bite": {
       "name": "Bite",
       "type": "dark",
       "category": "physical",
       "basePower": 60,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to make the target flinch."
     },
     "Bitter Blade": {
       "name": "Bitter Blade",
@@ -203,105 +224,120 @@
       "type": "fire",
       "category": "physical",
       "basePower": 85,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has an increased chance for a critical hit and a chance to burn the target."
     },
     "Blizzard": {
       "name": "Blizzard",
       "type": "ice",
       "category": "special",
       "basePower": 110,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to freeze the target."
     },
     "Body Press": {
       "name": "Body Press",
       "type": "fighting",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Damage is calculated using the user's Defense stat as its Attack, including stat stage changes."
     },
     "Body Slam": {
       "name": "Body Slam",
       "type": "normal",
       "category": "physical",
       "basePower": 85,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to paralyze the target."
     },
     "Boomburst": {
       "name": "Boomburst",
       "type": "normal",
       "category": "special",
       "basePower": 140,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage."
     },
     "Brave Bird": {
       "name": "Brave Bird",
       "type": "flying",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User receives 1/3 the damage inflicted in recoil."
     },
     "Brick Break": {
       "name": "Brick Break",
       "type": "fighting",
       "category": "physical",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Destroys Reflect and Light Screen."
     },
     "Brutal Swing": {
       "name": "Brutal Swing",
       "type": "dark",
       "category": "physical",
       "basePower": 60,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Bug Buzz": {
       "name": "Bug Buzz",
       "type": "bug",
       "category": "special",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
     },
     "Bulk Up": {
       "name": "Bulk Up",
       "type": "fighting",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Attack and Defense by one stage."
     },
     "Bullet Punch": {
       "name": "Bullet Punch",
       "type": "steel",
       "category": "physical",
       "basePower": 40,
-      "priority": 1
+      "priority": 1,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Bullet Seed": {
       "name": "Bullet Seed",
       "type": "grass",
       "category": "physical",
       "basePower": 25,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Hits 2-5 times in one turn."
     },
     "Burn Up": {
       "name": "Burn Up",
       "type": "fire",
       "category": "special",
       "basePower": 130,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Removes the user’s Fire type after inflicting damage."
     },
     "Burning Jealousy": {
       "name": "Burning Jealousy",
       "type": "fire",
       "category": "special",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Burns the target if it had a state stage raise this turn."
     },
     "Calm Mind": {
       "name": "Calm Mind",
       "type": "psychic",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Special Attack and Special Defense by one stage."
     },
     "Ceaseless Edge": {
       "name": "Ceaseless Edge",
@@ -315,21 +351,24 @@
       "type": "electric",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Special Defense by one stage. User’s Electric moves have doubled power next turn."
     },
     "Charge Beam": {
       "name": "Charge Beam",
       "type": "electric",
       "category": "special",
       "basePower": 50,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to raise the user’s Special Attack by one stage."
     },
     "Charm": {
       "name": "Charm",
       "type": "fairy",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the target’s Attack by two stages."
     },
     "Chilling Water": {
       "name": "Chilling Water",
@@ -345,33 +384,45 @@
       "basePower": 0,
       "priority": 0
     },
+    "Circle Throw": {
+      "name": "Circle Throw",
+      "type": "fighting",
+      "category": "physical",
+      "basePower": 60,
+      "priority": -6,
+      "shortEffect": "Ends wild battles. Forces trainers to switch Pokémon."
+    },
     "Clanging Scales": {
       "name": "Clanging Scales",
       "type": "dragon",
       "category": "special",
       "basePower": 110,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the user’s Defense by one stage after inflicting damage."
     },
     "Clangorous Soul": {
       "name": "Clangorous Soul",
       "type": "dragon",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User loses 33% of its Max HP. Raises all of the user’s stats by one stage."
     },
     "Close Combat": {
       "name": "Close Combat",
       "type": "fighting",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the user’s Defense and Special Defense by one stage after inflicting damage."
     },
     "Coil": {
       "name": "Coil",
       "type": "poison",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Attack, Defense, and accuracy by one stage each."
     },
     "Comeuppance": {
       "name": "Comeuppance",
@@ -385,98 +436,112 @@
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Uses the target’s last used move."
     },
     "Cosmic Power": {
       "name": "Cosmic Power",
       "type": "psychic",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Defense and Special Defense by one stage."
     },
     "Cotton Guard": {
       "name": "Cotton Guard",
       "type": "grass",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Defense by three stages."
     },
     "Counter": {
       "name": "Counter",
       "type": "fighting",
       "category": "physical",
       "basePower": 0,
-      "priority": -5
+      "priority": -5,
+      "shortEffect": "Inflicts twice the damage the user received from the last physical hit it took."
     },
     "Court Change": {
       "name": "Court Change",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Switches single sided field effects from the users side to the targets side and vice versa."
     },
     "Covet": {
       "name": "Covet",
       "type": "normal",
       "category": "physical",
       "basePower": 60,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Takes the target’s item."
     },
     "Cross Poison": {
       "name": "Cross Poison",
       "type": "poison",
       "category": "physical",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has an increased chance for a critical hit and a chance to poison the target."
     },
     "Crunch": {
       "name": "Crunch",
       "type": "dark",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Defense by one stage."
     },
     "Curse": {
       "name": "Curse",
       "type": "ghost",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Ghosts pay half their max HP to hurt the target every turn. Others decrease Speed but raise Attack and Defense."
     },
     "Dark Pulse": {
       "name": "Dark Pulse",
       "type": "dark",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to make the target flinch."
     },
     "Darkest Lariat": {
       "name": "Darkest Lariat",
       "type": "dark",
       "category": "physical",
       "basePower": 85,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Ignores the target’s stat modifiers."
     },
     "Dazzling Gleam": {
       "name": "Dazzling Gleam",
       "type": "fairy",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Destiny Bond": {
       "name": "Destiny Bond",
       "type": "ghost",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "If the user faints this turn, the target automatically will, too."
     },
     "Detect": {
       "name": "Detect",
       "type": "fighting",
       "category": "status",
       "basePower": 0,
-      "priority": 4
+      "priority": 4,
+      "shortEffect": "Prevents any moves from hitting the user this turn."
     },
     "Dire Claw": {
       "name": "Dire Claw",
@@ -490,7 +555,8 @@
       "type": "electric",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to paralyze the target."
     },
     "Double Shock": {
       "name": "Double Shock",
@@ -504,119 +570,136 @@
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s evasion by one stage."
     },
     "Double-Edge": {
       "name": "Double-Edge",
       "type": "normal",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User receives 1/3 the damage inflicted in recoil."
     },
     "Draco Meteor": {
       "name": "Draco Meteor",
       "type": "dragon",
       "category": "special",
       "basePower": 130,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the user’s Special Attack by two stages after inflicting damage."
     },
     "Dragon Dance": {
       "name": "Dragon Dance",
       "type": "dragon",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Attack and Speed by one stage."
     },
     "Dragon Darts": {
       "name": "Dragon Darts",
       "type": "dragon",
       "category": "physical",
       "basePower": 50,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Hits twice in one turn. In Double Battles, this move will hit both enemy targets. If it would fail to hit one of the targets, the other target will be hit twice."
     },
     "Dragon Pulse": {
       "name": "Dragon Pulse",
       "type": "dragon",
       "category": "special",
       "basePower": 85,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Dragon Rush": {
       "name": "Dragon Rush",
       "type": "dragon",
       "category": "physical",
       "basePower": 100,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to make the target flinch."
     },
     "Dragon Tail": {
       "name": "Dragon Tail",
       "type": "dragon",
       "category": "physical",
       "basePower": 60,
-      "priority": -6
+      "priority": -6,
+      "shortEffect": "Ends wild battles. Forces trainers to switch Pokémon."
     },
     "Drain Punch": {
       "name": "Drain Punch",
       "type": "fighting",
       "category": "physical",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Drains half the damage inflicted to heal the user."
     },
     "Draining Kiss": {
       "name": "Draining Kiss",
       "type": "fairy",
       "category": "special",
       "basePower": 50,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Drains 75% of the damage inflicted to heal the user."
     },
     "Drill Run": {
       "name": "Drill Run",
       "type": "ground",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has an increased chance for a critical hit."
     },
     "Drum Beating": {
       "name": "Drum Beating",
       "type": "grass",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Speed by one stage."
     },
     "Dual Wingbeat": {
       "name": "Dual Wingbeat",
       "type": "flying",
       "category": "physical",
       "basePower": 40,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Hits twice in one turn."
     },
     "Dynamic Punch": {
       "name": "Dynamic Punch",
       "type": "fighting",
       "category": "physical",
       "basePower": 100,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to confuse the target."
     },
     "Earth Power": {
       "name": "Earth Power",
       "type": "ground",
       "category": "special",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
     },
     "Earthquake": {
       "name": "Earthquake",
       "type": "ground",
       "category": "physical",
       "basePower": 100,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage and can hit Dig users."
     },
     "Eerie Impulse": {
       "name": "Eerie Impulse",
       "type": "electric",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the target’s Special Attack by two stages."
     },
     "Electro Shot": {
       "name": "Electro Shot",
@@ -630,84 +713,96 @@
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Forces the target to repeat its last used move every turn for 2 to 6 turns."
     },
     "Endeavor": {
       "name": "Endeavor",
       "type": "normal",
       "category": "physical",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the target’s HP to equal the user’s."
     },
     "Endure": {
       "name": "Endure",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 4
+      "priority": 4,
+      "shortEffect": "Prevents the user’s HP from lowering below 1 this turn."
     },
     "Energy Ball": {
       "name": "Energy Ball",
       "type": "grass",
       "category": "special",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
     },
     "Eruption": {
       "name": "Eruption",
       "type": "fire",
       "category": "special",
       "basePower": 150,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts more damage when the user has more HP remaining, with a maximum of 150 power."
     },
     "Expanding Force": {
       "name": "Expanding Force",
       "type": "psychic",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "If Psychic Terrain is active and the user is grounded, this move hits all opposing Pokemon and has its power incrased by 50%."
     },
     "Explosion": {
       "name": "Explosion",
       "type": "normal",
       "category": "physical",
       "basePower": 250,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User faints."
     },
     "Extrasensory": {
       "name": "Extrasensory",
       "type": "psychic",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to make the target flinch."
     },
     "Extreme Speed": {
       "name": "Extreme Speed",
       "type": "normal",
       "category": "physical",
       "basePower": 80,
-      "priority": 2
+      "priority": 2,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Fake Out": {
       "name": "Fake Out",
       "type": "normal",
       "category": "physical",
       "basePower": 40,
-      "priority": 3
+      "priority": 3,
+      "shortEffect": "Can only be used as the first move after the user enters battle. Causes the target to flinch."
     },
     "Feint": {
       "name": "Feint",
       "type": "normal",
       "category": "physical",
       "basePower": 30,
-      "priority": 2
+      "priority": 2,
+      "shortEffect": "Hits through Protect and Detect."
     },
     "Fell Stinger": {
       "name": "Fell Stinger",
       "type": "bug",
       "category": "physical",
       "basePower": 50,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Attack by two stages if it KOs the target."
     },
     "Fickle Beam": {
       "name": "Fickle Beam",
@@ -721,91 +816,112 @@
       "type": "fire",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to raise the user’s Special Attack by one stage."
     },
     "Final Gambit": {
       "name": "Final Gambit",
       "type": "fighting",
       "category": "special",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts damage equal to the user’s remaining HP. User faints."
     },
     "Fire Blast": {
       "name": "Fire Blast",
       "type": "fire",
       "category": "special",
       "basePower": 110,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to burn the target."
     },
     "Fire Fang": {
       "name": "Fire Fang",
       "type": "fire",
       "category": "physical",
       "basePower": 65,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to burn the target and a chance to make the target flinch."
     },
     "Fire Punch": {
       "name": "Fire Punch",
       "type": "fire",
       "category": "physical",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to burn the target."
     },
     "First Impression": {
       "name": "First Impression",
       "type": "bug",
       "category": "physical",
       "basePower": 90,
-      "priority": 2
+      "priority": 2,
+      "shortEffect": "Can only be used as the first move after the user enters battle."
     },
     "Fissure": {
       "name": "Fissure",
       "type": "ground",
       "category": "physical",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Causes a one-hit KO."
     },
     "Flail": {
       "name": "Flail",
       "type": "normal",
       "category": "physical",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts more damage when the user has less HP remaining, with a maximum of 200 power."
     },
     "Flame Charge": {
       "name": "Flame Charge",
       "type": "fire",
       "category": "physical",
       "basePower": 50,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage. Raises the user’s Speed by one stage."
     },
     "Flamethrower": {
       "name": "Flamethrower",
       "type": "fire",
       "category": "special",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to burn the target."
     },
     "Flare Blitz": {
       "name": "Flare Blitz",
       "type": "fire",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User takes 1/3 the damage inflicted in recoil. Has a chance to burn the target."
     },
     "Flash Cannon": {
       "name": "Flash Cannon",
       "type": "steel",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
+    },
+    "Fling": {
+      "name": "Fling",
+      "type": "dark",
+      "category": "physical",
+      "basePower": 0,
+      "priority": 0,
+      "shortEffect": "Throws held item at the target; power depends on the item."
     },
     "Flip Turn": {
       "name": "Flip Turn",
       "type": "water",
       "category": "physical",
       "basePower": 60,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User must switch out after attacking."
     },
     "Flower Trick": {
       "name": "Flower Trick",
@@ -819,56 +935,64 @@
       "type": "fighting",
       "category": "special",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
     },
     "Focus Energy": {
       "name": "Focus Energy",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Increases the user’s chance to score a critical hit."
     },
     "Foul Play": {
       "name": "Foul Play",
       "type": "dark",
       "category": "physical",
       "basePower": 95,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Calculates damage with the target’s attacking stat."
     },
     "Freeze-Dry": {
       "name": "Freeze-Dry",
       "type": "ice",
       "category": "special",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Super-effective against Water."
     },
     "Frost Breath": {
       "name": "Frost Breath",
       "type": "ice",
       "category": "special",
       "basePower": 60,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Always scores a critical hit."
     },
     "Future Sight": {
       "name": "Future Sight",
       "type": "psychic",
       "category": "special",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Hits the target two turns later."
     },
     "Giga Drain": {
       "name": "Giga Drain",
       "type": "grass",
       "category": "special",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Drains half the damage inflicted to heal the user."
     },
     "Giga Impact": {
       "name": "Giga Impact",
       "type": "normal",
       "category": "physical",
       "basePower": 150,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User foregoes its next turn to recharge."
     },
     "Gigaton Hammer": {
       "name": "Gigaton Hammer",
@@ -889,70 +1013,80 @@
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Paralyzes the target."
     },
     "Grass Knot": {
       "name": "Grass Knot",
       "type": "grass",
       "category": "special",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts more damage to heavier targets, with a maximum of 120 power."
     },
     "Grassy Glide": {
       "name": "Grassy Glide",
       "type": "grass",
       "category": "physical",
       "basePower": 55,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "If Grassy Terrain is active and the user is grounded, this move has has its priority increased by 1."
     },
     "Grassy Terrain": {
       "name": "Grassy Terrain",
       "type": "grass",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "For five turns, heals all Pokémon on the ground for 1/16 max HP each turn and strengthens their Grass moves to 1.5× their power."
     },
     "Grav Apple": {
       "name": "Grav Apple",
       "type": "grass",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lower the targets Defense by 1 stage. Damage is increased by 50% during Gravitys effect."
     },
     "Guillotine": {
       "name": "Guillotine",
       "type": "normal",
       "category": "physical",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Causes a one-hit KO."
     },
     "Gunk Shot": {
       "name": "Gunk Shot",
       "type": "poison",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to poison the target."
     },
     "Gyro Ball": {
       "name": "Gyro Ball",
       "type": "steel",
       "category": "physical",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Power raises when the user has lower Speed, up to a maximum of 150."
     },
     "Haze": {
       "name": "Haze",
       "type": "ice",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Resets all Pokémon’s stats, accuracy, and evasion."
     },
     "Head Smash": {
       "name": "Head Smash",
       "type": "rock",
       "category": "physical",
       "basePower": 150,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User receives 1/2 the damage inflicted in recoil."
     },
     "Headlong Rush": {
       "name": "Headlong Rush",
@@ -966,126 +1100,144 @@
       "type": "psychic",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User faints. Its replacement has its HP fully restored and any major status effect removed."
     },
     "Heat Wave": {
       "name": "Heat Wave",
       "type": "fire",
       "category": "special",
       "basePower": 95,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to burn the target."
     },
     "Heavy Slam": {
       "name": "Heavy Slam",
       "type": "steel",
       "category": "physical",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Power is higher when the user weighs more than the target, up to a maximum of 120."
     },
     "Hex": {
       "name": "Hex",
       "type": "ghost",
       "category": "special",
       "basePower": 65,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has double power if the target has a major status ailment."
     },
     "High Horsepower": {
       "name": "High Horsepower",
       "type": "ground",
       "category": "physical",
       "basePower": 95,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "High Jump Kick": {
       "name": "High Jump Kick",
       "type": "fighting",
       "category": "physical",
       "basePower": 130,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "If the user misses, it takes half the damage it would have inflicted in recoil."
     },
     "Horn Drill": {
       "name": "Horn Drill",
       "type": "normal",
       "category": "physical",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Causes a one-hit KO."
     },
     "Horn Leech": {
       "name": "Horn Leech",
       "type": "grass",
       "category": "physical",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Drains half the damage inflicted to heal the user."
     },
     "Hurricane": {
       "name": "Hurricane",
       "type": "flying",
       "category": "special",
       "basePower": 110,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to confuse the target."
     },
     "Hydro Pump": {
       "name": "Hydro Pump",
       "type": "water",
       "category": "special",
       "basePower": 110,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Hyper Beam": {
       "name": "Hyper Beam",
       "type": "normal",
       "category": "special",
       "basePower": 150,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User foregoes its next turn to recharge."
     },
     "Hyper Voice": {
       "name": "Hyper Voice",
       "type": "normal",
       "category": "special",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Hypnosis": {
       "name": "Hypnosis",
       "type": "psychic",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Puts the target to sleep."
     },
     "Ice Beam": {
       "name": "Ice Beam",
       "type": "ice",
       "category": "special",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to freeze the target."
     },
     "Ice Fang": {
       "name": "Ice Fang",
       "type": "ice",
       "category": "physical",
       "basePower": 65,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to freeze the target and a chance to make the target flinch."
     },
     "Ice Hammer": {
       "name": "Ice Hammer",
       "type": "ice",
       "category": "physical",
       "basePower": 100,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers user’s Speed by one stage."
     },
     "Ice Punch": {
       "name": "Ice Punch",
       "type": "ice",
       "category": "physical",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to freeze the target."
     },
     "Ice Shard": {
       "name": "Ice Shard",
       "type": "ice",
       "category": "physical",
       "basePower": 40,
-      "priority": 1
+      "priority": 1,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Ice Spinner": {
       "name": "Ice Spinner",
@@ -1099,21 +1251,24 @@
       "type": "ice",
       "category": "physical",
       "basePower": 85,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to make the target flinch."
     },
     "Icicle Spear": {
       "name": "Icicle Spear",
       "type": "ice",
       "category": "physical",
       "basePower": 25,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Hits 2-5 times in one turn."
     },
     "Icy Wind": {
       "name": "Icy Wind",
       "type": "ice",
       "category": "special",
       "basePower": 55,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Speed by one stage."
     },
     "Infernal Parade": {
       "name": "Infernal Parade",
@@ -1127,28 +1282,32 @@
       "type": "bug",
       "category": "special",
       "basePower": 20,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Prevents the target from fleeing and inflicts damage for 2-5 turns."
     },
     "Iron Defense": {
       "name": "Iron Defense",
       "type": "steel",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Defense by two stages."
     },
     "Iron Head": {
       "name": "Iron Head",
       "type": "steel",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to make the target flinch."
     },
     "Jaw Lock": {
       "name": "Jaw Lock",
       "type": "dark",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Prevents you and the target from switching out."
     },
     "Jet Punch": {
       "name": "Jet Punch",
@@ -1162,14 +1321,16 @@
       "type": "steel",
       "category": "status",
       "basePower": 0,
-      "priority": 4
+      "priority": 4,
+      "shortEffect": "Blocks damaging attacks and lowers attacking Pokémon’s Attack by two stages on contact. Switches Aegislash to Shield Forme."
     },
     "Knock Off": {
       "name": "Knock Off",
       "type": "dark",
       "category": "physical",
       "basePower": 65,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Target drops its held item."
     },
     "Kowtow Cleave": {
       "name": "Kowtow Cleave",
@@ -1183,7 +1344,8 @@
       "type": "normal",
       "category": "physical",
       "basePower": 140,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Can only be used after all of the user’s other moves have been used."
     },
     "Last Respects": {
       "name": "Last Respects",
@@ -1197,63 +1359,72 @@
       "type": "fire",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to burn the target."
     },
     "Leaf Blade": {
       "name": "Leaf Blade",
       "type": "grass",
       "category": "physical",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has an increased chance for a critical hit."
     },
     "Leaf Storm": {
       "name": "Leaf Storm",
       "type": "grass",
       "category": "special",
       "basePower": 130,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the user’s Special Attack by two stages after inflicting damage."
     },
     "Leech Life": {
       "name": "Leech Life",
       "type": "bug",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Drains half the damage inflicted to heal the user."
     },
     "Leech Seed": {
       "name": "Leech Seed",
       "type": "grass",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Seeds the target, stealing HP from it every turn."
     },
     "Light of Ruin": {
       "name": "Light of Ruin",
       "type": "fairy",
       "category": "special",
       "basePower": 140,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User receives 1/2 the damage inflicted in recoil."
     },
     "Light Screen": {
       "name": "Light Screen",
       "type": "psychic",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Reduces damage from special attacks by 50% for five turns."
     },
     "Liquidation": {
       "name": "Liquidation",
       "type": "water",
       "category": "physical",
       "basePower": 85,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Defense by one stage."
     },
     "Low Kick": {
       "name": "Low Kick",
       "type": "fighting",
       "category": "physical",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts more damage to heavier targets, with a maximum of 120 power."
     },
     "Lumina Crash": {
       "name": "Lumina Crash",
@@ -1267,14 +1438,16 @@
       "type": "bug",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the target’s Attack by one stage after inflicting damage."
     },
     "Mach Punch": {
       "name": "Mach Punch",
       "type": "fighting",
       "category": "physical",
       "basePower": 40,
-      "priority": 1
+      "priority": 1,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Make It Rain": {
       "name": "Make It Rain",
@@ -1295,84 +1468,96 @@
       "type": "bug",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Memento": {
       "name": "Memento",
       "type": "dark",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the target’s Attack and Special Attack by two stages. User faints."
     },
     "Metal Burst": {
       "name": "Metal Burst",
       "type": "steel",
       "category": "physical",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Strikes back at the last Pokémon to hit the user this turn with 1.5× the damage."
     },
     "Meteor Assault": {
       "name": "Meteor Assault",
       "type": "fighting",
       "category": "physical",
       "basePower": 150,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User foregoes its next turn to recharge."
     },
     "Milk Drink": {
       "name": "Milk Drink",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Heals the user by half its max HP."
     },
     "Minimize": {
       "name": "Minimize",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s evasion by two stages."
     },
     "Mirror Coat": {
       "name": "Mirror Coat",
       "type": "psychic",
       "category": "special",
       "basePower": 0,
-      "priority": -5
+      "priority": -5,
+      "shortEffect": "Inflicts twice the damage the user received from the last special hit it took."
     },
     "Misty Explosion": {
       "name": "Misty Explosion",
       "type": "fairy",
       "category": "special",
       "basePower": 100,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "If Misty Terrain is active and the user is grounded, this move has its power increased by 50%."
     },
     "Misty Terrain": {
       "name": "Misty Terrain",
       "type": "fairy",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "For five turns, protects all Pokémon on the ground from major status ailments and confusion, and halves the power of incoming Dragon moves."
     },
     "Moonblast": {
       "name": "Moonblast",
       "type": "fairy",
       "category": "special",
       "basePower": 95,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Special Attack by one stage."
     },
     "Moonlight": {
       "name": "Moonlight",
       "type": "fairy",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Heals the user by half its max HP. Affected by weather."
     },
     "Morning Sun": {
       "name": "Morning Sun",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Heals the user by half its max HP. Affected by weather."
     },
     "Mortal Spin": {
       "name": "Mortal Spin",
@@ -1393,147 +1578,168 @@
       "type": "ground",
       "category": "special",
       "basePower": 55,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Speed by one stage."
     },
     "Mystical Fire": {
       "name": "Mystical Fire",
       "type": "fire",
       "category": "special",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Special Attack by one stage."
     },
     "Nasty Plot": {
       "name": "Nasty Plot",
       "type": "dark",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Special Attack by two stages."
     },
     "Night Daze": {
       "name": "Night Daze",
       "type": "dark",
       "category": "special",
       "basePower": 85,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s accuracy by one stage."
     },
     "Night Slash": {
       "name": "Night Slash",
       "type": "dark",
       "category": "physical",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has an increased chance for a critical hit."
     },
     "No Retreat": {
       "name": "No Retreat",
       "type": "fighting",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Prevents user from switching out. Raises all of the user’s stats by one stage."
     },
     "Nuzzle": {
       "name": "Nuzzle",
       "type": "electric",
       "category": "physical",
       "basePower": 20,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to paralyze the target."
     },
     "Octolock": {
       "name": "Octolock",
       "type": "fighting",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Prevents the target from switching out. At the end of each turn, the targets Defense and Special Defense are lowered by 1 stage."
     },
     "Outrage": {
       "name": "Outrage",
       "type": "dragon",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Hits every turn for 2-3 turns, then confuses the user."
     },
     "Overdrive": {
       "name": "Overdrive",
       "type": "electric",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Overheat": {
       "name": "Overheat",
       "type": "fire",
       "category": "special",
       "basePower": 130,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the user’s Special Attack by two stages after inflicting damage."
     },
     "Pain Split": {
       "name": "Pain Split",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Sets the user’s and targets’s HP to the average of their current HP."
     },
     "Parabolic Charge": {
       "name": "Parabolic Charge",
       "type": "electric",
       "category": "special",
       "basePower": 65,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Heals the user for half the total damage dealt to all targets."
     },
     "Parting Shot": {
       "name": "Parting Shot",
       "type": "dark",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers all targets’ Attack and Special Attack by one stage. Makes the user switch out."
     },
     "Payback": {
       "name": "Payback",
       "type": "dark",
       "category": "physical",
       "basePower": 50,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Power is doubled if the target has already moved this turn."
     },
     "Perish Song": {
       "name": "Perish Song",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User and target both faint after three turns."
     },
     "Phantom Force": {
       "name": "Phantom Force",
       "type": "ghost",
       "category": "physical",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User vanishes, dodging all attacks, and hits next turn. Hits through Protect and Detect."
     },
     "Pin Missile": {
       "name": "Pin Missile",
       "type": "bug",
       "category": "physical",
       "basePower": 25,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Hits 2-5 times in one turn."
     },
     "Play Rough": {
       "name": "Play Rough",
       "type": "fairy",
       "category": "physical",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Attack by one stage."
     },
     "Poison Jab": {
       "name": "Poison Jab",
       "type": "poison",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to poison the target."
     },
     "Poltergeist": {
       "name": "Poltergeist",
       "type": "ghost",
       "category": "physical",
       "basePower": 110,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Fails if the target has no held item."
     },
     "Population Bomb": {
       "name": "Population Bomb",
@@ -1547,35 +1753,40 @@
       "type": "rock",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Power Whip": {
       "name": "Power Whip",
       "type": "grass",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Protect": {
       "name": "Protect",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 4
+      "priority": 4,
+      "shortEffect": "Prevents any moves from hitting the user this turn."
     },
     "Psychic": {
       "name": "Psychic",
       "type": "psychic",
       "category": "special",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
     },
     "Psychic Fangs": {
       "name": "Psychic Fangs",
       "type": "psychic",
       "category": "physical",
       "basePower": 85,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Destroys Reflect and Light Screen."
     },
     "Psychic Noise": {
       "name": "Psychic Noise",
@@ -1589,14 +1800,16 @@
       "type": "psychic",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Protects Pokémon on the ground from priority moves and increases the power of their Psychic moves by 50%."
     },
     "Psycho Cut": {
       "name": "Psycho Cut",
       "type": "psychic",
       "category": "physical",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has an increased chance for a critical hit."
     },
     "Psyshield Bash": {
       "name": "Psyshield Bash",
@@ -1610,28 +1823,32 @@
       "type": "psychic",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts damage based on the target’s Defense, not Special Defense."
     },
     "Pyro Ball": {
       "name": "Pyro Ball",
       "type": "fire",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to burn the target."
     },
     "Quick Attack": {
       "name": "Quick Attack",
       "type": "normal",
       "category": "physical",
       "basePower": 40,
-      "priority": 1
+      "priority": 1,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Quiver Dance": {
       "name": "Quiver Dance",
       "type": "bug",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Special Attack, Special Defense, and Speed by one stage each."
     },
     "Rage Fist": {
       "name": "Rage Fist",
@@ -1652,49 +1869,56 @@
       "type": "normal",
       "category": "physical",
       "basePower": 50,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Frees the user from binding moves, removes Leech Seed, and blows away Spikes."
     },
     "Razor Shell": {
       "name": "Razor Shell",
       "type": "water",
       "category": "physical",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Defense by one stage."
     },
     "Recover": {
       "name": "Recover",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Heals the user by half its max HP."
     },
     "Recycle": {
       "name": "Recycle",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User recovers the item it last used up."
     },
     "Reflect": {
       "name": "Reflect",
       "type": "psychic",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Reduces damage from physical attacks by half."
     },
     "Rest": {
       "name": "Rest",
       "type": "psychic",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User sleeps for two turns, completely healing itself."
     },
     "Reversal": {
       "name": "Reversal",
       "type": "fighting",
       "category": "physical",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts more damage when the user has less HP remaining, with a maximum of 200 power."
     },
     "Revival Blessing": {
       "name": "Revival Blessing",
@@ -1708,56 +1932,56 @@
       "type": "electric",
       "category": "special",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "If Electric Terrain is active and the user is grounded, this move has has its power doubled."
     },
     "Roar": {
       "name": "Roar",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": -6
+      "priority": -6,
+      "shortEffect": "Immediately ends wild battles. Forces trainers to switch Pokémon."
     },
     "Rock Blast": {
       "name": "Rock Blast",
       "type": "rock",
       "category": "physical",
       "basePower": 25,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Hits 2-5 times in one turn."
     },
     "Rock Slide": {
       "name": "Rock Slide",
       "type": "rock",
       "category": "physical",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to make the target flinch."
     },
     "Rock Tomb": {
       "name": "Rock Tomb",
       "type": "rock",
       "category": "physical",
       "basePower": 60,
-      "priority": 0
-    },
-    "Rock Wrecker": {
-      "name": "Rock Wrecker",
-      "type": "rock",
-      "category": "physical",
-      "basePower": 150,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Speed by one stage."
     },
     "Roost": {
       "name": "Roost",
       "type": "flying",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Heals the user by half its max HP."
     },
     "Sacred Sword": {
       "name": "Sacred Sword",
       "type": "fighting",
       "category": "physical",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Ignores the target’s stat modifiers."
     },
     "Salt Cure": {
       "name": "Salt Cure",
@@ -1771,56 +1995,56 @@
       "type": "water",
       "category": "special",
       "basePower": 80,
-      "priority": 0
-    },
-    "Scale Shot": {
-      "name": "Scale Shot",
-      "type": "dragon",
-      "category": "physical",
-      "basePower": 25,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to burn the target."
     },
     "Scorching Sands": {
       "name": "Scorching Sands",
       "type": "ground",
       "category": "special",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to burn the target."
     },
     "Seed Bomb": {
       "name": "Seed Bomb",
       "type": "grass",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Self-Destruct": {
       "name": "Self-Destruct",
       "type": "normal",
       "category": "physical",
       "basePower": 200,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User faints."
     },
     "Shadow Ball": {
       "name": "Shadow Ball",
       "type": "ghost",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
     },
     "Shadow Claw": {
       "name": "Shadow Claw",
       "type": "ghost",
       "category": "physical",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has an increased chance for a critical hit."
     },
     "Shadow Sneak": {
       "name": "Shadow Sneak",
       "type": "ghost",
       "category": "physical",
       "basePower": 40,
-      "priority": 1
+      "priority": 1,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Shed Tail": {
       "name": "Shed Tail",
@@ -1834,21 +2058,24 @@
       "type": "ice",
       "category": "special",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Causes a one-hit KO."
     },
     "Shell Side Arm": {
       "name": "Shell Side Arm",
       "type": "poison",
       "category": "special",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to poison the target. This switches categories between physical and special, depending on which would deal more damage to the target."
     },
     "Shell Smash": {
       "name": "Shell Smash",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises user’s Attack, Special Attack, and Speed by two stages. Lower user’s Defense and Special Defense by one stage."
     },
     "Shelter": {
       "name": "Shelter",
@@ -1862,147 +2089,168 @@
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Heals the user by half its max HP."
     },
     "Slash": {
       "name": "Slash",
       "type": "normal",
       "category": "physical",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has an increased chance for a critical hit."
     },
     "Sleep Powder": {
       "name": "Sleep Powder",
       "type": "grass",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Puts the target to sleep."
     },
     "Sludge Bomb": {
       "name": "Sludge Bomb",
       "type": "poison",
       "category": "special",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to poison the target."
     },
     "Sludge Wave": {
       "name": "Sludge Wave",
       "type": "poison",
       "category": "special",
       "basePower": 95,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to poison the target."
     },
     "Smack Down": {
       "name": "Smack Down",
       "type": "rock",
       "category": "physical",
       "basePower": 50,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Removes any immunity to Ground damage."
     },
     "Snap Trap": {
       "name": "Snap Trap",
       "type": "grass",
       "category": "physical",
       "basePower": 35,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Prevents the target from fleeing and inflicts damage for 2-5 turns."
     },
     "Snarl": {
       "name": "Snarl",
       "type": "dark",
       "category": "special",
       "basePower": 55,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Special Attack by one stage."
     },
     "Snipe Shot": {
       "name": "Snipe Shot",
       "type": "water",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "The user ignores the effects of opposing Pokémon's moves and Abilities that draw in moves, allowing this move to hit the chosen target."
     },
     "Soak": {
       "name": "Soak",
       "type": "water",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Changes the target’s type to Water."
     },
     "Solar Beam": {
       "name": "Solar Beam",
       "type": "grass",
       "category": "special",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Requires a turn to charge before attacking."
     },
     "Solar Blade": {
       "name": "Solar Blade",
       "type": "grass",
       "category": "physical",
       "basePower": 125,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Requires a turn to charge before attacking."
     },
     "Sparkling Aria": {
       "name": "Sparkling Aria",
       "type": "water",
       "category": "special",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Cures the target of burns."
     },
     "Spikes": {
       "name": "Spikes",
       "type": "ground",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Scatters Spikes, hurting opposing Pokémon that switch in."
     },
     "Spiky Shield": {
       "name": "Spiky Shield",
       "type": "grass",
       "category": "status",
       "basePower": 0,
-      "priority": 4
+      "priority": 4,
+      "shortEffect": "Blocks damaging attacks and damages attacking Pokémon for 1/8 their max HP."
     },
     "Spirit Break": {
       "name": "Spirit Break",
       "type": "fairy",
       "category": "physical",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to lower the target’s Special Attack by one stage."
     },
     "Spirit Shackle": {
       "name": "Spirit Shackle",
       "type": "ghost",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Traps the target."
     },
     "Stealth Rock": {
       "name": "Stealth Rock",
       "type": "rock",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Causes damage when opposing Pokémon switch in."
     },
     "Steel Beam": {
       "name": "Steel Beam",
       "type": "steel",
       "category": "special",
       "basePower": 140,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts damage, and the user takes damage equal to half of its max HP, rounded up."
     },
     "Sticky Web": {
       "name": "Sticky Web",
       "type": "bug",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Covers the opposing field, lowering opponents’ Speed by one stage upon switching in."
     },
     "Stomping Tantrum": {
       "name": "Stomping Tantrum",
       "type": "ground",
       "category": "physical",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has double power if the user’s last move failed."
     },
     "Stone Axe": {
       "name": "Stone Axe",
@@ -2016,56 +2264,56 @@
       "type": "rock",
       "category": "physical",
       "basePower": 100,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has an increased chance for a critical hit."
     },
     "Stored Power": {
       "name": "Stored Power",
       "type": "psychic",
       "category": "special",
       "basePower": 20,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Power is higher the more the user’s stats have been raised, to a maximum of 31×."
     },
     "Storm Throw": {
       "name": "Storm Throw",
       "type": "fighting",
       "category": "physical",
       "basePower": 60,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Always scores a critical hit."
     },
     "Strength Sap": {
       "name": "Strength Sap",
       "type": "grass",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Heals the user by the target’s current Attack stat and lowers the target’s Attack by one stage."
     },
     "Substitute": {
       "name": "Substitute",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Transfers 1/4 of the user’s max HP into a doll, protecting the user from further damage or status changes until it breaks."
     },
     "Sucker Punch": {
       "name": "Sucker Punch",
       "type": "dark",
       "category": "physical",
       "basePower": 70,
-      "priority": 1
-    },
-    "Sunny Day": {
-      "name": "Sunny Day",
-      "type": "fire",
-      "category": "status",
-      "basePower": 0,
-      "priority": 0
+      "priority": 1,
+      "shortEffect": "Only works if the target is about to use a damaging move."
     },
     "Super Fang": {
       "name": "Super Fang",
       "type": "normal",
       "category": "physical",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts damage equal to half the target’s HP."
     },
     "Supercell Slam": {
       "name": "Supercell Slam",
@@ -2079,49 +2327,56 @@
       "type": "fighting",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the user’s Attack and Defense by one stage after inflicting damage."
     },
     "Surf": {
       "name": "Surf",
       "type": "water",
       "category": "special",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage and can hit Dive users."
     },
     "Switcheroo": {
       "name": "Switcheroo",
       "type": "dark",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User and target swap items."
     },
     "Swords Dance": {
       "name": "Swords Dance",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Raises the user’s Attack by two stages."
     },
     "Synthesis": {
       "name": "Synthesis",
       "type": "grass",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Heals the user by half its max HP. Affected by weather."
     },
     "Tailwind": {
       "name": "Tailwind",
       "type": "flying",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "For three turns, friendly Pokémon have doubled Speed."
     },
     "Taunt": {
       "name": "Taunt",
       "type": "dark",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "For the next few turns, the target can only use damaging moves."
     },
     "Temper Flare": {
       "name": "Temper Flare",
@@ -2135,56 +2390,64 @@
       "type": "normal",
       "category": "special",
       "basePower": 50,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "If any terrain is active and the user is grounded, this moves power is doubled and changes type to match that terrains type."
     },
     "Thrash": {
       "name": "Thrash",
       "type": "normal",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Hits every turn for 2-3 turns, then confuses the user."
     },
     "Throat Chop": {
       "name": "Throat Chop",
       "type": "dark",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Prevents the target from using sound-based moves for two turns."
     },
     "Thunder": {
       "name": "Thunder",
       "type": "electric",
       "category": "special",
       "basePower": 110,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to paralyze the target."
     },
     "Thunder Fang": {
       "name": "Thunder Fang",
       "type": "electric",
       "category": "physical",
       "basePower": 65,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to paralyze the target and a chance to make the target flinch."
     },
     "Thunder Punch": {
       "name": "Thunder Punch",
       "type": "electric",
       "category": "physical",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to paralyze the target."
     },
     "Thunder Wave": {
       "name": "Thunder Wave",
       "type": "electric",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Paralyzes the target."
     },
     "Thunderbolt": {
       "name": "Thunderbolt",
       "type": "electric",
       "category": "special",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to paralyze the target."
     },
     "Tidy Up": {
       "name": "Tidy Up",
@@ -2205,21 +2468,24 @@
       "type": "poison",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Badly poisons the target, inflicting more damage every turn."
     },
     "Toxic Spikes": {
       "name": "Toxic Spikes",
       "type": "poison",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Scatters poisoned spikes, poisoning opposing Pokémon that switch in."
     },
     "Toxic Thread": {
       "name": "Toxic Thread",
       "type": "poison",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Poisons the target and lowers its Speed by one stage."
     },
     "Trailblaze": {
       "name": "Trailblaze",
@@ -2233,21 +2499,24 @@
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User becomes a copy of the target until it leaves battle."
     },
     "Trick": {
       "name": "Trick",
       "type": "psychic",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User and target swap items."
     },
     "Trick Room": {
       "name": "Trick Room",
       "type": "psychic",
       "category": "status",
       "basePower": 0,
-      "priority": -7
+      "priority": -7,
+      "shortEffect": "For five turns, slower Pokémon will act before faster Pokémon."
     },
     "Triple Arrows": {
       "name": "Triple Arrows",
@@ -2261,14 +2530,16 @@
       "type": "ice",
       "category": "physical",
       "basePower": 20,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Hits three times, increasing power by 100% with each successful hit."
     },
     "Trop Kick": {
       "name": "Trop Kick",
       "type": "grass",
       "category": "physical",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the target’s Attack by one stage after inflicting damage."
     },
     "Twin Beam": {
       "name": "Twin Beam",
@@ -2282,7 +2553,8 @@
       "type": "bug",
       "category": "physical",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User must switch out after attacking."
     },
     "Upper Hand": {
       "name": "Upper Hand",
@@ -2296,49 +2568,56 @@
       "type": "fighting",
       "category": "special",
       "basePower": 40,
-      "priority": 1
+      "priority": 1,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Volt Switch": {
       "name": "Volt Switch",
       "type": "electric",
       "category": "special",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User must switch out after attacking."
     },
     "Volt Tackle": {
       "name": "Volt Tackle",
       "type": "electric",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User takes 1/3 the damage inflicted in recoil. Has a chance to paralyze the target."
     },
     "Water Pulse": {
       "name": "Water Pulse",
       "type": "water",
       "category": "special",
       "basePower": 60,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to confuse the target."
     },
     "Water Shuriken": {
       "name": "Water Shuriken",
       "type": "water",
       "category": "special",
       "basePower": 15,
-      "priority": 1
+      "priority": 1,
+      "shortEffect": "Hits 2–5 times."
     },
     "Water Spout": {
       "name": "Water Spout",
       "type": "water",
       "category": "special",
       "basePower": 150,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts more damage when the user has more HP remaining, with a maximum of 150 power."
     },
     "Waterfall": {
       "name": "Waterfall",
       "type": "water",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to make the target flinch."
     },
     "Wave Crash": {
       "name": "Wave Crash",
@@ -2352,70 +2631,80 @@
       "type": "normal",
       "category": "special",
       "basePower": 50,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "If there be weather, this move has doubled power and the weather’s type."
     },
     "Whirlwind": {
       "name": "Whirlwind",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": -6
+      "priority": -6,
+      "shortEffect": "Immediately ends wild battles. Forces trainers to switch Pokémon."
     },
     "Wild Charge": {
       "name": "Wild Charge",
       "type": "electric",
       "category": "physical",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User receives 1/4 the damage it inflicts in recoil."
     },
     "Will-O-Wisp": {
       "name": "Will-O-Wisp",
       "type": "fire",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Burns the target."
     },
     "Wish": {
       "name": "Wish",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User will recover half its max HP at the end of the next turn."
     },
     "Wood Hammer": {
       "name": "Wood Hammer",
       "type": "grass",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "User receives 1/3 the damage inflicted in recoil."
     },
     "X-Scissor": {
       "name": "X-Scissor",
       "type": "bug",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Inflicts regular damage with no additional effect."
     },
     "Yawn": {
       "name": "Yawn",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Target sleeps at the end of the next turn."
     },
     "Zap Cannon": {
       "name": "Zap Cannon",
       "type": "electric",
       "category": "special",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to paralyze the target."
     },
     "Zen Headbutt": {
       "name": "Zen Headbutt",
       "type": "psychic",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a chance to make the target flinch."
     }
   }
 }

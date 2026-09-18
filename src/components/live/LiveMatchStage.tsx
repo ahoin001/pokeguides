@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLiveMatchStore } from "@/stores/live-match";
 import { LivePackageBar } from "@/components/live/LivePackageBar";
 import { LiveFoeSearch } from "@/components/live/LiveFoeSearch";
@@ -38,8 +38,6 @@ export function LiveMatchStage() {
   const [tab, setTab] = useState<MobileTab>(readyForDuel ? "duel" : "setup");
   const [setupSide, setSetupSide] = useState<SetupSide>("yours");
   const seededTab = useRef(false);
-
-  const exclude = useMemo(() => [...bring, ...foes], [bring, foes]);
 
   useEffect(() => {
     if (seededTab.current) return;
@@ -186,9 +184,9 @@ export function LiveMatchStage() {
             </ul>
             <section className="rounded-[28px] border border-line/60 bg-raised/30 p-4">
               {setupSide === "yours" ? (
-                <LivePackageBar exclude={foes} compact />
+                <LivePackageBar compact />
               ) : (
-                <LiveFoeSearch exclude={exclude} compact />
+                <LiveFoeSearch compact />
               )}
             </section>
             {readyForDuel ? (
@@ -226,10 +224,10 @@ export function LiveMatchStage() {
       <div className="mt-10 hidden space-y-8 md:block">
         <div className="grid items-stretch gap-4 lg:grid-cols-2">
           <section className="flex min-h-0 flex-col rounded-[28px] border border-line/60 bg-raised/30 p-4 md:p-5">
-            <LivePackageBar exclude={foes} />
+            <LivePackageBar />
           </section>
           <section className="flex min-h-0 flex-col rounded-[28px] border border-line/60 bg-raised/30 p-4 md:p-5">
-            <LiveFoeSearch exclude={exclude} />
+            <LiveFoeSearch />
           </section>
         </div>
 

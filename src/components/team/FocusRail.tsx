@@ -13,6 +13,7 @@ import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { TypeBadge } from "@/components/pokemon/TypeBadge";
 import { getPokemon } from "@/lib/catalog/lookup";
 import { rankedPartnerCite, rankedPartnersFor } from "@/lib/ranked/partners";
+import { SlotMoveEditor } from "@/components/team/SlotMoveEditor";
 import type { ArchetypeId, CatalogEntry, Stats } from "@/types/pokemon";
 
 const STAT_KEYS = [
@@ -34,12 +35,16 @@ function barTone(value: number, max: number) {
 export function FocusRail({
   mon,
   intent,
+  moves = [],
+  onMovesChange,
   onOpenScout,
   onChangeSlot,
   onSuggestPick,
 }: {
   mon: CatalogEntry | null;
   intent: ArchetypeId | null;
+  moves?: string[];
+  onMovesChange?: (moves: string[]) => void;
   onOpenScout: () => void;
   onChangeSlot: () => void;
   /** Optional: tap a usual partner to add it to an empty bench slot. */
@@ -91,6 +96,17 @@ export function FocusRail({
             </div>
 
             <StatBars stats={level50At0(mon.stats)} />
+
+            {onMovesChange ? (
+              <div className="mt-5 border-t border-line/70 pt-4">
+                <SlotMoveEditor
+                  slug={mon.slug}
+                  moves={moves}
+                  onChange={onMovesChange}
+                  compact
+                />
+              </div>
+            ) : null}
 
             {partners.length ? (
               <div className="mt-4">

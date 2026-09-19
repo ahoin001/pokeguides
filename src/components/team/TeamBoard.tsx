@@ -20,11 +20,17 @@ import { teamChecklist } from "@/lib/champions/team-checklist";
 import { teamThreats } from "@/lib/champions/team-threats";
 import type { ScoutSide } from "@/lib/champions/vs";
 import { BuilderBench } from "@/components/team/BuilderBench";
-import { BuilderAnalysis, type AnalysisTab } from "@/components/team/BuilderAnalysis";
+import {
+  BuilderAnalysis,
+  type AnalysisTab,
+  type CoverageMode,
+} from "@/components/team/BuilderAnalysis";
 import { FocusRail } from "@/components/team/FocusRail";
 import { CoachDrawer } from "@/components/team/CoachDrawer";
 import { RegisteredSix } from "@/components/team/RegisteredSix";
 import { NextPicks } from "@/components/team/NextPicks";
+import { TeamPresetsBar } from "@/components/team/TeamPresetsBar";
+import { TeamDamageCalc } from "@/components/team/TeamDamageCalc";
 import type { CatalogEntry, TypeId } from "@/types/pokemon";
 
 export function TeamBoard() {
@@ -32,13 +38,18 @@ export function TeamBoard() {
   const box = useTeamStore((s) => s.box);
   const intent = useTeamStore((s) => s.intent);
   const manualId = useTeamStore((s) => s.manualId);
+  const slotMoves = useTeamStore((s) => s.slotMoves);
   const setSlot = useTeamStore((s) => s.setSlot);
   const setIntent = useTeamStore((s) => s.setIntent);
+  const setSlotMoves = useTeamStore((s) => s.setSlotMoves);
+  const loadThree = useTeamStore((s) => s.loadThree);
   const localManuals = useManualsStore((s) => s.local);
 
   const [pick, setPick] = useState<number | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(0);
   const [tab, setTab] = useState<AnalysisTab>("weaknesses");
+  const [coverageMode, setCoverageMode] = useState<CoverageMode>("stab");
+  const [calcOpen, setCalcOpen] = useState(false);
   const [weakType, setWeakType] = useState<TypeId | null>(null);
   const [coachOpen, setCoachOpen] = useState(false);
   const [scoutRequest, setScoutRequest] = useState<{
@@ -85,21 +96,43 @@ export function TeamBoard() {
 
   const threats = useMemo(() => teamThreats(filled), [filled]);
 
+  const coverageMembers = useMemo(
+    () =>
+      filled.map((p) => {
+        const kit = slotMoves[p.slug];
+        const fromManual = playbook?.slots.find((s) => s.slug === p.slug)?.moves.map((m) => m.name);
+        return {
+          name: p.name,
+          slug: p.slug,
+          types: p.types,
+          moves: kit?.length ? kit : fromManual,
+        };
+      }),
+    [filled, slotMoves, playbook],
+  );
+
   const scoutSide: ScoutSide[] = useMemo(
     () =>
       filled.map((p) => {
+        const kit = slotMoves[p.slug];
         const slot = playbook?.slots.find((s) => s.slug === p.slug);
         return {
           slug: p.slug,
           types: p.types,
-          moves: slot?.moves.map((m) => m.name),
+          moves: kit?.length ? kit : slot?.moves.map((m) => m.name),
         };
       }),
-    [filled, playbook],
+    [filled, playbook, slotMoves],
   );
 
   const focusMon =
     selectedIndex !== null && mons[selectedIndex] ? mons[selectedIndex] : filled[0] ?? null;
+
+  const partySlugs = useMemo(() => {
+    const six = box.filter(Boolean) as string[];
+    if (six.length) return six;
+    return slugs.filter(Boolean) as string[];
+  }, [box, slugs]);
 
   function requestScout(slug: string) {
     setScoutRequest({ slug, key: Date.now() });
@@ -136,7 +169,8 @@ export function TeamBoard() {
                   </p>
                 ) : (
                   <p className="mt-2 max-w-[52ch] text-muted">
-                    Three you bring. Species clause. One Mega in battle. They see the list.{" "}
+                    Three you bring. Edit moves on the focus rail for move coverage. Presets sync with
+                    Live Match.{" "}
                     <Link href="/manuals" className="underline">
                       Read a field manual
                     </Link>
@@ -165,6 +199,26 @@ export function TeamBoard() {
                 </Link>
               </div>
             </header>
+
+            <div className="mt-5">
+              <TeamPresetsBar
+                party={partySlugs}
+                moves={slotMoves}
+                hint="Saved here and on Live Match — same list."
+                onApply={(preset) => {
+                  const bring = preset.slugs.slice(0, 3);
+                  loadThree(
+                    bring,
+                    undefined,
+                    null,
+                    preset.slugs.length >= 4 ? preset.slugs : undefined,
+                    preset.moves,
+                  );
+                  setSelectedIndex(0);
+                  if (Object.keys(preset.moves).length) setCoverageMode("moves");
+                }}
+              />
+            </div>
 
             {megas > 1 ? (
               <p className="mt-4 text-sm text-amber-200">Two Megas on the three. Only one can go off.</p>
@@ -248,6 +302,9 @@ export function TeamBoard() {
                   selectedSlug={focusMon?.slug ?? null}
                   onSelectSlug={selectBySlug}
                   onScout={requestScout}
+                  coverageMode={coverageMode}
+                  onCoverageMode={setCoverageMode}
+                  coverageMembers={coverageMembers}
                 />
               </div>
 
@@ -255,6 +312,15 @@ export function TeamBoard() {
                 <FocusRail
                   mon={focusMon}
                   intent={activeIntent}
+                  moves={focusMon ? slotMoves[focusMon.slug] ?? [] : []}
+                  onMovesChange={
+                    focusMon
+                      ? (moves) => {
+                          setSlotMoves(focusMon.slug, moves);
+                          if (moves.length) setCoverageMode("moves");
+                        }
+                      : undefined
+                  }
                   onOpenScout={openScoutDock}
                   onChangeSlot={() => {
                     const idx = selectedIndex !== null ? selectedIndex : mons.findIndex((m) => !m);
@@ -276,6 +342,23 @@ export function TeamBoard() {
               </div>
             </div>
 
+            {filled.length >= 2 ? (
+              <div className="mt-8">
+                <button
+                  type="button"
+                  onClick={() => setCalcOpen((v) => !v)}
+                  className="rounded-full border border-line px-4 py-2 text-sm text-muted transition hover:border-ink/40 hover:text-ink"
+                >
+                  {calcOpen ? "Hide damage check" : "Show damage check"}
+                </button>
+                {calcOpen ? (
+                  <div className="mt-4">
+                    <TeamDamageCalc team={filled} slotMoves={slotMoves} />
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
+
             {scoutSide.length ? (
               <div className="mt-10">
                 <VsScout
@@ -285,9 +368,11 @@ export function TeamBoard() {
                   scoutRequest={scoutRequest}
                   heading="Vs scout"
                   lede={
-                    playbook
-                      ? "Tap a Threat to pin matchups here. Kit clicks come from the manual."
-                      : "Tap a Threat to pin matchups here. STABs only until you load a field manual."
+                    Object.keys(slotMoves).length
+                      ? "Tap a Threat to pin matchups. Kit clicks use your edited moves."
+                      : playbook
+                        ? "Tap a Threat to pin matchups here. Kit clicks come from the manual until you edit moves."
+                        : "Tap a Threat to pin matchups here. Add moves on the focus rail for kit-aware scout."
                   }
                   suggestedFoes={rankedFoesFor(filled.map((p) => p.slug))}
                 />

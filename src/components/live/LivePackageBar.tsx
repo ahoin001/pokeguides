@@ -36,6 +36,7 @@ export function LivePackageBar({
   const removeBring = useLiveMatchStore((s) => s.removeBring);
   const setBringSlot = useLiveMatchStore((s) => s.setBringSlot);
   const loadBring = useLiveMatchStore((s) => s.loadBring);
+  const setBringMoves = useLiveMatchStore((s) => s.setBringMoves);
   const selectBring = useLiveMatchStore((s) => s.selectBring);
   const activeBringSlug = useLiveMatchStore((s) => s.activeBringSlug);
   const clearBringMoves = useLiveMatchStore((s) => s.clearBringMoves);
@@ -69,13 +70,19 @@ export function LivePackageBar({
       const fromBox = team.box.filter(Boolean) as string[];
       const fromThree = team.slugs.filter(Boolean) as string[];
       const seed = fromBox.length ? fromBox : fromThree;
-      if (seed.length) loadBring(seed);
+      if (seed.length) {
+        loadBring(seed);
+        for (const slug of seed) {
+          const kit = team.slotMoves[slug];
+          if (kit?.length) setBringMoves(slug, kit);
+        }
+      }
       setSeeded(true);
     };
     const api = useLiveMatchStore.persist;
     if (api.hasHydrated()) finish();
     else return api.onFinishHydration(finish);
-  }, [seeded, loadBring]);
+  }, [seeded, loadBring, setBringMoves]);
 
   const blocked = useMemo(
     () => new Set([...exclude, ...bring]),

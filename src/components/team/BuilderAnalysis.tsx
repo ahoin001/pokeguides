@@ -6,14 +6,17 @@ import { WeaknessGrid } from "@/components/team/WeaknessGrid";
 import { CoverageGrid } from "@/components/team/CoverageGrid";
 import { ThreatsList } from "@/components/team/ThreatsList";
 import { SpeedTier } from "@/components/team/SpeedTier";
+import { TeamCoverage } from "@/components/manuals/TeamCoverage";
 import type { TeamThreat } from "@/lib/champions/team-threats";
+import type { CoverageMember } from "@/lib/champions/team-coverage";
 import type { CatalogEntry, TypeId } from "@/types/pokemon";
 
 export type AnalysisTab = "weaknesses" | "coverage" | "threats" | "speed";
+export type CoverageMode = "stab" | "moves";
 
 const TABS: { id: AnalysisTab; label: string }[] = [
   { id: "weaknesses", label: "Weaknesses" },
-  { id: "coverage", label: "Strong against" },
+  { id: "coverage", label: "Coverage" },
   { id: "threats", label: "Threats" },
   { id: "speed", label: "Speed" },
 ];
@@ -28,6 +31,9 @@ export function BuilderAnalysis({
   selectedSlug,
   onSelectSlug,
   onScout,
+  coverageMode = "stab",
+  onCoverageMode,
+  coverageMembers = [],
 }: {
   tab: AnalysisTab;
   onTab: (tab: AnalysisTab) => void;
@@ -38,7 +44,12 @@ export function BuilderAnalysis({
   selectedSlug: string | null;
   onSelectSlug: (slug: string) => void;
   onScout: (slug: string) => void;
+  coverageMode?: CoverageMode;
+  onCoverageMode?: (mode: CoverageMode) => void;
+  coverageMembers?: CoverageMember[];
 }) {
+  const hasKits = coverageMembers.some((m) => (m.moves?.length ?? 0) > 0);
+
   return (
     <section className="min-w-0 rounded-[28px] border border-line bg-raised/30 p-4 md:p-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
@@ -74,7 +85,7 @@ export function BuilderAnalysis({
       <div className="mt-5">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
-            key={tab}
+            key={tab === "coverage" ? `${tab}-${coverageMode}` : tab}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
@@ -84,7 +95,58 @@ export function BuilderAnalysis({
               <WeaknessGrid team={team} selectedType={selectedType} onSelectType={onSelectType} />
             ) : null}
             {tab === "coverage" ? (
-              <CoverageGrid team={team} selectedType={selectedType} onSelectType={onSelectType} />
+              <div className="space-y-4">
+                {onCoverageMode ? (
+                  <div
+                    role="tablist"
+                    aria-label="Coverage mode"
+                    className="inline-flex rounded-full border border-line bg-bg/50 p-1"
+                  >
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={coverageMode === "stab"}
+                      onClick={() => onCoverageMode("stab")}
+                      className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+                        coverageMode === "stab" ? "bg-ink text-bg" : "text-muted hover:text-ink"
+                      }`}
+                    >
+                      Natural (STAB)
+                    </button>
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={coverageMode === "moves"}
+                      onClick={() => onCoverageMode("moves")}
+                      className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+                        coverageMode === "moves" ? "bg-ink text-bg" : "text-muted hover:text-ink"
+                      }`}
+                    >
+                      Move kits
+                    </button>
+                  </div>
+                ) : null}
+                {coverageMode === "moves" ? (
+                  hasKits ? (
+                    <TeamCoverage
+                      members={coverageMembers}
+                      defaultOpen
+                      title="Move coverage"
+                    />
+                  ) : (
+                    <p className="text-sm text-muted">
+                      Add moves on the focus rail to see which types your kits actually click. Until
+                      then, switch to Natural (STAB) for typing coverage.
+                    </p>
+                  )
+                ) : (
+                  <CoverageGrid
+                    team={team}
+                    selectedType={selectedType}
+                    onSelectType={onSelectType}
+                  />
+                )}
+              </div>
             ) : null}
             {tab === "threats" ? <ThreatsList threats={threats} onScout={onScout} /> : null}
             {tab === "speed" ? (

@@ -22,6 +22,9 @@ export type BringPreset = {
   savedAt: number;
 };
 
+/** @deprecated Prefer `TeamPreset` from `@/stores/team-presets` — shared Team + Live list. */
+export type LegacyBringPreset = BringPreset;
+
 type LiveMatchState = {
   /** Your side on the clock — up to the full registered six. */
   bring: string[];

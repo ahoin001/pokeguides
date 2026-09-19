@@ -2,6 +2,7 @@ import type { ArchetypeId, LiteracyRoleId, RoleId, SampleSp } from "@/types/poke
 import type { BattleFormat } from "@/lib/format";
 import { alt, train } from "@/content/manual-train";
 import { ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL } from "@/content/manuals/ultra-garchompz-salamence-gholdengo";
+import { SNOW_SUN_DUAL_ENGINE_MANUAL } from "@/content/manuals/snow-sun-dual-engine";
 
 export { alt, train };
 
@@ -868,6 +869,7 @@ export function manualsForFormat(format: BattleFormat, manuals: readonly TeamMan
 
 export const CANONICAL_MANUALS: TeamManual[] = [
   ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL,
+  SNOW_SUN_DUAL_ENGINE_MANUAL,
 ];
 
 export function getCanonicalManual(id: string) {

@@ -55,6 +55,12 @@ export function AppShell({ children }: { children: ReactNode }) {
               >
                 Dex
               </Link>
+              <Link
+                href="/moves"
+                className={linkOn(path, "/moves") ? "text-ink" : "text-muted hover:text-ink"}
+              >
+                Moves
+              </Link>
               <TeamNavMenu path={path} />
               <Link
                 href="/live"

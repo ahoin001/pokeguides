@@ -42,6 +42,9 @@ export default function HomePage() {
           <Link href="/meta" className="underline hover:text-ink">
             Meta
           </Link>
+          <Link href="/moves" className="underline hover:text-ink">
+            Moves
+          </Link>
           <Link href="/regulation">Regulation</Link>
           <Link href="/glossary">Glossary</Link>
           <Link href="/about">About</Link>

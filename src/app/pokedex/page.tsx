@@ -35,7 +35,12 @@ export default function PokedexPage() {
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <h1 className="text-4xl font-semibold tracking-tight">Legal roster</h1>
-          <p className="mt-2 text-muted">{rows.length} Pokémon in the current catalog.</p>
+          <p className="mt-2 text-muted">
+            {rows.length} Pokémon in the current catalog.{" "}
+            <Link href="/moves" className="underline hover:text-ink">
+              Move appendix
+            </Link>
+          </p>
         </div>
         <input
           value={q}

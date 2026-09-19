@@ -38,17 +38,17 @@ export function LiveFoeUsage({
   const end = align === "end";
 
   return (
-    <div className={`mt-4 space-y-3 border-t border-line/50 pt-3 ${end ? "md:text-right" : ""}`}>
+    <div className={`mt-4 min-w-0 space-y-3 border-t border-line/50 pt-3 ${end ? "md:text-right" : ""}`}>
       {moves.length ? (
         <div className="min-w-0">
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted">
             Common moves
           </p>
           <ul
-            className="-mx-1 mt-1.5 flex gap-1.5 overflow-x-auto px-1 pb-1 [scrollbar-width:thin]"
+            className={`mt-1.5 flex flex-wrap gap-1.5 ${end ? "md:justify-end" : ""}`}
           >
             {moves.map((m) => (
-              <li key={m.name} className="shrink-0">
+              <li key={m.name} className="max-w-full">
                 <MoveUsageChip name={m.name} pct={m.pct} align={align} />
               </li>
             ))}
@@ -57,7 +57,7 @@ export function LiveFoeUsage({
       ) : null}
 
       {items.length ? (
-        <div>
+        <div className="min-w-0">
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted">
             Common items
           </p>
@@ -65,7 +65,7 @@ export function LiveFoeUsage({
             className={`mt-1.5 flex flex-wrap gap-1.5 ${end ? "md:justify-end" : ""}`}
           >
             {items.map((item) => (
-              <li key={item.name}>
+              <li key={item.name} className="max-w-full">
                 <ItemUsageChip name={item.name} pct={item.pct} align={align} />
               </li>
             ))}

@@ -226,7 +226,7 @@ export function LiveDuelStage({ showKit = true }: { showKit?: boolean }) {
         >
           {/* Mobile face-off */}
           <div className="md:hidden">
-            <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-2 px-4 pb-2 pt-5">
+            <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start gap-2 px-4 pb-2 pt-5">
               <div className="min-w-0 text-center" style={cssVars(our.palette)}>
                 <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
                   You
@@ -315,8 +315,8 @@ export function LiveDuelStage({ showKit = true }: { showKit?: boolean }) {
 
           {/* Desktop three-column */}
           <div className="hidden md:block">
-            <div className="grid gap-0 md:grid-cols-[1fr_auto_1fr]">
-              <div className="p-5 md:p-6" style={cssVars(our.palette)}>
+            <div className="grid gap-0 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
+              <div className="min-w-0 p-5 md:p-6" style={cssVars(our.palette)}>
                 <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
                   You
                 </p>
@@ -389,7 +389,7 @@ export function LiveDuelStage({ showKit = true }: { showKit?: boolean }) {
                 </button>
               </div>
 
-              <div className="p-5 md:p-6" style={cssVars(their.palette)}>
+              <div className="min-w-0 p-5 md:p-6" style={cssVars(their.palette)}>
                 <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
                   Them
                 </p>

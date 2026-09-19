@@ -37,6 +37,7 @@ function pokeSlug(name: string) {
 function cleanEffect(raw: string, chance?: number | null) {
   return raw
     .replace(/\$effect_chance/g, chance != null ? String(chance) : "a")
+    .replace(/[\n\f\r]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -64,14 +65,28 @@ async function fetchMove(name: string): Promise<MoveRow | null> {
     priority: number;
     effect_chance: number | null;
     effect_entries?: { language: { name: string }; short_effect: string; effect: string }[];
+    flavor_text_entries?: {
+      language: { name: string };
+      flavor_text: string;
+      version_group: { name: string };
+    }[];
   };
   const en =
     data.effect_entries?.find((e) => e.language.name === "en") ??
     data.effect_entries?.[0];
   const chance = data.effect_chance;
-  const shortEffect = en?.short_effect
-    ? cleanEffect(en.short_effect, chance)
-    : undefined;
+  let shortEffect = en?.short_effect ? cleanEffect(en.short_effect, chance) : undefined;
+  if (!shortEffect) {
+    const flavors = (data.flavor_text_entries ?? []).filter((e) => e.language.name === "en");
+    const preferred =
+      [...flavors]
+        .reverse()
+        .find((f) => /scarlet|violet|legends-za|sword|shield/.test(f.version_group.name)) ??
+      flavors.at(-1);
+    if (preferred?.flavor_text) {
+      shortEffect = cleanEffect(preferred.flavor_text);
+    }
+  }
   const row: MoveRow = {
     name,
     type: data.type.name,

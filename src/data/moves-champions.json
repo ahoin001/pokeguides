@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-18T15:51:50.791Z",
+  "fetchedAt": "2026-09-19T23:20:18.711Z",
   "count": 344,
   "moves": {
     "Accelerock": {
@@ -8,7 +8,9 @@
       "category": "physical",
       "basePower": 40,
       "priority": 1,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts damage with increased priority (+1).",
+      "championsEffect": "Inflicts damage with increased priority (+1).",
+      "source": "champions-attackdex"
     },
     "Acid Armor": {
       "name": "Acid Armor",
@@ -16,7 +18,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s Defense by two stages."
+      "shortEffect": "Boosts the user's Defense stat by 2 stages.",
+      "championsEffect": "Boosts the user's Defense stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Acid Spray": {
       "name": "Acid Spray",
@@ -24,7 +28,9 @@
       "category": "special",
       "basePower": 40,
       "priority": 0,
-      "shortEffect": "Lowers the target’s Special Defense by two stages."
+      "shortEffect": "Lowers the target's Sp. Def stat by 2 stages.",
+      "championsEffect": "Lowers the target's Sp. Def stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Acrobatics": {
       "name": "Acrobatics",
@@ -32,7 +38,9 @@
       "category": "physical",
       "basePower": 55,
       "priority": 0,
-      "shortEffect": "Has double power if the user has no held item."
+      "shortEffect": "This move's power is doubled if the user isn't holding an item.",
+      "championsEffect": "This move's power is doubled if the user isn't holding an item.",
+      "source": "champions-attackdex"
     },
     "Agility": {
       "name": "Agility",
@@ -40,7 +48,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s Speed by two stages."
+      "shortEffect": "Boosts the user's Speed stat by 2 stages.",
+      "championsEffect": "Boosts the user's Speed stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Air Cutter": {
       "name": "Air Cutter",
@@ -48,7 +58,9 @@
       "category": "special",
       "basePower": 60,
       "priority": 0,
-      "shortEffect": "Has an increased chance for a critical hit."
+      "shortEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "championsEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "source": "champions-attackdex"
     },
     "Air Slash": {
       "name": "Air Slash",
@@ -56,14 +68,19 @@
       "category": "special",
       "basePower": 75,
       "priority": 0,
-      "shortEffect": "Has a chance to make the target flinch."
+      "shortEffect": "Has a 30% chance of making the target flinch.",
+      "championsEffect": "Has a 30% chance of making the target flinch.",
+      "source": "champions-attackdex"
     },
     "Alluring Voice": {
       "name": "Alluring Voice",
       "type": "fairy",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Confuses the target if its stats were boosted during the turn this move is used.",
+      "championsEffect": "Confuses the target if its stats were boosted during the turn this move is used.",
+      "source": "champions-attackdex"
     },
     "Amnesia": {
       "name": "Amnesia",
@@ -71,7 +88,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s Special Defense by two stages."
+      "shortEffect": "Boosts the user's Sp. Def stat by 2 stages.",
+      "championsEffect": "Boosts the user's Sp. Def stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Ancient Power": {
       "name": "Ancient Power",
@@ -79,7 +98,9 @@
       "category": "special",
       "basePower": 60,
       "priority": 0,
-      "shortEffect": "Has a chance to raise all of the user’s stats by one stage."
+      "shortEffect": "Has a 10% chance of boosting the user's Attack Defense Sp. Atk Sp. Def and Speed stats by 1 stage.",
+      "championsEffect": "Has a 10% chance of boosting the user's Attack Defense Sp. Atk Sp. Def and Speed stats by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Apple Acid": {
       "name": "Apple Acid",
@@ -87,14 +108,19 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Lower the targets Special Defense by 1 stage."
+      "shortEffect": "Lowers the target's Sp. Def stat by 1 stage.",
+      "championsEffect": "Lowers the target's Sp. Def stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Aqua Cutter": {
       "name": "Aqua Cutter",
       "type": "water",
       "category": "physical",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "championsEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "source": "champions-attackdex"
     },
     "Aqua Jet": {
       "name": "Aqua Jet",
@@ -102,21 +128,29 @@
       "category": "physical",
       "basePower": 40,
       "priority": 1,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts damage with increased priority (+1).",
+      "championsEffect": "Inflicts damage with increased priority (+1).",
+      "source": "champions-attackdex"
     },
     "Aqua Step": {
       "name": "Aqua Step",
       "type": "water",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Boosts the user's Speed stat by 1 stage.",
+      "championsEffect": "Boosts the user's Speed stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Armor Cannon": {
       "name": "Armor Cannon",
       "type": "fire",
       "category": "special",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the user's Defense and Sp. Def stats by 1 stage.",
+      "championsEffect": "Lowers the user's Defense and Sp. Def stats by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Aura Sphere": {
       "name": "Aura Sphere",
@@ -124,7 +158,9 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Never misses."
+      "shortEffect": "This move never misses.",
+      "championsEffect": "This move never misses.",
+      "source": "champions-attackdex"
     },
     "Aura Wheel": {
       "name": "Aura Wheel",
@@ -132,7 +168,9 @@
       "category": "physical",
       "basePower": 110,
       "priority": 0,
-      "shortEffect": "Raises the user's Speed by 1 stage. In Full Belly Mode, this move is Electric type. In Hangry Mode, this move is Dark type."
+      "shortEffect": "Boosts the user's Speed stat by 1 stage. This move's type depends on Morpeko's form.",
+      "championsEffect": "Boosts the user's Speed stat by 1 stage. This move's type depends on Morpeko's form.",
+      "source": "champions-attackdex"
     },
     "Aurora Veil": {
       "name": "Aurora Veil",
@@ -140,7 +178,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Reduces damage five turns, but must be used during hail."
+      "shortEffect": "Gives the user's side the Aurora Veil status for 5 turns. This move can be used only in snow.",
+      "championsEffect": "Gives the user's side the Aurora Veil status for 5 turns. This move can be used only in snow.",
+      "source": "champions-attackdex"
     },
     "Avalanche": {
       "name": "Avalanche",
@@ -148,7 +188,9 @@
       "category": "physical",
       "basePower": 60,
       "priority": -4,
-      "shortEffect": "Inflicts double damage if the user takes damage before attacking this turn."
+      "shortEffect": "This move's power is doubled if the target has already dealt damage to the user with a move in the same turn.",
+      "championsEffect": "This move's power is doubled if the target has already dealt damage to the user with a move in the same turn.",
+      "source": "champions-attackdex"
     },
     "Baby-Doll Eyes": {
       "name": "Baby-Doll Eyes",
@@ -156,7 +198,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 1,
-      "shortEffect": "Lowers the target’s Attack by one stage."
+      "shortEffect": "Lowers the target's Attack stat by 1 stage.",
+      "championsEffect": "Lowers the target's Attack stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Baneful Bunker": {
       "name": "Baneful Bunker",
@@ -164,14 +208,19 @@
       "category": "status",
       "basePower": 0,
       "priority": 4,
-      "shortEffect": "Grants the user protection for the rest of the turn and poisons any Pokémon that tries to use a contact move on it."
+      "shortEffect": "The user protects itself from incoming moves for the turn. Any attackers that use contact moves against the user during this turn become poisoned. With each consecutive use this move's chance of success becomes 1/3 of what it was before.",
+      "championsEffect": "The user protects itself from incoming moves for the turn. Any attackers that use contact moves against the user during this turn become poisoned. With each consecutive use this move's chance of success becomes 1/3 of what it was before.",
+      "source": "champions-attackdex"
     },
     "Barb Barrage": {
       "name": "Barb Barrage",
       "type": "poison",
       "category": "physical",
       "basePower": 60,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a 50% chance of poisoning the target. This move's power is doubled if the target is poisoned or badly poisoned.",
+      "championsEffect": "Has a 50% chance of poisoning the target. This move's power is doubled if the target is poisoned or badly poisoned.",
+      "source": "champions-attackdex"
     },
     "Baton Pass": {
       "name": "Baton Pass",
@@ -179,7 +228,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Allows the trainer to switch out the user and pass effects along to its replacement."
+      "shortEffect": "The user switches out of battle to be replaced by another party Pokémon. If the user had any stat changes a substitute or other such effects they will be passed on to the Pokémon switching in.",
+      "championsEffect": "The user switches out of battle to be replaced by another party Pokémon. If the user had any stat changes a substitute or other such effects they will be passed on to the Pokémon switching in.",
+      "source": "champions-attackdex"
     },
     "Beak Blast": {
       "name": "Beak Blast",
@@ -187,7 +238,9 @@
       "category": "physical",
       "basePower": 100,
       "priority": -3,
-      "shortEffect": "Inflicts a burn on any Pokémon that makes contact before the attack."
+      "shortEffect": "If the user is hit by a contact move before it uses this move the attacker will be burned.",
+      "championsEffect": "If the user is hit by a contact move before it uses this move the attacker will be burned.",
+      "source": "champions-attackdex"
     },
     "Belly Drum": {
       "name": "Belly Drum",
@@ -195,7 +248,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "User pays half its max HP to max out its Attack."
+      "shortEffect": "The user loses 1/2 of its max HP to boost its Attack stat to its sixth stage. This move fails if the user doesn't have enough remaining HP.",
+      "championsEffect": "The user loses 1/2 of its max HP to boost its Attack stat to its sixth stage. This move fails if the user doesn't have enough remaining HP.",
+      "source": "champions-attackdex"
     },
     "Bite": {
       "name": "Bite",
@@ -203,21 +258,29 @@
       "category": "physical",
       "basePower": 60,
       "priority": 0,
-      "shortEffect": "Has a chance to make the target flinch."
+      "shortEffect": "Has a 30% chance of making the target flinch.",
+      "championsEffect": "Has a 30% chance of making the target flinch.",
+      "source": "champions-attackdex"
     },
     "Bitter Blade": {
       "name": "Bitter Blade",
       "type": "fire",
       "category": "physical",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "The user's HP is restored by 1/2 of the damage dealt by this move.",
+      "championsEffect": "The user's HP is restored by 1/2 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Bitter Malice": {
       "name": "Bitter Malice",
       "type": "ghost",
       "category": "special",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the target's Attack stat by 1 stage.",
+      "championsEffect": "Lowers the target's Attack stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Blaze Kick": {
       "name": "Blaze Kick",
@@ -225,7 +288,9 @@
       "category": "physical",
       "basePower": 85,
       "priority": 0,
-      "shortEffect": "Has an increased chance for a critical hit and a chance to burn the target."
+      "shortEffect": "Has a 10% chance of burning the target. This move has a 1-stage Critical-Hit Ratio Boost.",
+      "championsEffect": "Has a 10% chance of burning the target. This move has a 1-stage Critical-Hit Ratio Boost.",
+      "source": "champions-attackdex"
     },
     "Blizzard": {
       "name": "Blizzard",
@@ -233,7 +298,9 @@
       "category": "special",
       "basePower": 110,
       "priority": 0,
-      "shortEffect": "Has a chance to freeze the target."
+      "shortEffect": "Has a 10% chance of freezing targets. This move never misses in snow.",
+      "championsEffect": "Has a 10% chance of freezing targets. This move never misses in snow.",
+      "source": "champions-attackdex"
     },
     "Body Press": {
       "name": "Body Press",
@@ -241,7 +308,9 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Damage is calculated using the user's Defense stat as its Attack, including stat stage changes."
+      "shortEffect": "The damage dealt by this move is calculated using the user's Defense stat instead of its Attack stat.",
+      "championsEffect": "The damage dealt by this move is calculated using the user's Defense stat instead of its Attack stat.",
+      "source": "champions-attackdex"
     },
     "Body Slam": {
       "name": "Body Slam",
@@ -249,7 +318,9 @@
       "category": "physical",
       "basePower": 85,
       "priority": 0,
-      "shortEffect": "Has a chance to paralyze the target."
+      "shortEffect": "Has a 30% chance of paralyzing the target. If the target has the Minimized status this move's power is doubled and it will be sure to hit.",
+      "championsEffect": "Has a 30% chance of paralyzing the target. If the target has the Minimized status this move's power is doubled and it will be sure to hit.",
+      "source": "champions-attackdex"
     },
     "Boomburst": {
       "name": "Boomburst",
@@ -257,7 +328,9 @@
       "category": "special",
       "basePower": 140,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage."
+      "shortEffect": "Inflicts regular damage.",
+      "championsEffect": "Inflicts regular damage.",
+      "source": "champions-attackdex"
     },
     "Brave Bird": {
       "name": "Brave Bird",
@@ -265,7 +338,9 @@
       "category": "physical",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "User receives 1/3 the damage inflicted in recoil."
+      "shortEffect": "The user takes 1/3 of the damage dealt by this move.",
+      "championsEffect": "The user takes 1/3 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Brick Break": {
       "name": "Brick Break",
@@ -273,7 +348,9 @@
       "category": "physical",
       "basePower": 75,
       "priority": 0,
-      "shortEffect": "Destroys Reflect and Light Screen."
+      "shortEffect": "Removes the Light Screen Reflect and Aurora Veil statuses on the target's side.",
+      "championsEffect": "Removes the Light Screen Reflect and Aurora Veil statuses on the target's side.",
+      "source": "champions-attackdex"
     },
     "Brutal Swing": {
       "name": "Brutal Swing",
@@ -281,7 +358,9 @@
       "category": "physical",
       "basePower": 60,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts regular damage.",
+      "championsEffect": "Inflicts regular damage.",
+      "source": "champions-attackdex"
     },
     "Bug Buzz": {
       "name": "Bug Buzz",
@@ -289,7 +368,9 @@
       "category": "special",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
+      "shortEffect": "Has a 10% chance of lowering the target's Sp. Def stat by 1 stage.",
+      "championsEffect": "Has a 10% chance of lowering the target's Sp. Def stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Bulk Up": {
       "name": "Bulk Up",
@@ -297,7 +378,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s Attack and Defense by one stage."
+      "shortEffect": "Boosts the user's Attack and Defense stats by 1 stage.",
+      "championsEffect": "Boosts the user's Attack and Defense stats by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Bullet Punch": {
       "name": "Bullet Punch",
@@ -305,7 +388,9 @@
       "category": "physical",
       "basePower": 40,
       "priority": 1,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts damage with increased priority (+1).",
+      "championsEffect": "Inflicts damage with increased priority (+1).",
+      "source": "champions-attackdex"
     },
     "Bullet Seed": {
       "name": "Bullet Seed",
@@ -313,7 +398,9 @@
       "category": "physical",
       "basePower": 25,
       "priority": 0,
-      "shortEffect": "Hits 2-5 times in one turn."
+      "shortEffect": "The user attacks 2 to 5 times in a row.",
+      "championsEffect": "The user attacks 2 to 5 times in a row.",
+      "source": "champions-attackdex"
     },
     "Burn Up": {
       "name": "Burn Up",
@@ -321,7 +408,9 @@
       "category": "special",
       "basePower": 130,
       "priority": 0,
-      "shortEffect": "Removes the user’s Fire type after inflicting damage."
+      "shortEffect": "The user loses the Fire type. Cures the user of being frozen. This move fails unless it is used by a Fire type.",
+      "championsEffect": "The user loses the Fire type. Cures the user of being frozen. This move fails unless it is used by a Fire type.",
+      "source": "champions-attackdex"
     },
     "Burning Jealousy": {
       "name": "Burning Jealousy",
@@ -329,7 +418,9 @@
       "category": "special",
       "basePower": 70,
       "priority": 0,
-      "shortEffect": "Burns the target if it had a state stage raise this turn."
+      "shortEffect": "Burns targets if their stats were boosted during the turn this move is used.",
+      "championsEffect": "Burns targets if their stats were boosted during the turn this move is used.",
+      "source": "champions-attackdex"
     },
     "Calm Mind": {
       "name": "Calm Mind",
@@ -337,14 +428,19 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s Special Attack and Special Defense by one stage."
+      "shortEffect": "Boosts the user's Sp. Atk and Sp. Def stats by 1 stage.",
+      "championsEffect": "Boosts the user's Sp. Atk and Sp. Def stats by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Ceaseless Edge": {
       "name": "Ceaseless Edge",
       "type": "dark",
       "category": "physical",
       "basePower": 65,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Gives the opponent's side the Spikes status.",
+      "championsEffect": "Gives the opponent's side the Spikes status.",
+      "source": "champions-attackdex"
     },
     "Charge": {
       "name": "Charge",
@@ -352,7 +448,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s Special Defense by one stage. User’s Electric moves have doubled power next turn."
+      "shortEffect": "Boosts the user's Sp. Def stat by 1 stage. The user gains the Electric Boost status.",
+      "championsEffect": "Boosts the user's Sp. Def stat by 1 stage. The user gains the Electric Boost status.",
+      "source": "champions-attackdex"
     },
     "Charge Beam": {
       "name": "Charge Beam",
@@ -360,7 +458,9 @@
       "category": "special",
       "basePower": 50,
       "priority": 0,
-      "shortEffect": "Has a chance to raise the user’s Special Attack by one stage."
+      "shortEffect": "Has a 70% chance of boosting the user's Sp. Atk stat by 1 stage.",
+      "championsEffect": "Has a 70% chance of boosting the user's Sp. Atk stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Charm": {
       "name": "Charm",
@@ -368,21 +468,29 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Lowers the target’s Attack by two stages."
+      "shortEffect": "Lowers the target's Attack stat by 2 stages.",
+      "championsEffect": "Lowers the target's Attack stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Chilling Water": {
       "name": "Chilling Water",
       "type": "water",
       "category": "special",
       "basePower": 50,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the target's Attack stat by 1 stage.",
+      "championsEffect": "Lowers the target's Attack stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Chilly Reception": {
       "name": "Chilly Reception",
       "type": "ice",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Summons snow for 5 turns. The user switches out of battle to be replaced by another party Pokémon.",
+      "championsEffect": "Summons snow for 5 turns. The user switches out of battle to be replaced by another party Pokémon.",
+      "source": "champions-attackdex"
     },
     "Circle Throw": {
       "name": "Circle Throw",
@@ -390,7 +498,9 @@
       "category": "physical",
       "basePower": 60,
       "priority": -6,
-      "shortEffect": "Ends wild battles. Forces trainers to switch Pokémon."
+      "shortEffect": "If there are other Pokémon in the target's party that can switch into battle the target is forced to switch out of battle and is replaced by one of those Pokémon at random.",
+      "championsEffect": "If there are other Pokémon in the target's party that can switch into battle the target is forced to switch out of battle and is replaced by one of those Pokémon at random.",
+      "source": "champions-attackdex"
     },
     "Clanging Scales": {
       "name": "Clanging Scales",
@@ -398,7 +508,9 @@
       "category": "special",
       "basePower": 110,
       "priority": 0,
-      "shortEffect": "Lowers the user’s Defense by one stage after inflicting damage."
+      "shortEffect": "Lowers the user's Defense stat by 1 stage.",
+      "championsEffect": "Lowers the user's Defense stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Clangorous Soul": {
       "name": "Clangorous Soul",
@@ -406,7 +518,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "User loses 33% of its Max HP. Raises all of the user’s stats by one stage."
+      "shortEffect": "The user loses 1/3 of its max HP to boost its Attack Defense Sp. Atk Sp. Def and Speed stats by 1 stage. This move fails if the user doesn't have enough remaining HP.",
+      "championsEffect": "The user loses 1/3 of its max HP to boost its Attack Defense Sp. Atk Sp. Def and Speed stats by 1 stage. This move fails if the user doesn't have enough remaining HP.",
+      "source": "champions-attackdex"
     },
     "Close Combat": {
       "name": "Close Combat",
@@ -414,7 +528,9 @@
       "category": "physical",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "Lowers the user’s Defense and Special Defense by one stage after inflicting damage."
+      "shortEffect": "Lowers the user's Defense and Sp. Def stats by 1 stage.",
+      "championsEffect": "Lowers the user's Defense and Sp. Def stats by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Coil": {
       "name": "Coil",
@@ -422,14 +538,19 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s Attack, Defense, and accuracy by one stage each."
+      "shortEffect": "Boosts the user's Attack and Defense stats as well as its accuracy by 1 stage.",
+      "championsEffect": "Boosts the user's Attack and Defense stats as well as its accuracy by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Comeuppance": {
       "name": "Comeuppance",
       "type": "dark",
       "category": "physical",
       "basePower": 1,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "The user retaliates to deal 150% of the damage it took from an opponent's move during the turn this move is used.",
+      "championsEffect": "The user retaliates to deal 150% of the damage it took from an opponent's move during the turn this move is used.",
+      "source": "champions-attackdex"
     },
     "Copycat": {
       "name": "Copycat",
@@ -437,7 +558,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Uses the target’s last used move."
+      "shortEffect": "The user mimics the move that was last used. This move fails if no other move has been used yet.",
+      "championsEffect": "The user mimics the move that was last used. This move fails if no other move has been used yet.",
+      "source": "champions-attackdex"
     },
     "Cosmic Power": {
       "name": "Cosmic Power",
@@ -445,7 +568,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s Defense and Special Defense by one stage."
+      "shortEffect": "Boosts the user's Defense and Sp. Def stats by 1 stage.",
+      "championsEffect": "Boosts the user's Defense and Sp. Def stats by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Cotton Guard": {
       "name": "Cotton Guard",
@@ -453,7 +578,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s Defense by three stages."
+      "shortEffect": "Boosts the user's Defense stat by 3 stages.",
+      "championsEffect": "Boosts the user's Defense stat by 3 stages.",
+      "source": "champions-attackdex"
     },
     "Counter": {
       "name": "Counter",
@@ -461,7 +588,9 @@
       "category": "physical",
       "basePower": 0,
       "priority": -5,
-      "shortEffect": "Inflicts twice the damage the user received from the last physical hit it took."
+      "shortEffect": "The user retaliates to deal double the damage it took from an opponent's physical move during the turn this move is used.",
+      "championsEffect": "The user retaliates to deal double the damage it took from an opponent's physical move during the turn this move is used.",
+      "source": "champions-attackdex"
     },
     "Court Change": {
       "name": "Court Change",
@@ -469,7 +598,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Switches single sided field effects from the users side to the targets side and vice versa."
+      "shortEffect": "Swaps the statuses affecting the user's side of the field with the statuses affecting the opponent's side of the field.",
+      "championsEffect": "Swaps the statuses affecting the user's side of the field with the statuses affecting the opponent's side of the field.",
+      "source": "champions-attackdex"
     },
     "Covet": {
       "name": "Covet",
@@ -477,7 +608,9 @@
       "category": "physical",
       "basePower": 60,
       "priority": 0,
-      "shortEffect": "Takes the target’s item."
+      "shortEffect": "If the user is not already holding an item it steals the target's held item.",
+      "championsEffect": "If the user is not already holding an item it steals the target's held item.",
+      "source": "champions-attackdex"
     },
     "Cross Poison": {
       "name": "Cross Poison",
@@ -485,7 +618,9 @@
       "category": "physical",
       "basePower": 70,
       "priority": 0,
-      "shortEffect": "Has an increased chance for a critical hit and a chance to poison the target."
+      "shortEffect": "Has a 10% chance of poisoning the target. This move has a 1-stage Critical-Hit Ratio Boost.",
+      "championsEffect": "Has a 10% chance of poisoning the target. This move has a 1-stage Critical-Hit Ratio Boost.",
+      "source": "champions-attackdex"
     },
     "Crunch": {
       "name": "Crunch",
@@ -493,7 +628,9 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Defense by one stage."
+      "shortEffect": "Has a 20% chance of lowering the target's Defense stat by 1 stage.",
+      "championsEffect": "Has a 20% chance of lowering the target's Defense stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Curse": {
       "name": "Curse",
@@ -501,7 +638,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Ghosts pay half their max HP to hurt the target every turn. Others decrease Speed but raise Attack and Defense."
+      "shortEffect": "Ghost-type: The user loses 1/2 of its max HP to give the target the Cursed status. Non-Ghost-type: Lowers the user's Speed stat by 1 stage and boosts its Attack and Defense stats by 1 stage.",
+      "championsEffect": "Ghost-type: The user loses 1/2 of its max HP to give the target the Cursed status. Non-Ghost-type: Lowers the user's Speed stat by 1 stage and boosts its Attack and Defense stats by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Dark Pulse": {
       "name": "Dark Pulse",
@@ -509,7 +648,9 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has a chance to make the target flinch."
+      "shortEffect": "Has a 20% chance of making the target flinch.",
+      "championsEffect": "Has a 20% chance of making the target flinch.",
+      "source": "champions-attackdex"
     },
     "Darkest Lariat": {
       "name": "Darkest Lariat",
@@ -517,7 +658,9 @@
       "category": "physical",
       "basePower": 85,
       "priority": 0,
-      "shortEffect": "Ignores the target’s stat modifiers."
+      "shortEffect": "This move ignores the target's stat changes when dealing damage.",
+      "championsEffect": "This move ignores the target's stat changes when dealing damage.",
+      "source": "champions-attackdex"
     },
     "Dazzling Gleam": {
       "name": "Dazzling Gleam",
@@ -525,7 +668,9 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts regular damage.",
+      "championsEffect": "Inflicts regular damage.",
+      "source": "champions-attackdex"
     },
     "Destiny Bond": {
       "name": "Destiny Bond",
@@ -533,7 +678,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "If the user faints this turn, the target automatically will, too."
+      "shortEffect": "The user gains the Destiny Bound status. This move fails if used in succession.",
+      "championsEffect": "The user gains the Destiny Bound status. This move fails if used in succession.",
+      "source": "champions-attackdex"
     },
     "Detect": {
       "name": "Detect",
@@ -541,14 +688,19 @@
       "category": "status",
       "basePower": 0,
       "priority": 4,
-      "shortEffect": "Prevents any moves from hitting the user this turn."
+      "shortEffect": "The user protects itself from incoming moves for the turn. With each consecutive use this move's chance of success becomes 1/3 of what it was before.",
+      "championsEffect": "The user protects itself from incoming moves for the turn. With each consecutive use this move's chance of success becomes 1/3 of what it was before.",
+      "source": "champions-attackdex"
     },
     "Dire Claw": {
       "name": "Dire Claw",
       "type": "poison",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a 30% chance of leaving the target poisoned paralyzed or asleep.",
+      "championsEffect": "Has a 30% chance of leaving the target poisoned paralyzed or asleep.",
+      "source": "champions-attackdex"
     },
     "Discharge": {
       "name": "Discharge",
@@ -556,14 +708,19 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has a chance to paralyze the target."
+      "shortEffect": "Has a 30% chance of paralyzing targets.",
+      "championsEffect": "Has a 30% chance of paralyzing targets.",
+      "source": "champions-attackdex"
     },
     "Double Shock": {
       "name": "Double Shock",
       "type": "electric",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "The user loses the Electric type. This move fails unless it is used by an Electric type.",
+      "championsEffect": "The user loses the Electric type. This move fails unless it is used by an Electric type.",
+      "source": "champions-attackdex"
     },
     "Double Team": {
       "name": "Double Team",
@@ -571,7 +728,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s evasion by one stage."
+      "shortEffect": "Boosts the user's evasiveness by 1 stage.",
+      "championsEffect": "Boosts the user's evasiveness by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Double-Edge": {
       "name": "Double-Edge",
@@ -579,7 +738,9 @@
       "category": "physical",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "User receives 1/3 the damage inflicted in recoil."
+      "shortEffect": "The user takes 1/3 of the damage dealt by this move.",
+      "championsEffect": "The user takes 1/3 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Draco Meteor": {
       "name": "Draco Meteor",
@@ -587,7 +748,9 @@
       "category": "special",
       "basePower": 130,
       "priority": 0,
-      "shortEffect": "Lowers the user’s Special Attack by two stages after inflicting damage."
+      "shortEffect": "Lowers the user's Sp. Atk stat by 2 stages.",
+      "championsEffect": "Lowers the user's Sp. Atk stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Dragon Dance": {
       "name": "Dragon Dance",
@@ -595,7 +758,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s Attack and Speed by one stage."
+      "shortEffect": "Boosts the user's Attack and Speed stats by 1 stage.",
+      "championsEffect": "Boosts the user's Attack and Speed stats by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Dragon Darts": {
       "name": "Dragon Darts",
@@ -603,7 +768,9 @@
       "category": "physical",
       "basePower": 50,
       "priority": 0,
-      "shortEffect": "Hits twice in one turn. In Double Battles, this move will hit both enemy targets. If it would fail to hit one of the targets, the other target will be hit twice."
+      "shortEffect": "The user attacks twice in a row. If there are 2 opposing Pokémon each of them is attacked once.",
+      "championsEffect": "The user attacks twice in a row. If there are 2 opposing Pokémon each of them is attacked once.",
+      "source": "champions-attackdex"
     },
     "Dragon Pulse": {
       "name": "Dragon Pulse",
@@ -611,7 +778,9 @@
       "category": "special",
       "basePower": 85,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts regular damage.",
+      "championsEffect": "Inflicts regular damage.",
+      "source": "champions-attackdex"
     },
     "Dragon Rush": {
       "name": "Dragon Rush",
@@ -619,7 +788,9 @@
       "category": "physical",
       "basePower": 100,
       "priority": 0,
-      "shortEffect": "Has a chance to make the target flinch."
+      "shortEffect": "Has a 20% chance of making the target flinch. If the target has the Minimized status this move's power is doubled and it will be sure to hit.",
+      "championsEffect": "Has a 20% chance of making the target flinch. If the target has the Minimized status this move's power is doubled and it will be sure to hit.",
+      "source": "champions-attackdex"
     },
     "Dragon Tail": {
       "name": "Dragon Tail",
@@ -627,7 +798,9 @@
       "category": "physical",
       "basePower": 60,
       "priority": -6,
-      "shortEffect": "Ends wild battles. Forces trainers to switch Pokémon."
+      "shortEffect": "If there are other Pokémon in the target's party that can switch into battle the target is forced to switch out of battle and is replaced by one of those Pokémon at random.",
+      "championsEffect": "If there are other Pokémon in the target's party that can switch into battle the target is forced to switch out of battle and is replaced by one of those Pokémon at random.",
+      "source": "champions-attackdex"
     },
     "Drain Punch": {
       "name": "Drain Punch",
@@ -635,7 +808,9 @@
       "category": "physical",
       "basePower": 75,
       "priority": 0,
-      "shortEffect": "Drains half the damage inflicted to heal the user."
+      "shortEffect": "The user's HP is restored by 1/2 of the damage dealt by this move.",
+      "championsEffect": "The user's HP is restored by 1/2 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Draining Kiss": {
       "name": "Draining Kiss",
@@ -643,7 +818,9 @@
       "category": "special",
       "basePower": 50,
       "priority": 0,
-      "shortEffect": "Drains 75% of the damage inflicted to heal the user."
+      "shortEffect": "The user's HP is restored by 3/4 of the damage dealt by this move.",
+      "championsEffect": "The user's HP is restored by 3/4 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Drill Run": {
       "name": "Drill Run",
@@ -651,7 +828,9 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has an increased chance for a critical hit."
+      "shortEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "championsEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "source": "champions-attackdex"
     },
     "Drum Beating": {
       "name": "Drum Beating",
@@ -659,7 +838,9 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Speed by one stage."
+      "shortEffect": "Lowers the target's Speed stat by 1 stage.",
+      "championsEffect": "Lowers the target's Speed stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Dual Wingbeat": {
       "name": "Dual Wingbeat",
@@ -667,7 +848,9 @@
       "category": "physical",
       "basePower": 40,
       "priority": 0,
-      "shortEffect": "Hits twice in one turn."
+      "shortEffect": "The user attacks twice in a row.",
+      "championsEffect": "The user attacks twice in a row.",
+      "source": "champions-attackdex"
     },
     "Dynamic Punch": {
       "name": "Dynamic Punch",
@@ -675,7 +858,9 @@
       "category": "physical",
       "basePower": 100,
       "priority": 0,
-      "shortEffect": "Has a chance to confuse the target."
+      "shortEffect": "Confuses the target.",
+      "championsEffect": "Confuses the target.",
+      "source": "champions-attackdex"
     },
     "Earth Power": {
       "name": "Earth Power",
@@ -683,7 +868,9 @@
       "category": "special",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
+      "shortEffect": "Has a 10% chance of lowering the target's Sp. Def stat by 1 stage.",
+      "championsEffect": "Has a 10% chance of lowering the target's Sp. Def stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Earthquake": {
       "name": "Earthquake",
@@ -691,7 +878,9 @@
       "category": "physical",
       "basePower": 100,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage and can hit Dig users."
+      "shortEffect": "This move's power is doubled against targets that have the Underground status. When Grassy Terrain is active this move's power is halved.",
+      "championsEffect": "This move's power is doubled against targets that have the Underground status. When Grassy Terrain is active this move's power is halved.",
+      "source": "champions-attackdex"
     },
     "Eerie Impulse": {
       "name": "Eerie Impulse",
@@ -699,14 +888,19 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Lowers the target’s Special Attack by two stages."
+      "shortEffect": "Lowers the target's Sp. Atk stat by 2 stages.",
+      "championsEffect": "Lowers the target's Sp. Atk stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Electro Shot": {
       "name": "Electro Shot",
       "type": "electric",
       "category": "special",
       "basePower": 130,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "The user gains the Charging status on the turn this move is used then attacks on the following turn. In rain the user does not gain the Charging status and can attack immediately. The user's Sp. Atk stat is boosted by 1 stage on the turn this move is used.",
+      "championsEffect": "The user gains the Charging status on the turn this move is used then attacks on the following turn. In rain the user does not gain the Charging status and can attack immediately. The user's Sp. Atk stat is boosted by 1 stage on the turn this move is used.",
+      "source": "champions-attackdex"
     },
     "Encore": {
       "name": "Encore",
@@ -714,7 +908,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Forces the target to repeat its last used move every turn for 2 to 6 turns."
+      "shortEffect": "Gives the target the Encore status.",
+      "championsEffect": "Gives the target the Encore status.",
+      "source": "champions-attackdex"
     },
     "Endeavor": {
       "name": "Endeavor",
@@ -722,7 +918,9 @@
       "category": "physical",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Lowers the target’s HP to equal the user’s."
+      "shortEffect": "Deals damage to the target equal to its remaining HP minus the user's remaining HP. This move fails if the target's HP is the same as or lower than the user's.",
+      "championsEffect": "Deals damage to the target equal to its remaining HP minus the user's remaining HP. This move fails if the target's HP is the same as or lower than the user's.",
+      "source": "champions-attackdex"
     },
     "Endure": {
       "name": "Endure",
@@ -730,7 +928,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 4,
-      "shortEffect": "Prevents the user’s HP from lowering below 1 this turn."
+      "shortEffect": "During the turn this move is used if the user takes damage from a move that would knock it out it will endure the hit with 1 HP. With each consecutive use this move's chance of success becomes 1/3 of what it was before.",
+      "championsEffect": "During the turn this move is used if the user takes damage from a move that would knock it out it will endure the hit with 1 HP. With each consecutive use this move's chance of success becomes 1/3 of what it was before.",
+      "source": "champions-attackdex"
     },
     "Energy Ball": {
       "name": "Energy Ball",
@@ -738,7 +938,9 @@
       "category": "special",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
+      "shortEffect": "Has a 10% chance of lowering the target's Sp. Def stat by 1 stage.",
+      "championsEffect": "Has a 10% chance of lowering the target's Sp. Def stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Eruption": {
       "name": "Eruption",
@@ -746,7 +948,9 @@
       "category": "special",
       "basePower": 150,
       "priority": 0,
-      "shortEffect": "Inflicts more damage when the user has more HP remaining, with a maximum of 150 power."
+      "shortEffect": "The less HP the user has left the lower this move's power (ranging between 1 and 150).",
+      "championsEffect": "The less HP the user has left the lower this move's power (ranging between 1 and 150).",
+      "source": "champions-attackdex"
     },
     "Expanding Force": {
       "name": "Expanding Force",
@@ -754,7 +958,9 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "If Psychic Terrain is active and the user is grounded, this move hits all opposing Pokemon and has its power incrased by 50%."
+      "shortEffect": "If the user is under the effect of Psychic Terrain this move's power is boosted by 50% and its range extends to all opponents.",
+      "championsEffect": "If the user is under the effect of Psychic Terrain this move's power is boosted by 50% and its range extends to all opponents.",
+      "source": "champions-attackdex"
     },
     "Explosion": {
       "name": "Explosion",
@@ -762,7 +968,9 @@
       "category": "physical",
       "basePower": 250,
       "priority": 0,
-      "shortEffect": "User faints."
+      "shortEffect": "The user faints upon using this move.",
+      "championsEffect": "The user faints upon using this move.",
+      "source": "champions-attackdex"
     },
     "Extrasensory": {
       "name": "Extrasensory",
@@ -770,7 +978,9 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has a chance to make the target flinch."
+      "shortEffect": "Has a 10% chance of making the target flinch.",
+      "championsEffect": "Has a 10% chance of making the target flinch.",
+      "source": "champions-attackdex"
     },
     "Extreme Speed": {
       "name": "Extreme Speed",
@@ -778,7 +988,9 @@
       "category": "physical",
       "basePower": 80,
       "priority": 2,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts damage with increased priority (+2).",
+      "championsEffect": "Inflicts damage with increased priority (+2).",
+      "source": "champions-attackdex"
     },
     "Fake Out": {
       "name": "Fake Out",
@@ -786,7 +998,9 @@
       "category": "physical",
       "basePower": 40,
       "priority": 3,
-      "shortEffect": "Can only be used as the first move after the user enters battle. Causes the target to flinch."
+      "shortEffect": "Makes the target flinch. This move fails unless it is the first move used by the user after it enters a battle.",
+      "championsEffect": "Makes the target flinch. This move fails unless it is the first move used by the user after it enters a battle.",
+      "source": "champions-attackdex"
     },
     "Feint": {
       "name": "Feint",
@@ -794,7 +1008,9 @@
       "category": "physical",
       "basePower": 30,
       "priority": 2,
-      "shortEffect": "Hits through Protect and Detect."
+      "shortEffect": "This move can hit a target using a move such as Protect or Detect and removes the effects of those moves.",
+      "championsEffect": "This move can hit a target using a move such as Protect or Detect and removes the effects of those moves.",
+      "source": "champions-attackdex"
     },
     "Fell Stinger": {
       "name": "Fell Stinger",
@@ -802,14 +1018,19 @@
       "category": "physical",
       "basePower": 50,
       "priority": 0,
-      "shortEffect": "Raises the user’s Attack by two stages if it KOs the target."
+      "shortEffect": "Boosts the user's Attack stat by 3 stages if this move knocks out the target.",
+      "championsEffect": "Boosts the user's Attack stat by 3 stages if this move knocks out the target.",
+      "source": "champions-attackdex"
     },
     "Fickle Beam": {
       "name": "Fickle Beam",
       "type": "dragon",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "This move has a 30% chance of its power being doubled.",
+      "championsEffect": "This move has a 30% chance of its power being doubled.",
+      "source": "champions-attackdex"
     },
     "Fiery Dance": {
       "name": "Fiery Dance",
@@ -817,7 +1038,9 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has a chance to raise the user’s Special Attack by one stage."
+      "shortEffect": "Has a 50% chance of boosting the user's Sp. Atk stat by 1 stage.",
+      "championsEffect": "Has a 50% chance of boosting the user's Sp. Atk stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Final Gambit": {
       "name": "Final Gambit",
@@ -825,7 +1048,9 @@
       "category": "special",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Inflicts damage equal to the user’s remaining HP. User faints."
+      "shortEffect": "The user faints. This move deals damage to the target equal to the user's remaining HP at the time this move was used.",
+      "championsEffect": "The user faints. This move deals damage to the target equal to the user's remaining HP at the time this move was used.",
+      "source": "champions-attackdex"
     },
     "Fire Blast": {
       "name": "Fire Blast",
@@ -833,7 +1058,9 @@
       "category": "special",
       "basePower": 110,
       "priority": 0,
-      "shortEffect": "Has a chance to burn the target."
+      "shortEffect": "Has a 10% chance of burning the target.",
+      "championsEffect": "Has a 10% chance of burning the target.",
+      "source": "champions-attackdex"
     },
     "Fire Fang": {
       "name": "Fire Fang",
@@ -841,7 +1068,9 @@
       "category": "physical",
       "basePower": 65,
       "priority": 0,
-      "shortEffect": "Has a chance to burn the target and a chance to make the target flinch."
+      "shortEffect": "Has a 10% chance of burning the target and a 10% chance of making the target flinch.",
+      "championsEffect": "Has a 10% chance of burning the target and a 10% chance of making the target flinch.",
+      "source": "champions-attackdex"
     },
     "Fire Punch": {
       "name": "Fire Punch",
@@ -849,7 +1078,9 @@
       "category": "physical",
       "basePower": 75,
       "priority": 0,
-      "shortEffect": "Has a chance to burn the target."
+      "shortEffect": "Has a 10% chance of burning the target.",
+      "championsEffect": "Has a 10% chance of burning the target.",
+      "source": "champions-attackdex"
     },
     "First Impression": {
       "name": "First Impression",
@@ -857,7 +1088,9 @@
       "category": "physical",
       "basePower": 90,
       "priority": 2,
-      "shortEffect": "Can only be used as the first move after the user enters battle."
+      "shortEffect": "This move fails unless it is the first move used by the user after it enters a battle.",
+      "championsEffect": "This move fails unless it is the first move used by the user after it enters a battle.",
+      "source": "champions-attackdex"
     },
     "Fissure": {
       "name": "Fissure",
@@ -865,7 +1098,9 @@
       "category": "physical",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Causes a one-hit KO."
+      "shortEffect": "Knocks out the target. The accuracy of this move is fixed at 30%.",
+      "championsEffect": "Knocks out the target. The accuracy of this move is fixed at 30%.",
+      "source": "champions-attackdex"
     },
     "Flail": {
       "name": "Flail",
@@ -873,7 +1108,9 @@
       "category": "physical",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Inflicts more damage when the user has less HP remaining, with a maximum of 200 power."
+      "shortEffect": "The less HP the user has left the greater this move's power (ranging between 20 and 200).",
+      "championsEffect": "The less HP the user has left the greater this move's power (ranging between 20 and 200).",
+      "source": "champions-attackdex"
     },
     "Flame Charge": {
       "name": "Flame Charge",
@@ -881,7 +1118,9 @@
       "category": "physical",
       "basePower": 50,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage. Raises the user’s Speed by one stage."
+      "shortEffect": "Boosts the user's Speed stat by 1 stage.",
+      "championsEffect": "Boosts the user's Speed stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Flamethrower": {
       "name": "Flamethrower",
@@ -889,7 +1128,9 @@
       "category": "special",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Has a chance to burn the target."
+      "shortEffect": "Has a 10% chance of burning the target.",
+      "championsEffect": "Has a 10% chance of burning the target.",
+      "source": "champions-attackdex"
     },
     "Flare Blitz": {
       "name": "Flare Blitz",
@@ -897,7 +1138,9 @@
       "category": "physical",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "User takes 1/3 the damage inflicted in recoil. Has a chance to burn the target."
+      "shortEffect": "Has a 10% chance of burning the target. Cures the user of being frozen. The user also takes 1/3 of the damage dealt by this move.",
+      "championsEffect": "Has a 10% chance of burning the target. Cures the user of being frozen. The user also takes 1/3 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Flash Cannon": {
       "name": "Flash Cannon",
@@ -905,7 +1148,9 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
+      "shortEffect": "Has a 10% chance of lowering the target's Sp. Def stat by 1 stage.",
+      "championsEffect": "Has a 10% chance of lowering the target's Sp. Def stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Fling": {
       "name": "Fling",
@@ -913,7 +1158,9 @@
       "category": "physical",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Throws held item at the target; power depends on the item."
+      "shortEffect": "This move's power and effects depend on the user's held item. The held item is lost after this move is used.",
+      "championsEffect": "This move's power and effects depend on the user's held item. The held item is lost after this move is used.",
+      "source": "champions-attackdex"
     },
     "Flip Turn": {
       "name": "Flip Turn",
@@ -921,14 +1168,19 @@
       "category": "physical",
       "basePower": 60,
       "priority": 0,
-      "shortEffect": "User must switch out after attacking."
+      "shortEffect": "After attacking the user switches out of battle to be replaced by another party Pokémon.",
+      "championsEffect": "After attacking the user switches out of battle to be replaced by another party Pokémon.",
+      "source": "champions-attackdex"
     },
     "Flower Trick": {
       "name": "Flower Trick",
       "type": "grass",
       "category": "physical",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "This move never misses and is always a critical hit.",
+      "championsEffect": "This move never misses and is always a critical hit.",
+      "source": "champions-attackdex"
     },
     "Focus Blast": {
       "name": "Focus Blast",
@@ -936,7 +1188,9 @@
       "category": "special",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
+      "shortEffect": "Has a 10% chance of lowering the target's Sp. Def stat by 1 stage.",
+      "championsEffect": "Has a 10% chance of lowering the target's Sp. Def stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Focus Energy": {
       "name": "Focus Energy",
@@ -944,7 +1198,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Increases the user’s chance to score a critical hit."
+      "shortEffect": "The user gains a 2-stage Critical-Hit Ratio Boost.",
+      "championsEffect": "The user gains a 2-stage Critical-Hit Ratio Boost.",
+      "source": "champions-attackdex"
     },
     "Foul Play": {
       "name": "Foul Play",
@@ -952,7 +1208,9 @@
       "category": "physical",
       "basePower": 95,
       "priority": 0,
-      "shortEffect": "Calculates damage with the target’s attacking stat."
+      "shortEffect": "The damage dealt by this move is calculated using the target's Attack stat instead of the user's Attack stat.",
+      "championsEffect": "The damage dealt by this move is calculated using the target's Attack stat instead of the user's Attack stat.",
+      "source": "champions-attackdex"
     },
     "Freeze-Dry": {
       "name": "Freeze-Dry",
@@ -960,7 +1218,9 @@
       "category": "special",
       "basePower": 70,
       "priority": 0,
-      "shortEffect": "Super-effective against Water."
+      "shortEffect": "This move is also super effective against Water-type Pokémon.",
+      "championsEffect": "This move is also super effective against Water-type Pokémon.",
+      "source": "champions-attackdex"
     },
     "Frost Breath": {
       "name": "Frost Breath",
@@ -968,7 +1228,9 @@
       "category": "special",
       "basePower": 60,
       "priority": 0,
-      "shortEffect": "Always scores a critical hit."
+      "shortEffect": "Always a critical hit.",
+      "championsEffect": "Always a critical hit.",
+      "source": "champions-attackdex"
     },
     "Future Sight": {
       "name": "Future Sight",
@@ -976,7 +1238,9 @@
       "category": "special",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "Hits the target two turns later."
+      "shortEffect": "Gives the target's spot the Future Attack status.",
+      "championsEffect": "Gives the target's spot the Future Attack status.",
+      "source": "champions-attackdex"
     },
     "Giga Drain": {
       "name": "Giga Drain",
@@ -984,7 +1248,9 @@
       "category": "special",
       "basePower": 75,
       "priority": 0,
-      "shortEffect": "Drains half the damage inflicted to heal the user."
+      "shortEffect": "The user's HP is restored by 1/2 of the damage dealt by this move.",
+      "championsEffect": "The user's HP is restored by 1/2 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Giga Impact": {
       "name": "Giga Impact",
@@ -992,21 +1258,29 @@
       "category": "physical",
       "basePower": 150,
       "priority": 0,
-      "shortEffect": "User foregoes its next turn to recharge."
+      "shortEffect": "The user gains the Recharging status on the turn after this move is used.",
+      "championsEffect": "The user gains the Recharging status on the turn after this move is used.",
+      "source": "champions-attackdex"
     },
     "Gigaton Hammer": {
       "name": "Gigaton Hammer",
       "type": "steel",
       "category": "physical",
       "basePower": 160,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "This move can't be used twice in a row.",
+      "championsEffect": "This move can't be used twice in a row.",
+      "source": "champions-attackdex"
     },
     "Glaive Rush": {
       "name": "Glaive Rush",
       "type": "dragon",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "The user gains the Wide Open status until the next time it takes an action.",
+      "championsEffect": "The user gains the Wide Open status until the next time it takes an action.",
+      "source": "champions-attackdex"
     },
     "Glare": {
       "name": "Glare",
@@ -1014,7 +1288,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Paralyzes the target."
+      "shortEffect": "Paralyzes the target.",
+      "championsEffect": "Paralyzes the target.",
+      "source": "champions-attackdex"
     },
     "Grass Knot": {
       "name": "Grass Knot",
@@ -1022,7 +1298,9 @@
       "category": "special",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Inflicts more damage to heavier targets, with a maximum of 120 power."
+      "shortEffect": "The heavier the target the greater this move's power (ranging between 20 and 120).",
+      "championsEffect": "The heavier the target the greater this move's power (ranging between 20 and 120).",
+      "source": "champions-attackdex"
     },
     "Grassy Glide": {
       "name": "Grassy Glide",
@@ -1030,7 +1308,9 @@
       "category": "physical",
       "basePower": 55,
       "priority": 0,
-      "shortEffect": "If Grassy Terrain is active and the user is grounded, this move has has its priority increased by 1."
+      "shortEffect": "If the user is under the effect of Grassy Terrain this move's priority becomes +1.",
+      "championsEffect": "If the user is under the effect of Grassy Terrain this move's priority becomes +1.",
+      "source": "champions-attackdex"
     },
     "Grassy Terrain": {
       "name": "Grassy Terrain",
@@ -1038,7 +1318,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "For five turns, heals all Pokémon on the ground for 1/16 max HP each turn and strengthens their Grass moves to 1.5× their power."
+      "shortEffect": "Turns the entire field into Grassy Terrain for 5 turns.",
+      "championsEffect": "Turns the entire field into Grassy Terrain for 5 turns.",
+      "source": "champions-attackdex"
     },
     "Grav Apple": {
       "name": "Grav Apple",
@@ -1046,7 +1328,9 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Lower the targets Defense by 1 stage. Damage is increased by 50% during Gravitys effect."
+      "shortEffect": "Lowers the target's Defense stat by 1 stage. This move's power is boosted by 50% when the Gravity status is active.",
+      "championsEffect": "Lowers the target's Defense stat by 1 stage. This move's power is boosted by 50% when the Gravity status is active.",
+      "source": "champions-attackdex"
     },
     "Guillotine": {
       "name": "Guillotine",
@@ -1054,7 +1338,9 @@
       "category": "physical",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Causes a one-hit KO."
+      "shortEffect": "Knocks out the target. The accuracy of this move is fixed at 30%.",
+      "championsEffect": "Knocks out the target. The accuracy of this move is fixed at 30%.",
+      "source": "champions-attackdex"
     },
     "Gunk Shot": {
       "name": "Gunk Shot",
@@ -1062,7 +1348,9 @@
       "category": "physical",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "Has a chance to poison the target."
+      "shortEffect": "Has a 30% chance of poisoning the target.",
+      "championsEffect": "Has a 30% chance of poisoning the target.",
+      "source": "champions-attackdex"
     },
     "Gyro Ball": {
       "name": "Gyro Ball",
@@ -1070,7 +1358,9 @@
       "category": "physical",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Power raises when the user has lower Speed, up to a maximum of 150."
+      "shortEffect": "The lower the user's Speed stat compared to the target's the greater this move's power (ranging between 1 and 150).",
+      "championsEffect": "The lower the user's Speed stat compared to the target's the greater this move's power (ranging between 1 and 150).",
+      "source": "champions-attackdex"
     },
     "Haze": {
       "name": "Haze",
@@ -1078,7 +1368,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Resets all Pokémon’s stats, accuracy, and evasion."
+      "shortEffect": "Eliminates every stat change on the entire field.",
+      "championsEffect": "Eliminates every stat change on the entire field.",
+      "source": "champions-attackdex"
     },
     "Head Smash": {
       "name": "Head Smash",
@@ -1086,14 +1378,19 @@
       "category": "physical",
       "basePower": 150,
       "priority": 0,
-      "shortEffect": "User receives 1/2 the damage inflicted in recoil."
+      "shortEffect": "The user takes 1/2 of the damage dealt by this move.",
+      "championsEffect": "The user takes 1/2 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Headlong Rush": {
       "name": "Headlong Rush",
       "type": "ground",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the user's Defense and Sp. Def stats by 1 stage.",
+      "championsEffect": "Lowers the user's Defense and Sp. Def stats by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Healing Wish": {
       "name": "Healing Wish",
@@ -1101,7 +1398,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "User faints. Its replacement has its HP fully restored and any major status effect removed."
+      "shortEffect": "The user faints. The Pokémon taking its place will have its HP fully restored and its status conditions cured.",
+      "championsEffect": "The user faints. The Pokémon taking its place will have its HP fully restored and its status conditions cured.",
+      "source": "champions-attackdex"
     },
     "Heat Wave": {
       "name": "Heat Wave",
@@ -1109,7 +1408,9 @@
       "category": "special",
       "basePower": 95,
       "priority": 0,
-      "shortEffect": "Has a chance to burn the target."
+      "shortEffect": "Has a 10% chance of burning targets.",
+      "championsEffect": "Has a 10% chance of burning targets.",
+      "source": "champions-attackdex"
     },
     "Heavy Slam": {
       "name": "Heavy Slam",
@@ -1117,7 +1418,9 @@
       "category": "physical",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Power is higher when the user weighs more than the target, up to a maximum of 120."
+      "shortEffect": "The more the user outweighs the target the greater this move's power (ranging between 40 and 120). If the target has the Minimized status this move's power is doubled and it will be sure to hit.",
+      "championsEffect": "The more the user outweighs the target the greater this move's power (ranging between 40 and 120). If the target has the Minimized status this move's power is doubled and it will be sure to hit.",
+      "source": "champions-attackdex"
     },
     "Hex": {
       "name": "Hex",
@@ -1125,7 +1428,9 @@
       "category": "special",
       "basePower": 65,
       "priority": 0,
-      "shortEffect": "Has double power if the target has a major status ailment."
+      "shortEffect": "This move's power is doubled if the target has a status condition.",
+      "championsEffect": "This move's power is doubled if the target has a status condition.",
+      "source": "champions-attackdex"
     },
     "High Horsepower": {
       "name": "High Horsepower",
@@ -1133,7 +1438,9 @@
       "category": "physical",
       "basePower": 95,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts regular damage.",
+      "championsEffect": "Inflicts regular damage.",
+      "source": "champions-attackdex"
     },
     "High Jump Kick": {
       "name": "High Jump Kick",
@@ -1141,7 +1448,9 @@
       "category": "physical",
       "basePower": 130,
       "priority": 0,
-      "shortEffect": "If the user misses, it takes half the damage it would have inflicted in recoil."
+      "shortEffect": "If this move misses or fails the user takes damage equal to 1/2 of its max HP.",
+      "championsEffect": "If this move misses or fails the user takes damage equal to 1/2 of its max HP.",
+      "source": "champions-attackdex"
     },
     "Horn Drill": {
       "name": "Horn Drill",
@@ -1149,7 +1458,9 @@
       "category": "physical",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Causes a one-hit KO."
+      "shortEffect": "Knocks out the target. The accuracy of this move is fixed at 30%.",
+      "championsEffect": "Knocks out the target. The accuracy of this move is fixed at 30%.",
+      "source": "champions-attackdex"
     },
     "Horn Leech": {
       "name": "Horn Leech",
@@ -1157,7 +1468,9 @@
       "category": "physical",
       "basePower": 75,
       "priority": 0,
-      "shortEffect": "Drains half the damage inflicted to heal the user."
+      "shortEffect": "The user's HP is restored by 1/2 of the damage dealt by this move.",
+      "championsEffect": "The user's HP is restored by 1/2 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Hurricane": {
       "name": "Hurricane",
@@ -1165,7 +1478,9 @@
       "category": "special",
       "basePower": 110,
       "priority": 0,
-      "shortEffect": "Has a chance to confuse the target."
+      "shortEffect": "Has a 30% chance of confusing the target. This move never misses in rain and can hit a target that has the Sky-High status.",
+      "championsEffect": "Has a 30% chance of confusing the target. This move never misses in rain and can hit a target that has the Sky-High status.",
+      "source": "champions-attackdex"
     },
     "Hydro Pump": {
       "name": "Hydro Pump",
@@ -1173,7 +1488,9 @@
       "category": "special",
       "basePower": 110,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts regular damage.",
+      "championsEffect": "Inflicts regular damage.",
+      "source": "champions-attackdex"
     },
     "Hyper Beam": {
       "name": "Hyper Beam",
@@ -1181,7 +1498,9 @@
       "category": "special",
       "basePower": 150,
       "priority": 0,
-      "shortEffect": "User foregoes its next turn to recharge."
+      "shortEffect": "The user gains the Recharging status on the turn after this move is used.",
+      "championsEffect": "The user gains the Recharging status on the turn after this move is used.",
+      "source": "champions-attackdex"
     },
     "Hyper Voice": {
       "name": "Hyper Voice",
@@ -1189,7 +1508,9 @@
       "category": "special",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts regular damage.",
+      "championsEffect": "Inflicts regular damage.",
+      "source": "champions-attackdex"
     },
     "Hypnosis": {
       "name": "Hypnosis",
@@ -1197,7 +1518,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Puts the target to sleep."
+      "shortEffect": "Puts the target to sleep.",
+      "championsEffect": "Puts the target to sleep.",
+      "source": "champions-attackdex"
     },
     "Ice Beam": {
       "name": "Ice Beam",
@@ -1205,7 +1528,9 @@
       "category": "special",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Has a chance to freeze the target."
+      "shortEffect": "Has a 10% chance of freezing the target.",
+      "championsEffect": "Has a 10% chance of freezing the target.",
+      "source": "champions-attackdex"
     },
     "Ice Fang": {
       "name": "Ice Fang",
@@ -1213,7 +1538,9 @@
       "category": "physical",
       "basePower": 65,
       "priority": 0,
-      "shortEffect": "Has a chance to freeze the target and a chance to make the target flinch."
+      "shortEffect": "Has a 10% chance of freezing the target and a 10% chance of making the target flinch.",
+      "championsEffect": "Has a 10% chance of freezing the target and a 10% chance of making the target flinch.",
+      "source": "champions-attackdex"
     },
     "Ice Hammer": {
       "name": "Ice Hammer",
@@ -1221,7 +1548,9 @@
       "category": "physical",
       "basePower": 100,
       "priority": 0,
-      "shortEffect": "Lowers user’s Speed by one stage."
+      "shortEffect": "Lowers the user's Speed stat by 1 stage.",
+      "championsEffect": "Lowers the user's Speed stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Ice Punch": {
       "name": "Ice Punch",
@@ -1229,7 +1558,9 @@
       "category": "physical",
       "basePower": 75,
       "priority": 0,
-      "shortEffect": "Has a chance to freeze the target."
+      "shortEffect": "Has a 10% chance of freezing the target.",
+      "championsEffect": "Has a 10% chance of freezing the target.",
+      "source": "champions-attackdex"
     },
     "Ice Shard": {
       "name": "Ice Shard",
@@ -1237,14 +1568,19 @@
       "category": "physical",
       "basePower": 40,
       "priority": 1,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts damage with increased priority (+1).",
+      "championsEffect": "Inflicts damage with increased priority (+1).",
+      "source": "champions-attackdex"
     },
     "Ice Spinner": {
       "name": "Ice Spinner",
       "type": "ice",
       "category": "physical",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Removes any terrain.",
+      "championsEffect": "Removes any terrain.",
+      "source": "champions-attackdex"
     },
     "Icicle Crash": {
       "name": "Icicle Crash",
@@ -1252,7 +1588,9 @@
       "category": "physical",
       "basePower": 85,
       "priority": 0,
-      "shortEffect": "Has a chance to make the target flinch."
+      "shortEffect": "Has a 30% chance of making the target flinch.",
+      "championsEffect": "Has a 30% chance of making the target flinch.",
+      "source": "champions-attackdex"
     },
     "Icicle Spear": {
       "name": "Icicle Spear",
@@ -1260,7 +1598,9 @@
       "category": "physical",
       "basePower": 25,
       "priority": 0,
-      "shortEffect": "Hits 2-5 times in one turn."
+      "shortEffect": "The user attacks 2 to 5 times in a row.",
+      "championsEffect": "The user attacks 2 to 5 times in a row.",
+      "source": "champions-attackdex"
     },
     "Icy Wind": {
       "name": "Icy Wind",
@@ -1268,14 +1608,19 @@
       "category": "special",
       "basePower": 55,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Speed by one stage."
+      "shortEffect": "Lowers targets' Speed stats by 1 stage.",
+      "championsEffect": "Lowers targets' Speed stats by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Infernal Parade": {
       "name": "Infernal Parade",
       "type": "ghost",
       "category": "special",
       "basePower": 60,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a 30% chance of burning the target. This move's power is doubled if the target has a status condition.",
+      "championsEffect": "Has a 30% chance of burning the target. This move's power is doubled if the target has a status condition.",
+      "source": "champions-attackdex"
     },
     "Infestation": {
       "name": "Infestation",
@@ -1283,7 +1628,9 @@
       "category": "special",
       "basePower": 20,
       "priority": 0,
-      "shortEffect": "Prevents the target from fleeing and inflicts damage for 2-5 turns."
+      "shortEffect": "Gives the target the Bound status.",
+      "championsEffect": "Gives the target the Bound status.",
+      "source": "champions-attackdex"
     },
     "Iron Defense": {
       "name": "Iron Defense",
@@ -1291,7 +1638,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s Defense by two stages."
+      "shortEffect": "Boosts the user's Defense stat by 2 stages.",
+      "championsEffect": "Boosts the user's Defense stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Iron Head": {
       "name": "Iron Head",
@@ -1299,7 +1648,9 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has a chance to make the target flinch."
+      "shortEffect": "Has a 20% chance of making the target flinch.",
+      "championsEffect": "Has a 20% chance of making the target flinch.",
+      "source": "champions-attackdex"
     },
     "Jaw Lock": {
       "name": "Jaw Lock",
@@ -1307,14 +1658,19 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Prevents you and the target from switching out."
+      "shortEffect": "The user and target gain the Jaw Locked status.",
+      "championsEffect": "The user and target gain the Jaw Locked status.",
+      "source": "champions-attackdex"
     },
     "Jet Punch": {
       "name": "Jet Punch",
       "type": "water",
       "category": "physical",
       "basePower": 60,
-      "priority": 1
+      "priority": 1,
+      "shortEffect": "Inflicts damage with increased priority (+1).",
+      "championsEffect": "Inflicts damage with increased priority (+1).",
+      "source": "champions-attackdex"
     },
     "King's Shield": {
       "name": "King's Shield",
@@ -1322,7 +1678,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 4,
-      "shortEffect": "Blocks damaging attacks and lowers attacking Pokémon’s Attack by two stages on contact. Switches Aegislash to Shield Forme."
+      "shortEffect": "Blocks damaging attacks and lowers attacking Pokémon’s Attack by two stages on contact. Switches Aegislash to Shield Forme.",
+      "source": "manual-champions",
+      "championsEffect": "Blocks damaging attacks and lowers attacking Pokémon’s Attack by two stages on contact. Switches Aegislash to Shield Forme."
     },
     "Knock Off": {
       "name": "Knock Off",
@@ -1330,14 +1688,19 @@
       "category": "physical",
       "basePower": 65,
       "priority": 0,
-      "shortEffect": "Target drops its held item."
+      "shortEffect": "This move's power is boosted by 50% if the target is holding an item. Causes the target to lose its held item.",
+      "championsEffect": "This move's power is boosted by 50% if the target is holding an item. Causes the target to lose its held item.",
+      "source": "champions-attackdex"
     },
     "Kowtow Cleave": {
       "name": "Kowtow Cleave",
       "type": "dark",
       "category": "physical",
       "basePower": 85,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "This move never misses.",
+      "championsEffect": "This move never misses.",
+      "source": "champions-attackdex"
     },
     "Last Resort": {
       "name": "Last Resort",
@@ -1345,14 +1708,19 @@
       "category": "physical",
       "basePower": 140,
       "priority": 0,
-      "shortEffect": "Can only be used after all of the user’s other moves have been used."
+      "shortEffect": "This move fails unless the user has already used all the other moves it knows.",
+      "championsEffect": "This move fails unless the user has already used all the other moves it knows.",
+      "source": "champions-attackdex"
     },
     "Last Respects": {
       "name": "Last Respects",
       "type": "ghost",
       "category": "physical",
       "basePower": 50,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "This move's power is increased by 50 for each time that a Pokémon in the user's party has fainted.",
+      "championsEffect": "This move's power is increased by 50 for each time that a Pokémon in the user's party has fainted.",
+      "source": "champions-attackdex"
     },
     "Lava Plume": {
       "name": "Lava Plume",
@@ -1360,7 +1728,9 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has a chance to burn the target."
+      "shortEffect": "Has a 30% chance of burning targets.",
+      "championsEffect": "Has a 30% chance of burning targets.",
+      "source": "champions-attackdex"
     },
     "Leaf Blade": {
       "name": "Leaf Blade",
@@ -1368,7 +1738,9 @@
       "category": "physical",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Has an increased chance for a critical hit."
+      "shortEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "championsEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "source": "champions-attackdex"
     },
     "Leaf Storm": {
       "name": "Leaf Storm",
@@ -1376,7 +1748,9 @@
       "category": "special",
       "basePower": 130,
       "priority": 0,
-      "shortEffect": "Lowers the user’s Special Attack by two stages after inflicting damage."
+      "shortEffect": "Lowers the user's Sp. Atk stat by 2 stages.",
+      "championsEffect": "Lowers the user's Sp. Atk stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Leech Life": {
       "name": "Leech Life",
@@ -1384,7 +1758,9 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Drains half the damage inflicted to heal the user."
+      "shortEffect": "The user's HP is restored by 1/2 of the damage dealt by this move.",
+      "championsEffect": "The user's HP is restored by 1/2 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Leech Seed": {
       "name": "Leech Seed",
@@ -1392,7 +1768,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Seeds the target, stealing HP from it every turn."
+      "shortEffect": "Gives the target the Leech Seeded status.",
+      "championsEffect": "Gives the target the Leech Seeded status.",
+      "source": "champions-attackdex"
     },
     "Light of Ruin": {
       "name": "Light of Ruin",
@@ -1400,7 +1778,9 @@
       "category": "special",
       "basePower": 140,
       "priority": 0,
-      "shortEffect": "User receives 1/2 the damage inflicted in recoil."
+      "shortEffect": "The user takes 1/2 of the damage dealt by this move.",
+      "championsEffect": "The user takes 1/2 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Light Screen": {
       "name": "Light Screen",
@@ -1408,7 +1788,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Reduces damage from special attacks by 50% for five turns."
+      "shortEffect": "Gives the user's side the Light Screen status for 5 turns.",
+      "championsEffect": "Gives the user's side the Light Screen status for 5 turns.",
+      "source": "champions-attackdex"
     },
     "Liquidation": {
       "name": "Liquidation",
@@ -1416,7 +1798,9 @@
       "category": "physical",
       "basePower": 85,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Defense by one stage."
+      "shortEffect": "Has a 20% chance of lowering the target's Defense stat by 1 stage.",
+      "championsEffect": "Has a 20% chance of lowering the target's Defense stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Low Kick": {
       "name": "Low Kick",
@@ -1424,14 +1808,19 @@
       "category": "physical",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Inflicts more damage to heavier targets, with a maximum of 120 power."
+      "shortEffect": "The heavier the target the greater this move's power (ranging between 20 and 120).",
+      "championsEffect": "The heavier the target the greater this move's power (ranging between 20 and 120).",
+      "source": "champions-attackdex"
     },
     "Lumina Crash": {
       "name": "Lumina Crash",
       "type": "psychic",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the target's Sp. Def stat by 2 stages.",
+      "championsEffect": "Lowers the target's Sp. Def stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Lunge": {
       "name": "Lunge",
@@ -1439,7 +1828,9 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Lowers the target’s Attack by one stage after inflicting damage."
+      "shortEffect": "Lowers the target's Attack stat by 1 stage.",
+      "championsEffect": "Lowers the target's Attack stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Mach Punch": {
       "name": "Mach Punch",
@@ -1447,21 +1838,29 @@
       "category": "physical",
       "basePower": 40,
       "priority": 1,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts damage with increased priority (+1).",
+      "championsEffect": "Inflicts damage with increased priority (+1).",
+      "source": "champions-attackdex"
     },
     "Make It Rain": {
       "name": "Make It Rain",
       "type": "steel",
       "category": "special",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Lowers the user's Sp. Atk stat by 2 stages.",
+      "championsEffect": "Lowers the user's Sp. Atk stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Matcha Gotcha": {
       "name": "Matcha Gotcha",
       "type": "grass",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a 20% chance of burning targets. The user's HP is restored by 1/2 of the damage dealt by this move.",
+      "championsEffect": "Has a 20% chance of burning targets. The user's HP is restored by 1/2 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Megahorn": {
       "name": "Megahorn",
@@ -1469,7 +1868,9 @@
       "category": "physical",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts regular damage.",
+      "championsEffect": "Inflicts regular damage.",
+      "source": "champions-attackdex"
     },
     "Memento": {
       "name": "Memento",
@@ -1477,7 +1878,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Lowers the target’s Attack and Special Attack by two stages. User faints."
+      "shortEffect": "Lowers the target's Attack and Sp. Atk stats by 2 stages. The user faints upon using this move.",
+      "championsEffect": "Lowers the target's Attack and Sp. Atk stats by 2 stages. The user faints upon using this move.",
+      "source": "champions-attackdex"
     },
     "Metal Burst": {
       "name": "Metal Burst",
@@ -1485,7 +1888,9 @@
       "category": "physical",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Strikes back at the last Pokémon to hit the user this turn with 1.5× the damage."
+      "shortEffect": "The user retaliates to deal 150% of the damage it took from an opponent's move during the turn this move is used.",
+      "championsEffect": "The user retaliates to deal 150% of the damage it took from an opponent's move during the turn this move is used.",
+      "source": "champions-attackdex"
     },
     "Meteor Assault": {
       "name": "Meteor Assault",
@@ -1493,7 +1898,9 @@
       "category": "physical",
       "basePower": 150,
       "priority": 0,
-      "shortEffect": "User foregoes its next turn to recharge."
+      "shortEffect": "The user gains the Recharging status on the turn after this move is used.",
+      "championsEffect": "The user gains the Recharging status on the turn after this move is used.",
+      "source": "champions-attackdex"
     },
     "Milk Drink": {
       "name": "Milk Drink",
@@ -1501,7 +1908,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Heals the user by half its max HP."
+      "shortEffect": "Restores 1/2 of the max HP of the user or an ally.",
+      "championsEffect": "Restores 1/2 of the max HP of the user or an ally.",
+      "source": "champions-attackdex"
     },
     "Minimize": {
       "name": "Minimize",
@@ -1509,7 +1918,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s evasion by two stages."
+      "shortEffect": "Boosts the user's evasiveness by 2 stages. The user gains the Minimized status.",
+      "championsEffect": "Boosts the user's evasiveness by 2 stages. The user gains the Minimized status.",
+      "source": "champions-attackdex"
     },
     "Mirror Coat": {
       "name": "Mirror Coat",
@@ -1517,7 +1928,9 @@
       "category": "special",
       "basePower": 0,
       "priority": -5,
-      "shortEffect": "Inflicts twice the damage the user received from the last special hit it took."
+      "shortEffect": "The user retaliates to deal double the damage it took from an opponent's special move during the turn this move is used.",
+      "championsEffect": "The user retaliates to deal double the damage it took from an opponent's special move during the turn this move is used.",
+      "source": "champions-attackdex"
     },
     "Misty Explosion": {
       "name": "Misty Explosion",
@@ -1525,7 +1938,9 @@
       "category": "special",
       "basePower": 100,
       "priority": 0,
-      "shortEffect": "If Misty Terrain is active and the user is grounded, this move has its power increased by 50%."
+      "shortEffect": "If the user is under the effect of Misty Terrain this move's power is boosted by 50%. The user faints upon using this move.",
+      "championsEffect": "If the user is under the effect of Misty Terrain this move's power is boosted by 50%. The user faints upon using this move.",
+      "source": "champions-attackdex"
     },
     "Misty Terrain": {
       "name": "Misty Terrain",
@@ -1533,7 +1948,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "For five turns, protects all Pokémon on the ground from major status ailments and confusion, and halves the power of incoming Dragon moves."
+      "shortEffect": "Turns the entire field into Misty Terrain for 5 turns.",
+      "championsEffect": "Turns the entire field into Misty Terrain for 5 turns.",
+      "source": "champions-attackdex"
     },
     "Moonblast": {
       "name": "Moonblast",
@@ -1541,7 +1958,9 @@
       "category": "special",
       "basePower": 95,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Special Attack by one stage."
+      "shortEffect": "Has a 10% chance of lowering the target's Sp. Atk stat by 1 stage.",
+      "championsEffect": "Has a 10% chance of lowering the target's Sp. Atk stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Moonlight": {
       "name": "Moonlight",
@@ -1549,7 +1968,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Heals the user by half its max HP. Affected by weather."
+      "shortEffect": "Restores 1/2 of the user's max HP. In harsh sunlight 2/3 of its max HP will be restored instead. In all other weather conditions 1/4 of its max HP will be restored instead.",
+      "championsEffect": "Restores 1/2 of the user's max HP. In harsh sunlight 2/3 of its max HP will be restored instead. In all other weather conditions 1/4 of its max HP will be restored instead.",
+      "source": "champions-attackdex"
     },
     "Morning Sun": {
       "name": "Morning Sun",
@@ -1557,21 +1978,29 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Heals the user by half its max HP. Affected by weather."
+      "shortEffect": "Restores 1/2 of the user's max HP. In harsh sunlight 2/3 of its max HP will be restored instead. In all other weather conditions 1/4 of its max HP will be restored instead.",
+      "championsEffect": "Restores 1/2 of the user's max HP. In harsh sunlight 2/3 of its max HP will be restored instead. In all other weather conditions 1/4 of its max HP will be restored instead.",
+      "source": "champions-attackdex"
     },
     "Mortal Spin": {
       "name": "Mortal Spin",
       "type": "poison",
       "category": "physical",
       "basePower": 30,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Removes the Bound and Leech Seeded statuses from the user and removes the Sticky Web Stealth Rock Spikes and Toxic Spikes statuses from the user's side. Poisons targets.",
+      "championsEffect": "Removes the Bound and Leech Seeded statuses from the user and removes the Sticky Web Stealth Rock Spikes and Toxic Spikes statuses from the user's side. Poisons targets.",
+      "source": "champions-attackdex"
     },
     "Mountain Gale": {
       "name": "Mountain Gale",
       "type": "ice",
       "category": "physical",
       "basePower": 100,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a 30% chance of making the target flinch.",
+      "championsEffect": "Has a 30% chance of making the target flinch.",
+      "source": "champions-attackdex"
     },
     "Mud Shot": {
       "name": "Mud Shot",
@@ -1579,7 +2008,9 @@
       "category": "special",
       "basePower": 55,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Speed by one stage."
+      "shortEffect": "Lowers the target's Speed stat by 1 stage.",
+      "championsEffect": "Lowers the target's Speed stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Mystical Fire": {
       "name": "Mystical Fire",
@@ -1587,7 +2018,9 @@
       "category": "special",
       "basePower": 75,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Special Attack by one stage."
+      "shortEffect": "Lowers the target's Sp. Atk stat by 1 stage.",
+      "championsEffect": "Lowers the target's Sp. Atk stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Nasty Plot": {
       "name": "Nasty Plot",
@@ -1595,7 +2028,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s Special Attack by two stages."
+      "shortEffect": "Boosts the user's Sp. Atk stat by 2 stages.",
+      "championsEffect": "Boosts the user's Sp. Atk stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Night Daze": {
       "name": "Night Daze",
@@ -1603,7 +2038,9 @@
       "category": "special",
       "basePower": 85,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s accuracy by one stage."
+      "shortEffect": "Has a 40% chance of lowering the target's accuracy by 1 stage.",
+      "championsEffect": "Has a 40% chance of lowering the target's accuracy by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Night Slash": {
       "name": "Night Slash",
@@ -1611,7 +2048,9 @@
       "category": "physical",
       "basePower": 70,
       "priority": 0,
-      "shortEffect": "Has an increased chance for a critical hit."
+      "shortEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "championsEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "source": "champions-attackdex"
     },
     "No Retreat": {
       "name": "No Retreat",
@@ -1619,7 +2058,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Prevents user from switching out. Raises all of the user’s stats by one stage."
+      "shortEffect": "Boosts the user's Attack, Defense, Sp. Atk, Sp. Def, and Speed stats by 1 stage. The user gains the Can't Escape status. This move can only be used once per time the user enters battle— otherwise it will fail.",
+      "championsEffect": "Boosts the user's Attack, Defense, Sp. Atk, Sp. Def, and Speed stats by 1 stage. The user gains the Can't Escape status. This move can only be used once per time the user enters battle— otherwise it will fail.",
+      "source": "champions-attackdex"
     },
     "Nuzzle": {
       "name": "Nuzzle",
@@ -1627,7 +2068,9 @@
       "category": "physical",
       "basePower": 20,
       "priority": 0,
-      "shortEffect": "Has a chance to paralyze the target."
+      "shortEffect": "Paralyzes the target.",
+      "championsEffect": "Paralyzes the target.",
+      "source": "champions-attackdex"
     },
     "Octolock": {
       "name": "Octolock",
@@ -1635,7 +2078,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Prevents the target from switching out. At the end of each turn, the targets Defense and Special Defense are lowered by 1 stage."
+      "shortEffect": "Gives the target the Octolocked and Can't Escape statuses.",
+      "championsEffect": "Gives the target the Octolocked and Can't Escape statuses.",
+      "source": "champions-attackdex"
     },
     "Outrage": {
       "name": "Outrage",
@@ -1643,7 +2088,9 @@
       "category": "physical",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "Hits every turn for 2-3 turns, then confuses the user."
+      "shortEffect": "The user gains the Rampaging status.",
+      "championsEffect": "The user gains the Rampaging status.",
+      "source": "champions-attackdex"
     },
     "Overdrive": {
       "name": "Overdrive",
@@ -1651,7 +2098,9 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts regular damage.",
+      "championsEffect": "Inflicts regular damage.",
+      "source": "champions-attackdex"
     },
     "Overheat": {
       "name": "Overheat",
@@ -1659,7 +2108,9 @@
       "category": "special",
       "basePower": 130,
       "priority": 0,
-      "shortEffect": "Lowers the user’s Special Attack by two stages after inflicting damage."
+      "shortEffect": "Lowers the user's Sp. Atk stat by 2 stages.",
+      "championsEffect": "Lowers the user's Sp. Atk stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Pain Split": {
       "name": "Pain Split",
@@ -1667,7 +2118,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Sets the user’s and targets’s HP to the average of their current HP."
+      "shortEffect": "The user adds its remaining HP to the target's remaining HP then splits the total in half for them to share.",
+      "championsEffect": "The user adds its remaining HP to the target's remaining HP then splits the total in half for them to share.",
+      "source": "champions-attackdex"
     },
     "Parabolic Charge": {
       "name": "Parabolic Charge",
@@ -1675,7 +2128,9 @@
       "category": "special",
       "basePower": 65,
       "priority": 0,
-      "shortEffect": "Heals the user for half the total damage dealt to all targets."
+      "shortEffect": "The user's HP is restored by 1/2 of the damage dealt by this move.",
+      "championsEffect": "The user's HP is restored by 1/2 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Parting Shot": {
       "name": "Parting Shot",
@@ -1683,7 +2138,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Lowers all targets’ Attack and Special Attack by one stage. Makes the user switch out."
+      "shortEffect": "Lowers the target's Attack and Sp. Atk stats by 1 stage. The user then switches out of battle to be replaced by another party Pokémon.",
+      "championsEffect": "Lowers the target's Attack and Sp. Atk stats by 1 stage. The user then switches out of battle to be replaced by another party Pokémon.",
+      "source": "champions-attackdex"
     },
     "Payback": {
       "name": "Payback",
@@ -1691,7 +2148,9 @@
       "category": "physical",
       "basePower": 50,
       "priority": 0,
-      "shortEffect": "Power is doubled if the target has already moved this turn."
+      "shortEffect": "This move's power is doubled if the user attacks after the target.",
+      "championsEffect": "This move's power is doubled if the user attacks after the target.",
+      "source": "champions-attackdex"
     },
     "Perish Song": {
       "name": "Perish Song",
@@ -1699,7 +2158,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "User and target both faint after three turns."
+      "shortEffect": "Gives all Pokémon on the field the Perishing status.",
+      "championsEffect": "Gives all Pokémon on the field the Perishing status.",
+      "source": "champions-attackdex"
     },
     "Phantom Force": {
       "name": "Phantom Force",
@@ -1707,7 +2168,9 @@
       "category": "physical",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "User vanishes, dodging all attacks, and hits next turn. Hits through Protect and Detect."
+      "shortEffect": "The user gains the Concealed status on the turn this move is used then attacks on the following turn. This move can hit a target using a move such as Protect or Detect and removes the effects of those moves.",
+      "championsEffect": "The user gains the Concealed status on the turn this move is used then attacks on the following turn. This move can hit a target using a move such as Protect or Detect and removes the effects of those moves.",
+      "source": "champions-attackdex"
     },
     "Pin Missile": {
       "name": "Pin Missile",
@@ -1715,7 +2178,9 @@
       "category": "physical",
       "basePower": 25,
       "priority": 0,
-      "shortEffect": "Hits 2-5 times in one turn."
+      "shortEffect": "The user attacks 2 to 5 times in a row.",
+      "championsEffect": "The user attacks 2 to 5 times in a row.",
+      "source": "champions-attackdex"
     },
     "Play Rough": {
       "name": "Play Rough",
@@ -1723,7 +2188,9 @@
       "category": "physical",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Attack by one stage."
+      "shortEffect": "Has a 10% chance of lowering the target's Attack stat by 1 stage.",
+      "championsEffect": "Has a 10% chance of lowering the target's Attack stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Poison Jab": {
       "name": "Poison Jab",
@@ -1731,7 +2198,9 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has a chance to poison the target."
+      "shortEffect": "Has a 30% chance of poisoning the target.",
+      "championsEffect": "Has a 30% chance of poisoning the target.",
+      "source": "champions-attackdex"
     },
     "Poltergeist": {
       "name": "Poltergeist",
@@ -1739,14 +2208,19 @@
       "category": "physical",
       "basePower": 110,
       "priority": 0,
-      "shortEffect": "Fails if the target has no held item."
+      "shortEffect": "This move fails if the target isn't holding an item.",
+      "championsEffect": "This move fails if the target isn't holding an item.",
+      "source": "champions-attackdex"
     },
     "Population Bomb": {
       "name": "Population Bomb",
       "type": "normal",
       "category": "physical",
       "basePower": 20,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "The user attacks 1 to 10 times in a row. The attack ends if the user misses.",
+      "championsEffect": "The user attacks 1 to 10 times in a row. The attack ends if the user misses.",
+      "source": "champions-attackdex"
     },
     "Power Gem": {
       "name": "Power Gem",
@@ -1754,7 +2228,9 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts regular damage.",
+      "championsEffect": "Inflicts regular damage.",
+      "source": "champions-attackdex"
     },
     "Power Whip": {
       "name": "Power Whip",
@@ -1762,7 +2238,9 @@
       "category": "physical",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts regular damage.",
+      "championsEffect": "Inflicts regular damage.",
+      "source": "champions-attackdex"
     },
     "Protect": {
       "name": "Protect",
@@ -1770,7 +2248,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 4,
-      "shortEffect": "Prevents any moves from hitting the user this turn."
+      "shortEffect": "The user protects itself from incoming moves for the turn. With each consecutive use this move's chance of success becomes 1/3 of what it was before.",
+      "championsEffect": "The user protects itself from incoming moves for the turn. With each consecutive use this move's chance of success becomes 1/3 of what it was before.",
+      "source": "champions-attackdex"
     },
     "Psychic": {
       "name": "Psychic",
@@ -1778,7 +2258,9 @@
       "category": "special",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
+      "shortEffect": "Has a 10% chance of lowering the target's Sp. Def stat by 1 stage.",
+      "championsEffect": "Has a 10% chance of lowering the target's Sp. Def stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Psychic Fangs": {
       "name": "Psychic Fangs",
@@ -1786,14 +2268,19 @@
       "category": "physical",
       "basePower": 85,
       "priority": 0,
-      "shortEffect": "Destroys Reflect and Light Screen."
+      "shortEffect": "Removes the Light Screen Reflect and Aurora Veil statuses on the target's side.",
+      "championsEffect": "Removes the Light Screen Reflect and Aurora Veil statuses on the target's side.",
+      "source": "champions-attackdex"
     },
     "Psychic Noise": {
       "name": "Psychic Noise",
       "type": "psychic",
       "category": "special",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Gives the target the Healing Prevented status for 2 turns.",
+      "championsEffect": "Gives the target the Healing Prevented status for 2 turns.",
+      "source": "champions-attackdex"
     },
     "Psychic Terrain": {
       "name": "Psychic Terrain",
@@ -1801,7 +2288,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Protects Pokémon on the ground from priority moves and increases the power of their Psychic moves by 50%."
+      "shortEffect": "Turns the entire field into Psychic Terrain for 5 turns.",
+      "championsEffect": "Turns the entire field into Psychic Terrain for 5 turns.",
+      "source": "champions-attackdex"
     },
     "Psycho Cut": {
       "name": "Psycho Cut",
@@ -1809,14 +2298,19 @@
       "category": "physical",
       "basePower": 70,
       "priority": 0,
-      "shortEffect": "Has an increased chance for a critical hit."
+      "shortEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "championsEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "source": "champions-attackdex"
     },
     "Psyshield Bash": {
       "name": "Psyshield Bash",
       "type": "psychic",
       "category": "physical",
       "basePower": 70,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Boosts the user's Defense stat by 1 stage.",
+      "championsEffect": "Boosts the user's Defense stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Psyshock": {
       "name": "Psyshock",
@@ -1824,7 +2318,9 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Inflicts damage based on the target’s Defense, not Special Defense."
+      "shortEffect": "This is a special move but the damage it deals is calculated using the target's Defense stat.",
+      "championsEffect": "This is a special move but the damage it deals is calculated using the target's Defense stat.",
+      "source": "champions-attackdex"
     },
     "Pyro Ball": {
       "name": "Pyro Ball",
@@ -1832,7 +2328,9 @@
       "category": "physical",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "Has a chance to burn the target."
+      "shortEffect": "Has a 10% chance of burning the target. Cures the user of being frozen.",
+      "championsEffect": "Has a 10% chance of burning the target. Cures the user of being frozen.",
+      "source": "champions-attackdex"
     },
     "Quick Attack": {
       "name": "Quick Attack",
@@ -1840,7 +2338,9 @@
       "category": "physical",
       "basePower": 40,
       "priority": 1,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts damage with increased priority (+1).",
+      "championsEffect": "Inflicts damage with increased priority (+1).",
+      "source": "champions-attackdex"
     },
     "Quiver Dance": {
       "name": "Quiver Dance",
@@ -1848,21 +2348,29 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s Special Attack, Special Defense, and Speed by one stage each."
+      "shortEffect": "Boosts the user's Sp. Atk Sp. Def and Speed stats by 1 stage.",
+      "championsEffect": "Boosts the user's Sp. Atk Sp. Def and Speed stats by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Rage Fist": {
       "name": "Rage Fist",
       "type": "ghost",
       "category": "physical",
       "basePower": 50,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "This move's power is increased by 50 each time the user takes damage from a move, up to a maximum power of 350. If the user switches out of battle, the move's power returns to its usual value.",
+      "championsEffect": "This move's power is increased by 50 each time the user takes damage from a move, up to a maximum power of 350. If the user switches out of battle, the move's power returns to its usual value.",
+      "source": "champions-attackdex"
     },
     "Raging Bull": {
       "name": "Raging Bull",
       "type": "normal",
       "category": "physical",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Removes the Light Screen Reflect and Aurora Veil statuses on the target's side. This move's type depends on the user's form.",
+      "championsEffect": "Removes the Light Screen Reflect and Aurora Veil statuses on the target's side. This move's type depends on the user's form.",
+      "source": "champions-attackdex"
     },
     "Rapid Spin": {
       "name": "Rapid Spin",
@@ -1870,7 +2378,9 @@
       "category": "physical",
       "basePower": 50,
       "priority": 0,
-      "shortEffect": "Frees the user from binding moves, removes Leech Seed, and blows away Spikes."
+      "shortEffect": "Removes the Bound and Leech Seeded statuses from the user and removes the Sticky Web Stealth Rock Spikes and Toxic Spikes statuses from the user's side. Boosts the user's Speed stat by 1 stage.",
+      "championsEffect": "Removes the Bound and Leech Seeded statuses from the user and removes the Sticky Web Stealth Rock Spikes and Toxic Spikes statuses from the user's side. Boosts the user's Speed stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Razor Shell": {
       "name": "Razor Shell",
@@ -1878,7 +2388,9 @@
       "category": "physical",
       "basePower": 75,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Defense by one stage."
+      "shortEffect": "Has a 50% chance of lowering the target's Defense stat by 1 stage.",
+      "championsEffect": "Has a 50% chance of lowering the target's Defense stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Recover": {
       "name": "Recover",
@@ -1886,7 +2398,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Heals the user by half its max HP."
+      "shortEffect": "Restores 1/2 of the user's max HP.",
+      "championsEffect": "Restores 1/2 of the user's max HP.",
+      "source": "champions-attackdex"
     },
     "Recycle": {
       "name": "Recycle",
@@ -1894,7 +2408,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "User recovers the item it last used up."
+      "shortEffect": "Regenerates the last held item that the user consumed. The user then holds this item once more.",
+      "championsEffect": "Regenerates the last held item that the user consumed. The user then holds this item once more.",
+      "source": "champions-attackdex"
     },
     "Reflect": {
       "name": "Reflect",
@@ -1902,7 +2418,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Reduces damage from physical attacks by half."
+      "shortEffect": "Gives the user's side the Reflect status for 5 turns.",
+      "championsEffect": "Gives the user's side the Reflect status for 5 turns.",
+      "source": "champions-attackdex"
     },
     "Rest": {
       "name": "Rest",
@@ -1910,7 +2428,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "User sleeps for two turns, completely healing itself."
+      "shortEffect": "Fully restores the user's HP and cures any status conditions. The user falls asleep for 2 turns. This move fails if the user's HP is full.",
+      "championsEffect": "Fully restores the user's HP and cures any status conditions. The user falls asleep for 2 turns. This move fails if the user's HP is full.",
+      "source": "champions-attackdex"
     },
     "Reversal": {
       "name": "Reversal",
@@ -1918,14 +2438,19 @@
       "category": "physical",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Inflicts more damage when the user has less HP remaining, with a maximum of 200 power."
+      "shortEffect": "The less HP the user has left the greater this move's power (ranging between 20 and 200).",
+      "championsEffect": "The less HP the user has left the greater this move's power (ranging between 20 and 200).",
+      "source": "champions-attackdex"
     },
     "Revival Blessing": {
       "name": "Revival Blessing",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Revives a Pokémon in the user's party that has fainted and restores 1/2 of that Pokémon's max HP.",
+      "championsEffect": "Revives a Pokémon in the user's party that has fainted and restores 1/2 of that Pokémon's max HP.",
+      "source": "champions-attackdex"
     },
     "Rising Voltage": {
       "name": "Rising Voltage",
@@ -1933,7 +2458,9 @@
       "category": "special",
       "basePower": 70,
       "priority": 0,
-      "shortEffect": "If Electric Terrain is active and the user is grounded, this move has has its power doubled."
+      "shortEffect": "This move's power is doubled if the target is under the effect of Electric Terrain.",
+      "championsEffect": "This move's power is doubled if the target is under the effect of Electric Terrain.",
+      "source": "champions-attackdex"
     },
     "Roar": {
       "name": "Roar",
@@ -1941,7 +2468,9 @@
       "category": "status",
       "basePower": 0,
       "priority": -6,
-      "shortEffect": "Immediately ends wild battles. Forces trainers to switch Pokémon."
+      "shortEffect": "If there are other Pokémon in the target's party that can switch into battle the target is forced to switch out of battle and is replaced by one of those Pokémon at random.",
+      "championsEffect": "If there are other Pokémon in the target's party that can switch into battle the target is forced to switch out of battle and is replaced by one of those Pokémon at random.",
+      "source": "champions-attackdex"
     },
     "Rock Blast": {
       "name": "Rock Blast",
@@ -1949,7 +2478,9 @@
       "category": "physical",
       "basePower": 25,
       "priority": 0,
-      "shortEffect": "Hits 2-5 times in one turn."
+      "shortEffect": "The user attacks 2 to 5 times in a row.",
+      "championsEffect": "The user attacks 2 to 5 times in a row.",
+      "source": "champions-attackdex"
     },
     "Rock Slide": {
       "name": "Rock Slide",
@@ -1957,7 +2488,9 @@
       "category": "physical",
       "basePower": 75,
       "priority": 0,
-      "shortEffect": "Has a chance to make the target flinch."
+      "shortEffect": "Has a 30% chance of making targets flinch.",
+      "championsEffect": "Has a 30% chance of making targets flinch.",
+      "source": "champions-attackdex"
     },
     "Rock Tomb": {
       "name": "Rock Tomb",
@@ -1965,7 +2498,9 @@
       "category": "physical",
       "basePower": 60,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Speed by one stage."
+      "shortEffect": "Lowers the target's Speed stat by 1 stage.",
+      "championsEffect": "Lowers the target's Speed stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Roost": {
       "name": "Roost",
@@ -1973,7 +2508,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Heals the user by half its max HP."
+      "shortEffect": "Restores 1/2 of the user's max HP. If the user is a Flying type it will lose the Flying type for the turn.",
+      "championsEffect": "Restores 1/2 of the user's max HP. If the user is a Flying type it will lose the Flying type for the turn.",
+      "source": "champions-attackdex"
     },
     "Sacred Sword": {
       "name": "Sacred Sword",
@@ -1981,14 +2518,19 @@
       "category": "physical",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Ignores the target’s stat modifiers."
+      "shortEffect": "This move ignores the target's stat changes when dealing damage.",
+      "championsEffect": "This move ignores the target's stat changes when dealing damage.",
+      "source": "champions-attackdex"
     },
     "Salt Cure": {
       "name": "Salt Cure",
       "type": "rock",
       "category": "physical",
       "basePower": 40,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Gives the target the Salt Cured status.",
+      "championsEffect": "Gives the target the Salt Cured status.",
+      "source": "champions-attackdex"
     },
     "Scald": {
       "name": "Scald",
@@ -1996,7 +2538,9 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has a chance to burn the target."
+      "shortEffect": "Has a 30% chance of burning the target. Cures the user and target of being frozen.",
+      "championsEffect": "Has a 30% chance of burning the target. Cures the user and target of being frozen.",
+      "source": "champions-attackdex"
     },
     "Scorching Sands": {
       "name": "Scorching Sands",
@@ -2004,7 +2548,9 @@
       "category": "special",
       "basePower": 70,
       "priority": 0,
-      "shortEffect": "Has a chance to burn the target."
+      "shortEffect": "Has a 30% chance of burning the target. Cures the user and target of being frozen.",
+      "championsEffect": "Has a 30% chance of burning the target. Cures the user and target of being frozen.",
+      "source": "champions-attackdex"
     },
     "Seed Bomb": {
       "name": "Seed Bomb",
@@ -2012,7 +2558,9 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts regular damage.",
+      "championsEffect": "Inflicts regular damage.",
+      "source": "champions-attackdex"
     },
     "Self-Destruct": {
       "name": "Self-Destruct",
@@ -2020,7 +2568,9 @@
       "category": "physical",
       "basePower": 200,
       "priority": 0,
-      "shortEffect": "User faints."
+      "shortEffect": "The user faints upon using this move.",
+      "championsEffect": "The user faints upon using this move.",
+      "source": "champions-attackdex"
     },
     "Shadow Ball": {
       "name": "Shadow Ball",
@@ -2028,7 +2578,9 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Special Defense by one stage."
+      "shortEffect": "Has a 20% chance of lowering the target's Sp. Def stat by 1 stage.",
+      "championsEffect": "Has a 20% chance of lowering the target's Sp. Def stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Shadow Claw": {
       "name": "Shadow Claw",
@@ -2036,7 +2588,9 @@
       "category": "physical",
       "basePower": 70,
       "priority": 0,
-      "shortEffect": "Has an increased chance for a critical hit."
+      "shortEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "championsEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "source": "champions-attackdex"
     },
     "Shadow Sneak": {
       "name": "Shadow Sneak",
@@ -2044,14 +2598,19 @@
       "category": "physical",
       "basePower": 40,
       "priority": 1,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts damage with increased priority (+1).",
+      "championsEffect": "Inflicts damage with increased priority (+1).",
+      "source": "champions-attackdex"
     },
     "Shed Tail": {
       "name": "Shed Tail",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "The user loses 1/2 of its max HP to create a substitute then switches out of battle to be replaced by another party Pokémon. The substitute will be hit by moves instead of that Pokémon and it will vanish when it takes damage equal to 1/4 of the user's max HP.",
+      "championsEffect": "The user loses 1/2 of its max HP to create a substitute then switches out of battle to be replaced by another party Pokémon. The substitute will be hit by moves instead of that Pokémon and it will vanish when it takes damage equal to 1/4 of the user's max HP.",
+      "source": "champions-attackdex"
     },
     "Sheer Cold": {
       "name": "Sheer Cold",
@@ -2059,7 +2618,9 @@
       "category": "special",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Causes a one-hit KO."
+      "shortEffect": "Knocks out the target. This move does not affect Ice types. The accuracy of this move is fixed at 30%. If used by Pokémon other than Ice types the accuracy of this move is 20%.",
+      "championsEffect": "Knocks out the target. This move does not affect Ice types. The accuracy of this move is fixed at 30%. If used by Pokémon other than Ice types the accuracy of this move is 20%.",
+      "source": "champions-attackdex"
     },
     "Shell Side Arm": {
       "name": "Shell Side Arm",
@@ -2067,7 +2628,9 @@
       "category": "special",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Has a chance to poison the target. This switches categories between physical and special, depending on which would deal more damage to the target."
+      "shortEffect": "Has a 20% chance of poisoning the target. Becomes a physical move if that will deal more damage.",
+      "championsEffect": "Has a 20% chance of poisoning the target. Becomes a physical move if that will deal more damage.",
+      "source": "champions-attackdex"
     },
     "Shell Smash": {
       "name": "Shell Smash",
@@ -2075,14 +2638,19 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises user’s Attack, Special Attack, and Speed by two stages. Lower user’s Defense and Special Defense by one stage."
+      "shortEffect": "Lowers the user's Defense and Sp. Def stats by 1 stage and boosts its Attack Sp. Atk and Speed stats by 2 stages.",
+      "championsEffect": "Lowers the user's Defense and Sp. Def stats by 1 stage and boosts its Attack Sp. Atk and Speed stats by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Shelter": {
       "name": "Shelter",
       "type": "steel",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Boosts the user's Defense stat by 2 stages.",
+      "championsEffect": "Boosts the user's Defense stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Slack Off": {
       "name": "Slack Off",
@@ -2090,7 +2658,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Heals the user by half its max HP."
+      "shortEffect": "Restores 1/2 of the user's max HP.",
+      "championsEffect": "Restores 1/2 of the user's max HP.",
+      "source": "champions-attackdex"
     },
     "Slash": {
       "name": "Slash",
@@ -2098,7 +2668,9 @@
       "category": "physical",
       "basePower": 70,
       "priority": 0,
-      "shortEffect": "Has an increased chance for a critical hit."
+      "shortEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "championsEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "source": "champions-attackdex"
     },
     "Sleep Powder": {
       "name": "Sleep Powder",
@@ -2106,7 +2678,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Puts the target to sleep."
+      "shortEffect": "Puts the target to sleep.",
+      "championsEffect": "Puts the target to sleep.",
+      "source": "champions-attackdex"
     },
     "Sludge Bomb": {
       "name": "Sludge Bomb",
@@ -2114,7 +2688,9 @@
       "category": "special",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Has a chance to poison the target."
+      "shortEffect": "Has a 30% chance of poisoning the target.",
+      "championsEffect": "Has a 30% chance of poisoning the target.",
+      "source": "champions-attackdex"
     },
     "Sludge Wave": {
       "name": "Sludge Wave",
@@ -2122,7 +2698,9 @@
       "category": "special",
       "basePower": 95,
       "priority": 0,
-      "shortEffect": "Has a chance to poison the target."
+      "shortEffect": "Has a 10% chance of poisoning targets.",
+      "championsEffect": "Has a 10% chance of poisoning targets.",
+      "source": "champions-attackdex"
     },
     "Smack Down": {
       "name": "Smack Down",
@@ -2130,7 +2708,9 @@
       "category": "physical",
       "basePower": 50,
       "priority": 0,
-      "shortEffect": "Removes any immunity to Ground damage."
+      "shortEffect": "If the target is off the ground it gains the Landed status. This move can hit a target that has the Sky-High status.",
+      "championsEffect": "If the target is off the ground it gains the Landed status. This move can hit a target that has the Sky-High status.",
+      "source": "champions-attackdex"
     },
     "Snap Trap": {
       "name": "Snap Trap",
@@ -2138,7 +2718,9 @@
       "category": "physical",
       "basePower": 35,
       "priority": 0,
-      "shortEffect": "Prevents the target from fleeing and inflicts damage for 2-5 turns."
+      "shortEffect": "Gives the target the Bound status.",
+      "championsEffect": "Gives the target the Bound status.",
+      "source": "champions-attackdex"
     },
     "Snarl": {
       "name": "Snarl",
@@ -2146,7 +2728,9 @@
       "category": "special",
       "basePower": 55,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Special Attack by one stage."
+      "shortEffect": "Lowers targets' Sp. Atk stats by 1 stage.",
+      "championsEffect": "Lowers targets' Sp. Atk stats by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Snipe Shot": {
       "name": "Snipe Shot",
@@ -2154,7 +2738,9 @@
       "category": "special",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "The user ignores the effects of opposing Pokémon's moves and Abilities that draw in moves, allowing this move to hit the chosen target."
+      "shortEffect": "This move ignores the effects of Abilities and moves that draw in moves. It has a 1-stage Critical-Hit Ratio Boost.",
+      "championsEffect": "This move ignores the effects of Abilities and moves that draw in moves. It has a 1-stage Critical-Hit Ratio Boost.",
+      "source": "champions-attackdex"
     },
     "Soak": {
       "name": "Soak",
@@ -2162,7 +2748,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Changes the target’s type to Water."
+      "shortEffect": "Changes the target's type to Water.",
+      "championsEffect": "Changes the target's type to Water.",
+      "source": "champions-attackdex"
     },
     "Solar Beam": {
       "name": "Solar Beam",
@@ -2170,7 +2758,9 @@
       "category": "special",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "Requires a turn to charge before attacking."
+      "shortEffect": "The user gains the Charging status on the turn this move is used then attacks on the following turn. In harsh sunlight the user does not gain the Charging status and can attack immediately. This move's power is halved in any other weather condition.",
+      "championsEffect": "The user gains the Charging status on the turn this move is used then attacks on the following turn. In harsh sunlight the user does not gain the Charging status and can attack immediately. This move's power is halved in any other weather condition.",
+      "source": "champions-attackdex"
     },
     "Solar Blade": {
       "name": "Solar Blade",
@@ -2178,7 +2768,9 @@
       "category": "physical",
       "basePower": 125,
       "priority": 0,
-      "shortEffect": "Requires a turn to charge before attacking."
+      "shortEffect": "The user gains the Charging status on the turn this move is used then attacks on the following turn. In harsh sunlight the user does not gain the Charging status and can attack immediately. This move's power is halved in any other weather condition.",
+      "championsEffect": "The user gains the Charging status on the turn this move is used then attacks on the following turn. In harsh sunlight the user does not gain the Charging status and can attack immediately. This move's power is halved in any other weather condition.",
+      "source": "champions-attackdex"
     },
     "Sparkling Aria": {
       "name": "Sparkling Aria",
@@ -2186,7 +2778,9 @@
       "category": "special",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Cures the target of burns."
+      "shortEffect": "Cures targets of their burns.",
+      "championsEffect": "Cures targets of their burns.",
+      "source": "champions-attackdex"
     },
     "Spikes": {
       "name": "Spikes",
@@ -2194,7 +2788,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Scatters Spikes, hurting opposing Pokémon that switch in."
+      "shortEffect": "Gives the opponent's side the Spikes status.",
+      "championsEffect": "Gives the opponent's side the Spikes status.",
+      "source": "champions-attackdex"
     },
     "Spiky Shield": {
       "name": "Spiky Shield",
@@ -2202,7 +2798,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 4,
-      "shortEffect": "Blocks damaging attacks and damages attacking Pokémon for 1/8 their max HP."
+      "shortEffect": "The user protects itself from incoming moves for the turn. Any attackers that use contact moves against the user during this turn take damage equal to 1/8 of their max HP. With each consecutive use this move's chance of success becomes 1/3 of what it was before.",
+      "championsEffect": "The user protects itself from incoming moves for the turn. Any attackers that use contact moves against the user during this turn take damage equal to 1/8 of their max HP. With each consecutive use this move's chance of success becomes 1/3 of what it was before.",
+      "source": "champions-attackdex"
     },
     "Spirit Break": {
       "name": "Spirit Break",
@@ -2210,7 +2808,9 @@
       "category": "physical",
       "basePower": 75,
       "priority": 0,
-      "shortEffect": "Has a chance to lower the target’s Special Attack by one stage."
+      "shortEffect": "Lowers the target's Sp. Atk stat by 1 stage.",
+      "championsEffect": "Lowers the target's Sp. Atk stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Spirit Shackle": {
       "name": "Spirit Shackle",
@@ -2218,7 +2818,9 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Traps the target."
+      "shortEffect": "Gives the target the Can't Escape status.",
+      "championsEffect": "Gives the target the Can't Escape status.",
+      "source": "champions-attackdex"
     },
     "Stealth Rock": {
       "name": "Stealth Rock",
@@ -2226,7 +2828,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Causes damage when opposing Pokémon switch in."
+      "shortEffect": "Gives the opponent's side the Stealth Rock status.",
+      "championsEffect": "Gives the opponent's side the Stealth Rock status.",
+      "source": "champions-attackdex"
     },
     "Steel Beam": {
       "name": "Steel Beam",
@@ -2234,7 +2838,9 @@
       "category": "special",
       "basePower": 140,
       "priority": 0,
-      "shortEffect": "Inflicts damage, and the user takes damage equal to half of its max HP, rounded up."
+      "shortEffect": "After attacking the user takes damage equal to 1/2 of its max HP.",
+      "championsEffect": "After attacking the user takes damage equal to 1/2 of its max HP.",
+      "source": "champions-attackdex"
     },
     "Sticky Web": {
       "name": "Sticky Web",
@@ -2242,7 +2848,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Covers the opposing field, lowering opponents’ Speed by one stage upon switching in."
+      "shortEffect": "Gives the opponent's side the Sticky Web status.",
+      "championsEffect": "Gives the opponent's side the Sticky Web status.",
+      "source": "champions-attackdex"
     },
     "Stomping Tantrum": {
       "name": "Stomping Tantrum",
@@ -2250,14 +2858,19 @@
       "category": "physical",
       "basePower": 75,
       "priority": 0,
-      "shortEffect": "Has double power if the user’s last move failed."
+      "shortEffect": "This move's power is doubled if the user couldn't act or its move missed or failed on the previous turn.",
+      "championsEffect": "This move's power is doubled if the user couldn't act or its move missed or failed on the previous turn.",
+      "source": "champions-attackdex"
     },
     "Stone Axe": {
       "name": "Stone Axe",
       "type": "rock",
       "category": "physical",
       "basePower": 65,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Gives the opponent's side the Stealth Rock status.",
+      "championsEffect": "Gives the opponent's side the Stealth Rock status.",
+      "source": "champions-attackdex"
     },
     "Stone Edge": {
       "name": "Stone Edge",
@@ -2265,7 +2878,9 @@
       "category": "physical",
       "basePower": 100,
       "priority": 0,
-      "shortEffect": "Has an increased chance for a critical hit."
+      "shortEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "championsEffect": "This move has a 1-stage Critical-Hit Ratio Boost.",
+      "source": "champions-attackdex"
     },
     "Stored Power": {
       "name": "Stored Power",
@@ -2273,7 +2888,9 @@
       "category": "special",
       "basePower": 20,
       "priority": 0,
-      "shortEffect": "Power is higher the more the user’s stats have been raised, to a maximum of 31×."
+      "shortEffect": "This move's power is increased by 20 for each stage that the user's stats have been boosted.",
+      "championsEffect": "This move's power is increased by 20 for each stage that the user's stats have been boosted.",
+      "source": "champions-attackdex"
     },
     "Storm Throw": {
       "name": "Storm Throw",
@@ -2281,7 +2898,9 @@
       "category": "physical",
       "basePower": 60,
       "priority": 0,
-      "shortEffect": "Always scores a critical hit."
+      "shortEffect": "Always a critical hit.",
+      "championsEffect": "Always a critical hit.",
+      "source": "champions-attackdex"
     },
     "Strength Sap": {
       "name": "Strength Sap",
@@ -2289,7 +2908,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Heals the user by the target’s current Attack stat and lowers the target’s Attack by one stage."
+      "shortEffect": "Restores the user's HP by an amount equal to the target's Attack stat. Lowers the target's Attack stat by 1 stage.",
+      "championsEffect": "Restores the user's HP by an amount equal to the target's Attack stat. Lowers the target's Attack stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Substitute": {
       "name": "Substitute",
@@ -2297,7 +2918,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Transfers 1/4 of the user’s max HP into a doll, protecting the user from further damage or status changes until it breaks."
+      "shortEffect": "The user loses 1/4 of its max HP to create a substitute. The substitute will be hit by moves instead of the user and it will vanish when it takes damage equal to 1/4 of the user's max HP.",
+      "championsEffect": "The user loses 1/4 of its max HP to create a substitute. The substitute will be hit by moves instead of the user and it will vanish when it takes damage equal to 1/4 of the user's max HP.",
+      "source": "champions-attackdex"
     },
     "Sucker Punch": {
       "name": "Sucker Punch",
@@ -2305,7 +2928,9 @@
       "category": "physical",
       "basePower": 70,
       "priority": 1,
-      "shortEffect": "Only works if the target is about to use a damaging move."
+      "shortEffect": "This move fails unless the target has chosen an attack and has not yet attacked during the turn this move is used.",
+      "championsEffect": "This move fails unless the target has chosen an attack and has not yet attacked during the turn this move is used.",
+      "source": "champions-attackdex"
     },
     "Super Fang": {
       "name": "Super Fang",
@@ -2313,14 +2938,19 @@
       "category": "physical",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Inflicts damage equal to half the target’s HP."
+      "shortEffect": "Deals damage to the target equal to 1/2 of its remaining HP. Deals 1 HP of damage to a target that has only 1 HP left.",
+      "championsEffect": "Deals damage to the target equal to 1/2 of its remaining HP. Deals 1 HP of damage to a target that has only 1 HP left.",
+      "source": "champions-attackdex"
     },
     "Supercell Slam": {
       "name": "Supercell Slam",
       "type": "electric",
       "category": "physical",
       "basePower": 100,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "If this move misses or fails the user takes damage equal to 1/2 of its max HP. If the target has the Minimized status this move's power is doubled and it will be sure to hit.",
+      "championsEffect": "If this move misses or fails the user takes damage equal to 1/2 of its max HP. If the target has the Minimized status this move's power is doubled and it will be sure to hit.",
+      "source": "champions-attackdex"
     },
     "Superpower": {
       "name": "Superpower",
@@ -2328,7 +2958,9 @@
       "category": "physical",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "Lowers the user’s Attack and Defense by one stage after inflicting damage."
+      "shortEffect": "Lowers the user's Attack and Defense stats by 1 stage.",
+      "championsEffect": "Lowers the user's Attack and Defense stats by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Surf": {
       "name": "Surf",
@@ -2336,7 +2968,9 @@
       "category": "special",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage and can hit Dive users."
+      "shortEffect": "This move's power is doubled against targets that have the Submerged status.",
+      "championsEffect": "This move's power is doubled against targets that have the Submerged status.",
+      "source": "champions-attackdex"
     },
     "Switcheroo": {
       "name": "Switcheroo",
@@ -2344,7 +2978,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "User and target swap items."
+      "shortEffect": "The user and the target swap their held items.",
+      "championsEffect": "The user and the target swap their held items.",
+      "source": "champions-attackdex"
     },
     "Swords Dance": {
       "name": "Swords Dance",
@@ -2352,7 +2988,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Raises the user’s Attack by two stages."
+      "shortEffect": "Boosts the user's Attack stat by 2 stages.",
+      "championsEffect": "Boosts the user's Attack stat by 2 stages.",
+      "source": "champions-attackdex"
     },
     "Synthesis": {
       "name": "Synthesis",
@@ -2360,7 +2998,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Heals the user by half its max HP. Affected by weather."
+      "shortEffect": "Restores 1/2 of the user's max HP. In harsh sunlight 2/3 of its max HP will be restored instead. In all other weather conditions 1/4 of its max HP will be restored instead.",
+      "championsEffect": "Restores 1/2 of the user's max HP. In harsh sunlight 2/3 of its max HP will be restored instead. In all other weather conditions 1/4 of its max HP will be restored instead.",
+      "source": "champions-attackdex"
     },
     "Tailwind": {
       "name": "Tailwind",
@@ -2368,7 +3008,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "For three turns, friendly Pokémon have doubled Speed."
+      "shortEffect": "Gives the user's side the Tailwind status for 4 turns.",
+      "championsEffect": "Gives the user's side the Tailwind status for 4 turns.",
+      "source": "champions-attackdex"
     },
     "Taunt": {
       "name": "Taunt",
@@ -2376,14 +3018,19 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "For the next few turns, the target can only use damaging moves."
+      "shortEffect": "Gives the target the Taunted status.",
+      "championsEffect": "Gives the target the Taunted status.",
+      "source": "champions-attackdex"
     },
     "Temper Flare": {
       "name": "Temper Flare",
       "type": "fire",
       "category": "physical",
       "basePower": 75,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "This move's power is doubled if the user couldn't act or its move missed or failed on the previous turn.",
+      "championsEffect": "This move's power is doubled if the user couldn't act or its move missed or failed on the previous turn.",
+      "source": "champions-attackdex"
     },
     "Terrain Pulse": {
       "name": "Terrain Pulse",
@@ -2391,7 +3038,9 @@
       "category": "special",
       "basePower": 50,
       "priority": 0,
-      "shortEffect": "If any terrain is active and the user is grounded, this moves power is doubled and changes type to match that terrains type."
+      "shortEffect": "This move's power is doubled if the user is under the effect of a terrain. This move's type depends on the terrain.",
+      "championsEffect": "This move's power is doubled if the user is under the effect of a terrain. This move's type depends on the terrain.",
+      "source": "champions-attackdex"
     },
     "Thrash": {
       "name": "Thrash",
@@ -2399,7 +3048,9 @@
       "category": "physical",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "Hits every turn for 2-3 turns, then confuses the user."
+      "shortEffect": "The user gains the Rampaging status.",
+      "championsEffect": "The user gains the Rampaging status.",
+      "source": "champions-attackdex"
     },
     "Throat Chop": {
       "name": "Throat Chop",
@@ -2407,7 +3058,9 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Prevents the target from using sound-based moves for two turns."
+      "shortEffect": "Gives the target the Throat Chopped status.",
+      "championsEffect": "Gives the target the Throat Chopped status.",
+      "source": "champions-attackdex"
     },
     "Thunder": {
       "name": "Thunder",
@@ -2415,7 +3068,9 @@
       "category": "special",
       "basePower": 110,
       "priority": 0,
-      "shortEffect": "Has a chance to paralyze the target."
+      "shortEffect": "Has a 30% chance of paralyzing the target. This move never misses in rain and can hit a target that has the Sky-High status.",
+      "championsEffect": "Has a 30% chance of paralyzing the target. This move never misses in rain and can hit a target that has the Sky-High status.",
+      "source": "champions-attackdex"
     },
     "Thunder Fang": {
       "name": "Thunder Fang",
@@ -2423,7 +3078,9 @@
       "category": "physical",
       "basePower": 65,
       "priority": 0,
-      "shortEffect": "Has a chance to paralyze the target and a chance to make the target flinch."
+      "shortEffect": "Has a 10% chance of paralyzing the target and a 10% chance of making the target flinch.",
+      "championsEffect": "Has a 10% chance of paralyzing the target and a 10% chance of making the target flinch.",
+      "source": "champions-attackdex"
     },
     "Thunder Punch": {
       "name": "Thunder Punch",
@@ -2431,7 +3088,9 @@
       "category": "physical",
       "basePower": 75,
       "priority": 0,
-      "shortEffect": "Has a chance to paralyze the target."
+      "shortEffect": "Has a 10% chance of paralyzing the target.",
+      "championsEffect": "Has a 10% chance of paralyzing the target.",
+      "source": "champions-attackdex"
     },
     "Thunder Wave": {
       "name": "Thunder Wave",
@@ -2439,7 +3098,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Paralyzes the target."
+      "shortEffect": "Paralyzes the target.",
+      "championsEffect": "Paralyzes the target.",
+      "source": "champions-attackdex"
     },
     "Thunderbolt": {
       "name": "Thunderbolt",
@@ -2447,21 +3108,29 @@
       "category": "special",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "Has a chance to paralyze the target."
+      "shortEffect": "Has a 10% chance of paralyzing the target.",
+      "championsEffect": "Has a 10% chance of paralyzing the target.",
+      "source": "champions-attackdex"
     },
     "Tidy Up": {
       "name": "Tidy Up",
       "type": "normal",
       "category": "status",
       "basePower": 0,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Removes the Sticky Web Stealth Rock Substitute Spikes and Toxic Spikes statuses from the entire field. Boosts the user's Attack and Speed stats by 1 stage.",
+      "championsEffect": "Removes the Sticky Web Stealth Rock Substitute Spikes and Toxic Spikes statuses from the entire field. Boosts the user's Attack and Speed stats by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Torch Song": {
       "name": "Torch Song",
       "type": "fire",
       "category": "special",
       "basePower": 80,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Boosts the user's Sp. Atk stat by 1 stage.",
+      "championsEffect": "Boosts the user's Sp. Atk stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Toxic": {
       "name": "Toxic",
@@ -2469,7 +3138,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Badly poisons the target, inflicting more damage every turn."
+      "shortEffect": "Badly poisons the target. If the user is a Poison type this move will never miss.",
+      "championsEffect": "Badly poisons the target. If the user is a Poison type this move will never miss.",
+      "source": "champions-attackdex"
     },
     "Toxic Spikes": {
       "name": "Toxic Spikes",
@@ -2477,7 +3148,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Scatters poisoned spikes, poisoning opposing Pokémon that switch in."
+      "shortEffect": "Gives the opponent's side the Toxic Spikes status.",
+      "championsEffect": "Gives the opponent's side the Toxic Spikes status.",
+      "source": "champions-attackdex"
     },
     "Toxic Thread": {
       "name": "Toxic Thread",
@@ -2485,14 +3158,19 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Poisons the target and lowers its Speed by one stage."
+      "shortEffect": "Lowers the target's Speed stat by 2 stages and poisons it.",
+      "championsEffect": "Lowers the target's Speed stat by 2 stages and poisons it.",
+      "source": "champions-attackdex"
     },
     "Trailblaze": {
       "name": "Trailblaze",
       "type": "grass",
       "category": "physical",
       "basePower": 50,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Boosts the user's Speed stat by 1 stage.",
+      "championsEffect": "Boosts the user's Speed stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Transform": {
       "name": "Transform",
@@ -2500,7 +3178,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "User becomes a copy of the target until it leaves battle."
+      "shortEffect": "The user transforms into a copy of the target. It also copies all of the target's stats apart from its HP.",
+      "championsEffect": "The user transforms into a copy of the target. It also copies all of the target's stats apart from its HP.",
+      "source": "champions-attackdex"
     },
     "Trick": {
       "name": "Trick",
@@ -2508,7 +3188,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "User and target swap items."
+      "shortEffect": "The user and the target swap their held items.",
+      "championsEffect": "The user and the target swap their held items.",
+      "source": "champions-attackdex"
     },
     "Trick Room": {
       "name": "Trick Room",
@@ -2516,14 +3198,19 @@
       "category": "status",
       "basePower": 0,
       "priority": -7,
-      "shortEffect": "For five turns, slower Pokémon will act before faster Pokémon."
+      "shortEffect": "Gives the entire field the Trick Room status for 5 turns.",
+      "championsEffect": "Gives the entire field the Trick Room status for 5 turns.",
+      "source": "champions-attackdex"
     },
     "Triple Arrows": {
       "name": "Triple Arrows",
       "type": "fighting",
       "category": "physical",
       "basePower": 90,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "Has a 50% chance of lowering the target's Defense stat by 1 stage and has a 30% chance of making the target flinch. This move has a 1-stage Critical-Hit Ratio Boost.",
+      "championsEffect": "Has a 50% chance of lowering the target's Defense stat by 1 stage and has a 30% chance of making the target flinch. This move has a 1-stage Critical-Hit Ratio Boost.",
+      "source": "champions-attackdex"
     },
     "Triple Axel": {
       "name": "Triple Axel",
@@ -2531,7 +3218,9 @@
       "category": "physical",
       "basePower": 20,
       "priority": 0,
-      "shortEffect": "Hits three times, increasing power by 100% with each successful hit."
+      "shortEffect": "The user attacks 3 times in a rowâ€”first with a power of 20 then with a power of 40 then with a power of 60. The attack ends if the user misses.",
+      "championsEffect": "The user attacks 3 times in a rowâ€”first with a power of 20 then with a power of 40 then with a power of 60. The attack ends if the user misses.",
+      "source": "champions-attackdex"
     },
     "Trop Kick": {
       "name": "Trop Kick",
@@ -2539,14 +3228,19 @@
       "category": "physical",
       "basePower": 70,
       "priority": 0,
-      "shortEffect": "Lowers the target’s Attack by one stage after inflicting damage."
+      "shortEffect": "Lowers the target's Attack stat by 1 stage.",
+      "championsEffect": "Lowers the target's Attack stat by 1 stage.",
+      "source": "champions-attackdex"
     },
     "Twin Beam": {
       "name": "Twin Beam",
       "type": "psychic",
       "category": "special",
       "basePower": 40,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "The user attacks twice in a row.",
+      "championsEffect": "The user attacks twice in a row.",
+      "source": "champions-attackdex"
     },
     "U-turn": {
       "name": "U-turn",
@@ -2554,14 +3248,19 @@
       "category": "physical",
       "basePower": 70,
       "priority": 0,
-      "shortEffect": "User must switch out after attacking."
+      "shortEffect": "After attacking the user switches out of battle to be replaced by another party Pokémon.",
+      "championsEffect": "After attacking the user switches out of battle to be replaced by another party Pokémon.",
+      "source": "champions-attackdex"
     },
     "Upper Hand": {
       "name": "Upper Hand",
       "type": "fighting",
       "category": "physical",
       "basePower": 65,
-      "priority": 3
+      "priority": 3,
+      "shortEffect": "Makes the target flinch. This move fails if the target isn't about to use a priority move.",
+      "championsEffect": "Makes the target flinch. This move fails if the target isn't about to use a priority move.",
+      "source": "champions-attackdex"
     },
     "Vacuum Wave": {
       "name": "Vacuum Wave",
@@ -2569,7 +3268,9 @@
       "category": "special",
       "basePower": 40,
       "priority": 1,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts damage with increased priority (+1).",
+      "championsEffect": "Inflicts damage with increased priority (+1).",
+      "source": "champions-attackdex"
     },
     "Volt Switch": {
       "name": "Volt Switch",
@@ -2577,7 +3278,9 @@
       "category": "special",
       "basePower": 70,
       "priority": 0,
-      "shortEffect": "User must switch out after attacking."
+      "shortEffect": "After attacking the user switches out of battle to be replaced by another party Pokémon.",
+      "championsEffect": "After attacking the user switches out of battle to be replaced by another party Pokémon.",
+      "source": "champions-attackdex"
     },
     "Volt Tackle": {
       "name": "Volt Tackle",
@@ -2585,7 +3288,9 @@
       "category": "physical",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "User takes 1/3 the damage inflicted in recoil. Has a chance to paralyze the target."
+      "shortEffect": "Has a 10% chance of paralyzing the target. The user also takes 1/3 of the damage dealt by this move.",
+      "championsEffect": "Has a 10% chance of paralyzing the target. The user also takes 1/3 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Water Pulse": {
       "name": "Water Pulse",
@@ -2593,7 +3298,9 @@
       "category": "special",
       "basePower": 60,
       "priority": 0,
-      "shortEffect": "Has a chance to confuse the target."
+      "shortEffect": "Has a 20% chance of confusing the target.",
+      "championsEffect": "Has a 20% chance of confusing the target.",
+      "source": "champions-attackdex"
     },
     "Water Shuriken": {
       "name": "Water Shuriken",
@@ -2601,7 +3308,9 @@
       "category": "special",
       "basePower": 15,
       "priority": 1,
-      "shortEffect": "Hits 2–5 times."
+      "shortEffect": "The user attacks 2 to 5 times in a row.",
+      "championsEffect": "The user attacks 2 to 5 times in a row.",
+      "source": "champions-attackdex"
     },
     "Water Spout": {
       "name": "Water Spout",
@@ -2609,7 +3318,9 @@
       "category": "special",
       "basePower": 150,
       "priority": 0,
-      "shortEffect": "Inflicts more damage when the user has more HP remaining, with a maximum of 150 power."
+      "shortEffect": "The less HP the user has left the lower this move's power (ranging between 1 and 150).",
+      "championsEffect": "The less HP the user has left the lower this move's power (ranging between 1 and 150).",
+      "source": "champions-attackdex"
     },
     "Waterfall": {
       "name": "Waterfall",
@@ -2617,14 +3328,19 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has a chance to make the target flinch."
+      "shortEffect": "Has a 20% chance of making the target flinch.",
+      "championsEffect": "Has a 20% chance of making the target flinch.",
+      "source": "champions-attackdex"
     },
     "Wave Crash": {
       "name": "Wave Crash",
       "type": "water",
       "category": "physical",
       "basePower": 120,
-      "priority": 0
+      "priority": 0,
+      "shortEffect": "The user takes 1/3 of the damage dealt by this move.",
+      "championsEffect": "The user takes 1/3 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Weather Ball": {
       "name": "Weather Ball",
@@ -2632,7 +3348,9 @@
       "category": "special",
       "basePower": 50,
       "priority": 0,
-      "shortEffect": "If there be weather, this move has doubled power and the weather’s type."
+      "shortEffect": "When a weather condition is present this move's power is doubled and its type changes. Harsh sunlight Fire type. Rain Water type. Snow Ice type. Sandstorm Rock type.",
+      "championsEffect": "When a weather condition is present this move's power is doubled and its type changes. Harsh sunlight Fire type. Rain Water type. Snow Ice type. Sandstorm Rock type.",
+      "source": "champions-attackdex"
     },
     "Whirlwind": {
       "name": "Whirlwind",
@@ -2640,7 +3358,9 @@
       "category": "status",
       "basePower": 0,
       "priority": -6,
-      "shortEffect": "Immediately ends wild battles. Forces trainers to switch Pokémon."
+      "shortEffect": "If there are other Pokémon in the target's party that can switch into battle the target is forced to switch out of battle and is replaced by one of those Pokémon at random.",
+      "championsEffect": "If there are other Pokémon in the target's party that can switch into battle the target is forced to switch out of battle and is replaced by one of those Pokémon at random.",
+      "source": "champions-attackdex"
     },
     "Wild Charge": {
       "name": "Wild Charge",
@@ -2648,7 +3368,9 @@
       "category": "physical",
       "basePower": 90,
       "priority": 0,
-      "shortEffect": "User receives 1/4 the damage it inflicts in recoil."
+      "shortEffect": "The user takes 1/4 of the damage dealt by this move.",
+      "championsEffect": "The user takes 1/4 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "Will-O-Wisp": {
       "name": "Will-O-Wisp",
@@ -2656,7 +3378,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Burns the target."
+      "shortEffect": "Burns the target.",
+      "championsEffect": "Burns the target.",
+      "source": "champions-attackdex"
     },
     "Wish": {
       "name": "Wish",
@@ -2664,7 +3388,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "User will recover half its max HP at the end of the next turn."
+      "shortEffect": "Gives the user's spot the Wish status.",
+      "championsEffect": "Gives the user's spot the Wish status.",
+      "source": "champions-attackdex"
     },
     "Wood Hammer": {
       "name": "Wood Hammer",
@@ -2672,7 +3398,9 @@
       "category": "physical",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "User receives 1/3 the damage inflicted in recoil."
+      "shortEffect": "The user takes 1/3 of the damage dealt by this move.",
+      "championsEffect": "The user takes 1/3 of the damage dealt by this move.",
+      "source": "champions-attackdex"
     },
     "X-Scissor": {
       "name": "X-Scissor",
@@ -2680,7 +3408,9 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Inflicts regular damage with no additional effect."
+      "shortEffect": "Inflicts regular damage.",
+      "championsEffect": "Inflicts regular damage.",
+      "source": "champions-attackdex"
     },
     "Yawn": {
       "name": "Yawn",
@@ -2688,7 +3418,9 @@
       "category": "status",
       "basePower": 0,
       "priority": 0,
-      "shortEffect": "Target sleeps at the end of the next turn."
+      "shortEffect": "Makes the target drowsy. This move never misses.",
+      "championsEffect": "Makes the target drowsy. This move never misses.",
+      "source": "champions-attackdex"
     },
     "Zap Cannon": {
       "name": "Zap Cannon",
@@ -2696,7 +3428,9 @@
       "category": "special",
       "basePower": 120,
       "priority": 0,
-      "shortEffect": "Has a chance to paralyze the target."
+      "shortEffect": "Paralyzes the target.",
+      "championsEffect": "Paralyzes the target.",
+      "source": "champions-attackdex"
     },
     "Zen Headbutt": {
       "name": "Zen Headbutt",
@@ -2704,7 +3438,10 @@
       "category": "physical",
       "basePower": 80,
       "priority": 0,
-      "shortEffect": "Has a chance to make the target flinch."
+      "shortEffect": "Has a 20% chance of making the target flinch.",
+      "championsEffect": "Has a 20% chance of making the target flinch.",
+      "source": "champions-attackdex"
     }
-  }
+  },
+  "effectsSource": "serebii.net/attackdex-champions"
 }

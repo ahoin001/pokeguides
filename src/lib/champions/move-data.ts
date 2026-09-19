@@ -13,6 +13,8 @@ type MovesFile = {
       basePower: number;
       priority?: number;
       shortEffect?: string;
+      championsEffect?: string;
+      source?: string;
     }
   >;
 };
@@ -39,7 +41,7 @@ export function getChampionsMove(name: string): ChampionsMove | undefined {
     category: row.category,
     basePower: row.basePower,
     priority: row.priority,
-    shortEffect: row.shortEffect,
+    shortEffect: row.championsEffect || row.shortEffect,
   };
 }
 

@@ -1,11 +1,11 @@
 {
-  "fetchedAt": "2026-09-19T22:54:38.264Z",
+  "fetchedAt": "2026-09-19T23:22:23.566Z",
   "count": 222,
   "abilities": {
     "adaptability": {
       "name": "Adaptability",
       "slug": "adaptability",
-      "shortEffect": "Increases the same-type attack bonus from 1.5× to 2×.",
+      "shortEffect": "Powers up moves of the same type as the Pokémon.",
       "carriers": [
         "basculegion-female",
         "basculegion-male",
@@ -13,38 +13,42 @@
         "dragalge",
         "glimmora-mega",
         "lucario-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "aerilate": {
       "name": "Aerilate",
       "slug": "aerilate",
-      "shortEffect": "Turns the bearer's Normal moves into Flying moves and strengthens them to 1.3× their power.",
+      "shortEffect": "Normal-type moves become Flying-type moves. The power of those moves is boosted a little.",
       "carriers": [
         "pinsir-mega",
         "salamence-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "aftermath": {
       "name": "Aftermath",
       "slug": "aftermath",
-      "shortEffect": "Damages the attacker for 1/4 its max HP when knocked out by a contact move.",
+      "shortEffect": "Damages the attacker if it contacts the Pokémon with a finishing hit.",
       "carriers": [
         "garbodor"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "analytic": {
       "name": "Analytic",
       "slug": "analytic",
-      "shortEffect": "Strengthens moves to 1.3× their power when moving last.",
+      "shortEffect": "Boosts move power when the Pokémon moves last.",
       "carriers": [
         "starmie",
         "watchog"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "anger-point": {
       "name": "Anger Point",
       "slug": "anger-point",
-      "shortEffect": "Raises Attack to the maximum of six stages upon receiving a critical hit.",
+      "shortEffect": "The Pokémon is angered when it takes a critical hit, and that maxes its Attack stat.",
       "carriers": [
         "camerupt",
         "crabominable",
@@ -53,73 +57,81 @@
         "tauros-paldea-aqua-breed",
         "tauros-paldea-blaze-breed",
         "tauros-paldea-combat-breed"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "anticipation": {
       "name": "Anticipation",
       "slug": "anticipation",
-      "shortEffect": "Notifies all trainers upon entering battle if an opponent has a super-effective move, Self-Destruct, Explosion, or a one-hit KO move.",
+      "shortEffect": "The Pokémon can sense an opposing Pokémon's dangerous moves.",
       "carriers": [
         "hatterene",
         "toxicroak"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "armor-tail": {
       "name": "Armor Tail",
       "slug": "armor-tail",
-      "shortEffect": "Prevents the opponent from using any moves that have priority, such as Quick Attack.",
+      "shortEffect": "The mysterious tail covering the Pokémon's head makes opponents unable to use priority moves against the Pokémon or its allies.",
       "carriers": [
         "farigiraf"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "aroma-veil": {
       "name": "Aroma Veil",
       "slug": "aroma-veil",
-      "shortEffect": "Protects allies against moves that affect their mental state.",
+      "shortEffect": "Protects itself and its allies from attacks that limit their move choices.",
       "carriers": [
         "alcremie",
         "aromatisse",
         "dachsbun"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "aura-guard": {
       "name": "Aura Guard",
       "slug": "aura-guard",
-      "shortEffect": "A Pokémon with Aura Guard takes half damage from moves that make contact.",
+      "shortEffect": "Reduces the amount of damage received by moves that make physical contact by 50%",
       "carriers": [
         "lucario-mega-z"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "battle-armor": {
       "name": "Battle Armor",
       "slug": "battle-armor",
-      "shortEffect": "Protects against critical hits.",
+      "shortEffect": "Hard armor protects the Pokémon from critical hits.",
       "carriers": [
         "falinks",
         "perrserker"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "berserk": {
       "name": "Berserk",
       "slug": "berserk",
-      "shortEffect": "Raises this Pokémon's Special Attack by one stage every time its HP drops below half.",
+      "shortEffect": "Boosts the Pokémon's Sp. Atk stat when it takes a hit that causes its HP to become half or less.",
       "carriers": [
         "drampa",
         "drampa-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "big-pecks": {
       "name": "Big Pecks",
       "slug": "big-pecks",
-      "shortEffect": "Protects against Defense drops.",
+      "shortEffect": "Protects the Pokémon from Defense-lowering effects.",
       "carriers": [
         "pidgeot"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "blaze": {
       "name": "Blaze",
       "slug": "blaze",
-      "shortEffect": "Strengthens Fire moves to inflict 1.5× damage at 1/3 max HP or less.",
+      "shortEffect": "Powers up Fire-type moves when the Pokémon's HP is low.",
       "carriers": [
         "blaziken",
         "charizard",
@@ -132,33 +144,36 @@
         "skeledirge",
         "typhlosion",
         "typhlosion-hisui"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "bulletproof": {
       "name": "Bulletproof",
       "slug": "bulletproof",
-      "shortEffect": "Protects against bullet, ball, and bomb-based moves.",
+      "shortEffect": "Protects the Pokémon from some ball and bomb moves.",
       "carriers": [
         "chesnaught",
         "chesnaught-mega",
         "kommo-o",
         "ursaluna"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "cheek-pouch": {
       "name": "Cheek Pouch",
       "slug": "cheek-pouch",
-      "shortEffect": "Restores HP upon eating a Berry, in addition to the Berry's effect.",
+      "shortEffect": "Restores HP as well when the Pokémon eats a Berry.",
       "carriers": [
         "dedenne",
         "diggersby",
         "maushold-family-of-four"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "chlorophyll": {
       "name": "Chlorophyll",
       "slug": "chlorophyll",
-      "shortEffect": "Doubles Speed during strong sunlight.",
+      "shortEffect": "Boosts the Pokémon's Speed stat in sunshine.",
       "carriers": [
         "leafeon",
         "scovillain",
@@ -166,140 +181,154 @@
         "victreebel",
         "vileplume",
         "whimsicott"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "clear-body": {
       "name": "Clear Body",
       "slug": "clear-body",
-      "shortEffect": "Prevents stats from being lowered by other Pokémon.",
+      "shortEffect": "Prevents other Pokémon's moves or Abilities from lowering the Pokémon's stats.",
       "carriers": [
         "dragapult",
         "garganacl",
         "metagross"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "cloud-nine": {
       "name": "Cloud Nine",
       "slug": "cloud-nine",
-      "shortEffect": "Negates all effects of weather, but does not prevent the weather itself.",
+      "shortEffect": "Eliminates the effects of weather.",
       "carriers": [
         "altaria",
         "drampa"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "commander": {
       "name": "Commander",
       "slug": "commander",
-      "shortEffect": "Goes inside the mouth of an ally Dondozo if one is on the field.",
+      "shortEffect": "When the Pokémon enters a battle, it goes inside the mouth of an ally Dondozo if one is on the field. The Pokémon then issues commands from there.",
       "carriers": [
         "tatsugiri-curly"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "competitive": {
       "name": "Competitive",
       "slug": "competitive",
-      "shortEffect": "Raises Special Attack by two stages upon having any stat lowered.",
+      "shortEffect": "Boosts the Sp. Atk stat sharply when a stat is lowered.",
       "carriers": [
         "empoleon",
         "kilowattrel",
         "meowstic-female",
         "milotic",
         "wigglytuff"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "compound-eyes": {
       "name": "Compound Eyes",
       "slug": "compound-eyes",
-      "shortEffect": "Increases moves' accuracy to 1.3×.",
+      "shortEffect": "The Pokémon's compound eyes boost its accuracy.",
       "carriers": [
         "vivillon"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "contrary": {
       "name": "Contrary",
       "slug": "contrary",
-      "shortEffect": "Inverts stat changes.",
+      "shortEffect": "Makes stat changes have an opposite effect.",
       "carriers": [
         "malamar",
         "malamar-mega",
         "serperior",
         "staraptor-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "corrosion": {
       "name": "Corrosion",
       "slug": "corrosion",
-      "shortEffect": "This Pokémon can inflict poison on Poison and Steel Pokémon.",
+      "shortEffect": "The Pokémon can poison the target even if it's a Steel or Poison type.",
       "carriers": [
         "glimmora",
         "salazzle"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "costar": {
       "name": "Costar",
       "slug": "costar",
-      "shortEffect": "Copies ally's stat changes on entering battle.",
+      "shortEffect": "When the Pokémon enters a battle, it copies an ally's stat changes.",
       "carriers": [
         "flamigo"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "cud-chew": {
       "name": "Cud Chew",
       "slug": "cud-chew",
-      "shortEffect": "Causes the Pokémon to reuse an already consumed Berry at the end of the next turn.",
+      "shortEffect": "When the Pokémon eats a Berry, it will regurgitate that Berry at the end of the next turn and eat it one more time.",
       "carriers": [
         "farigiraf",
         "tauros-paldea-aqua-breed",
         "tauros-paldea-blaze-breed",
         "tauros-paldea-combat-breed"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "curious-medicine": {
       "name": "Curious Medicine",
       "slug": "curious-medicine",
-      "shortEffect": "Resets all stat changes upon entering battlefield.",
+      "shortEffect": "When the Pok&#233;mon is brought into battle, any stat alterations of allies are removed",
       "carriers": [
         "slowking-galar"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "cursed-body": {
       "name": "Cursed Body",
       "slug": "cursed-body",
-      "shortEffect": "Has a 30% chance of Disabling any move that hits the Pokémon.",
+      "shortEffect": "May disable a move used on the Pokémon.",
       "carriers": [
         "banette",
         "dragapult",
         "froslass",
         "gengar",
         "polteageist"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "cute-charm": {
       "name": "Cute Charm",
       "slug": "cute-charm",
-      "shortEffect": "Has a 30% chance of infatuating attacking Pokémon on contact.",
+      "shortEffect": "Contact with the Pokémon may cause infatuation.",
       "carriers": [
         "clefable",
         "lopunny",
         "milotic",
         "sylveon",
         "wigglytuff"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "damp": {
       "name": "Damp",
       "slug": "damp",
-      "shortEffect": "Prevents Self-Destruct, Explosion, and Aftermath from working while the Pokémon is in battle.",
+      "shortEffect": "Prevents the use of explosive moves such as Self-Destruct by dampening its surroundings.",
       "carriers": [
         "bellibolt",
         "politoed",
         "swampert"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "defiant": {
       "name": "Defiant",
       "slug": "defiant",
-      "shortEffect": "Raises Attack two stages upon having any stat lowered.",
+      "shortEffect": "Boosts the Pokémon's Attack stat sharply when its stats are lowered.",
       "carriers": [
         "annihilape",
         "falinks",
@@ -307,15 +336,17 @@
         "farfetchd",
         "kingambit",
         "passimian"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "disguise": {
       "name": "Disguise",
       "slug": "disguise",
-      "shortEffect": "Prevents the first instance of battle damage.",
+      "shortEffect": "Once per battle, the shroud that covers the Pokémon can protect it from an attack.",
       "carriers": [
         "mimikyu-disguised"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "dragonize": {
       "name": "Dragonize",
@@ -323,52 +354,58 @@
       "shortEffect": "The Pokémon's Normal-type moves become Dragon-type moves and their power is boosted by 20%.",
       "carriers": [
         "feraligatr-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "drizzle": {
       "name": "Drizzle",
       "slug": "drizzle",
-      "shortEffect": "Summons rain that lasts indefinitely upon entering battle.",
+      "shortEffect": "The Pokémon makes it rain when it enters a battle.",
       "carriers": [
         "pelipper",
         "politoed"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "drought": {
       "name": "Drought",
       "slug": "drought",
-      "shortEffect": "Summons strong sunlight that lasts indefinitely upon entering battle.",
+      "shortEffect": "Turns the sunlight harsh when the Pokémon enters a battle.",
       "carriers": [
         "charizard-mega-y",
         "ninetales",
         "torkoal"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "dry-skin": {
       "name": "Dry Skin",
       "slug": "dry-skin",
-      "shortEffect": "Causes 1/8 max HP in damage each turn during strong sunlight, but heals for 1/8 max HP during rain. Increases damage from Fire moves to 1.25×, but absorbs Water moves, healing for 1/4 max HP.",
+      "shortEffect": "Restores HP in rain or when hit by Water-type moves. Reduces HP in sunshine, and increases the damage received from Fire-type moves.",
       "carriers": [
         "heliolisk",
         "toxicroak"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "early-bird": {
       "name": "Early Bird",
       "slug": "early-bird",
-      "shortEffect": "Makes sleep pass twice as quickly.",
+      "shortEffect": "The Pokémon awakens twice as fast as other Pokémon from sleep.",
       "carriers": [
         "houndoom",
         "kangaskhan"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "earth-eater": {
       "name": "Earth Eater",
       "slug": "earth-eater",
-      "shortEffect": "Restores HP when hit by a Ground-type move.",
+      "shortEffect": "If hit by a Ground-type move, the Pokémon has its HP restored instead of taking damage.",
       "carriers": [
         "orthworm"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "eelevate": {
       "name": "Eelevate",
@@ -376,57 +413,64 @@
       "shortEffect": "The Pokémon floats off the ground, making it immune to Ground-type moves, as well as the Spikes, Toxic Spikes, and Sticky Web statuses. When the Pokémon knocks out a target with an attack, its highest stat is boosted by 1 stage.",
       "carriers": [
         "eelektross-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "effect-spore": {
       "name": "Effect Spore",
       "slug": "effect-spore",
-      "shortEffect": "Has a 30% chance of inflcting either paralysis, poison, or sleep on attacking Pokémon on contact.",
+      "shortEffect": "Contact with the Pokémon may inflict poison, sleep, or paralysis on its attacker.",
       "carriers": [
         "vileplume"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "electric-surge": {
       "name": "Electric Surge",
       "slug": "electric-surge",
-      "shortEffect": "When this Pokémon enters battle, it changes the terrain to Electric Terrain.",
+      "shortEffect": "Turns the ground into Electric Terrain when the Pokémon enters a battle.",
       "carriers": [
         "pincurchin",
         "raichu-mega-x"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "electromorphosis": {
       "name": "Electromorphosis",
       "slug": "electromorphosis",
-      "shortEffect": "When hit by an attack, the power of the next Electric-type move it uses is doubled.",
+      "shortEffect": "The Pokémon becomes charged when it takes damage, boosting the power of the next Electric-type move the Pokémon uses.",
       "carriers": [
         "bellibolt"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "emergency-exit": {
       "name": "Emergency Exit",
       "slug": "emergency-exit",
-      "shortEffect": "This Pokémon automatically switches out when its HP drops below half.",
+      "shortEffect": "The Pokémon, sensing danger, switches out when its HP becomes half or less.",
       "carriers": [
         "golisopod"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "fairy-aura": {
       "name": "Fairy Aura",
       "slug": "fairy-aura",
-      "shortEffect": "Strengthens Fairy moves to 1.33× their power for all friendly and opposing Pokémon.",
+      "shortEffect": "Powers up each Pokémon's Fairy-type moves.",
       "carriers": [
         "floette-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "filter": {
       "name": "Filter",
       "slug": "filter",
-      "shortEffect": "Decreases damage taken from super-effective moves by 1/4.",
+      "shortEffect": "Reduces the power of supereffective attacks taken.",
       "carriers": [
         "aggron-mega",
         "mr-mime"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "fire-mane": {
       "name": "Fire Mane",
@@ -434,22 +478,24 @@
       "shortEffect": "Boosts the power of the Pokémon's Fire-type moves by 50%.",
       "carriers": [
         "pyroar-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "flame-body": {
       "name": "Flame Body",
       "slug": "flame-body",
-      "shortEffect": "Has a 30% chance of burning attacking Pokémon on contact.",
+      "shortEffect": "Contact with the Pokémon may burn the attacker.",
       "carriers": [
         "chandelure",
         "talonflame",
         "volcarona"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "flash-fire": {
       "name": "Flash Fire",
       "slug": "flash-fire",
-      "shortEffect": "Protects against Fire moves. Once one has been blocked, the Pokémon's own Fire moves inflict 1.5× damage until it leaves battle.",
+      "shortEffect": "Powers up the Pokémon's Fire-type moves if it's hit by one.",
       "carriers": [
         "arcanine",
         "arcanine-hisui",
@@ -460,54 +506,60 @@
         "houndoom",
         "ninetales",
         "typhlosion"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "flower-veil": {
       "name": "Flower Veil",
       "slug": "flower-veil",
-      "shortEffect": "Protects friendly Grass Pokémon from having their stats lowered by other Pokémon.",
+      "shortEffect": "Ally Grass-type Pokémon are protected from status conditions and the lowering of their stats.",
       "carriers": [
         "floette-eternal",
         "florges"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "fluffy": {
       "name": "Fluffy",
       "slug": "fluffy",
-      "shortEffect": "Damage from contact moves is halved. Damage from Fire moves is doubled.",
+      "shortEffect": "Halves the damage taken from moves that make direct contact, but doubles that of Fire-type moves.",
       "carriers": [
         "houndstone"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "forecast": {
       "name": "Forecast",
       "slug": "forecast",
-      "shortEffect": "Changes Castform's type and form to match the weather.",
+      "shortEffect": "The Pokémon transforms with the weather to change its type to Water, Fire, or Ice.",
       "carriers": [
         "castform"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "forewarn": {
       "name": "Forewarn",
       "slug": "forewarn",
-      "shortEffect": "Reveals the opponents' strongest move upon entering battle.",
+      "shortEffect": "When it enters a battle, the Pokémon can tell one of the moves an opposing Pokémon has.",
       "carriers": [
         "musharna"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "friend-guard": {
       "name": "Friend Guard",
       "slug": "friend-guard",
-      "shortEffect": "Decreases all direct damage taken by friendly Pokémon to 0.75×.",
+      "shortEffect": "Reduces damage done to allies.",
       "carriers": [
         "maushold-family-of-four",
         "vivillon"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "frisk": {
       "name": "Frisk",
       "slug": "frisk",
-      "shortEffect": "Reveals an opponent's held item upon entering battle.",
+      "shortEffect": "When it enters a battle, the Pokémon can check an opposing Pokémon's held item.",
       "carriers": [
         "banette",
         "espathra",
@@ -521,29 +573,32 @@
         "typhlosion-hisui",
         "wigglytuff",
         "wyrdeer"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "fur-coat": {
       "name": "Fur Coat",
       "slug": "fur-coat",
-      "shortEffect": "Halves damage from physical attacks.",
+      "shortEffect": "Halves the damage from physical moves onto this Pokémon.",
       "carriers": [
         "furfrou",
         "persian-alola"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "gale-wings": {
       "name": "Gale Wings",
       "slug": "gale-wings",
-      "shortEffect": "Raises Flying moves' priority by one stage.",
+      "shortEffect": "Gives priority to Flying-type moves when the Pokémon's HP is full.",
       "carriers": [
         "talonflame"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "gluttony": {
       "name": "Gluttony",
       "slug": "gluttony",
-      "shortEffect": "Makes the Pokémon eat any held Berry triggered by low HP below 1/2 its max HP.",
+      "shortEffect": "Makes the Pokémon eat a held Berry when its HP drops to half or less, which is sooner than usual.",
       "carriers": [
         "appletun",
         "flapple",
@@ -553,53 +608,59 @@
         "snorlax",
         "swalot",
         "victreebel"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "good-as-gold": {
       "name": "Good as Gold",
       "slug": "good-as-gold",
-      "shortEffect": "Gives immunity to status moves.",
+      "shortEffect": "A body of pure, solid gold gives the Pokémon full immunity to other Pokémon's status moves.",
       "carriers": [
         "gholdengo"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "gooey": {
       "name": "Gooey",
       "slug": "gooey",
-      "shortEffect": "Lowers attacking Pokémon's Speed by one stage on contact.",
+      "shortEffect": "Contact with the Pokémon lowers the attacker's Speed stat.",
       "carriers": [
         "goodra",
         "goodra-hisui"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "grass-pelt": {
       "name": "Grass Pelt",
       "slug": "grass-pelt",
-      "shortEffect": "Boosts Defense while Grassy Terrain is in effect.",
+      "shortEffect": "Boosts the Pokémon's Defense stat in Grassy Terrain.",
       "carriers": [
         "gogoat"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "grassy-surge": {
       "name": "Grassy Surge",
       "slug": "grassy-surge",
-      "shortEffect": "When this Pokémon enters battle, it changes the terrain to Grassy Terrain.",
+      "shortEffect": "Turns the ground into Grassy Terrain when the Pokémon enters a battle.",
       "carriers": [
         "rillaboom"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "guard-dog": {
       "name": "Guard Dog",
       "slug": "guard-dog",
-      "shortEffect": "Boosts Attack if intimidated, and prevents being forced to switch out.",
+      "shortEffect": "Boosts the Pokémon's Attack stat if intimidated. Moves and items that would force the Pokémon to switch out also fail to work.",
       "carriers": [
         "mabosstiff"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "guts": {
       "name": "Guts",
       "slug": "guts",
-      "shortEffect": "Increases Attack to 1.5× with a major status ailment.",
+      "shortEffect": "It's so gutsy that having a status condition boosts the Pokémon's Attack stat.",
       "carriers": [
         "conkeldurr",
         "flareon",
@@ -609,35 +670,39 @@
         "squawkabilly-blue-plumage",
         "squawkabilly-green-plumage",
         "ursaluna"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "harvest": {
       "name": "Harvest",
       "slug": "harvest",
-      "shortEffect": "Has a 50% chance of restoring a used Berry after each turn if the Pokémon has held no items in the meantime.",
+      "shortEffect": "May create another Berry after one is used.",
       "carriers": [
         "arboliva",
         "trevenant"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "healer": {
       "name": "Healer",
       "slug": "healer",
-      "shortEffect": "Has a 30% chance of curing each adjacent ally of any major status ailment after each turn.",
+      "shortEffect": "Sometimes heals an ally's status condition.",
       "carriers": [
         "aromatisse",
         "audino",
         "audino-mega",
         "hatterene"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "heatproof": {
       "name": "Heatproof",
       "slug": "heatproof",
-      "shortEffect": "Halves damage from Fire moves and burns.",
+      "shortEffect": "The heatproof body of the Pokémon halves the damage from Fire-type moves that hit it.",
       "carriers": [
         "sinistcha"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "heavy-metal": {
       "name": "Heavy Metal",
@@ -645,39 +710,43 @@
       "shortEffect": "Doubles the Pokémon's weight.",
       "carriers": [
         "aggron"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "hospitality": {
       "name": "Hospitality",
       "slug": "hospitality",
-      "shortEffect": "When a Pokémon with Hospitality enters a battle, it restores HP for an ally by 25%.",
+      "shortEffect": "When the Pokémon enters a battle, it showers its ally with hospitality, restoring a small amount of the ally's HP.",
       "carriers": [
         "sinistcha"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "huge-power": {
       "name": "Huge Power",
       "slug": "huge-power",
-      "shortEffect": "Doubles Attack in battle.",
+      "shortEffect": "Doubles the Pokémon's Attack stat.",
       "carriers": [
         "azumarill",
         "diggersby",
         "mawile-mega",
         "starmie-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "hunger-switch": {
       "name": "Hunger Switch",
       "slug": "hunger-switch",
-      "shortEffect": "Causes Morpeko to change its form each turn, alternating between Full Belly Mode and Hangry Mode",
+      "shortEffect": "The Pokémon changes its form, alternating between its Full Belly Mode and Hangry Mode after the end of each turn.",
       "carriers": [
         "morpeko-full-belly"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "hustle": {
       "name": "Hustle",
       "slug": "hustle",
-      "shortEffect": "Strengthens physical moves to inflict 1.5× damage, but decreases their accuracy to 0.8×.",
+      "shortEffect": "Boosts the Attack stat, but lowers accuracy.",
       "carriers": [
         "flapple",
         "squawkabilly-blue-plumage",
@@ -685,32 +754,35 @@
         "squawkabilly-white-plumage",
         "squawkabilly-yellow-plumage",
         "togekiss"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "hydration": {
       "name": "Hydration",
       "slug": "hydration",
-      "shortEffect": "Cures any major status ailment after each turn during rain.",
+      "shortEffect": "Heals status conditions if it's raining.",
       "carriers": [
         "goodra",
         "vaporeon"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "hyper-cutter": {
       "name": "Hyper Cutter",
       "slug": "hyper-cutter",
-      "shortEffect": "Prevents Attack from being lowered by other Pokémon.",
+      "shortEffect": "The Pokémon's proud of its powerful pincers. They prevent other Pokémon from lowering its Attack stat.",
       "carriers": [
         "crabominable",
         "gliscor",
         "mawile",
         "pinsir"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "ice-body": {
       "name": "Ice Body",
       "slug": "ice-body",
-      "shortEffect": "Heals for 1/16 max HP after each turn during hail. Protects against hail damage.",
+      "shortEffect": "The Pokémon gradually regains HP in a Snowstorm.",
       "carriers": [
         "avalugg",
         "avalugg-hisui",
@@ -719,46 +791,51 @@
         "glalie",
         "mr-rime",
         "vanilluxe"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "illuminate": {
       "name": "Illuminate",
       "slug": "illuminate",
-      "shortEffect": "Doubles the wild encounter rate.",
+      "shortEffect": "Raises the likelihood of meeting wild Pokémon by illuminating the surroundings.",
       "carriers": [
         "starmie",
         "watchog"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "illusion": {
       "name": "Illusion",
       "slug": "illusion",
-      "shortEffect": "Takes the appearance of the last conscious party Pokémon upon being sent out until hit by a damaging move.",
+      "shortEffect": "Comes out disguised as the Pokémon in the party's last spot.",
       "carriers": [
         "zoroark",
         "zoroark-hisui"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "immunity": {
       "name": "Immunity",
       "slug": "immunity",
-      "shortEffect": "Prevents poison.",
+      "shortEffect": "The immune system of the Pokémon prevents it from getting poisoned.",
       "carriers": [
         "snorlax"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "imposter": {
       "name": "Imposter",
       "slug": "imposter",
-      "shortEffect": "Transforms upon entering battle.",
+      "shortEffect": "The Pokémon transforms itself into the Pokémon it's facing.",
       "carriers": [
         "ditto"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "infiltrator": {
       "name": "Infiltrator",
       "slug": "infiltrator",
-      "shortEffect": "Bypasses Light Screen, Reflect, and Safeguard.",
+      "shortEffect": "Passes through the opposing Pokémon's barrier, substitute, and the like and strikes.",
       "carriers": [
         "chandelure",
         "chandelure-mega",
@@ -769,20 +846,22 @@
         "noivern",
         "spiritomb",
         "whimsicott"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "innards-out": {
       "name": "Innards Out",
       "slug": "innards-out",
-      "shortEffect": "When this Pokémon faints from an opponent's move, that opponent takes damage equal to the HP this Pokémon had remaining.",
+      "shortEffect": "Damages the attacker landing the finishing hit by the amount equal to its last HP.",
       "carriers": [
         "victreebel-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "inner-focus": {
       "name": "Inner Focus",
       "slug": "inner-focus",
-      "shortEffect": "Prevents flinching.",
+      "shortEffect": "The Pokémon's intensely focused, and that protects the Pokémon from flinching.",
       "carriers": [
         "alakazam",
         "annihilape",
@@ -796,12 +875,13 @@
         "mudsdale",
         "oranguru",
         "umbreon"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "insomnia": {
       "name": "Insomnia",
       "slug": "insomnia",
-      "shortEffect": "Prevents sleep.",
+      "shortEffect": "The Pokémon is suffering from insomnia and cannot fall asleep.",
       "carriers": [
         "ariados",
         "banette",
@@ -810,12 +890,13 @@
         "gourgeist-small",
         "gourgeist-super",
         "scovillain"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "intimidate": {
       "name": "Intimidate",
       "slug": "intimidate",
-      "shortEffect": "Lowers opponents' Attack one stage upon entering battle.",
+      "shortEffect": "The Pokémon intimidates opposing Pokémon upon entering battle, lowering their Attack stat.",
       "carriers": [
         "arbok",
         "arcanine",
@@ -842,12 +923,13 @@
         "tauros-paldea-blaze-breed",
         "tauros-paldea-combat-breed",
         "wyrdeer"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "iron-fist": {
       "name": "Iron Fist",
       "slug": "iron-fist",
-      "shortEffect": "Strengthens punch-based moves to 1.2× their power.",
+      "shortEffect": "Powers up punching moves.",
       "carriers": [
         "conkeldurr",
         "crabominable",
@@ -856,23 +938,25 @@
         "infernape",
         "pangoro",
         "pawmot"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "justified": {
       "name": "Justified",
       "slug": "justified",
-      "shortEffect": "Raises Attack one stage upon taking damage from a Dark move.",
+      "shortEffect": "Being hit by a Dark-type move boosts the Attack stat of the Pokémon, for justice.",
       "carriers": [
         "absol",
         "arcanine",
         "gallade",
         "lucario"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "keen-eye": {
       "name": "Keen Eye",
       "slug": "keen-eye",
-      "shortEffect": "Prevents accuracy from being lowered.",
+      "shortEffect": "Keen eyes prevent other Pokémon from lowering this Pokémon's accuracy.",
       "carriers": [
         "farfetchd",
         "lycanroc-midday",
@@ -885,32 +969,35 @@
         "skarmory",
         "toucannon",
         "watchog"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "klutz": {
       "name": "Klutz",
       "slug": "klutz",
-      "shortEffect": "Prevents the Pokémon from using its held item in battle.",
+      "shortEffect": "The Pokémon can't use any held items.",
       "carriers": [
         "audino",
         "golurk",
         "lopunny"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "leaf-guard": {
       "name": "Leaf Guard",
       "slug": "leaf-guard",
-      "shortEffect": "Protects against major status ailments during strong sunlight.",
+      "shortEffect": "Prevents status conditions in sunny weather.",
       "carriers": [
         "leafeon",
         "meganium",
         "tsareena"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "levitate": {
       "name": "Levitate",
       "slug": "levitate",
-      "shortEffect": "Evades Ground moves.",
+      "shortEffect": "By floating in the air, the Pokémon receives full immunity to all Ground-type moves.",
       "carriers": [
         "chimecho",
         "chimecho-mega",
@@ -924,15 +1011,17 @@
         "rotom-heat",
         "rotom-mow",
         "rotom-wash"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "libero": {
       "name": "Libero",
       "slug": "libero",
-      "shortEffect": "Libero changes the Pokémon's type to that of its previously used attack.",
+      "shortEffect": "Changes the Pokémon's type to the type of the move it's about to use.",
       "carriers": [
         "cinderace"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "light-metal": {
       "name": "Light Metal",
@@ -941,12 +1030,13 @@
       "carriers": [
         "metagross",
         "scizor"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "lightning-rod": {
       "name": "Lightning Rod",
       "slug": "lightning-rod",
-      "shortEffect": "Redirects single-target Electric moves to this Pokémon where possible. Absorbs Electric moves, raising Special Attack one stage.",
+      "shortEffect": "The Pokémon draws in all Electric-type moves. Instead of being hit by Electric-type moves, it boosts its Sp. Atk.",
       "carriers": [
         "manectric",
         "pikachu",
@@ -954,12 +1044,13 @@
         "raichu",
         "rhyperior",
         "sceptile-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "limber": {
       "name": "Limber",
       "slug": "limber",
-      "shortEffect": "Prevents paralysis.",
+      "shortEffect": "Its limber body protects the Pokémon from paralysis.",
       "carriers": [
         "ditto",
         "grapploct",
@@ -969,133 +1060,148 @@
         "persian",
         "stunfisk",
         "toxapex"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "liquid-ooze": {
       "name": "Liquid Ooze",
       "slug": "liquid-ooze",
-      "shortEffect": "Damages opponents using leeching moves for as much as they would heal.",
+      "shortEffect": "Oozed liquid has strong stench, which damages attackers using any draining move.",
       "carriers": [
         "swalot"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "liquid-voice": {
       "name": "Liquid Voice",
       "slug": "liquid-voice",
-      "shortEffect": "Sound-based moves become Water-type.",
+      "shortEffect": "All sound-based moves become Water-type moves.",
       "carriers": [
         "primarina"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "long-reach": {
       "name": "Long Reach",
       "slug": "long-reach",
-      "shortEffect": "This Pokémon's moves do not make contact.",
+      "shortEffect": "The Pokémon uses its moves without making contact with the target.",
       "carriers": [
         "decidueye"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "magic-bounce": {
       "name": "Magic Bounce",
       "slug": "magic-bounce",
-      "shortEffect": "Reflects most non-damaging moves back at their user.",
+      "shortEffect": "Reflects status moves, instead of getting hit by them.",
       "carriers": [
         "absol-mega",
         "clefable-mega",
         "espeon",
         "hatterene",
         "sableye-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "magic-guard": {
       "name": "Magic Guard",
       "slug": "magic-guard",
-      "shortEffect": "Protects against damage not directly caused by a move.",
+      "shortEffect": "The Pokémon only takes damage from attacks.",
       "carriers": [
         "alakazam",
         "clefable",
         "reuniclus"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "magician": {
       "name": "Magician",
       "slug": "magician",
-      "shortEffect": "Steals the target's held item when the bearer uses a damaging move.",
+      "shortEffect": "The Pokémon steals the held item of a Pokémon it hits with a move.",
       "carriers": [
         "delphox",
         "klefki"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "magma-armor": {
       "name": "Magma Armor",
       "slug": "magma-armor",
-      "shortEffect": "Prevents freezing.",
+      "shortEffect": "The Pokémon is covered with hot magma, which prevents the Pokémon from becoming frozen.",
       "carriers": [
         "camerupt"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "marvel-scale": {
       "name": "Marvel Scale",
       "slug": "marvel-scale",
-      "shortEffect": "Increases Defense to 1.5× with a major status ailment.",
+      "shortEffect": "The Pokémon's marvelous scales boost the Defense stat if it has a status condition.",
       "carriers": [
         "milotic"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "mega-launcher": {
       "name": "Mega Launcher",
       "slug": "mega-launcher",
-      "shortEffect": "Strengthens aura and pulse moves to 1.5× their power.",
+      "shortEffect": "Powers up aura and pulse moves.",
       "carriers": [
         "blastoise-mega",
         "clawitzer"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "mega-sol": {
       "name": "Mega Sol",
       "slug": "mega-sol",
-      "shortEffect": "The Pokémon can use its moves as if the weather were harsh sunlight.",
+      "shortEffect": "Even when the sunlight has not turned harsh, the Pokémon can use its moves as if the weather were harsh sunlight.",
       "carriers": [
         "meganium-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "merciless": {
       "name": "Merciless",
       "slug": "merciless",
-      "shortEffect": "This Pokémon's moves critical hit against poisoned targets.",
+      "shortEffect": "The Pokémon's attacks become critical hits if the target is poisoned.",
       "carriers": [
         "toxapex"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "mimicry": {
       "name": "Mimicry",
       "slug": "mimicry",
-      "shortEffect": "Changes type depending on the terrain.",
+      "shortEffect": "Changes the Pokémon's type depending on the terrain.",
       "carriers": [
         "stunfisk-galar"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "minus": {
       "name": "Minus",
       "slug": "minus",
-      "shortEffect": "Increases Special Attack to 1.5× when a friendly Pokémon has Plus or Minus.",
+      "shortEffect": "Boosts the Sp. Atk stat of the Pokémon if an ally with the Plus or Minus Ability is also in battle.",
       "carriers": [
         "manectric",
         "toxtricity-low-key"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "mirror-armor": {
       "name": "Mirror Armor",
       "slug": "mirror-armor",
-      "shortEffect": "Reflects any stat-lowering effects.",
+      "shortEffect": "Bounces back only the stat-lowering effects that the Pokémon receives.",
       "carriers": [
         "corviknight"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "mold-breaker": {
       "name": "Mold Breaker",
       "slug": "mold-breaker",
-      "shortEffect": "Bypasses targets' abilities if they could hinder or prevent a move.",
+      "shortEffect": "Moves can be used on the target regardless of its Abilities.",
       "carriers": [
         "ampharos-mega",
         "basculegion-female",
@@ -1108,29 +1214,32 @@
         "pinsir",
         "rampardos",
         "tinkaton"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "moody": {
       "name": "Moody",
       "slug": "moody",
-      "shortEffect": "Raises a random stat two stages and lowers another one stage after each turn.",
+      "shortEffect": "Raises one stat sharply and lowers another every turn.",
       "carriers": [
         "glalie",
         "scovillain"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "motor-drive": {
       "name": "Motor Drive",
       "slug": "motor-drive",
-      "shortEffect": "Absorbs Electric moves, raising Speed one stage.",
+      "shortEffect": "Boosts its Speed stat if hit by an Electric-type move, instead of taking damage.",
       "carriers": [
         "emolga"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "moxie": {
       "name": "Moxie",
       "slug": "moxie",
-      "shortEffect": "Raises Attack one stage upon KOing a Pokémon.",
+      "shortEffect": "The Pokémon shows moxie, and that boosts the Attack stat after knocking out any Pokémon.",
       "carriers": [
         "gyarados",
         "heracross",
@@ -1140,41 +1249,45 @@
         "quaquaval",
         "salamence",
         "scrafty"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "multiscale": {
       "name": "Multiscale",
       "slug": "multiscale",
-      "shortEffect": "Halves damage taken from full HP.",
+      "shortEffect": "Reduces the amount of damage the Pokémon takes when its HP is full.",
       "carriers": [
         "dragonite",
         "dragonite-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "mummy": {
       "name": "Mummy",
       "slug": "mummy",
-      "shortEffect": "Changes attacking Pokémon's abilities to Mummy on contact.",
+      "shortEffect": "Contact with the Pokémon changes the attacker's Ability to Mummy.",
       "carriers": [
         "cofagrigus"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "natural-cure": {
       "name": "Natural Cure",
       "slug": "natural-cure",
-      "shortEffect": "Cures any major status ailment upon switching out.",
+      "shortEffect": "All status conditions heal when the Pokémon switches out.",
       "carriers": [
         "altaria",
         "pawmot",
         "roserade",
         "starmie",
         "trevenant"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "no-guard": {
       "name": "No Guard",
       "slug": "no-guard",
-      "shortEffect": "Ensures all moves used by and against the Pokémon hit.",
+      "shortEffect": "The Pokémon employs no-guard tactics to ensure incoming and outgoing attacks always land.",
       "carriers": [
         "golurk",
         "hawlucha-mega",
@@ -1182,42 +1295,46 @@
         "machamp",
         "pidgeot-mega",
         "raichu-mega-y"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "oblivious": {
       "name": "Oblivious",
       "slug": "oblivious",
-      "shortEffect": "Prevents infatuation and protects against Captivate.",
+      "shortEffect": "The Pokémon is oblivious, and that keeps it from being infatuated or falling for taunts.",
       "carriers": [
         "dondozo",
         "mamoswine",
         "salazzle",
         "slowbro",
         "slowking"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "opportunist": {
       "name": "Opportunist",
       "slug": "opportunist",
-      "shortEffect": "Copies stat boosts by the opponent.",
+      "shortEffect": "If an opponent's stat is boosted, the Pokémon seizes the opportunity to boost the same stat for itself.",
       "carriers": [
         "espathra"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "overcoat": {
       "name": "Overcoat",
       "slug": "overcoat",
-      "shortEffect": "Protects against damage from weather.",
+      "shortEffect": "Protects the Pokémon from things like sand, hail, and powder.",
       "carriers": [
         "forretress",
         "kommo-o",
         "reuniclus"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "overgrow": {
       "name": "Overgrow",
       "slug": "overgrow",
-      "shortEffect": "Strengthens Grass moves to inflict 1.5× damage at 1/3 max HP or less.",
+      "shortEffect": "Powers up Grass-type moves when the Pokémon's HP is low.",
       "carriers": [
         "chesnaught",
         "decidueye",
@@ -1230,12 +1347,13 @@
         "simisage",
         "torterra",
         "venusaur"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "own-tempo": {
       "name": "Own Tempo",
       "slug": "own-tempo",
-      "shortEffect": "Prevents confusion.",
+      "shortEffect": "This Pokémon has its own tempo, and that prevents it from becoming confused.",
       "carriers": [
         "avalugg",
         "indeedee-female",
@@ -1246,31 +1364,34 @@
         "slowking",
         "slowking-galar",
         "tinkaton"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "parental-bond": {
       "name": "Parental Bond",
       "slug": "parental-bond",
-      "shortEffect": "Lets the bearer hit twice with damaging moves. The second hit has half power.",
+      "shortEffect": "Parent and child each attacks.",
       "carriers": [
         "kangaskhan-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "pickpocket": {
       "name": "Pickpocket",
       "slug": "pickpocket",
-      "shortEffect": "Steals attacking Pokémon's held items on contact.",
+      "shortEffect": "Steals an item from an attacker that made direct contact.",
       "carriers": [
         "barbaracle",
         "grimmsnarl",
         "tinkaton",
         "weavile"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "pickup": {
       "name": "Pickup",
       "slug": "pickup",
-      "shortEffect": "Picks up other Pokémon's used and Flung held items. May also pick up an item after battle.",
+      "shortEffect": "The Pokémon may pick up the item an opposing Pokémon used during a battle. It may pick up items outside of battle, too.",
       "carriers": [
         "dedenne",
         "diggersby",
@@ -1278,48 +1399,53 @@
         "gourgeist-large",
         "gourgeist-small",
         "gourgeist-super"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "piercing-drill": {
       "name": "Piercing Drill",
       "slug": "piercing-drill",
-      "shortEffect": "When the Pokémon uses contact moves, it can hit even targets that are protecting themselves.",
+      "shortEffect": "When the Pokémon uses contact moves, it can hit even targets that are protecting themselves, dealing 1/4 of the damage that the move would otherwise deal. Everything aside from the target's protective effects is still triggered.",
       "carriers": [
         "excadrill-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "pixilate": {
       "name": "Pixilate",
       "slug": "pixilate",
-      "shortEffect": "Turns the bearer's Normal moves into Fairy moves and strengthens them to 1.3× their power.",
+      "shortEffect": "Normal-type moves become Fairy-type moves. The power of those moves is boosted a little.",
       "carriers": [
         "altaria-mega",
         "gardevoir-mega",
         "sylveon"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "plus": {
       "name": "Plus",
       "slug": "plus",
-      "shortEffect": "Increases Special Attack to 1.5× when a friendly Pokémon has Plus or Minus.",
+      "shortEffect": "Boosts the Sp. Atk stat of the Pokémon if an ally with the Plus or Minus Ability is also in battle.",
       "carriers": [
         "ampharos",
         "dedenne",
         "toxtricity-amped"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "poison-heal": {
       "name": "Poison Heal",
       "slug": "poison-heal",
-      "shortEffect": "Heals for 1/8 max HP after each turn when poisoned in place of damage.",
+      "shortEffect": "Restores HP if the Pokémon is poisoned, instead of losing HP.",
       "carriers": [
         "gliscor"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "poison-point": {
       "name": "Poison Point",
       "slug": "poison-point",
-      "shortEffect": "Has a 30% chance of poisoning attacking Pokémon on contact.",
+      "shortEffect": "Contact with the Pokémon may poison the attacker.",
       "carriers": [
         "clodsire",
         "dragalge",
@@ -1327,23 +1453,25 @@
         "qwilfish",
         "roserade",
         "scolipede"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "poison-touch": {
       "name": "Poison Touch",
       "slug": "poison-touch",
-      "shortEffect": "Has a 30% chance of poisoning target Pokémon upon contact.",
+      "shortEffect": "May poison a target when the Pokémon makes contact.",
       "carriers": [
         "dragalge",
         "grafaiai",
         "sneasler",
         "toxicroak"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "prankster": {
       "name": "Prankster",
       "slug": "prankster",
-      "shortEffect": "Raises non-damaging moves' priority by one stage.",
+      "shortEffect": "Gives priority to a status move.",
       "carriers": [
         "banette-mega",
         "grafaiai",
@@ -1353,12 +1481,13 @@
         "meowstic-male",
         "sableye",
         "whimsicott"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "pressure": {
       "name": "Pressure",
       "slug": "pressure",
-      "shortEffect": "Increases the PP cost of moves targetting the Pokémon by one.",
+      "shortEffect": "By putting pressure on the opposing Pokémon, it raises their PP usage.",
       "carriers": [
         "absol",
         "aerodactyl",
@@ -1367,60 +1496,67 @@
         "sneasler",
         "spiritomb",
         "weavile"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "protean": {
       "name": "Protean",
       "slug": "protean",
-      "shortEffect": "Changes the bearer's type to match each move it uses.",
+      "shortEffect": "Changes the Pokémon's type to the type of the move it's about to use.",
       "carriers": [
         "greninja",
         "greninja-mega",
         "meowscarada"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "psychic-surge": {
       "name": "Psychic Surge",
       "slug": "psychic-surge",
-      "shortEffect": "When this Pokémon enters battle, it changes the terrain to Psychic Terrain.",
+      "shortEffect": "Turns the ground into Psychic Terrain when the Pokémon enters a battle.",
       "carriers": [
         "indeedee-female",
         "indeedee-male"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "punk-rock": {
       "name": "Punk Rock",
       "slug": "punk-rock",
-      "shortEffect": "Boosts sound-based moves and halves damage from the same moves.",
+      "shortEffect": "Boosts the power of sound-based moves. The Pokémon also takes half the damage from these kinds of moves.",
       "carriers": [
         "toxtricity-amped",
         "toxtricity-low-key"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "pure-power": {
       "name": "Pure Power",
       "slug": "pure-power",
-      "shortEffect": "Doubles Attack in battle.",
+      "shortEffect": "Using its pure power, the Pokémon doubles its Attack stat.",
       "carriers": [
         "medicham",
         "medicham-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "purifying-salt": {
       "name": "Purifying Salt",
       "slug": "purifying-salt",
-      "shortEffect": "Protects from status conditions and halves damage from Ghost-type moves.",
+      "shortEffect": "The Pokémon's pure salt protects it from status conditions and halves the damage taken from Ghost-type moves.",
       "carriers": [
         "garganacl"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "queenly-majesty": {
       "name": "Queenly Majesty",
       "slug": "queenly-majesty",
-      "shortEffect": "Opposing Pokémon cannot use priority attacks.",
+      "shortEffect": "Its majesty pressures the opposing Pokémon, making it unable to attack using priority moves.",
       "carriers": [
         "tsareena"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "quick-draw": {
       "name": "Quick Draw",
@@ -1428,66 +1564,73 @@
       "shortEffect": "Enables the Pokémon to move first occasionally.",
       "carriers": [
         "slowbro-galar"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "quick-feet": {
       "name": "Quick Feet",
       "slug": "quick-feet",
-      "shortEffect": "Increases Speed to 1.5× with a major status ailment.",
+      "shortEffect": "Boosts the Speed stat if the Pokémon has a status condition.",
       "carriers": [
         "jolteon"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "rain-dish": {
       "name": "Rain Dish",
       "slug": "rain-dish",
-      "shortEffect": "Heals for 1/16 max HP after each turn during rain.",
+      "shortEffect": "The Pokémon gradually regains HP in rain.",
       "carriers": [
         "blastoise",
         "ludicolo",
         "pelipper"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "rattled": {
       "name": "Rattled",
       "slug": "rattled",
-      "shortEffect": "Raises Speed one stage upon being hit by a Dark, Ghost, or Bug move.",
+      "shortEffect": "Dark-, Ghost-, and Bug-type moves scare the Pokémon and boost its Speed stat.",
       "carriers": [
         "dudunsparce-two-segment",
         "persian-alola"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "receiver": {
       "name": "Receiver",
       "slug": "receiver",
-      "shortEffect": "When an ally faints, this Pokémon gains its Ability.",
+      "shortEffect": "The Pokémon copies the Ability of a defeated ally.",
       "carriers": [
         "passimian"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "reckless": {
       "name": "Reckless",
       "slug": "reckless",
-      "shortEffect": "Strengthens recoil moves to 1.2× their power.",
+      "shortEffect": "Powers up moves that have recoil damage.",
       "carriers": [
         "emboar",
         "rhyperior",
         "staraptor"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "refrigerate": {
       "name": "Refrigerate",
       "slug": "refrigerate",
-      "shortEffect": "Turns the bearer's Normal moves into Ice moves and strengthens them to 1.3× their power.",
+      "shortEffect": "Normal-type moves become Ice-type moves. The power of those moves is boosted a little.",
       "carriers": [
         "aurorus",
         "glalie-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "regenerator": {
       "name": "Regenerator",
       "slug": "regenerator",
-      "shortEffect": "Heals for 1/3 max HP upon switching out.",
+      "shortEffect": "Restores a little HP when withdrawn from battle.",
       "carriers": [
         "audino",
         "cyclizar",
@@ -1499,99 +1642,109 @@
         "slowking",
         "slowking-galar",
         "toxapex"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "ripen": {
       "name": "Ripen",
       "slug": "ripen",
-      "shortEffect": "Doubles the effect of berries.",
+      "shortEffect": "Ripens Berries and doubles their effect.",
       "carriers": [
         "appletun",
         "flapple"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "rivalry": {
       "name": "Rivalry",
       "slug": "rivalry",
-      "shortEffect": "Increases damage inflicted to 1.25× against Pokémon of the same gender, but decreases damage to 0.75× against the opposite gender.",
+      "shortEffect": "Becomes competitive and deals more damage to Pokémon of the same gender, but deals less to Pokémon of the opposite gender.",
       "carriers": [
         "luxray",
         "pyroar-male"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "rock-head": {
       "name": "Rock Head",
       "slug": "rock-head",
-      "shortEffect": "Protects against recoil damage.",
+      "shortEffect": "Protects the Pokémon from recoil damage.",
       "carriers": [
         "aerodactyl",
         "aggron",
         "arcanine-hisui",
         "steelix",
         "tyrantrum"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "rough-skin": {
       "name": "Rough Skin",
       "slug": "rough-skin",
-      "shortEffect": "Damages attacking Pokémon for 1/8 their max HP on contact.",
+      "shortEffect": "This Pokémon inflicts damage with its rough skin to the attacker on contact.",
       "carriers": [
         "garchomp",
         "sharpedo"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "run-away": {
       "name": "Run Away",
       "slug": "run-away",
-      "shortEffect": "Ensures success fleeing from wild battles.",
+      "shortEffect": "Enables a sure getaway from wild Pokémon.",
       "carriers": [
         "dudunsparce-two-segment",
         "thievul"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "sand-force": {
       "name": "Sand Force",
       "slug": "sand-force",
-      "shortEffect": "Strengthens Rock, Ground, and Steel moves to 1.3× their power during a sandstorm. Protects against sandstorm damage.",
+      "shortEffect": "Boosts the power of Rock-, Ground-, and Steel-type moves in a sandstorm.",
       "carriers": [
         "excadrill",
         "garchomp-mega",
         "hippowdon",
         "steelix-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "sand-rush": {
       "name": "Sand Rush",
       "slug": "sand-rush",
-      "shortEffect": "Doubles Speed during a sandstorm. Protects against sandstorm damage.",
+      "shortEffect": "Boosts the Pokémon's Speed stat in a sandstorm.",
       "carriers": [
         "excadrill",
         "houndstone",
         "lycanroc-midday"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "sand-spit": {
       "name": "Sand Spit",
       "slug": "sand-spit",
-      "shortEffect": "Creates a sandstorm when hit by an attack.",
+      "shortEffect": "The Pokémon creates a sandstorm when it's hit by an attack.",
       "carriers": [
         "sandaconda"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "sand-stream": {
       "name": "Sand Stream",
       "slug": "sand-stream",
-      "shortEffect": "Summons a sandstorm that lasts indefinitely upon entering battle.",
+      "shortEffect": "The Pokémon summons a sandstorm when it enters a battle.",
       "carriers": [
         "hippowdon",
         "tyranitar",
         "tyranitar-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "sand-veil": {
       "name": "Sand Veil",
       "slug": "sand-veil",
-      "shortEffect": "Increases evasion to 1.25× during a sandstorm. Protects against sandstorm damage.",
+      "shortEffect": "Boosts the Pokémon's evasion in a sandstorm.",
       "carriers": [
         "garchomp",
         "gliscor",
@@ -1599,12 +1752,13 @@
         "orthworm",
         "sandaconda",
         "stunfisk"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "sap-sipper": {
       "name": "Sap Sipper",
       "slug": "sap-sipper",
-      "shortEffect": "Absorbs Grass moves, raising Attack one stage.",
+      "shortEffect": "Boosts the Attack stat if hit by a Grass-type move, instead of taking damage.",
       "carriers": [
         "azumarill",
         "drampa",
@@ -1613,12 +1767,13 @@
         "goodra",
         "goodra-hisui",
         "wyrdeer"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "scrappy": {
       "name": "Scrappy",
       "slug": "scrappy",
-      "shortEffect": "Lets the Pokémon's Normal and Fighting moves hit Ghost Pokémon.",
+      "shortEffect": "The Pokémon can hit Ghost-type Pokémon with Normal- and Fighting-type moves.",
       "carriers": [
         "decidueye-hisui",
         "flamigo",
@@ -1626,15 +1781,17 @@
         "lopunny-mega",
         "pangoro",
         "sirfetchd"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "screen-cleaner": {
       "name": "Screen Cleaner",
       "slug": "screen-cleaner",
-      "shortEffect": "Nullifies effects of Light Screen, Reflect, and Aurora Veil.",
+      "shortEffect": "When the Pokémon enters a battle, the effects of Light Screen, Reflect, and Aurora Veil are nullified for both opposing and ally Pokémon.",
       "carriers": [
         "mr-rime"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "seed-sower": {
       "name": "Seed Sower",
@@ -1642,24 +1799,27 @@
       "shortEffect": "Turns the ground into Grassy Terrain when the Pokémon is hit by an attack.",
       "carriers": [
         "arboliva"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "serene-grace": {
       "name": "Serene Grace",
       "slug": "serene-grace",
-      "shortEffect": "Doubles the chance of moves' extra effects occurring.",
+      "shortEffect": "Boosts the likelihood of additional effects occurring when attacking.",
       "carriers": [
         "dudunsparce-two-segment",
         "togekiss"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "shadow-tag": {
       "name": "Shadow Tag",
       "slug": "shadow-tag",
-      "shortEffect": "Prevents opponents from fleeing or switching out.",
+      "shortEffect": "This Pokémon steps on the opposing Pokémon's shadow to prevent it from escaping.",
       "carriers": [
         "gengar-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "sharpness": {
       "name": "Sharpness",
@@ -1670,23 +1830,25 @@
         "gallade",
         "kleavor",
         "samurott-hisui"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "shed-skin": {
       "name": "Shed Skin",
       "slug": "shed-skin",
-      "shortEffect": "Has a 33% chance of curing any major status ailment after each turn.",
+      "shortEffect": "The Pokémon may heal its own status conditions by shedding its skin.",
       "carriers": [
         "arbok",
         "cyclizar",
         "sandaconda",
         "scrafty"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "sheer-force": {
       "name": "Sheer Force",
       "slug": "sheer-force",
-      "shortEffect": "Strengthens moves with extra effects to 1.3× their power, but prevents their extra effects.",
+      "shortEffect": "Removes additional effects to increase the power of moves when attacking.",
       "carriers": [
         "camerupt-mega",
         "conkeldurr",
@@ -1699,12 +1861,13 @@
         "steelix",
         "tauros",
         "toucannon"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "shell-armor": {
       "name": "Shell Armor",
       "slug": "shell-armor",
-      "shortEffect": "Protects against critical hits.",
+      "shortEffect": "A hard shell protects the Pokémon from critical hits.",
       "carriers": [
         "goodra-hisui",
         "samurott",
@@ -1712,60 +1875,66 @@
         "slowbro-mega",
         "torkoal",
         "torterra"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "shield-dust": {
       "name": "Shield Dust",
       "slug": "shield-dust",
-      "shortEffect": "Protects against incoming moves' extra effects.",
+      "shortEffect": "This Pokémon's dust blocks the additional effects of attacks taken.",
       "carriers": [
         "vivillon"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "skill-link": {
       "name": "Skill Link",
       "slug": "skill-link",
-      "shortEffect": "Extends two-to-five-hit moves and Triple Kick to their full length every time.",
+      "shortEffect": "Maximizes the number of times multi-strike moves hit.",
       "carriers": [
         "heracross-mega",
         "toucannon"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "slush-rush": {
       "name": "Slush Rush",
       "slug": "slush-rush",
-      "shortEffect": "During Hail, this Pokémon has double Speed.",
+      "shortEffect": "Boosts the Pokémon's Speed stat in a Snowstorm.",
       "carriers": [
         "beartic"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "sniper": {
       "name": "Sniper",
       "slug": "sniper",
-      "shortEffect": "Strengthens critical hits to inflict 3× damage rather than 2×.",
+      "shortEffect": "Powers up moves if they become critical hits when attacking.",
       "carriers": [
         "ariados",
         "barbaracle",
         "beedrill",
         "inteleon"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "snow-cloak": {
       "name": "Snow Cloak",
       "slug": "snow-cloak",
-      "shortEffect": "Increases evasion to 1.25× during hail. Protects against hail damage.",
+      "shortEffect": "Boosts evasion in a Snowstorm.",
       "carriers": [
         "beartic",
         "froslass",
         "glaceon",
         "mamoswine",
         "ninetales-alola"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "snow-warning": {
       "name": "Snow Warning",
       "slug": "snow-warning",
-      "shortEffect": "Summons hail that lasts indefinitely upon entering battle.",
+      "shortEffect": "The Pokémon summons a Snowstorm when it enters a battle.",
       "carriers": [
         "abomasnow",
         "abomasnow-mega",
@@ -1773,49 +1942,54 @@
         "froslass-mega",
         "ninetales-alola",
         "vanilluxe"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "solar-power": {
       "name": "Solar Power",
       "slug": "solar-power",
-      "shortEffect": "Increases Special Attack to 1.5× but costs 1/8 max HP after each turn during strong sunlight.",
+      "shortEffect": "Boosts the Sp. Atk stat in sunny weather, but HP decreases every turn.",
       "carriers": [
         "charizard",
         "heliolisk",
         "houndoom-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "solid-rock": {
       "name": "Solid Rock",
       "slug": "solid-rock",
-      "shortEffect": "Decreases damage taken from super-effective moves by 1/4.",
+      "shortEffect": "Reduces the power of supereffective attacks taken.",
       "carriers": [
         "camerupt",
         "rhyperior"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "soundproof": {
       "name": "Soundproof",
       "slug": "soundproof",
-      "shortEffect": "Protects against sound-based moves.",
+      "shortEffect": "Soundproofing of the Pokémon itself gives full immunity to all sound-based moves.",
       "carriers": [
         "abomasnow",
         "bastiodon",
         "kommo-o",
         "mr-mime"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "speed-boost": {
       "name": "Speed Boost",
       "slug": "speed-boost",
-      "shortEffect": "Raises Speed one stage after each turn.",
+      "shortEffect": "Its Speed stat is boosted every turn.",
       "carriers": [
         "blaziken",
         "blaziken-mega",
         "espathra",
         "scolipede",
         "sharpedo"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "spicy-spray": {
       "name": "Spicy Spray",
@@ -1823,55 +1997,61 @@
       "shortEffect": "When the Pokémon takes damage from a move, it burns the attacker.",
       "carriers": [
         "scovillain-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "stakeout": {
       "name": "Stakeout",
       "slug": "stakeout",
-      "shortEffect": "This Pokémon's moves have double power against Pokémon that switched in this turn.",
+      "shortEffect": "Doubles the damage dealt to the target's replacement if the target switches out.",
       "carriers": [
         "mabosstiff",
         "thievul"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "stall": {
       "name": "Stall",
       "slug": "stall",
-      "shortEffect": "Makes the Pokémon move last within its move's priority bracket.",
+      "shortEffect": "The Pokémon moves after all other Pokémon do.",
       "carriers": [
         "sableye"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "stalwart": {
       "name": "Stalwart",
       "slug": "stalwart",
-      "shortEffect": "Ignores moves and abilities that draw in moves.",
+      "shortEffect": "Ignores the effects of opposing Pokémon's Abilities and moves that draw in moves.",
       "carriers": [
         "archaludon",
         "skarmory-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "stamina": {
       "name": "Stamina",
       "slug": "stamina",
-      "shortEffect": "Raises this Pokémon's Defense by one stage when it takes damage from a move.",
+      "shortEffect": "Boosts the Defense stat when hit by an attack.",
       "carriers": [
         "archaludon",
         "mudsdale"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "stance-change": {
       "name": "Stance Change",
       "slug": "stance-change",
-      "shortEffect": "Changes Aegislash to Blade Forme before using a damaging move, or Shield Forme before using King’s Shield.",
+      "shortEffect": "The Pokémon changes its form to Blade Forme when it uses an attack move, and changes to Shield Forme when it uses King's Shield.",
       "carriers": [
         "aegislash-shield"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "static": {
       "name": "Static",
       "slug": "static",
-      "shortEffect": "Has a 30% chance of paralyzing attacking Pokémon on contact.",
+      "shortEffect": "The Pokémon is charged with static electricity, so contact with it may cause paralysis.",
       "carriers": [
         "ampharos",
         "bellibolt",
@@ -1880,19 +2060,21 @@
         "pikachu",
         "raichu",
         "stunfisk"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "steadfast": {
       "name": "Steadfast",
       "slug": "steadfast",
-      "shortEffect": "Raises Speed one stage upon flinching.",
+      "shortEffect": "The Pokémon's determination boosts the Speed stat each time the Pokémon flinches.",
       "carriers": [
         "gallade",
         "lucario",
         "lycanroc-midday",
         "machamp",
         "sirfetchd"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "steely-spirit": {
       "name": "Steely Spirit",
@@ -1900,47 +2082,52 @@
       "shortEffect": "Powers up ally Pokémon's Steel-type moves.",
       "carriers": [
         "perrserker"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "stench": {
       "name": "Stench",
       "slug": "stench",
-      "shortEffect": "Has a 10% chance of making target Pokémon flinch with each hit.",
+      "shortEffect": "By releasing stench when attacking, this Pokémon may cause the target to flinch.",
       "carriers": [
         "garbodor"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "sticky-hold": {
       "name": "Sticky Hold",
       "slug": "sticky-hold",
-      "shortEffect": "Prevents a held item from being removed by other Pokémon.",
+      "shortEffect": "Items held by the Pokémon are stuck fast and cannot be removed by other Pokémon.",
       "carriers": [
         "hydrapple",
         "swalot"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "storm-drain": {
       "name": "Storm Drain",
       "slug": "storm-drain",
-      "shortEffect": "Redirects single-target Water moves to this Pokémon where possible. Absorbs Water moves, raising Special Attack one stage.",
+      "shortEffect": "Draws in all Water-type moves. Instead of being hit by Water-type moves, it boosts its Sp. Atk.",
       "carriers": [
         "tatsugiri-curly"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "strong-jaw": {
       "name": "Strong Jaw",
       "slug": "strong-jaw",
-      "shortEffect": "Strengthens biting moves to 1.5× their power.",
+      "shortEffect": "The Pokémon's strong jaw boosts the power of its biting moves.",
       "carriers": [
         "avalugg-hisui",
         "sharpedo-mega",
         "tyrantrum"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "sturdy": {
       "name": "Sturdy",
       "slug": "sturdy",
-      "shortEffect": "Prevents being KOed from full HP, leaving 1 HP instead. Protects against the one-hit KO moves regardless of HP.",
+      "shortEffect": "It cannot be knocked out with one hit. One-hit KO moves cannot knock it out, either.",
       "carriers": [
         "aggron",
         "archaludon",
@@ -1951,53 +2138,59 @@
         "garganacl",
         "skarmory",
         "steelix"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "suction-cups": {
       "name": "Suction Cups",
       "slug": "suction-cups",
-      "shortEffect": "Prevents being forced out of battle by other Pokémon's moves.",
+      "shortEffect": "This Pokémon uses suction cups to stay in one spot to negate all moves and items that force switching out.",
       "carriers": [
         "malamar"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "super-luck": {
       "name": "Super Luck",
       "slug": "super-luck",
-      "shortEffect": "Raises moves' critical hit rates one stage.",
+      "shortEffect": "The Pokémon is so lucky that the critical-hit ratios of its moves are boosted.",
       "carriers": [
         "absol",
         "togekiss"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "supersweet-syrup": {
       "name": "Supersweet Syrup",
       "slug": "supersweet-syrup",
-      "shortEffect": "Once per battle, when a Pokémon with Supersweet Syrup enters the battle, it lowers the evasion stat of all adjacent opponents by one stage.",
+      "shortEffect": "A sickly sweet scent spreads across the field the first time the Pokémon enters a battle, lowering the evasiveness of opposing Pokémon.",
       "carriers": [
         "hydrapple"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "supreme-overlord": {
       "name": "Supreme Overlord",
       "slug": "supreme-overlord",
-      "shortEffect": "Attack and Special Attack are boosted for each party Pokémon that has been defeated.",
+      "shortEffect": "When the Pokémon enters a battle, its Attack and Sp. Atk stats are boosted by 10% for each of the allies in its party that have already been defeated.",
       "carriers": [
         "kingambit"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "surge-surfer": {
       "name": "Surge Surfer",
       "slug": "surge-surfer",
-      "shortEffect": "Doubles this Pokémon's Speed on Electric Terrain.",
+      "shortEffect": "Doubles the Pokémon's Speed stat on Electric Terrain.",
       "carriers": [
         "raichu-alola"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "swarm": {
       "name": "Swarm",
       "slug": "swarm",
-      "shortEffect": "Strengthens Bug moves to inflict 1.5× damage at 1/3 max HP or less.",
+      "shortEffect": "Powers up Bug-type moves when the Pokémon's HP is low.",
       "carriers": [
         "ariados",
         "beedrill",
@@ -2006,22 +2199,24 @@
         "scizor",
         "scolipede",
         "volcarona"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "sweet-veil": {
       "name": "Sweet Veil",
       "slug": "sweet-veil",
-      "shortEffect": "Prevents friendly Pokémon from sleeping.",
+      "shortEffect": "Prevents itself and ally Pokémon from falling asleep.",
       "carriers": [
         "alcremie",
         "slurpuff",
         "tsareena"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "swift-swim": {
       "name": "Swift Swim",
       "slug": "swift-swim",
-      "shortEffect": "Doubles Speed during rain.",
+      "shortEffect": "Boosts the Pokémon's Speed stat in rain.",
       "carriers": [
         "basculegion-female",
         "basculegion-male",
@@ -2030,22 +2225,24 @@
         "overqwil",
         "qwilfish",
         "swampert-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "symbiosis": {
       "name": "Symbiosis",
       "slug": "symbiosis",
-      "shortEffect": "Passes the bearer's held item to an ally when the ally uses up its item.",
+      "shortEffect": "The Pokémon passes its item to an ally that has used up an item.",
       "carriers": [
         "floette-eternal",
         "florges",
         "oranguru"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "synchronize": {
       "name": "Synchronize",
       "slug": "synchronize",
-      "shortEffect": "Copies burns, paralysis, and poison received onto the Pokémon that inflicted them.",
+      "shortEffect": "The attacker will receive the same status condition if it inflicts a burn, poison, or paralysis to the Pokémon.",
       "carriers": [
         "alakazam",
         "espeon",
@@ -2054,22 +2251,24 @@
         "indeedee-male",
         "musharna",
         "umbreon"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "tangled-feet": {
       "name": "Tangled Feet",
       "slug": "tangled-feet",
-      "shortEffect": "Doubles evasion when confused.",
+      "shortEffect": "Raises evasion if the Pokémon is confused.",
       "carriers": [
         "flamigo",
         "mr-rime",
         "pidgeot"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "technician": {
       "name": "Technician",
       "slug": "technician",
-      "shortEffect": "Strengthens moves of 60 base power or less to 1.5× their power.",
+      "shortEffect": "Powers up the Pokémon's weaker moves.",
       "carriers": [
         "grapploct",
         "maushold-family-of-four",
@@ -2081,45 +2280,49 @@
         "scizor-mega",
         "toxtricity-amped",
         "toxtricity-low-key"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "telepathy": {
       "name": "Telepathy",
       "slug": "telepathy",
-      "shortEffect": "Protects against friendly Pokémon's damaging moves.",
+      "shortEffect": "Anticipates an ally's attack and dodges it.",
       "carriers": [
         "gardevoir",
         "medicham",
         "musharna",
         "noivern",
         "oranguru"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "thermal-exchange": {
       "name": "Thermal Exchange",
       "slug": "thermal-exchange",
-      "shortEffect": "Raises Attack when hit by a Fire-type move. Cannot be burned.",
+      "shortEffect": "Boosts the Attack stat when the Pokémon is hit by a Fire-type move. The Pokémon also cannot be burned.",
       "carriers": [
         "baxcalibur",
         "baxcalibur-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "thick-fat": {
       "name": "Thick Fat",
       "slug": "thick-fat",
-      "shortEffect": "Halves damage from Fire and Ice moves.",
+      "shortEffect": "The Pokémon is protected by a layer of thick fat, which halves the damage taken from Fire- and Ice-type moves.",
       "carriers": [
         "appletun",
         "azumarill",
         "mamoswine",
         "snorlax",
         "venusaur-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "torrent": {
       "name": "Torrent",
       "slug": "torrent",
-      "shortEffect": "Strengthens Water moves to inflict 1.5× damage at 1/3 max HP or less.",
+      "shortEffect": "Powers up Water-type moves when the Pokémon's HP is low.",
       "carriers": [
         "blastoise",
         "empoleon",
@@ -2132,12 +2335,13 @@
         "samurott-hisui",
         "simipour",
         "swampert"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "tough-claws": {
       "name": "Tough Claws",
       "slug": "tough-claws",
-      "shortEffect": "Strengthens moves that make contact to 1.33× their power.",
+      "shortEffect": "Powers up moves that make direct contact.",
       "carriers": [
         "aerodactyl-mega",
         "barbaracle",
@@ -2147,7 +2351,8 @@
         "lycanroc-dusk",
         "metagross-mega",
         "perrserker"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "toxic-debris": {
       "name": "Toxic Debris",
@@ -2155,34 +2360,37 @@
       "shortEffect": "Scatters poison spikes at the feet of the opposing team when the Pokémon takes damage from physical moves.",
       "carriers": [
         "glimmora"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "trace": {
       "name": "Trace",
       "slug": "trace",
-      "shortEffect": "Copies an opponent's ability upon entering battle.",
+      "shortEffect": "When it enters a battle, the Pokémon copies an opposing Pokémon's Ability.",
       "carriers": [
         "alakazam-mega",
         "gardevoir",
         "meowstic-female-mega",
         "meowstic-male-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "unaware": {
       "name": "Unaware",
       "slug": "unaware",
-      "shortEffect": "Ignores other Pokémon's stat modifiers for damage and accuracy calculation.",
+      "shortEffect": "When attacking, the Pokémon ignores the target Pokémon's stat changes.",
       "carriers": [
         "clefable",
         "clodsire",
         "dondozo",
         "skeledirge"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "unburden": {
       "name": "Unburden",
       "slug": "unburden",
-      "shortEffect": "Doubles Speed upon using or losing a held item.",
+      "shortEffect": "Boosts the Speed stat if the Pokémon's held item is used or lost.",
       "carriers": [
         "grafaiai",
         "hawlucha",
@@ -2191,12 +2399,13 @@
         "slurpuff",
         "sneasler",
         "thievul"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "unnerve": {
       "name": "Unnerve",
       "slug": "unnerve",
-      "shortEffect": "Prevents opposing Pokémon from eating held Berries.",
+      "shortEffect": "Unnerves opposing Pokémon and makes them unable to eat Berries.",
       "carriers": [
         "aerodactyl",
         "arbok",
@@ -2206,74 +2415,82 @@
         "pyroar-male",
         "tyranitar",
         "ursaluna"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "unseen-fist": {
       "name": "Unseen Fist",
       "slug": "unseen-fist",
-      "shortEffect": "Contact moves can strike through Protect/Detect.",
+      "shortEffect": "The Pokémon can deal damage with moves that make physical contact, even if the target is protected. This damage is reduced to 25%",
       "carriers": [
         "golurk-mega"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "vital-spirit": {
       "name": "Vital Spirit",
       "slug": "vital-spirit",
-      "shortEffect": "Prevents sleep.",
+      "shortEffect": "The Pokémon is full of vitality, and that prevents it from falling asleep.",
       "carriers": [
         "annihilape",
         "lycanroc-midnight"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "volt-absorb": {
       "name": "Volt Absorb",
       "slug": "volt-absorb",
-      "shortEffect": "Absorbs Electric moves, healing for 1/4 max HP.",
+      "shortEffect": "Restores HP if hit by an Electric-type move, instead of taking damage.",
       "carriers": [
         "jolteon",
         "kilowattrel",
         "pawmot"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "wandering-spirit": {
       "name": "Wandering Spirit",
       "slug": "wandering-spirit",
-      "shortEffect": "Swaps abilities with opponents on contact.",
+      "shortEffect": "The Pokémon exchanges Abilities with a Pokémon that hits it with a move that makes direct contact.",
       "carriers": [
         "runerigus"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "water-absorb": {
       "name": "Water Absorb",
       "slug": "water-absorb",
-      "shortEffect": "Absorbs Water moves, healing for 1/4 max HP.",
+      "shortEffect": "Restores HP if hit by a Water-type move, instead of taking damage.",
       "carriers": [
         "araquanid",
         "clodsire",
         "politoed",
         "vaporeon"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "water-bubble": {
       "name": "Water Bubble",
       "slug": "water-bubble",
-      "shortEffect": "Halves damage from Fire moves, doubles damage of Water moves, and prevents burns.",
+      "shortEffect": "Lowers the power of Fire-type moves done to the Pokémon and prevents the Pokémon from getting a burn.",
       "carriers": [
         "araquanid"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "water-veil": {
       "name": "Water Veil",
       "slug": "water-veil",
-      "shortEffect": "Prevents burns.",
+      "shortEffect": "The Pokémon is covered with a water veil, which prevents the Pokémon from getting a burn.",
       "carriers": [
         "dondozo"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "weak-armor": {
       "name": "Weak Armor",
       "slug": "weak-armor",
-      "shortEffect": "Raises Speed and lowers Defense by one stage each upon being hit by a physical move.",
+      "shortEffect": "Physical attacks to the Pokémon lower its Defense stat but sharply raise its Speed stat.",
       "carriers": [
         "armarouge",
         "ceruledge",
@@ -2281,39 +2498,45 @@
         "polteageist",
         "skarmory",
         "vanilluxe"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "well-baked-body": {
       "name": "Well-Baked Body",
       "slug": "well-baked-body",
-      "shortEffect": "Immune to Fire-type moves, and Defense is sharply boosted.",
+      "shortEffect": "The Pokémon takes no damage when hit by Fire-type moves. Instead, its Defense stat is sharply boosted.",
       "carriers": [
         "dachsbun"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "white-smoke": {
       "name": "White Smoke",
       "slug": "white-smoke",
-      "shortEffect": "Prevents stats from being lowered by other Pokémon.",
+      "shortEffect": "The Pokémon is protected by its white smoke, which prevents other Pokémon from lowering its stats.",
       "carriers": [
         "torkoal"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "wind-power": {
       "name": "Wind Power",
       "slug": "wind-power",
-      "shortEffect": "When hit by a wind move, the power of the next Electric-type move it uses is doubled.",
+      "shortEffect": "The Pokémon becomes charged when it is hit by a wind move, boosting the power of the next Electric-type move the Pokémon uses.",
       "carriers": [
         "kilowattrel"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     },
     "zero-to-hero": {
       "name": "Zero to Hero",
       "slug": "zero-to-hero",
-      "shortEffect": "Transforms into its Hero Form when switching out.",
+      "shortEffect": "The Pokémon transforms into its Hero Form when it switches out.",
       "carriers": [
         "palafin-zero"
-      ]
+      ],
+      "source": "serebii-abilitydex"
     }
-  }
+  },
+  "effectsSource": "serebii.net/abilitydex"
 }

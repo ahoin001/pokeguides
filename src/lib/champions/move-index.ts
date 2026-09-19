@@ -20,7 +20,6 @@ type MovesFile = {
 const file = movesJson as MovesFile;
 
 export const MOVE_TAG_IDS = [
-  "priority",
   "buff",
   "debuff",
   "weather",
@@ -39,7 +38,6 @@ export const MOVE_TAG_IDS = [
 export type MoveTagId = (typeof MOVE_TAG_IDS)[number];
 
 export const MOVE_TAG_LABEL: Record<MoveTagId, string> = {
-  priority: "Priority",
   buff: "Buff",
   debuff: "Debuff",
   weather: "Weather",
@@ -54,6 +52,30 @@ export const MOVE_TAG_LABEL: Record<MoveTagId, string> = {
   hazard: "Hazard",
   screen: "Screens",
 };
+
+/** Dedicated priority bands — +1 is Aqua Jet / Sucker Punch / Bullet Punch territory. */
+export const MOVE_PRIORITY_FILTERS = [
+  { id: "", label: "Any priority" },
+  { id: "1", label: "+1" },
+  { id: "2", label: "+2" },
+  { id: "3+", label: "+3 or higher" },
+  { id: "neg", label: "Negative" },
+] as const;
+
+export type MovePriorityFilterId = (typeof MOVE_PRIORITY_FILTERS)[number]["id"];
+
+export function priorityFilterLabel(id: MovePriorityFilterId) {
+  return MOVE_PRIORITY_FILTERS.find((f) => f.id === id)?.label ?? "Any priority";
+}
+
+export function matchesPriorityFilter(priority: number, filter: MovePriorityFilterId) {
+  if (!filter) return true;
+  if (filter === "1") return priority === 1;
+  if (filter === "2") return priority === 2;
+  if (filter === "3+") return priority >= 3;
+  if (filter === "neg") return priority < 0;
+  return true;
+}
 
 export type IndexedMove = {
   name: string;
@@ -94,8 +116,6 @@ function tagsFor(row: {
   const name = row.name;
   const effect = (row.shortEffect ?? "").replace(/[\u2018\u2019\u02BC]/g, "'");
   const blob = `${name} ${effect}`;
-
-  if ((row.priority ?? 0) !== 0) tags.add("priority");
 
   if (/raises? (all of )?the user/i.test(effect) || /raise the user/i.test(effect)) {
     tags.add("buff");
@@ -155,6 +175,9 @@ export function listChampionsMoves(): IndexedMove[] {
         row.category,
         shortEffect,
         ...tags.map((t) => MOVE_TAG_LABEL[t]),
+        row.priority
+          ? `priority pri ${row.priority > 0 ? `+${row.priority}` : row.priority}`
+          : "",
       ]
         .join(" ")
         .toLowerCase();
@@ -182,6 +205,7 @@ export function filterChampionsMoves(
     type?: TypeId | "";
     category?: MoveCategory | "";
     tag?: MoveTagId | "";
+    priority?: MovePriorityFilterId;
   },
 ): IndexedMove[] {
   const needle = opts.q?.trim().toLowerCase() ?? "";
@@ -189,6 +213,7 @@ export function filterChampionsMoves(
     if (opts.type && m.type !== opts.type) return false;
     if (opts.category && m.category !== opts.category) return false;
     if (opts.tag && !m.tags.includes(opts.tag)) return false;
+    if (!matchesPriorityFilter(m.priority, opts.priority ?? "")) return false;
     if (needle && !m.tokens.includes(needle)) return false;
     return true;
   });

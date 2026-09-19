@@ -7,12 +7,15 @@ import { TypeIcon } from "@/components/pokemon/TypeIcon";
 import { TYPE_IDS } from "@/types/pokemon";
 import { TYPE_LABEL } from "@/lib/champions/types";
 import {
+  MOVE_PRIORITY_FILTERS,
   MOVE_TAG_IDS,
   MOVE_TAG_LABEL,
   categoryLabel,
   filterChampionsMoves,
   listChampionsMoves,
+  priorityFilterLabel,
   sortChampionsMoves,
+  type MovePriorityFilterId,
   type MoveSortKey,
   type MoveTagId,
   type IndexedMove,
@@ -22,6 +25,7 @@ import type { TypeId } from "@/types/pokemon";
 
 const SORTS = ["name", "power", "priority", "type", "category"] as const;
 const CATEGORIES = ["", "physical", "special", "status"] as const;
+const PRIORITY_IDS = MOVE_PRIORITY_FILTERS.map((f) => f.id);
 
 const INK_DARK: TypeId[] = ["electric", "ice", "fairy", "fighting", "ground"];
 
@@ -31,6 +35,10 @@ export function MovesBoard() {
   const [type, setType] = useQueryState("type", parseAsString.withDefault(""));
   const [category, setCategory] = useQueryState("cat", parseAsString.withDefault(""));
   const [tag, setTag] = useQueryState("tag", parseAsString.withDefault(""));
+  const [priority, setPriority] = useQueryState(
+    "pri",
+    parseAsStringLiteral(PRIORITY_IDS).withDefault(""),
+  );
   const [sort, setSort] = useQueryState("sort", parseAsStringLiteral(SORTS).withDefault("name"));
 
   const rows = useMemo(() => {
@@ -39,9 +47,10 @@ export function MovesBoard() {
       type: (type || "") as TypeId | "",
       category: (category || "") as MoveCategory | "",
       tag: (tag || "") as MoveTagId | "",
+      priority: priority as MovePriorityFilterId,
     });
     return sortChampionsMoves(found, sort as MoveSortKey);
-  }, [all, q, type, category, tag, sort]);
+  }, [all, q, type, category, tag, priority, sort]);
 
   return (
     <PageFrame variant="board">
@@ -50,6 +59,7 @@ export function MovesBoard() {
           <h1 className="text-4xl font-semibold tracking-tight">Move appendix</h1>
           <p className="mt-2 text-muted">
             {rows.length} of {all.length} Champions moves
+            {priority ? ` · Pri ${priorityFilterLabel(priority)}` : ""}
             {tag ? ` · ${MOVE_TAG_LABEL[tag as MoveTagId]}` : ""}
             {category ? ` · ${categoryLabel(category as MoveCategory)}` : ""}
             {type ? ` · ${TYPE_LABEL[type as TypeId]}` : ""}.
@@ -97,6 +107,25 @@ export function MovesBoard() {
                 }`}
               >
                 {label}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="flex flex-wrap gap-1.5">
+          {MOVE_PRIORITY_FILTERS.map((f) => {
+            const on = priority === f.id;
+            return (
+              <button
+                key={f.id || "pri-any"}
+                type="button"
+                aria-pressed={on}
+                onClick={() => setPriority(f.id)}
+                className={`rounded-full border px-3 py-1.5 text-xs font-medium transition ${
+                  on ? "border-ink bg-ink text-bg" : "border-line bg-raised text-muted hover:text-ink"
+                }`}
+              >
+                {f.id ? `Pri ${f.label}` : f.label}
               </button>
             );
           })}

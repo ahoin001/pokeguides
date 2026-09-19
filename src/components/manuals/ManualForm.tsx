@@ -22,6 +22,7 @@ import {
   manualFormat,
   toBoxedDraft,
   toFlatDraft,
+  type ManualAltSlot,
   type ManualBranch,
   type ManualEndgame,
   type ManualFamilyId,
@@ -149,6 +150,8 @@ export function ManualForm({
   const packs = draft.packs ?? [];
   const activePack = packs[packTab] ?? packs[0];
   const endgames = draft.construction?.endgames ?? [];
+  const alts = draft.construction?.altSlots ?? [];
+  const flexSlugs = alts.map((a) => a.slug).filter(Boolean);
 
   return (
     <PageFrame variant="reading">
@@ -339,10 +342,28 @@ export function ManualForm({
             }
           />
 
+          <FlexPoolEditor
+            alts={alts}
+            boxSlugs={boxSlugs}
+            packIds={packs.map((p) => p.id)}
+            onChange={(next) =>
+              commit({
+                ...draft,
+                construction: {
+                  thesis: draft.construction?.thesis ?? "",
+                  method: draft.construction?.method ?? "",
+                  winCondition: draft.construction?.winCondition ?? "",
+                  ...draft.construction,
+                  altSlots: next,
+                },
+              })
+            }
+          />
+
           <h2 className="mt-16 text-2xl font-semibold tracking-tight">Packages</h2>
           <p className="mt-1 text-sm text-muted">
             Each package is a preview bring of three — strategy, plan clock, endgame links, and
-            situation loops.
+            situation loops. Swap-gated packs pick from the active six after the flex.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {packs.map((p, i) => (
@@ -355,6 +376,7 @@ export function ManualForm({
                 }`}
               >
                 {p.label || p.id}
+                {p.requiresSwap?.in ? " · swap" : ""}
               </button>
             ))}
             <Button
@@ -382,6 +404,7 @@ export function ManualForm({
             <PackEditor
               pack={activePack}
               boxSlugs={boxSlugs}
+              flexSlugs={flexSlugs}
               endgames={endgames}
               onChange={(patch) => updatePack(packTab, patch)}
               onStrategy={(patch) => updateStrategy(packTab, patch)}
@@ -531,6 +554,7 @@ export function ManualForm({
 function PackEditor({
   pack,
   boxSlugs,
+  flexSlugs,
   endgames,
   onChange,
   onStrategy,
@@ -538,6 +562,7 @@ function PackEditor({
 }: {
   pack: ManualPack;
   boxSlugs: string[];
+  flexSlugs: string[];
   endgames: ManualEndgame[];
   onChange: (patch: Partial<ManualPack>) => void;
   onStrategy: (patch: Partial<ManualPackStrategy>) => void;
@@ -545,6 +570,14 @@ function PackEditor({
 }) {
   const strategy = pack.strategy;
   const roles = pack.roles ?? [];
+  const swap = pack.requiresSwap;
+  const bringOptions = (() => {
+    const base = [...boxSlugs];
+    if (swap?.out && swap?.in) {
+      return [...base.filter((s) => s !== swap.out), swap.in];
+    }
+    return [...base, ...flexSlugs.filter((s) => !base.includes(s))];
+  })();
 
   function setSlug(i: number, slug: string) {
     const slugs: [string, string, string] = [...pack.slugs];
@@ -594,6 +627,72 @@ function PackEditor({
         ) : null}
       </div>
 
+      <div className="rounded-2xl border border-amber-400/25 bg-amber-500/5 p-4">
+        <p className="text-sm font-medium">Requires flex swap</p>
+        <p className="mt-1 text-xs text-muted">
+          Leave empty for packs legal on the core six. When set, Load uses the swapped registration.
+        </p>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+          <div>
+            <label className="block text-xs font-medium text-muted">Out (from six)</label>
+            <select
+              className={`mt-1.5 ${inputClass}`}
+              value={swap?.out ?? ""}
+              onChange={(e) => {
+                const out = e.target.value;
+                if (!out && !swap?.in) {
+                  onChange({ requiresSwap: undefined });
+                  return;
+                }
+                onChange({
+                  requiresSwap: { out, in: swap?.in ?? "" },
+                });
+              }}
+            >
+              <option value="">None</option>
+              {boxSlugs.map((slug) => {
+                const mon = getPokemon(slug);
+                return (
+                  <option key={slug} value={slug}>
+                    {mon?.name ?? slug}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-muted">In (from flex pool)</label>
+            <select
+              className={`mt-1.5 ${inputClass}`}
+              value={swap?.in ?? ""}
+              onChange={(e) => {
+                const inn = e.target.value;
+                if (!inn && !swap?.out) {
+                  onChange({ requiresSwap: undefined });
+                  return;
+                }
+                onChange({
+                  requiresSwap: { out: swap?.out ?? "", in: inn },
+                });
+              }}
+            >
+              <option value="">None</option>
+              {flexSlugs.map((slug) => {
+                const mon = getPokemon(slug);
+                return (
+                  <option key={slug} value={slug}>
+                    {mon?.name ?? slug}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        </div>
+        {!flexSlugs.length ? (
+          <p className="mt-2 text-xs text-amber-200/80">Add flex pool candidates above first.</p>
+        ) : null}
+      </div>
+
       <div>
         <p className="text-sm font-medium">Bring of three</p>
         <div className="mt-3 grid gap-3 sm:grid-cols-3">
@@ -605,11 +704,12 @@ function PackEditor({
               onChange={(e) => setSlug(i, e.target.value)}
             >
               <option value="">Pick…</option>
-              {boxSlugs.map((slug) => {
+              {bringOptions.map((slug) => {
                 const mon = getPokemon(slug);
                 return (
                   <option key={slug} value={slug}>
                     {mon?.name ?? slug}
+                    {flexSlugs.includes(slug) ? " (flex)" : ""}
                   </option>
                 );
               })}
@@ -835,6 +935,180 @@ function PackEditor({
           );
         })}
       </div>
+    </section>
+  );
+}
+
+function FlexPoolEditor({
+  alts,
+  boxSlugs,
+  packIds,
+  onChange,
+}: {
+  alts: ManualAltSlot[];
+  boxSlugs: string[];
+  packIds: string[];
+  onChange: (items: ManualAltSlot[]) => void;
+}) {
+  const rows = alts.length ? alts : [];
+  return (
+    <section className="mt-16">
+      <h2 className="text-2xl font-semibold tracking-tight">Flex pool</h2>
+      <p className="mt-1 text-sm text-muted">
+        Candidates off the registered six. A package can require swapping one in to unlock a bring
+        the default six cannot run.
+      </p>
+      <ul className="mt-4 space-y-4">
+        {rows.map((alt, i) => {
+          const mon = alt.slug ? getPokemon(alt.slug) : undefined;
+          return (
+            <li
+              key={`${alt.slug || "alt"}-${i}`}
+              className="rounded-3xl border border-line p-4"
+              style={mon ? cssVars(mon.palette) : undefined}
+            >
+              <div className="flex flex-wrap items-center gap-3">
+                {mon ? (
+                  <PokemonArt
+                    slug={mon.slug}
+                    src={mon.sprite || mon.artwork}
+                    name={mon.name}
+                    size={48}
+                  />
+                ) : null}
+                <div className="min-w-0 flex-1 space-y-3">
+                  <div>
+                    <label className="block text-xs font-medium text-muted">Flex species (slug)</label>
+                    <input
+                      className={`mt-1.5 ${inputClass}`}
+                      value={alt.slug}
+                      placeholder="mimikyu"
+                      onChange={(e) =>
+                        onChange(rows.map((x, j) => (j === i ? { ...x, slug: e.target.value } : x)))
+                      }
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-muted">Instead of (core six)</label>
+                    <select
+                      className={`mt-1.5 ${inputClass}`}
+                      value={alt.insteadOf ?? ""}
+                      onChange={(e) =>
+                        onChange(
+                          rows.map((x, j) =>
+                            j === i ? { ...x, insteadOf: e.target.value || undefined } : x,
+                          ),
+                        )
+                      }
+                    >
+                      <option value="">Any / undecided</option>
+                      {boxSlugs.map((slug) => {
+                        const m = getPokemon(slug);
+                        return (
+                          <option key={slug} value={slug}>
+                            {m?.name ?? slug}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <textarea
+                className={`mt-3 ${areaClass}`}
+                placeholder="Why this swap exists"
+                value={alt.why}
+                onChange={(e) =>
+                  onChange(rows.map((x, j) => (j === i ? { ...x, why: e.target.value } : x)))
+                }
+              />
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                <textarea
+                  className={areaClass}
+                  placeholder="Gains (answers)"
+                  value={alt.answers ?? ""}
+                  onChange={(e) =>
+                    onChange(
+                      rows.map((x, j) =>
+                        j === i ? { ...x, answers: e.target.value || undefined } : x,
+                      ),
+                    )
+                  }
+                />
+                <textarea
+                  className={areaClass}
+                  placeholder="Costs"
+                  value={alt.costs ?? ""}
+                  onChange={(e) =>
+                    onChange(
+                      rows.map((x, j) =>
+                        j === i ? { ...x, costs: e.target.value || undefined } : x,
+                      ),
+                    )
+                  }
+                />
+              </div>
+              {packIds.length ? (
+                <div className="mt-3">
+                  <p className="text-xs font-medium text-muted">Unlocks packages</p>
+                  <ul className="mt-2 flex flex-wrap gap-2">
+                    {packIds.map((id) => {
+                      const on = (alt.unlocks ?? []).includes(id);
+                      return (
+                        <li key={id}>
+                          <label className="inline-flex items-center gap-1.5 rounded-full border border-line/60 px-2.5 py-1 text-xs">
+                            <input
+                              type="checkbox"
+                              checked={on}
+                              onChange={() => {
+                                const cur = new Set(alt.unlocks ?? []);
+                                if (on) cur.delete(id);
+                                else cur.add(id);
+                                onChange(
+                                  rows.map((x, j) =>
+                                    j === i
+                                      ? { ...x, unlocks: cur.size ? [...cur] : undefined }
+                                      : x,
+                                  ),
+                                );
+                              }}
+                            />
+                            {id}
+                          </label>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              ) : null}
+              <Button
+                type="button"
+                variant="ghost"
+                className="mt-2"
+                onClick={() => onChange(rows.filter((_, j) => j !== i))}
+              >
+                Remove
+              </Button>
+            </li>
+          );
+        })}
+      </ul>
+      <Button
+        type="button"
+        variant="line"
+        className="mt-4"
+        onClick={() =>
+          onChange([
+            ...rows,
+            {
+              slug: "",
+              why: "",
+            },
+          ])
+        }
+      >
+        Add flex candidate
+      </Button>
     </section>
   );
 }

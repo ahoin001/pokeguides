@@ -5,7 +5,7 @@ import { SCROLL_UNDER_STACK, STICKY_LOCAL_BAR } from "@/components/chrome/PageFr
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { getPokemon } from "@/lib/catalog/load";
 import { flowsFor } from "@/content/classroom-flows";
-import { resolvePackStrategy, type TeamManual } from "@/content/manuals";
+import { flexPool, resolvePackStrategy, type TeamManual } from "@/content/manuals";
 
 export const MANUAL_SCROLL_MT = SCROLL_UNDER_STACK;
 
@@ -39,10 +39,12 @@ export function manualJumps(manual: TeamManual, boxed = false, parent?: TeamManu
   const hasGameplan = Boolean(
     strategy || manual.plan?.some((b) => b.title || b.play),
   );
+  const hasFlex = flexPool(source).length > 0;
 
   return [
     { href: "#top", label: "Top" },
     ...(boxed ? [{ href: "#team", label: "Package" }] : []),
+    ...(hasFlex ? [{ href: "#flex", label: "Flex" }] : []),
     ...(hasWinPath ? [{ href: "#endgames", label: "Win path" }] : []),
     ...(hasGameplan ? [{ href: "#plan", label: "Gameplan" }] : []),
     ...(hasGame ? [{ href: "#game", label: "Situations" }] : []),

@@ -290,6 +290,11 @@ export type ManualPack = {
   winconMode?: string;
   /** Which construction.endgames this bring pursues (by ManualEndgame.id). */
   endgameIds?: string[];
+  /**
+   * Flex swap required before this pack is legal.
+   * `out` must be on box; `in` must be in construction.altSlots.
+   */
+  requiresSwap?: ManualPackSwap;
   pilot?: ManualPilot;
   meta?: string;
   philosophy?: string;
@@ -330,10 +335,29 @@ export type ManualSubstitution = {
   why: string;
 };
 
+/**
+ * Flex-pool candidate: not on the registered six until a pack requires the swap.
+ * Keeps Champions registration at six while unlocking alternate packages.
+ */
 export type ManualAltSlot = {
   slug: string;
+  /** Core box mon this flex typically replaces. */
   insteadOf?: string;
   why: string;
+  /** What the swap gains vs the core mon. */
+  answers?: string;
+  /** What the swap gives up. */
+  costs?: string;
+  /** Pack ids this flex is meant to unlock. */
+  unlocks?: string[];
+  /** Optional paste-ready set for the flex mon. */
+  slot?: Omit<SlotManual, "slug"> & { slug?: string };
+};
+
+/** Pack is illegal on the default six until this registration swap is active. */
+export type ManualPackSwap = {
+  out: string;
+  in: string;
 };
 
 export type ManualEndgame = {
@@ -493,6 +517,32 @@ export function packList(manual: TeamManual): ManualPack[] {
   return manual.packs ?? [];
 }
 
+/** Flex-pool candidates on the construction dossier. */
+export function flexPool(manual: Pick<TeamManual, "construction">): ManualAltSlot[] {
+  return manual.construction?.altSlots ?? [];
+}
+
+/**
+ * Registered six with an optional pack-required flex swap applied.
+ * Species clause: `in` replaces `out` 1:1.
+ */
+export function resolveActiveBox(manual: TeamManual, packId?: string | null): string[] {
+  const box = (manual.box ?? []).filter(Boolean);
+  const packs = packList(manual);
+  if (!packs.length || !box.length) return [...box];
+  const pack = (packId ? packs.find((p) => p.id === packId) : undefined) ?? packs[0];
+  const swap = pack?.requiresSwap;
+  if (!swap?.out || !swap?.in) return [...box];
+  if (!box.includes(swap.out)) return [...box];
+  return box.map((slug) => (slug === swap.out ? swap.in : slug));
+}
+
+export function packRequiresSwap(
+  pack: ManualPack,
+): pack is ManualPack & { requiresSwap: ManualPackSwap } {
+  return Boolean(pack.requiresSwap?.out && pack.requiresSwap?.in);
+}
+
 function slotsForPack(
   manual: TeamManual,
   slugs: [string, string, string],
@@ -500,6 +550,22 @@ function slotsForPack(
 ): SlotManual[] {
   const roster = manual.roster ?? manual.slots;
   const bySlug = new Map(roster.map((s) => [s.slug, s]));
+  for (const alt of flexPool(manual)) {
+    if (bySlug.has(alt.slug)) continue;
+    if (alt.slot) {
+      bySlug.set(alt.slug, { ...alt.slot, slug: alt.slug });
+    } else {
+      bySlug.set(alt.slug, {
+        slug: alt.slug,
+        title: alt.slug,
+        job: "breaker" as RoleId,
+        role: alt.why,
+        moves: [],
+        objective: alt.answers ?? "",
+        howToPlay: alt.costs ?? "",
+      });
+    }
+  }
   return slugs.map((slug) => {
     const hit = bySlug.get(slug);
     if (!hit) {

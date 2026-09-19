@@ -19,7 +19,7 @@ export default function LearnIndex() {
         </div>
         <FormatSwitch
           active="singles"
-          hrefFor={(format) => learnHref(format)}
+          surface="learn"
           hint="Singles classroom — one on the field."
           className="shrink-0"
         />

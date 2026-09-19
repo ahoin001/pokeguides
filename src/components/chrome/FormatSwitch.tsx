@@ -4,18 +4,24 @@ import Link from "next/link";
 import {
   FORMAT_BLURB,
   FORMAT_LABEL,
+  learnHref,
+  manualsHref,
   type BattleFormat,
 } from "@/lib/format";
 
 type FormatSwitchProps = {
   active: BattleFormat;
-  /** Build href for each format option. */
-  hrefFor: (format: BattleFormat) => string;
+  /** Which dual surface this switch navigates — resolved client-side (no function props). */
+  surface: "learn" | "manuals";
   /** Optional short context line under the switch. */
   hint?: string;
   className?: string;
   size?: "sm" | "md";
 };
+
+function hrefForSurface(surface: "learn" | "manuals", format: BattleFormat) {
+  return surface === "manuals" ? manualsHref(format) : learnHref(format);
+}
 
 /**
  * Singles | Doubles classroom / shelf switch.
@@ -23,7 +29,7 @@ type FormatSwitchProps = {
  */
 export function FormatSwitch({
   active,
-  hrefFor,
+  surface,
   hint,
   className = "",
   size = "md",
@@ -41,7 +47,7 @@ export function FormatSwitch({
           return (
             <Link
               key={format}
-              href={hrefFor(format)}
+              href={hrefForSurface(surface, format)}
               role="tab"
               aria-selected={on}
               className={`rounded-full font-medium tracking-tight transition ${pad} ${

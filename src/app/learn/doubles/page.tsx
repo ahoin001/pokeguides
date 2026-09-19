@@ -31,7 +31,7 @@ export default function DoublesLearnIndex() {
         </div>
         <FormatSwitch
           active="doubles"
-          hrefFor={(format) => learnHref(format)}
+          surface="learn"
           hint="Doubles classroom — two on the field."
           className="shrink-0"
         />

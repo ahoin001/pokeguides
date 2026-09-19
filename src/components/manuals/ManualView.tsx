@@ -6,19 +6,7 @@ import { PageFrame } from "@/components/chrome/PageFrame";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
-import {
-  MANUAL_FAMILY_LABEL,
-  isBoxedManual,
-  manualFamily,
-  manualFormat,
-  packList,
-  resolveManual,
-  resolvePackStrategy,
-  validatePackId,
-  type TeamManual,
-} from "@/content/manuals";
-import { formatBringLabel, formatManualEyebrow, manualsHref } from "@/lib/format";
-import { flowsFor } from "@/content/classroom-flows";
+import { ManualFlexSwaps } from "@/components/manuals/ManualFlexSwaps";
 import { ManualToc, MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
 import { ManualGameplan } from "@/components/manuals/ManualGameplan";
 import { ManualInsights } from "@/components/manuals/ManualInsights";
@@ -31,6 +19,20 @@ import { ManualSection } from "@/components/manuals/ManualSection";
 import { ManualWinPath } from "@/components/manuals/ManualWinPath";
 import { ManualBriefing } from "@/components/manuals/ManualBriefing";
 import type { CoverageMember } from "@/lib/champions/team-coverage";
+import {
+  MANUAL_FAMILY_LABEL,
+  flexPool,
+  isBoxedManual,
+  manualFamily,
+  manualFormat,
+  packList,
+  resolveManual,
+  resolvePackStrategy,
+  validatePackId,
+  type TeamManual,
+} from "@/content/manuals";
+import { formatBringLabel, formatManualEyebrow, manualsHref } from "@/lib/format";
+import { flowsFor } from "@/content/classroom-flows";
 
 const VIEW_MODES = ["carousel", "menu"] as const;
 
@@ -96,6 +98,7 @@ export function ManualView({
     strategy || manual.plan?.some((b) => b.title || b.play),
   );
   const sixSummary = parent.sixSummary?.trim() || parent.lede?.trim();
+  const alts = flexPool(parent);
 
   return (
     <PageFrame
@@ -168,6 +171,16 @@ export function ManualView({
             coverageMembers={packCoverage}
             coverageNotes={activePack?.coverageNotes ?? manual.coverageNotes}
           />
+        ) : null}
+
+        {alts.length ? (
+          <ManualSection
+            id="flex"
+            title="Flex swaps"
+            purpose="Off-box candidates that unlock packages the registered six cannot run."
+          >
+            <ManualFlexSwaps parent={parent} onSelectPack={selectPack} />
+          </ManualSection>
         ) : null}
 
         {endgames.length || strategy?.winCondition ? (

@@ -28,7 +28,6 @@ import {
 import {
   FORMAT_BLURB,
   formatBringLabel,
-  manualsHref,
   type BattleFormat,
 } from "@/lib/format";
 
@@ -163,7 +162,7 @@ export default function ManualsIndex() {
         </div>
         <FormatSwitch
           active={format}
-          hrefFor={(f) => manualsHref(f)}
+          surface="manuals"
           hint={`${FORMAT_BLURB[format]} · ${formatBringLabel(format)}`}
           className="shrink-0"
         />

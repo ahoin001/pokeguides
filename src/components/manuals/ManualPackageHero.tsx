@@ -14,6 +14,8 @@ import { easeOut, motionTokens } from "@/components/motion/tokens";
 import { formatManualSets } from "@/lib/manuals/sets-text";
 import {
   manualFormat,
+  packRequiresSwap,
+  resolveActiveBox,
   resolvePackStrategy,
   type ManualCoverageNote,
   type ManualPack,
@@ -76,7 +78,8 @@ export function ManualPackageHero({
   const format = manualFormat(parent);
   const doubles = format === "doubles";
   const roster = parent.roster ?? [];
-  const box = parent.box ? [...parent.box] : roster.map((s) => s.slug).filter(Boolean);
+  const box = resolveActiveBox(parent, activeId);
+  const swap = pack && packRequiresSwap(pack) ? pack.requiresSwap : null;
   const roles = pack?.roles ?? [];
   const roleBySlug = new Map(roles.map((r) => [r.slug, r]));
   const activeSet = new Set(manual.slugs.filter(Boolean) as string[]);
@@ -176,7 +179,7 @@ export function ManualPackageHero({
             {manual.slugs.every(Boolean) ? (
               <LoadSampleSix
                 slugs={[...manual.slugs]}
-                box={parent.box ? [...parent.box] : undefined}
+                box={box.length ? box : undefined}
                 intent={manual.archetype}
                 stay
                 manualId={parent.id}
@@ -184,7 +187,9 @@ export function ManualPackageHero({
                   pack
                     ? doubles
                       ? `Load ${pack.label} (Singles Team)`
-                      : `Load ${pack.label}`
+                      : swap
+                        ? `Load ${pack.label} (swapped six)`
+                        : `Load ${pack.label}`
                     : doubles
                       ? "Load onto Singles Team"
                       : "Load bring"
@@ -195,6 +200,51 @@ export function ManualPackageHero({
         }
       >
         <div className="space-y-10" style={washMon ? cssVars(washMon.palette) : undefined}>
+          {swap ? (
+            <div className="rounded-2xl border border-amber-400/30 bg-amber-500/10 px-4 py-3 text-sm">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-amber-200/90">
+                Active registration
+              </p>
+              <p className="mt-1 text-muted">
+                This package needs{" "}
+                <span className="font-medium text-ink">
+                  {getPokemon(swap.out)?.name ?? swap.out}
+                </span>{" "}
+                →{" "}
+                <span className="font-medium text-ink">
+                  {getPokemon(swap.in)?.name ?? swap.in}
+                </span>
+                . Load uses the swapped six.
+              </p>
+              <ul className="mt-3 flex flex-wrap gap-1.5">
+                {box.map((slug) => {
+                  const mon = getPokemon(slug);
+                  if (!mon) return null;
+                  const isIn = slug === swap.in;
+                  return (
+                    <li
+                      key={slug}
+                      className={`inline-flex items-center gap-1.5 rounded-full border py-1 pl-1 pr-2.5 text-xs ${
+                        isIn
+                          ? "border-amber-400/50 bg-amber-500/15"
+                          : "border-line/60 bg-raised/40"
+                      }`}
+                      style={cssVars(mon.palette)}
+                      title={isIn ? `Flex in for ${swap.out}` : mon.name}
+                    >
+                      <PokemonArt
+                        slug={mon.slug}
+                        src={mon.sprite || mon.artwork}
+                        name={mon.name}
+                        size={28}
+                      />
+                      {mon.name}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ) : null}
           {viewMode === "carousel" ? (
             <div className="-mx-1">
               <div
@@ -204,6 +254,7 @@ export function ManualPackageHero({
                 {packs.map((p) => {
                   const on = p.id === activeId;
                   const lead = getPokemon(p.strategy?.defaultLead ?? p.slugs[0]);
+                  const swapReq = packRequiresSwap(p) ? p.requiresSwap : null;
                   return (
                     <button
                       key={p.id}
@@ -221,6 +272,12 @@ export function ManualPackageHero({
                       <PackThreeArts slugs={p.slugs} size={on ? 64 : 48} />
                       <p className="mt-4 text-lg font-semibold tracking-tight">{p.label}</p>
                       <p className="mt-1 text-sm leading-snug text-muted">{p.when}</p>
+                      {swapReq ? (
+                        <p className="mt-2 rounded-full bg-amber-500/15 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.08em] text-amber-200/90">
+                          Needs {getPokemon(swapReq.out)?.name ?? swapReq.out} →{" "}
+                          {getPokemon(swapReq.in)?.name ?? swapReq.in}
+                        </p>
+                      ) : null}
                       {p.identity ? (
                         <p className="mt-3 line-clamp-2 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
                           {p.identity}
@@ -242,6 +299,7 @@ export function ManualPackageHero({
               <ul className="sticky top-24 space-y-2">
                 {packs.map((p) => {
                   const on = p.id === activeId;
+                  const swapReq = packRequiresSwap(p) ? p.requiresSwap : null;
                   return (
                     <li key={p.id}>
                       <button
@@ -258,6 +316,12 @@ export function ManualPackageHero({
                         <span className="min-w-0">
                           <span className="block truncate font-medium tracking-tight">{p.label}</span>
                           <span className="mt-0.5 block truncate text-xs text-muted">{p.when}</span>
+                          {swapReq ? (
+                            <span className="mt-0.5 block truncate text-[10px] text-amber-200/80">
+                              Swap · {getPokemon(swapReq.out)?.name ?? swapReq.out} →{" "}
+                              {getPokemon(swapReq.in)?.name ?? swapReq.in}
+                            </span>
+                          ) : null}
                         </span>
                       </button>
                     </li>

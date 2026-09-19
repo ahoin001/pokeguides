@@ -25,7 +25,6 @@ import {
   nextDoublesLesson,
 } from "@/content/curriculum-doubles";
 import { FormatSwitch } from "@/components/chrome/FormatSwitch";
-import { learnHref } from "@/lib/format";
 
 function bandLessons(band: LessonBand, doubles: boolean) {
   return doubles ? doublesLessonsByBand(band) : lessonsByBand(band);
@@ -202,7 +201,7 @@ export function LessonPlanNav({
         <div className="pointer-events-auto flex flex-col gap-2">
           <FormatSwitch
             active={doubles ? "doubles" : "singles"}
-            hrefFor={(format) => learnHref(format)}
+            surface="learn"
             size="sm"
             hint={doubles ? "Doubles classroom" : "Singles classroom"}
           />
@@ -240,7 +239,7 @@ export function LessonPlanNav({
           <div className="shrink-0 border-b border-line/70 px-4 py-3">
             <FormatSwitch
               active={doubles ? "doubles" : "singles"}
-              hrefFor={(format) => learnHref(format)}
+              surface="learn"
               size="sm"
               hint={doubles ? "Doubles classroom" : "Singles classroom"}
             />

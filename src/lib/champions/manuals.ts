@@ -1,6 +1,11 @@
 import { getPokemon } from "@/lib/catalog/load";
 import type { CatalogEntry } from "@/types/pokemon";
-import { emptySlot, type TeamManual } from "@/content/manuals";
+import {
+  emptySlot,
+  flexPool,
+  resolveActiveBox,
+  type TeamManual,
+} from "@/content/manuals";
 
 export function legalSlug(slug: string) {
   return Boolean(slug && getPokemon(slug));
@@ -80,10 +85,22 @@ export function validateManual(manual: TeamManual) {
 
   if (manual.packs?.length) {
     const box = (manual.box ?? []).filter(Boolean);
+    const alts = flexPool(manual);
+    const altSlugs = new Set(alts.map((a) => a.slug));
     if (box.length < 3) errors.push("Register at least three Pokémon on the six.");
     if (new Set(box).size !== box.length) errors.push("Species clause on the six. No duplicates.");
     for (const slug of box) {
       if (!legalSlug(slug)) errors.push(`${slug} is not legal in this regulation.`);
+    }
+    for (const alt of alts) {
+      if (!legalSlug(alt.slug)) errors.push(`Flex ${alt.slug} is not legal in this regulation.`);
+      if (box.includes(alt.slug)) {
+        errors.push(`Flex ${alt.slug} is already on the registered six — drop it from the flex pool.`);
+      }
+      if (alt.insteadOf && box.length && !box.includes(alt.insteadOf)) {
+        errors.push(`Flex ${alt.slug}: insteadOf ${alt.insteadOf} is not on the six.`);
+      }
+      if (!alt.why.trim()) errors.push(`Flex ${alt.slug}: say why the swap exists.`);
     }
     for (const pack of manual.packs) {
       const bring = pack.slugs.filter(Boolean);
@@ -94,9 +111,33 @@ export function validateManual(manual: TeamManual) {
       if (new Set(bring).size !== bring.length) {
         errors.push(`Package “${pack.label || pack.id}” has duplicate species.`);
       }
+      const swap = pack.requiresSwap;
+      if (swap?.out || swap?.in) {
+        if (!swap.out || !swap.in) {
+          errors.push(`Package “${pack.label || pack.id}”: swap needs both out and in.`);
+        } else {
+          if (box.length && !box.includes(swap.out)) {
+            errors.push(`Package “${pack.label || pack.id}”: swap out ${swap.out} is not on the six.`);
+          }
+          if (!altSlugs.has(swap.in)) {
+            errors.push(
+              `Package “${pack.label || pack.id}”: swap in ${swap.in} is not in the flex pool.`,
+            );
+          }
+        }
+      }
+      const active = resolveActiveBox(manual, pack.id);
+      if (active.length && new Set(active).size !== active.length) {
+        errors.push(
+          `Package “${pack.label || pack.id}”: swap breaks species clause on the active six.`,
+        );
+      }
       for (const slug of bring) {
-        if (box.length && !box.includes(slug)) {
-          errors.push(`Package “${pack.label || pack.id}”: ${slug} is not on the registered six.`);
+        if (active.length && !active.includes(slug)) {
+          errors.push(
+            `Package “${pack.label || pack.id}”: ${slug} is not on the active six` +
+              (swap?.in ? ` (after ${swap.out} → ${swap.in}).` : "."),
+          );
         }
       }
       if (!pack.label.trim()) errors.push(`Give package ${pack.id} a label.`);

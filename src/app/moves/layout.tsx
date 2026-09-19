@@ -4,7 +4,7 @@ function MovesFallback() {
   return (
     <div>
       <h1 className="text-4xl font-semibold tracking-tight">Move appendix</h1>
-      <p className="mt-2 text-muted">Loading Champions moves…</p>
+      <p className="mt-2 text-muted">Loading Champions moves and abilities…</p>
     </div>
   );
 }

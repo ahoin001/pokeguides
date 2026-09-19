@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { PageFrame } from "@/components/chrome/PageFrame";
+import { FormatSwitch } from "@/components/chrome/FormatSwitch";
 import { getPokemon } from "@/lib/catalog/load";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { BallIcon } from "@/components/learn/BallIcon";
@@ -9,20 +11,36 @@ import {
   doublesLessonHref,
   doublesLessonsByBand,
 } from "@/content/curriculum-doubles";
+import { learnHref, manualsHref } from "@/lib/format";
 
 export default function DoublesLearnIndex() {
   return (
-    <div>
-      <p className="text-sm text-muted">
-        <Link href="/learn" className="hover:text-ink">
-          Learn
-        </Link>
-      </p>
-      <h1 className="mt-2 max-w-[16ch] text-4xl font-semibold tracking-tight md:text-5xl">Doubles</h1>
-      <p className="mt-4 max-w-[52ch] text-lg text-muted">
-        Pick four from six. Two Pokémon on the field. This classroom is doubles only — perish trap, dual Mega, pair
-        Protect. Team, manuals, and Ranked Meta on this app stay 3v3 singles.
-      </p>
+    <PageFrame variant="tool">
+      <div className="flex flex-wrap items-start justify-between gap-6">
+        <div>
+          <p className="text-sm text-muted">
+            <Link href="/learn" className="hover:text-ink">
+              Learn
+            </Link>
+          </p>
+          <h1 className="mt-2 max-w-[16ch] text-4xl font-semibold tracking-tight md:text-5xl">Doubles</h1>
+          <p className="mt-4 max-w-[52ch] text-lg text-muted">
+            Pick four from six. Two Pokémon on the field. Perish trap, dual Mega, pair Protect. Team, Live, and Ranked
+            Meta on this app stay 3v3 singles.
+          </p>
+        </div>
+        <FormatSwitch
+          active="doubles"
+          hrefFor={(format) => learnHref(format)}
+          hint="Doubles classroom — two on the field."
+          className="shrink-0"
+        />
+      </div>
+
+      <div className="mt-8 rounded-[28px] border border-[color-mix(in_srgb,var(--format-doubles-accent)_45%,var(--line))] bg-[var(--format-doubles-wash)] px-5 py-4 text-sm text-muted">
+        Proprietary doubles verbs live here. Singles tools (Team · Live · Ranked Meta) are not Doubles-ready yet —
+        study the classroom, then hand off to shared Review.
+      </div>
 
       <div className="mt-14 space-y-16">
         {BANDS.map((band) => {
@@ -58,21 +76,21 @@ export default function DoublesLearnIndex() {
           <p className="mt-2 text-sm text-muted">After-battle is the same skill. Name the turn. Then stop if you tilt.</p>
         </Link>
         <Link
-          href="/learn/keeping-up"
-          className="block rounded-[28px] border border-line bg-raised/40 p-6 transition hover:bg-raised"
+          href={manualsHref("doubles")}
+          className="block rounded-[28px] border border-[color-mix(in_srgb,var(--format-doubles-accent)_40%,var(--line))] bg-raised/40 p-6 transition hover:bg-raised"
         >
-          <h2 className="text-xl font-semibold tracking-tight">Keeping up</h2>
-          <p className="mt-2 text-sm text-muted">Usage and sets. Ranked Meta here is a singles snapshot.</p>
+          <h2 className="text-xl font-semibold tracking-tight">Doubles manuals</h2>
+          <p className="mt-2 text-sm text-muted">Bring-4 field manuals — same write-up shape, Doubles shelf.</p>
         </Link>
         <Link
-          href="/learn"
+          href={learnHref("singles")}
           className="block rounded-[28px] border border-line bg-raised/40 p-6 transition hover:bg-raised"
         >
           <h2 className="text-xl font-semibold tracking-tight">3v3 singles</h2>
-          <p className="mt-2 text-sm text-muted">Poké Ball to Master Ball. Manuals are the exam.</p>
+          <p className="mt-2 text-sm text-muted">Poké Ball to Master Ball. Singles manuals are the exam.</p>
         </Link>
       </section>
-    </div>
+    </PageFrame>
   );
 }
 
@@ -83,11 +101,13 @@ function DoublesCard({ slug, index }: { slug: string; index: number }) {
   return (
     <Link
       href={doublesLessonHref(lesson.slug)}
-      className="block rounded-[28px] border border-line bg-raised/40 p-5 transition hover:bg-raised"
+      className="block rounded-[28px] border border-[color-mix(in_srgb,var(--format-doubles-accent)_35%,var(--line))] bg-raised/40 p-5 transition hover:bg-raised"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted">Lesson {index}</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--format-doubles-accent)]">
+            Doubles · Lesson {index}
+          </p>
           <h3 className="mt-1 text-xl font-semibold tracking-tight">{lesson.title}</h3>
           <p className="mt-2 text-sm text-muted">{lesson.thesis}</p>
         </div>

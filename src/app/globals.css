@@ -24,6 +24,9 @@ html[data-theme="dark"] {
   --sticky-shell: 48px;
   --sticky-local: 0px;
   --sticky-stack: calc(var(--sticky-shell) + var(--sticky-local));
+  /* Doubles viewing chrome — cooler dual-slot tone vs Singles ink */
+  --format-doubles-accent: #2a9d8f;
+  --format-doubles-wash: color-mix(in srgb, #2a9d8f 18%, transparent);
 }
 
 /* Soft day-stadium paper — warm mist, not pure white */
@@ -45,6 +48,8 @@ html[data-theme="light"] {
   --mon-muted: #c4c9d4;
   --mon-ink: #1c1e26;
   --mon-wash: #4a9a62;
+  --format-doubles-accent: #0d9488;
+  --format-doubles-wash: color-mix(in srgb, #0d9488 12%, transparent);
 }
 
 @media (min-width: 768px) {

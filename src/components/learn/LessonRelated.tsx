@@ -5,6 +5,7 @@ import { nextLesson, type LearnTrack, type Lesson } from "@/content/curriculum";
 import { nextDoublesLesson } from "@/content/curriculum-doubles";
 import { CANONICAL_MANUALS, manualHref } from "@/content/manuals";
 import { ARCHETYPES, archetypeHref } from "@/content/archetypes";
+import { manualsHref } from "@/lib/format";
 
 export function LessonRelated({
   lesson,
@@ -65,6 +66,32 @@ export function LessonRelated({
                 </Link>
               </li>
             ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {doubles ? (
+        <section className="mt-16 max-w-3xl">
+          <h2 className="text-2xl font-semibold tracking-tight">Doubles shelf</h2>
+          <p className="mt-2 text-sm text-muted">
+            Same write-up schema as Singles. Team, Live, and Ranked Meta stay Singles tools — study here, then Review.
+          </p>
+          <ul className="mt-4 divide-y divide-line rounded-[28px] border border-[color-mix(in_srgb,var(--format-doubles-accent)_40%,var(--line))]">
+            <li>
+              <Link
+                href={manualsHref("doubles")}
+                className="block px-5 py-4 transition hover:bg-[var(--format-doubles-wash)]"
+              >
+                <p className="font-semibold tracking-tight">Doubles field manuals</p>
+                <p className="mt-1 text-sm text-muted">Bring-4 packages · pair language · teal chrome</p>
+              </Link>
+            </li>
+            <li>
+              <Link href="/learn/review" className="block px-5 py-4 transition hover:bg-raised/70">
+                <p className="font-semibold tracking-tight">Shared Review</p>
+                <p className="mt-1 text-sm text-muted">After-battle skill is format-agnostic. Name the turn.</p>
+              </Link>
+            </li>
           </ul>
         </section>
       ) : null}

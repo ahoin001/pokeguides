@@ -8,6 +8,7 @@ import { LessonPlanNav } from "@/components/learn/LessonPlanNav";
 import { LessonViz } from "@/components/learn/LessonViz";
 import { LessonRelated } from "@/components/learn/LessonRelated";
 import { FightClassroom } from "@/components/learn/FightClassroom";
+import { DoublesFightClassroom } from "@/components/learn/DoublesFightClassroom";
 import { TypesClassroom } from "@/components/learn/TypesClassroom";
 import { AbilitiesClassroom } from "@/components/learn/AbilitiesClassroom";
 import { MoveSheetClassroom } from "@/components/learn/MoveSheetClassroom";
@@ -34,6 +35,8 @@ export function LessonView({
   const classroom =
     lesson.slug === "the-fight" ? (
       <FightClassroom lesson={lesson} />
+    ) : lesson.slug === "the-doubles-fight" ? (
+      <DoublesFightClassroom lesson={lesson} />
     ) : lesson.slug === "types" ? (
       <TypesClassroom lesson={lesson} />
     ) : lesson.slug === "abilities" ? (
@@ -56,7 +59,10 @@ export function LessonView({
       <div className="lg:grid lg:grid-cols-[minmax(16.5rem,19rem)_minmax(0,1fr)] lg:items-start lg:gap-10">
         <LessonPlanNav lesson={lesson} track={track} />
 
-        <article className="min-w-0">
+        <article
+          className={`min-w-0 ${doubles ? "[--lesson-accent:var(--format-doubles-accent)]" : ""}`}
+          data-format={track}
+        >
           <p className="text-sm text-muted">
             <Link href="/learn" className="hover:text-ink">
               Learn
@@ -75,6 +81,11 @@ export function LessonView({
               <span>{ballLabel(lesson.band)}</span>
             </span>
           </p>
+          {doubles ? (
+            <p className="mt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--format-doubles-accent)]">
+              Doubles classroom · bring 4 · pairs
+            </p>
+          ) : null}
           <h1 className="mt-2 max-w-[22ch] text-4xl font-semibold tracking-tight lg:text-5xl">
             {lesson.title}
           </h1>

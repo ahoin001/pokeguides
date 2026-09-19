@@ -19,6 +19,7 @@ import {
   emptySlot,
   MANUAL_FAMILY_IDS,
   MANUAL_FAMILY_LABEL,
+  manualFormat,
   toBoxedDraft,
   toFlatDraft,
   type ManualBranch,
@@ -31,6 +32,7 @@ import {
   type SlotManual,
   type TeamManual,
 } from "@/content/manuals";
+import { FORMAT_BLURB, FORMAT_LABEL, type BattleFormat } from "@/lib/format";
 import { syncSlugsFromSlots, validateManual } from "@/lib/champions/manuals";
 import { sampleSpTotal } from "@/lib/champions/stats";
 import { useManualsStore } from "@/stores/manuals";
@@ -177,6 +179,34 @@ export function ManualForm({
         >
           6-box + packs
         </button>
+      </div>
+
+      <div className="mt-6">
+        <p className="text-sm font-medium">Battle format</p>
+        <p className="mt-1 text-xs text-muted">
+          Which shelf this manual appears on. {FORMAT_BLURB[manualFormat(draft)]}.
+        </p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {(["singles", "doubles"] as const).map((fmt) => {
+            const on = manualFormat(draft) === fmt;
+            return (
+              <button
+                key={fmt}
+                type="button"
+                onClick={() => commit({ ...draft, format: fmt as BattleFormat })}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                  on
+                    ? fmt === "doubles"
+                      ? "bg-teal-700 text-white dark:bg-teal-600"
+                      : "bg-ink text-bg"
+                    : "border border-line text-muted hover:text-ink"
+                }`}
+              >
+                {FORMAT_LABEL[fmt]}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <label className="mt-10 block text-sm font-medium">Title</label>

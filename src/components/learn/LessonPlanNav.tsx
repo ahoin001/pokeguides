@@ -24,6 +24,8 @@ import {
   doublesLessonsByBand,
   nextDoublesLesson,
 } from "@/content/curriculum-doubles";
+import { FormatSwitch } from "@/components/chrome/FormatSwitch";
+import { learnHref } from "@/lib/format";
 
 function bandLessons(band: LessonBand, doubles: boolean) {
   return doubles ? doublesLessonsByBand(band) : lessonsByBand(band);
@@ -197,36 +199,52 @@ export function LessonPlanNav({
     <>
       {/* Mobile / tablet sticky opener */}
       <nav aria-label="Lesson plan" className={`${STICKY_LOCAL_BAR} lg:hidden`}>
-        <div className="pointer-events-auto flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setSheetOpen(true)}
-            className="flex min-w-0 flex-1 items-center gap-2.5 rounded-2xl border border-line bg-raised/50 py-1.5 pl-1.5 pr-3 text-left transition hover:border-ink/30"
-          >
-            <BallIcon band={lesson.band} size={32} />
-            <span className="min-w-0 flex-1">
-              <span className="block truncate text-sm font-semibold tracking-tight">{lesson.title}</span>
-              <span className="block truncate text-[11px] text-muted">{ballLabel(lesson.band)}</span>
-            </span>
-            <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-ink px-2.5 py-1 text-[11px] font-medium text-bg">
-              <List size={12} weight="bold" />
-              Plan
-            </span>
-          </button>
-          {next ? (
-            <Link
-              href={next.href}
-              className="hidden shrink-0 rounded-full px-3 py-2 text-xs text-muted hover:bg-white/6 hover:text-ink sm:inline-flex"
+        <div className="pointer-events-auto flex flex-col gap-2">
+          <FormatSwitch
+            active={doubles ? "doubles" : "singles"}
+            hrefFor={(format) => learnHref(format)}
+            size="sm"
+            hint={doubles ? "Doubles classroom" : "Singles classroom"}
+          />
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setSheetOpen(true)}
+              className="flex min-w-0 flex-1 items-center gap-2.5 rounded-2xl border border-line bg-raised/50 py-1.5 pl-1.5 pr-3 text-left transition hover:border-ink/30"
             >
-              Next
-            </Link>
-          ) : null}
+              <BallIcon band={lesson.band} size={32} />
+              <span className="min-w-0 flex-1">
+                <span className="block truncate text-sm font-semibold tracking-tight">{lesson.title}</span>
+                <span className="block truncate text-[11px] text-muted">{ballLabel(lesson.band)}</span>
+              </span>
+              <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-ink px-2.5 py-1 text-[11px] font-medium text-bg">
+                <List size={12} weight="bold" />
+                Plan
+              </span>
+            </button>
+            {next ? (
+              <Link
+                href={next.href}
+                className="hidden shrink-0 rounded-full px-3 py-2 text-xs text-muted hover:bg-white/6 hover:text-ink sm:inline-flex"
+              >
+                Next
+              </Link>
+            ) : null}
+          </div>
         </div>
       </nav>
 
       {/* Desktop sticky curriculum rail */}
       <aside className="pointer-events-none sticky top-[var(--sticky-shell)] z-20 hidden max-h-[calc(100vh-var(--sticky-shell)-1.5rem)] self-start lg:pointer-events-auto lg:block">
         <div className="flex max-h-[calc(100vh-var(--sticky-shell)-1.5rem)] flex-col overflow-hidden rounded-[24px] border border-line bg-raised/35 shadow-[0_18px_40px_rgba(0,0,0,0.22)] backdrop-blur-md">
+          <div className="shrink-0 border-b border-line/70 px-4 py-3">
+            <FormatSwitch
+              active={doubles ? "doubles" : "singles"}
+              hrefFor={(format) => learnHref(format)}
+              size="sm"
+              hint={doubles ? "Doubles classroom" : "Singles classroom"}
+            />
+          </div>
           <CurriculumTree {...treeProps} />
           {next ? (
             <div className="shrink-0 border-t border-line/70 px-4 py-3">

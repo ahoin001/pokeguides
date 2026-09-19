@@ -13,12 +13,14 @@ import { ManualSection } from "@/components/manuals/ManualSection";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
 import { formatManualSets } from "@/lib/manuals/sets-text";
 import {
+  manualFormat,
   resolvePackStrategy,
   type ManualCoverageNote,
   type ManualPack,
   type TeamManual,
 } from "@/content/manuals";
 import type { CoverageMember } from "@/lib/champions/team-coverage";
+import { formatBringLabel } from "@/lib/format";
 
 export type PackageViewMode = "carousel" | "menu";
 
@@ -71,6 +73,8 @@ export function ManualPackageHero({
 }) {
   const pack = packs.find((p) => p.id === activeId) ?? packs[0];
   const strategy = pack ? resolvePackStrategy(pack) : null;
+  const format = manualFormat(parent);
+  const doubles = format === "doubles";
   const roster = parent.roster ?? [];
   const box = parent.box ? [...parent.box] : roster.map((s) => s.slug).filter(Boolean);
   const roles = pack?.roles ?? [];
@@ -139,7 +143,11 @@ export function ManualPackageHero({
       <ManualSection
         id="team"
         title="Package"
-        purpose="Pick the three you bring. Everything below teaches that package."
+        purpose={
+          doubles
+            ? `Pick the package you study (${formatBringLabel(format)}). Team load is Singles-only today.`
+            : "Pick the three you bring. Everything below teaches that package."
+        }
         actions={
           <div className="flex flex-wrap items-center gap-2">
             <div className="inline-flex rounded-full border border-line p-0.5 text-xs">
@@ -172,7 +180,15 @@ export function ManualPackageHero({
                 intent={manual.archetype}
                 stay
                 manualId={parent.id}
-                label={pack ? `Load ${pack.label}` : "Load bring"}
+                label={
+                  pack
+                    ? doubles
+                      ? `Load ${pack.label} (Singles Team)`
+                      : `Load ${pack.label}`
+                    : doubles
+                      ? "Load onto Singles Team"
+                      : "Load bring"
+                }
               />
             ) : null}
           </div>

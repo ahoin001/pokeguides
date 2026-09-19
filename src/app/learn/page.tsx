@@ -1,18 +1,29 @@
 import Link from "next/link";
 import { PageFrame } from "@/components/chrome/PageFrame";
+import { FormatSwitch } from "@/components/chrome/FormatSwitch";
 import { getPokemon } from "@/lib/catalog/load";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { BallIcon } from "@/components/learn/BallIcon";
 import { BANDS, LESSONS, lessonHref, lessonsByBand } from "@/content/curriculum";
+import { learnHref, manualsHref } from "@/lib/format";
 
 export default function LearnIndex() {
   return (
     <PageFrame variant="tool">
-      <h1 className="max-w-[12ch] text-4xl font-semibold tracking-tight md:text-5xl">Learn</h1>
-      <p className="mt-4 max-w-[52ch] text-lg text-muted">
-        Poké Ball to Master Ball for Champions 3v3 singles. Skip any rank. Manuals are the exam. Doubles — pick four,
-        two on the field — is a separate classroom.
-      </p>
+      <div className="flex flex-wrap items-start justify-between gap-6">
+        <div>
+          <h1 className="max-w-[12ch] text-4xl font-semibold tracking-tight md:text-5xl">Learn</h1>
+          <p className="mt-4 max-w-[52ch] text-lg text-muted">
+            Poké Ball to Master Ball for Champions 3v3 singles. Skip any rank. Manuals are the exam.
+          </p>
+        </div>
+        <FormatSwitch
+          active="singles"
+          hrefFor={(format) => learnHref(format)}
+          hint="Singles classroom — one on the field."
+          className="shrink-0"
+        />
+      </div>
 
       <div className="mt-14 space-y-16">
         {BANDS.map((band) => (
@@ -37,14 +48,14 @@ export default function LearnIndex() {
 
       <section className="mt-20 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
         <Link
-          href="/learn/doubles"
-          className="block rounded-[28px] border border-line bg-raised/40 p-6 transition hover:bg-raised"
+          href={learnHref("doubles")}
+          className="block rounded-[28px] border border-[color-mix(in_srgb,var(--format-doubles-accent)_40%,var(--line))] bg-[var(--format-doubles-wash)] p-6 transition hover:bg-raised"
         >
-          <h2 className="text-xl font-semibold tracking-tight">Doubles</h2>
-          <p className="mt-2 text-sm text-muted">Pick four, two on the field. Perish, dual Mega, pair Protect.</p>
+          <h2 className="text-xl font-semibold tracking-tight">Doubles classroom</h2>
+          <p className="mt-2 text-sm text-muted">Bring 4 · two on the field. Proprietary doubles track.</p>
         </Link>
         <Link
-          href="/manuals"
+          href={manualsHref("singles")}
           className="block rounded-[28px] border border-line bg-raised/40 p-6 transition hover:bg-raised"
         >
           <h2 className="text-xl font-semibold tracking-tight">Field manuals</h2>

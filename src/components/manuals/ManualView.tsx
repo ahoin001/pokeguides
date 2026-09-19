@@ -10,12 +10,14 @@ import {
   MANUAL_FAMILY_LABEL,
   isBoxedManual,
   manualFamily,
+  manualFormat,
   packList,
   resolveManual,
   resolvePackStrategy,
   validatePackId,
   type TeamManual,
 } from "@/content/manuals";
+import { formatBringLabel, formatManualEyebrow, manualsHref } from "@/lib/format";
 import { flowsFor } from "@/content/classroom-flows";
 import { ManualToc, MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
 import { ManualGameplan } from "@/components/manuals/ManualGameplan";
@@ -96,8 +98,13 @@ export function ManualView({
   const sixSummary = parent.sixSummary?.trim() || parent.lede?.trim();
 
   return (
-    <PageFrame variant="board" sticky="local" style={wash ? cssVars(wash.palette) : undefined}>
-      <article>
+    <PageFrame
+      variant="board"
+      sticky="local"
+      style={wash ? cssVars(wash.palette) : undefined}
+      className={manualFormat(parent) === "doubles" ? "[--manual-accent:var(--format-doubles-accent)]" : undefined}
+    >
+      <article data-format={manualFormat(parent)}>
         <ManualToc
           manual={manual}
           boxed={boxed}
@@ -109,11 +116,23 @@ export function ManualView({
 
         <header id="top" className={`${MANUAL_SCROLL_MT} max-w-3xl`}>
           <p className="text-sm text-muted">
-            <Link href="/manuals" className="hover:text-ink">
+            <Link
+              href={manualsHref(manualFormat(parent))}
+              className="hover:text-ink"
+            >
               Field manuals
             </Link>
             {sourced === "local" ? " · Yours" : ""}
             {activePack ? ` · ${activePack.label}` : ""}
+          </p>
+          <p
+            className={`mt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] ${
+              manualFormat(parent) === "doubles"
+                ? "text-[var(--format-doubles-accent)]"
+                : "text-muted"
+            }`}
+          >
+            {formatManualEyebrow(manualFormat(parent))} · {formatBringLabel(manualFormat(parent))}
           </p>
           <h1 className="mt-2 text-4xl font-semibold tracking-tight lg:text-5xl">{parent.title}</h1>
           <p className="mt-3 flex flex-wrap items-center gap-2 text-sm text-muted">

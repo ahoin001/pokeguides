@@ -26,7 +26,7 @@ export function LiveFoeUsage({
   const ranked = getRankedBySlug(foeSlug);
   if (!ranked) return null;
 
-  const moves = ranked.moves.slice(0, 6);
+  const moves = ranked.moves.slice(0, 12);
   const items = ranked.items.length
     ? ranked.items.slice(0, 4)
     : ranked.item
@@ -40,15 +40,15 @@ export function LiveFoeUsage({
   return (
     <div className={`mt-4 space-y-3 border-t border-line/50 pt-3 ${end ? "md:text-right" : ""}`}>
       {moves.length ? (
-        <div>
+        <div className="min-w-0">
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted">
             Common moves
           </p>
           <ul
-            className={`mt-1.5 flex flex-wrap gap-1.5 ${end ? "md:justify-end" : ""}`}
+            className="-mx-1 mt-1.5 flex gap-1.5 overflow-x-auto px-1 pb-1 [scrollbar-width:thin]"
           >
             {moves.map((m) => (
-              <li key={m.name}>
+              <li key={m.name} className="shrink-0">
                 <MoveUsageChip name={m.name} pct={m.pct} align={align} />
               </li>
             ))}

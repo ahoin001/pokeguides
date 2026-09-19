@@ -1,4 +1,5 @@
 import type { ArchetypeId, LiteracyRoleId, RoleId, SampleSp } from "@/types/pokemon";
+import type { BattleFormat } from "@/lib/format";
 import { alt, train } from "@/content/manual-train";
 import { ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL } from "@/content/manuals/ultra-garchompz-salamence-gholdengo";
 
@@ -438,6 +439,11 @@ export type TeamManual = {
    * Shown under the title before package selection.
    */
   sixSummary?: string;
+  /**
+   * Battle format this manual teaches.
+   * Defaults to singles when omitted (legacy / local drafts).
+   */
+  format?: BattleFormat;
   philosophy: string;
   archetype: ArchetypeId;
   family?: ManualFamilyId;
@@ -630,7 +636,10 @@ export function siblingManuals(id: string): {
   const current = getCanonicalManual(id);
   const family = current ? manualFamily(current) : "clock";
   if (!current) return { family };
-  const peers = CANONICAL_MANUALS.filter((m) => manualFamily(m) === family);
+  const format = manualFormat(current);
+  const peers = CANONICAL_MANUALS.filter(
+    (m) => manualFamily(m) === family && manualFormat(m) === format,
+  );
   const i = peers.findIndex((m) => m.id === id);
   if (i < 0) return { family };
   return {
@@ -647,11 +656,13 @@ export function relatedManuals(id: string, limit = 4): TeamManual[] {
   const current = getCanonicalManual(id);
   if (!current) return [];
   const family = manualFamily(current);
+  const format = manualFormat(current);
   const ours = new Set(
     [...(current.box ?? []), ...current.slugs].filter((s): s is string => Boolean(s)),
   );
 
   return CANONICAL_MANUALS.filter((m) => m.id !== id)
+    .filter((m) => manualFormat(m) === format)
     .map((m) => {
       const theirs = new Set(
         [...(m.box ?? []), ...m.slugs].filter((s): s is string => Boolean(s)),
@@ -780,6 +791,15 @@ export function manualFamily(manual: Pick<TeamManual, "family" | "archetype">): 
   }
 }
 
+/** Resolve battle format — legacy manuals without the field are Singles. */
+export function manualFormat(manual: Pick<TeamManual, "format">): BattleFormat {
+  return manual.format ?? "singles";
+}
+
+export function manualsForFormat(format: BattleFormat, manuals: readonly TeamManual[]) {
+  return manuals.filter((m) => manualFormat(m) === format);
+}
+
 export const CANONICAL_MANUALS: TeamManual[] = [
   ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL,
 ];
@@ -840,6 +860,7 @@ export function emptyManual(id: string): TeamManual {
     id,
     title: "",
     lede: "",
+    format: "singles",
     philosophy: "",
     archetype: "balance",
     family: "clock",

@@ -4,12 +4,15 @@ import { useMemo, type ButtonHTMLAttributes } from "react";
 import Link from "next/link";
 import { parseAsString, parseAsStringLiteral, useQueryState } from "nuqs";
 import { PageFrame } from "@/components/chrome/PageFrame";
+import { FormatSwitch } from "@/components/chrome/FormatSwitch";
 import {
   CANONICAL_MANUALS,
   MANUAL_FAMILY_BLURB,
   MANUAL_FAMILY_IDS,
   MANUAL_FAMILY_LABEL,
   manualFamily,
+  manualFormat,
+  manualsForFormat,
   type ManualFamilyId,
 } from "@/content/manuals";
 import { ARCHETYPE_LABEL } from "@/content/archetypes";
@@ -22,6 +25,14 @@ import {
   sortManuals,
   type ManualSort,
 } from "@/lib/champions/manual-search";
+import {
+  FORMAT_BLURB,
+  formatBringLabel,
+  manualsHref,
+  type BattleFormat,
+} from "@/lib/format";
+
+const FORMAT_VALUES = ["singles", "doubles"] as const;
 
 function Chip({
   on,
@@ -42,7 +53,13 @@ function Chip({
   );
 }
 
-function ManualGrid({ manuals, sourced }: { manuals: ReturnType<typeof sortManuals>; sourced: "canonical" | "local" }) {
+function ManualGrid({
+  manuals,
+  sourced,
+}: {
+  manuals: ReturnType<typeof sortManuals>;
+  sourced: "canonical" | "local";
+}) {
   if (!manuals.length) return null;
   return (
     <ul className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -60,7 +77,16 @@ export default function ManualsIndex() {
   const [q, setQ] = useQueryState("q", parseAsString.withDefault(""));
   const [family, setFamily] = useQueryState("family", parseAsString.withDefault(""));
   const [archetype, setArchetype] = useQueryState("archetype", parseAsString.withDefault(""));
-  const [sort, setSort] = useQueryState("sort", parseAsStringLiteral(MANUAL_SORTS).withDefault("shelf"));
+  const [sort, setSort] = useQueryState(
+    "sort",
+    parseAsStringLiteral(MANUAL_SORTS).withDefault("shelf"),
+  );
+  const [formatParam] = useQueryState(
+    "format",
+    parseAsStringLiteral(FORMAT_VALUES).withDefault("singles"),
+  );
+  const format = formatParam as BattleFormat;
+  const doubles = format === "doubles";
 
   const familyFilter = (MANUAL_FAMILY_IDS as readonly string[]).includes(family)
     ? (family as ManualFamilyId)
@@ -71,23 +97,29 @@ export default function ManualsIndex() {
   const sortKey = sort as ManualSort;
   const filtering = Boolean(q.trim() || familyFilter || archetypeFilter);
 
+  const shelfCanonical = useMemo(
+    () => manualsForFormat(format, CANONICAL_MANUALS),
+    [format],
+  );
+  const shelfLocal = useMemo(() => manualsForFormat(format, local), [format, local]);
+
   const classroom = useMemo(() => {
-    const found = filterManuals(CANONICAL_MANUALS, {
+    const found = filterManuals(shelfCanonical, {
       q,
       family: familyFilter,
       archetype: archetypeFilter,
     });
     return sortManuals(found, sortKey);
-  }, [q, familyFilter, archetypeFilter, sortKey]);
+  }, [shelfCanonical, q, familyFilter, archetypeFilter, sortKey]);
 
   const yours = useMemo(() => {
-    const found = filterManuals(local, {
+    const found = filterManuals(shelfLocal, {
       q,
       family: familyFilter,
       archetype: archetypeFilter,
     });
     return sortManuals(found, sortKey);
-  }, [local, q, familyFilter, archetypeFilter, sortKey]);
+  }, [shelfLocal, q, familyFilter, archetypeFilter, sortKey]);
 
   const grouped = useMemo(() => {
     if (sortKey !== "shelf") return null;
@@ -105,35 +137,58 @@ export default function ManualsIndex() {
 
   return (
     <PageFrame variant="board">
-      <header className="max-w-3xl">
-        <h1 className="text-4xl font-semibold tracking-tight lg:text-5xl">Field manuals</h1>
-        <p className="mt-4 text-lg text-muted">
-          Boxed sixes for Champions singles — register six, preview, bring three. Load a bring onto Team when you want to
-          try it.
-        </p>
-        <div className="mt-6">
-          <Link
-            href="/manuals/new"
-            className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg transition hover:bg-white"
+      <header className="flex flex-wrap items-start justify-between gap-6">
+        <div className="max-w-3xl">
+          <p
+            className={`font-mono text-[10px] font-semibold uppercase tracking-[0.14em] ${
+              doubles ? "text-[var(--format-doubles-accent)]" : "text-muted"
+            }`}
           >
-            Write your own
-          </Link>
+            {doubles ? "Doubles shelf" : "Singles shelf"}
+          </p>
+          <h1 className="mt-2 text-4xl font-semibold tracking-tight lg:text-5xl">Field manuals</h1>
+          <p className="mt-4 text-lg text-muted">
+            {doubles
+              ? "Bring-four write-ups for Champions doubles — same schema as Singles, pair language and Doubles chrome."
+              : "Boxed sixes for Champions singles — register six, preview, bring three. Load a bring onto Team when you want to try it."}
+          </p>
+          <div className="mt-6">
+            <Link
+              href="/manuals/new"
+              className="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg transition hover:bg-white"
+            >
+              Write your own
+            </Link>
+          </div>
         </div>
+        <FormatSwitch
+          active={format}
+          hrefFor={(f) => manualsHref(f)}
+          hint={`${FORMAT_BLURB[format]} · ${formatBringLabel(format)}`}
+          className="shrink-0"
+        />
       </header>
+
+      {doubles ? (
+        <div className="mt-8 rounded-[28px] border border-[color-mix(in_srgb,var(--format-doubles-accent)_45%,var(--line))] bg-[var(--format-doubles-wash)] px-5 py-4 text-sm text-muted">
+          Doubles manuals share the Singles write-up shape. Team / Live still assume Singles brings — these pages are for
+          study until Doubles tools land.
+        </div>
+      ) : null}
 
       <div className="mt-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <label className="block w-full lg:max-w-md">
           <span className="sr-only">Filter manuals by Pokémon</span>
           <input
             value={q}
-            onChange={(e) => setQ(e.target.value)}
+            onChange={(e) => void setQ(e.target.value)}
             placeholder="Filter by Pokémon — Mimikyu, Garchomp…"
             className="w-full rounded-2xl border border-line bg-sunken px-4 py-3"
           />
         </label>
         <select
           value={sortKey}
-          onChange={(e) => setSort(e.target.value as ManualSort)}
+          onChange={(e) => void setSort(e.target.value as ManualSort)}
           className="w-full rounded-full border border-line bg-raised px-3 py-2 text-sm lg:w-auto"
           aria-label="Sort manuals"
         >
@@ -145,19 +200,24 @@ export default function ManualsIndex() {
 
       <div className="mt-5 flex flex-wrap items-center gap-2">
         {MANUAL_FAMILY_IDS.map((id) => (
-          <Chip key={id} on={familyFilter === id} onClick={() => setFamily(familyFilter === id ? "" : id)}>
+          <Chip
+            key={id}
+            on={familyFilter === id}
+            onClick={() => void setFamily(familyFilter === id ? "" : id)}
+          >
             {MANUAL_FAMILY_LABEL[id]}
           </Chip>
         ))}
         <span className="mx-1 hidden h-4 w-px bg-line sm:block" aria-hidden />
         {ARCHETYPE_IDS.filter(
           (id) =>
-            CANONICAL_MANUALS.some((m) => m.archetype === id) || local.some((m) => m.archetype === id),
+            shelfCanonical.some((m) => m.archetype === id) ||
+            shelfLocal.some((m) => m.archetype === id),
         ).map((id) => (
           <Chip
             key={id}
             on={archetypeFilter === id}
-            onClick={() => setArchetype(archetypeFilter === id ? "" : id)}
+            onClick={() => void setArchetype(archetypeFilter === id ? "" : id)}
           >
             {ARCHETYPE_LABEL[id]}
           </Chip>
@@ -173,23 +233,31 @@ export default function ManualsIndex() {
         ) : null}
       </div>
 
-      <section className="mt-12">
+      <section className="mt-12" data-format={format}>
         <div className="flex items-end justify-between gap-4">
-          <h2 className="text-2xl font-semibold tracking-tight">Classroom</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">
+            {doubles ? "Doubles classroom" : "Classroom"}
+          </h2>
           <p className="text-sm text-muted">
-            {classroom.length} of {CANONICAL_MANUALS.length}
+            {classroom.length} of {shelfCanonical.length}
           </p>
         </div>
 
         {classroom.length === 0 ? (
           <p className="mt-5 max-w-xl text-sm text-muted">
-            No classroom three matches that Pokémon or shelf. Clear the filter, or write your own.
+            {doubles
+              ? filtering
+                ? "No Doubles manual matches that filter. Clear it, or write your own with format Doubles."
+                : "Doubles field manuals land here. Same write-up schema as Singles — the shelf is ready when the first pack ships."
+              : "No classroom three matches that Pokémon or shelf. Clear the filter, or write your own."}
           </p>
         ) : grouped ? (
           <div className="mt-8 space-y-12">
             {grouped.map((group) => (
               <section key={group.id}>
-                <h3 className="text-lg font-semibold tracking-tight">{MANUAL_FAMILY_LABEL[group.id]}</h3>
+                <h3 className="text-lg font-semibold tracking-tight">
+                  {MANUAL_FAMILY_LABEL[group.id]}
+                </h3>
                 <p className="mt-1 max-w-2xl text-sm text-muted">{MANUAL_FAMILY_BLURB[group.id]}</p>
                 <ManualGrid manuals={group.manuals} sourced="canonical" />
               </section>
@@ -205,13 +273,18 @@ export default function ManualsIndex() {
           <div className="flex items-end justify-between gap-4">
             <h2 className="text-2xl font-semibold tracking-tight">Yours</h2>
             <p className="text-sm text-muted">
-              {yours.length} of {local.length}
+              {yours.length} of {shelfLocal.length}
+              {shelfLocal.length !== local.length
+                ? ` · ${local.length - shelfLocal.length} on the other shelf`
+                : ""}
             </p>
           </div>
           {yours.length ? (
             <ManualGrid manuals={yours} sourced="local" />
           ) : (
-            <p className="mt-5 max-w-xl text-sm text-muted">None of yours match that filter.</p>
+            <p className="mt-5 max-w-xl text-sm text-muted">
+              None of yours on the {format} shelf match that filter.
+            </p>
           )}
         </section>
       ) : (

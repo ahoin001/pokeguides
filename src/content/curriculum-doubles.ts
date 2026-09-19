@@ -4,6 +4,7 @@ import {
   type Lesson,
   type LessonBand,
 } from "@/content/curriculum";
+import { manualsHref } from "@/lib/format";
 
 export const DOUBLES_BAND_FIRST: Record<LessonBand, string> = {
   "poke-ball": "the-doubles-fight",
@@ -30,6 +31,14 @@ export const DOUBLES_LESSONS: Lesson[] = [
     body: [
       "This track is Champions doubles as the ladder video teaches it: a six-Pokémon list, you bring four, two are out. Ringside’s Team, manuals, and Ranked Meta stay 3v3 singles. The after-battle skills — review, keeping up — are the same. Come back to Master Ball when you are done here.",
       "Your turn is two actions. Fake Out on one slot does not flinch both. Protect on one does not save the partner. Switching one is a turn the other still has to click something. There is a partner to click Protect for you. That is the whole difference.",
+    ],
+    rules: [
+      { label: "Format", detail: "Bring 4 · two on the field" },
+      { label: "List", detail: "Six registered · leave two in the bag" },
+      { label: "Actions", detail: "Two clicks per turn — one per slot" },
+      { label: "Fake Out", detail: "Flinches one target, once per send" },
+      { label: "Protect", detail: "Pair verb — both can stall a timer" },
+      { label: "Mega", detail: "One Mega this battle · dual stone = preview choice" },
     ],
     beats: [
       {
@@ -206,7 +215,7 @@ export function getDoublesLesson(slug: string) {
 
 export function doublesLessonHref(slug: string) {
   if (slug === "review" || slug === "keeping-up") return `/learn/${slug}` as const;
-  if (slug === "manuals") return "/manuals" as const;
+  if (slug === "manuals") return manualsHref("doubles");
   if (slug === "meta") return "/meta" as const;
   return `/learn/doubles/${slug}` as const;
 }

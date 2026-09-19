@@ -15,14 +15,17 @@ import { getLearnFlow } from "@/content/learn-flows";
 
 export function LessonViz({ lesson }: { lesson: Lesson }) {
   switch (lesson.viz) {
-    case "stadium":
+    case "stadium": {
+      const doubles = lesson.track === "doubles";
       return (
         <StadiumTray
-          you={lesson.examples.slice(0, 3)}
-          youLabel={lesson.track === "doubles" ? "A doubles four" : "Your three — open list"}
-          themLabel={lesson.track === "doubles" ? "Theirs — empty until you pick four" : undefined}
+          format={doubles ? "doubles" : "singles"}
+          you={lesson.examples.slice(0, doubles ? 4 : 3)}
+          youLabel={doubles ? "A doubles four" : "Your three — open list"}
+          themLabel={doubles ? "Theirs — empty until you pick four" : undefined}
         />
       );
+    }
     case "types":
       return <TypePlayground seed="fairy" />;
     case "ability-field":

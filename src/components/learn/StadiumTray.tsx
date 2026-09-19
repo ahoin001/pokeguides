@@ -4,43 +4,52 @@ import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { TypeBadge } from "@/components/pokemon/TypeBadge";
 import type { LessonExample } from "@/content/curriculum";
+import { FORMAT_BRING, type BattleFormat } from "@/lib/format";
 
 export function StadiumTray({
   you,
   them = [],
   youLabel = "Your three — open list",
   themLabel = "Theirs — empty until preview",
+  format = "singles",
 }: {
   you: LessonExample[];
   them?: LessonExample[];
   youLabel?: string;
   themLabel?: string;
+  /** Singles pads to 3; Doubles pads to a bring of 4. */
+  format?: BattleFormat;
 }) {
+  const bring = FORMAT_BRING[format];
   return (
     <div className="grid gap-6 lg:grid-cols-2">
-      <Tray label={youLabel} slots={pad3(you)} />
-      <Tray label={themLabel} slots={pad3(them)} empty />
+      <Tray label={youLabel} slots={padBring(you, bring)} cols={bring} />
+      <Tray label={themLabel} slots={padBring(them, bring)} cols={bring} empty />
     </div>
   );
 }
 
-function pad3(list: LessonExample[]): (LessonExample | undefined)[] {
-  return [list[0], list[1], list[2]];
+function padBring(list: LessonExample[], bring: number): (LessonExample | undefined)[] {
+  return Array.from({ length: bring }, (_, i) => list[i]);
 }
 
 function Tray({
   label,
   slots,
+  cols,
   empty,
 }: {
   label: string;
   slots: (LessonExample | undefined)[];
+  cols: number;
   empty?: boolean;
 }) {
   return (
     <div className={`rounded-[28px] border border-line bg-sunken/70 p-4 ${empty ? "opacity-80" : ""}`}>
       <p className="text-[10px] font-medium uppercase tracking-wide text-muted">{label}</p>
-      <ol className="mt-3 grid grid-cols-3 gap-2">
+      <ol
+        className={`mt-3 grid gap-2 ${cols === 4 ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3"}`}
+      >
         {slots.map((slot, i) => (
           <Seat key={slot?.slug ?? `empty-${i}`} example={slot} />
         ))}

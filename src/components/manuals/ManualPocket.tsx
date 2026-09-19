@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { LoadSampleSix } from "@/components/learn/LoadSampleSix";
 import { pocketFromManual } from "@/lib/manuals/pocket";
 import { formatManualSets } from "@/lib/manuals/sets-text";
-import type { TeamManual } from "@/content/manuals";
+import { manualFormat, type TeamManual } from "@/content/manuals";
 
 export function ManualPocket({
   manual,
@@ -29,7 +29,12 @@ export function ManualPocket({
     window.setTimeout(() => setCopied("idle"), 1800);
   }
 
-  const loadLabel = packLabel ? `Load ${packLabel}` : "Load this three";
+  const doubles = manualFormat(manual) === "doubles";
+  const loadLabel = packLabel
+    ? `Load ${packLabel}`
+    : doubles
+      ? "Load onto Singles Team"
+      : "Load this three";
 
   return (
     <div className="overflow-hidden rounded-[24px] border border-line bg-raised/50">
@@ -64,6 +69,11 @@ export function ManualPocket({
             </span>
           ) : null}
         </div>
+        {doubles ? (
+          <p className="w-full text-xs text-muted">
+            Team / Live are Singles tools today — this loads the six for study on the Singles builder.
+          </p>
+        ) : null}
       </div>
       <dl className="grid gap-0 sm:grid-cols-2">
         {pocket.lead ? (

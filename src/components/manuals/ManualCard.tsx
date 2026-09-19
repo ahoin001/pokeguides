@@ -7,11 +7,13 @@ import {
   FAMILY_LESSON,
   MANUAL_FAMILY_LABEL,
   manualFamily,
+  manualFormat,
   manualHref,
   manualPackHref,
   packList,
   type TeamManual,
 } from "@/content/manuals";
+import { formatBringLabel, formatManualEyebrow } from "@/lib/format";
 
 export function ManualCard({
   manual,
@@ -20,6 +22,8 @@ export function ManualCard({
   manual: TeamManual;
   sourced: "canonical" | "local";
 }) {
+  const format = manualFormat(manual);
+  const doubles = format === "doubles";
   const showSlugs = manual.box?.length ? manual.box : manual.slugs;
   const mons = showSlugs.map((s) => (s ? getPokemon(s) : undefined));
   const wash = mons.find(Boolean);
@@ -31,26 +35,53 @@ export function ManualCard({
 
   return (
     <article
-      className="flex h-full flex-col rounded-[28px] border border-line bg-raised/50 p-5 transition hover:bg-raised"
+      data-format={format}
+      className={`flex h-full flex-col rounded-[28px] border p-5 transition hover:bg-raised ${
+        doubles
+          ? "border-[color-mix(in_srgb,var(--format-doubles-accent)_40%,var(--line))] bg-[var(--format-doubles-wash)]"
+          : "border-line bg-raised/50"
+      }`}
       style={wash ? cssVars(wash.palette) : undefined}
     >
       <Link href={manualHref(manual.id)} className="min-w-0 flex-1">
         <div className="flex flex-wrap items-end gap-1.5">
           {mons.map((p, i) =>
             p ? (
-              <PokemonArt key={p.slug} slug={p.slug} src={p.artwork} name={p.name} size={manual.box?.length ? 48 : 64} />
+              <PokemonArt
+                key={p.slug}
+                slug={p.slug}
+                src={p.artwork}
+                name={p.name}
+                size={manual.box?.length ? 48 : 64}
+              />
             ) : (
-              <span key={i} className="grid h-12 w-12 place-items-center rounded-2xl bg-white/5 text-xs text-muted">
+              <span
+                key={i}
+                className="grid h-12 w-12 place-items-center rounded-2xl bg-white/5 text-xs text-muted"
+              >
                 —
               </span>
             ),
           )}
         </div>
-        <p className="mt-4 text-xs text-muted">
-          {MANUAL_FAMILY_LABEL[manualFamily(manual)]} · {ARCHETYPE_LABEL[manual.archetype]}
-          {sourced === "local" ? " · Yours" : ""}
+        <p className="mt-4 flex flex-wrap items-center gap-2 text-xs text-muted">
+          <span
+            className={`rounded-full px-2 py-0.5 font-medium ${
+              doubles
+                ? "bg-[color-mix(in_srgb,var(--format-doubles-accent)_25%,transparent)] text-[var(--format-doubles-accent)]"
+                : "bg-white/8 text-ink"
+            }`}
+          >
+            {formatManualEyebrow(format)}
+          </span>
+          <span>{formatBringLabel(format)}</span>
+          <span aria-hidden>·</span>
+          <span>
+            {MANUAL_FAMILY_LABEL[manualFamily(manual)]} · {ARCHETYPE_LABEL[manual.archetype]}
+            {sourced === "local" ? " · Yours" : ""}
+          </span>
         </p>
-        <h2 className="mt-1 text-xl font-semibold tracking-tight">{manual.title || "Untitled three"}</h2>
+        <h2 className="mt-1 text-xl font-semibold tracking-tight">{manual.title || "Untitled"}</h2>
         <p className="mt-2 text-sm text-muted">{manual.lede}</p>
         {pickLine ? (
           <p className="mt-3 text-sm leading-snug">

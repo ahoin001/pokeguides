@@ -2,105 +2,91 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, type ReactNode } from "react";
-import { CaretDown } from "@phosphor-icons/react";
 import { ARCHETYPES, ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
 import type { ArchetypeId } from "@/types/pokemon";
-import { Popover } from "@/components/ui/Popover";
-
-function linkOn(path: string, href: string) {
-  if (href === "/") return path === "/";
-  if (href === "/meta") return path.startsWith("/meta") || path.startsWith("/usage");
-  return path.startsWith(href);
-}
+import { NavDropdown, NavMenuLink, navLinkOn } from "@/components/chrome/NavDropdown";
 
 export function TeamNavMenu({ path }: { path: string }) {
-  const [open, setOpen] = useState(false);
-  const on = linkOn(path, "/team");
-
   return (
-    <div
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      <Popover
-        open={open}
-        onOpenChange={setOpen}
-        align="center"
-        role="menu"
-        widthClassName="w-56"
-        panelClassName="border-line/80 bg-bg/95 p-2 backdrop-blur-md"
-        trigger={({ open: isOpen, toggle, triggerProps }) => (
-          <button
-            type="button"
-            {...triggerProps}
-            onClick={toggle}
-            className={`inline-flex items-center gap-1 transition ${
-              on ? "text-ink" : "text-muted hover:text-ink"
-            }`}
+    <NavDropdown label="Team" active={navLinkOn(path, "/team")} widthClassName="w-56">
+      {({ close }) => (
+        <>
+          <NavMenuLink href="/team" on={path === "/team"} onNavigate={close}>
+            Team builder
+          </NavMenuLink>
+          <NavMenuLink href="/team/box" on={path === "/team/box"} onNavigate={close}>
+            My box
+          </NavMenuLink>
+          <p className="mt-2 px-2.5 pb-1 pt-2 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+            Team archetypes
+          </p>
+          <NavMenuLink
+            href="/team/archetypes"
+            on={path === "/team/archetypes"}
+            onNavigate={close}
           >
-            Team
-            <CaretDown
-              size={12}
-              weight="bold"
-              className={`transition-transform duration-200 ease-out ${isOpen ? "rotate-180" : ""}`}
-            />
-          </button>
-        )}
-      >
-        <MenuLink href="/team" on={path === "/team"} onNavigate={() => setOpen(false)}>
-          Team builder
-        </MenuLink>
-        <MenuLink href="/team/box" on={path === "/team/box"} onNavigate={() => setOpen(false)}>
-          My box
-        </MenuLink>
-        <p className="mt-2 px-2.5 pb-1 pt-2 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
-          Team archetypes
-        </p>
-        <MenuLink
-          href="/team/archetypes"
-          on={path === "/team/archetypes"}
-          onNavigate={() => setOpen(false)}
-        >
-          All archetypes
-        </MenuLink>
-        {ARCHETYPES.map((a) => (
-          <MenuLink
-            key={a.id}
-            href={archetypeHref(a.id)}
-            on={path === archetypeHref(a.id)}
-            onNavigate={() => setOpen(false)}
-          >
-            {ARCHETYPE_LABEL[a.id as ArchetypeId]}
-          </MenuLink>
-        ))}
-      </Popover>
-    </div>
+            All archetypes
+          </NavMenuLink>
+          {ARCHETYPES.map((a) => (
+            <NavMenuLink
+              key={a.id}
+              href={archetypeHref(a.id)}
+              on={path === archetypeHref(a.id)}
+              onNavigate={close}
+            >
+              {ARCHETYPE_LABEL[a.id as ArchetypeId]}
+            </NavMenuLink>
+          ))}
+        </>
+      )}
+    </NavDropdown>
   );
 }
 
-function MenuLink({
-  href,
-  on,
-  onNavigate,
-  children,
-}: {
-  href: string;
-  on: boolean;
-  onNavigate: () => void;
-  children: ReactNode;
-}) {
+export function ReferenceNavMenu({ path }: { path: string }) {
   return (
-    <Link
-      role="menuitem"
-      href={href}
-      onClick={onNavigate}
-      className={`block rounded-xl px-2.5 py-2 text-sm transition active:scale-[0.99] ${
-        on ? "bg-overlay text-ink" : "text-muted hover:bg-overlay hover:text-ink"
-      }`}
+    <NavDropdown
+      label="Reference"
+      active={navLinkOn(path, "/reference")}
+      widthClassName="w-64"
     >
-      {children}
-    </Link>
+      {({ close }) => (
+        <>
+          <NavMenuLink
+            href="/pokedex"
+            on={path.startsWith("/pokedex") || path.startsWith("/pokemon")}
+            onNavigate={close}
+            hint="Legal roster"
+          >
+            Dex
+          </NavMenuLink>
+          <NavMenuLink
+            href="/moves"
+            on={path.startsWith("/moves")}
+            onNavigate={close}
+            hint="Moves and abilities"
+          >
+            Moves
+          </NavMenuLink>
+          <NavMenuLink
+            href="/types"
+            on={path.startsWith("/types")}
+            onNavigate={close}
+            hint="Type chart playground"
+          >
+            Types
+          </NavMenuLink>
+          <NavMenuLink
+            href="/compare"
+            on={path.startsWith("/compare")}
+            onNavigate={close}
+            hint="Coverage checker"
+          >
+            Coverage
+          </NavMenuLink>
+        </>
+      )}
+    </NavDropdown>
   );
 }
 
@@ -136,6 +122,40 @@ export function TeamLocalBar() {
       >
         Archetypes
       </Link>
+    </nav>
+  );
+}
+
+export function ReferenceLocalBar() {
+  const path = usePathname();
+  const onReference =
+    path.startsWith("/pokedex") ||
+    path.startsWith("/moves") ||
+    path.startsWith("/types") ||
+    path.startsWith("/compare") ||
+    path.startsWith("/pokemon");
+  if (!onReference) return null;
+
+  const tabs = [
+    { href: "/pokedex", label: "Dex", on: path.startsWith("/pokedex") || path.startsWith("/pokemon") },
+    { href: "/moves", label: "Moves", on: path.startsWith("/moves") },
+    { href: "/types", label: "Types", on: path.startsWith("/types") },
+    { href: "/compare", label: "Coverage", on: path.startsWith("/compare") },
+  ] as const;
+
+  return (
+    <nav aria-label="Reference section" className="mb-6 flex flex-wrap gap-2 md:hidden">
+      {tabs.map((t) => (
+        <Link
+          key={t.href}
+          href={t.href}
+          className={`rounded-full px-3.5 py-1.5 text-sm transition active:scale-[0.98] ${
+            t.on ? "bg-ink text-bg" : "bg-overlay text-muted hover:text-ink"
+          }`}
+        >
+          {t.label}
+        </Link>
+      ))}
     </nav>
   );
 }

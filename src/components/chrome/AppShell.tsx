@@ -2,23 +2,33 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Books, House, Notebook, SquaresFour, UsersThree } from "@phosphor-icons/react";
+import { Books, Crosshair, Notebook, SquaresFour, UsersThree } from "@phosphor-icons/react";
 import type { ReactNode } from "react";
-import { TeamLocalBar, TeamNavMenu } from "@/components/chrome/TeamNavMenu";
+import {
+  ReferenceLocalBar,
+  ReferenceNavMenu,
+  TeamLocalBar,
+  TeamNavMenu,
+} from "@/components/chrome/TeamNavMenu";
+import { navLinkOn } from "@/components/chrome/NavDropdown";
 import { ThemeToggle } from "@/components/chrome/ThemeToggle";
 
+/** Primary mobile destinations — brand lives in the top bar, so Live replaces Home. */
 const MOBILE = [
-  { href: "/", label: "Home", icon: House },
   { href: "/learn", label: "Learn", icon: Books },
   { href: "/pokedex", label: "Dex", icon: SquaresFour },
+  { href: "/live", label: "Live", icon: Crosshair },
   { href: "/team", label: "Team", icon: UsersThree },
   { href: "/manuals", label: "Manuals", icon: Notebook },
 ];
 
-function linkOn(path: string, href: string) {
-  if (href === "/") return path === "/";
-  if (href === "/meta") return path.startsWith("/meta") || path.startsWith("/usage");
-  return path.startsWith(href);
+function DesktopLink({ href, label, path }: { href: string; label: string; path: string }) {
+  const on = navLinkOn(path, href);
+  return (
+    <Link href={href} className={on ? "text-ink" : "text-muted hover:text-ink"}>
+      {label}
+    </Link>
+  );
 }
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -35,7 +45,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      {/* Desktop: full nav + theme top-right */}
+      {/* Desktop: grouped nav */}
       <header className="sticky top-0 z-40 hidden border-b border-line/70 bg-bg/80 backdrop-blur-md md:block">
         <div className="mx-auto flex h-16 max-w-[1680px] items-center justify-between gap-4 px-6">
           <Link href="/" className="shrink-0 text-lg font-semibold tracking-tight">
@@ -43,55 +53,12 @@ export function AppShell({ children }: { children: ReactNode }) {
           </Link>
           <div className="flex min-w-0 items-center gap-5">
             <nav className="flex items-center gap-5 text-sm lg:gap-6">
-              <Link
-                href="/learn"
-                className={linkOn(path, "/learn") ? "text-ink" : "text-muted hover:text-ink"}
-              >
-                Learn
-              </Link>
-              <Link
-                href="/pokedex"
-                className={linkOn(path, "/pokedex") ? "text-ink" : "text-muted hover:text-ink"}
-              >
-                Dex
-              </Link>
-              <Link
-                href="/moves"
-                className={linkOn(path, "/moves") ? "text-ink" : "text-muted hover:text-ink"}
-              >
-                Moves
-              </Link>
+              <DesktopLink href="/learn" label="Learn" path={path} />
+              <ReferenceNavMenu path={path} />
               <TeamNavMenu path={path} />
-              <Link
-                href="/live"
-                className={linkOn(path, "/live") ? "text-ink" : "text-muted hover:text-ink"}
-              >
-                Live
-              </Link>
-              <Link
-                href="/meta"
-                className={linkOn(path, "/meta") ? "text-ink" : "text-muted hover:text-ink"}
-              >
-                Meta
-              </Link>
-              <Link
-                href="/compare"
-                className={linkOn(path, "/compare") ? "text-ink" : "text-muted hover:text-ink"}
-              >
-                Coverage Checker
-              </Link>
-              <Link
-                href="/manuals"
-                className={linkOn(path, "/manuals") ? "text-ink" : "text-muted hover:text-ink"}
-              >
-                Manuals
-              </Link>
-              <Link
-                href="/types"
-                className={linkOn(path, "/types") ? "text-ink" : "text-muted hover:text-ink"}
-              >
-                Types
-              </Link>
+              <DesktopLink href="/live" label="Live" path={path} />
+              <DesktopLink href="/meta" label="Meta" path={path} />
+              <DesktopLink href="/manuals" label="Manuals" path={path} />
             </nav>
             <ThemeToggle className="shrink-0" />
           </div>
@@ -100,12 +67,16 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <main className="mx-auto w-full max-w-[1680px] flex-1 px-4 pb-28 pt-6 md:px-6 md:pb-16 md:pt-10">
         <TeamLocalBar />
+        <ReferenceLocalBar />
         {children}
       </main>
       <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-line/70 bg-bg/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-md md:hidden">
         <ul className="grid grid-cols-5">
           {MOBILE.map((l) => {
-            const on = linkOn(path, l.href);
+            const on =
+              l.href === "/pokedex"
+                ? navLinkOn(path, "/reference")
+                : navLinkOn(path, l.href);
             const Icon = l.icon;
             return (
               <li key={l.href}>

@@ -1,4 +1,5 @@
 import usageIndexJson from "@/data/usage-index.json";
+import { megaBaseSlug } from "@/lib/catalog/megas";
 
 export type UsageIndexEntry = {
   rank: number;
@@ -19,6 +20,16 @@ type UsageIndex = {
 
 export const usageIndex = usageIndexJson as UsageIndex;
 
+function compactId(id: string) {
+  return id.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+/** Mirror getRankedBySlug fallbacks for the thinner usage-index map. */
 export function usageForSlug(slug: string): UsageIndexEntry | undefined {
-  return usageIndex.bySlug[slug];
+  const keys = [slug, megaBaseSlug(slug), compactId(slug), compactId(megaBaseSlug(slug))];
+  for (const key of keys) {
+    const hit = usageIndex.bySlug[key];
+    if (hit) return hit;
+  }
+  return undefined;
 }

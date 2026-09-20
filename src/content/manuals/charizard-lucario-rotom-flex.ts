@@ -8,7 +8,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
   "philosophy": "Do not treat the six as one fixed team. Treat it as a menu of 3-Pokémon packages. At preview, first identify which opponent Pokémon must be controlled, then choose the package that makes that control easiest. Preserve the Mega option until the opponent's structure tells you whether Charizard Y or Lucario Z is the better win condition.",
   "archetype": "balance",
   "family": "kite",
-  "meta": "Regulation M-C Singles, Season 6. Singles uses 3 Pokémon from a registered team of up to 6, with one Mega Evolution permitted per battle, 90-second preview, and 45-second turns. Current Season 6 data supports Rotom-W as a real pivot-oriented option, while Skeledirge, Ceruledge, and Metagross appear as alternative tournament/ladder options. Current data is evolving during the season, so matchup claims below are team-architecture guidance rather than guarantees.",
+  "meta": "Regulation M-C Singles, Season 6 (M6). Snapshot asOf 2026-09-20 from Champions Ranked Battle Data — usage ranks, not win rate. See evidence. Kit natures/items marked TODO wait on the pilot set; do not copy modal mega stones onto Garchomp or Metagross.",
   "box": [
     "charizard",
     "garchomp",
@@ -212,7 +212,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
   ],
   "construction": {
     "thesis": "The team uses Charizard Y and Lucario Z as separate Mega branches while Garchomp and Meowscarada provide physical tempo. Rotom-W completes the structure by adding a genuine pivot and Water/Electric axis. Flex swaps replace Rotom-W when the matchup calls for anti-setup durability, Ghost/Fighting immunity plus physical setup, or Steel-based preview ambiguity.",
-    "method": "At preview, identify the opponent's fastest threat, primary physical/special breaker, strongest setup route, and likely defensive answer to Charizard/Lucario. Pick three that collectively answer those four jobs. Do not choose three Pokémon because each looks individually strong; choose the package whose switches and win condition remain coherent after the opponent's best first turn.",
+    "method": "At preview, name the M6 three: Salamence, Garchomp, Primarina, Hippowdon, Golisopod, Baxcalibur, Lucario, Archaludon, Gholdengo, Rillaboom. Identify fastest threat, physical/special breaker, setup route, and the sit they brought for Charizard or Lucario. Pick the package whose switches still work after their best first turn — Rotom vs Hippowdon/Fire, Meowscarada vs Primarina, Skeledirge vs DD Salamence, Metagross vs Fairy, keep Rotom if Water-Ground is the board.",
     "winCondition": "Generate one or two favorable exchanges with Meowscarada/Rotom/Garchomp, then finish with either Charizard Y, Mega Lucario Z, or a surviving offensive package. Under Veil, Lucario is the primary setup endgame; under pivot pressure, Charizard is the primary breaker; in no-Mega games, preserve speed and matchup control until the opponent is forced into a losing final exchange.",
     "endgames": [
       {
@@ -366,11 +366,43 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
       }
     ]
   },
+  "evidence": {
+    "season": "Season 6 M-C Singles (M6)",
+    "asOf": "2026-09-20",
+    "source": "Champions Battle Data ranked singles (championsbattledata.com)",
+    "caveat": "Usage order and item shares — not a claim of proven best WR. This six keeps Life Orb Garchomp and non-Mega Metagross even though the dump's modal items are Mega stones.",
+    "ladderTop": [
+      "Salamence #1",
+      "Garchomp #2",
+      "Primarina #3",
+      "Hippowdon #4",
+      "Golisopod #5",
+      "Baxcalibur #6",
+      "Lucario #7",
+      "Archaludon #8",
+      "Gholdengo #9",
+      "Rillaboom #10"
+    ],
+    "stats": [
+      { "label": "Salamencite", "value": "97.7%", "note": "Near-universal Mega on #1" },
+      { "label": "Garchompite Z", "value": "36.2%", "note": "Modal Garchomp item — this six uses Life Orb instead" },
+      { "label": "Golisopite", "value": "98.3%", "note": "#5 Mega; First Impression / Iron Head / Sucker" },
+      { "label": "Lucarionite Z", "value": "90.3%", "note": "#7; Nasty Plot 78.7%" },
+      { "label": "Gholdengo Balloon", "value": "69.7%", "note": "#9 Ground sit" },
+      { "label": "Meowscarada Scarf", "value": "61.6%", "note": "#12 modal — confirm before locking this six" },
+      { "label": "Charizardite Y", "value": "73%", "note": "#15; Solar Beam 71%" },
+      { "label": "Ninetales Light Clay", "value": "91%", "note": "#23; Aurora Veil 97.4%" },
+      { "label": "Metagrossite", "value": "94.6%", "note": "#24 modal — flex Metagross stays non-Mega" },
+      { "label": "Rotom-W Leftovers", "value": "33.7%", "note": "#25; item split with Sitrus / Scarf / Helmet" },
+      { "label": "Skeledirge Leftovers", "value": "44.4%", "note": "#30 Unaware; item TODO until confirmed" },
+      { "label": "Ceruledge Focus Sash", "value": "75.9%", "note": "#53 modal — item TODO until confirmed" }
+    ]
+  },
   "packs": [
     {
       "id": "rotom-charizard-pivot",
       "label": "Rotom + Charizard Pivot",
-      "when": "Bring when the opponent has Fire/Water/Ground interactions that Rotom can manipulate and Charizard can punish. Especially attractive when the opponent has a clear Grass answer that Charizard can exploit.",
+      "when": "Bring vs Hippowdon, Ground cores, and Fire that Rotom can sit — especially if Rillaboom or another Grass answer is on their six for Charizard to eat after a pivot. Do not bring this three into Primarina + Mega Salamence unless Garchomp can actually punish the Intimidate/DD line.",
       "identity": "Volt Switch into Charizard, with Garchomp completing the Fire/Water/Electric/Ground triangle.",
       "slugs": [
         "rotom-wash",
@@ -382,7 +414,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         "tempo-lock"
       ],
       "strategy": {
-        "opponentPattern": "Opponent has at least one target Rotom can force out or threaten and at least one target Charizard can punish once safely entered.",
+        "opponentPattern": "Hippowdon / Ground, Fire, or a Grass answer (Rillaboom) that Charizard can punish once Rotom forces the switch. Weak Primarina presence.",
         "bring": [
           "rotom-wash",
           "charizard",
@@ -390,27 +422,30 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         ],
         "purpose": "Use Rotom as the bridge rather than exposing Charizard early.",
         "targets": [
-          "Water types",
-          "Ground types",
-          "Steel types",
-          "Fire types",
-          "physical attackers vulnerable to Will-O-Wisp"
+          "Hippowdon",
+          "Rillaboom",
+          "physical Golisopod",
+          "Ground cores",
+          "Fire that Hydro Pump answers"
         ],
         "refuses": [
-          "Do not lead Charizard blindly into an obvious Water/Rock/Electric answer.",
+          "Primarina — Moonblast and Sparkling Aria both punish Charizard; Rotom is not a Primarina win.",
+          "Do not lead Charizard into Mega Salamence, Primarina, or Archaludon Thunderbolt.",
           "Do not Volt Switch merely because it is available if Hydro Pump or Will-O-Wisp creates more immediate value.",
-          "Do not sacrifice Garchomp early if the opponent still has an obvious Electric punishment route."
+          "Do not sacrifice Garchomp for Rocks if they still have an Electric or Intimidate-into-EQ line."
         ],
         "winCondition": "Use Rotom to create one or more safe Charizard entries, remove its best answer, then let Charizard finish.",
         "gamePlan": "Break → Rotom creates favorable switch → Volt Switch into Charizard → force damage → preserve the remaining defensive answer until it can no longer stop Charizard.",
         "mantra": "Rotom opens the door; Charizard walks through it.",
         "contrast": "Compared with the Veil/Lucario package, this package does not need setup. It wins by immediate positioning and repeated offensive entries.",
+        "defaultLead": "rotom-wash",
+        "defaultLeadWhy": "Sit Hippowdon, Fire, or Golisopod. Volt Switch only after you see the Charizard target.",
         "turnChecklist": [
-          "What does Rotom force out?",
-          "What is the opponent's Charizard answer?",
-          "Can Garchomp absorb the predicted Electric move?",
-          "Is Volt Switch actually safer than attacking?",
-          "If Charizard enters now, which opposing Pokémon can still stop it?"
+          "What does Rotom force out — Hippowdon, a Fire, or a Grass?",
+          "Is Primarina on their three? If yes, this pack is already wrong.",
+          "Can Garchomp absorb the predicted Electric or Intimidate into EQ?",
+          "Is Volt Switch actually safer than Hydro Pump / Will-O-Wisp?",
+          "If Charizard enters now, which of Salamence / Primarina / Archaludon can still stop it?"
         ]
       },
       "roles": [
@@ -451,13 +486,13 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
           "forks": [
             {
               "id": "lead-0",
-              "when": "Opponent leads a Water, Fire, or Ground target that Rotom naturally pressures.",
-              "then": "Lead Rotom. Threaten Hydro Pump or Will-O-Wisp. If the opponent switches into a Charizard target, Volt Switch to Charizard."
+              "when": "They lead Hippowdon, a Fire, or Golisopod that Rotom can burn or Hydro.",
+              "then": "Lead Rotom. Threaten Hydro Pump or Will-O-Wisp. Volt Switch to Charizard only if they switch into Rillaboom, Grass, or a Fire-weak sit."
             },
             {
               "id": "lead-1",
-              "when": "Opponent leads an obvious Electric threat.",
-              "then": "Lead Garchomp or another member that punishes the expected Electric action. Preserve Rotom for the midgame."
+              "when": "They lead Mega Salamence or an Electric that wants Rotom.",
+              "then": "Lead Garchomp. Intimidate/EQ lines and Electric both belong on Garchomp, not Rotom."
             }
           ]
         },
@@ -496,30 +531,48 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
       ],
       "victims": [
         {
-          "name": "Fire-centered teams",
-          "why": "Rotom resists Fire and threatens with Water STAB while Charizard can exploit the resulting Grass or defensive answers.",
-          "play": "Use Rotom first; preserve Charizard for the turn where the Fire answer is forced out.",
-          "trap": "Do not assume every Fire matchup is free if the opponent carries strong Electric or Rock coverage."
+          "name": "Hippowdon",
+          "slug": "hippowdon",
+          "why": "Rotom Hydro Pump plus Garchomp Earthquake both contest Sand. Charizard eats the Grass they bring to answer Ground.",
+          "play": "Lead Rotom. If they Yawn or Rocks, Volt Switch or stay and Hydro. Do not send Charizard into Earthquake.",
+          "trap": "Whirlwind and Stealth Rock both exist on the modal set — do not give free chip just to cycle."
         },
         {
-          "name": "Ground-centered teams without strong Water answers",
-          "why": "Rotom threatens Ground types while Garchomp adds its own Ground pressure.",
-          "play": "Use Rotom to force Ground targets into uncomfortable positions and pivot to the correct breaker.",
-          "trap": "Watch for Grass coverage and preserve Meowscarada if it is the actual Ground answer."
+          "name": "Rillaboom",
+          "slug": "rillaboom",
+          "why": "Charizard wants the Grass; Rotom does not. Pivot into Charizard once Glide is committed or they switch.",
+          "play": "If Rotom is in, Volt Switch on the predicted Glide stay only if Charizard lives it. Otherwise Garchomp Fire Fang.",
+          "trap": "Grassy Glide after U-turn is the tempo steal — do not let Rotom eat the second Glide."
+        },
+        {
+          "name": "Golisopod",
+          "slug": "golisopod",
+          "why": "Will-O-Wisp wrecks the physical Mega; Hydro Pump still hurts if they stay.",
+          "play": "Burn first if you live First Impression. Then Charizard or Garchomp, not another Rotom cycle.",
+          "trap": "Emergency Exit plus U-turn can strand you in front of Primarina — stop pivoting if Fairy is next."
         }
       ],
       "counters": [
         {
-          "name": "Strong Electric pressure",
-          "why": "Rotom can be overwhelmed and Charizard dislikes Electric attacks.",
-          "play": "Preserve Garchomp as the Electric punishment piece.",
-          "trap": "Do not sacrifice Garchomp just to gain early Rocks."
+          "name": "Primarina",
+          "slug": "primarina",
+          "why": "Moonblast and Sparkling Aria both punish Charizard. Rotom is not a Primarina win.",
+          "play": "This is a different package — Meowscarada Flower Trick or Veil Lucario. Do not force this three.",
+          "trap": "Aqua Jet cleans a burned or chipped Charizard. Do not Mega hoping Sun solves Fairy."
         },
         {
-          "name": "Strong special Water pressure",
-          "why": "Rotom is the primary Water interaction and Charizard does not want to absorb Water damage.",
-          "play": "Use Meowscarada or Garchomp depending on the specific Water target.",
-          "trap": "Do not let Rotom become the only remaining Water check."
+          "name": "Mega Salamence",
+          "slug": "salamence",
+          "why": "Intimidate plus Dragon Dance plus Double-Edge outruns the pivot loop if Garchomp is already damaged.",
+          "play": "Lead Garchomp into Intimidate if you must; Fire Fang / EQ. Do not Volt Switch Charizard into Mence.",
+          "trap": "Roost plus DD makes the Volt Switch loop donate turns. Attack or leave."
+        },
+        {
+          "name": "Archaludon",
+          "slug": "archaludon",
+          "why": "Thunderbolt and Draco Meteor both pressure Rotom and Charizard.",
+          "play": "Garchomp is the Electric sit. Charizard only after Archaludon is forced out or chipped.",
+          "trap": "Stamina body can eat a weak Hydro and then flash cannon Charizard."
         }
       ],
       "advantages": [
@@ -538,7 +591,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
     {
       "id": "veil-lucario",
       "label": "Aurora Veil → Mega Lucario",
-      "when": "Bring when the opponent has difficulty stopping Lucario after one Nasty Plot or when Ninetales can establish Veil without being immediately overwhelmed.",
+      "when": "Bring when they lack Primarina/Gholdengo revenge and Ninetales can Veil without eating First Impression or Intimidate into KO. Best vs slower physical (Hippowdon, Baxcalibur) that Lucario outruns after one NP.",
       "identity": "The team's most direct setup package.",
       "slugs": [
         "ninetales-alola",
@@ -550,7 +603,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         "veil-attrition"
       ],
       "strategy": {
-        "opponentPattern": "Opponent has a structure that can be disrupted by Veil and lacks an immediate safe answer to boosted Lucario.",
+        "opponentPattern": "Physical Hippowdon / Baxcalibur / setup that Veil plus one NP Lucario beats. No healthy Primarina or Balloon Gholdengo as the revenge.",
         "bring": [
           "ninetales-alola",
           "lucario",
@@ -558,26 +611,28 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         ],
         "purpose": "Create one protected setup turn and convert it into a Lucario endgame.",
         "targets": [
-          "Dark types",
-          "Steel types",
-          "Fairy types",
-          "slower defensive Pokémon",
-          "setup-dependent opponents"
+          "Hippowdon",
+          "Baxcalibur",
+          "Dragon-heavy balance",
+          "physical setup"
         ],
         "refuses": [
-          "Do not lead Ninetales into an obvious anti-lead sequence merely because Veil is available.",
-          "Do not set Veil if the opponent gets a stronger free setup turn.",
-          "Do not Nasty Plot when immediate damage is required to prevent a loss."
+          "Primarina — Moonblast stops Lucario even through Veil.",
+          "Gholdengo — Good as Gold ignores Encore/status; Balloon sits Garchomp.",
+          "Golisopod lead — First Impression can deny Veil. Lead Garchomp or leave this pack.",
+          "Do not Nasty Plot when immediate Aura Sphere is required to prevent a DD/Glide KO."
         ],
         "winCondition": "Veil plus one safe Nasty Plot turns Lucario into the primary finisher.",
         "gamePlan": "Control → Veil → Setup → Finish.",
         "mantra": "One safe setup turn is worth more than three random screens turns.",
         "contrast": "Unlike the Rotom package, this bring accepts less natural pivoting in exchange for a much more explosive win condition.",
+        "defaultLead": "ninetales-alola",
+        "defaultLeadWhy": "Veil first unless they lead Golisopod or Mega Salamence — then Garchomp.",
         "turnChecklist": [
-          "Can Ninetales actually get Veil?",
-          "What does the opponent do immediately after Veil?",
-          "Which Lucario move wins against their likely switch?",
-          "Is Garchomp needed alive for an Electric/Fire answer?",
+          "Can Ninetales actually get Veil, or is First Impression / Intimidate the lead?",
+          "Is Primarina or Gholdengo on their three?",
+          "Which Lucario move wins vs the likely switch — Aura Sphere, Flash Cannon, Dark Pulse?",
+          "Is Garchomp needed alive for Electric / Fire / Hippo?",
           "Is Nasty Plot necessary or is attacking now safer?"
         ]
       },
@@ -615,13 +670,13 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
           "forks": [
             {
               "id": "lead-0",
-              "when": "Ninetales has a reasonable chance to establish Veil without being immediately KO'd.",
-              "then": "Lead Ninetales and prioritize Veil unless an immediate attack is clearly required."
+              "when": "They lead Hippowdon, a slow wall, or anything that does not First Impression Ninetales.",
+              "then": "Lead Ninetales and click Veil unless Freeze-Dry or Encore is clearly the better first click."
             },
             {
               "id": "lead-1",
-              "when": "Opponent has an obvious anti-lead or Fake Out pressure.",
-              "then": "Consider Garchomp as lead and preserve Ninetales for a later safer Veil turn."
+              "when": "They lead Golisopod, Mega Salamence, or another anti-lead.",
+              "then": "Lead Garchomp. Preserve Ninetales for a later Veil after Emergency Exit or Intimidate is spent."
             }
           ]
         },
@@ -660,21 +715,41 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
       ],
       "victims": [
         {
-          "name": "Passive defensive cores",
-          "why": "Veil and Encore can deny passive turns while Lucario uses the resulting space to set up.",
-          "play": "Preserve Ninetales until the opponent is forced into recovery/setup behavior."
+          "name": "Hippowdon",
+          "slug": "hippowdon",
+          "why": "Veil turns Sand chip into a Lucario setup window; Freeze-Dry still hits Water they may pivot to.",
+          "play": "Veil, then Lucario. Aura Sphere vs Dark, Flash Cannon if they try Fairy.",
+          "trap": "Yawn plus Whirlwind can waste the Veil turn — Encore the Yawn or leave."
+        },
+        {
+          "name": "Baxcalibur",
+          "slug": "baxcalibur",
+          "why": "Physical Glaive/EQ lines lose to Veil plus Lucario special. Garchomp contests Dragon.",
+          "play": "Do not let Ice Shard chip Lucario before NP. Garchomp or Veil first.",
+          "trap": "Mega Bax + Ice Shard still revenge a weakened Lucario through Veil."
         }
       ],
       "counters": [
         {
-          "name": "Fast anti-lead pressure",
-          "why": "Ninetales can lose the tempo race before Veil is established.",
-          "play": "Use Garchomp or Meowscarada first and create a later Veil turn."
+          "name": "Primarina",
+          "slug": "primarina",
+          "why": "Moonblast is the Lucario stop even under Veil.",
+          "play": "Pick Meowscarada Flower Trick or a Charizard pack instead. Do not NP into Primarina.",
+          "trap": "Encore from Primarina locks Ninetales into Veil and donates the game."
         },
         {
-          "name": "Strong Lucario revenge killers",
-          "why": "Veil does not automatically make Lucario unkillable.",
-          "play": "Use Garchomp and Meowscarada to remove the revenge path before committing Lucario."
+          "name": "Gholdengo",
+          "slug": "gholdengo",
+          "why": "Good as Gold shrugs Encore and status; Balloon sits Garchomp EQ.",
+          "play": "Lucario Dark Pulse is the Ghost answer — only after Veil, not as a lead.",
+          "trap": "Nasty Plot Gholdengo races Lucario. Do not donate the first boost."
+        },
+        {
+          "name": "Golisopod",
+          "slug": "golisopod",
+          "why": "First Impression denies Veil on the lead.",
+          "play": "Lead Garchomp, not Ninetales. Veil later if they Exit.",
+          "trap": "Sucker Punch still tags Lucario if you NP on a predicted switch that stays."
         }
       ],
       "advantages": [
@@ -693,7 +768,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
     {
       "id": "meow-garchomp-tempo",
       "label": "No-Mega Fast Tempo",
-      "when": "Bring when the opponent has no single matchup-defining threat that requires Charizard or Lucario and Meowscarada can maintain speed control.",
+      "when": "Bring when they are slow or item-dependent (Hippowdon, Primarina walls, Leftovers cores) and you do not need a Mega. Meowscarada must keep speed — if they have Mega Salamence DD plus priority, this three is too thin.",
       "identity": "Fast, flexible, no-Mega pressure.",
       "slugs": [
         "meowscarada",
@@ -705,7 +780,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         "tempo-lock"
       ],
       "strategy": {
-        "opponentPattern": "Opponent relies on predictable switches or slower defensive structures.",
+        "opponentPattern": "Slow Hippowdon / Primarina balance that Flower Trick and Knock Off can farm. No Mega they need Charizard or Lucario to race.",
         "bring": [
           "meowscarada",
           "garchomp",
@@ -713,21 +788,23 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         ],
         "purpose": "Win through repeated favorable positioning rather than revealing either Mega.",
         "targets": [
-          "Water types",
-          "Ground types",
-          "slower teams",
-          "item-dependent walls",
-          "Electric targets"
+          "Primarina",
+          "Hippowdon",
+          "item walls",
+          "Electric sits for Garchomp"
         ],
         "refuses": [
-          "Do not select this package if the opponent has a setup sweeper that only Lucario or Charizard can realistically stop.",
+          "Mega Salamence that DDs past Meowscarada if you are not Scarf-locked into the right move.",
+          "Gholdengo — Knock Off does nothing to Good as Gold; Balloon sits Garchomp.",
           "Do not trade Meowscarada early if it is your only speed control.",
           "Do not burn Rotom merely to generate one pivot."
         ],
         "winCondition": "Use Flower Trick/Knock Off/U-turn, Garchomp damage, and Rotom Volt Switch to create a final state where one member can attack freely.",
         "gamePlan": "Scout → Pivot → Chip → Finish.",
         "mantra": "Do not reveal the Mega if the three Pokémon already win the board.",
-        "contrast": "This package deliberately keeps Charizard and Lucario out, preserving Mega ambiguity for future games and reducing dependence on a single win condition."
+        "contrast": "This package deliberately keeps Charizard and Lucario out, preserving Mega ambiguity for future games and reducing dependence on a single win condition.",
+        "defaultLead": "meowscarada",
+        "defaultLeadWhy": "Flower Trick Primarina / Hippowdon or U-turn if they lead Mega Salamence into Rotom."
       },
       "roles": [
         {
@@ -792,16 +869,34 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
       ],
       "victims": [
         {
-          "name": "Slow balance",
-          "why": "Repeated U-turn/Volt Switch forces it to reveal its defensive sequence.",
-          "play": "Prioritize item removal and safe positioning."
+          "name": "Primarina",
+          "slug": "primarina",
+          "why": "Flower Trick is the Grass answer this six actually owns. Rotom is not the Primarina win — Meowscarada is.",
+          "play": "Lead Meowscarada. If they Encore, U-turn. Knock Off the Sitrus if you stay.",
+          "trap": "Aqua Jet after chip. Do not U-turn into a Gholdengo sit."
+        },
+        {
+          "name": "Hippowdon",
+          "slug": "hippowdon",
+          "why": "Flower Trick and Rotom Hydro both contest Sand; Knock Off removes Sitrus.",
+          "play": "Chip, remove the berry, then Garchomp EQ if they stay grounded.",
+          "trap": "Yawn plus Whirlwind resets the loop — take the attack instead of cycling forever."
         }
       ],
       "counters": [
         {
-          "name": "Fast priority-heavy offense",
-          "why": "The package is less forgiving if Meowscarada cannot maintain speed advantage.",
-          "play": "Preserve Rotom and avoid unnecessary chip on Meowscarada."
+          "name": "Mega Salamence",
+          "slug": "salamence",
+          "why": "DD plus Double-Edge races a no-Mega three if Meowscarada is already chipped.",
+          "play": "If you brought this pack anyway, Rotom burn or Garchomp Fire Fang — do not U-turn into DD.",
+          "trap": "Roost plus Intimidate donates the pivot loop. Attack or leave the pack."
+        },
+        {
+          "name": "Gholdengo",
+          "slug": "gholdengo",
+          "why": "Knock Off fails. Balloon sits Garchomp. No Mega breaker on this three.",
+          "play": "Wrong pack. Charizard or Lucario Dark Pulse belongs on another bring.",
+          "trap": "Do not keep U-turning hoping the Ghost leaves."
         }
       ],
       "advantages": [
@@ -820,7 +915,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
     {
       "id": "rotom-lucario-veil",
       "label": "Rotom + Veil + Lucario",
-      "when": "Opponent has Water/Fire/Ground interactions that Rotom handles while Lucario has a strong setup matchup.",
+      "when": "Hippowdon or Fire that Rotom sits, and they do not have Primarina/Gholdengo to stop Lucario after Veil. Use when Ninetales cannot lead into Golisopod but Rotom can buy the Veil turn.",
       "identity": "A hybrid package: Rotom solves the entry problem while Ninetales/Lucario provide the endgame.",
       "slugs": [
         "rotom-wash",
@@ -832,7 +927,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         "tempo-lock"
       ],
       "strategy": {
-        "opponentPattern": "Opponent can be softened by Rotom but cannot comfortably answer Lucario after Veil.",
+        "opponentPattern": "Hippowdon / Fire that Rotom can sit; Lucario still has a setup window after Veil. No Primarina revenge.",
         "bring": [
           "rotom-wash",
           "ninetales-alola",
@@ -840,20 +935,22 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         ],
         "purpose": "Use Rotom as the stabilizer that makes the Veil package less dependent on a perfect Ninetales lead.",
         "targets": [
-          "Fire types",
-          "Water types",
-          "Ground types",
-          "slower defensive targets"
+          "Hippowdon",
+          "Fire",
+          "physical Golisopod"
         ],
         "refuses": [
-          "Do not sacrifice Rotom before identifying the opponent's Fire/Water interaction.",
-          "Do not force Veil if Rotom already gives you a winning neutral game.",
-          "Do not Mega Lucario until the opponent's most reliable answer is identified."
+          "Primarina — still the Lucario stop, and Rotom does not beat it.",
+          "Rillaboom — Rotom is Grass-weak; Ninetales is too.",
+          "Do not sacrifice Rotom before identifying the Fire/Ground interaction.",
+          "Do not Mega Lucario until Primarina / Gholdengo is confirmed absent or removed."
         ],
         "winCondition": "Use Rotom to stabilize the early game, then establish Veil and convert the protected turn into Lucario setup.",
         "gamePlan": "Stabilize → Veil → Setup → Finish.",
         "mantra": "Rotom buys the turn that Ninetales cannot safely create by itself.",
-        "contrast": "Compared with Ninetales/Garchomp/Lucario, this package gives up Garchomp's physical pressure for a more reliable pivoting layer."
+        "contrast": "Compared with Ninetales/Garchomp/Lucario, this package gives up Garchomp's physical pressure for a more reliable pivoting layer.",
+        "defaultLead": "rotom-wash",
+        "defaultLeadWhy": "Sit Hippowdon or Golisopod, then Ninetales into the hole."
       },
       "roles": [
         {
@@ -902,15 +999,34 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
       ],
       "victims": [
         {
-          "name": "Fire/Water balance",
-          "why": "Rotom gives the package a natural response to both sides while Lucario waits for its setup window."
+          "name": "Hippowdon",
+          "slug": "hippowdon",
+          "why": "Rotom sits Sand and Hydro; Ninetales Veils the follow-up; Lucario finishes.",
+          "play": "Lead Rotom. After Yawn or a forced switch, Ninetales Veil then Lucario.",
+          "trap": "Do not Veil into a predicted Whirlwind unless Encore is ready."
+        },
+        {
+          "name": "Golisopod",
+          "slug": "golisopod",
+          "why": "Rotom burns the Mega so Ninetales never eats First Impression.",
+          "play": "Lead Rotom, burn, then Veil on the Exit.",
+          "trap": "U-turn into Primarina after Exit — stop the chain."
         }
       ],
       "counters": [
         {
-          "name": "Strong immediate Grass pressure",
-          "why": "Rotom is weak to Grass and Ninetales can be pressured before Veil.",
-          "play": "Preserve Lucario and use the rest of the six to handle the Grass threat if possible."
+          "name": "Primarina",
+          "slug": "primarina",
+          "why": "Rotom does not beat Moonblast; Lucario still dies to it after Veil.",
+          "play": "Wrong pack — Meowscarada Flower Trick.",
+          "trap": "Sparkling Aria plus Aqua Jet cleans both Rotom and a chipped Lucario."
+        },
+        {
+          "name": "Rillaboom",
+          "slug": "rillaboom",
+          "why": "Rotom and Ninetales are both Grass-weak. No Garchomp on this three.",
+          "play": "Do not bring this pack into Rillaboom. Charizard pivot pack instead.",
+          "trap": "Glide after Volt Switch is a KO, not a scout."
         }
       ],
       "advantages": [
@@ -929,7 +1045,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
     {
       "id": "rotom-meow-charizard",
       "label": "Double-Pivot Charizard",
-      "when": "Opponent has a fragile defensive structure and Meowscarada plus Rotom can repeatedly force switches.",
+      "when": "They are fragile or Grass-weak (Rillaboom) and Primarina is on their six — Meowscarada plus Rotom can force the Charizard entry. Do not bring this without Garchomp into Archaludon/Electric.",
       "identity": "U-turn + Volt Switch creates repeated Charizard entry opportunities.",
       "slugs": [
         "meowscarada",
@@ -941,7 +1057,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         "tempo-lock"
       ],
       "strategy": {
-        "opponentPattern": "Opponent has predictable responses to Meowscarada and Rotom.",
+        "opponentPattern": "Rillaboom or Primarina that Meowscarada forces, then Rotom Volt Switch into Charizard. Fragile offense, not Archaludon Electric.",
         "bring": [
           "meowscarada",
           "rotom-wash",
@@ -949,20 +1065,22 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         ],
         "purpose": "Make Charizard's entry so safe that it does not need to absorb a risky direct switch.",
         "targets": [
-          "Grass types",
-          "Water types",
-          "Ground types",
-          "slow defensive cores"
+          "Rillaboom",
+          "Primarina",
+          "Hippowdon"
         ],
         "refuses": [
+          "Archaludon / Electric — no Garchomp on this three.",
+          "Mega Salamence DD if both pivots are already chipped.",
           "Do not run both pivot moves automatically.",
-          "Do not sacrifice Meowscarada before confirming Charizard has value.",
-          "Do not Mega Charizard if the opponent's Fire answer remains healthy and unpressured."
+          "Do not Mega Charizard if Primarina is still healthy."
         ],
         "winCondition": "Repeated pivoting places Charizard in front of something it can KO; after the first major break, stop cycling and finish.",
         "gamePlan": "Scout → Pivot → Break → Finish.",
         "mantra": "Two pivots are tools, not the win condition.",
-        "contrast": "This is more aggressive than the standard Rotom/Charizard/Garchomp package and gives up Garchomp's Electric immunity."
+        "contrast": "This is more aggressive than the standard Rotom/Charizard/Garchomp package and gives up Garchomp's Electric immunity.",
+        "defaultLead": "meowscarada",
+        "defaultLeadWhy": "Flower Trick Primarina / Rillaboom; U-turn to Rotom if they lead physical Mega."
       },
       "roles": [
         {
@@ -1011,15 +1129,34 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
       ],
       "victims": [
         {
-          "name": "Slow defensive teams",
-          "why": "The two pivot moves can repeatedly force them to reveal their answers."
+          "name": "Primarina",
+          "slug": "primarina",
+          "why": "Meowscarada Flower Trick is the actual Primarina answer; Rotom then Volt Switches Charizard into the Grass they send to cover Fairy.",
+          "play": "Lead Meowscarada. After the Fairy is chipped or forced, Charizard — not another U-turn.",
+          "trap": "Aqua Jet. Stop pivoting if Charizard would enter into Moonblast."
+        },
+        {
+          "name": "Rillaboom",
+          "slug": "rillaboom",
+          "why": "Charizard wants Grass; Meowscarada can U-turn on Glide if Rotom is not the one eating it.",
+          "play": "Do not Volt Switch Rotom into Glide. U-turn from Meowscarada into Charizard.",
+          "trap": "High Horsepower still hits Rotom if you guessed wrong."
         }
       ],
       "counters": [
         {
-          "name": "Strong anti-pivot offense",
-          "why": "Fast pressure can punish a predictable U-turn/Volt Switch sequence.",
-          "play": "Attack directly instead of pivoting whenever the direct KO or chip is superior."
+          "name": "Archaludon",
+          "slug": "archaludon",
+          "why": "No Garchomp. Thunderbolt punishes Rotom and Charizard.",
+          "play": "Wrong pack. Bring Garchomp in the Rotom+Charizard three instead.",
+          "trap": "Stamina plus Flash Cannon after a weak Hydro."
+        },
+        {
+          "name": "Mega Salamence",
+          "slug": "salamence",
+          "why": "Two pivots donate DD turns if you never attack.",
+          "play": "Flower Trick or burn — then Charizard only if Dragon is gone.",
+          "trap": "Intimidate into Double-Edge on a predicted U-turn."
         }
       ],
       "advantages": [
@@ -1038,7 +1175,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
     {
       "id": "skeledirge-veil-control",
       "label": "Skeledirge + Veil Control",
-      "when": "Swap Rotom-W for Skeledirge when the opponent's biggest threat is setup or physical snowballing rather than pivot-sensitive Water/Electric matchups.",
+      "when": "Swap Rotom for Skeledirge when Mega Salamence DD, Baxcalibur, or another physical setup is their win — not when Primarina / Hippowdon Water-Ground is the board. Unaware plus Veil is the point; you lose Volt Switch.",
       "identity": "Aurora Veil plus Unaware creates a two-layer safety net: Lucario attacks through protection while Skeledirge prevents opposing setup from becoming an automatic loss.",
       "slugs": [
         "ninetales-alola",
@@ -1054,7 +1191,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         "veil-attrition"
       ],
       "strategy": {
-        "opponentPattern": "Opponent relies on boosting or physical offense and does not have an easy way to force Skeledirge out.",
+        "opponentPattern": "Mega Salamence DD, Baxcalibur, or physical snowball. Not Primarina / Hippowdon Water-Ground.",
         "bring": [
           "ninetales-alola",
           "lucario",
@@ -1062,20 +1199,22 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         ],
         "purpose": "Create the safest possible setup-oriented package without relying on Rotom pivoting.",
         "targets": [
-          "setup sweepers",
-          "physical attackers",
-          "passive walls",
-          "Ghost/Psychic targets"
+          "Mega Salamence",
+          "Baxcalibur",
+          "physical setup"
         ],
         "refuses": [
-          "Do not bring this package solely because Skeledirge is bulky if the opponent's Water/Ground pressure is overwhelming.",
+          "Primarina — still the Lucario stop, and Skeledirge is Water-weak.",
+          "Hippowdon — Earthquake plus Sand; you dropped Rotom's Hydro sit.",
           "Do not use Skeledirge as a substitute for Rotom's pivoting.",
           "Do not let both Skeledirge and Ninetales become passive at the same time."
         ],
         "winCondition": "Veil enables Lucario while Skeledirge prevents the opponent from winning through setup.",
         "gamePlan": "Stabilize → Veil → Setup → Finish.",
         "mantra": "One attacker wins; Skeledirge prevents the opponent from racing it.",
-        "contrast": "Compared with Rotom/Lucario/Veil, this package is slower but much harder for setup-oriented physical teams to snowball through."
+        "contrast": "Compared with Rotom/Lucario/Veil, this package is slower but much harder for setup-oriented physical teams to snowball through.",
+        "defaultLead": "skeledirge",
+        "defaultLeadWhy": "Sit DD Salamence / Baxcalibur. Veil if they lead a wall instead."
       },
       "roles": [
         {
@@ -1140,16 +1279,34 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
       ],
       "victims": [
         {
-          "name": "Physical setup",
-          "why": "Unaware prevents ordinary stat boosts from turning into an immediate sweep.",
-          "play": "Preserve Skeledirge until the setup threat is identified."
+          "name": "Mega Salamence",
+          "slug": "salamence",
+          "why": "Unaware ignores Dragon Dance. Will-O-Wisp plus Slack Off is the DD answer Rotom never was.",
+          "play": "Lead Skeledirge. Burn or sit the Double-Edge. Veil Lucario after the boost is wasted.",
+          "trap": "Special Mence (rare) and Roost stall — Torch Song if they never attack."
+        },
+        {
+          "name": "Baxcalibur",
+          "slug": "baxcalibur",
+          "why": "Physical Glaive/EQ into Unaware; Ice Shard still chips Lucario, so Skeledirge should take the first hit.",
+          "play": "Skeledirge lead. Do not Veil into Ice Shard on Ninetales.",
+          "trap": "If they Mega and you already burned, Lucario can NP — not before."
         }
       ],
       "counters": [
         {
-          "name": "Strong Water/Ground pressure",
-          "why": "Skeledirge's typing makes those attacks especially dangerous.",
-          "play": "Use Garchomp, Meowscarada, or Ninetales elsewhere in the six rather than expecting Skeledirge to cover them."
+          "name": "Primarina",
+          "slug": "primarina",
+          "why": "Water/Fairy hits every member. You swapped away Rotom.",
+          "play": "Do not take this flex. Keep Rotom-W and Meowscarada.",
+          "trap": "Moonblast Lucario through Veil is still a KO range."
+        },
+        {
+          "name": "Hippowdon",
+          "slug": "hippowdon",
+          "why": "Earthquake plus Sand; Skeledirge is Ground-weak.",
+          "play": "Wrong swap. Rotom Hydro pack.",
+          "trap": "Stealth Rock plus EQ chip makes Slack Off lose the race."
         }
       ],
       "advantages": [
@@ -1168,7 +1325,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
     {
       "id": "skeledirge-charizard-double-fire",
       "label": "Charizard + Skeledirge Double-Fire",
-      "when": "Swap Rotom for Skeledirge when the opponent has Grass/Steel/Bug pressure that both Fire Pokémon can exploit, while Skeledirge's defensive profile protects the team from physical setup.",
+      "when": "Swap Rotom for Skeledirge vs Rillaboom / Grass-Steel that both Fires punish, AND they are physical-setup rather than Primarina/Hippowdon. If Water-Ground is the board, keep Rotom.",
       "identity": "Offensive Fire Mega plus defensive Fire/Ghost anchor.",
       "slugs": [
         "charizard",
@@ -1183,7 +1340,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         "zard-cleanup"
       ],
       "strategy": {
-        "opponentPattern": "Opponent has Fire-vulnerable targets but lacks a sufficiently strong Water/Ground route to exploit the double-Fire structure.",
+        "opponentPattern": "Rillaboom or Grass/Steel plus a physical setup (Salamence/Bax). Not Primarina or Hippowdon.",
         "bring": [
           "charizard",
           "garchomp",
@@ -1191,20 +1348,22 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         ],
         "purpose": "Let Skeledirge absorb and disrupt physical threats while Charizard supplies the explosive special damage.",
         "targets": [
-          "Grass",
-          "Steel",
-          "Bug",
-          "physical setup"
+          "Rillaboom",
+          "Aegislash",
+          "Mega Salamence"
         ],
         "refuses": [
-          "Do not use this against a team where both Fire slots are easily forced out by Water/Ground pressure.",
-          "Do not expose both Fire Pokémon before identifying the opponent's Water answer.",
-          "Do not sacrifice Garchomp early if it is your only strong answer to Electric pressure."
+          "Primarina — both Fires lose, no Rotom.",
+          "Hippowdon — Skeledirge is Ground-weak; Rotom was the sit.",
+          "Do not expose both Fire Pokémon before identifying their Water answer.",
+          "Do not sacrifice Garchomp early if Archaludon is still on their three."
         ],
         "winCondition": "Skeledirge stabilizes the board until Charizard gets a clean Mega sequence.",
         "gamePlan": "Stabilize → Soften → Mega Break → Finish.",
         "mantra": "One Fire breaks; the other protects the break.",
-        "contrast": "Unlike Rotom/Charizard/Garchomp, this package is less pivot-oriented but more resilient to physical setup."
+        "contrast": "Unlike Rotom/Charizard/Garchomp, this package is less pivot-oriented but more resilient to physical setup.",
+        "defaultLead": "skeledirge",
+        "defaultLeadWhy": "Sit physical Mega. Charizard only after Grass/Steel is in front."
       },
       "roles": [
         {
@@ -1253,15 +1412,34 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
       ],
       "victims": [
         {
-          "name": "Grass/Steel cores",
-          "why": "Both Fire members create pressure from different angles."
+          "name": "Rillaboom",
+          "slug": "rillaboom",
+          "why": "Charizard eats Grass; Skeledirge sits the physical follow-up; Garchomp Fire Fang if they stay.",
+          "play": "Do not lead Charizard into Glide. Skeledirge or Garchomp first.",
+          "trap": "U-turn into Primarina after Glide."
+        },
+        {
+          "name": "Aegislash",
+          "slug": "aegislash-shield",
+          "why": "Fire hits Steel/Ghost; King's Shield is worse vs Unaware Skeledirge than vs a pivot.",
+          "play": "Skeledirge if they want to stall Shield; Charizard if they stay Blade.",
+          "trap": "Shadow Sneak still tags a chipped Charizard."
         }
       ],
       "counters": [
         {
-          "name": "Strong Water cores",
-          "why": "Both Fire members can be forced out and Skeledirge lacks Rotom's Water resistance.",
-          "play": "Use Meowscarada/Ninetales/Garchomp to control Water targets before committing both Fire pieces."
+          "name": "Primarina",
+          "slug": "primarina",
+          "why": "Both Fires are Water-weak. No Rotom.",
+          "play": "Keep Rotom-W. Do not take this flex.",
+          "trap": "Aqua Jet cleans Charizard after one Sparkling Aria."
+        },
+        {
+          "name": "Hippowdon",
+          "slug": "hippowdon",
+          "why": "EQ plus Sand. Skeledirge is Ground-weak.",
+          "play": "Rotom+Charizard pivot instead.",
+          "trap": "Stealth Rock makes both Fires lose HP they cannot spend."
         }
       ],
       "advantages": [
@@ -1280,7 +1458,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
     {
       "id": "ceruledge-veil-dual-setup",
       "label": "Veil + Dual Setup",
-      "when": "Swap Rotom for Ceruledge when the opponent can be overwhelmed by two different setup directions and has limited answers to Ghost/Fighting immunities.",
+      "when": "Swap Rotom for Ceruledge when they can cover one setup axis but not both — thin Ghost answers, Aegislash cores, no Primarina. Dual NP + SD under Veil. If Water-Ground is the board, keep Rotom.",
       "identity": "Aurora Veil supports both Mega Lucario's Nasty Plot and Ceruledge's Swords Dance.",
       "slugs": [
         "ninetales-alola",
@@ -1296,7 +1474,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         "veil-attrition"
       ],
       "strategy": {
-        "opponentPattern": "Opponent has a defensive core that is specialized against either physical or special setup but not both.",
+        "opponentPattern": "Aegislash / thin Ghost answers / one-dimensional setup defense. Not Primarina, Hippowdon, or Balloon Gholdengo.",
         "bring": [
           "ninetales-alola",
           "lucario",
@@ -1304,20 +1482,22 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         ],
         "purpose": "Force the opponent to reveal whether its setup answer is physical-side or special-side, then attack the opposite axis.",
         "targets": [
-          "Steel types",
-          "Ghost-weak targets",
-          "passive walls",
-          "teams with one-dimensional setup answers"
+          "Aegislash",
+          "Lucario mirrors",
+          "physical walls that lose to SD"
         ],
         "refuses": [
+          "Primarina — Water/Fairy hits Ceruledge and Lucario.",
+          "Gholdengo — Steel/Ghost resists Bitter Blade and Poltergeist; Balloon sits Ground.",
           "Do not set up with both attackers just because Veil is active.",
-          "Do not sacrifice Ceruledge early if Shadow Sneak is required for the endgame.",
-          "Do not assume Fighting immunity means Sneasler is automatically solved; account for its Poison/Ghost/Dark coverage."
+          "Do not sacrifice Ceruledge early if Shadow Sneak is the clean."
         ],
         "winCondition": "One setup attacker forces the opponent's answer; the other exploits the resulting defensive gap.",
         "gamePlan": "Veil → Force answer → Setup opposite axis → Finish.",
         "mantra": "Make the opponent choose which setup threat they are willing to lose to.",
-        "contrast": "This is much more aggressive than the Rotom version and deliberately gives up conventional pivoting for offensive redundancy."
+        "contrast": "This is much more aggressive than the Rotom version and deliberately gives up conventional pivoting for offensive redundancy.",
+        "defaultLead": "ninetales-alola",
+        "defaultLeadWhy": "Veil first. If they lead Golisopod, Ceruledge Sash (if confirmed) or leave the pack."
       },
       "roles": [
         {
@@ -1382,15 +1562,34 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
       ],
       "victims": [
         {
-          "name": "One-dimensional balance",
-          "why": "The opponent may have only one practical answer to setup and cannot cover both physical and special routes."
+          "name": "Aegislash",
+          "slug": "aegislash-shield",
+          "why": "They usually prepare for one Fire/Ghost attacker. Lucario NP and Ceruledge SD are different axes; King's Shield does not stop both.",
+          "play": "Veil, then the axis they did not bring a sit for. Shadow Sneak if they try to revenge.",
+          "trap": "Shadow Sneak from them still tags a Sashless Ceruledge after Weak Armor."
+        },
+        {
+          "name": "Lucario",
+          "slug": "lucario",
+          "why": "Mirror: Veil plus Ceruledge Fighting immunity and Shadow Sneak can win the NP race.",
+          "play": "Do not NP first if they can Vacuum Wave. Ceruledge or Encore.",
+          "trap": "Their Dark Pulse still hits Ceruledge."
         }
       ],
       "counters": [
         {
-          "name": "Strong Water/Ground pressure",
-          "why": "Ceruledge does not replace Rotom's defensive coverage.",
-          "play": "Use Garchomp/Meowscarada/Ninetales elsewhere in the active six to control those targets."
+          "name": "Primarina",
+          "slug": "primarina",
+          "why": "Water/Fairy. You dropped Rotom.",
+          "play": "Do not take this flex.",
+          "trap": "Moonblast plus Aqua Jet ends both setup threats."
+        },
+        {
+          "name": "Gholdengo",
+          "slug": "gholdengo",
+          "why": "Steel/Ghost resists Fire and Ghost; Good as Gold ignores Encore.",
+          "play": "Lucario Dark Pulse only — and only if they are not boosting first.",
+          "trap": "Make It Rain through Veil still chunks both sweepers."
         }
       ],
       "advantages": [
@@ -1409,7 +1608,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
     {
       "id": "ceruledge-charizard-pressure",
       "label": "Charizard + Ceruledge Pressure",
-      "when": "Swap Rotom for Ceruledge when Fire/Ghost pressure is valuable and the opponent has difficulty switching safely between special and physical attackers.",
+      "when": "Swap Rotom for Ceruledge when they cannot sit both special Charizard and physical Ghost/Fire — Rillaboom, Aegislash, thin Fire answers. Not vs Primarina or Hippowdon.",
       "identity": "Charizard supplies immediate special Fire pressure while Ceruledge attacks physically and carries priority.",
       "slugs": [
         "charizard",
@@ -1424,7 +1623,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         "zard-cleanup"
       ],
       "strategy": {
-        "opponentPattern": "Opponent has separate physical and special answers but cannot cover both Fire attackers efficiently.",
+        "opponentPattern": "Rillaboom / Aegislash / split Fire answers. Not Primarina or Hippowdon.",
         "bring": [
           "charizard",
           "garchomp",
@@ -1432,20 +1631,21 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         ],
         "purpose": "Use Garchomp to break shared checks while forcing the opponent to answer two different Fire attackers.",
         "targets": [
-          "Steel",
-          "Grass",
-          "Bug",
-          "slower physical walls"
+          "Rillaboom",
+          "Aegislash",
+          "Grass/Steel"
         ],
         "refuses": [
-          "Do not bring if the opponent has overwhelming Water/Ground pressure.",
-          "Do not reveal both Fire attackers before identifying the opponent's Fire counter.",
-          "Do not use Ceruledge merely as a second Fire attacker; exploit its Ghost typing and priority."
+          "Primarina / Hippowdon — no Rotom sit.",
+          "Do not reveal both Fire attackers before identifying their Fire counter.",
+          "Do not use Ceruledge merely as a second Fire attacker; exploit Ghost and Shadow Sneak."
         ],
         "winCondition": "One Fire attacker forces the opponent's check into range of the other.",
         "gamePlan": "Pressure → Force answer → Switch axis → Finish.",
         "mantra": "Make the opponent defend the type twice, from different sides.",
-        "contrast": "Compared with Rotom/Charizard/Garchomp, this package has less defensive safety but considerably more direct finishing power."
+        "contrast": "Compared with Rotom/Charizard/Garchomp, this package has less defensive safety but considerably more direct finishing power.",
+        "defaultLead": "garchomp",
+        "defaultLeadWhy": "Break the shared Fire sit. Ceruledge or Charizard after, not both on turn 1."
       },
       "roles": [
         {
@@ -1494,15 +1694,34 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
       ],
       "victims": [
         {
-          "name": "Grass/Steel structures",
-          "why": "Both Fire attackers apply strong pressure while Garchomp prevents simple Electric counterplay."
+          "name": "Rillaboom",
+          "slug": "rillaboom",
+          "why": "Both Fires punish Grass; Garchomp Fire Fang if they stay; Ceruledge Shadow Sneak after chip.",
+          "play": "Garchomp or Ceruledge lead — not Charizard into Glide.",
+          "trap": "U-turn into Primarina."
+        },
+        {
+          "name": "Aegislash",
+          "slug": "aegislash-shield",
+          "why": "Physical Ghost from Ceruledge plus special Fire from Charizard is two Shield problems.",
+          "play": "Force Shield, then the other Fire. Shadow Sneak if they try to revenge.",
+          "trap": "Their Shadow Sneak vs a Weak Armor Ceruledge."
         }
       ],
       "counters": [
         {
-          "name": "Water/Ground balance",
-          "why": "The package lacks Rotom's Water/Electric pivoting.",
-          "play": "Use Meowscarada and Ninetales as the Water/Ground control pieces when possible."
+          "name": "Primarina",
+          "slug": "primarina",
+          "why": "No Rotom. Both Fires lose to Water/Fairy.",
+          "play": "Do not take this flex.",
+          "trap": "Aqua Jet on Charizard after one Moonblast."
+        },
+        {
+          "name": "Hippowdon",
+          "slug": "hippowdon",
+          "why": "EQ hits Ceruledge and Charizard hates Rocks.",
+          "play": "Rotom pivot pack instead.",
+          "trap": "Sand plus Rocks ends the Fire race."
         }
       ],
       "advantages": [
@@ -1521,7 +1740,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
     {
       "id": "metagross-preview-ambiguity",
       "label": "Non-Mega Metagross Ambiguity",
-      "when": "Swap Rotom for Metagross when the opponent is highly sensitive to Steel pressure, physical bulk, Fairy answers, or Mega ambiguity.",
+      "when": "Swap Rotom for non-Mega Metagross vs Primarina / Fairy / physical that Steel answers — and they over-prepare for one Mega. Do not swap if Hippowdon EQ or Fire is their axis. Metagross is not the Mega.",
       "identity": "Metagross is not the Mega. Its job is to add a serious Steel/Psychic body while forcing the opponent to respect Charizard and Lucario as the only actual Mega branches.",
       "slugs": [
         "metagross",
@@ -1537,7 +1756,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         "lucario-setup"
       ],
       "strategy": {
-        "opponentPattern": "Opponent has Fairy/Ice/Poison/physical pressure that Metagross can absorb or exploit and does not require Rotom's Water/Electric role.",
+        "opponentPattern": "Primarina / Fairy / Ice that a non-Mega Steel body pressures. They brought one Mega sit. Not Hippowdon EQ or Fire.",
         "bring": [
           "metagross",
           "charizard",
@@ -1545,21 +1764,22 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         ],
         "purpose": "Create maximum preview ambiguity and give both Mega branches a third member that changes the defensive requirements.",
         "targets": [
-          "Fairy types",
-          "Ice types",
-          "Poison types",
-          "physical attackers",
-          "teams that overprepare for one Mega"
+          "Primarina",
+          "Fairy",
+          "physical that Bullet Punch tags"
         ],
         "refuses": [
-          "Do not bring Metagross simply because it is bulky.",
+          "Hippowdon — Earthquake. You dropped Rotom's Ground sit.",
+          "Do not put Metagrossite on this slot — Charizardite Y and Lucarionite Z are the stones.",
           "Do not assume preview ambiguity itself wins games.",
-          "Do not sacrifice Metagross if its Steel resistances are required for the Lucario/Charizard endgame."
+          "Do not sacrifice Metagross if its Steel sit is required for the Mega you actually pick."
         ],
         "winCondition": "Use Metagross to remove or weaken the target that prevents either Charizard or Lucario from cleaning.",
         "gamePlan": "Ambiguity → Reveal branch → Remove check → Mega finish.",
         "mantra": "Metagross makes them prepare; Charizard or Lucario makes them pay.",
-        "contrast": "This package gives up Rotom's pivoting and Water coverage in exchange for physical durability, Steel utility, and a third meaningful preview threat."
+        "contrast": "This package gives up Rotom's pivoting and Water coverage in exchange for physical durability, Steel utility, and a third meaningful preview threat.",
+        "defaultLead": "metagross",
+        "defaultLeadWhy": "Sit Fairy / Moonblast. Then pick the Mega they did not sit."
       },
       "roles": [
         {
@@ -1628,15 +1848,34 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
       ],
       "victims": [
         {
-          "name": "Fairy/Ice-heavy teams",
-          "why": "Metagross naturally pressures these targets while the Mega branches exploit the resulting openings."
+          "name": "Primarina",
+          "slug": "primarina",
+          "why": "Steel hits Fairy. Non-Mega Metagross is the Primarina body Rotom never was; then Lucario or Charizard depending which they sat.",
+          "play": "Lead Metagross. Bullet Punch / Psychic Fangs (once the kit is confirmed). Do not send Charizard into Moonblast.",
+          "trap": "Aqua Jet after chip. Sparkling Aria still hurts Charizard if you pick the wrong Mega."
+        },
+        {
+          "name": "Aegislash",
+          "slug": "aegislash-shield",
+          "why": "Steel/Psychic plus a Mega they cannot sit both of.",
+          "play": "Metagross into Shield, then the Mega they did not prepare.",
+          "trap": "Shadow Sneak vs a weakened Lucario."
         }
       ],
       "counters": [
         {
-          "name": "Strong Water/Ground offense",
-          "why": "Without Rotom, the swapped six loses its safest conventional Water/Ground pivot.",
-          "play": "Use Meowscarada, Garchomp, and Charizard carefully rather than expecting Metagross to cover the role."
+          "name": "Hippowdon",
+          "slug": "hippowdon",
+          "why": "Earthquake. Metagross is Ground-weak; you dropped Rotom.",
+          "play": "Do not take this flex vs Sand.",
+          "trap": "Rocks plus EQ chip before you ever Mega."
+        },
+        {
+          "name": "Rillaboom",
+          "slug": "rillaboom",
+          "why": "Grassy Glide vs Metagross; Charizard still wants the Grass but Lucario does not.",
+          "play": "Charizard pack with Rotom, not this three, unless Garchomp is also coming.",
+          "trap": "High Horsepower after Glide."
         }
       ],
       "advantages": [
@@ -1659,7 +1898,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
     {
       "id": "metagross-veil-bulwark",
       "label": "Veil + Metagross Bulwark",
-      "when": "Swap Rotom for Metagross when Ninetales can establish Veil and Metagross's physical bulk makes the opponent's physical pressure much less threatening.",
+      "when": "Swap Rotom for Metagross when Ninetales can Veil and they are physical Fairy/Ice (Primarina physical variants, Baxcalibur) that a Steel body plus Lucario can farm. Not vs Hippowdon EQ or Fire.",
       "identity": "Aurora Veil supports both Metagross and Lucario, creating a Steel-based midgame before Lucario finishes.",
       "slugs": [
         "ninetales-alola",
@@ -1675,7 +1914,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         "veil-attrition"
       ],
       "strategy": {
-        "opponentPattern": "Opponent has physical pressure or Fairy/Ice targets that Metagross can comfortably contest.",
+        "opponentPattern": "Physical Fairy/Ice that Veil plus non-Mega Metagross sits. Not Hippowdon or special Water.",
         "bring": [
           "ninetales-alola",
           "metagross",
@@ -1683,20 +1922,22 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
         ],
         "purpose": "Use Veil to create a physically durable middle game and let either Steel Pokémon become the finisher.",
         "targets": [
-          "Fairy",
-          "Ice",
-          "physical attackers",
-          "slower teams"
+          "Primarina",
+          "Baxcalibur",
+          "physical Fairy"
         ],
         "refuses": [
-          "Do not bring against teams where Water/Ground pressure is the dominant axis.",
+          "Hippowdon — Earthquake through Veil still hurts Metagross.",
           "Do not use both Steel Pokémon as disposable damage dealers.",
-          "Do not set up Lucario if Metagross already has the better endgame."
+          "Do not NP Lucario if Metagross already has the better endgame.",
+          "Metagross stays non-Mega — do not steal the stone from Lucario."
         ],
         "winCondition": "Veil lets Metagross absorb pressure while removing a target, then Lucario finishes after the opposing answer is weakened.",
         "gamePlan": "Veil → Bulwark → Break → Finish.",
         "mantra": "Use Veil to make Metagross the wall they did not prepare for, then let Lucario finish.",
-        "contrast": "Compared with Ninetales/Lucario/Garchomp, this package is less Ground-oriented and more resistant to physical/Fairy/Ice pressure."
+        "contrast": "Compared with Ninetales/Lucario/Garchomp, this package is less Ground-oriented and more resistant to physical/Fairy/Ice pressure.",
+        "defaultLead": "ninetales-alola",
+        "defaultLeadWhy": "Veil first if they do not First Impression. Otherwise Metagross."
       },
       "roles": [
         {
@@ -1745,15 +1986,34 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
       ],
       "victims": [
         {
-          "name": "Physical Fairy/Ice teams",
-          "why": "Metagross benefits strongly from the defensive amplification of Veil."
+          "name": "Primarina",
+          "slug": "primarina",
+          "why": "Veil plus Steel makes Moonblast less free; Lucario Flash Cannon after Metagross chips.",
+          "play": "Metagross into Fairy, Veil if they Encore/Protect, Lucario to finish.",
+          "trap": "Aqua Jet still exists. Do not NP into a healthy Primarina."
+        },
+        {
+          "name": "Baxcalibur",
+          "slug": "baxcalibur",
+          "why": "Physical Ice/Dragon into Veil Metagross; Lucario special after Ice Shard is spent.",
+          "play": "Do not lead Ninetales into Ice Shard. Metagross first.",
+          "trap": "Glaive Rush plus Ice Shard still chunks if Veil is down."
         }
       ],
       "counters": [
         {
-          "name": "Water/Ground offense",
-          "why": "The package does not contain Rotom's Water/Electric/Ground-immunity utility.",
-          "play": "Use Meowscarada and Garchomp to handle these threats."
+          "name": "Hippowdon",
+          "slug": "hippowdon",
+          "why": "Earthquake. No Rotom.",
+          "play": "Do not take this flex vs Sand.",
+          "trap": "Rocks plus EQ before Lucario ever enters."
+        },
+        {
+          "name": "Gholdengo",
+          "slug": "gholdengo",
+          "why": "Steel-on-Steel plus Good as Gold. Make It Rain chunks both Steels.",
+          "play": "Lucario Dark Pulse only if they are not boosting first. Often the wrong pack.",
+          "trap": "Balloon sits any leftover Ground from Metagross EQ."
         }
       ],
       "advantages": [
@@ -1772,30 +2032,36 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
   ],
   "victims": [
     {
-      "name": "Passive defensive structures",
-      "why": "The team has multiple ways to turn passive turns into setup, pivoting, or immediate breaker pressure."
+      "name": "Hippowdon",
+      "slug": "hippowdon",
+      "why": "Rotom Hydro plus Garchomp EQ contest Sand; Charizard eats the Grass they bring to answer Ground."
     },
     {
-      "name": "Fire/Grass/Steel-heavy structures",
-      "why": "Charizard and Garchomp pressure these types directly, while Rotom-W provides a Water axis."
+      "name": "Rillaboom",
+      "slug": "rillaboom",
+      "why": "Charizard wants Grass; Meowscarada U-turns around Glide. Do not feed Rotom to Glide."
     },
     {
-      "name": "Teams dependent on one physical setup sweeper",
-      "why": "Skeledirge becomes an optional flex specifically to deny this type of snowball."
+      "name": "Mega Salamence",
+      "slug": "salamence",
+      "why": "Physical DD is why Skeledirge exists as a flex. Core Garchomp Fire Fang if you keep Rotom."
     }
   ],
   "counters": [
     {
-      "name": "Fast anti-lead pressure",
-      "why": "Ninetales can be denied before Veil and the team may lose tempo if it insists on starting with the setter."
+      "name": "Primarina",
+      "slug": "primarina",
+      "why": "Moonblast stops Charizard and Lucario. Answer is Meowscarada Flower Trick or non-Mega Metagross flex — not Rotom Hydro."
     },
     {
-      "name": "Strong Water/Ground cores",
-      "why": "Charizard is naturally pressured and the non-Rotom versions lose the team's cleanest Water/Electric pivot axis."
+      "name": "Gholdengo",
+      "slug": "gholdengo",
+      "why": "Good as Gold plus Balloon sits Garchomp and ignores Encore. Lucario Dark Pulse or leave."
     },
     {
-      "name": "Fast snowball attackers",
-      "why": "If the opponent obtains an immediate speed or setup advantage, the team can be forced into reactive play. Use the correct flex package or preserve Meowscarada rather than relying on raw damage."
+      "name": "Golisopod",
+      "slug": "golisopod",
+      "why": "First Impression denies Veil. Lead Rotom/Garchomp, not Ninetales."
     }
   ],
   "advantages": [
@@ -1809,7 +2075,7 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
     },
     {
       "title": "Rotom-W completion",
-      "body": "Rotom-W supplies the conventional pivoting layer that the original five lacked. Season 6 Singles data supports Hydro Pump, Volt Switch, Will-O-Wisp, and Pain Split as its major tools, with Levitate universal among sampled usage."
+      "body": "Rotom-W is the conventional pivot this six needs. M6 ranked (asOf 2026-09-20) places it #25 with Hydro Pump / Volt Switch / Will-O-Wisp; Levitate is universal in the dump. Item split is Leftovers-led — see evidence, not a locked kit."
     },
     {
       "title": "Flex slots change playstyle",
@@ -2068,5 +2334,5 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
     "building",
     "speed"
   ],
-  "setsNote": "Sets follow the pilot's established builds. EVs/items marked TODO stay unmarked until confirmed."
+  "setsNote": "Natures and items marked TODO wait on the pilot kit. Season 6 usage lives in evidence and is not copied onto this six: Garchomp stays Life Orb; Metagross flex stays non-Mega."
 } as TeamManual;

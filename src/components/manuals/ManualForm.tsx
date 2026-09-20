@@ -223,21 +223,15 @@ export function ManualForm({
       />
 
       <label className="mt-6 block text-sm font-medium">
-        {boxed ? "Six summary" : "Lede"}
+        {boxed ? "Index blurb" : "Lede"}
       </label>
       <textarea
         className={`mt-2 ${areaClass}`}
-        value={boxed ? (draft.sixSummary ?? draft.lede) : draft.lede}
-        onChange={(e) =>
-          commit(
-            boxed
-              ? { ...draft, sixSummary: e.target.value, lede: e.target.value }
-              : { ...draft, lede: e.target.value },
-          )
-        }
+        value={draft.lede}
+        onChange={(e) => commit({ ...draft, lede: e.target.value })}
         placeholder={
           boxed
-            ? "Why these six are registered together (1–2 sentences)."
+            ? "One line for the manuals index. Not shown on the manual page."
             : "What this three is trying to do."
         }
       />

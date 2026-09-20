@@ -4,7 +4,6 @@ export const CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL = {
   "id": "charizard-lucario-rotom-flex-manual",
   "title": "Charizard / Lucario Dual-Mega Tempo — Rotom-W Core",
   "lede": "A 6-to-3 Singles team built around two distinct Mega branches: Charizard Y for immediate special pressure and Lucario Z for Veil-enabled setup. Rotom-W is the default sixth because it adds the team's missing conventional pivot, Water/Electric pressure, Ground immunity, and a safe bridge between offensive pieces. Skeledirge, Ceruledge, and non-Mega Metagross are flex swaps that replace Rotom-W and deliberately change the team's package architecture rather than merely patching one matchup.",
-  "sixSummary": "The registered six are Charizard, Garchomp, Alolan Ninetales, Lucario, Meowscarada, and Rotom-W. The team wins by making the opponent answer different 3-Pokémon structures: Charizard/Garchomp pressure, Aurora Veil/Lucario setup, fast Meowscarada tempo, or Rotom-W pivot cycles. The two Mega Pokémon are complementary rather than redundant because only one is Mega Evolved per battle.",
   "format": "singles",
   "philosophy": "Do not treat the six as one fixed team. Treat it as a menu of 3-Pokémon packages. At preview, first identify which opponent Pokémon must be controlled, then choose the package that makes that control easiest. Preserve the Mega option until the opponent's structure tells you whether Charizard Y or Lucario Z is the better win condition.",
   "archetype": "balance",

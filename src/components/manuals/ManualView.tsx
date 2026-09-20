@@ -1,40 +1,30 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { parseAsString, parseAsStringLiteral, useQueryState } from "nuqs";
+import { parseAsString, useQueryState } from "nuqs";
 import { PageFrame } from "@/components/chrome/PageFrame";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
-import { ManualFlexSwaps } from "@/components/manuals/ManualFlexSwaps";
 import { ManualToc, MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
-import { ManualGameplan } from "@/components/manuals/ManualGameplan";
-import { ManualInsights } from "@/components/manuals/ManualInsights";
-import {
-  ManualPackageHero,
-  type PackageViewMode,
-} from "@/components/manuals/ManualPackageHero";
-import { ManualGameBoard } from "@/components/manuals/ManualGameBoard";
-import { ManualSection } from "@/components/manuals/ManualSection";
-import { ManualWinPath } from "@/components/manuals/ManualWinPath";
-import { ManualBriefing } from "@/components/manuals/ManualBriefing";
+import { ManualRosterHero } from "@/components/manuals/ManualRosterHero";
+import { ManualSetTabs } from "@/components/manuals/ManualSetTabs";
+import { ManualPackagePicker } from "@/components/manuals/ManualPackagePicker";
+import { ManualPackageGuide } from "@/components/manuals/ManualPackageGuide";
 import type { CoverageMember } from "@/lib/champions/team-coverage";
 import {
   MANUAL_FAMILY_LABEL,
-  flexPool,
   isBoxedManual,
   manualFamily,
   manualFormat,
   packList,
+  resolveActiveBox,
   resolveManual,
-  resolvePackStrategy,
   validatePackId,
   type TeamManual,
 } from "@/content/manuals";
 import { formatBringLabel, formatManualEyebrow, manualsHref } from "@/lib/format";
-import { flowsFor } from "@/content/classroom-flows";
-
-const VIEW_MODES = ["carousel", "menu"] as const;
 
 function coverageFromSlots(manual: TeamManual): CoverageMember[] {
   const out: CoverageMember[] = [];
@@ -64,14 +54,12 @@ export function ManualView({
     "pack",
     parseAsString.withDefault(validatePackId(parent) ?? ""),
   );
-  const [viewParam, setViewParam] = useQueryState(
-    "view",
-    parseAsStringLiteral(VIEW_MODES).withDefault("carousel"),
-  );
+  const [focusSlug, setFocusSlug] = useState<string | null>(null);
   const activeId = validatePackId(parent, packParam) ?? "";
   const manual = resolveManual(parent, activeId || undefined);
   const activePack = packs.find((p) => p.id === activeId);
-  const viewMode = viewParam as PackageViewMode;
+  const box = resolveActiveBox(parent, activeId || undefined);
+  const modeKey = activeId || "default";
 
   function selectPack(id: string) {
     void setPackParam(id);
@@ -79,26 +67,8 @@ export function ManualView({
 
   const mons = manual.slugs.map((s) => (s ? getPokemon(s) : undefined));
   const wash = mons.find(Boolean);
-  const hazards = manual.hazards.filter((h) => h.title || h.body);
-  const advantages = (manual.advantages ?? []).filter((a) => a.title || a.body);
-  const victims = (manual.victims ?? []).filter((v) => v.name || v.why);
-  const counters = (manual.counters ?? []).filter((c) => c.name || c.why);
-  const flows = flowsFor(manual);
-  const hasGame =
-    flows.length > 0 ||
-    manual.loops.some((l) => l.title || l.body) ||
-    (manual.switches ?? []).some((s) => s.into || s.send) ||
-    Boolean(activePack?.gameStates?.length);
-  const modeKey = activeId || "default";
-  const hasMatchups = Boolean(victims.length || counters.length || advantages.length || hazards.length);
-  const endgames = parent.construction?.endgames ?? [];
   const packCoverage = coverageFromSlots(manual);
-  const strategy = activePack ? resolvePackStrategy(activePack) : null;
-  const hasGameplan = Boolean(
-    strategy || manual.plan?.some((b) => b.title || b.play),
-  );
-  const sixSummary = parent.sixSummary?.trim() || parent.lede?.trim();
-  const alts = flexPool(parent);
+  const defaultFocus = box[0] ?? (manual.slugs.find(Boolean) as string | undefined) ?? null;
 
   return (
     <PageFrame
@@ -154,75 +124,40 @@ export function ManualView({
               </span>
             ) : null}
           </p>
-          {sixSummary ? (
-            <p className="mt-5 max-w-[54ch] text-lg leading-relaxed text-muted">{sixSummary}</p>
-          ) : null}
         </header>
 
-        {boxed && packs.length && activeId ? (
-          <ManualPackageHero
+        {boxed ? (
+          <ManualRosterHero
             parent={parent}
-            manual={manual}
             packs={packs}
             activeId={activeId}
             onSelectPack={selectPack}
-            viewMode={viewMode}
-            onViewMode={(mode) => void setViewParam(mode)}
-            coverageMembers={packCoverage}
-            coverageNotes={activePack?.coverageNotes ?? manual.coverageNotes}
+            focusSlug={focusSlug ?? defaultFocus}
+            onFocusSlug={setFocusSlug}
           />
         ) : null}
 
-        {alts.length ? (
-          <ManualSection
-            id="flex"
-            title="Flex swaps"
-            purpose="Off-box candidates that unlock packages the registered six cannot run."
-          >
-            <ManualFlexSwaps parent={parent} onSelectPack={selectPack} />
-          </ManualSection>
+        <ManualSetTabs
+          parent={parent}
+          pack={activePack}
+          focusSlug={focusSlug ?? defaultFocus}
+          onFocusSlug={setFocusSlug}
+        />
+
+        {boxed && packs.length ? (
+          <ManualPackagePicker
+            packs={packs}
+            activeId={activeId}
+            onSelectPack={selectPack}
+          />
         ) : null}
 
-        {endgames.length || strategy?.winCondition ? (
-          <ManualSection
-            id="endgames"
-            title="Win path"
-            purpose="How this package closes — and which endgames on the six it pursues."
-          >
-            <ManualWinPath parent={parent} pack={activePack} />
-          </ManualSection>
-        ) : null}
-
-        {hasGameplan ? (
-          <ManualSection
-            id="plan"
-            title="Gameplan"
-            purpose="Mantra, checklist, and the Lead → Mid → Late clock for this three."
-          >
-            <ManualGameplan parent={parent} pack={activePack} plan={manual.plan ?? []} />
-          </ManualSection>
-        ) : null}
-
-        {hasGame ? (
-          <ManualGameBoard key={modeKey} manual={manual} pack={activePack} parent={parent} />
-        ) : null}
-
-        <ManualBriefing manual={manual} />
-
-        {hasMatchups ? (
-          <ManualSection
-            id="matchups"
-            title="Matchups"
-            purpose="Favored lines and trap lines."
-          >
-            <ManualInsights
-              victims={victims}
-              counters={counters}
-              advantages={advantages}
-              hazards={hazards}
-            />
-          </ManualSection>
-        ) : null}
+        <ManualPackageGuide
+          parent={parent}
+          manual={manual}
+          pack={activePack}
+          coverageMembers={packCoverage}
+        />
       </article>
     </PageFrame>
   );

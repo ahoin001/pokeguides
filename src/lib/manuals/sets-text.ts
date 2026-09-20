@@ -1,8 +1,15 @@
 import { getPokemon } from "@/lib/catalog/load";
-import type { SlotManual, TeamManual } from "@/content/manuals";
+import {
+  packList,
+  resolveActiveBox,
+  resolvePackStrategy,
+  resolveRosterSlot,
+  type SlotManual,
+  type TeamManual,
+} from "@/content/manuals";
 import type { SampleSp } from "@/types/pokemon";
 
-const STAT_ORDER: { key: keyof SampleSp; label: string }[] = [
+export const STAT_ORDER: { key: keyof SampleSp; label: string }[] = [
   { key: "hp", label: "HP" },
   { key: "atk", label: "Atk" },
   { key: "def", label: "Def" },
@@ -34,4 +41,21 @@ export function formatSlotSet(slot: SlotManual) {
 
 export function formatManualSets(manual: TeamManual) {
   return manual.slots.map(formatSlotSet).filter(Boolean).join("\n\n");
+}
+
+/** Paste for the active six (core box, or box after a flex swap). */
+export function formatBoxSets(manual: TeamManual, packId?: string | null) {
+  const box = resolveActiveBox(manual, packId);
+  const packs = packList(manual);
+  const pack = (packId ? packs.find((p) => p.id === packId) : undefined) ?? packs[0];
+  const wincon = pack ? resolvePackStrategy(pack).winconMode ?? pack.winconMode : undefined;
+  const slugs = box.length ? box : (manual.slugs.filter(Boolean) as string[]);
+  return slugs
+    .map((slug) => formatSlotSet(resolveRosterSlot(manual, slug, wincon)))
+    .filter(Boolean)
+    .join("\n\n");
+}
+
+export function formatSpLine(sp: SampleSp) {
+  return STAT_ORDER.map((s) => `${s.label} ${sp[s.key] || "–"}`).join(" / ");
 }

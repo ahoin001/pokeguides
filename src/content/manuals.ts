@@ -468,12 +468,8 @@ export function resolvePackStrategy(pack: ManualPack): ManualPackStrategy {
 export type TeamManual = {
   id: string;
   title: string;
+  /** Index-card / meta blurb. Not shown under the detail heading. */
   lede: string;
-  /**
-   * Why these six are registered together (1–2 sentences).
-   * Shown under the title before package selection.
-   */
-  sixSummary?: string;
   /**
    * Battle format this manual teaches.
    * Defaults to singles when omitted (legacy / local drafts).
@@ -554,11 +550,7 @@ export function packRequiresSwap(
   return Boolean(pack.requiresSwap?.out && pack.requiresSwap?.in);
 }
 
-function slotsForPack(
-  manual: TeamManual,
-  slugs: [string, string, string],
-  winconMode?: string | null,
-): SlotManual[] {
+function rosterBySlug(manual: TeamManual): Map<string, SlotManual> {
   const roster = manual.roster ?? manual.slots;
   const bySlug = new Map(roster.map((s) => [s.slug, s]));
   for (const alt of flexPool(manual)) {
@@ -577,34 +569,58 @@ function slotsForPack(
       });
     }
   }
-  return slugs.map((slug) => {
-    const hit = bySlug.get(slug);
-    if (!hit) {
-      return {
-        slug,
-        title: slug,
-        job: "breaker" as RoleId,
-        role: "",
-        moves: [],
-        objective: "",
-        howToPlay: "",
-      };
-    }
-    if (!winconMode || !hit.modes?.length) return hit;
-    const mode = hit.modes.find((m) => m.id === winconMode);
-    if (!mode) return hit;
+  return bySlug;
+}
+
+/** Overlay a SlotMode kit onto a roster slot. Unknown ids leave the default kit. */
+export function slotWithMode(slot: SlotManual, modeId?: string | null): SlotManual {
+  if (!modeId || !slot.modes?.length) return slot;
+  const mode = slot.modes.find((m) => m.id === modeId);
+  if (!mode) return slot;
+  return {
+    ...slot,
+    item: mode.item,
+    itemWhy: mode.itemWhy ?? slot.itemWhy,
+    nature: mode.nature ?? slot.nature,
+    training: mode.training ?? slot.training,
+    moves: mode.moves.length ? mode.moves : slot.moves,
+    objective: mode.objective ?? slot.objective,
+    howToPlay: mode.howToPlay ?? slot.howToPlay,
+    role: mode.job || slot.role,
+  };
+}
+
+/** Roster / flex set for one slug, optionally with a pack winconMode overlay. */
+export function resolveRosterSlot(
+  manual: TeamManual,
+  slug: string,
+  winconMode?: string | null,
+): SlotManual {
+  const hit = rosterBySlug(manual).get(slug);
+  if (!hit) {
     return {
-      ...hit,
-      item: mode.item,
-      itemWhy: mode.itemWhy ?? hit.itemWhy,
-      nature: mode.nature ?? hit.nature,
-      training: mode.training ?? hit.training,
-      moves: mode.moves,
-      objective: mode.objective ?? hit.objective,
-      howToPlay: mode.howToPlay ?? hit.howToPlay,
-      role: mode.job || hit.role,
+      slug,
+      title: slug,
+      job: "breaker",
+      role: "",
+      moves: [],
+      objective: "",
+      howToPlay: "",
     };
-  });
+  }
+  return slotWithMode(hit, winconMode);
+}
+
+function slotsForPack(
+  manual: TeamManual,
+  slugs: [string, string, string],
+  winconMode?: string | null,
+): SlotManual[] {
+  return slugs.map((slug) => resolveRosterSlot(manual, slug, winconMode));
+}
+
+export function packsForSlug(packs: ManualPack[], slug: string) {
+  return packs.filter((p) => (p.slugs as string[]).includes(slug));
 }
 
 /** Overlay a preview pack. Parent id / title / box / roster / packs stay. */
@@ -1048,7 +1064,6 @@ export function toBoxedDraft(manual: TeamManual): TeamManual {
   pack.phases = manual.phases;
   return {
     ...manual,
-    sixSummary: manual.sixSummary || manual.lede,
     box,
     roster,
     core,
@@ -1076,7 +1091,7 @@ export function toFlatDraft(manual: TeamManual): TeamManual {
   return {
     id: manual.id,
     title: manual.title,
-    lede: manual.lede || manual.sixSummary || "",
+    lede: manual.lede || "",
     philosophy: manual.philosophy,
     archetype: manual.archetype,
     family: manual.family,

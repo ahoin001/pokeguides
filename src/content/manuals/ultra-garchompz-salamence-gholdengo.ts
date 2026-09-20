@@ -1796,8 +1796,6 @@ export const ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL: TeamManual = {
   title: "Ultra Ball Toolbox",
   format: "singles",
   lede: "Six Pokémon, five preview threes. Pick the package that bullies their structure — not your favorite three.",
-  sixSummary:
-    "Three endgames (Mega Chomp, Mega Mence DD, Kingambit clean) share one registered six. Preview asks which package of three bullies their structure — then play that three’s win path.",
   philosophy:
     "Endgames are Garchomp nuke, Salamence DD, or Kingambit clean. Preview asks which path their six forces.",
   archetype: "balance",

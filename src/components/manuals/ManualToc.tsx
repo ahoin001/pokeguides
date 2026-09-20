@@ -4,8 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { SCROLL_UNDER_STACK, STICKY_LOCAL_BAR } from "@/components/chrome/PageFrame";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { getPokemon } from "@/lib/catalog/load";
-import { flowsFor } from "@/content/classroom-flows";
-import { flexPool, resolvePackStrategy, type TeamManual } from "@/content/manuals";
+import { type TeamManual } from "@/content/manuals";
 
 export const MANUAL_SCROLL_MT = SCROLL_UNDER_STACK;
 
@@ -18,40 +17,20 @@ function stackOffsetPx(node: HTMLElement) {
 
 export function manualJumps(manual: TeamManual, boxed = false, parent?: TeamManual) {
   const source = parent ?? manual;
-  const packs = source.packs ?? [];
-  const activePack =
-    packs.find((p) => p.slugs.join(",") === manual.slugs.join(",")) ?? packs[0];
-  const strategy = activePack ? resolvePackStrategy(activePack) : null;
-  const flows = flowsFor(manual);
-  const hasGame =
-    flows.length > 0 ||
-    manual.loops.some((l) => l.title || l.body) ||
-    (manual.switches ?? []).some((s) => s.into || s.send) ||
-    Boolean(source.packs?.some((p) => (p.gameStates?.length ?? 0) > 0 || (p.flows?.length ?? 0) > 0));
-  const hasMatchups =
-    manual.victims?.some((v) => v.name || v.why) ||
-    manual.counters?.some((c) => c.name || c.why) ||
-    manual.advantages?.some((a) => a.title || a.body) ||
-    manual.hazards.some((h) => h.title || h.body);
-  const hasWinPath = Boolean(
-    source.construction?.endgames?.length || strategy?.winCondition,
+  const hasSix = boxed || (source.box?.length ?? 0) >= 3;
+  const hasSets = Boolean(
+    (source.roster?.length ?? 0) > 0 ||
+      source.slots.some((s) => s.slug) ||
+      (source.box?.length ?? 0) > 0,
   );
-  const hasGameplan = Boolean(
-    strategy || manual.plan?.some((b) => b.title || b.play),
-  );
-  const hasFlex = flexPool(source).length > 0;
+  const hasPacks = boxed && (source.packs?.length ?? 0) > 0;
 
   return [
     { href: "#top", label: "Top" },
-    ...(boxed ? [{ href: "#team", label: "Package" }] : []),
-    ...(hasFlex ? [{ href: "#flex", label: "Flex" }] : []),
-    ...(hasWinPath ? [{ href: "#endgames", label: "Win path" }] : []),
-    ...(hasGameplan ? [{ href: "#plan", label: "Gameplan" }] : []),
-    ...(hasGame ? [{ href: "#game", label: "Situations" }] : []),
-    ...(boxed ? [{ href: "#coverage", label: "Coverage" }] : []),
-    { href: "#scout", label: "Scout" },
-    ...(hasMatchups ? [{ href: "#matchups", label: "Matchups" }] : []),
-    { href: "#notes", label: "Notes" },
+    ...(hasSix ? [{ href: "#six", label: "Six" }] : []),
+    ...(hasSets ? [{ href: "#sets", label: "Sets" }] : []),
+    ...(hasPacks ? [{ href: "#packages", label: "Packages" }] : []),
+    { href: "#guide", label: "Guide" },
   ];
 }
 
@@ -105,7 +84,7 @@ export function ManualToc({
       <div className="flex items-center gap-3">
         {packLabel && packSlugs?.length ? (
           <a
-            href="#team"
+            href="#packages"
             className="pointer-events-auto hidden shrink-0 items-center gap-1.5 rounded-full border border-line/70 bg-raised/50 py-1 pl-1 pr-2.5 sm:inline-flex"
             title={packLabel}
           >

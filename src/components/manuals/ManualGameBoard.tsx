@@ -119,11 +119,14 @@ export function ManualGameBoard({
   manual,
   pack,
   parent,
+  framed = true,
 }: {
   manual: TeamManual;
   pack?: ManualPack;
   /** Boxed six — used to detect shared gameplan inheritance. */
   parent?: TeamManual;
+  /** When false, skip the chapter ManualSection (used inside the package guide). */
+  framed?: boolean;
 }) {
   const switches = (manual.switches ?? []).filter((s) => s.into || s.send);
   const loops = manual.loops.filter((l) => l.title || l.body);
@@ -150,105 +153,121 @@ export function ManualGameBoard({
   const wash = getPokemon(teamSlugs[0]);
   const shared = packUsesSharedGameplan(parent ?? manual, pack?.id);
 
-  return (
-    <MotionConfig reducedMotion="user">
-      <ManualSection
-        id="game"
-        title="Situations"
-        purpose="Stay calm: walk one branch from the package spine, then drill Lead · Mid · Late."
+  const inner = (
+    <>
+      {shared ? (
+        <p className="mb-4 max-w-[52ch] text-sm text-muted">
+          This package inherits the six-wide gameplan flowchart — pack-specific Plays and States still apply below.
+        </p>
+      ) : null}
+      <div
+        className="relative overflow-hidden rounded-[32px] border border-line/70 bg-sunken/60 shadow-[0_22px_60px_rgba(0,0,0,0.28)]"
+        style={wash ? cssVars(wash.palette) : undefined}
       >
-        {shared ? (
-          <p className="mb-4 max-w-[52ch] text-sm text-muted">
-            This package inherits the six-wide gameplan flowchart — pack-specific Plays and States still apply below.
-          </p>
-        ) : null}
         <div
-          className="relative overflow-hidden rounded-[32px] border border-line/70 bg-sunken/60 shadow-[0_22px_60px_rgba(0,0,0,0.28)]"
-          style={wash ? cssVars(wash.palette) : undefined}
-        >
-          <div
-            className="pointer-events-none absolute inset-0 opacity-60"
-            aria-hidden
-            style={{
-              background: wash
-                ? `radial-gradient(80% 60% at 0% 0%, color-mix(in srgb, var(--mon-wash) 22%, transparent), transparent 55%)`
-                : undefined,
-            }}
-          />
+          className="pointer-events-none absolute inset-0 opacity-60"
+          aria-hidden
+          style={{
+            background: wash
+              ? `radial-gradient(80% 60% at 0% 0%, color-mix(in srgb, var(--mon-wash) 22%, transparent), transparent 55%)`
+              : undefined,
+          }}
+        />
 
-          <div className="relative border-b border-line/60 px-4 py-4 sm:px-5">
-            <ol className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {stages.map((s, i) => {
-                const on = s.id === stage.id;
-                return (
-                  <li key={s.id} className="flex shrink-0 items-center gap-2">
-                    {i > 0 ? (
-                      <span aria-hidden className="hidden text-muted sm:inline">
-                        →
-                      </span>
-                    ) : null}
-                    <button
-                      type="button"
-                      aria-pressed={on}
-                      onClick={() => setStageId(s.id)}
-                      className={`min-w-[7.5rem] rounded-[20px] px-3.5 py-2.5 text-left transition ${
-                        on
-                          ? "bg-ink text-bg shadow-[0_12px_28px_rgba(0,0,0,0.32)]"
-                          : "border border-line/70 bg-raised/40 text-muted hover:border-ink/30 hover:text-ink"
-                      }`}
-                    >
-                      <span className="block text-sm font-semibold tracking-tight">{s.label}</span>
-                      <span className={`mt-0.5 block max-w-[14rem] truncate text-[11px] ${on ? "text-bg/65" : ""}`}>
-                        {s.hint}
-                      </span>
-                    </button>
-                  </li>
-                );
-              })}
-            </ol>
-          </div>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`${pack?.id ?? "team"}-${stage.id}`}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: motionTokens.state, ease: easeOut }}
-              className="relative px-3 py-5 sm:px-5 sm:py-6"
-            >
-              {stage.kind === "flow" && stage.flow ? <FlowStage flow={stage.flow} /> : null}
-              {stage.kind === "switches" ? (
-                <ManualSwitchStrip switches={switches} teamSlugs={teamSlugs} embed />
-              ) : null}
-              {stage.kind === "plays" ? <ManualLoopStrip loops={loops} embed /> : null}
-              {stage.kind === "states" ? <StateMap states={gameStates} /> : null}
-            </motion.div>
-          </AnimatePresence>
+        <div className="relative border-b border-line/60 px-4 py-4 sm:px-5">
+          <ol className="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {stages.map((s, i) => {
+              const on = s.id === stage.id;
+              return (
+                <li key={s.id} className="flex shrink-0 items-center gap-2">
+                  {i > 0 ? (
+                    <span aria-hidden className="hidden text-muted sm:inline">
+                      →
+                    </span>
+                  ) : null}
+                  <button
+                    type="button"
+                    aria-pressed={on}
+                    onClick={() => setStageId(s.id)}
+                    className={`min-w-[7.5rem] rounded-[20px] px-3.5 py-2.5 text-left transition ${
+                      on
+                        ? "bg-ink text-bg shadow-[0_12px_28px_rgba(0,0,0,0.32)]"
+                        : "border border-line/70 bg-raised/40 text-muted hover:border-ink/30 hover:text-ink"
+                    }`}
+                  >
+                    <span className="block text-sm font-semibold tracking-tight">{s.label}</span>
+                    <span className={`mt-0.5 block max-w-[14rem] truncate text-[11px] ${on ? "text-bg/65" : ""}`}>
+                      {s.hint}
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
         </div>
 
-        {pack?.cheatSheet?.length ? (
-          <div className="mt-6 overflow-hidden rounded-[24px] border border-line/70">
-            <div className="border-b border-line/60 px-4 py-3">
-              <p className="text-sm font-semibold tracking-tight">Quick reads</p>
-              <p className="mt-0.5 text-xs text-muted">
-                Situation → preferred thought for {pack.label}
-              </p>
-            </div>
-            <ul className="divide-y divide-line/50">
-              {pack.cheatSheet.map((row) => (
-                <li
-                  key={row.situation}
-                  className="grid gap-1 px-4 py-3 sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] sm:gap-4"
-                >
-                  <p className="text-sm text-muted">{row.situation}</p>
-                  <p className="text-sm font-medium text-ink/90">{row.thought}</p>
-                </li>
-              ))}
-            </ul>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`${pack?.id ?? "team"}-${stage.id}`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: motionTokens.state, ease: easeOut }}
+            className="relative px-3 py-5 sm:px-5 sm:py-6"
+          >
+            {stage.kind === "flow" && stage.flow ? <FlowStage flow={stage.flow} /> : null}
+            {stage.kind === "switches" ? (
+              <ManualSwitchStrip switches={switches} teamSlugs={teamSlugs} embed />
+            ) : null}
+            {stage.kind === "plays" ? <ManualLoopStrip loops={loops} embed /> : null}
+            {stage.kind === "states" ? <StateMap states={gameStates} /> : null}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {pack?.cheatSheet?.length ? (
+        <div className="mt-6 overflow-hidden rounded-[24px] border border-line/70">
+          <div className="border-b border-line/60 px-4 py-3">
+            <p className="text-sm font-semibold tracking-tight">Quick reads</p>
+            <p className="mt-0.5 text-xs text-muted">
+              Situation → preferred thought for {pack.label}
+            </p>
           </div>
-        ) : null}
-      </ManualSection>
+          <ul className="divide-y divide-line/50">
+            {pack.cheatSheet.map((row) => (
+              <li
+                key={row.situation}
+                className="grid gap-1 px-4 py-3 sm:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] sm:gap-4"
+              >
+                <p className="text-sm text-muted">{row.situation}</p>
+                <p className="text-sm font-medium text-ink/90">{row.thought}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+    </>
+  );
+
+  return (
+    <MotionConfig reducedMotion="user">
+      {framed ? (
+        <ManualSection
+          id="game"
+          title="Situations"
+          purpose="Stay calm: walk one branch from the package spine, then drill Lead · Mid · Late."
+        >
+          {inner}
+        </ManualSection>
+      ) : (
+        <div>
+          <h3 className="text-xl font-semibold tracking-tight">Situations</h3>
+          <p className="mt-2 max-w-[52ch] text-sm text-muted">
+            Walk one branch from the package spine, then drill Lead · Mid · Late.
+          </p>
+          <div className="mt-4">{inner}</div>
+        </div>
+      )}
     </MotionConfig>
   );
 }

@@ -19,8 +19,8 @@ Flex alts are **not** a seventh registration slot.
 You are authoring a Ringside field manual for Pokémon Champions Singles.
 
 GOAL
-Produce one boxed TeamManual JSON a pilot can open and play from:
-choose package → load the correct six/sets → run the plan.
+Produce one boxed TeamManual JSON a pilot can open and play from. The page is:
+registered six + bench alts → paste-ready sets → packages of three → package guide.
 Prefer short actionable lines. Use TODO: … when you lack a fact — do not invent lore, ladder stats, or EV spreads.
 
 HARD RULES
@@ -46,7 +46,7 @@ ALLOWED IDS
 INTERVIEW ORDER (ask only what’s missing; otherwise extract from paste)
 
 A. Six identity
-- title, sixSummary (1–2 sentences why these six register together)
+- title (page heading). Optional lede = one-line index-card blurb (not shown on the manual page).
 - archetype + family from the allowed lists (TODO if unknown)
 - construction.thesis / method / winCondition (one line each)
 
@@ -111,7 +111,6 @@ OUTPUT SHAPE (omit unused optional fields; keep required roots)
   "id": "kebab-id",
   "title": "",
   "lede": "",
-  "sixSummary": "",
   "format": "singles",
   "philosophy": "",
   "archetype": "balance",

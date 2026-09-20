@@ -1,5 +1,10 @@
 import { regulation } from "@/lib/catalog/load";
 
+export const metadata = {
+  title: regulation.name,
+  description: `${regulation.name} · ${regulation.starts} to ${regulation.ends}`,
+};
+
 export default function RegulationPage() {
   return (
     <article className="max-w-2xl">

@@ -11,9 +11,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const style = getArchetypePlaybook(id);
-  if (!style) return { title: "Archetype · Ringside" };
+  if (!style) return { title: "Archetype" };
   return {
-    title: `${ARCHETYPE_LABEL[style.id]} · Team archetypes · Ringside`,
+    title: ARCHETYPE_LABEL[style.id],
     description: style.oneLiner,
   };
 }

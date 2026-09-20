@@ -14,12 +14,12 @@ export async function generateMetadata({
   const sp = await searchParams;
   if (sp.source === "live") {
     return {
-      title: "Live usage · Ringside",
+      title: "Live usage",
       description: "Current Champions Singles battle data from Champions Battle Data.",
     };
   }
   return {
-    title: "Ranked meta · Ringside",
+    title: "Ranked meta",
     description: "Teaching snapshot of Champions Ranked Singles.",
   };
 }

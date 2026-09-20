@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { LEARN_ROLE_IDS, getRole, ROLE_LABEL, roleHref } from "@/content/roles";
 import { LITERACY_ROLES } from "@/content/literacy-roles";
 import { ARCHETYPES, archetypeHref, ARCHETYPE_LABEL } from "@/content/archetypes";
@@ -10,6 +11,20 @@ import { TypeBadge } from "@/components/pokemon/TypeBadge";
 
 export function generateStaticParams() {
   return LEARN_ROLE_IDS.map((id) => ({ id }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const role = getRole(id);
+  if (!role || !LEARN_ROLE_IDS.includes(role.id)) return { title: "Job" };
+  return {
+    title: role.name,
+    description: role.oneLiner,
+  };
 }
 
 export default async function RolePage({ params }: { params: Promise<{ id: string }> }) {

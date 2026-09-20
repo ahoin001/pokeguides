@@ -16,7 +16,10 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ringside",
+  title: {
+    default: "Ringside",
+    template: "%s · Ringside",
+  },
   description: "Learn Pokémon Champions. Browse the legal roster. Build a three.",
 };
 

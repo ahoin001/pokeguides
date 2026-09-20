@@ -2,6 +2,11 @@ import Link from "next/link";
 import { PageFrame } from "@/components/chrome/PageFrame";
 import { TERMS } from "@/content/glossary";
 
+export const metadata = {
+  title: "Glossary",
+  description: "Jobs, styles, and the words other guides use.",
+};
+
 export default function GlossaryPage() {
   return (
     <PageFrame variant="reading">

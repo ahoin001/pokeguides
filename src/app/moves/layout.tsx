@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { Suspense, type ReactNode } from "react";
+
+export const metadata: Metadata = {
+  title: "Moves & abilities",
+  description: "Champions move and ability appendix — searchable, filterable reference.",
+};
 
 function MovesFallback() {
   return (

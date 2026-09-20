@@ -2,7 +2,7 @@ import { PageFrame } from "@/components/chrome/PageFrame";
 import { LiveMatchStage } from "@/components/live/LiveMatchStage";
 
 export const metadata = {
-  title: "Live Match · Ringside",
+  title: "Live Match",
   description: "Log their lead, compare Spe and stats, read the kit — stadium tool for the clock.",
 };
 

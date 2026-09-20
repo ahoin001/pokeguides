@@ -13,6 +13,11 @@ import {
 } from "@/content/curriculum-doubles";
 import { learnHref, manualsHref } from "@/lib/format";
 
+export const metadata = {
+  title: "Doubles",
+  description: "Champions Doubles classroom — pick four, two on the field.",
+};
+
 export default function DoublesLearnIndex() {
   return (
     <PageFrame variant="tool">

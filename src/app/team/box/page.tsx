@@ -2,7 +2,7 @@ import { PageFrame } from "@/components/chrome/PageFrame";
 import { MyBoxBoard } from "@/components/team/MyBoxBoard";
 
 export const metadata = {
-  title: "My box · Ringside",
+  title: "My box",
   description: "Your Champions collection — local box for building threes.",
 };
 

@@ -12,7 +12,7 @@ import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 
 export const metadata = {
-  title: "Team archetypes · Ringside",
+  title: "Team archetypes",
   description: "Champions Singles team styles — what they look like, what beats them, what to build.",
 };
 

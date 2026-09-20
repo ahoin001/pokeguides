@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { catalog, getEditorial, getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { statsWithSp } from "@/lib/champions/stats";
@@ -20,6 +21,21 @@ import type { ParsedBattleKit } from "@/lib/champions-battle/types";
 
 export function generateStaticParams() {
   return catalog.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const pokemon = getPokemon(slug);
+  if (!pokemon) return { title: "Pokémon" };
+  const ed = getEditorial(slug);
+  return {
+    title: pokemon.name,
+    description: ed?.job ?? `${pokemon.name} on the Champions legal roster.`,
+  };
 }
 
 export default async function PokemonPage({

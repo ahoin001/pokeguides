@@ -4,6 +4,11 @@ import { LITERACY_ROLES } from "@/content/literacy-roles";
 import { RoleCard } from "@/components/learn/RoleCard";
 import { roleHref } from "@/content/roles";
 
+export const metadata = {
+  title: "Jobs",
+  description: "What a Pokémon is for in Champions 3v3 — support, breaker, speed, weather, Mega.",
+};
+
 export default function RolesHub() {
   const shown = ROLES.filter((role) => LEARN_ROLE_IDS.includes(role.id));
   return (

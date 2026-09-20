@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "About",
+  description: "Ringside — a personal fan companion for Pokémon Champions.",
+};
+
 export default function AboutPage() {
   return (
     <article className="max-w-2xl space-y-4 text-[17px] leading-relaxed">

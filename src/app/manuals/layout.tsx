@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { Suspense, type ReactNode } from "react";
+
+export const metadata: Metadata = {
+  title: "Field manuals",
+  description: "Classroom team manuals for Champions Singles.",
+};
 
 function ManualsFallback() {
   return (

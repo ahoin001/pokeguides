@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { PageFrame } from "@/components/chrome/PageFrame";
 import { featuredPokemon, getEditorial, regulation } from "@/lib/catalog/load";
 import { PokemonCard } from "@/components/pokemon/PokemonCard";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Ringside",
+  },
+  description: "Sit ringside. Learn Pokémon Champions — legal roster, then a three.",
+};
 
 export default function HomePage() {
   const featured = featuredPokemon().slice(0, 3);

@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { Suspense, type ReactNode } from "react";
+
+export const metadata: Metadata = {
+  title: "Legal roster",
+  description: "Browse the Champions Regulation M-C legal catalog.",
+};
 
 function RosterFallback() {
   return (

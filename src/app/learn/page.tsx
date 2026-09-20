@@ -7,6 +7,11 @@ import { BallIcon } from "@/components/learn/BallIcon";
 import { BANDS, LESSONS, lessonHref, lessonsByBand } from "@/content/curriculum";
 import { learnHref, manualsHref } from "@/lib/format";
 
+export const metadata = {
+  title: "Learn",
+  description: "Poké Ball to Master Ball curriculum for Champions 3v3 singles.",
+};
+
 export default function LearnIndex() {
   return (
     <PageFrame variant="tool">

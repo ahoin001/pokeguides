@@ -1,6 +1,11 @@
 import { PageFrame } from "@/components/chrome/PageFrame";
 import { TypeSheet } from "@/components/viz/TypeSheet";
 
+export const metadata = {
+  title: "Type sheet",
+  description: "Type chart and matchup sheet for Champions.",
+};
+
 export default function TypesPage() {
   return (
     <PageFrame variant="tool">

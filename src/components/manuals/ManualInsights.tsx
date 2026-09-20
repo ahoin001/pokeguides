@@ -129,7 +129,7 @@ function mergeGood(victims: ManualMatchup[], advantages: ManualNote[]): PressIte
     const key = v.name.trim().toLowerCase();
     if (!key || seen.has(key)) continue;
     seen.add(key);
-    out.push({ key: `v-${v.name}`, title: v.name, how: v.why });
+    out.push({ key: `v-${v.name}`, title: v.name, how: v.why, play: v.play });
   }
   for (const a of advantages) {
     const key = a.title.trim().toLowerCase();
@@ -160,7 +160,13 @@ function mergeBad(counters: ManualMatchup[], hazards: ManualNote[]): PressItem[]
     const key = c.name.trim().toLowerCase();
     if (!key || seen.has(key)) continue;
     seen.add(key);
-    out.push({ key: `c-${c.name}`, title: c.name, how: c.why });
+    out.push({
+      key: `c-${c.name}`,
+      title: c.name,
+      how: c.why,
+      play: c.play,
+      watch: c.trap,
+    });
   }
   return out;
 }

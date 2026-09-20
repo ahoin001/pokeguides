@@ -27,11 +27,13 @@ import {
   type ManualBranch,
   type ManualEndgame,
   type ManualFamilyId,
+  type ManualMatchup,
   type ManualPack,
   type ManualPackRole,
   type ManualPackStrategy,
   type ManualPlanBeat,
   type SlotManual,
+  type SlotMode,
   type TeamManual,
 } from "@/content/manuals";
 import { FORMAT_BLURB, FORMAT_LABEL, type BattleFormat } from "@/lib/format";
@@ -406,6 +408,17 @@ export function ManualForm({
               pack={activePack}
               boxSlugs={boxSlugs}
               flexSlugs={flexSlugs}
+              modeOptions={activePack.slugs.flatMap((slug) => {
+                const rosterSlot = (draft.roster ?? []).find((s) => s.slug === slug);
+                const altSlot = alts.find((a) => a.slug === slug)?.slot;
+                const modes = rosterSlot?.modes ?? altSlot?.modes ?? [];
+                return modes
+                  .filter((m) => m.id)
+                  .map((m) => ({
+                    id: m.id,
+                    label: `${getPokemon(slug)?.name ?? slug} · ${m.label || m.id}`,
+                  }));
+              })}
               endgames={endgames}
               onChange={(patch) => updatePack(packTab, patch)}
               onStrategy={(patch) => updateStrategy(packTab, patch)}
@@ -510,6 +523,19 @@ export function ManualForm({
         </>
       )}
 
+      <MatchupList
+        title="Favored matchups"
+        hint="Boards or species you like. Packs inherit these unless they override."
+        items={draft.victims ?? []}
+        onChange={(victims) => commit({ ...draft, victims })}
+      />
+      <MatchupList
+        title="Trap matchups"
+        hint="Boards that punish you — and what to do / how they punish a misplay."
+        items={draft.counters ?? []}
+        onChange={(counters) => commit({ ...draft, counters })}
+      />
+
       {error ? <p className="mt-8 text-sm text-amber-200">{error}</p> : null}
       <div className="mt-8 flex flex-wrap gap-3">
         <Button type="button" onClick={save}>
@@ -554,6 +580,7 @@ function PackEditor({
   pack,
   boxSlugs,
   flexSlugs,
+  modeOptions,
   endgames,
   onChange,
   onStrategy,
@@ -562,6 +589,7 @@ function PackEditor({
   pack: ManualPack;
   boxSlugs: string[];
   flexSlugs: string[];
+  modeOptions: { id: string; label: string }[];
   endgames: ManualEndgame[];
   onChange: (patch: Partial<ManualPack>) => void;
   onStrategy: (patch: Partial<ManualPackStrategy>) => void;
@@ -729,16 +757,35 @@ function PackEditor({
         <p className="mt-1 text-xs text-muted">
           Same species, different kit (Mega / Scarf / Sash). Leave empty if the default set is enough.
         </p>
-        <input
-          className={`mt-2 ${inputClass}`}
-          value={pack.winconMode ?? strategy?.winconMode ?? ""}
-          placeholder="garchomp-sash"
-          onChange={(e) => {
-            const winconMode = e.target.value.trim() || undefined;
-            onChange({ winconMode });
-            onStrategy({ winconMode });
-          }}
-        />
+        {modeOptions.length ? (
+          <select
+            className={`mt-2 ${inputClass}`}
+            value={pack.winconMode ?? strategy?.winconMode ?? ""}
+            onChange={(e) => {
+              const winconMode = e.target.value.trim() || undefined;
+              onChange({ winconMode });
+              onStrategy({ winconMode });
+            }}
+          >
+            <option value="">Default kit</option>
+            {modeOptions.map((m) => (
+              <option key={m.id} value={m.id}>
+                {m.label}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <input
+            className={`mt-2 ${inputClass}`}
+            value={pack.winconMode ?? strategy?.winconMode ?? ""}
+            placeholder="Add preview modes on a roster slot first"
+            onChange={(e) => {
+              const winconMode = e.target.value.trim() || undefined;
+              onChange({ winconMode });
+              onStrategy({ winconMode });
+            }}
+          />
+        )}
         <label className="block text-sm font-medium">Game plan (Break → Control → Finish)</label>
         <textarea
           className={`mt-2 ${areaClass}`}
@@ -866,6 +913,19 @@ function PackEditor({
         title="Loops (plays)"
         items={pack.loops?.length ? pack.loops : [{ title: "", body: "" }]}
         onChange={(loops) => onChange({ loops })}
+      />
+
+      <MatchupList
+        title="This package · favored"
+        hint="Override team-level when this bring likes different boards."
+        items={pack.victims ?? []}
+        onChange={(victims) => onChange({ victims })}
+      />
+      <MatchupList
+        title="This package · traps"
+        hint="Override team-level when this bring is punished differently."
+        items={pack.counters ?? []}
+        onChange={(counters) => onChange({ counters })}
       />
 
       <div className="border-t border-line/70 pt-6">
@@ -1395,6 +1455,212 @@ function SlotEditor({
         value={slot.howToPlay}
         onChange={(e) => onChange({ howToPlay: e.target.value })}
       />
+      <SlotModesEditor
+        slug={slot.slug}
+        modes={slot.modes ?? []}
+        onChange={(modes) => onChange({ modes: modes.length ? modes : undefined })}
+      />
+    </section>
+  );
+}
+
+function emptyMode(slug: string): SlotMode {
+  const base = slug || "mode";
+  return {
+    id: `${base}-${Date.now().toString(36)}`,
+    label: "",
+    job: "",
+    when: "",
+    item: "",
+    moves: emptySlot().moves.map((m) => ({ ...m })),
+  };
+}
+
+function SlotModesEditor({
+  slug,
+  modes,
+  onChange,
+}: {
+  slug: string;
+  modes: SlotMode[];
+  onChange: (modes: SlotMode[]) => void;
+}) {
+  return (
+    <div className="mt-8 border-t border-line/70 pt-6">
+      <p className="text-sm font-medium">Preview modes</p>
+      <p className="mt-1 text-xs text-muted">
+        Same species, different kit. Each mode needs a package with matching winconMode.
+      </p>
+      <ul className="mt-3 space-y-3">
+        {modes.map((mode, i) => (
+          <li key={mode.id || i} className="space-y-2 rounded-2xl border border-line/60 p-3">
+            <div className="grid gap-2 sm:grid-cols-2">
+              <input
+                className={inputClass}
+                placeholder="id — garchomp-sash"
+                value={mode.id}
+                onChange={(e) =>
+                  onChange(modes.map((x, j) => (j === i ? { ...x, id: e.target.value } : x)))
+                }
+              />
+              <input
+                className={inputClass}
+                placeholder="Label — Scarf revenge"
+                value={mode.label}
+                onChange={(e) =>
+                  onChange(modes.map((x, j) => (j === i ? { ...x, label: e.target.value } : x)))
+                }
+              />
+            </div>
+            <input
+              className={inputClass}
+              placeholder="When preview should pick this kit"
+              value={mode.when}
+              onChange={(e) =>
+                onChange(modes.map((x, j) => (j === i ? { ...x, when: e.target.value } : x)))
+              }
+            />
+            <div className="grid gap-2 sm:grid-cols-2">
+              <input
+                className={inputClass}
+                placeholder="Item"
+                value={mode.item}
+                onChange={(e) =>
+                  onChange(modes.map((x, j) => (j === i ? { ...x, item: e.target.value } : x)))
+                }
+              />
+              <input
+                className={inputClass}
+                placeholder="Job (short)"
+                value={mode.job}
+                onChange={(e) =>
+                  onChange(modes.map((x, j) => (j === i ? { ...x, job: e.target.value } : x)))
+                }
+              />
+            </div>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {(mode.moves.length ? mode.moves : emptySlot().moves).map((move, mi) => (
+                <input
+                  key={mi}
+                  className={inputClass}
+                  placeholder={`Move ${mi + 1}`}
+                  value={move.name}
+                  onChange={(e) => {
+                    const moves = [...(mode.moves.length ? mode.moves : emptySlot().moves)];
+                    moves[mi] = { ...moves[mi], name: e.target.value };
+                    onChange(modes.map((x, j) => (j === i ? { ...x, moves } : x)));
+                  }}
+                />
+              ))}
+            </div>
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => onChange(modes.filter((_, j) => j !== i))}
+            >
+              Remove mode
+            </Button>
+          </li>
+        ))}
+      </ul>
+      <Button type="button" variant="line" className="mt-3" onClick={() => onChange([...modes, emptyMode(slug)])}>
+        Add mode
+      </Button>
+    </div>
+  );
+}
+
+function MatchupList({
+  title,
+  hint,
+  items,
+  onChange,
+}: {
+  title: string;
+  hint: string;
+  items: ManualMatchup[];
+  onChange: (items: ManualMatchup[]) => void;
+}) {
+  const rows = items.length ? items : [];
+  return (
+    <section className="mt-12">
+      <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
+      <p className="mt-1 text-xs text-muted">{hint}</p>
+      <ul className="mt-3 space-y-3">
+        {rows.map((row, i) => (
+          <li key={i} className="space-y-2 rounded-2xl border border-line/60 p-3">
+            <div className="grid gap-2 sm:grid-cols-2">
+              <input
+                className={inputClass}
+                placeholder="Name — Rain offense, Kingambit…"
+                value={row.name}
+                onChange={(e) =>
+                  onChange(rows.map((x, j) => (j === i ? { ...x, name: e.target.value } : x)))
+                }
+              />
+              <input
+                className={inputClass}
+                placeholder="Slug (optional)"
+                value={row.slug ?? ""}
+                onChange={(e) =>
+                  onChange(
+                    rows.map((x, j) =>
+                      j === i ? { ...x, slug: e.target.value || undefined } : x,
+                    ),
+                  )
+                }
+              />
+            </div>
+            <textarea
+              className={areaClass}
+              placeholder="Why this matchup matters"
+              value={row.why}
+              onChange={(e) =>
+                onChange(rows.map((x, j) => (j === i ? { ...x, why: e.target.value } : x)))
+              }
+            />
+            <textarea
+              className={areaClass}
+              placeholder="Play — what you do"
+              value={row.play ?? ""}
+              onChange={(e) =>
+                onChange(
+                  rows.map((x, j) =>
+                    j === i ? { ...x, play: e.target.value || undefined } : x,
+                  ),
+                )
+              }
+            />
+            <textarea
+              className={areaClass}
+              placeholder="Trap — how they punish a misplay"
+              value={row.trap ?? ""}
+              onChange={(e) =>
+                onChange(
+                  rows.map((x, j) =>
+                    j === i ? { ...x, trap: e.target.value || undefined } : x,
+                  ),
+                )
+              }
+            />
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => onChange(rows.filter((_, j) => j !== i))}
+            >
+              Remove
+            </Button>
+          </li>
+        ))}
+      </ul>
+      <Button
+        type="button"
+        variant="line"
+        className="mt-3"
+        onClick={() => onChange([...rows, { name: "", why: "" }])}
+      >
+        Add matchup
+      </Button>
     </section>
   );
 }

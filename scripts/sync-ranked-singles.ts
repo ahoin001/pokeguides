@@ -2,36 +2,12 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { CatalogEntry } from "../src/types/pokemon";
 import type { RankedShare, RankedSinglesEntry, RankedSinglesSnapshot } from "../src/lib/ranked/types";
+import { catalogSlugForShowdownId } from "../src/lib/champions-battle/showdown";
 
 const ROOT = path.resolve(process.cwd());
 const INDEX_URL = "https://championsbattledata.com/api";
 const CACHE = path.join(ROOT, ".cache", "champions-api-index.json");
 const OUT = path.join(ROOT, "src", "data", "ranked-singles.json");
-
-const ALIAS: Record<string, string> = {
-  mimikyu: "mimikyu-disguised",
-  aegislash: "aegislash-shield",
-  palafin: "palafin-zero",
-  indeedee: "indeedee-female",
-  indeedeef: "indeedee-female",
-  indeedeefemale: "indeedee-female",
-  indeedeem: "indeedee-male",
-  indeedeemale: "indeedee-male",
-  basculegion: "basculegion-male",
-  basculegionf: "basculegion-female",
-  toxtricity: "toxtricity-amped",
-  dudunsparce: "dudunsparce-two-segment",
-  tatsugiri: "tatsugiri-curly",
-  lycanroc: "lycanroc-dusk",
-  floetteeternal: "floette-eternal",
-  floetteeternalflower: "floette-eternal",
-  staraptormega: "staraptor-mega",
-  raichumegax: "raichu-mega-x",
-  raichumegay: "raichu-mega-y",
-  eelektrossmega: "eelektross-mega",
-  dragonitemega: "dragonite-mega",
-  garchompmegaz: "garchomp-mega-z",
-};
 
 type BattleTop = {
   name?: string;
@@ -80,10 +56,6 @@ type IndexFile = {
   pokemon?: IndexPokemon[];
 };
 
-function compact(s: string) {
-  return s.toLowerCase().replace(/[^a-z0-9]/g, "");
-}
-
 function share(name?: string, pct?: number | null): RankedShare | undefined {
   if (!name) return undefined;
   return pct == null || Number.isNaN(Number(pct)) ? { name } : { name, pct: Number(pct) };
@@ -92,13 +64,6 @@ function share(name?: string, pct?: number | null): RankedShare | undefined {
 function num(v: number | string | undefined) {
   const n = typeof v === "number" ? v : Number(v);
   return Number.isFinite(n) ? n : 0;
-}
-
-function mapSlug(showdownId: string, catalog: CatalogEntry[]) {
-  const alias = ALIAS[compact(showdownId)];
-  if (alias && catalog.some((p) => p.slug === alias)) return alias;
-  const hit = catalog.find((p) => compact(p.slug) === compact(showdownId));
-  return hit?.slug;
 }
 
 async function loadIndex(fromCache: boolean): Promise<IndexFile> {
@@ -146,7 +111,7 @@ async function main() {
       rank,
       showdownId: mon.showdownId,
       name: mon.name,
-      slug: mapSlug(mon.showdownId, catalog),
+      slug: catalogSlugForShowdownId(mon.showdownId, catalog),
       types: (mon.summary?.types ?? []).map((t) => t.toLowerCase()),
       ability: share(top.ability?.name, top.ability?.percentage_value),
       nature: share(top.stat_alignment?.name, top.stat_alignment?.percentage_value),

@@ -17,11 +17,11 @@
       "def": 83,
       "spa": 100,
       "spd": 100,
-      "spe": 80,
-      "bst": 525
+      "spe": 100,
+      "bst": 545
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "overgrow",
       "chlorophyll"
@@ -80,11 +80,11 @@
       "def": 123,
       "spa": 122,
       "spd": 120,
-      "spe": 80,
-      "bst": 625
+      "spe": 100,
+      "bst": 645
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "thick fat"
     ],
@@ -140,11 +140,11 @@
       "def": 78,
       "spa": 109,
       "spd": 85,
-      "spe": 100,
-      "bst": 534
+      "spe": 120,
+      "bst": 554
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "blaze",
       "solar power"
@@ -210,11 +210,11 @@
       "def": 111,
       "spa": 130,
       "spd": 85,
-      "spe": 100,
-      "bst": 634
+      "spe": 120,
+      "bst": 654
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "tough claws"
     ],
@@ -276,11 +276,11 @@
       "def": 78,
       "spa": 159,
       "spd": 115,
-      "spe": 100,
-      "bst": 634
+      "spe": 120,
+      "bst": 654
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "drought"
     ],
@@ -341,11 +341,11 @@
       "def": 100,
       "spa": 85,
       "spd": 105,
-      "spe": 78,
-      "bst": 530
+      "spe": 98,
+      "bst": 550
     },
-    "speedAt0": 98,
-    "speedAt32": 130,
+    "speedAt0": 118,
+    "speedAt32": 150,
     "abilities": [
       "torrent",
       "rain dish"
@@ -412,11 +412,11 @@
       "def": 120,
       "spa": 135,
       "spd": 115,
-      "spe": 78,
-      "bst": 630
+      "spe": 98,
+      "bst": 650
     },
-    "speedAt0": 98,
-    "speedAt32": 130,
+    "speedAt0": 118,
+    "speedAt32": 150,
     "abilities": [
       "mega launcher"
     ],
@@ -478,11 +478,11 @@
       "def": 40,
       "spa": 45,
       "spd": 80,
-      "spe": 75,
-      "bst": 395
+      "spe": 95,
+      "bst": 415
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "swarm",
       "sniper"
@@ -544,11 +544,11 @@
       "def": 40,
       "spa": 15,
       "spd": 80,
-      "spe": 145,
-      "bst": 495
+      "spe": 165,
+      "bst": 515
     },
-    "speedAt0": 165,
-    "speedAt32": 197,
+    "speedAt0": 185,
+    "speedAt32": 217,
     "abilities": [
       "adaptability"
     ],
@@ -607,11 +607,11 @@
       "def": 75,
       "spa": 70,
       "spd": 70,
-      "spe": 101,
-      "bst": 479
+      "spe": 121,
+      "bst": 499
     },
-    "speedAt0": 121,
-    "speedAt32": 153,
+    "speedAt0": 141,
+    "speedAt32": 173,
     "abilities": [
       "keen eye",
       "tangled feet",
@@ -671,11 +671,11 @@
       "def": 80,
       "spa": 135,
       "spd": 80,
-      "spe": 121,
-      "bst": 579
+      "spe": 141,
+      "bst": 599
     },
-    "speedAt0": 141,
-    "speedAt32": 173,
+    "speedAt0": 161,
+    "speedAt32": 193,
     "abilities": [
       "no guard"
     ],
@@ -730,11 +730,11 @@
       "def": 69,
       "spa": 65,
       "spd": 79,
-      "spe": 80,
-      "bst": 448
+      "spe": 100,
+      "bst": 468
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "intimidate",
       "shed skin",
@@ -799,11 +799,11 @@
       "def": 40,
       "spa": 50,
       "spd": 50,
-      "spe": 90,
-      "bst": 320
+      "spe": 110,
+      "bst": 340
     },
-    "speedAt0": 110,
-    "speedAt32": 142,
+    "speedAt0": 130,
+    "speedAt32": 162,
     "abilities": [
       "static",
       "lightning rod"
@@ -868,11 +868,11 @@
       "def": 55,
       "spa": 90,
       "spd": 80,
-      "spe": 110,
-      "bst": 485
+      "spe": 130,
+      "bst": 505
     },
-    "speedAt0": 130,
-    "speedAt32": 162,
+    "speedAt0": 150,
+    "speedAt32": 182,
     "abilities": [
       "static",
       "lightning rod"
@@ -937,11 +937,11 @@
       "def": 50,
       "spa": 95,
       "spd": 85,
-      "spe": 110,
-      "bst": 485
+      "spe": 130,
+      "bst": 505
     },
-    "speedAt0": 130,
-    "speedAt32": 162,
+    "speedAt0": 150,
+    "speedAt32": 182,
     "abilities": [
       "surge surfer"
     ],
@@ -1005,11 +1005,11 @@
       "def": 95,
       "spa": 90,
       "spd": 95,
-      "spe": 110,
-      "bst": 585
+      "spe": 130,
+      "bst": 605
     },
-    "speedAt0": 130,
-    "speedAt32": 162,
+    "speedAt0": 150,
+    "speedAt32": 182,
     "abilities": [
       "electric surge"
     ],
@@ -1069,11 +1069,11 @@
       "def": 55,
       "spa": 160,
       "spd": 80,
-      "spe": 130,
-      "bst": 585
+      "spe": 150,
+      "bst": 605
     },
-    "speedAt0": 150,
-    "speedAt32": 182,
+    "speedAt0": 170,
+    "speedAt32": 202,
     "abilities": [
       "no guard"
     ],
@@ -1132,11 +1132,11 @@
       "def": 73,
       "spa": 95,
       "spd": 90,
-      "spe": 60,
-      "bst": 483
+      "spe": 80,
+      "bst": 503
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "cute charm",
       "magic guard",
@@ -1203,11 +1203,11 @@
       "def": 93,
       "spa": 135,
       "spd": 110,
-      "spe": 70,
-      "bst": 583
+      "spe": 90,
+      "bst": 603
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "magic bounce"
     ],
@@ -1267,11 +1267,11 @@
       "def": 75,
       "spa": 81,
       "spd": 100,
-      "spe": 100,
-      "bst": 505
+      "spe": 120,
+      "bst": 525
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "flash fire",
       "drought"
@@ -1334,11 +1334,11 @@
       "def": 75,
       "spa": 81,
       "spd": 100,
-      "spe": 109,
-      "bst": 505
+      "spe": 129,
+      "bst": 525
     },
-    "speedAt0": 129,
-    "speedAt32": 161,
+    "speedAt0": 149,
+    "speedAt32": 181,
     "abilities": [
       "snow cloak",
       "snow warning"
@@ -1400,11 +1400,11 @@
       "def": 45,
       "spa": 85,
       "spd": 50,
-      "spe": 45,
-      "bst": 435
+      "spe": 65,
+      "bst": 455
     },
-    "speedAt0": 65,
-    "speedAt32": 97,
+    "speedAt0": 85,
+    "speedAt32": 117,
     "abilities": [
       "cute charm",
       "competitive",
@@ -1471,11 +1471,11 @@
       "def": 85,
       "spa": 110,
       "spd": 90,
-      "spe": 50,
-      "bst": 490
+      "spe": 70,
+      "bst": 510
     },
-    "speedAt0": 70,
-    "speedAt32": 102,
+    "speedAt0": 90,
+    "speedAt32": 122,
     "abilities": [
       "chlorophyll",
       "effect spore"
@@ -1530,11 +1530,11 @@
       "def": 60,
       "spa": 65,
       "spd": 65,
-      "spe": 115,
-      "bst": 440
+      "spe": 135,
+      "bst": 460
     },
-    "speedAt0": 135,
-    "speedAt32": 167,
+    "speedAt0": 155,
+    "speedAt32": 187,
     "abilities": [
       "limber",
       "technician",
@@ -1595,11 +1595,11 @@
       "def": 60,
       "spa": 75,
       "spd": 65,
-      "spe": 115,
-      "bst": 440
+      "spe": 135,
+      "bst": 460
     },
-    "speedAt0": 135,
-    "speedAt32": 167,
+    "speedAt0": 155,
+    "speedAt32": 187,
     "abilities": [
       "fur coat",
       "technician",
@@ -1660,11 +1660,11 @@
       "def": 80,
       "spa": 100,
       "spd": 80,
-      "spe": 95,
-      "bst": 555
+      "spe": 115,
+      "bst": 575
     },
-    "speedAt0": 115,
-    "speedAt32": 147,
+    "speedAt0": 135,
+    "speedAt32": 167,
     "abilities": [
       "intimidate",
       "flash fire",
@@ -1726,11 +1726,11 @@
       "def": 80,
       "spa": 95,
       "spd": 80,
-      "spe": 90,
-      "bst": 555
+      "spe": 110,
+      "bst": 575
     },
-    "speedAt0": 110,
-    "speedAt32": 142,
+    "speedAt0": 130,
+    "speedAt32": 162,
     "abilities": [
       "intimidate",
       "flash fire",
@@ -1790,11 +1790,11 @@
       "def": 45,
       "spa": 135,
       "spd": 95,
-      "spe": 120,
-      "bst": 500
+      "spe": 140,
+      "bst": 520
     },
-    "speedAt0": 140,
-    "speedAt32": 172,
+    "speedAt0": 160,
+    "speedAt32": 192,
     "abilities": [
       "synchronize",
       "inner focus",
@@ -1857,11 +1857,11 @@
       "def": 65,
       "spa": 175,
       "spd": 105,
-      "spe": 150,
-      "bst": 600
+      "spe": 170,
+      "bst": 620
     },
-    "speedAt0": 170,
-    "speedAt32": 202,
+    "speedAt0": 190,
+    "speedAt32": 222,
     "abilities": [
       "trace"
     ],
@@ -1918,11 +1918,11 @@
       "def": 80,
       "spa": 65,
       "spd": 85,
-      "spe": 55,
-      "bst": 505
+      "spe": 75,
+      "bst": 525
     },
-    "speedAt0": 75,
-    "speedAt32": 107,
+    "speedAt0": 95,
+    "speedAt32": 127,
     "abilities": [
       "guts",
       "no guard",
@@ -1986,11 +1986,11 @@
       "def": 65,
       "spa": 100,
       "spd": 70,
-      "spe": 70,
-      "bst": 490
+      "spe": 90,
+      "bst": 510
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "chlorophyll",
       "gluttony"
@@ -2053,11 +2053,11 @@
       "def": 85,
       "spa": 135,
       "spd": 95,
-      "spe": 70,
-      "bst": 590
+      "spe": 90,
+      "bst": 610
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "innards out"
     ],
@@ -2116,11 +2116,11 @@
       "def": 110,
       "spa": 100,
       "spd": 80,
-      "spe": 30,
-      "bst": 490
+      "spe": 50,
+      "bst": 510
     },
-    "speedAt0": 50,
-    "speedAt32": 82,
+    "speedAt0": 70,
+    "speedAt32": 102,
     "abilities": [
       "oblivious",
       "own tempo",
@@ -2187,11 +2187,11 @@
       "def": 180,
       "spa": 130,
       "spd": 80,
-      "spe": 30,
-      "bst": 590
+      "spe": 50,
+      "bst": 610
     },
-    "speedAt0": 50,
-    "speedAt32": 82,
+    "speedAt0": 70,
+    "speedAt32": 102,
     "abilities": [
       "shell armor"
     ],
@@ -2253,11 +2253,11 @@
       "def": 95,
       "spa": 100,
       "spd": 70,
-      "spe": 30,
-      "bst": 490
+      "spe": 50,
+      "bst": 510
     },
-    "speedAt0": 50,
-    "speedAt32": 82,
+    "speedAt0": 70,
+    "speedAt32": 102,
     "abilities": [
       "quick draw",
       "own tempo",
@@ -2324,11 +2324,11 @@
       "def": 55,
       "spa": 58,
       "spd": 62,
-      "spe": 60,
-      "bst": 377
+      "spe": 80,
+      "bst": 397
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "keen eye",
       "inner focus",
@@ -2390,11 +2390,11 @@
       "def": 60,
       "spa": 130,
       "spd": 75,
-      "spe": 110,
-      "bst": 500
+      "spe": 130,
+      "bst": 520
     },
-    "speedAt0": 130,
-    "speedAt32": 162,
+    "speedAt0": 150,
+    "speedAt32": 182,
     "abilities": [
       "cursed body"
     ],
@@ -2466,11 +2466,11 @@
       "def": 80,
       "spa": 170,
       "spd": 95,
-      "spe": 130,
-      "bst": 600
+      "spe": 150,
+      "bst": 620
     },
-    "speedAt0": 150,
-    "speedAt32": 182,
+    "speedAt0": 170,
+    "speedAt32": 202,
     "abilities": [
       "shadow tag"
     ],
@@ -2539,11 +2539,11 @@
       "def": 80,
       "spa": 40,
       "spd": 80,
-      "spe": 90,
-      "bst": 490
+      "spe": 110,
+      "bst": 510
     },
-    "speedAt0": 110,
-    "speedAt32": 142,
+    "speedAt0": 130,
+    "speedAt32": 162,
     "abilities": [
       "early bird",
       "scrappy",
@@ -2605,11 +2605,11 @@
       "def": 100,
       "spa": 60,
       "spd": 100,
-      "spe": 100,
-      "bst": 590
+      "spe": 120,
+      "bst": 610
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "parental bond"
     ],
@@ -2667,11 +2667,11 @@
       "def": 85,
       "spa": 100,
       "spd": 85,
-      "spe": 115,
-      "bst": 520
+      "spe": 135,
+      "bst": 540
     },
-    "speedAt0": 135,
-    "speedAt32": 167,
+    "speedAt0": 155,
+    "speedAt32": 187,
     "abilities": [
       "illuminate",
       "natural cure",
@@ -2734,11 +2734,11 @@
       "def": 105,
       "spa": 130,
       "spd": 105,
-      "spe": 120,
-      "bst": 620
+      "spe": 140,
+      "bst": 640
     },
-    "speedAt0": 140,
-    "speedAt32": 172,
+    "speedAt0": 160,
+    "speedAt32": 192,
     "abilities": [
       "huge power"
     ],
@@ -2795,11 +2795,11 @@
       "def": 65,
       "spa": 100,
       "spd": 120,
-      "spe": 90,
-      "bst": 460
+      "spe": 110,
+      "bst": 480
     },
-    "speedAt0": 110,
-    "speedAt32": 142,
+    "speedAt0": 130,
+    "speedAt32": 162,
     "abilities": [
       "soundproof",
       "filter",
@@ -2869,11 +2869,11 @@
       "def": 100,
       "spa": 55,
       "spd": 70,
-      "spe": 85,
-      "bst": 500
+      "spe": 105,
+      "bst": 520
     },
-    "speedAt0": 105,
-    "speedAt32": 137,
+    "speedAt0": 125,
+    "speedAt32": 157,
     "abilities": [
       "hyper cutter",
       "mold breaker",
@@ -2934,11 +2934,11 @@
       "def": 120,
       "spa": 65,
       "spd": 90,
-      "spe": 105,
-      "bst": 600
+      "spe": 125,
+      "bst": 620
     },
-    "speedAt0": 125,
-    "speedAt32": 157,
+    "speedAt0": 145,
+    "speedAt32": 177,
     "abilities": [
       "aerilate"
     ],
@@ -2993,11 +2993,11 @@
       "def": 95,
       "spa": 40,
       "spd": 70,
-      "spe": 110,
-      "bst": 490
+      "spe": 130,
+      "bst": 510
     },
-    "speedAt0": 130,
-    "speedAt32": 162,
+    "speedAt0": 150,
+    "speedAt32": 182,
     "abilities": [
       "intimidate",
       "anger point",
@@ -3055,11 +3055,11 @@
       "def": 105,
       "spa": 30,
       "spd": 70,
-      "spe": 100,
-      "bst": 490
+      "spe": 120,
+      "bst": 510
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "intimidate",
       "anger point",
@@ -3111,11 +3111,11 @@
       "def": 105,
       "spa": 30,
       "spd": 70,
-      "spe": 100,
-      "bst": 490
+      "spe": 120,
+      "bst": 510
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "intimidate",
       "anger point",
@@ -3171,11 +3171,11 @@
       "def": 105,
       "spa": 30,
       "spd": 70,
-      "spe": 100,
-      "bst": 490
+      "spe": 120,
+      "bst": 510
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "intimidate",
       "anger point",
@@ -3229,11 +3229,11 @@
       "def": 79,
       "spa": 60,
       "spd": 100,
-      "spe": 81,
-      "bst": 540
+      "spe": 101,
+      "bst": 560
     },
-    "speedAt0": 101,
-    "speedAt32": 133,
+    "speedAt0": 121,
+    "speedAt32": 153,
     "abilities": [
       "intimidate",
       "moxie"
@@ -3293,11 +3293,11 @@
       "def": 109,
       "spa": 70,
       "spd": 130,
-      "spe": 81,
-      "bst": 640
+      "spe": 101,
+      "bst": 660
     },
-    "speedAt0": 101,
-    "speedAt32": 133,
+    "speedAt0": 121,
+    "speedAt32": 153,
     "abilities": [
       "mold breaker"
     ],
@@ -3354,11 +3354,11 @@
       "def": 48,
       "spa": 48,
       "spd": 48,
-      "spe": 48,
-      "bst": 288
+      "spe": 68,
+      "bst": 308
     },
-    "speedAt0": 68,
-    "speedAt32": 100,
+    "speedAt0": 88,
+    "speedAt32": 120,
     "abilities": [
       "limber",
       "imposter"
@@ -3400,11 +3400,11 @@
       "def": 60,
       "spa": 110,
       "spd": 95,
-      "spe": 65,
-      "bst": 525
+      "spe": 85,
+      "bst": 545
     },
-    "speedAt0": 85,
-    "speedAt32": 117,
+    "speedAt0": 105,
+    "speedAt32": 137,
     "abilities": [
       "water absorb",
       "hydration"
@@ -3466,11 +3466,11 @@
       "def": 60,
       "spa": 110,
       "spd": 95,
-      "spe": 130,
-      "bst": 525
+      "spe": 150,
+      "bst": 545
     },
-    "speedAt0": 150,
-    "speedAt32": 182,
+    "speedAt0": 170,
+    "speedAt32": 202,
     "abilities": [
       "volt absorb",
       "quick feet"
@@ -3532,11 +3532,11 @@
       "def": 60,
       "spa": 95,
       "spd": 110,
-      "spe": 65,
-      "bst": 525
+      "spe": 85,
+      "bst": 545
     },
-    "speedAt0": 85,
-    "speedAt32": 117,
+    "speedAt0": 105,
+    "speedAt32": 137,
     "abilities": [
       "flash fire",
       "guts"
@@ -3598,11 +3598,11 @@
       "def": 65,
       "spa": 60,
       "spd": 75,
-      "spe": 130,
-      "bst": 515
+      "spe": 150,
+      "bst": 535
     },
-    "speedAt0": 150,
-    "speedAt32": 182,
+    "speedAt0": 170,
+    "speedAt32": 202,
     "abilities": [
       "rock head",
       "pressure",
@@ -3667,11 +3667,11 @@
       "def": 85,
       "spa": 70,
       "spd": 95,
-      "spe": 150,
-      "bst": 615
+      "spe": 170,
+      "bst": 635
     },
-    "speedAt0": 170,
-    "speedAt32": 202,
+    "speedAt0": 190,
+    "speedAt32": 222,
     "abilities": [
       "tough claws"
     ],
@@ -3732,11 +3732,11 @@
       "def": 65,
       "spa": 65,
       "spd": 110,
-      "spe": 30,
-      "bst": 540
+      "spe": 50,
+      "bst": 560
     },
-    "speedAt0": 50,
-    "speedAt32": 82,
+    "speedAt0": 70,
+    "speedAt32": 102,
     "abilities": [
       "immunity",
       "thick fat",
@@ -3798,11 +3798,11 @@
       "def": 95,
       "spa": 100,
       "spd": 100,
-      "spe": 80,
-      "bst": 600
+      "spe": 100,
+      "bst": 620
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "inner focus",
       "multiscale"
@@ -3877,11 +3877,11 @@
       "def": 115,
       "spa": 145,
       "spd": 125,
-      "spe": 100,
-      "bst": 700
+      "spe": 120,
+      "bst": 720
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "multiscale"
     ],
@@ -3946,11 +3946,11 @@
       "def": 100,
       "spa": 83,
       "spd": 100,
-      "spe": 80,
-      "bst": 525
+      "spe": 100,
+      "bst": 545
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "overgrow",
       "leaf guard"
@@ -4009,11 +4009,11 @@
       "def": 115,
       "spa": 143,
       "spd": 115,
-      "spe": 80,
-      "bst": 625
+      "spe": 100,
+      "bst": 645
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "mega sol"
     ],
@@ -4068,11 +4068,11 @@
       "def": 78,
       "spa": 109,
       "spd": 85,
-      "spe": 100,
-      "bst": 534
+      "spe": 120,
+      "bst": 554
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "blaze",
       "flash fire"
@@ -4131,11 +4131,11 @@
       "def": 78,
       "spa": 119,
       "spd": 85,
-      "spe": 95,
-      "bst": 534
+      "spe": 115,
+      "bst": 554
     },
-    "speedAt0": 115,
-    "speedAt32": 147,
+    "speedAt0": 135,
+    "speedAt32": 167,
     "abilities": [
       "blaze",
       "frisk"
@@ -4191,11 +4191,11 @@
       "def": 100,
       "spa": 79,
       "spd": 83,
-      "spe": 78,
-      "bst": 530
+      "spe": 98,
+      "bst": 550
     },
-    "speedAt0": 98,
-    "speedAt32": 130,
+    "speedAt0": 118,
+    "speedAt32": 150,
     "abilities": [
       "torrent",
       "sheer force"
@@ -4259,11 +4259,11 @@
       "def": 125,
       "spa": 89,
       "spd": 93,
-      "spe": 78,
-      "bst": 630
+      "spe": 98,
+      "bst": 650
     },
-    "speedAt0": 98,
-    "speedAt32": 130,
+    "speedAt0": 118,
+    "speedAt32": 150,
     "abilities": [
       "dragonize"
     ],
@@ -4323,11 +4323,11 @@
       "def": 70,
       "spa": 60,
       "spd": 70,
-      "spe": 40,
-      "bst": 400
+      "spe": 60,
+      "bst": 420
     },
-    "speedAt0": 60,
-    "speedAt32": 92,
+    "speedAt0": 80,
+    "speedAt32": 112,
     "abilities": [
       "swarm",
       "insomnia",
@@ -4389,11 +4389,11 @@
       "def": 85,
       "spa": 115,
       "spd": 90,
-      "spe": 55,
-      "bst": 510
+      "spe": 75,
+      "bst": 530
     },
-    "speedAt0": 75,
-    "speedAt32": 107,
+    "speedAt0": 95,
+    "speedAt32": 127,
     "abilities": [
       "static",
       "plus"
@@ -4454,11 +4454,11 @@
       "def": 105,
       "spa": 165,
       "spd": 110,
-      "spe": 45,
-      "bst": 610
+      "spe": 65,
+      "bst": 630
     },
-    "speedAt0": 65,
-    "speedAt32": 97,
+    "speedAt0": 85,
+    "speedAt32": 117,
     "abilities": [
       "mold breaker"
     ],
@@ -4516,11 +4516,11 @@
       "def": 80,
       "spa": 60,
       "spd": 80,
-      "spe": 50,
-      "bst": 420
+      "spe": 70,
+      "bst": 440
     },
-    "speedAt0": 70,
-    "speedAt32": 102,
+    "speedAt0": 90,
+    "speedAt32": 122,
     "abilities": [
       "thick fat",
       "huge power",
@@ -4579,11 +4579,11 @@
       "def": 75,
       "spa": 90,
       "spd": 100,
-      "spe": 70,
-      "bst": 500
+      "spe": 90,
+      "bst": 520
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "water absorb",
       "damp",
@@ -4641,11 +4641,11 @@
       "def": 60,
       "spa": 130,
       "spd": 95,
-      "spe": 110,
-      "bst": 525
+      "spe": 130,
+      "bst": 545
     },
-    "speedAt0": 130,
-    "speedAt32": 162,
+    "speedAt0": 150,
+    "speedAt32": 182,
     "abilities": [
       "synchronize",
       "magic bounce"
@@ -4709,11 +4709,11 @@
       "def": 110,
       "spa": 60,
       "spd": 130,
-      "spe": 65,
-      "bst": 525
+      "spe": 85,
+      "bst": 545
     },
-    "speedAt0": 85,
-    "speedAt32": 117,
+    "speedAt0": 105,
+    "speedAt32": 137,
     "abilities": [
       "synchronize",
       "inner focus"
@@ -4776,11 +4776,11 @@
       "def": 80,
       "spa": 100,
       "spd": 110,
-      "spe": 30,
-      "bst": 490
+      "spe": 50,
+      "bst": 510
     },
-    "speedAt0": 50,
-    "speedAt32": 82,
+    "speedAt0": 70,
+    "speedAt32": 102,
     "abilities": [
       "oblivious",
       "own tempo",
@@ -4848,11 +4848,11 @@
       "def": 80,
       "spa": 110,
       "spd": 110,
-      "spe": 30,
-      "bst": 490
+      "spe": 50,
+      "bst": 510
     },
-    "speedAt0": 50,
-    "speedAt32": 82,
+    "speedAt0": 70,
+    "speedAt32": 102,
     "abilities": [
       "curious medicine",
       "own tempo",
@@ -4921,11 +4921,11 @@
       "def": 140,
       "spa": 60,
       "spd": 60,
-      "spe": 40,
-      "bst": 465
+      "spe": 60,
+      "bst": 485
     },
-    "speedAt0": 60,
-    "speedAt32": 92,
+    "speedAt0": 80,
+    "speedAt32": 112,
     "abilities": [
       "sturdy",
       "overcoat"
@@ -4988,11 +4988,11 @@
       "def": 200,
       "spa": 55,
       "spd": 65,
-      "spe": 30,
-      "bst": 510
+      "spe": 50,
+      "bst": 530
     },
-    "speedAt0": 50,
-    "speedAt32": 82,
+    "speedAt0": 70,
+    "speedAt32": 102,
     "abilities": [
       "rock head",
       "sturdy",
@@ -5053,11 +5053,11 @@
       "def": 230,
       "spa": 55,
       "spd": 95,
-      "spe": 30,
-      "bst": 610
+      "spe": 50,
+      "bst": 630
     },
-    "speedAt0": 50,
-    "speedAt32": 82,
+    "speedAt0": 70,
+    "speedAt32": 102,
     "abilities": [
       "sand force"
     ],
@@ -5115,11 +5115,11 @@
       "def": 85,
       "spa": 55,
       "spd": 55,
-      "spe": 85,
-      "bst": 440
+      "spe": 105,
+      "bst": 460
     },
-    "speedAt0": 105,
-    "speedAt32": 137,
+    "speedAt0": 125,
+    "speedAt32": 157,
     "abilities": [
       "poison point",
       "swift swim",
@@ -5185,11 +5185,11 @@
       "def": 100,
       "spa": 55,
       "spd": 80,
-      "spe": 65,
-      "bst": 500
+      "spe": 85,
+      "bst": 520
     },
-    "speedAt0": 85,
-    "speedAt32": 117,
+    "speedAt0": 105,
+    "speedAt32": 137,
     "abilities": [
       "swarm",
       "technician",
@@ -5256,11 +5256,11 @@
       "def": 140,
       "spa": 65,
       "spd": 100,
-      "spe": 75,
-      "bst": 600
+      "spe": 95,
+      "bst": 620
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "technician"
     ],
@@ -5324,11 +5324,11 @@
       "def": 75,
       "spa": 40,
       "spd": 95,
-      "spe": 85,
-      "bst": 500
+      "spe": 105,
+      "bst": 520
     },
-    "speedAt0": 105,
-    "speedAt32": 137,
+    "speedAt0": 125,
+    "speedAt32": 157,
     "abilities": [
       "swarm",
       "guts",
@@ -5389,11 +5389,11 @@
       "def": 115,
       "spa": 40,
       "spd": 105,
-      "spe": 75,
-      "bst": 600
+      "spe": 95,
+      "bst": 620
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "skill link"
     ],
@@ -5451,11 +5451,11 @@
       "def": 140,
       "spa": 40,
       "spd": 70,
-      "spe": 70,
-      "bst": 465
+      "spe": 90,
+      "bst": 485
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "keen eye",
       "sturdy",
@@ -5520,11 +5520,11 @@
       "def": 110,
       "spa": 40,
       "spd": 100,
-      "spe": 110,
-      "bst": 565
+      "spe": 130,
+      "bst": 585
     },
-    "speedAt0": 130,
-    "speedAt32": 162,
+    "speedAt0": 150,
+    "speedAt32": 182,
     "abilities": [
       "stalwart"
     ],
@@ -5581,11 +5581,11 @@
       "def": 50,
       "spa": 110,
       "spd": 80,
-      "spe": 95,
-      "bst": 500
+      "spe": 115,
+      "bst": 520
     },
-    "speedAt0": 115,
-    "speedAt32": 147,
+    "speedAt0": 135,
+    "speedAt32": 167,
     "abilities": [
       "early bird",
       "flash fire",
@@ -5647,11 +5647,11 @@
       "def": 90,
       "spa": 140,
       "spd": 90,
-      "spe": 115,
-      "bst": 600
+      "spe": 135,
+      "bst": 620
     },
-    "speedAt0": 135,
-    "speedAt32": 167,
+    "speedAt0": 155,
+    "speedAt32": 187,
     "abilities": [
       "solar power"
     ],
@@ -5710,11 +5710,11 @@
       "def": 110,
       "spa": 95,
       "spd": 100,
-      "spe": 61,
-      "bst": 600
+      "spe": 81,
+      "bst": 620
     },
-    "speedAt0": 81,
-    "speedAt32": 113,
+    "speedAt0": 101,
+    "speedAt32": 133,
     "abilities": [
       "sand stream",
       "unnerve"
@@ -5779,11 +5779,11 @@
       "def": 150,
       "spa": 95,
       "spd": 120,
-      "spe": 71,
-      "bst": 700
+      "spe": 91,
+      "bst": 720
     },
-    "speedAt0": 91,
-    "speedAt32": 123,
+    "speedAt0": 111,
+    "speedAt32": 143,
     "abilities": [
       "sand stream"
     ],
@@ -5843,11 +5843,11 @@
       "def": 65,
       "spa": 105,
       "spd": 85,
-      "spe": 120,
-      "bst": 530
+      "spe": 140,
+      "bst": 550
     },
-    "speedAt0": 140,
-    "speedAt32": 172,
+    "speedAt0": 160,
+    "speedAt32": 192,
     "abilities": [
       "overgrow",
       "unburden"
@@ -5911,11 +5911,11 @@
       "def": 75,
       "spa": 145,
       "spd": 85,
-      "spe": 145,
-      "bst": 630
+      "spe": 165,
+      "bst": 650
     },
-    "speedAt0": 165,
-    "speedAt32": 197,
+    "speedAt0": 185,
+    "speedAt32": 217,
     "abilities": [
       "lightning rod"
     ],
@@ -5975,11 +5975,11 @@
       "def": 70,
       "spa": 110,
       "spd": 70,
-      "spe": 80,
-      "bst": 530
+      "spe": 100,
+      "bst": 550
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "blaze",
       "speed boost"
@@ -6046,11 +6046,11 @@
       "def": 80,
       "spa": 130,
       "spd": 80,
-      "spe": 100,
-      "bst": 630
+      "spe": 120,
+      "bst": 650
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "speed boost"
     ],
@@ -6115,11 +6115,11 @@
       "def": 90,
       "spa": 85,
       "spd": 90,
-      "spe": 60,
-      "bst": 535
+      "spe": 80,
+      "bst": 555
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "torrent",
       "damp"
@@ -6182,11 +6182,11 @@
       "def": 110,
       "spa": 95,
       "spd": 110,
-      "spe": 70,
-      "bst": 635
+      "spe": 90,
+      "bst": 655
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "swift swim"
     ],
@@ -6312,11 +6312,11 @@
       "def": 100,
       "spa": 95,
       "spd": 70,
-      "spe": 65,
-      "bst": 440
+      "spe": 85,
+      "bst": 460
     },
-    "speedAt0": 85,
-    "speedAt32": 117,
+    "speedAt0": 105,
+    "speedAt32": 137,
     "abilities": [
       "keen eye",
       "drizzle",
@@ -6378,11 +6378,11 @@
       "def": 65,
       "spa": 125,
       "spd": 115,
-      "spe": 80,
-      "bst": 518
+      "spe": 100,
+      "bst": 538
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "synchronize",
       "trace",
@@ -6452,11 +6452,11 @@
       "def": 65,
       "spa": 165,
       "spd": 135,
-      "spe": 100,
-      "bst": 618
+      "spe": 120,
+      "bst": 638
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "pixilate"
     ],
@@ -6523,11 +6523,11 @@
       "def": 75,
       "spa": 65,
       "spd": 65,
-      "spe": 50,
-      "bst": 380
+      "spe": 70,
+      "bst": 400
     },
-    "speedAt0": 70,
-    "speedAt32": 102,
+    "speedAt0": 90,
+    "speedAt32": 122,
     "abilities": [
       "keen eye",
       "stall",
@@ -6596,11 +6596,11 @@
       "def": 125,
       "spa": 85,
       "spd": 115,
-      "spe": 20,
-      "bst": 480
+      "spe": 40,
+      "bst": 500
     },
-    "speedAt0": 40,
-    "speedAt32": 72,
+    "speedAt0": 60,
+    "speedAt32": 92,
     "abilities": [
       "magic bounce"
     ],
@@ -6665,11 +6665,11 @@
       "def": 85,
       "spa": 55,
       "spd": 55,
-      "spe": 50,
-      "bst": 380
+      "spe": 70,
+      "bst": 400
     },
-    "speedAt0": 70,
-    "speedAt32": 102,
+    "speedAt0": 90,
+    "speedAt32": 122,
     "abilities": [
       "hyper cutter",
       "intimidate",
@@ -6733,11 +6733,11 @@
       "def": 125,
       "spa": 55,
       "spd": 95,
-      "spe": 50,
-      "bst": 480
+      "spe": 70,
+      "bst": 500
     },
-    "speedAt0": 70,
-    "speedAt32": 102,
+    "speedAt0": 90,
+    "speedAt32": 122,
     "abilities": [
       "huge power"
     ],
@@ -6797,11 +6797,11 @@
       "def": 180,
       "spa": 60,
       "spd": 60,
-      "spe": 50,
-      "bst": 530
+      "spe": 70,
+      "bst": 550
     },
-    "speedAt0": 70,
-    "speedAt32": 102,
+    "speedAt0": 90,
+    "speedAt32": 122,
     "abilities": [
       "sturdy",
       "rock head",
@@ -6866,11 +6866,11 @@
       "def": 230,
       "spa": 60,
       "spd": 80,
-      "spe": 50,
-      "bst": 630
+      "spe": 70,
+      "bst": 650
     },
-    "speedAt0": 70,
-    "speedAt32": 102,
+    "speedAt0": 90,
+    "speedAt32": 122,
     "abilities": [
       "filter"
     ],
@@ -6931,11 +6931,11 @@
       "def": 75,
       "spa": 60,
       "spd": 75,
-      "spe": 80,
-      "bst": 410
+      "spe": 100,
+      "bst": 430
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "pure power",
       "telepathy"
@@ -7002,11 +7002,11 @@
       "def": 85,
       "spa": 80,
       "spd": 85,
-      "spe": 100,
-      "bst": 510
+      "spe": 120,
+      "bst": 530
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "pure power"
     ],
@@ -7070,11 +7070,11 @@
       "def": 60,
       "spa": 105,
       "spd": 60,
-      "spe": 105,
-      "bst": 475
+      "spe": 125,
+      "bst": 495
     },
-    "speedAt0": 125,
-    "speedAt32": 157,
+    "speedAt0": 145,
+    "speedAt32": 177,
     "abilities": [
       "static",
       "lightning rod",
@@ -7133,11 +7133,11 @@
       "def": 80,
       "spa": 135,
       "spd": 80,
-      "spe": 135,
-      "bst": 575
+      "spe": 155,
+      "bst": 595
     },
-    "speedAt0": 155,
-    "speedAt32": 187,
+    "speedAt0": 175,
+    "speedAt32": 207,
     "abilities": [
       "intimidate"
     ],
@@ -7193,11 +7193,11 @@
       "def": 83,
       "spa": 73,
       "spd": 83,
-      "spe": 55,
-      "bst": 467
+      "spe": 75,
+      "bst": 487
     },
-    "speedAt0": 75,
-    "speedAt32": 107,
+    "speedAt0": 95,
+    "speedAt32": 127,
     "abilities": [
       "liquid ooze",
       "sticky hold",
@@ -7258,11 +7258,11 @@
       "def": 40,
       "spa": 95,
       "spd": 40,
-      "spe": 95,
-      "bst": 460
+      "spe": 115,
+      "bst": 480
     },
-    "speedAt0": 115,
-    "speedAt32": 147,
+    "speedAt0": 135,
+    "speedAt32": 167,
     "abilities": [
       "rough skin",
       "speed boost"
@@ -7324,11 +7324,11 @@
       "def": 70,
       "spa": 110,
       "spd": 65,
-      "spe": 105,
-      "bst": 560
+      "spe": 125,
+      "bst": 580
     },
-    "speedAt0": 125,
-    "speedAt32": 157,
+    "speedAt0": 145,
+    "speedAt32": 177,
     "abilities": [
       "strong jaw"
     ],
@@ -7388,11 +7388,11 @@
       "def": 70,
       "spa": 105,
       "spd": 75,
-      "spe": 40,
-      "bst": 460
+      "spe": 60,
+      "bst": 480
     },
-    "speedAt0": 60,
-    "speedAt32": 92,
+    "speedAt0": 80,
+    "speedAt32": 112,
     "abilities": [
       "magma armor",
       "solid rock",
@@ -7454,11 +7454,11 @@
       "def": 100,
       "spa": 145,
       "spd": 105,
-      "spe": 20,
-      "bst": 560
+      "spe": 40,
+      "bst": 580
     },
-    "speedAt0": 40,
-    "speedAt32": 72,
+    "speedAt0": 60,
+    "speedAt32": 92,
     "abilities": [
       "sheer force"
     ],
@@ -7516,11 +7516,11 @@
       "def": 140,
       "spa": 85,
       "spd": 70,
-      "spe": 20,
-      "bst": 470
+      "spe": 40,
+      "bst": 490
     },
-    "speedAt0": 40,
-    "speedAt32": 72,
+    "speedAt0": 60,
+    "speedAt32": 92,
     "abilities": [
       "white smoke",
       "drought",
@@ -7581,11 +7581,11 @@
       "def": 90,
       "spa": 70,
       "spd": 105,
-      "spe": 80,
-      "bst": 490
+      "spe": 100,
+      "bst": 510
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "natural cure",
       "cloud nine"
@@ -7644,11 +7644,11 @@
       "def": 110,
       "spa": 110,
       "spd": 105,
-      "spe": 80,
-      "bst": 590
+      "spe": 100,
+      "bst": 610
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "pixilate"
     ],
@@ -7704,11 +7704,11 @@
       "def": 79,
       "spa": 100,
       "spd": 125,
-      "spe": 81,
-      "bst": 540
+      "spe": 101,
+      "bst": 560
     },
-    "speedAt0": 101,
-    "speedAt32": 133,
+    "speedAt0": 121,
+    "speedAt32": 153,
     "abilities": [
       "marvel scale",
       "competitive",
@@ -7766,11 +7766,11 @@
       "def": 70,
       "spa": 70,
       "spd": 70,
-      "spe": 70,
-      "bst": 420
+      "spe": 90,
+      "bst": 440
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "forecast"
     ],
@@ -7824,11 +7824,11 @@
       "def": 65,
       "spa": 83,
       "spd": 63,
-      "spe": 65,
-      "bst": 455
+      "spe": 85,
+      "bst": 475
     },
-    "speedAt0": 85,
-    "speedAt32": 117,
+    "speedAt0": 105,
+    "speedAt32": 137,
     "abilities": [
       "insomnia",
       "frisk",
@@ -7894,11 +7894,11 @@
       "def": 75,
       "spa": 93,
       "spd": 83,
-      "spe": 75,
-      "bst": 555
+      "spe": 95,
+      "bst": 575
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "prankster"
     ],
@@ -7961,11 +7961,11 @@
       "def": 80,
       "spa": 95,
       "spd": 90,
-      "spe": 65,
-      "bst": 455
+      "spe": 85,
+      "bst": 475
     },
-    "speedAt0": 85,
-    "speedAt32": 117,
+    "speedAt0": 105,
+    "speedAt32": 137,
     "abilities": [
       "levitate"
     ],
@@ -8033,11 +8033,11 @@
       "def": 110,
       "spa": 135,
       "spd": 120,
-      "spe": 65,
-      "bst": 555
+      "spe": 85,
+      "bst": 575
     },
-    "speedAt0": 85,
-    "speedAt32": 117,
+    "speedAt0": 105,
+    "speedAt32": 137,
     "abilities": [
       "levitate"
     ],
@@ -8100,11 +8100,11 @@
       "def": 60,
       "spa": 75,
       "spd": 60,
-      "spe": 75,
-      "bst": 465
+      "spe": 95,
+      "bst": 485
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "pressure",
       "super luck",
@@ -8168,11 +8168,11 @@
       "def": 60,
       "spa": 115,
       "spd": 60,
-      "spe": 115,
-      "bst": 565
+      "spe": 135,
+      "bst": 585
     },
-    "speedAt0": 135,
-    "speedAt32": 167,
+    "speedAt0": 155,
+    "speedAt32": 187,
     "abilities": [
       "magic bounce"
     ],
@@ -8234,11 +8234,11 @@
       "def": 60,
       "spa": 75,
       "spd": 60,
-      "spe": 151,
-      "bst": 565
+      "spe": 171,
+      "bst": 585
     },
-    "speedAt0": 171,
-    "speedAt32": 203,
+    "speedAt0": 191,
+    "speedAt32": 223,
     "abilities": [
       "sharpness"
     ],
@@ -8275,11 +8275,11 @@
       "def": 80,
       "spa": 80,
       "spd": 80,
-      "spe": 80,
-      "bst": 480
+      "spe": 100,
+      "bst": 500
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "inner focus",
       "ice body",
@@ -8337,11 +8337,11 @@
       "def": 80,
       "spa": 120,
       "spd": 80,
-      "spe": 100,
-      "bst": 580
+      "spe": 120,
+      "bst": 600
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "refrigerate"
     ],
@@ -8397,11 +8397,11 @@
       "def": 80,
       "spa": 110,
       "spd": 80,
-      "spe": 100,
-      "bst": 600
+      "spe": 120,
+      "bst": 620
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "intimidate",
       "moxie"
@@ -8461,11 +8461,11 @@
       "def": 130,
       "spa": 120,
       "spd": 90,
-      "spe": 120,
-      "bst": 700
+      "spe": 140,
+      "bst": 720
     },
-    "speedAt0": 140,
-    "speedAt32": 172,
+    "speedAt0": 160,
+    "speedAt32": 192,
     "abilities": [
       "aerilate"
     ],
@@ -8520,11 +8520,11 @@
       "def": 130,
       "spa": 95,
       "spd": 90,
-      "spe": 70,
-      "bst": 600
+      "spe": 90,
+      "bst": 620
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "clear body",
       "light metal"
@@ -8588,11 +8588,11 @@
       "def": 150,
       "spa": 105,
       "spd": 110,
-      "spe": 110,
-      "bst": 700
+      "spe": 130,
+      "bst": 720
     },
-    "speedAt0": 130,
-    "speedAt32": 162,
+    "speedAt0": 150,
+    "speedAt32": 182,
     "abilities": [
       "tough claws"
     ],
@@ -8653,11 +8653,11 @@
       "def": 105,
       "spa": 75,
       "spd": 85,
-      "spe": 56,
-      "bst": 525
+      "spe": 76,
+      "bst": 545
     },
-    "speedAt0": 76,
-    "speedAt32": 108,
+    "speedAt0": 96,
+    "speedAt32": 128,
     "abilities": [
       "overgrow",
       "shell armor"
@@ -8717,11 +8717,11 @@
       "def": 71,
       "spa": 104,
       "spd": 71,
-      "spe": 108,
-      "bst": 534
+      "spe": 128,
+      "bst": 554
     },
-    "speedAt0": 128,
-    "speedAt32": 160,
+    "speedAt0": 148,
+    "speedAt32": 180,
     "abilities": [
       "blaze",
       "iron fist"
@@ -8792,11 +8792,11 @@
       "def": 88,
       "spa": 111,
       "spd": 101,
-      "spe": 60,
-      "bst": 530
+      "spe": 80,
+      "bst": 550
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "torrent",
       "competitive"
@@ -8864,11 +8864,11 @@
       "def": 70,
       "spa": 50,
       "spd": 60,
-      "spe": 100,
-      "bst": 485
+      "spe": 120,
+      "bst": 505
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "intimidate",
       "reckless"
@@ -8926,11 +8926,11 @@
       "def": 100,
       "spa": 60,
       "spd": 90,
-      "spe": 110,
-      "bst": 585
+      "spe": 130,
+      "bst": 605
     },
-    "speedAt0": 130,
-    "speedAt32": 162,
+    "speedAt0": 150,
+    "speedAt32": 182,
     "abilities": [
       "contrary"
     ],
@@ -8982,11 +8982,11 @@
       "def": 79,
       "spa": 95,
       "spd": 79,
-      "spe": 70,
-      "bst": 523
+      "spe": 90,
+      "bst": 543
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "rivalry",
       "intimidate",
@@ -9046,11 +9046,11 @@
       "def": 65,
       "spa": 125,
       "spd": 105,
-      "spe": 90,
-      "bst": 515
+      "spe": 110,
+      "bst": 535
     },
-    "speedAt0": 110,
-    "speedAt32": 142,
+    "speedAt0": 130,
+    "speedAt32": 162,
     "abilities": [
       "natural cure",
       "poison point",
@@ -9106,11 +9106,11 @@
       "def": 60,
       "spa": 65,
       "spd": 50,
-      "spe": 58,
-      "bst": 495
+      "spe": 78,
+      "bst": 515
     },
-    "speedAt0": 78,
-    "speedAt32": 110,
+    "speedAt0": 98,
+    "speedAt32": 130,
     "abilities": [
       "mold breaker",
       "sheer force"
@@ -9171,11 +9171,11 @@
       "def": 168,
       "spa": 47,
       "spd": 138,
-      "spe": 30,
-      "bst": 495
+      "spe": 50,
+      "bst": 515
     },
-    "speedAt0": 50,
-    "speedAt32": 82,
+    "speedAt0": 70,
+    "speedAt32": 102,
     "abilities": [
       "sturdy",
       "soundproof"
@@ -9237,11 +9237,11 @@
       "def": 84,
       "spa": 54,
       "spd": 96,
-      "spe": 105,
-      "bst": 480
+      "spe": 125,
+      "bst": 500
     },
-    "speedAt0": 125,
-    "speedAt32": 157,
+    "speedAt0": 145,
+    "speedAt32": 177,
     "abilities": [
       "cute charm",
       "klutz",
@@ -9305,11 +9305,11 @@
       "def": 94,
       "spa": 54,
       "spd": 96,
-      "spe": 135,
-      "bst": 580
+      "spe": 155,
+      "bst": 600
     },
-    "speedAt0": 155,
-    "speedAt32": 187,
+    "speedAt0": 175,
+    "speedAt32": 207,
     "abilities": [
       "scrappy"
     ],
@@ -9370,11 +9370,11 @@
       "def": 108,
       "spa": 92,
       "spd": 108,
-      "spe": 35,
-      "bst": 485
+      "spe": 55,
+      "bst": 505
     },
-    "speedAt0": 55,
-    "speedAt32": 87,
+    "speedAt0": 75,
+    "speedAt32": 107,
     "abilities": [
       "pressure",
       "infiltrator"
@@ -9440,11 +9440,11 @@
       "def": 95,
       "spa": 80,
       "spd": 85,
-      "spe": 102,
-      "bst": 600
+      "spe": 122,
+      "bst": 620
     },
-    "speedAt0": 122,
-    "speedAt32": 154,
+    "speedAt0": 142,
+    "speedAt32": 174,
     "abilities": [
       "sand veil",
       "rough skin"
@@ -9505,11 +9505,11 @@
       "def": 115,
       "spa": 120,
       "spd": 95,
-      "spe": 92,
-      "bst": 700
+      "spe": 112,
+      "bst": 720
     },
-    "speedAt0": 112,
-    "speedAt32": 144,
+    "speedAt0": 132,
+    "speedAt32": 164,
     "abilities": [
       "sand force"
     ],
@@ -9566,11 +9566,11 @@
       "def": 85,
       "spa": 141,
       "spd": 85,
-      "spe": 151,
-      "bst": 700
+      "spe": 171,
+      "bst": 720
     },
-    "speedAt0": 171,
-    "speedAt32": 203,
+    "speedAt0": 191,
+    "speedAt32": 223,
     "abilities": [
       "levitate"
     ],
@@ -9610,11 +9610,11 @@
       "def": 70,
       "spa": 115,
       "spd": 70,
-      "spe": 90,
-      "bst": 525
+      "spe": 110,
+      "bst": 545
     },
-    "speedAt0": 110,
-    "speedAt32": 142,
+    "speedAt0": 130,
+    "speedAt32": 162,
     "abilities": [
       "steadfast",
       "inner focus",
@@ -9679,11 +9679,11 @@
       "def": 88,
       "spa": 140,
       "spd": 70,
-      "spe": 112,
-      "bst": 625
+      "spe": 132,
+      "bst": 645
     },
-    "speedAt0": 132,
-    "speedAt32": 164,
+    "speedAt0": 152,
+    "speedAt32": 184,
     "abilities": [
       "adaptability"
     ],
@@ -9744,11 +9744,11 @@
       "def": 70,
       "spa": 164,
       "spd": 70,
-      "spe": 151,
-      "bst": 625
+      "spe": 171,
+      "bst": 645
     },
-    "speedAt0": 171,
-    "speedAt32": 203,
+    "speedAt0": 191,
+    "speedAt32": 223,
     "abilities": [
       "aura guard"
     ],
@@ -9785,11 +9785,11 @@
       "def": 118,
       "spa": 68,
       "spd": 72,
-      "spe": 47,
-      "bst": 525
+      "spe": 67,
+      "bst": 545
     },
-    "speedAt0": 67,
-    "speedAt32": 99,
+    "speedAt0": 87,
+    "speedAt32": 119,
     "abilities": [
       "sand stream",
       "sand force"
@@ -9847,11 +9847,11 @@
       "def": 65,
       "spa": 86,
       "spd": 65,
-      "spe": 85,
-      "bst": 490
+      "spe": 105,
+      "bst": 510
     },
-    "speedAt0": 105,
-    "speedAt32": 137,
+    "speedAt0": 125,
+    "speedAt32": 157,
     "abilities": [
       "anticipation",
       "dry skin",
@@ -9918,11 +9918,11 @@
       "def": 75,
       "spa": 92,
       "spd": 85,
-      "spe": 60,
-      "bst": 494
+      "spe": 80,
+      "bst": 514
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "snow warning",
       "soundproof"
@@ -9984,11 +9984,11 @@
       "def": 105,
       "spa": 132,
       "spd": 105,
-      "spe": 30,
-      "bst": 594
+      "spe": 50,
+      "bst": 614
     },
-    "speedAt0": 50,
-    "speedAt32": 82,
+    "speedAt0": 70,
+    "speedAt32": 102,
     "abilities": [
       "snow warning"
     ],
@@ -10047,11 +10047,11 @@
       "def": 65,
       "spa": 45,
       "spd": 85,
-      "spe": 125,
-      "bst": 510
+      "spe": 145,
+      "bst": 530
     },
-    "speedAt0": 145,
-    "speedAt32": 177,
+    "speedAt0": 165,
+    "speedAt32": 197,
     "abilities": [
       "pressure",
       "pickpocket"
@@ -10117,11 +10117,11 @@
       "def": 130,
       "spa": 55,
       "spd": 55,
-      "spe": 40,
-      "bst": 535
+      "spe": 60,
+      "bst": 555
     },
-    "speedAt0": 60,
-    "speedAt32": 92,
+    "speedAt0": 80,
+    "speedAt32": 112,
     "abilities": [
       "lightning rod",
       "solid rock",
@@ -10252,11 +10252,11 @@
       "def": 130,
       "spa": 60,
       "spd": 65,
-      "spe": 95,
-      "bst": 525
+      "spe": 115,
+      "bst": 545
     },
-    "speedAt0": 115,
-    "speedAt32": 147,
+    "speedAt0": 135,
+    "speedAt32": 167,
     "abilities": [
       "leaf guard",
       "chlorophyll"
@@ -10316,11 +10316,11 @@
       "def": 110,
       "spa": 130,
       "spd": 95,
-      "spe": 65,
-      "bst": 525
+      "spe": 85,
+      "bst": 545
     },
-    "speedAt0": 85,
-    "speedAt32": 117,
+    "speedAt0": 105,
+    "speedAt32": 137,
     "abilities": [
       "snow cloak",
       "ice body"
@@ -10383,11 +10383,11 @@
       "def": 125,
       "spa": 45,
       "spd": 75,
-      "spe": 95,
-      "bst": 510
+      "spe": 115,
+      "bst": 530
     },
-    "speedAt0": 115,
-    "speedAt32": 147,
+    "speedAt0": 135,
+    "speedAt32": 167,
     "abilities": [
       "hyper cutter",
       "sand veil",
@@ -10461,11 +10461,11 @@
       "def": 80,
       "spa": 70,
       "spd": 60,
-      "spe": 80,
-      "bst": 530
+      "spe": 100,
+      "bst": 550
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "oblivious",
       "snow cloak",
@@ -10529,11 +10529,11 @@
       "def": 65,
       "spa": 65,
       "spd": 115,
-      "spe": 80,
-      "bst": 518
+      "spe": 100,
+      "bst": 538
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "steadfast",
       "sharpness",
@@ -10607,11 +10607,11 @@
       "def": 95,
       "spa": 65,
       "spd": 115,
-      "spe": 110,
-      "bst": 618
+      "spe": 130,
+      "bst": 638
     },
-    "speedAt0": 130,
-    "speedAt32": 162,
+    "speedAt0": 150,
+    "speedAt32": 182,
     "abilities": [
       "inner focus"
     ],
@@ -10682,11 +10682,11 @@
       "def": 70,
       "spa": 80,
       "spd": 70,
-      "spe": 110,
-      "bst": 480
+      "spe": 130,
+      "bst": 500
     },
-    "speedAt0": 130,
-    "speedAt32": 162,
+    "speedAt0": 150,
+    "speedAt32": 182,
     "abilities": [
       "snow cloak",
       "cursed body"
@@ -10753,11 +10753,11 @@
       "def": 70,
       "spa": 140,
       "spd": 100,
-      "spe": 120,
-      "bst": 580
+      "spe": 140,
+      "bst": 600
     },
-    "speedAt0": 140,
-    "speedAt32": 172,
+    "speedAt0": 160,
+    "speedAt32": 192,
     "abilities": [
       "snow warning"
     ],
@@ -10821,11 +10821,11 @@
       "def": 77,
       "spa": 95,
       "spd": 77,
-      "spe": 91,
-      "bst": 440
+      "spe": 111,
+      "bst": 460
     },
-    "speedAt0": 111,
-    "speedAt32": 143,
+    "speedAt0": 131,
+    "speedAt32": 163,
     "abilities": [
       "levitate"
     ],
@@ -10886,11 +10886,11 @@
       "def": 107,
       "spa": 105,
       "spd": 107,
-      "spe": 86,
-      "bst": 520
+      "spe": 106,
+      "bst": 540
     },
-    "speedAt0": 106,
-    "speedAt32": 138,
+    "speedAt0": 126,
+    "speedAt32": 158,
     "abilities": [
       "levitate"
     ],
@@ -10951,11 +10951,11 @@
       "def": 107,
       "spa": 105,
       "spd": 107,
-      "spe": 86,
-      "bst": 520
+      "spe": 106,
+      "bst": 540
     },
-    "speedAt0": 106,
-    "speedAt32": 138,
+    "speedAt0": 126,
+    "speedAt32": 158,
     "abilities": [
       "levitate"
     ],
@@ -11016,11 +11016,11 @@
       "def": 107,
       "spa": 105,
       "spd": 107,
-      "spe": 86,
-      "bst": 520
+      "spe": 106,
+      "bst": 540
     },
-    "speedAt0": 106,
-    "speedAt32": 138,
+    "speedAt0": 126,
+    "speedAt32": 158,
     "abilities": [
       "levitate"
     ],
@@ -11081,11 +11081,11 @@
       "def": 107,
       "spa": 105,
       "spd": 107,
-      "spe": 86,
-      "bst": 520
+      "spe": 106,
+      "bst": 540
     },
-    "speedAt0": 106,
-    "speedAt32": 138,
+    "speedAt0": 126,
+    "speedAt32": 158,
     "abilities": [
       "levitate"
     ],
@@ -11146,11 +11146,11 @@
       "def": 107,
       "spa": 105,
       "spd": 107,
-      "spe": 86,
-      "bst": 520
+      "spe": 106,
+      "bst": 540
     },
-    "speedAt0": 106,
-    "speedAt32": 138,
+    "speedAt0": 126,
+    "speedAt32": 158,
     "abilities": [
       "levitate"
     ],
@@ -11210,11 +11210,11 @@
       "def": 95,
       "spa": 75,
       "spd": 95,
-      "spe": 113,
-      "bst": 528
+      "spe": 133,
+      "bst": 548
     },
-    "speedAt0": 133,
-    "speedAt32": 165,
+    "speedAt0": 153,
+    "speedAt32": 185,
     "abilities": [
       "overgrow",
       "contrary"
@@ -11273,11 +11273,11 @@
       "def": 65,
       "spa": 100,
       "spd": 65,
-      "spe": 65,
-      "bst": 528
+      "spe": 85,
+      "bst": 548
     },
-    "speedAt0": 85,
-    "speedAt32": 117,
+    "speedAt0": 105,
+    "speedAt32": 137,
     "abilities": [
       "blaze",
       "reckless"
@@ -11339,11 +11339,11 @@
       "def": 75,
       "spa": 110,
       "spd": 110,
-      "spe": 75,
-      "bst": 628
+      "spe": 95,
+      "bst": 648
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "mold breaker"
     ],
@@ -11402,11 +11402,11 @@
       "def": 85,
       "spa": 108,
       "spd": 70,
-      "spe": 70,
-      "bst": 528
+      "spe": 90,
+      "bst": 548
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "torrent",
       "shell armor"
@@ -11469,11 +11469,11 @@
       "def": 80,
       "spa": 100,
       "spd": 65,
-      "spe": 85,
-      "bst": 528
+      "spe": 105,
+      "bst": 548
     },
-    "speedAt0": 105,
-    "speedAt32": 137,
+    "speedAt0": 125,
+    "speedAt32": 157,
     "abilities": [
       "torrent",
       "sharpness"
@@ -11536,11 +11536,11 @@
       "def": 69,
       "spa": 60,
       "spd": 69,
-      "spe": 77,
-      "bst": 420
+      "spe": 97,
+      "bst": 440
     },
-    "speedAt0": 97,
-    "speedAt32": 129,
+    "speedAt0": 117,
+    "speedAt32": 149,
     "abilities": [
       "illuminate",
       "keen eye",
@@ -11594,11 +11594,11 @@
       "def": 50,
       "spa": 88,
       "spd": 50,
-      "spe": 106,
-      "bst": 446
+      "spe": 126,
+      "bst": 466
     },
-    "speedAt0": 126,
-    "speedAt32": 158,
+    "speedAt0": 146,
+    "speedAt32": 178,
     "abilities": [
       "limber",
       "unburden",
@@ -11662,11 +11662,11 @@
       "def": 63,
       "spa": 98,
       "spd": 63,
-      "spe": 101,
-      "bst": 498
+      "spe": 121,
+      "bst": 518
     },
-    "speedAt0": 121,
-    "speedAt32": 153,
+    "speedAt0": 141,
+    "speedAt32": 173,
     "abilities": [
       "gluttony",
       "overgrow"
@@ -11720,11 +11720,11 @@
       "def": 63,
       "spa": 98,
       "spd": 63,
-      "spe": 101,
-      "bst": 498
+      "spe": 121,
+      "bst": 518
     },
-    "speedAt0": 121,
-    "speedAt32": 153,
+    "speedAt0": 141,
+    "speedAt32": 173,
     "abilities": [
       "gluttony",
       "blaze"
@@ -11781,11 +11781,11 @@
       "def": 63,
       "spa": 98,
       "spd": 63,
-      "spe": 101,
-      "bst": 498
+      "spe": 121,
+      "bst": 518
     },
-    "speedAt0": 121,
-    "speedAt32": 153,
+    "speedAt0": 141,
+    "speedAt32": 173,
     "abilities": [
       "gluttony",
       "torrent"
@@ -11841,11 +11841,11 @@
       "def": 85,
       "spa": 107,
       "spd": 95,
-      "spe": 29,
-      "bst": 487
+      "spe": 49,
+      "bst": 507
     },
-    "speedAt0": 49,
-    "speedAt32": 81,
+    "speedAt0": 69,
+    "speedAt32": 101,
     "abilities": [
       "forewarn",
       "synchronize",
@@ -11905,11 +11905,11 @@
       "def": 60,
       "spa": 50,
       "spd": 65,
-      "spe": 88,
-      "bst": 508
+      "spe": 108,
+      "bst": 528
     },
-    "speedAt0": 108,
-    "speedAt32": 140,
+    "speedAt0": 128,
+    "speedAt32": 160,
     "abilities": [
       "sand rush",
       "sand force",
@@ -11970,11 +11970,11 @@
       "def": 100,
       "spa": 65,
       "spd": 65,
-      "spe": 103,
-      "bst": 608
+      "spe": 123,
+      "bst": 628
     },
-    "speedAt0": 123,
-    "speedAt32": 155,
+    "speedAt0": 143,
+    "speedAt32": 175,
     "abilities": [
       "piercing drill"
     ],
@@ -12026,11 +12026,11 @@
       "def": 86,
       "spa": 60,
       "spd": 86,
-      "spe": 50,
-      "bst": 445
+      "spe": 70,
+      "bst": 465
     },
-    "speedAt0": 70,
-    "speedAt32": 102,
+    "speedAt0": 90,
+    "speedAt32": 122,
     "abilities": [
       "healer",
       "regenerator",
@@ -12090,11 +12090,11 @@
       "def": 126,
       "spa": 80,
       "spd": 126,
-      "spe": 50,
-      "bst": 545
+      "spe": 70,
+      "bst": 565
     },
-    "speedAt0": 70,
-    "speedAt32": 102,
+    "speedAt0": 90,
+    "speedAt32": 122,
     "abilities": [
       "healer"
     ],
@@ -12150,11 +12150,11 @@
       "def": 95,
       "spa": 55,
       "spd": 65,
-      "spe": 45,
-      "bst": 505
+      "spe": 65,
+      "bst": 525
     },
-    "speedAt0": 65,
-    "speedAt32": 97,
+    "speedAt0": 85,
+    "speedAt32": 117,
     "abilities": [
       "guts",
       "sheer force",
@@ -12216,11 +12216,11 @@
       "def": 89,
       "spa": 55,
       "spd": 69,
-      "spe": 112,
-      "bst": 485
+      "spe": 132,
+      "bst": 505
     },
-    "speedAt0": 132,
-    "speedAt32": 164,
+    "speedAt0": 152,
+    "speedAt32": 184,
     "abilities": [
       "poison point",
       "swarm",
@@ -12277,11 +12277,11 @@
       "def": 149,
       "spa": 75,
       "spd": 99,
-      "spe": 62,
-      "bst": 585
+      "spe": 82,
+      "bst": 605
     },
-    "speedAt0": 82,
-    "speedAt32": 114,
+    "speedAt0": 102,
+    "speedAt32": 134,
     "abilities": [
       "shell armor"
     ],
@@ -12335,11 +12335,11 @@
       "def": 85,
       "spa": 77,
       "spd": 75,
-      "spe": 116,
-      "bst": 480
+      "spe": 136,
+      "bst": 500
     },
-    "speedAt0": 136,
-    "speedAt32": 168,
+    "speedAt0": 156,
+    "speedAt32": 188,
     "abilities": [
       "prankster",
       "infiltrator",
@@ -12405,11 +12405,11 @@
       "def": 80,
       "spa": 65,
       "spd": 70,
-      "spe": 92,
-      "bst": 519
+      "spe": 112,
+      "bst": 539
     },
-    "speedAt0": 112,
-    "speedAt32": 144,
+    "speedAt0": 132,
+    "speedAt32": 164,
     "abilities": [
       "intimidate",
       "moxie",
@@ -12473,11 +12473,11 @@
       "def": 115,
       "spa": 45,
       "spd": 115,
-      "spe": 58,
-      "bst": 488
+      "spe": 78,
+      "bst": 508
     },
-    "speedAt0": 78,
-    "speedAt32": 110,
+    "speedAt0": 98,
+    "speedAt32": 130,
     "abilities": [
       "shed skin",
       "moxie",
@@ -12540,11 +12540,11 @@
       "def": 135,
       "spa": 55,
       "spd": 135,
-      "spe": 68,
-      "bst": 588
+      "spe": 88,
+      "bst": 608
     },
-    "speedAt0": 88,
-    "speedAt32": 120,
+    "speedAt0": 108,
+    "speedAt32": 140,
     "abilities": [
       "intimidate"
     ],
@@ -12602,11 +12602,11 @@
       "def": 145,
       "spa": 95,
       "spd": 105,
-      "spe": 30,
-      "bst": 483
+      "spe": 50,
+      "bst": 503
     },
-    "speedAt0": 50,
-    "speedAt32": 82,
+    "speedAt0": 70,
+    "speedAt32": 102,
     "abilities": [
       "mummy"
     ],
@@ -12664,11 +12664,11 @@
       "def": 82,
       "spa": 60,
       "spd": 82,
-      "spe": 75,
-      "bst": 474
+      "spe": 95,
+      "bst": 494
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "stench",
       "weak armor",
@@ -12725,11 +12725,11 @@
       "def": 60,
       "spa": 120,
       "spd": 60,
-      "spe": 105,
-      "bst": 510
+      "spe": 125,
+      "bst": 530
     },
-    "speedAt0": 125,
-    "speedAt32": 157,
+    "speedAt0": 145,
+    "speedAt32": 177,
     "abilities": [
       "illusion"
     ],
@@ -12790,11 +12790,11 @@
       "def": 60,
       "spa": 125,
       "spd": 60,
-      "spe": 110,
-      "bst": 510
+      "spe": 130,
+      "bst": 530
     },
-    "speedAt0": 130,
-    "speedAt32": 162,
+    "speedAt0": 150,
+    "speedAt32": 182,
     "abilities": [
       "illusion"
     ],
@@ -12856,11 +12856,11 @@
       "def": 75,
       "spa": 125,
       "spd": 85,
-      "spe": 30,
-      "bst": 490
+      "spe": 50,
+      "bst": 510
     },
-    "speedAt0": 50,
-    "speedAt32": 82,
+    "speedAt0": 70,
+    "speedAt32": 102,
     "abilities": [
       "overcoat",
       "magic guard",
@@ -12919,11 +12919,11 @@
       "def": 85,
       "spa": 110,
       "spd": 95,
-      "spe": 79,
-      "bst": 535
+      "spe": 99,
+      "bst": 555
     },
-    "speedAt0": 99,
-    "speedAt32": 131,
+    "speedAt0": 119,
+    "speedAt32": 151,
     "abilities": [
       "ice body",
       "snow warning",
@@ -12982,11 +12982,11 @@
       "def": 60,
       "spa": 75,
       "spd": 60,
-      "spe": 103,
-      "bst": 428
+      "spe": 123,
+      "bst": 448
     },
-    "speedAt0": 123,
-    "speedAt32": 155,
+    "speedAt0": 143,
+    "speedAt32": 175,
     "abilities": [
       "static",
       "motor drive"
@@ -13049,11 +13049,11 @@
       "def": 80,
       "spa": 105,
       "spd": 80,
-      "spe": 50,
-      "bst": 515
+      "spe": 70,
+      "bst": 535
     },
-    "speedAt0": 70,
-    "speedAt32": 102,
+    "speedAt0": 90,
+    "speedAt32": 122,
     "abilities": [
       "levitate"
     ],
@@ -13114,11 +13114,11 @@
       "def": 80,
       "spa": 135,
       "spd": 90,
-      "spe": 80,
-      "bst": 615
+      "spe": 100,
+      "bst": 635
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "eelevate"
     ],
@@ -13176,11 +13176,11 @@
       "def": 90,
       "spa": 145,
       "spd": 90,
-      "spe": 80,
-      "bst": 520
+      "spe": 100,
+      "bst": 540
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "flash fire",
       "flame body",
@@ -13240,11 +13240,11 @@
       "def": 110,
       "spa": 175,
       "spd": 110,
-      "spe": 90,
-      "bst": 620
+      "spe": 110,
+      "bst": 640
     },
-    "speedAt0": 110,
-    "speedAt32": 142,
+    "speedAt0": 130,
+    "speedAt32": 162,
     "abilities": [
       "infiltrator"
     ],
@@ -13298,11 +13298,11 @@
       "def": 80,
       "spa": 70,
       "spd": 80,
-      "spe": 50,
-      "bst": 505
+      "spe": 70,
+      "bst": 525
     },
-    "speedAt0": 70,
-    "speedAt32": 102,
+    "speedAt0": 90,
+    "speedAt32": 122,
     "abilities": [
       "snow cloak",
       "slush rush",
@@ -13366,11 +13366,11 @@
       "def": 84,
       "spa": 81,
       "spd": 99,
-      "spe": 32,
-      "bst": 471
+      "spe": 52,
+      "bst": 491
     },
-    "speedAt0": 52,
-    "speedAt32": 84,
+    "speedAt0": 72,
+    "speedAt32": 104,
     "abilities": [
       "static",
       "limber",
@@ -13431,11 +13431,11 @@
       "def": 99,
       "spa": 66,
       "spd": 84,
-      "spe": 32,
-      "bst": 471
+      "spe": 52,
+      "bst": 491
     },
-    "speedAt0": 52,
-    "speedAt32": 84,
+    "speedAt0": 72,
+    "speedAt32": 104,
     "abilities": [
       "mimicry"
     ],
@@ -13493,11 +13493,11 @@
       "def": 80,
       "spa": 55,
       "spd": 80,
-      "spe": 55,
-      "bst": 483
+      "spe": 75,
+      "bst": 503
     },
-    "speedAt0": 75,
-    "speedAt32": 107,
+    "speedAt0": 95,
+    "speedAt32": 127,
     "abilities": [
       "iron fist",
       "klutz",
@@ -13559,11 +13559,11 @@
       "def": 105,
       "spa": 70,
       "spd": 105,
-      "spe": 55,
-      "bst": 583
+      "spe": 75,
+      "bst": 603
     },
-    "speedAt0": 75,
-    "speedAt32": 107,
+    "speedAt0": 95,
+    "speedAt32": 127,
     "abilities": [
       "unseen fist"
     ],
@@ -13620,11 +13620,11 @@
       "def": 90,
       "spa": 125,
       "spd": 90,
-      "spe": 98,
-      "bst": 600
+      "spe": 118,
+      "bst": 620
     },
-    "speedAt0": 118,
-    "speedAt32": 150,
+    "speedAt0": 138,
+    "speedAt32": 170,
     "abilities": [
       "levitate"
     ],
@@ -13689,11 +13689,11 @@
       "def": 65,
       "spa": 135,
       "spd": 105,
-      "spe": 100,
-      "bst": 550
+      "spe": 120,
+      "bst": 570
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "flame body",
       "swarm"
@@ -13752,11 +13752,11 @@
       "def": 122,
       "spa": 74,
       "spd": 75,
-      "spe": 64,
-      "bst": 530
+      "spe": 84,
+      "bst": 550
     },
-    "speedAt0": 84,
-    "speedAt32": 116,
+    "speedAt0": 104,
+    "speedAt32": 136,
     "abilities": [
       "overgrow",
       "bulletproof"
@@ -13819,11 +13819,11 @@
       "def": 172,
       "spa": 74,
       "spd": 115,
-      "spe": 44,
-      "bst": 630
+      "spe": 64,
+      "bst": 650
     },
-    "speedAt0": 64,
-    "speedAt32": 96,
+    "speedAt0": 84,
+    "speedAt32": 116,
     "abilities": [
       "bulletproof"
     ],
@@ -13883,11 +13883,11 @@
       "def": 72,
       "spa": 114,
       "spd": 100,
-      "spe": 104,
-      "bst": 534
+      "spe": 124,
+      "bst": 554
     },
-    "speedAt0": 124,
-    "speedAt32": 156,
+    "speedAt0": 144,
+    "speedAt32": 176,
     "abilities": [
       "blaze",
       "magician"
@@ -13949,11 +13949,11 @@
       "def": 72,
       "spa": 159,
       "spd": 125,
-      "spe": 134,
-      "bst": 634
+      "spe": 154,
+      "bst": 654
     },
-    "speedAt0": 154,
-    "speedAt32": 186,
+    "speedAt0": 174,
+    "speedAt32": 206,
     "abilities": [
       "levitate"
     ],
@@ -14013,11 +14013,11 @@
       "def": 67,
       "spa": 103,
       "spd": 71,
-      "spe": 122,
-      "bst": 530
+      "spe": 142,
+      "bst": 550
     },
-    "speedAt0": 142,
-    "speedAt32": 174,
+    "speedAt0": 162,
+    "speedAt32": 194,
     "abilities": [
       "torrent",
       "protean"
@@ -14085,11 +14085,11 @@
       "def": 77,
       "spa": 133,
       "spd": 81,
-      "spe": 142,
-      "bst": 630
+      "spe": 162,
+      "bst": 650
     },
-    "speedAt0": 162,
-    "speedAt32": 194,
+    "speedAt0": 182,
+    "speedAt32": 214,
     "abilities": [
       "protean"
     ],
@@ -14154,11 +14154,11 @@
       "def": 77,
       "spa": 50,
       "spd": 77,
-      "spe": 78,
-      "bst": 423
+      "spe": 98,
+      "bst": 443
     },
-    "speedAt0": 98,
-    "speedAt32": 130,
+    "speedAt0": 118,
+    "speedAt32": 150,
     "abilities": [
       "pickup",
       "cheek pouch",
@@ -14218,11 +14218,11 @@
       "def": 71,
       "spa": 74,
       "spd": 69,
-      "spe": 126,
-      "bst": 499
+      "spe": 146,
+      "bst": 519
     },
-    "speedAt0": 146,
-    "speedAt32": 178,
+    "speedAt0": 166,
+    "speedAt32": 198,
     "abilities": [
       "flame body",
       "gale wings"
@@ -14350,11 +14350,11 @@
       "def": 72,
       "spa": 109,
       "spd": 66,
-      "spe": 106,
-      "bst": 507
+      "spe": 126,
+      "bst": 527
     },
-    "speedAt0": 126,
-    "speedAt32": 158,
+    "speedAt0": 146,
+    "speedAt32": 178,
     "abilities": [
       "rivalry",
       "unnerve",
@@ -14410,11 +14410,11 @@
       "def": 92,
       "spa": 129,
       "spd": 86,
-      "spe": 126,
-      "bst": 607
+      "spe": 146,
+      "bst": 627
     },
-    "speedAt0": 146,
-    "speedAt32": 178,
+    "speedAt0": 166,
+    "speedAt32": 198,
     "abilities": [
       "fire mane"
     ],
@@ -14465,11 +14465,11 @@
       "def": 67,
       "spa": 125,
       "spd": 128,
-      "spe": 92,
-      "bst": 551
+      "spe": 112,
+      "bst": 571
     },
-    "speedAt0": 112,
-    "speedAt32": 144,
+    "speedAt0": 132,
+    "speedAt32": 164,
     "abilities": [
       "flower veil",
       "symbiosis"
@@ -14522,11 +14522,11 @@
       "def": 87,
       "spa": 155,
       "spd": 148,
-      "spe": 102,
-      "bst": 651
+      "spe": 122,
+      "bst": 671
     },
-    "speedAt0": 122,
-    "speedAt32": 154,
+    "speedAt0": 142,
+    "speedAt32": 174,
     "abilities": [
       "fairy aura"
     ],
@@ -14575,11 +14575,11 @@
       "def": 68,
       "spa": 112,
       "spd": 154,
-      "spe": 75,
-      "bst": 552
+      "spe": 95,
+      "bst": 572
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "flower veil",
       "symbiosis"
@@ -14635,11 +14635,11 @@
       "def": 62,
       "spa": 97,
       "spd": 81,
-      "spe": 68,
-      "bst": 531
+      "spe": 88,
+      "bst": 551
     },
-    "speedAt0": 88,
-    "speedAt32": 120,
+    "speedAt0": 108,
+    "speedAt32": 140,
     "abilities": [
       "sap sipper",
       "grass pelt"
@@ -14692,11 +14692,11 @@
       "def": 78,
       "spa": 69,
       "spd": 71,
-      "spe": 58,
-      "bst": 495
+      "spe": 78,
+      "bst": 515
     },
-    "speedAt0": 78,
-    "speedAt32": 110,
+    "speedAt0": 98,
+    "speedAt32": 130,
     "abilities": [
       "iron fist",
       "mold breaker",
@@ -14761,11 +14761,11 @@
       "def": 60,
       "spa": 65,
       "spd": 90,
-      "spe": 102,
-      "bst": 472
+      "spe": 122,
+      "bst": 492
     },
-    "speedAt0": 122,
-    "speedAt32": 154,
+    "speedAt0": 142,
+    "speedAt32": 174,
     "abilities": [
       "fur coat"
     ],
@@ -14818,11 +14818,11 @@
       "def": 76,
       "spa": 83,
       "spd": 81,
-      "spe": 104,
-      "bst": 466
+      "spe": 124,
+      "bst": 486
     },
-    "speedAt0": 124,
-    "speedAt32": 156,
+    "speedAt0": 144,
+    "speedAt32": 176,
     "abilities": [
       "keen eye",
       "infiltrator",
@@ -14884,11 +14884,11 @@
       "def": 76,
       "spa": 83,
       "spd": 81,
-      "spe": 104,
-      "bst": 466
+      "spe": 124,
+      "bst": 486
     },
-    "speedAt0": 124,
-    "speedAt32": 156,
+    "speedAt0": 144,
+    "speedAt32": 176,
     "abilities": [
       "keen eye",
       "infiltrator",
@@ -14948,11 +14948,11 @@
       "def": 76,
       "spa": 143,
       "spd": 101,
-      "spe": 124,
-      "bst": 566
+      "spe": 144,
+      "bst": 586
     },
-    "speedAt0": 144,
-    "speedAt32": 176,
+    "speedAt0": 164,
+    "speedAt32": 196,
     "abilities": [
       "trace"
     ],
@@ -15072,11 +15072,11 @@
       "def": 140,
       "spa": 50,
       "spd": 140,
-      "spe": 60,
-      "bst": 500
+      "spe": 80,
+      "bst": 520
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "stance change"
     ],
@@ -15128,11 +15128,11 @@
       "def": 72,
       "spa": 99,
       "spd": 89,
-      "spe": 29,
-      "bst": 462
+      "spe": 49,
+      "bst": 482
     },
-    "speedAt0": 49,
-    "speedAt32": 81,
+    "speedAt0": 69,
+    "speedAt32": 101,
     "abilities": [
       "healer",
       "aroma veil"
@@ -15186,11 +15186,11 @@
       "def": 86,
       "spa": 85,
       "spd": 75,
-      "spe": 72,
-      "bst": 480
+      "spe": 92,
+      "bst": 500
     },
-    "speedAt0": 92,
-    "speedAt32": 124,
+    "speedAt0": 112,
+    "speedAt32": 144,
     "abilities": [
       "sweet veil",
       "unburden"
@@ -15244,11 +15244,11 @@
       "def": 88,
       "spa": 68,
       "spd": 75,
-      "spe": 73,
-      "bst": 482
+      "spe": 93,
+      "bst": 502
     },
-    "speedAt0": 93,
-    "speedAt32": 125,
+    "speedAt0": 113,
+    "speedAt32": 145,
     "abilities": [
       "contrary",
       "suction cups",
@@ -15311,11 +15311,11 @@
       "def": 88,
       "spa": 98,
       "spd": 120,
-      "spe": 88,
-      "bst": 582
+      "spe": 108,
+      "bst": 602
     },
-    "speedAt0": 108,
-    "speedAt32": 140,
+    "speedAt0": 128,
+    "speedAt32": 160,
     "abilities": [
       "contrary"
     ],
@@ -15374,11 +15374,11 @@
       "def": 115,
       "spa": 54,
       "spd": 86,
-      "spe": 68,
-      "bst": 500
+      "spe": 88,
+      "bst": 520
     },
-    "speedAt0": 88,
-    "speedAt32": 120,
+    "speedAt0": 108,
+    "speedAt32": 140,
     "abilities": [
       "tough claws",
       "sniper",
@@ -15437,11 +15437,11 @@
       "def": 130,
       "spa": 64,
       "spd": 106,
-      "spe": 88,
-      "bst": 600
+      "spe": 108,
+      "bst": 620
     },
-    "speedAt0": 108,
-    "speedAt32": 140,
+    "speedAt0": 128,
+    "speedAt32": 160,
     "abilities": [
       "tough claws"
     ],
@@ -15495,11 +15495,11 @@
       "def": 90,
       "spa": 97,
       "spd": 123,
-      "spe": 44,
-      "bst": 494
+      "spe": 64,
+      "bst": 514
     },
-    "speedAt0": 64,
-    "speedAt32": 96,
+    "speedAt0": 84,
+    "speedAt32": 116,
     "abilities": [
       "poison point",
       "poison touch",
@@ -15557,11 +15557,11 @@
       "def": 105,
       "spa": 132,
       "spd": 163,
-      "spe": 44,
-      "bst": 594
+      "spe": 64,
+      "bst": 614
     },
-    "speedAt0": 64,
-    "speedAt32": 96,
+    "speedAt0": 84,
+    "speedAt32": 116,
     "abilities": [
       "regenerator"
     ],
@@ -15615,11 +15615,11 @@
       "def": 88,
       "spa": 120,
       "spd": 89,
-      "spe": 59,
-      "bst": 500
+      "spe": 79,
+      "bst": 520
     },
-    "speedAt0": 79,
-    "speedAt32": 111,
+    "speedAt0": 99,
+    "speedAt32": 131,
     "abilities": [
       "mega launcher"
     ],
@@ -15672,11 +15672,11 @@
       "def": 52,
       "spa": 109,
       "spd": 94,
-      "spe": 109,
-      "bst": 481
+      "spe": 129,
+      "bst": 501
     },
-    "speedAt0": 129,
-    "speedAt32": 161,
+    "speedAt0": 149,
+    "speedAt32": 181,
     "abilities": [
       "dry skin",
       "sand veil",
@@ -15744,11 +15744,11 @@
       "def": 119,
       "spa": 69,
       "spd": 59,
-      "spe": 71,
-      "bst": 521
+      "spe": 91,
+      "bst": 541
     },
-    "speedAt0": 91,
-    "speedAt32": 123,
+    "speedAt0": 111,
+    "speedAt32": 143,
     "abilities": [
       "strong jaw",
       "rock head"
@@ -15808,11 +15808,11 @@
       "def": 72,
       "spa": 99,
       "spd": 92,
-      "spe": 58,
-      "bst": 521
+      "spe": 78,
+      "bst": 541
     },
-    "speedAt0": 78,
-    "speedAt32": 110,
+    "speedAt0": 98,
+    "speedAt32": 130,
     "abilities": [
       "refrigerate",
       "snow warning"
@@ -15876,11 +15876,11 @@
       "def": 65,
       "spa": 110,
       "spd": 130,
-      "spe": 60,
-      "bst": 525
+      "spe": 80,
+      "bst": 545
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "cute charm",
       "pixilate"
@@ -15939,11 +15939,11 @@
       "def": 75,
       "spa": 74,
       "spd": 63,
-      "spe": 118,
-      "bst": 500
+      "spe": 138,
+      "bst": 520
     },
-    "speedAt0": 138,
-    "speedAt32": 170,
+    "speedAt0": 158,
+    "speedAt32": 190,
     "abilities": [
       "limber",
       "unburden",
@@ -16008,11 +16008,11 @@
       "def": 100,
       "spa": 74,
       "spd": 93,
-      "spe": 118,
-      "bst": 600
+      "spe": 138,
+      "bst": 620
     },
-    "speedAt0": 138,
-    "speedAt32": 170,
+    "speedAt0": 158,
+    "speedAt32": 190,
     "abilities": [
       "no guard"
     ],
@@ -16069,11 +16069,11 @@
       "def": 57,
       "spa": 81,
       "spd": 67,
-      "spe": 101,
-      "bst": 431
+      "spe": 121,
+      "bst": 451
     },
-    "speedAt0": 121,
-    "speedAt32": 153,
+    "speedAt0": 141,
+    "speedAt32": 173,
     "abilities": [
       "cheek pouch",
       "pickup",
@@ -16129,11 +16129,11 @@
       "def": 70,
       "spa": 110,
       "spd": 150,
-      "spe": 80,
-      "bst": 600
+      "spe": 100,
+      "bst": 620
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "sap sipper",
       "hydration",
@@ -16188,11 +16188,11 @@
       "def": 100,
       "spa": 110,
       "spd": 150,
-      "spe": 60,
-      "bst": 600
+      "spe": 80,
+      "bst": 620
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "sap sipper",
       "shell armor",
@@ -16246,11 +16246,11 @@
       "def": 91,
       "spa": 80,
       "spd": 87,
-      "spe": 75,
-      "bst": 470
+      "spe": 95,
+      "bst": 490
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "prankster",
       "magician"
@@ -16310,11 +16310,11 @@
       "def": 76,
       "spa": 65,
       "spd": 82,
-      "spe": 56,
-      "bst": 474
+      "spe": 76,
+      "bst": 494
     },
-    "speedAt0": 76,
-    "speedAt32": 108,
+    "speedAt0": 96,
+    "speedAt32": 128,
     "abilities": [
       "natural cure",
       "frisk",
@@ -16379,11 +16379,11 @@
       "def": 122,
       "spa": 58,
       "spd": 75,
-      "spe": 84,
-      "bst": 494
+      "spe": 104,
+      "bst": 514
     },
-    "speedAt0": 104,
-    "speedAt32": 136,
+    "speedAt0": 124,
+    "speedAt32": 156,
     "abilities": [
       "pickup",
       "frisk",
@@ -16445,11 +16445,11 @@
       "def": 122,
       "spa": 58,
       "spd": 75,
-      "spe": 99,
-      "bst": 494
+      "spe": 119,
+      "bst": 514
     },
-    "speedAt0": 119,
-    "speedAt32": 151,
+    "speedAt0": 139,
+    "speedAt32": 171,
     "abilities": [
       "pickup",
       "frisk",
@@ -16512,11 +16512,11 @@
       "def": 122,
       "spa": 58,
       "spd": 75,
-      "spe": 69,
-      "bst": 494
+      "spe": 89,
+      "bst": 514
     },
-    "speedAt0": 89,
-    "speedAt32": 121,
+    "speedAt0": 109,
+    "speedAt32": 141,
     "abilities": [
       "pickup",
       "frisk",
@@ -16579,11 +16579,11 @@
       "def": 122,
       "spa": 58,
       "spd": 75,
-      "spe": 54,
-      "bst": 494
+      "spe": 74,
+      "bst": 514
     },
-    "speedAt0": 74,
-    "speedAt32": 106,
+    "speedAt0": 94,
+    "speedAt32": 126,
     "abilities": [
       "pickup",
       "frisk",
@@ -16645,11 +16645,11 @@
       "def": 184,
       "spa": 44,
       "spd": 46,
-      "spe": 28,
-      "bst": 514
+      "spe": 48,
+      "bst": 534
     },
-    "speedAt0": 48,
-    "speedAt32": 80,
+    "speedAt0": 68,
+    "speedAt32": 100,
     "abilities": [
       "own tempo",
       "ice body",
@@ -16707,11 +16707,11 @@
       "def": 184,
       "spa": 34,
       "spd": 36,
-      "spe": 38,
-      "bst": 514
+      "spe": 58,
+      "bst": 534
     },
-    "speedAt0": 58,
-    "speedAt32": 90,
+    "speedAt0": 78,
+    "speedAt32": 110,
     "abilities": [
       "strong jaw",
       "ice body",
@@ -16771,11 +16771,11 @@
       "def": 80,
       "spa": 97,
       "spd": 80,
-      "spe": 123,
-      "bst": 535
+      "spe": 143,
+      "bst": 555
     },
-    "speedAt0": 143,
-    "speedAt32": 175,
+    "speedAt0": 163,
+    "speedAt32": 195,
     "abilities": [
       "frisk",
       "infiltrator",
@@ -16836,11 +16836,11 @@
       "def": 75,
       "spa": 100,
       "spd": 100,
-      "spe": 70,
-      "bst": 530
+      "spe": 90,
+      "bst": 550
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "overgrow",
       "long reach"
@@ -16910,11 +16910,11 @@
       "def": 80,
       "spa": 95,
       "spd": 95,
-      "spe": 60,
-      "bst": 530
+      "spe": 80,
+      "bst": 550
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "overgrow",
       "scrappy"
@@ -16983,11 +16983,11 @@
       "def": 90,
       "spa": 80,
       "spd": 90,
-      "spe": 60,
-      "bst": 530
+      "spe": 80,
+      "bst": 550
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "blaze",
       "intimidate"
@@ -17051,11 +17051,11 @@
       "def": 74,
       "spa": 126,
       "spd": 116,
-      "spe": 60,
-      "bst": 530
+      "spe": 80,
+      "bst": 550
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "torrent",
       "liquid voice"
@@ -17115,11 +17115,11 @@
       "def": 75,
       "spa": 75,
       "spd": 75,
-      "spe": 60,
-      "bst": 485
+      "spe": 80,
+      "bst": 505
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "keen eye",
       "skill link",
@@ -17177,11 +17177,11 @@
       "def": 77,
       "spa": 62,
       "spd": 67,
-      "spe": 43,
-      "bst": 478
+      "spe": 63,
+      "bst": 498
     },
-    "speedAt0": 63,
-    "speedAt32": 95,
+    "speedAt0": 83,
+    "speedAt32": 115,
     "abilities": [
       "hyper cutter",
       "iron fist",
@@ -17240,11 +17240,11 @@
       "def": 122,
       "spa": 62,
       "spd": 107,
-      "spe": 33,
-      "bst": 578
+      "spe": 53,
+      "bst": 598
     },
-    "speedAt0": 53,
-    "speedAt32": 85,
+    "speedAt0": 73,
+    "speedAt32": 105,
     "abilities": [
       "iron fist"
     ],
@@ -17297,11 +17297,11 @@
       "def": 65,
       "spa": 55,
       "spd": 65,
-      "spe": 112,
-      "bst": 487
+      "spe": 132,
+      "bst": 507
     },
-    "speedAt0": 132,
-    "speedAt32": 164,
+    "speedAt0": 152,
+    "speedAt32": 184,
     "abilities": [
       "keen eye",
       "sand rush",
@@ -17363,11 +17363,11 @@
       "def": 75,
       "spa": 55,
       "spd": 75,
-      "spe": 82,
-      "bst": 487
+      "spe": 102,
+      "bst": 507
     },
-    "speedAt0": 102,
-    "speedAt32": 134,
+    "speedAt0": 122,
+    "speedAt32": 154,
     "abilities": [
       "keen eye",
       "vital spirit",
@@ -17430,11 +17430,11 @@
       "def": 65,
       "spa": 55,
       "spd": 65,
-      "spe": 110,
-      "bst": 487
+      "spe": 130,
+      "bst": 507
     },
-    "speedAt0": 130,
-    "speedAt32": 162,
+    "speedAt0": 150,
+    "speedAt32": 182,
     "abilities": [
       "tough claws"
     ],
@@ -17494,11 +17494,11 @@
       "def": 152,
       "spa": 53,
       "spd": 142,
-      "spe": 35,
-      "bst": 495
+      "spe": 55,
+      "bst": 515
     },
-    "speedAt0": 55,
-    "speedAt32": 87,
+    "speedAt0": 75,
+    "speedAt32": 107,
     "abilities": [
       "merciless",
       "limber",
@@ -17553,11 +17553,11 @@
       "def": 100,
       "spa": 55,
       "spd": 85,
-      "spe": 35,
-      "bst": 500
+      "spe": 55,
+      "bst": 520
     },
-    "speedAt0": 55,
-    "speedAt32": 87,
+    "speedAt0": 75,
+    "speedAt32": 107,
     "abilities": [
       "own tempo",
       "stamina",
@@ -17617,11 +17617,11 @@
       "def": 92,
       "spa": 50,
       "spd": 132,
-      "spe": 42,
-      "bst": 454
+      "spe": 62,
+      "bst": 474
     },
-    "speedAt0": 62,
-    "speedAt32": 94,
+    "speedAt0": 82,
+    "speedAt32": 114,
     "abilities": [
       "water bubble",
       "water absorb"
@@ -17675,11 +17675,11 @@
       "def": 60,
       "spa": 111,
       "spd": 60,
-      "spe": 117,
-      "bst": 480
+      "spe": 137,
+      "bst": 500
     },
-    "speedAt0": 137,
-    "speedAt32": 169,
+    "speedAt0": 157,
+    "speedAt32": 189,
     "abilities": [
       "corrosion",
       "oblivious"
@@ -17740,11 +17740,11 @@
       "def": 98,
       "spa": 50,
       "spd": 98,
-      "spe": 72,
-      "bst": 510
+      "spe": 92,
+      "bst": 530
     },
-    "speedAt0": 92,
-    "speedAt32": 124,
+    "speedAt0": 112,
+    "speedAt32": 144,
     "abilities": [
       "leaf guard",
       "queenly majesty",
@@ -17801,11 +17801,11 @@
       "def": 80,
       "spa": 90,
       "spd": 110,
-      "spe": 60,
-      "bst": 490
+      "spe": 80,
+      "bst": 510
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "inner focus",
       "telepathy",
@@ -17866,11 +17866,11 @@
       "def": 90,
       "spa": 40,
       "spd": 60,
-      "spe": 80,
-      "bst": 490
+      "spe": 100,
+      "bst": 510
     },
-    "speedAt0": 100,
-    "speedAt32": 132,
+    "speedAt0": 120,
+    "speedAt32": 152,
     "abilities": [
       "receiver",
       "defiant"
@@ -17935,11 +17935,11 @@
       "def": 140,
       "spa": 60,
       "spd": 90,
-      "spe": 40,
-      "bst": 530
+      "spe": 60,
+      "bst": 550
     },
-    "speedAt0": 60,
-    "speedAt32": 92,
+    "speedAt0": 80,
+    "speedAt32": 112,
     "abilities": [
       "emergency exit"
     ],
@@ -17995,11 +17995,11 @@
       "def": 175,
       "spa": 70,
       "spd": 120,
-      "spe": 40,
-      "bst": 630
+      "spe": 60,
+      "bst": 650
     },
-    "speedAt0": 60,
-    "speedAt32": 92,
+    "speedAt0": 80,
+    "speedAt32": 112,
     "abilities": [
       "tough claws"
     ],
@@ -18037,11 +18037,11 @@
       "def": 80,
       "spa": 50,
       "spd": 105,
-      "spe": 96,
-      "bst": 476
+      "spe": 116,
+      "bst": 496
     },
-    "speedAt0": 116,
-    "speedAt32": 148,
+    "speedAt0": 136,
+    "speedAt32": 168,
     "abilities": [
       "disguise"
     ],
@@ -18101,11 +18101,11 @@
       "def": 85,
       "spa": 135,
       "spd": 91,
-      "spe": 36,
-      "bst": 485
+      "spe": 56,
+      "bst": 505
     },
-    "speedAt0": 56,
-    "speedAt32": 88,
+    "speedAt0": 76,
+    "speedAt32": 108,
     "abilities": [
       "berserk",
       "sap sipper",
@@ -18166,11 +18166,11 @@
       "def": 110,
       "spa": 160,
       "spd": 116,
-      "spe": 36,
-      "bst": 585
+      "spe": 56,
+      "bst": 605
     },
-    "speedAt0": 56,
-    "speedAt32": 88,
+    "speedAt0": 76,
+    "speedAt32": 108,
     "abilities": [
       "berserk"
     ],
@@ -18222,11 +18222,11 @@
       "def": 125,
       "spa": 100,
       "spd": 105,
-      "spe": 85,
-      "bst": 600
+      "spe": 105,
+      "bst": 620
     },
-    "speedAt0": 105,
-    "speedAt32": 137,
+    "speedAt0": 125,
+    "speedAt32": 157,
     "abilities": [
       "bulletproof",
       "soundproof",
@@ -18292,11 +18292,11 @@
       "def": 90,
       "spa": 60,
       "spd": 70,
-      "spe": 85,
-      "bst": 530
+      "spe": 105,
+      "bst": 550
     },
-    "speedAt0": 105,
-    "speedAt32": 137,
+    "speedAt0": 125,
+    "speedAt32": 157,
     "abilities": [
       "overgrow",
       "grassy surge"
@@ -18353,11 +18353,11 @@
       "def": 75,
       "spa": 65,
       "spd": 75,
-      "spe": 119,
-      "bst": 530
+      "spe": 139,
+      "bst": 550
     },
-    "speedAt0": 139,
-    "speedAt32": 171,
+    "speedAt0": 159,
+    "speedAt32": 191,
     "abilities": [
       "blaze",
       "libero"
@@ -18415,11 +18415,11 @@
       "def": 65,
       "spa": 125,
       "spd": 65,
-      "spe": 120,
-      "bst": 530
+      "spe": 140,
+      "bst": 550
     },
-    "speedAt0": 140,
-    "speedAt32": 172,
+    "speedAt0": 160,
+    "speedAt32": 192,
     "abilities": [
       "torrent",
       "sniper"
@@ -18483,11 +18483,11 @@
       "def": 105,
       "spa": 53,
       "spd": 85,
-      "spe": 67,
-      "bst": 495
+      "spe": 87,
+      "bst": 515
     },
-    "speedAt0": 87,
-    "speedAt32": 119,
+    "speedAt0": 107,
+    "speedAt32": 139,
     "abilities": [
       "pressure",
       "unnerve",
@@ -18546,11 +18546,11 @@
       "def": 58,
       "spa": 87,
       "spd": 92,
-      "spe": 90,
-      "bst": 455
+      "spe": 110,
+      "bst": 475
     },
-    "speedAt0": 110,
-    "speedAt32": 142,
+    "speedAt0": 130,
+    "speedAt32": 162,
     "abilities": [
       "run away",
       "unburden",
@@ -18606,11 +18606,11 @@
       "def": 80,
       "spa": 95,
       "spd": 60,
-      "spe": 70,
-      "bst": 485
+      "spe": 90,
+      "bst": 505
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "ripen",
       "gluttony",
@@ -18662,11 +18662,11 @@
       "def": 80,
       "spa": 100,
       "spd": 80,
-      "spe": 30,
-      "bst": 485
+      "spe": 50,
+      "bst": 505
     },
-    "speedAt0": 50,
-    "speedAt32": 82,
+    "speedAt0": 70,
+    "speedAt32": 102,
     "abilities": [
       "ripen",
       "gluttony",
@@ -18720,11 +18720,11 @@
       "def": 125,
       "spa": 65,
       "spd": 70,
-      "spe": 71,
-      "bst": 510
+      "spe": 91,
+      "bst": 530
     },
-    "speedAt0": 91,
-    "speedAt32": 123,
+    "speedAt0": 111,
+    "speedAt32": 143,
     "abilities": [
       "sand spit",
       "shed skin",
@@ -18780,11 +18780,11 @@
       "def": 70,
       "spa": 114,
       "spd": 70,
-      "spe": 75,
-      "bst": 502
+      "spe": 95,
+      "bst": 522
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "punk rock",
       "plus",
@@ -18845,11 +18845,11 @@
       "def": 70,
       "spa": 114,
       "spd": 70,
-      "spe": 75,
-      "bst": 502
+      "spe": 95,
+      "bst": 522
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "punk rock",
       "minus",
@@ -18908,11 +18908,11 @@
       "def": 90,
       "spa": 70,
       "spd": 80,
-      "spe": 42,
-      "bst": 480
+      "spe": 62,
+      "bst": 500
     },
-    "speedAt0": 62,
-    "speedAt32": 94,
+    "speedAt0": 82,
+    "speedAt32": 114,
     "abilities": [
       "limber",
       "technician"
@@ -18960,11 +18960,11 @@
       "def": 65,
       "spa": 134,
       "spd": 114,
-      "spe": 70,
-      "bst": 508
+      "spe": 90,
+      "bst": 528
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "weak armor",
       "cursed body"
@@ -19023,11 +19023,11 @@
       "def": 95,
       "spa": 136,
       "spd": 103,
-      "spe": 29,
-      "bst": 510
+      "spe": 49,
+      "bst": 530
     },
-    "speedAt0": 49,
-    "speedAt32": 81,
+    "speedAt0": 69,
+    "speedAt32": 101,
     "abilities": [
       "healer",
       "anticipation",
@@ -19086,11 +19086,11 @@
       "def": 65,
       "spa": 95,
       "spd": 75,
-      "spe": 60,
-      "bst": 510
+      "spe": 80,
+      "bst": 530
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "prankster",
       "frisk",
@@ -19150,11 +19150,11 @@
       "def": 100,
       "spa": 50,
       "spd": 60,
-      "spe": 50,
-      "bst": 440
+      "spe": 70,
+      "bst": 460
     },
-    "speedAt0": 70,
-    "speedAt32": 102,
+    "speedAt0": 90,
+    "speedAt32": 122,
     "abilities": [
       "battle armor",
       "tough claws",
@@ -19213,11 +19213,11 @@
       "def": 95,
       "spa": 68,
       "spd": 82,
-      "spe": 65,
-      "bst": 507
+      "spe": 85,
+      "bst": 527
     },
-    "speedAt0": 85,
-    "speedAt32": 117,
+    "speedAt0": 105,
+    "speedAt32": 137,
     "abilities": [
       "steadfast",
       "scrappy"
@@ -19268,11 +19268,11 @@
       "def": 75,
       "spa": 110,
       "spd": 100,
-      "spe": 70,
-      "bst": 520
+      "spe": 90,
+      "bst": 540
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "tangled feet",
       "screen cleaner",
@@ -19342,11 +19342,11 @@
       "def": 145,
       "spa": 50,
       "spd": 105,
-      "spe": 30,
-      "bst": 483
+      "spe": 50,
+      "bst": 503
     },
-    "speedAt0": 50,
-    "speedAt32": 82,
+    "speedAt0": 70,
+    "speedAt32": 102,
     "abilities": [
       "wandering spirit"
     ],
@@ -19406,11 +19406,11 @@
       "def": 75,
       "spa": 110,
       "spd": 121,
-      "spe": 64,
-      "bst": 495
+      "spe": 84,
+      "bst": 515
     },
-    "speedAt0": 84,
-    "speedAt32": 116,
+    "speedAt0": 104,
+    "speedAt32": 136,
     "abilities": [
       "sweet veil",
       "aroma veil"
@@ -19457,11 +19457,11 @@
       "def": 100,
       "spa": 70,
       "spd": 60,
-      "spe": 75,
-      "bst": 470
+      "spe": 95,
+      "bst": 490
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "battle armor",
       "defiant"
@@ -19514,11 +19514,11 @@
       "def": 135,
       "spa": 70,
       "spd": 65,
-      "spe": 100,
-      "bst": 570
+      "spe": 120,
+      "bst": 590
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "defiant"
     ],
@@ -19569,11 +19569,11 @@
       "def": 95,
       "spa": 91,
       "spd": 85,
-      "spe": 15,
-      "bst": 435
+      "spe": 35,
+      "bst": 455
     },
-    "speedAt0": 35,
-    "speedAt32": 67,
+    "speedAt0": 55,
+    "speedAt32": 87,
     "abilities": [
       "lightning rod",
       "electric surge"
@@ -19626,11 +19626,11 @@
       "def": 55,
       "spa": 105,
       "spd": 95,
-      "spe": 95,
-      "bst": 475
+      "spe": 115,
+      "bst": 495
     },
-    "speedAt0": 115,
-    "speedAt32": 147,
+    "speedAt0": 135,
+    "speedAt32": 167,
     "abilities": [
       "inner focus",
       "synchronize",
@@ -19684,11 +19684,11 @@
       "def": 65,
       "spa": 95,
       "spd": 105,
-      "spe": 85,
-      "bst": 475
+      "spe": 105,
+      "bst": 495
     },
-    "speedAt0": 105,
-    "speedAt32": 137,
+    "speedAt0": 125,
+    "speedAt32": 157,
     "abilities": [
       "own tempo",
       "synchronize",
@@ -19744,11 +19744,11 @@
       "def": 58,
       "spa": 70,
       "spd": 58,
-      "spe": 97,
-      "bst": 436
+      "spe": 117,
+      "bst": 456
     },
-    "speedAt0": 117,
-    "speedAt32": 149,
+    "speedAt0": 137,
+    "speedAt32": 169,
     "abilities": [
       "hunger switch"
     ],
@@ -19807,11 +19807,11 @@
       "def": 75,
       "spa": 100,
       "spd": 75,
-      "spe": 142,
-      "bst": 600
+      "spe": 162,
+      "bst": 620
     },
-    "speedAt0": 162,
-    "speedAt32": 194,
+    "speedAt0": 182,
+    "speedAt32": 214,
     "abilities": [
       "clear body",
       "infiltrator",
@@ -19873,11 +19873,11 @@
       "def": 72,
       "spa": 105,
       "spd": 75,
-      "spe": 65,
-      "bst": 525
+      "spe": 85,
+      "bst": 545
     },
-    "speedAt0": 85,
-    "speedAt32": 117,
+    "speedAt0": 105,
+    "speedAt32": 137,
     "abilities": [
       "intimidate",
       "frisk",
@@ -19939,11 +19939,11 @@
       "def": 95,
       "spa": 45,
       "spd": 70,
-      "spe": 85,
-      "bst": 500
+      "spe": 105,
+      "bst": 520
     },
-    "speedAt0": 105,
-    "speedAt32": 137,
+    "speedAt0": 125,
+    "speedAt32": 157,
     "abilities": [
       "swarm",
       "sheer force",
@@ -20071,11 +20071,11 @@
       "def": 65,
       "spa": 80,
       "spd": 75,
-      "spe": 78,
-      "bst": 530
+      "spe": 98,
+      "bst": 550
     },
-    "speedAt0": 98,
-    "speedAt32": 130,
+    "speedAt0": 118,
+    "speedAt32": 150,
     "abilities": [
       "swift swim",
       "adaptability",
@@ -20134,11 +20134,11 @@
       "def": 65,
       "spa": 100,
       "spd": 75,
-      "spe": 78,
-      "bst": 530
+      "spe": 98,
+      "bst": 550
     },
-    "speedAt0": 98,
-    "speedAt32": 130,
+    "speedAt0": 118,
+    "speedAt32": 150,
     "abilities": [
       "swift swim",
       "adaptability",
@@ -20198,11 +20198,11 @@
       "def": 60,
       "spa": 40,
       "spd": 80,
-      "spe": 120,
-      "bst": 510
+      "spe": 140,
+      "bst": 530
     },
-    "speedAt0": 140,
-    "speedAt32": 172,
+    "speedAt0": 160,
+    "speedAt32": 192,
     "abilities": [
       "pressure",
       "unburden",
@@ -20268,11 +20268,11 @@
       "def": 95,
       "spa": 65,
       "spd": 65,
-      "spe": 85,
-      "bst": 510
+      "spe": 105,
+      "bst": 530
     },
-    "speedAt0": 105,
-    "speedAt32": 137,
+    "speedAt0": 125,
+    "speedAt32": 157,
     "abilities": [
       "poison point",
       "swift swim",
@@ -20334,11 +20334,11 @@
       "def": 70,
       "spa": 81,
       "spd": 70,
-      "spe": 123,
-      "bst": 530
+      "spe": 143,
+      "bst": 550
     },
-    "speedAt0": 143,
-    "speedAt32": 175,
+    "speedAt0": 163,
+    "speedAt32": 195,
     "abilities": [
       "overgrow",
       "protean"
@@ -20401,11 +20401,11 @@
       "def": 100,
       "spa": 110,
       "spd": 75,
-      "spe": 66,
-      "bst": 530
+      "spe": 86,
+      "bst": 550
     },
-    "speedAt0": 86,
-    "speedAt32": 118,
+    "speedAt0": 106,
+    "speedAt32": 138,
     "abilities": [
       "blaze",
       "unaware"
@@ -20459,11 +20459,11 @@
       "def": 80,
       "spa": 85,
       "spd": 75,
-      "spe": 85,
-      "bst": 530
+      "spe": 105,
+      "bst": 550
     },
-    "speedAt0": 105,
-    "speedAt32": 137,
+    "speedAt0": 125,
+    "speedAt32": 157,
     "abilities": [
       "torrent",
       "moxie"
@@ -20526,11 +20526,11 @@
       "def": 70,
       "spa": 70,
       "spd": 60,
-      "spe": 105,
-      "bst": 490
+      "spe": 125,
+      "bst": 510
     },
-    "speedAt0": 125,
-    "speedAt32": 157,
+    "speedAt0": 145,
+    "speedAt32": 177,
     "abilities": [
       "volt absorb",
       "natural cure",
@@ -20592,11 +20592,11 @@
       "def": 70,
       "spa": 65,
       "spd": 75,
-      "spe": 111,
-      "bst": 470
+      "spe": 131,
+      "bst": 490
     },
-    "speedAt0": 131,
-    "speedAt32": 163,
+    "speedAt0": 151,
+    "speedAt32": 183,
     "abilities": [
       "friend guard",
       "cheek pouch",
@@ -20706,11 +20706,11 @@
       "def": 90,
       "spa": 125,
       "spd": 109,
-      "spe": 39,
-      "bst": 510
+      "spe": 59,
+      "bst": 530
     },
-    "speedAt0": 59,
-    "speedAt32": 91,
+    "speedAt0": 79,
+    "speedAt32": 111,
     "abilities": [
       "seed sower",
       "harvest"
@@ -20760,11 +20760,11 @@
       "def": 51,
       "spa": 45,
       "spd": 51,
-      "spe": 92,
-      "bst": 417
+      "spe": 112,
+      "bst": 437
     },
-    "speedAt0": 112,
-    "speedAt32": 144,
+    "speedAt0": 132,
+    "speedAt32": 164,
     "abilities": [
       "intimidate",
       "hustle",
@@ -20876,11 +20876,11 @@
       "def": 51,
       "spa": 45,
       "spd": 51,
-      "spe": 92,
-      "bst": 417
+      "spe": 112,
+      "bst": 437
     },
-    "speedAt0": 112,
-    "speedAt32": 144,
+    "speedAt0": 132,
+    "speedAt32": 164,
     "abilities": [
       "intimidate",
       "hustle",
@@ -20991,11 +20991,11 @@
       "def": 130,
       "spa": 45,
       "spd": 90,
-      "spe": 35,
-      "bst": 500
+      "spe": 55,
+      "bst": 520
     },
-    "speedAt0": 55,
-    "speedAt32": 87,
+    "speedAt0": 75,
+    "speedAt32": 107,
     "abilities": [
       "purifying salt",
       "sturdy",
@@ -21052,11 +21052,11 @@
       "def": 100,
       "spa": 125,
       "spd": 80,
-      "spe": 75,
-      "bst": 525
+      "spe": 95,
+      "bst": 545
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "flash fire",
       "weak armor"
@@ -21115,11 +21115,11 @@
       "def": 80,
       "spa": 60,
       "spd": 100,
-      "spe": 85,
-      "bst": 525
+      "spe": 105,
+      "bst": 545
     },
-    "speedAt0": 105,
-    "speedAt32": 137,
+    "speedAt0": 125,
+    "speedAt32": 157,
     "abilities": [
       "flash fire",
       "weak armor"
@@ -21180,11 +21180,11 @@
       "def": 91,
       "spa": 103,
       "spd": 83,
-      "spe": 45,
-      "bst": 495
+      "spe": 65,
+      "bst": 515
     },
-    "speedAt0": 65,
-    "speedAt32": 97,
+    "speedAt0": 85,
+    "speedAt32": 117,
     "abilities": [
       "electromorphosis",
       "static",
@@ -21298,11 +21298,11 @@
       "def": 90,
       "spa": 60,
       "spd": 70,
-      "spe": 85,
-      "bst": 505
+      "spe": 105,
+      "bst": 525
     },
-    "speedAt0": 105,
-    "speedAt32": 137,
+    "speedAt0": 125,
+    "speedAt32": 157,
     "abilities": [
       "intimidate",
       "guard dog",
@@ -21420,11 +21420,11 @@
       "def": 65,
       "spa": 108,
       "spd": 65,
-      "spe": 75,
-      "bst": 486
+      "spe": 95,
+      "bst": 506
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "chlorophyll",
       "insomnia",
@@ -21478,11 +21478,11 @@
       "def": 85,
       "spa": 138,
       "spd": 85,
-      "spe": 75,
-      "bst": 586
+      "spe": 95,
+      "bst": 606
     },
-    "speedAt0": 95,
-    "speedAt32": 127,
+    "speedAt0": 115,
+    "speedAt32": 147,
     "abilities": [
       "spicy spray"
     ],
@@ -21532,11 +21532,11 @@
       "def": 60,
       "spa": 101,
       "spd": 60,
-      "spe": 105,
-      "bst": 481
+      "spe": 125,
+      "bst": 501
     },
-    "speedAt0": 125,
-    "speedAt32": 157,
+    "speedAt0": 145,
+    "speedAt32": 177,
     "abilities": [
       "opportunist",
       "frisk",
@@ -21599,11 +21599,11 @@
       "def": 77,
       "spa": 70,
       "spd": 105,
-      "spe": 94,
-      "bst": 506
+      "spe": 114,
+      "bst": 526
     },
-    "speedAt0": 114,
-    "speedAt32": 146,
+    "speedAt0": 134,
+    "speedAt32": 166,
     "abilities": [
       "mold breaker",
       "own tempo",
@@ -21661,11 +21661,11 @@
       "def": 72,
       "spa": 53,
       "spd": 62,
-      "spe": 100,
-      "bst": 457
+      "spe": 120,
+      "bst": 477
     },
-    "speedAt0": 120,
-    "speedAt32": 152,
+    "speedAt0": 140,
+    "speedAt32": 172,
     "abilities": [
       "zero to hero"
     ],
@@ -21781,11 +21781,11 @@
       "def": 145,
       "spa": 60,
       "spd": 55,
-      "spe": 65,
-      "bst": 480
+      "spe": 85,
+      "bst": 500
     },
-    "speedAt0": 85,
-    "speedAt32": 117,
+    "speedAt0": 105,
+    "speedAt32": 137,
     "abilities": [
       "earth eater",
       "sand veil"
@@ -21840,11 +21840,11 @@
       "def": 90,
       "spa": 130,
       "spd": 81,
-      "spe": 86,
-      "bst": 525
+      "spe": 106,
+      "bst": 545
     },
-    "speedAt0": 106,
-    "speedAt32": 138,
+    "speedAt0": 126,
+    "speedAt32": 158,
     "abilities": [
       "toxic debris",
       "corrosion"
@@ -21902,11 +21902,11 @@
       "def": 105,
       "spa": 150,
       "spd": 96,
-      "spe": 101,
-      "bst": 625
+      "spe": 121,
+      "bst": 645
     },
-    "speedAt0": 121,
-    "speedAt32": 153,
+    "speedAt0": 141,
+    "speedAt32": 173,
     "abilities": [
       "adaptability"
     ],
@@ -21960,11 +21960,11 @@
       "def": 100,
       "spa": 50,
       "spd": 97,
-      "spe": 68,
-      "bst": 488
+      "spe": 88,
+      "bst": 508
     },
-    "speedAt0": 88,
-    "speedAt32": 120,
+    "speedAt0": 108,
+    "speedAt32": 140,
     "abilities": [
       "sand rush",
       "fluffy"
@@ -22190,11 +22190,11 @@
       "def": 80,
       "spa": 50,
       "spd": 90,
-      "spe": 90,
-      "bst": 535
+      "spe": 110,
+      "bst": 555
     },
-    "speedAt0": 110,
-    "speedAt32": 142,
+    "speedAt0": 130,
+    "speedAt32": 162,
     "abilities": [
       "vital spirit",
       "inner focus",
@@ -22318,11 +22318,11 @@
       "def": 70,
       "spa": 110,
       "spd": 70,
-      "spe": 60,
-      "bst": 520
+      "spe": 80,
+      "bst": 540
     },
-    "speedAt0": 80,
-    "speedAt32": 112,
+    "speedAt0": 100,
+    "speedAt32": 132,
     "abilities": [
       "cud chew",
       "armor tail",
@@ -22455,11 +22455,11 @@
       "def": 120,
       "spa": 60,
       "spd": 85,
-      "spe": 50,
-      "bst": 550
+      "spe": 70,
+      "bst": 570
     },
-    "speedAt0": 70,
-    "speedAt32": 102,
+    "speedAt0": 90,
+    "speedAt32": 122,
     "abilities": [
       "defiant",
       "supreme overlord",
@@ -22519,11 +22519,11 @@
       "def": 92,
       "spa": 75,
       "spd": 86,
-      "spe": 87,
-      "bst": 600
+      "spe": 107,
+      "bst": 620
     },
-    "speedAt0": 107,
-    "speedAt32": 139,
+    "speedAt0": 127,
+    "speedAt32": 159,
     "abilities": [
       "thermal exchange",
       "ice body"
@@ -22577,11 +22577,11 @@
       "def": 117,
       "spa": 105,
       "spd": 101,
-      "spe": 87,
-      "bst": 700
+      "spe": 107,
+      "bst": 720
     },
-    "speedAt0": 107,
-    "speedAt32": 139,
+    "speedAt0": 127,
+    "speedAt32": 159,
     "abilities": [
       "thermal exchange"
     ],
@@ -22620,11 +22620,11 @@
       "def": 95,
       "spa": 133,
       "spd": 91,
-      "spe": 84,
-      "bst": 550
+      "spe": 104,
+      "bst": 570
     },
-    "speedAt0": 104,
-    "speedAt32": 136,
+    "speedAt0": 124,
+    "speedAt32": 156,
     "abilities": [
       "good as gold"
     ],
@@ -22676,11 +22676,11 @@
       "def": 106,
       "spa": 121,
       "spd": 80,
-      "spe": 70,
-      "bst": 508
+      "spe": 90,
+      "bst": 528
     },
-    "speedAt0": 90,
-    "speedAt32": 122,
+    "speedAt0": 110,
+    "speedAt32": 142,
     "abilities": [
       "hospitality",
       "heatproof"
@@ -22732,11 +22732,11 @@
       "def": 130,
       "spa": 125,
       "spd": 65,
-      "spe": 85,
-      "bst": 600
+      "spe": 105,
+      "bst": 620
     },
-    "speedAt0": 105,
-    "speedAt32": 137,
+    "speedAt0": 125,
+    "speedAt32": 157,
     "abilities": [
       "stamina",
       "sturdy",
@@ -22796,11 +22796,11 @@
       "def": 110,
       "spa": 120,
       "spd": 80,
-      "spe": 44,
-      "bst": 540
+      "spe": 64,
+      "bst": 560
     },
-    "speedAt0": 64,
-    "speedAt32": 96,
+    "speedAt0": 84,
+    "speedAt32": 116,
     "abilities": [
       "supersweet syrup",
       "regenerator",

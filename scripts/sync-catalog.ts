@@ -7,6 +7,8 @@ import { kitTagsFromMoves } from "../src/lib/champions/kit-tags";
 import { roleToolsFromLearnset } from "../src/lib/champions/role-index";
 import { fallbackPalette, paletteFromHex } from "../src/lib/champions/palette";
 import { displayName, pokeGet, type PokePokemon, type PokeSpecies } from "../src/lib/pokeapi/client";
+import { applyCbdSpeed } from "../src/lib/champions-battle/showdown";
+import { loadCbdSpeedBySlug } from "./cbd-speed-map";
 
 const ROOT = path.resolve(process.cwd());
 const CACHE = path.join(ROOT, ".cache", "pokeapi");
@@ -243,6 +245,23 @@ async function main() {
     (e): e is CatalogEntry => Boolean(e),
   );
   entries.sort((a, b) => a.dexNo - b.dexNo || a.id - b.id);
+
+  let overlaid = 0;
+  try {
+    const fromCache = process.argv.includes("--from-cache");
+    const speBySlug = await loadCbdSpeedBySlug(entries, fromCache);
+    for (let i = 0; i < entries.length; i++) {
+      const spe = speBySlug.get(entries[i].slug);
+      if (spe == null) continue;
+      if (entries[i].stats.spe !== spe) overlaid += 1;
+      entries[i] = applyCbdSpeed(entries[i], spe);
+    }
+    const unmatched = entries.filter((e) => !speBySlug.has(e.slug)).map((e) => e.slug);
+    console.log(`CBD Speed overlay: ${overlaid} Spe diffs, ${unmatched.length} unmatched.`);
+    if (unmatched.length) console.log("Unmatched Spe:", unmatched.join(", "));
+  } catch (err) {
+    console.warn("CBD Speed overlay skipped:", err instanceof Error ? err.message : err);
+  }
 
   const dataDir = path.join(ROOT, "src/data");
   await mkdir(dataDir, { recursive: true });

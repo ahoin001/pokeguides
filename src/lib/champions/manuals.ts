@@ -4,6 +4,7 @@ import {
   emptySlot,
   flexPool,
   resolveActiveBox,
+  resolvePackStrategy,
   type TeamManual,
 } from "@/content/manuals";
 
@@ -92,15 +93,48 @@ export function validateManual(manual: TeamManual) {
     for (const slug of box) {
       if (!legalSlug(slug)) errors.push(`${slug} is not legal in this regulation.`);
     }
+    const packIds = new Set(manual.packs.map((p) => p.id));
+    const modeIdsBySlug = new Map<string, Set<string>>();
+    for (const slot of manual.roster ?? []) {
+      if (!slot.slug || !slot.modes?.length) continue;
+      modeIdsBySlug.set(slot.slug, new Set(slot.modes.map((m) => m.id).filter(Boolean)));
+    }
     for (const alt of alts) {
+      if (alt.slot?.modes?.length && alt.slug) {
+        modeIdsBySlug.set(alt.slug, new Set(alt.slot.modes.map((m) => m.id).filter(Boolean)));
+      }
+    }
+    const usedModeIds = new Set<string>();
+
+    for (const alt of alts) {
+      if (!alt.slug.trim()) {
+        errors.push("Flex pool: every candidate needs a species slug.");
+        continue;
+      }
       if (!legalSlug(alt.slug)) errors.push(`Flex ${alt.slug} is not legal in this regulation.`);
       if (box.includes(alt.slug)) {
         errors.push(`Flex ${alt.slug} is already on the registered six — drop it from the flex pool.`);
       }
-      if (alt.insteadOf && box.length && !box.includes(alt.insteadOf)) {
+      if (!alt.insteadOf) {
+        errors.push(`Flex ${alt.slug}: pick insteadOf (which core mon it replaces).`);
+      } else if (box.length && !box.includes(alt.insteadOf)) {
         errors.push(`Flex ${alt.slug}: insteadOf ${alt.insteadOf} is not on the six.`);
       }
       if (!alt.why.trim()) errors.push(`Flex ${alt.slug}: say why the swap exists.`);
+      const unlocked = (alt.unlocks ?? []).filter(Boolean);
+      for (const id of unlocked) {
+        if (!packIds.has(id)) {
+          errors.push(`Flex ${alt.slug}: unlocks unknown package ${id}.`);
+        }
+      }
+      const gated = manual.packs.filter(
+        (p) => p.requiresSwap?.in === alt.slug && (!alt.insteadOf || p.requiresSwap.out === alt.insteadOf),
+      );
+      if (!gated.length) {
+        errors.push(
+          `Flex ${alt.slug}: add a package with requiresSwap in=${alt.slug} — alts only exist to unlock packs.`,
+        );
+      }
     }
     for (const pack of manual.packs) {
       const bring = pack.slugs.filter(Boolean);
@@ -141,6 +175,25 @@ export function validateManual(manual: TeamManual) {
         }
       }
       if (!pack.label.trim()) errors.push(`Give package ${pack.id} a label.`);
+      const modeId = resolvePackStrategy(pack).winconMode ?? pack.winconMode;
+      if (modeId) {
+        usedModeIds.add(modeId);
+        const onBring = bring.some((slug) => modeIdsBySlug.get(slug)?.has(modeId));
+        if (!onBring) {
+          errors.push(
+            `Package “${pack.label || pack.id}”: winconMode “${modeId}” is not a SlotMode on this bring.`,
+          );
+        }
+      }
+    }
+    for (const [slug, ids] of modeIdsBySlug) {
+      for (const id of ids) {
+        if (!usedModeIds.has(id)) {
+          errors.push(
+            `Mode “${id}” on ${slug} needs a package with winconMode=${id} (same species, different kit).`,
+          );
+        }
+      }
     }
     return errors;
   }

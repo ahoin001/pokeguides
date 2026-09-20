@@ -8,6 +8,7 @@ import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { SlotMatchups } from "@/components/manuals/SlotMatchups";
 import { PokemonPicker } from "@/components/pokemon/PokemonPicker";
 import { Button } from "@/components/ui/Button";
+import { Modal } from "@/components/ui/Modal";
 import { PageFrame } from "@/components/chrome/PageFrame";
 import { ARCHETYPE_IDS } from "@/types/pokemon";
 import type { ArchetypeId, LiteracyRoleId, RoleId } from "@/types/pokemon";
@@ -519,25 +520,23 @@ export function ManualForm({
         </Button>
       </div>
 
-      {pick !== null ? (
-        <div className="fixed inset-0 z-50 flex items-end bg-black/50 p-4 md:items-center md:justify-center">
-          <div className="w-full max-w-lg rounded-t-3xl bg-raised p-5 md:rounded-3xl">
-            <div className="mb-3 flex justify-between text-sm">
-              <button type="button" className="text-muted" onClick={() => setPick(null)}>
-                Close
-              </button>
-            </div>
-            <PokemonPicker
-              autoFocus
-              exclude={exclude.filter((s) => s !== slotList[pick.index]?.slug)}
-              onPick={(slug) => {
-                updateSlot(pick.index, { slug });
-                setPick(null);
-              }}
-            />
-          </div>
+      <Modal open={pick !== null} onClose={() => setPick(null)} label="Add Pokémon">
+        <div className="mb-3 flex justify-between text-sm">
+          <button type="button" className="text-muted" onClick={() => setPick(null)}>
+            Close
+          </button>
         </div>
-      ) : null}
+        {pick !== null ? (
+          <PokemonPicker
+            autoFocus
+            exclude={exclude.filter((s) => s !== slotList[pick.index]?.slug)}
+            onPick={(slug) => {
+              updateSlot(pick.index, { slug });
+              setPick(null);
+            }}
+          />
+        ) : null}
+      </Modal>
     </PageFrame>
   );
 
@@ -725,6 +724,20 @@ function PackEditor({
           className={`mt-2 ${areaClass}`}
           value={strategy?.winCondition ?? ""}
           onChange={(e) => onStrategy({ winCondition: e.target.value })}
+        />
+        <label className="block text-sm font-medium">In-box mode (SlotMode.id)</label>
+        <p className="mt-1 text-xs text-muted">
+          Same species, different kit (Mega / Scarf / Sash). Leave empty if the default set is enough.
+        </p>
+        <input
+          className={`mt-2 ${inputClass}`}
+          value={pack.winconMode ?? strategy?.winconMode ?? ""}
+          placeholder="garchomp-sash"
+          onChange={(e) => {
+            const winconMode = e.target.value.trim() || undefined;
+            onChange({ winconMode });
+            onStrategy({ winconMode });
+          }}
         />
         <label className="block text-sm font-medium">Game plan (Break → Control → Finish)</label>
         <textarea

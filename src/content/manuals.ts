@@ -34,7 +34,8 @@ export type SlotTraining = {
   alts?: SlotTrainingAlt[];
 };
 
-/** Alternate job for one species on the registered six (e.g. Mega / Scarf / Sash Garchomp). */
+/** Alternate kit for one species already on the registered six (Mega / Scarf / Sash).
+ * First-class vs flex: does not change `box`. Packs select it with `winconMode`. */
 export type SlotMode = {
   id: string;
   label: string;
@@ -138,8 +139,16 @@ export type ManualNote = {
 };
 
 export type ManualMatchup = {
+  /** Species, archetype, or structure name. */
   name: string;
+  /** Why this matchup matters for this six / pack. */
   why: string;
+  /** Catalog slug when the note is about a specific species. */
+  slug?: string;
+  /** What you do (pilot line). */
+  play?: string;
+  /** How they punish you if you misplay. */
+  trap?: string;
 };
 
 export type ManualPilot = {
@@ -339,10 +348,11 @@ export type ManualSubstitution = {
 /**
  * Flex-pool candidate: not on the registered six until a pack requires the swap.
  * Keeps Champions registration at six while unlocking alternate packages.
+ * Distinct from SlotMode (same species, different kit on the registered six).
  */
 export type ManualAltSlot = {
   slug: string;
-  /** Core box mon this flex typically replaces. */
+  /** Core box mon this flex replaces. Required when authoring a real flex. */
   insteadOf?: string;
   why: string;
   /** What the swap gains vs the core mon. */

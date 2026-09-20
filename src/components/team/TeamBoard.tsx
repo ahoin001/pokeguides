@@ -7,6 +7,7 @@ import { PageFrame } from "@/components/chrome/PageFrame";
 import { getPokemon } from "@/lib/catalog/lookup";
 import { useTeamStore } from "@/stores/team";
 import { PokemonPicker } from "@/components/pokemon/PokemonPicker";
+import { Modal } from "@/components/ui/Modal";
 import { ManualNotes } from "@/components/manuals/ManualNotes";
 import { TEAM_NOTES_ID } from "@/lib/manuals/field-notes";
 import { VsScout } from "@/components/scout/VsScout";
@@ -385,37 +386,35 @@ export function TeamBoard() {
           </div>
         </PageFrame>
 
-        {pick !== null ? (
-          <div className="fixed inset-0 z-50 flex items-end bg-black/50 p-4 md:items-center md:justify-center">
-            <div className="w-full max-w-lg rounded-t-3xl bg-raised p-5 md:rounded-3xl">
-              <div className="mb-3 flex justify-between text-sm">
-                <button type="button" onClick={() => setPick(null)} className="text-muted">
-                  Close
-                </button>
-                {slugs[pick] ? (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setSlot(pick, null);
-                      setPick(null);
-                    }}
-                  >
-                    Clear slot
-                  </button>
-                ) : null}
-              </div>
-              <PokemonPicker
-                exclude={slugs.filter(Boolean) as string[]}
-                suggested={suggested}
-                onPick={(slug) => {
-                  setSlot(pick, slug);
-                  setSelectedIndex(pick);
+        <Modal open={pick !== null} onClose={() => setPick(null)} label="Add Pokémon">
+          <div className="mb-3 flex justify-between text-sm">
+            <button type="button" onClick={() => setPick(null)} className="text-muted">
+              Close
+            </button>
+            {pick !== null && slugs[pick] ? (
+              <button
+                type="button"
+                onClick={() => {
+                  setSlot(pick, null);
                   setPick(null);
                 }}
-              />
-            </div>
+              >
+                Clear slot
+              </button>
+            ) : null}
           </div>
-        ) : null}
+          {pick !== null ? (
+            <PokemonPicker
+              exclude={slugs.filter(Boolean) as string[]}
+              suggested={suggested}
+              onPick={(slug) => {
+                setSlot(pick, slug);
+                setSelectedIndex(pick);
+                setPick(null);
+              }}
+            />
+          ) : null}
+        </Modal>
       </LayoutGroup>
     </MotionConfig>
   );

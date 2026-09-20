@@ -11,6 +11,7 @@ import { StatRadar } from "@/components/viz/StatRadar";
 import { SpeedTape } from "@/components/viz/SpeedTape";
 import { MatchupField } from "@/components/viz/MatchupField";
 import { PokemonPicker } from "@/components/pokemon/PokemonPicker";
+import { Modal } from "@/components/ui/Modal";
 import type { CatalogEntry } from "@/types/pokemon";
 
 export default function ComparePage() {
@@ -60,22 +61,18 @@ export default function ComparePage() {
           {mons[0] ? <MatchupField types={mons[0].types} /> : null}
         </div>
       ) : null}
-      {open ? (
-        <div className="fixed inset-0 z-50 flex items-end bg-black/50 p-4 md:items-center md:justify-center">
-          <div className="w-full max-w-lg rounded-t-3xl bg-raised p-5 md:rounded-3xl">
-            <button type="button" className="mb-3 text-sm text-muted" onClick={() => setOpen(false)}>
-              Close
-            </button>
-            <PokemonPicker
-              exclude={slugs}
-              onPick={(slug) => {
-                add(slug);
-                setOpen(false);
-              }}
-            />
-          </div>
-        </div>
-      ) : null}
+      <Modal open={open} onClose={() => setOpen(false)} label="Add Pokémon">
+        <button type="button" className="mb-3 text-sm text-muted" onClick={() => setOpen(false)}>
+          Close
+        </button>
+        <PokemonPicker
+          exclude={slugs}
+          onPick={(slug) => {
+            add(slug);
+            setOpen(false);
+          }}
+        />
+      </Modal>
     </PageFrame>
   );
 }

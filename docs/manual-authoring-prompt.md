@@ -2,7 +2,14 @@
 
 Copy everything inside the fenced block below into ChatGPT / Claude / Cursor. Paste your team (Showdown export, notes, or VOD bullets) after the prompt. Ask for **JSON only** matching Ringside’s boxed `TeamManual` shape.
 
-Default: **Pokémon Champions Singles** — registered six + preview packs of three. Keep `box.length === 6`. Flex alts unlock packages via swap; they are **not** a seventh registration slot.
+Default: **Pokémon Champions Singles** — registered six + preview packs of three. Keep `box.length === 6`.
+
+Two first-class ways a six gets **versions** (both can appear on one manual):
+
+1. **In-box modes** — same registered species, different kit (`roster[].modes` + pack `winconMode`). Example: Life Orb vs Scarf vs Mega Garchomp. Box does not change.
+2. **Flex swaps** — off-box species replaces one core mon (`construction.altSlots` + pack `requiresSwap`). Creates a new **active six** of still exactly 6. Example: drop Primarina, bring Hippowdon, unlock sand packs.
+
+Flex alts are **not** a seventh registration slot.
 
 ---
 
@@ -12,69 +19,93 @@ Default: **Pokémon Champions Singles** — registered six + preview packs of th
 You are authoring a Ringside field manual for Pokémon Champions Singles.
 
 GOAL
-Produce one boxed TeamManual JSON a pilot can open and play from in order:
-choose package → load sets → run the plan. Prefer short actionable lines.
-Use TODO: … when you lack a fact — do not invent lore, ladder stats, or EV spreads.
+Produce one boxed TeamManual JSON a pilot can open and play from:
+choose package → load the correct six/sets → run the plan.
+Prefer short actionable lines. Use TODO: … when you lack a fact — do not invent lore, ladder stats, or EV spreads.
 
 HARD RULES
-1. Registered six stays exactly 6 species (species clause). Never put flex mons on `box`.
-2. Every set is paste-ready: item, ability, nature, EVs (or TODO), 4 moves with roles.
-3. Packs are bring-of-three drawn from the *active* six (core box, or box after a flex swap).
-4. No flex alt without at least one package it unlocks. No swap-gated pack without `requiresSwap`.
-5. One idea per line. Pilot language: “If X, then Y.” Skip flavor essays.
-6. Output a single JSON object only — no markdown outside JSON.
+1. Registered six stays exactly 6 unique species. Never put flex mons on `box`.
+2. Every set is paste-ready: item, ability, nature, EVs (or TODO), 4 moves with { name, why }.
+3. Packs are bring-of-three from the *active* six (core box, or box after a flex swap).
+4. TWO version systems — both first-class; do not collapse them:
+   a) In-box MODE: same slug, different kit → roster[i].modes[] + pack.winconMode = mode.id
+   b) Flex SWAP: different species → altSlots[] + pack.requiresSwap { out, in }
+   A pack may use both (swap the six, then pick a mode on a remaining mon).
+5. No mode without a package that sets winconMode. No flex alt without a package that sets requiresSwap.
+6. Matchups are required, not optional flavor. Team-level defaults + pack-level when the bring’s threats differ.
+7. One idea per line. Pilot language: “If X, then Y.”
+8. Output a single JSON object only — no markdown outside JSON.
+
+ALLOWED IDS
+- format: "singles" | "doubles"
+- archetype: balance | hyper-offense | trick-room | rain | sun | grassy
+- family: clock | kite | weather | terrain | room
+- job (RoleId): support | breaker | speed | weather | mega
+- literacy: sweeper | wall | disruptor | wallbreaker | pivot | setter
 
 INTERVIEW ORDER (ask only what’s missing; otherwise extract from paste)
 
 A. Six identity
 - title, sixSummary (1–2 sentences why these six register together)
-- archetype id if known, else TODO
+- archetype + family from the allowed lists (TODO if unknown)
 - construction.thesis / method / winCondition (one line each)
 
-B. Roster (all six once)
-For each slug on box:
-- job/role, objective, howToPlay (short)
-- moves[4]: { name, role } — role = what the click does for this team
-- item, ability, nature, sampleSp or ev string — TODO if unknown
-- optional: teraType, notes
+B. Roster (exactly the six on box)
+For each slug:
+- job, literacy?, primaryJob, role, objective, howToPlay
+- moves[4]: { name, why } — why = what the click does for THIS team
+- item, ability, nature, training/EVs or TODO
+- gives[] / answers[] if known
+IN-BOX MODES (first-class — do not skip if the paste or notes show multiple items/sets for one species):
+- If Mega vs Scarf vs Sash vs LO (or any preview-changing kit) on the SAME slug:
+  modes[]: { id, label, job, when, item, itemWhy?, nature?, moves[4], objective?, howToPlay? }
+- Default item/moves stay the teaching baseline; modes are the decision tree.
+- Every mode.id MUST be used by ≥1 pack via winconMode (and strategy.winconMode).
 
 C. Endgames (six-level)
 construction.endgames[]: { id, label, path, how }
-Each package later links via endgameIds.
+Packs link via endgameIds.
 
-D. Core packages (legal on default six)
+D. Core packages (legal on default six, no requiresSwap)
 For each pack:
-- id, label, when (preview trigger), identity
+- id, label, when (preview trigger), identity, contrast? (vs sibling packs)
 - slugs[3] ⊆ box
-- strategy: opponentPattern (or when), purpose, targets[], refuses[], winCondition,
+- winconMode? — REQUIRED if this bring assumes a non-default SlotMode
+- strategy: opponentPattern, purpose, targets[], refuses[], winCondition,
   gamePlan (Break → Control → Finish), mantra?, turnChecklist? (≤5), defaultLead?
-- roles[]: { slug, macro, micro } for the three
-- plan beats Lead → Mid → Late if they differ from shared
-- 2–4 loops and/or lead/mid/late forks (flows) — only real decisions
-- endgameIds linking construction.endgames
-- coverageNotes? short typed threats this bring answers
+- roles[]: { slug, macro, micro }
+- 2–4 loops and/or lead/mid/late flows — only real decisions
+- endgameIds
+- MATCHUPS for this pack (do not omit):
+  victims[]  { name, why, slug?, play?, trap? } — boards / mons you like
+  counters[] { name, why, slug?, play?, trap? } — boards that punish this bring
+  advantages[] { title, body } — soft edges
+- coverageNotes? typed holes this three covers
+- hazards[] pack-specific traps if they differ from team hazards
 
-E. Flex pool + swap-gated packages (only if the team actually swaps)
-construction.altSlots[] for each flex candidate:
-- slug (NOT on box), insteadOf? (core mon replaced), why
-- answers? (what you gain), costs? (what you lose)
-- unlocks?: pack ids this flex enables
-- slot?: optional paste-ready set for the flex mon (same fields as roster slot)
+E. Flex swaps → new active six → packages (first-class — do not skip if the player ever substitutes)
+For each core mon that is ever replaced off the registered six:
+  construction.altSlots[]:
+  - slug (NOT on box)
+  - insteadOf (REQUIRED — the core slug replaced)
+  - why, answers (what you gain), costs (what you lose)
+  - unlocks[] pack ids this flex enables
+  - slot? paste-ready set (same fields as roster slot; may include modes)
+HARD: every alt MUST unlock ≥1 package. Every such package MUST set
+  requiresSwap: { out: insteadOf, in: alt.slug }
+Bring ⊆ resolveActiveBox (box with out→in). Still exactly 6 after swap.
+Write strategy + matchups + flows as if this were a different registered six.
+strategy.contrast: what the default six cannot run that this swap enables.
+refuses: when NOT to take the swap.
 
-For each package that needs the flex:
-- requiresSwap: { out: coreSlug, in: flexSlug }
-- bring slugs may include `in`; must ⊆ resolveActiveBox (box with out→in)
-- Full strategy like core packs
-- Explicit contrast: what the default six cannot do that this swap enables
-- refuse: when NOT to take the swap / this pack
+F. Team-level matchups (always author — TODO lines ok, empty arrays not preferred)
+- victims / counters / advantages — six-wide defaults (packs inherit if they omit)
+- hazards[] — pilot traps (weather clash, Mega choice, Choice lock, Rocks greed, etc.)
 
-F. Matchups (optional, keep short)
-victims / counters / advantages / hazards — only if they change play.
+G. Evidence optional
+season / asOf / source / caveat — mark unproven claims.
 
-G. Evidence (optional)
-construction evidence season/asOf/source/caveat — mark unproven claims.
-
-OUTPUT SHAPE (TypeScript-aligned; omit unused optional fields)
+OUTPUT SHAPE (omit unused optional fields; keep required roots)
 
 {
   "id": "kebab-id",
@@ -83,12 +114,37 @@ OUTPUT SHAPE (TypeScript-aligned; omit unused optional fields)
   "sixSummary": "",
   "format": "singles",
   "philosophy": "",
-  "archetype": "",
-  "family": "",
+  "archetype": "balance",
+  "family": "weather",
   "meta": "",
   "box": ["s1","s2","s3","s4","s5","s6"],
   "core": ["s1","s2","s3"],
-  "roster": [ /* SlotManual ×6 matching box order */ ],
+  "roster": [
+    {
+      "slug": "",
+      "title": "",
+      "job": "breaker",
+      "literacy": "wallbreaker",
+      "role": "",
+      "primaryJob": "",
+      "item": "",
+      "ability": "",
+      "nature": "",
+      "moves": [{ "name": "", "why": "" }],
+      "objective": "",
+      "howToPlay": "",
+      "modes": [
+        {
+          "id": "slug-scarf",
+          "label": "",
+          "job": "",
+          "when": "",
+          "item": "",
+          "moves": [{ "name": "", "why": "" }]
+        }
+      ]
+    }
+  ],
   "construction": {
     "thesis": "",
     "method": "",
@@ -102,7 +158,17 @@ OUTPUT SHAPE (TypeScript-aligned; omit unused optional fields)
         "answers": "",
         "costs": "",
         "unlocks": ["pack-id"],
-        "slot": { "title": "", "job": "", "role": "", "moves": [], "objective": "", "howToPlay": "", "item": "", "ability": "", "nature": "" }
+        "slot": {
+          "title": "",
+          "job": "breaker",
+          "role": "",
+          "moves": [{ "name": "", "why": "" }],
+          "objective": "",
+          "howToPlay": "",
+          "item": "",
+          "ability": "",
+          "nature": ""
+        }
       }
     ]
   },
@@ -113,6 +179,7 @@ OUTPUT SHAPE (TypeScript-aligned; omit unused optional fields)
       "when": "",
       "identity": "",
       "slugs": ["","",""],
+      "winconMode": "",
       "requiresSwap": { "out": "", "in": "" },
       "endgameIds": [],
       "strategy": {
@@ -124,30 +191,44 @@ OUTPUT SHAPE (TypeScript-aligned; omit unused optional fields)
         "winCondition": "",
         "gamePlan": "",
         "mantra": "",
-        "turnChecklist": []
+        "contrast": "",
+        "turnChecklist": [],
+        "winconMode": ""
       },
       "roles": [{ "slug": "", "macro": "", "micro": "" }],
       "loops": [{ "title": "", "body": "" }],
       "flows": [
         { "id": "lead", "title": "Lead", "forks": [{ "id": "lead-0", "when": "", "then": "" }] }
-      ]
+      ],
+      "victims": [{ "name": "", "why": "", "play": "", "trap": "" }],
+      "counters": [{ "name": "", "why": "", "play": "", "trap": "" }],
+      "advantages": [{ "title": "", "body": "" }],
+      "hazards": [{ "title": "", "body": "" }]
     }
   ],
+  "victims": [{ "name": "", "why": "" }],
+  "counters": [{ "name": "", "why": "" }],
+  "advantages": [{ "title": "", "body": "" }],
   "slugs": ["","",""],
   "slots": [],
   "phases": [],
   "loops": [],
-  "hazards": []
+  "hazards": [{ "title": "", "body": "" }]
 }
 
-Notes for empty required roots: set slugs/slots/phases/loops/hazards to [] or the first pack’s bring; the app resolves pack views via resolveManual.
+Notes: omit requiresSwap on core packs; omit winconMode when the default kit is correct.
+set slugs/slots to the first pack’s bring; the app overlays packs via resolveManual.
 
 VALIDATION CHECKLIST (self-check before answering)
 □ box has 6 unique legal slugs; no flex slug on box
-□ every roster slug ∈ box; paste-ready or TODO on EVs/moves
-□ every core pack bring ⊆ box; every swap pack has requiresSwap and bring ⊆ active six
-□ every altSlots.slug has unlocks or a pack.requiresSwap.in matching it
-□ every requiresSwap.in ∈ altSlots; requiresSwap.out ∈ box
+□ every roster slug ∈ box; moves use { name, why }; EVs TODO if unknown
+□ every roster.modes[].id is referenced by ≥1 pack.winconMode (and strategy.winconMode)
+□ every pack.winconMode exists as SlotMode.id on a species in that pack’s bring
+□ every core pack bring ⊆ box
+□ every altSlots entry has insteadOf ∈ box, why, and ≥1 pack with requiresSwap { out: insteadOf, in: slug }
+□ every requiresSwap pack bring ⊆ active six (box with out→in)
+□ team has victims AND counters (or explicit TODO in those arrays’ why fields)
+□ packs whose targets differ from the six have their own victims/counters
 □ packages have when + winCondition + at least one refuse
 □ no invented numbers; TODOs labeled
 
@@ -159,13 +240,13 @@ USER MATERIAL FOLLOWS
 
 ## Schema cheat sheet (app)
 
-| Concept | Fields |
-| --- | --- |
-| Registered six | `box`, `roster` |
-| Flex pool | `construction.altSlots` |
-| Core pack | `packs[]` without `requiresSwap` |
-| Swap pack | `packs[].requiresSwap: { out, in }` |
-| Active six for Load | `resolveActiveBox(manual, packId)` |
-| Bring | `packs[].slugs` length 3 ⊆ active six |
+| Version of the six | Fields | Active registration |
+| --- | --- | --- |
+| Core | `box`, `roster` | 6 slugs |
+| In-box mode | `roster[].modes[]` + `packs[].winconMode` | Same 6; kit overlay via `slotsForPack` |
+| Flex swap | `construction.altSlots` + `packs[].requiresSwap` | `resolveActiveBox` (still 6) |
+| Core pack | `packs[]` without `requiresSwap` | `box` |
+| Swap pack | `packs[]` with `requiresSwap` | swapped six; bring may include `in` |
+| Matchups | `victims` / `counters` / `advantages` / `hazards` | Pack overrides team via `resolveManual` |
 
-See `src/content/manuals.ts` for full types (`ManualAltSlot`, `ManualPack`, `ManualPackStrategy`, `SlotManual`).
+See `src/content/manuals.ts` (`SlotMode`, `ManualAltSlot`, `ManualPack`, `ManualMatchup`, `SlotManual`).

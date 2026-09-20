@@ -14,6 +14,7 @@ import {
   type DamageResult,
 } from "@/lib/champions/damage";
 import { getChampionsMove, searchChampionsDamagingMoves } from "@/lib/champions/move-data";
+import { MoveChip } from "@/components/moves/MoveChip";
 import { useLiveMatchStore, type SpPreset } from "@/stores/live-match";
 import type { SampleSp } from "@/types/pokemon";
 
@@ -80,22 +81,19 @@ function MoveSearch({
       {ladderMoves.length ? (
         <div className="flex flex-wrap gap-1">
           {ladderMoves.slice(0, 8).map((m) => (
-            <button
+            <MoveChip
               key={m.name}
-              type="button"
+              name={m.name}
+              type={m.type}
+              selected={value === m.name}
               disabled={disabled}
               onClick={() => {
                 onChange(m.name);
                 setQ("");
                 setOpen(false);
               }}
-              className={`rounded-full px-2.5 py-1 text-[11px] transition ${
-                value === m.name ? "bg-ink text-bg" : "bg-white/6 text-muted hover:text-ink"
-              }`}
               title={`Common on Singles ladder · ${m.type} · ${m.basePower}`}
-            >
-              {m.name}
-            </button>
+            />
           ))}
         </div>
       ) : null}

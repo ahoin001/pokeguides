@@ -13,3 +13,18 @@ export const fadeUp = {
   animate: { opacity: 1, y: 0 },
   transition: { duration: motionTokens.layout, ease: easeOut },
 };
+
+/** Popover / move detail enter — scale from trigger. */
+export const panelIn = {
+  initial: { opacity: 0, y: -4, scale: 0.96 },
+  animate: { opacity: 1, y: 0, scale: 1 },
+  exit: { opacity: 0, y: -4, scale: 0.96 },
+  transition: { duration: motionTokens.state, ease: easeOut },
+};
+
+/** Chip selected affordance — brief brightness settle. */
+export const selectPulse = {
+  initial: { filter: "brightness(1.08)" },
+  animate: { filter: "brightness(1)" },
+  transition: { duration: motionTokens.feedback, ease: easeOut },
+};

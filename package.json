@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "sync:catalog": "tsx scripts/sync-catalog.ts",
+    "stamp:roles": "tsx scripts/stamp-role-tools.ts",
     "sync:ranked": "tsx scripts/sync-ranked-singles.ts",
     "sync:moves": "tsx scripts/sync-moves-champions.ts",
     "sync:abilities": "tsx scripts/sync-abilities.ts",

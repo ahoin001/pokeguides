@@ -130,6 +130,8 @@ export type CatalogEntry = {
   speedAt32: number;
   abilities: string[];
   kitTags: KitTag[];
+  /** BSS Role Compendium tool ids this Pokémon learns or has (moves + abilities). */
+  roleTools?: string[];
   artwork: string;
   sprite: string;
   tokens: string;

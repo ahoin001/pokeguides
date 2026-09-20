@@ -54,19 +54,15 @@ export function ReferenceNavMenu({ path }: { path: string }) {
         <>
           <NavMenuLink
             href="/pokedex"
-            on={path.startsWith("/pokedex") || path.startsWith("/pokemon")}
+            on={
+              path.startsWith("/pokedex") ||
+              path.startsWith("/moves") ||
+              path.startsWith("/pokemon")
+            }
             onNavigate={close}
-            hint="Legal roster"
+            hint="Pokémon, moves, abilities"
           >
-            Dex
-          </NavMenuLink>
-          <NavMenuLink
-            href="/moves"
-            on={path.startsWith("/moves")}
-            onNavigate={close}
-            hint="Moves and abilities"
-          >
-            Moves
+            Search
           </NavMenuLink>
           <NavMenuLink
             href="/types"
@@ -137,8 +133,11 @@ export function ReferenceLocalBar() {
   if (!onReference) return null;
 
   const tabs = [
-    { href: "/pokedex", label: "Dex", on: path.startsWith("/pokedex") || path.startsWith("/pokemon") },
-    { href: "/moves", label: "Moves", on: path.startsWith("/moves") },
+    {
+      href: "/pokedex",
+      label: "Search",
+      on: path.startsWith("/pokedex") || path.startsWith("/moves") || path.startsWith("/pokemon"),
+    },
     { href: "/types", label: "Types", on: path.startsWith("/types") },
     { href: "/compare", label: "Coverage", on: path.startsWith("/compare") },
   ] as const;

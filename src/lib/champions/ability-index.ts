@@ -1,5 +1,6 @@
 import abilitiesJson from "@/data/abilities-champions.json";
 import { getPokemon } from "@/lib/catalog/lookup";
+import { abilityMatchesFamily, isRoleFamilyId, type RoleFamilyId } from "@/lib/champions/role-index";
 
 type AbilitiesFile = {
   abilities: Record<
@@ -27,6 +28,15 @@ export const ABILITY_TAG_IDS = [
   "mold-break",
   "setup",
   "form",
+  "magic-bounce",
+  "disguise",
+  "unburden",
+  "sturdy",
+  "stamina",
+  "shadow-tag",
+  "protean",
+  "flame-body",
+  "prankster",
 ] as const;
 
 export type AbilityTagId = (typeof ABILITY_TAG_IDS)[number];
@@ -43,6 +53,15 @@ export const ABILITY_TAG_LABEL: Record<AbilityTagId, string> = {
   "mold-break": "Mold Breaker",
   setup: "Stat boost",
   form: "Form / once",
+  "magic-bounce": "Magic Bounce",
+  disguise: "Disguise",
+  unburden: "Unburden",
+  sturdy: "Sturdy",
+  stamina: "Stamina",
+  "shadow-tag": "Shadow Tag",
+  protean: "Protean",
+  "flame-body": "Flame Body",
+  prankster: "Prankster",
 };
 
 const WEATHER = new Set([
@@ -181,6 +200,15 @@ function tagsFor(slug: string, effect: string): AbilityTagId[] {
   if (MOLD.has(slug) || /\bignores?.*(abilit|opposing)\b/.test(e)) tags.add("mold-break");
   if (SETUP.has(slug) || /\braises?.*(attack|defense|speed|special)\b/.test(e)) tags.add("setup");
   if (FORM.has(slug) || /\b(transform|form|disguise|once per)\b/.test(e)) tags.add("form");
+  if (slug === "magic-bounce" || /\bbounce.*status|reflects? status\b/.test(e)) tags.add("magic-bounce");
+  if (slug === "disguise") tags.add("disguise");
+  if (slug === "unburden") tags.add("unburden");
+  if (slug === "sturdy") tags.add("sturdy");
+  if (slug === "stamina") tags.add("stamina");
+  if (slug === "shadow-tag") tags.add("shadow-tag");
+  if (slug === "protean" || slug === "libero") tags.add("protean");
+  if (slug === "flame-body" || slug === "spicy-spray") tags.add("flame-body");
+  if (slug === "prankster") tags.add("prankster");
   return [...tags];
 }
 
@@ -247,11 +275,15 @@ export function filterChampionsAbilities(
   opts: {
     q?: string;
     tag?: AbilityTagId | "";
+    family?: RoleFamilyId | "";
   },
 ): IndexedAbility[] {
   const needle = opts.q?.trim().toLowerCase() ?? "";
   return abilities.filter((a) => {
     if (opts.tag && !a.tags.includes(opts.tag)) return false;
+    if (opts.family && isRoleFamilyId(opts.family) && !abilityMatchesFamily(a.slug, opts.family)) {
+      return false;
+    }
     if (needle && !a.tokens.includes(needle)) return false;
     return true;
   });

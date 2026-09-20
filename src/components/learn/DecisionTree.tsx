@@ -5,27 +5,13 @@ import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import { CaretDown } from "@phosphor-icons/react";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { Button } from "@/components/ui/Button";
+import { MoveChip } from "@/components/moves/MoveChip";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
-import { TYPE_LABEL } from "@/lib/champions/types";
 import { moveType } from "@/lib/champions/moves";
-import type { TypeId } from "@/types/pokemon";
 import type { FlowFork, ManualFlow } from "@/content/manuals";
 import { MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
-
-/** Light Champions discs — dark label ink for move chips (glyphs stay white elsewhere). */
-const INK_DARK: TypeId[] = [
-  "normal",
-  "electric",
-  "ice",
-  "fighting",
-  "flying",
-  "bug",
-  "rock",
-  "steel",
-  "fairy",
-];
 
 function findFork(forks: FlowFork[], id: string): FlowFork | undefined {
   for (const fork of forks) {
@@ -56,20 +42,16 @@ function washSlug(flow: ManualFlow, path: string[]) {
   return undefined;
 }
 
-function MoveChip({ name }: { name: string }) {
+function FlowMoveChip({ name }: { name: string }) {
   const type = moveType(name);
-  if (!type) {
-    return <span className="rounded-full bg-white/8 px-2.5 py-1 text-xs font-medium">{name}</span>;
-  }
-  const ink = INK_DARK.includes(type) ? "text-[#1a1a1a]" : "text-white";
   return (
-    <span
-      className={`inline-flex rounded-full px-2.5 py-1 text-xs font-semibold tracking-tight ${ink}`}
-      style={{ background: `var(--type-${type})`, boxShadow: "inset 0 1px 0 rgba(255,255,255,0.22)" }}
-      title={TYPE_LABEL[type]}
-    >
-      {name}
-    </span>
+    <MoveChip
+      as="span"
+      name={name}
+      type={type}
+      size="md"
+      title={type ? undefined : name}
+    />
   );
 }
 
@@ -304,7 +286,7 @@ function ForkNode({
             {fork.then ? <span className="mt-1 block font-medium leading-snug">{fork.then}</span> : null}
             {fork.move ? (
               <span className="mt-2 block">
-                <MoveChip name={fork.move} />
+                <FlowMoveChip name={fork.move} />
               </span>
             ) : null}
             {fork.why ? <span className="mt-1.5 block text-xs leading-snug text-muted">{fork.why}</span> : null}

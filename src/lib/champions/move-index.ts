@@ -2,6 +2,7 @@ import movesJson from "@/data/moves-champions.json";
 import type { TypeId } from "@/types/pokemon";
 import type { MoveCategory } from "@/lib/champions/damage";
 import { TYPE_LABEL } from "@/lib/champions/types";
+import { isRoleFamilyId, moveMatchesFamily, type RoleFamilyId } from "@/lib/champions/role-index";
 
 type MovesFile = {
   moves: Record<
@@ -28,11 +29,25 @@ export const MOVE_TAG_IDS = [
   "drain",
   "recoil",
   "pivot",
+  "phaze",
   "flinch",
-  "ailment",
+  "sleep",
+  "paralysis",
+  "burn",
+  "poison",
   "protect",
   "hazard",
+  "hazard-control",
   "screen",
+  "priority",
+  "choice-lock",
+  "cleric",
+  "scout",
+  "trap",
+  "trick-room",
+  "ohko",
+  "retaliate",
+  "stored-power",
 ] as const;
 
 export type MoveTagId = (typeof MOVE_TAG_IDS)[number];
@@ -45,12 +60,26 @@ export const MOVE_TAG_LABEL: Record<MoveTagId, string> = {
   heal: "Heal",
   drain: "Drain",
   recoil: "Recoil",
-  pivot: "Pivot / phaze",
+  pivot: "Pivot",
+  phaze: "Phaze",
   flinch: "Flinch",
-  ailment: "Status ailment",
+  sleep: "Sleep",
+  paralysis: "Paralysis",
+  burn: "Burn",
+  poison: "Poison",
   protect: "Protect",
   hazard: "Hazard",
+  "hazard-control": "Hazard control",
   screen: "Screens",
+  priority: "Priority",
+  "choice-lock": "Choice lock",
+  cleric: "Cleric",
+  scout: "Scout",
+  trap: "Trap",
+  "trick-room": "Trick Room",
+  ohko: "OHKO",
+  retaliate: "Retaliation",
+  "stored-power": "Boost abuse",
 };
 
 /** Dedicated priority bands — +1 is Aqua Jet / Sucker Punch / Bullet Punch territory. */
@@ -95,7 +124,8 @@ const WEATHER_EFFECT = /\b(weather|hail|sandstorm|rain|harsh sunlight|snow)\b/i;
 const TERRAIN_NAME = /\b(grassy terrain|psychic terrain|misty terrain|electric terrain|expanding force|rising voltage|grassy glide|terrain pulse|misty explosion|psyblade)\b/i;
 const TERRAIN_EFFECT = /\bterrain\b/i;
 const HAZARD =
-  /\b(stealth rock|spikes|toxic spikes|sticky web|rapid spin|defog|court change|mortal spin)\b/i;
+  /\b(stealth rock|spikes|toxic spikes|sticky web|stone axe|ceaseless edge|mortal spin)\b/i;
+const HAZARD_CONTROL = /\b(rapid spin|defog|court change|mortal spin|tidy up)\b/i;
 const SCREEN =
   /\b(light screen|reflect|aurora veil|barrier)\b/i;
 const PROTECT =
@@ -103,7 +133,9 @@ const PROTECT =
 const PIVOT_NAME =
   /\b(u-?turn|volt switch|flip turn|parting shot|baton pass|teleport|shed tail|chilly reception)\b/i;
 const PIVOT_EFFECT =
-  /\b(user switches|switches the user|forced to switch|switches out|blow.*away|roar|whirlwind)\b/i;
+  /\b(user switches out of battle to be replaced|switches the user out)\b/i;
+const PHAZE_NAME = /\b(circle throw|dragon tail|roar|whirlwind)\b/i;
+const PHAZE_EFFECT = /\b(forced to switch|blow.*away)\b/i;
 
 function tagsFor(row: {
   name: string;
@@ -125,6 +157,7 @@ function tagsFor(row: {
   if (WEATHER_NAME.test(name) || WEATHER_EFFECT.test(effect)) tags.add("weather");
   if (TERRAIN_NAME.test(blob) || TERRAIN_EFFECT.test(effect)) tags.add("terrain");
   if (HAZARD.test(blob)) tags.add("hazard");
+  if (HAZARD_CONTROL.test(blob)) tags.add("hazard-control");
   if (SCREEN.test(blob)) tags.add("screen");
   if (PROTECT.test(blob) || /\bprotects the user\b/i.test(effect)) tags.add("protect");
 
@@ -144,17 +177,36 @@ function tagsFor(row: {
 
   if (/\brecoil\b/i.test(effect)) tags.add("recoil");
   if (/\bflinch\b/i.test(effect)) tags.add("flinch");
-  if (/\b(burn|paralyze|paralys|poison|badly poison|sleep|freeze|confus)/i.test(effect)) {
-    tags.add("ailment");
+  if (/\b(sleep powder|hypnosis|yawn|spore|dark void|lovely kiss)\b/i.test(name) || /\bputs? the target to sleep\b/i.test(effect)) {
+    tags.add("sleep");
+  }
+  if (/\b(thunder wave|glare|nuzzle|stun spore)\b/i.test(name) || /\bparaly/i.test(effect)) {
+    tags.add("paralysis");
+  }
+  if (/\b(will-o-wisp|will o wisp)\b/i.test(name) || /\bburns? the target\b/i.test(effect)) {
+    tags.add("burn");
+  }
+  if (
+    /\b(toxic|mortal spin|poison gas|poison powder|toxic spikes)\b/i.test(name) ||
+    /\b(badly poison|poisons the target)\b/i.test(effect)
+  ) {
+    tags.add("poison");
   }
 
-  if (
-    PIVOT_NAME.test(name) ||
-    PIVOT_EFFECT.test(effect) ||
-    /\b(circle throw|dragon tail|roar|whirlwind)\b/i.test(name)
-  ) {
-    tags.add("pivot");
+  if (PIVOT_NAME.test(name) || PIVOT_EFFECT.test(effect)) tags.add("pivot");
+  if (PHAZE_NAME.test(name) || PHAZE_EFFECT.test(effect)) tags.add("phaze");
+
+  if ((row.priority ?? 0) > 0) tags.add("priority");
+  if (/\b(trick|switcheroo)\b/i.test(name)) tags.add("choice-lock");
+  if (/\b(healing wish|wish|lunar dance)\b/i.test(name)) tags.add("cleric");
+  if (/\b(poltergeist|transform|frisk)\b/i.test(name)) tags.add("scout");
+  if (/\b(infestation|whirlpool|fire spin|snap trap|spirit shackle|jaw lock|sand tomb|magma storm)\b/i.test(name)) {
+    tags.add("trap");
   }
+  if (/\btrick room\b/i.test(name)) tags.add("trick-room");
+  if (/\b(fissure|guillotine|horn drill|sheer cold)\b/i.test(name)) tags.add("ohko");
+  if (/\b(metal burst|mirror coat|counter|comeuppance)\b/i.test(name)) tags.add("retaliate");
+  if (/\b(stored power|power trip)\b/i.test(name)) tags.add("stored-power");
 
   return [...tags];
 }
@@ -205,6 +257,7 @@ export function filterChampionsMoves(
     type?: TypeId | "";
     category?: MoveCategory | "";
     tag?: MoveTagId | "";
+    family?: RoleFamilyId | "";
     priority?: MovePriorityFilterId;
   },
 ): IndexedMove[] {
@@ -213,6 +266,7 @@ export function filterChampionsMoves(
     if (opts.type && m.type !== opts.type) return false;
     if (opts.category && m.category !== opts.category) return false;
     if (opts.tag && !m.tags.includes(opts.tag)) return false;
+    if (opts.family && isRoleFamilyId(opts.family) && !moveMatchesFamily(m.name, opts.family)) return false;
     if (!matchesPriorityFilter(m.priority, opts.priority ?? "")) return false;
     if (needle && !m.tokens.includes(needle)) return false;
     return true;

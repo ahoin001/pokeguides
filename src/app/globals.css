@@ -27,29 +27,46 @@ html[data-theme="dark"] {
   /* Doubles viewing chrome — cooler dual-slot tone vs Singles ink */
   --format-doubles-accent: #2a9d8f;
   --format-doubles-wash: color-mix(in srgb, #2a9d8f 18%, transparent);
+
+  /* Battle chrome — inspired by Champions/SV move UI; dark base surfaces stay above */
+  --battle-panel: color-mix(in srgb, #3a2458 72%, #12141a);
+  --battle-panel-line: color-mix(in srgb, #9b7bc7 35%, transparent);
+  --battle-panel-ink: #f4f1ea;
+  --battle-panel-muted: #b8a8d0;
+  --battle-select: #f5d547;
+  --battle-meta-bg: color-mix(in srgb, #0a0c12 78%, #2a1840);
+  --battle-meta-ink: #e8f5c8;
 }
 
-/* Soft day-stadium paper — warm mist, not pure white */
+/* Cool day-stadium paper — Champions-adjacent blues, not warm cream */
 html[data-theme="light"] {
   color-scheme: light;
-  --bg: #e6e9ef;
-  --bg-raised: #f2f0e9;
-  --bg-sunken: #dce0e8;
-  --line: #c4c9d4;
-  --ink: #1c1e26;
-  --muted: #5c6474;
-  --overlay: color-mix(in srgb, #1c1e26 5%, transparent);
-  --overlay-strong: color-mix(in srgb, #1c1e26 9%, transparent);
-  --shadow: 0 14px 36px rgba(28, 30, 38, 0.12);
-  --wash-opacity: 14%;
-  --wash-vibrant-opacity: 8%;
-  --mon-dominant: #e6e9ef;
-  --mon-vibrant: #5a9e3a;
-  --mon-muted: #c4c9d4;
-  --mon-ink: #1c1e26;
-  --mon-wash: #4a9a62;
+  --bg: #e4ebf5;
+  --bg-raised: #f5f8fc;
+  --bg-sunken: #d5dee9;
+  --line: #b8c4d6;
+  --ink: #152033;
+  --muted: #4f5d73;
+  --overlay: color-mix(in srgb, #152033 5%, transparent);
+  --overlay-strong: color-mix(in srgb, #152033 9%, transparent);
+  --shadow: 0 14px 36px rgba(21, 32, 51, 0.12);
+  --wash-opacity: 12%;
+  --wash-vibrant-opacity: 7%;
+  --mon-dominant: #e4ebf5;
+  --mon-vibrant: #3d8fd4;
+  --mon-muted: #b8c4d6;
+  --mon-ink: #152033;
+  --mon-wash: #4a8fc8;
   --format-doubles-accent: #0d9488;
   --format-doubles-wash: color-mix(in srgb, #0d9488 12%, transparent);
+
+  --battle-panel: color-mix(in srgb, #4a2f78 18%, #f5f8fc);
+  --battle-panel-line: color-mix(in srgb, #6b4aa0 28%, transparent);
+  --battle-panel-ink: #152033;
+  --battle-panel-muted: #5a4a72;
+  --battle-select: #e8b820;
+  --battle-meta-bg: color-mix(in srgb, #1a2438 88%, #3a2458);
+  --battle-meta-ink: #e8f5c8;
 }
 
 @media (min-width: 768px) {
@@ -68,6 +85,12 @@ html[data-theme="light"] {
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-overlay: var(--overlay);
+  --color-battle-panel: var(--battle-panel);
+  --color-battle-panel-ink: var(--battle-panel-ink);
+  --color-battle-panel-muted: var(--battle-panel-muted);
+  --color-battle-select: var(--battle-select);
+  --color-battle-meta: var(--battle-meta-bg);
+  --color-battle-meta-ink: var(--battle-meta-ink);
   --font-sans: var(--font-display);
   --font-mono: var(--font-mono);
 }
@@ -101,7 +124,7 @@ body {
 }
 
 html[data-theme="light"] ::selection {
-  color: #1c1e26;
+  color: #152033;
 }
 
 @media (prefers-reduced-motion: reduce) {

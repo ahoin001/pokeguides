@@ -2,7 +2,16 @@ import { KIT_TAGS, type KitTag } from "@/types/pokemon";
 
 /** PokeAPI kebab-case move names that mark a Champions job. Not a learnset dump. */
 const MOVES: Record<KitTag, readonly string[]> = {
-  pivot: ["u-turn", "volt-switch", "flip-turn", "parting-shot", "teleport"],
+  pivot: [
+    "u-turn",
+    "volt-switch",
+    "flip-turn",
+    "parting-shot",
+    "teleport",
+    "baton-pass",
+    "chilly-reception",
+    "shed-tail",
+  ],
   priority: [
     "fake-out",
     "sucker-punch",
@@ -51,6 +60,8 @@ const MOVES: Record<KitTag, readonly string[]> = {
     "shore-up",
     "strength-sap",
     "wish",
+    "healing-wish",
+    "lunar-dance",
     "rest",
   ],
   status: [
@@ -70,7 +81,7 @@ const MOVES: Record<KitTag, readonly string[]> = {
   ],
   "trick-room": ["trick-room"],
   tailwind: ["tailwind"],
-  hazards: ["stealth-rock", "spikes", "toxic-spikes", "sticky-web"],
+  hazards: ["stealth-rock", "spikes", "toxic-spikes", "sticky-web", "stone-axe", "ceaseless-edge"],
 };
 
 const LOOKUP = new Map<string, KitTag>();

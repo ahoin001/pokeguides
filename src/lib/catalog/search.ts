@@ -1,5 +1,6 @@
 import MiniSearch from "minisearch";
 import type { CatalogEntry, RoleId, TypeId } from "@/types/pokemon";
+import { isRoleFamilyId, pokemonHasRole, type RoleFamilyId } from "@/lib/champions/role-index";
 
 /** One MiniSearch index per roster array reference (avoids stale singleton misses). */
 const indexes = new WeakMap<object, MiniSearch<CatalogEntry>>();
@@ -55,6 +56,8 @@ export function searchCatalog(
   filters: {
     type?: TypeId | "";
     role?: RoleId | "";
+    family?: RoleFamilyId | "";
+    tool?: string;
     mega?: boolean;
     featured?: boolean;
   } = {},
@@ -86,6 +89,9 @@ export function searchCatalog(
   }
   if (filters.role) {
     rows = rows.filter((p) => p.role === filters.role);
+  }
+  if (filters.family && isRoleFamilyId(filters.family)) {
+    rows = rows.filter((p) => pokemonHasRole(p, filters.family as RoleFamilyId, filters.tool || undefined));
   }
   if (filters.mega) {
     rows = rows.filter((p) => p.form === "mega" || p.form === "mega-z");

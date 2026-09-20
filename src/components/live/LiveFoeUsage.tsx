@@ -5,12 +5,9 @@ import { getRankedBySlug } from "@/lib/ranked/load";
 import { formatPct } from "@/lib/ranked/format";
 import { getChampionsMove } from "@/lib/champions/move-data";
 import { getItemBlurb } from "@/lib/champions/item-data";
-import { TYPE_LABEL } from "@/lib/champions/types";
-import { TypeGlyph } from "@/components/pokemon/TypeGlyph";
 import { Popover } from "@/components/ui/Popover";
-import type { TypeId } from "@/types/pokemon";
-
-const INK_DARK: TypeId[] = ["electric", "ice", "fairy", "fighting", "ground"];
+import { MoveChip } from "@/components/moves/MoveChip";
+import { MoveDetailPanel } from "@/components/moves/MoveDetailPanel";
 
 /**
  * Compact ladder moves + items for the active foe — sits under THEM type strips.
@@ -44,9 +41,7 @@ export function LiveFoeUsage({
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted">
             Common moves
           </p>
-          <ul
-            className={`mt-1.5 flex flex-wrap gap-1.5 ${end ? "md:justify-end" : ""}`}
-          >
+          <ul className={`mt-1.5 flex flex-wrap gap-1.5 ${end ? "md:justify-end" : ""}`}>
             {moves.map((m) => (
               <li key={m.name} className="max-w-full">
                 <MoveUsageChip name={m.name} pct={m.pct} align={align} />
@@ -61,9 +56,7 @@ export function LiveFoeUsage({
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted">
             Common items
           </p>
-          <ul
-            className={`mt-1.5 flex flex-wrap gap-1.5 ${end ? "md:justify-end" : ""}`}
-          >
+          <ul className={`mt-1.5 flex flex-wrap gap-1.5 ${end ? "md:justify-end" : ""}`}>
             {items.map((item) => (
               <li key={item.name} className="max-w-full">
                 <ItemUsageChip name={item.name} pct={item.pct} align={align} />
@@ -87,30 +80,7 @@ function MoveUsageChip({
 }) {
   const [open, setOpen] = useState(false);
   const move = getChampionsMove(name);
-  const type = move?.type;
   const pctLabel = formatPct(pct);
-  const ink = type && INK_DARK.includes(type) ? "text-[#1a1a1a]" : "text-white";
-
-  const triggerClass = type
-    ? `inline-flex max-w-full items-center gap-1 rounded-full px-2 py-1 text-[11px] font-semibold tracking-tight ${ink} transition hover:brightness-110`
-    : "inline-flex max-w-full items-center gap-1 rounded-full border border-line/70 bg-raised/50 px-2 py-1 text-[11px] font-medium text-ink transition hover:border-ink/35";
-
-  const meta = [
-    type ? TYPE_LABEL[type] : null,
-    move?.category
-      ? move.category === "status"
-        ? "Status"
-        : move.category === "special"
-          ? "Special"
-          : "Physical"
-      : null,
-    move && move.basePower > 0 ? `${move.basePower} BP` : null,
-    move?.priority && move.priority !== 0
-      ? `Pri ${move.priority > 0 ? `+${move.priority}` : move.priority}`
-      : null,
-  ]
-    .filter(Boolean)
-    .join(" · ");
 
   return (
     <Popover
@@ -118,55 +88,29 @@ function MoveUsageChip({
       onOpenChange={setOpen}
       align={align}
       role="dialog"
-      widthClassName="w-[min(100vw-2rem,18rem)]"
+      variant="battle"
+      widthClassName="w-[min(100vw-2rem,18.5rem)]"
       trigger={({ open: isOpen, toggle, triggerProps }) => (
-        <button
-          type="button"
+        <MoveChip
           {...triggerProps}
+          name={name}
+          type={move?.type}
+          meta={pctLabel}
+          selected={isOpen}
           aria-label={`${name}${pctLabel ? `, ${pctLabel}` : ""}`}
           onClick={toggle}
-          className={triggerClass}
-          style={
-            type
-              ? {
-                  background: `var(--type-${type})`,
-                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.22)",
-                }
-              : undefined
-          }
-        >
-          {type ? <TypeGlyph type={type} className="h-3 w-3 shrink-0 opacity-95" /> : null}
-          <span className="truncate">{name}</span>
-          {pctLabel ? (
-            <span className={`shrink-0 font-mono text-[9px] tabular-nums ${type ? "opacity-85" : "text-muted"}`}>
-              {pctLabel}
-            </span>
-          ) : null}
-          <span className="sr-only">{isOpen ? "Hide details" : "Show details"}</span>
-        </button>
+        />
       )}
     >
-      <div className="space-y-2 p-1 text-left">
-        <div className="flex flex-wrap items-center gap-2">
-          {type ? (
-            <span
-              className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold ${ink}`}
-              style={{ background: `var(--type-${type})` }}
-            >
-              <TypeGlyph type={type} className="h-3 w-3" />
-              {TYPE_LABEL[type]}
-            </span>
-          ) : null}
-          <p className="text-sm font-semibold tracking-tight">{move?.name ?? name}</p>
-        </div>
-        {meta ? <p className="font-mono text-[10px] text-muted">{meta}</p> : null}
-        <p className="text-sm leading-snug text-muted">
-          {move?.shortEffect || "No effect text synced for this move yet."}
-        </p>
-        {pctLabel ? (
-          <p className="font-mono text-[10px] text-muted">Ladder · {pctLabel}</p>
-        ) : null}
-      </div>
+      <MoveDetailPanel
+        name={move?.name ?? name}
+        type={move?.type}
+        category={move?.category}
+        power={move?.basePower}
+        priority={move?.priority}
+        effect={move?.shortEffect}
+        footnote={pctLabel ? `Ladder · ${pctLabel}` : null}
+      />
     </Popover>
   );
 }

@@ -7,9 +7,10 @@ import {
   type ReactNode,
 } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { easeOut, motionTokens } from "@/components/motion/tokens";
+import { panelIn } from "@/components/motion/tokens";
 
 export type PopoverAlign = "start" | "center" | "end";
+export type PopoverVariant = "default" | "battle";
 
 type PopoverProps = {
   open: boolean;
@@ -28,6 +29,8 @@ type PopoverProps = {
   align?: PopoverAlign;
   /** Panel role — menus use menu; lists/forms use dialog. */
   role?: "menu" | "dialog";
+  /** `battle` uses transparent shell — child supplies MoveDetailPanel glass. */
+  variant?: PopoverVariant;
   className?: string;
   panelClassName?: string;
   /** Extra classes on the animated panel shell. */
@@ -51,6 +54,7 @@ export function Popover({
   children,
   align = "end",
   role = "menu",
+  variant = "default",
   className = "",
   panelClassName = "",
   widthClassName = "w-[min(100vw-2rem,22rem)]",
@@ -58,6 +62,7 @@ export function Popover({
   const root = useRef<HTMLDivElement>(null);
   const panelId = useId();
   const reduce = useReducedMotion();
+  const battle = variant === "battle";
 
   useEffect(() => {
     if (!open) return;
@@ -98,14 +103,18 @@ export function Popover({
           <motion.div
             id={panelId}
             role={role}
-            initial={reduce ? false : { opacity: 0, y: -4, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={reduce ? undefined : { opacity: 0, y: -4, scale: 0.96 }}
-            transition={{ duration: motionTokens.state, ease: easeOut }}
+            initial={reduce ? false : panelIn.initial}
+            animate={panelIn.animate}
+            exit={reduce ? undefined : panelIn.exit}
+            transition={panelIn.transition}
             className={`absolute top-[calc(100%+0.5rem)] z-30 ${ALIGN[align]} ${widthClassName}`}
           >
             <div
-              className={`rounded-2xl border border-line bg-bg p-2 shadow-[var(--shadow)] ${panelClassName}`}
+              className={
+                battle
+                  ? `p-0 ${panelClassName}`
+                  : `rounded-2xl border border-line bg-bg p-2 shadow-[var(--shadow)] ${panelClassName}`
+              }
             >
               {children}
             </div>

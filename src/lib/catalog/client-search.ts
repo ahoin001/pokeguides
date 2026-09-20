@@ -1,4 +1,5 @@
 import type { CatalogEntry, RoleId, TypeId } from "@/types/pokemon";
+import type { RoleFamilyId } from "@/lib/champions/role-index";
 import { searchCatalog } from "@/lib/catalog/search";
 
 let roster: CatalogEntry[] | null = null;
@@ -22,6 +23,8 @@ export function searchLegal(
   filters: {
     type?: TypeId | "";
     role?: RoleId | "";
+    family?: RoleFamilyId | "";
+    tool?: string;
     mega?: boolean;
     featured?: boolean;
   } = {},

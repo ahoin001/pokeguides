@@ -4,6 +4,7 @@ import sharp from "sharp";
 import { TYPE_IDS, type CatalogEntry, type PokemonForm, type SpeciesColor, type TypeId } from "../src/types/pokemon";
 import { speedAt } from "../src/lib/champions/stats";
 import { kitTagsFromMoves } from "../src/lib/champions/kit-tags";
+import { roleToolsFromLearnset } from "../src/lib/champions/role-index";
 import { fallbackPalette, paletteFromHex } from "../src/lib/champions/palette";
 import { displayName, pokeGet, type PokePokemon, type PokeSpecies } from "../src/lib/pokeapi/client";
 
@@ -187,9 +188,14 @@ async function buildEntry(
     }
 
     const name = displayName(species, slug);
-    const abilities = pokemon.abilities.map((a) => a.ability.name.replace(/-/g, " "));
-    const kitTags = kitTagsFromMoves(pokemon.moves.map((m) => m.move.name));
-    const tokens = [name, slug, ...types, ...abilities, speciesColor, ...kitTags].join(" ").toLowerCase();
+    const moveNames = pokemon.moves.map((m) => m.move.name);
+    const abilitySlugs = pokemon.abilities.map((a) => a.ability.name);
+    const abilities = abilitySlugs.map((a) => a.replace(/-/g, " "));
+    const kitTags = kitTagsFromMoves(moveNames);
+    const roleTools = roleToolsFromLearnset(moveNames, abilitySlugs);
+    const tokens = [name, slug, ...types, ...abilities, speciesColor, ...kitTags, ...roleTools]
+      .join(" ")
+      .toLowerCase();
 
     return {
       id: pokemon.id,
@@ -206,6 +212,7 @@ async function buildEntry(
       speedAt32: speedAt(spe, 32),
       abilities,
       kitTags,
+      roleTools,
       artwork,
       sprite,
       tokens,

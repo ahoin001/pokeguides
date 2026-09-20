@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { X } from "@phosphor-icons/react";
 import { getChampionsMove, searchChampionsDamagingMoves } from "@/lib/champions/move-data";
 import { getRankedBySlug } from "@/lib/ranked/load";
-import { TypeBadge } from "@/components/pokemon/TypeBadge";
+import { MoveChip } from "@/components/moves/MoveChip";
 import type { DamageMove } from "@/lib/champions/damage";
 
 const MAX_MOVES = 4;
@@ -89,19 +89,16 @@ export function SlotMoveEditor({
           {moves.map((name) => {
             const meta = getChampionsMove(name);
             return (
-              <li key={name}>
-                <span className="inline-flex items-center gap-1 rounded-full border border-line bg-sunken/80 py-1 pl-2 pr-1 text-xs">
-                  {meta ? <TypeBadge type={meta.type} size="sm" /> : null}
-                  <span className="font-medium">{name}</span>
-                  <button
-                    type="button"
-                    onClick={() => remove(name)}
-                    className="rounded-full p-1 text-muted hover:bg-white/10 hover:text-ink"
-                    aria-label={`Remove ${name}`}
-                  >
-                    <X size={12} weight="bold" />
-                  </button>
-                </span>
+              <li key={name} className="inline-flex items-center gap-0.5">
+                <MoveChip as="span" name={name} type={meta?.type} size="sm" />
+                <button
+                  type="button"
+                  onClick={() => remove(name)}
+                  className="rounded-full p-1 text-muted hover:bg-white/10 hover:text-ink"
+                  aria-label={`Remove ${name}`}
+                >
+                  <X className="h-3.5 w-3.5" weight="bold" />
+                </button>
               </li>
             );
           })}
@@ -117,20 +114,16 @@ export function SlotMoveEditor({
           {ladderMoves.slice(0, 8).map((m) => {
             const on = selectedKeys.has(m.name.toLowerCase());
             return (
-              <button
+              <MoveChip
                 key={m.name}
-                type="button"
+                name={m.name}
+                type={m.type}
+                selected={on}
                 disabled={on || moves.length >= MAX_MOVES}
                 onClick={() => add(m.name)}
-                className={`rounded-full px-2.5 py-1 text-[11px] transition ${
-                  on
-                    ? "bg-ink/20 text-muted line-through"
-                    : "bg-white/6 text-muted hover:text-ink disabled:opacity-40"
-                }`}
                 title={`Ladder · ${m.type} · ${m.basePower}`}
-              >
-                {m.name}
-              </button>
+                className={on ? "opacity-50 line-through" : undefined}
+              />
             );
           })}
         </div>

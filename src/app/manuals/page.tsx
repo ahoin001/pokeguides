@@ -148,7 +148,7 @@ export default function ManualsIndex() {
           <h1 className="mt-2 text-4xl font-semibold tracking-tight lg:text-5xl">Field manuals</h1>
           <p className="mt-4 text-lg text-muted">
             {doubles
-              ? "Bring-four write-ups for Champions doubles — same schema as Singles, pair language and Doubles chrome."
+              ? "6-to-4 field manuals for Champions doubles — engines, speed planes, preview trees, and complete kits."
               : "Boxed sixes for Champions singles — register six, preview, bring three. Load a bring onto Team when you want to try it."}
           </p>
           <div className="mt-6">
@@ -170,8 +170,7 @@ export default function ManualsIndex() {
 
       {doubles ? (
         <div className="mt-8 rounded-[28px] border border-[color-mix(in_srgb,var(--format-doubles-accent)_45%,var(--line))] bg-[var(--format-doubles-wash)] px-5 py-4 text-sm text-muted">
-          Doubles manuals share the Singles write-up shape. Team / Live still assume Singles brings — these pages are for
-          study until Doubles tools land.
+          Doubles field manuals are 6-to-4. Team / Live still assume a Singles bring — study here, load sets by hand.
         </div>
       ) : null}
 
@@ -247,7 +246,7 @@ export default function ManualsIndex() {
             {doubles
               ? filtering
                 ? "No Doubles manual matches that filter. Clear it, or write your own with format Doubles."
-                : "Doubles field manuals land here. Same write-up schema as Singles — the shelf is ready when the first pack ships."
+                : "No Doubles classroom pack matches that Pokémon. Clear the filter."
               : "No classroom three matches that Pokémon or shelf. Clear the filter, or write your own."}
           </p>
         ) : grouped ? (

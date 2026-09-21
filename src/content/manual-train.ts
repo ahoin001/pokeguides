@@ -13,6 +13,9 @@ export type TrainSpread = {
   label?: string;
   spend?: string[];
   alts?: TrainAlt[];
+  rule?: string;
+  exportEvs?: string;
+  ivsNote?: string;
 };
 
 export function train(
@@ -22,7 +25,14 @@ export function train(
   spa: number,
   spd: number,
   spe: number,
-  copy: { label: string; why: string; spend: string[] },
+  copy: {
+    label: string;
+    why: string;
+    spend: string[];
+    rule?: string;
+    exportEvs?: string;
+    ivsNote?: string;
+  },
   alts?: TrainAlt[],
 ): TrainSpread {
   return { sp: { hp, atk, def, spa, spd, spe }, ...copy, alts };

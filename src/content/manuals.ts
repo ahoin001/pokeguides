@@ -1,8 +1,10 @@
 import type { ArchetypeId, LiteracyRoleId, RoleId, SampleSp } from "@/types/pokemon";
 import type { BattleFormat } from "@/lib/format";
+import { FORMAT_BRING } from "@/lib/format";
 import { alt, train } from "@/content/manual-train";
 import { ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL } from "@/content/manuals/ultra-garchompz-salamence-gholdengo";
 import { CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL } from "@/content/manuals/charizard-lucario-rotom-flex";
+import { SAND_COACHING_TAILWIND_MILOTIC_MANUAL } from "@/content/manuals/sand-coaching-tailwind-milotic";
 
 export { alt, train };
 
@@ -15,6 +17,19 @@ export type MoveNote = {
   name: string;
   why: string;
   alts?: MoveAlt[];
+};
+
+/** Ordered beats for an engine, item loop, or package pipeline. */
+export type ManualSequenceBeat = {
+  slug?: string;
+  click: string;
+  why?: string;
+};
+
+export type ManualSequence = {
+  id?: string;
+  title?: string;
+  beats: ManualSequenceBeat[];
 };
 
 export type SlotTrainingAlt = {
@@ -32,6 +47,10 @@ export type SlotTraining = {
   label?: string;
   spend?: string[];
   alts?: SlotTrainingAlt[];
+  /** Verbatim Showdown EV line for provenance. Live grid stays Champions SP. */
+  exportEvs?: string;
+  /** e.g. "31 across". */
+  ivsNote?: string;
 };
 
 /** Alternate kit for one species already on the registered six (Mega / Scarf / Sash).
@@ -50,6 +69,24 @@ export type SlotMode = {
   moves: MoveNote[];
   objective?: string;
   howToPlay?: string;
+};
+
+export type ManualKitContrast = {
+  vs: string;
+  theyUsed: string;
+  weUse: string;
+  why: string;
+};
+
+export type ManualAbilityStages = {
+  before: string;
+  after: string;
+  when: string;
+};
+
+export type ManualAmpTarget = {
+  slug: string;
+  becomes: string;
 };
 
 export type SlotManual = {
@@ -78,6 +115,16 @@ export type SlotManual = {
    * Default item/moves remain the teaching baseline; modes are the real decision tree.
    */
   modes?: SlotMode[];
+  lock?: "do-not-change" | "later-test";
+  lockWhy?: string;
+  /** Kit departure vs a named source six (e.g. Baltimore). */
+  contrast?: ManualKitContrast;
+  /** Mega / forme ability change (Intimidate → Aerilate). */
+  abilityStages?: ManualAbilityStages;
+  /** Who this support click is for (Coaching targets). */
+  ampTargets?: ManualAmpTarget[];
+  /** Item or scale loop unique to this slot. */
+  itemLoop?: ManualSequence;
 };
 
 export type ManualBranch = {
@@ -170,15 +217,15 @@ export type ManualHealthNote = {
 export type ManualPackStrategy = {
   /** What their six is trying to bully you with (preview read). */
   opponentPattern: string;
-  /** The three selected from the registered six. */
-  bring: [string, string, string];
+  /** The four (doubles) or three (singles) selected from the registered six. */
+  bring: string[];
   /** Why this package answers that pattern. */
   purpose: string;
   /** Structures / threats this package attacks. */
   targets: string[];
   /** Structures where you should refuse this package. */
   refuses: string[];
-  /** How this three wins once selected. */
+  /** How this bring wins once selected. */
   winCondition: string;
   /** Short chain: Break → Control → Finish. */
   gamePlan?: string;
@@ -273,14 +320,14 @@ export type ManualDecisionRule = {
   bad: string;
 };
 
-/** One preview bring of three from the registered six. */
+/** One preview bring from the registered six (3 singles / 4 doubles). */
 export type ManualPack = {
   id: string;
   label: string;
   when: string;
   identity: string;
-  slugs: [string, string, string];
-  /** Explicit reason for choosing this three from six. */
+  slugs: string[];
+  /** Explicit reason for choosing this bring from six. */
   strategy?: ManualPackStrategy;
   /** Macro + micro jobs for each bring member (boxed guides). */
   roles?: ManualPackRole[];
@@ -300,6 +347,14 @@ export type ManualPack = {
   winconMode?: string;
   /** Which construction.endgames this bring pursues (by ManualEndgame.id). */
   endgameIds?: string[];
+  /** Which team engines this four/three is allowed to pursue. */
+  engineIds?: string[];
+  /** Doubles: two on the field at lead. */
+  defaultLeadPair?: [string, string];
+  /** Doubles: who sits in back. */
+  backPair?: [string, string];
+  /** Package pipelines (Sand Rush KO chain, Corv scale, etc.). */
+  sequence?: ManualSequence[];
   /**
    * Flex swap required before this pack is legal.
    * `out` must be on box; `in` must be in construction.altSlots.
@@ -392,6 +447,70 @@ export type ManualArchitectureLayer = {
   slugs?: string[];
 };
 
+export type ManualEngine = {
+  id: string;
+  label: string;
+  path: string[];
+  how: string;
+  dependsOn?: string;
+  disrupt?: string;
+  fallback?: string;
+};
+
+export type ManualControlPlaneId = "sand" | "tailwind" | "icy-wind" | "coaching";
+
+export type ManualControlPlane = {
+  id: ManualControlPlaneId;
+  label: string;
+  setterSlug: string;
+  effect: string;
+  whoBenefits: string;
+};
+
+export type ManualPreviewBranch = {
+  when: string;
+  then: string;
+  bringPackId?: string;
+  note?: string;
+};
+
+export type ManualPreviewTree = {
+  ask: string;
+  branches: ManualPreviewBranch[];
+};
+
+export type ManualMatchupScript = {
+  id: string;
+  foe: string;
+  why: string;
+  packId: string;
+  sequence: ManualSequence;
+  trap?: string;
+};
+
+export type ManualRejectedAlt = {
+  slug: string;
+  whyNot: string;
+};
+
+export type ManualLaterTest = {
+  slug: string;
+  change: string;
+  whenToTest: string;
+};
+
+export type ManualTradeDropped = {
+  slug: string;
+  lost: string[];
+};
+
+export type ManualTradeLedger = {
+  dropped: ManualTradeDropped;
+  gained: string[];
+  rejectedAlts?: ManualRejectedAlt[];
+  laterTests?: ManualLaterTest[];
+};
+
 export type ManualSpeedBenchmark = {
   target: string;
   theirSpe: string;
@@ -460,7 +579,7 @@ export function resolvePackStrategy(pack: ManualPack): ManualPackStrategy {
  * - Manual (`box` / `roster` / `core` / construction / megaPool / evidence):
  *   the registered six, sets authored once, and build thesis.
  * - Pack (`slugs` / `strategy` / optional pilot·plan·flows·loops):
- *   one preview bring of three and pack-specific gameplan when it differs.
+ *   one preview bring (3 singles / 4 doubles) and pack-specific gameplan when it differs.
  * - Shared fallback: when a pack omits flows/loops/phases, `resolveManual`
  *   inherits the team-level gameplan — UI must label that with
  *   `packUsesSharedGameplan`.
@@ -479,8 +598,8 @@ export type TeamManual = {
   archetype: ArchetypeId;
   family?: ManualFamilyId;
   pilot?: ManualPilot;
-  /** Resolved active three — filled by resolveManual for boxed manuals. */
-  slugs: [string, string, string];
+  /** Resolved active bring — filled by resolveManual for boxed manuals. */
+  slugs: string[];
   meta: string;
   press?: string[];
   refuse?: string[];
@@ -502,9 +621,9 @@ export type TeamManual = {
   box?: [string, string, string, string, string, string] | string[];
   /** All six sets once. Packs reference by slug. */
   roster?: SlotManual[];
-  /** Default identity three. */
-  core?: [string, string, string];
-  /** Preview packs — threes drawn from the box. */
+  /** Default identity bring (3 singles / 4 doubles). */
+  core?: string[];
+  /** Preview packs drawn from the box. */
   packs?: ManualPack[];
   /** How / why this six was constructed from ladder evidence. */
   construction?: ManualConstruction;
@@ -514,6 +633,16 @@ export type TeamManual = {
   evidence?: ManualEvidence;
   /** Layered read of the six (speed / setup / glue / cleaner). */
   architecture?: ManualArchitectureLayer[];
+  /** Named win engines (Sand Rush, Coaching scale, Corv Bulk Up). */
+  engines?: ManualEngine[];
+  /** Speed / tempo control planes. */
+  controlPlanes?: ManualControlPlane[];
+  /** Team-preview questions to memorize. */
+  previewTrees?: ManualPreviewTree[];
+  /** Named opponent scripts that select a pack. */
+  matchupScripts?: ManualMatchupScript[];
+  /** What this version sacrificed and gained vs the source six. */
+  ledger?: ManualTradeLedger;
   /** Nature / Spe decision records before locking SP. */
   speedBenchmarks?: ManualSpeedBenchmark[];
   /** Authored six-wide coverage notes (supplements computed kit coverage). */
@@ -613,7 +742,7 @@ export function resolveRosterSlot(
 
 function slotsForPack(
   manual: TeamManual,
-  slugs: [string, string, string],
+  slugs: string[],
   winconMode?: string | null,
 ): SlotManual[] {
   return slugs.map((slug) => resolveRosterSlot(manual, slug, winconMode));
@@ -633,7 +762,8 @@ export function resolveManual(manual: TeamManual, packId?: string | null): TeamM
   const winconMode = strategy.winconMode ?? pack.winconMode;
   const resolvedSlots = manual.roster?.length
     ? slotsForPack(manual, pack.slugs, winconMode)
-    : manual.slots.length === 3 && manual.slots.every((s, i) => s.slug === pack.slugs[i])
+    : manual.slots.length === pack.slugs.length &&
+        manual.slots.every((s, i) => s.slug === pack.slugs[i])
       ? slotsForPack(manual, pack.slugs, winconMode)
       : slotsForPack(manual, pack.slugs, winconMode);
 
@@ -893,9 +1023,14 @@ export function manualsForFormat(format: BattleFormat, manuals: readonly TeamMan
   return manuals.filter((m) => manualFormat(m) === format);
 }
 
+export function manualBringSize(manual: Pick<TeamManual, "format">) {
+  return FORMAT_BRING[manualFormat(manual)];
+}
+
 export const CANONICAL_MANUALS: TeamManual[] = [
   ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL,
   CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL,
+  SAND_COACHING_TAILWIND_MILOTIC_MANUAL,
 ];
 
 export function getCanonicalManual(id: string) {
@@ -988,7 +1123,7 @@ export function emptyManual(id: string): TeamManual {
   };
 }
 
-export function emptyPack(id: string, slugs: [string, string, string] = ["", "", ""]): ManualPack {
+export function emptyPack(id: string, slugs: string[] = ["", "", ""]): ManualPack {
   return {
     id,
     label: "",
@@ -1040,7 +1175,7 @@ export function toBoxedDraft(manual: TeamManual): TeamManual {
     emptySlot(),
   ].slice(0, 6);
   while (roster.length < 6) roster.push(emptySlot());
-  const core: [string, string, string] = [
+  const core: string[] = [
     box[0] || "",
     box[1] || "",
     box[2] || "",

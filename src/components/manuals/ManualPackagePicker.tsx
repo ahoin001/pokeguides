@@ -6,6 +6,28 @@ import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { ManualSection } from "@/components/manuals/ManualSection";
 import { packRequiresSwap, type ManualPack } from "@/content/manuals";
 
+export function PackFourArts({
+  slugs,
+  size = 56,
+}: {
+  slugs: string[];
+  size?: number;
+}) {
+  return (
+    <div className="grid grid-cols-2 justify-items-center gap-1">
+      {slugs.slice(0, 4).map((slug) => {
+        const mon = getPokemon(slug);
+        if (!mon) return null;
+        return (
+          <span key={slug} className="block" style={cssVars(mon.palette)} title={mon.name}>
+            <PokemonArt slug={mon.slug} src={mon.sprite || mon.artwork} name={mon.name} size={size} />
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
 export function PackThreeArts({
   slugs,
   size = 56,
@@ -32,18 +54,25 @@ export function ManualPackagePicker({
   packs,
   activeId,
   onSelectPack,
+  format = "singles",
 }: {
   packs: ManualPack[];
   activeId: string;
   onSelectPack: (id: string) => void;
+  format?: "singles" | "doubles";
 }) {
   if (!packs.length) return null;
+  const doubles = format === "doubles";
 
   return (
     <ManualSection
       id="packages"
       title="Packages"
-      purpose="Each package is a bring of three from the six above. Selecting one updates the guide below."
+      purpose={
+        doubles
+          ? "Each package is a bring of four from the six. Selecting one updates the guide below."
+          : "Each package is a bring of three from the six above. Selecting one updates the guide below."
+      }
     >
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {packs.map((p) => {
@@ -63,7 +92,11 @@ export function ManualPackagePicker({
                 style={lead ? cssVars(lead.palette) : undefined}
                 aria-pressed={on}
               >
-                <PackThreeArts slugs={p.slugs} size={on ? 64 : 48} />
+                {doubles ? (
+                  <PackFourArts slugs={p.slugs} size={on ? 56 : 44} />
+                ) : (
+                  <PackThreeArts slugs={p.slugs} size={on ? 64 : 48} />
+                )}
                 <p className="mt-4 text-lg font-semibold tracking-tight">{p.label}</p>
                 {p.when ? (
                   <p className="mt-1 text-sm leading-snug text-muted">{p.when}</p>

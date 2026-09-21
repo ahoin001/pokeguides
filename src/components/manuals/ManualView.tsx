@@ -12,6 +12,13 @@ import { ManualRosterHero } from "@/components/manuals/ManualRosterHero";
 import { ManualSetTabs } from "@/components/manuals/ManualSetTabs";
 import { ManualPackagePicker } from "@/components/manuals/ManualPackagePicker";
 import { ManualPackageGuide } from "@/components/manuals/ManualPackageGuide";
+import {
+  ManualDoublesArchitecture,
+  ManualMatchupScripts,
+  ManualPreviewTrees,
+  ManualTradeLedger,
+} from "@/components/manuals/ManualDoublesChapters";
+import { ManualSection } from "@/components/manuals/ManualSection";
 import type { CoverageMember } from "@/lib/champions/team-coverage";
 import {
   MANUAL_FAMILY_LABEL,
@@ -108,6 +115,12 @@ export function ManualView({
             {formatManualEyebrow(manualFormat(parent))} · {formatBringLabel(manualFormat(parent))}
           </p>
           <h1 className="mt-2 text-4xl font-semibold tracking-tight lg:text-5xl">{parent.title}</h1>
+          {parent.pilot?.thesis ? (
+            <p className="mt-4 max-w-[52ch] text-lg leading-snug text-ink/90">{parent.pilot.thesis}</p>
+          ) : null}
+          {parent.philosophy && manualFormat(parent) === "doubles" ? (
+            <p className="mt-3 max-w-[52ch] text-sm leading-relaxed text-muted">{parent.philosophy}</p>
+          ) : null}
           <p className="mt-3 flex flex-wrap items-center gap-2 text-sm text-muted">
             <span className="rounded-full bg-white/8 px-3 py-1 font-medium text-ink">
               {MANUAL_FAMILY_LABEL[manualFamily(manual)]}
@@ -125,6 +138,8 @@ export function ManualView({
             ) : null}
           </p>
         </header>
+
+        {manualFormat(parent) === "doubles" ? <ManualDoublesArchitecture parent={parent} /> : null}
 
         {boxed ? (
           <ManualRosterHero
@@ -149,7 +164,32 @@ export function ManualView({
             packs={packs}
             activeId={activeId}
             onSelectPack={selectPack}
+            format={manualFormat(parent)}
           />
+        ) : null}
+
+        {manualFormat(parent) === "doubles" && (parent.previewTrees?.length ?? 0) > 0 ? (
+          <ManualSection
+            id="preview"
+            title="Preview"
+            purpose={parent.pilot?.rule ?? "The question to memorize before you pick four."}
+          >
+            <ManualPreviewTrees trees={parent.previewTrees ?? []} onSelectPack={selectPack} />
+          </ManualSection>
+        ) : null}
+
+        {manualFormat(parent) === "doubles" && (parent.matchupScripts?.length ?? 0) > 0 ? (
+          <ManualSection
+            id="scripts"
+            title="Scripts"
+            purpose="Named boards. Tapping a package loads that four into the guide."
+          >
+            <ManualMatchupScripts
+              scripts={parent.matchupScripts ?? []}
+              packs={packs.map((p) => ({ id: p.id, label: p.label }))}
+              onSelectPack={selectPack}
+            />
+          </ManualSection>
         ) : null}
 
         <ManualPackageGuide
@@ -158,6 +198,19 @@ export function ManualView({
           pack={activePack}
           coverageMembers={packCoverage}
         />
+
+        {manualFormat(parent) === "doubles" && parent.ledger ? (
+          <ManualSection
+            id="ledger"
+            title="Ledger"
+            purpose={parent.evidence?.caveat}
+          >
+            <ManualTradeLedger ledger={parent.ledger} />
+            {parent.setsNote ? (
+              <p className="mt-6 max-w-[52ch] text-sm text-muted">{parent.setsNote}</p>
+            ) : null}
+          </ManualSection>
+        ) : null}
       </article>
     </PageFrame>
   );

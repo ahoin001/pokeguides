@@ -20,6 +20,7 @@ import {
   emptySlot,
   MANUAL_FAMILY_IDS,
   MANUAL_FAMILY_LABEL,
+  manualBringSize,
   manualFormat,
   toBoxedDraft,
   toFlatDraft,
@@ -36,7 +37,7 @@ import {
   type SlotMode,
   type TeamManual,
 } from "@/content/manuals";
-import { FORMAT_BLURB, FORMAT_LABEL, type BattleFormat } from "@/lib/format";
+import { FORMAT_BLURB, FORMAT_BRING, FORMAT_LABEL, type BattleFormat } from "@/lib/format";
 import { syncSlugsFromSlots, validateManual } from "@/lib/champions/manuals";
 import { sampleSpTotal } from "@/lib/champions/stats";
 import { useManualsStore } from "@/stores/manuals";
@@ -199,7 +200,18 @@ export function ManualForm({
               <button
                 key={fmt}
                 type="button"
-                onClick={() => commit({ ...draft, format: fmt as BattleFormat })}
+                onClick={() => {
+                  const n = FORMAT_BRING[fmt];
+                  const packs = (draft.packs ?? []).map((p) => {
+                    const slugs = Array.from({ length: n }, (_, i) => p.slugs[i] ?? "");
+                    return {
+                      ...p,
+                      slugs,
+                      strategy: p.strategy ? { ...p.strategy, bring: slugs } : p.strategy,
+                    };
+                  });
+                  commit({ ...draft, format: fmt, packs });
+                }}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
                   on
                     ? fmt === "doubles"
@@ -232,7 +244,7 @@ export function ManualForm({
         placeholder={
           boxed
             ? "One line for the manuals index. Not shown on the manual page."
-            : "What this three is trying to do."
+            : `What this ${manualBringSize(draft) === 4 ? "four" : "three"} is trying to do.`
         }
       />
 
@@ -275,7 +287,9 @@ export function ManualForm({
             value={draft.philosophy}
             onChange={(e) => commit({ ...draft, philosophy: e.target.value })}
           />
-          <label className="mt-6 block text-sm font-medium">What this three is for</label>
+          <label className="mt-6 block text-sm font-medium">
+            {boxed ? "What this six is for" : `What this ${manualBringSize(draft) === 4 ? "four" : "three"} is for`}
+          </label>
           <textarea
             className={`mt-2 ${areaClass}`}
             value={draft.meta}
@@ -306,7 +320,7 @@ export function ManualForm({
       </h2>
       <p className="mt-1 text-sm text-muted">
         {boxed
-          ? "Sets live on the six once. Packages pick three by slug."
+          ? `Sets live on the six once. Packages pick ${manualBringSize(draft)} by slug.`
           : "Author the three you bring."}
       </p>
       <div className="mt-6 space-y-8">
@@ -359,7 +373,7 @@ export function ManualForm({
 
           <h2 className="mt-16 text-2xl font-semibold tracking-tight">Packages</h2>
           <p className="mt-1 text-sm text-muted">
-            Each package is a preview bring of three — strategy, plan clock, endgame links, and
+            Each package is a preview bring of {manualBringSize(draft)} — strategy, plan clock, endgame links, and
             situation loops. Swap-gated packs pick from the active six after the flex.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
@@ -381,11 +395,8 @@ export function ManualForm({
               variant="line"
               onClick={() => {
                 const id = `pack-${String.fromCharCode(97 + packs.length)}`;
-                const seed: [string, string, string] = [
-                  boxSlugs[0] ?? "",
-                  boxSlugs[1] ?? "",
-                  boxSlugs[2] ?? "",
-                ];
+                const n = manualBringSize(draft);
+                const seed = Array.from({ length: n }, (_, i) => boxSlugs[i] ?? "");
                 commit({
                   ...draft,
                   packs: [...packs, emptyPack(id, seed)],
@@ -400,6 +411,7 @@ export function ManualForm({
           {activePack ? (
             <PackEditor
               pack={activePack}
+              bringSize={manualBringSize(draft)}
               boxSlugs={boxSlugs}
               flexSlugs={flexSlugs}
               modeOptions={activePack.slugs.flatMap((slug) => {
@@ -572,6 +584,7 @@ export function ManualForm({
 
 function PackEditor({
   pack,
+  bringSize,
   boxSlugs,
   flexSlugs,
   modeOptions,
@@ -581,6 +594,7 @@ function PackEditor({
   onRemove,
 }: {
   pack: ManualPack;
+  bringSize: number;
   boxSlugs: string[];
   flexSlugs: string[];
   modeOptions: { id: string; label: string }[];
@@ -601,7 +615,7 @@ function PackEditor({
   })();
 
   function setSlug(i: number, slug: string) {
-    const slugs: [string, string, string] = [...pack.slugs];
+    const slugs = [...pack.slugs];
     slugs[i] = slug;
     const nextRoles: ManualPackRole[] = slugs.filter(Boolean).map((s) => {
       const hit = roles.find((r) => r.slug === s);
@@ -715,9 +729,9 @@ function PackEditor({
       </div>
 
       <div>
-        <p className="text-sm font-medium">Bring of three</p>
-        <div className="mt-3 grid gap-3 sm:grid-cols-3">
-          {[0, 1, 2].map((i) => (
+        <p className="text-sm font-medium">Bring of {bringSize}</p>
+        <div className={`mt-3 grid gap-3 ${bringSize === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3"}`}>
+          {Array.from({ length: bringSize }, (_, i) => (
             <select
               key={i}
               className={inputClass}
@@ -1330,7 +1344,7 @@ function SlotEditor({
           </select>
         </div>
       </div>
-      <label className="mt-4 block text-sm font-medium">Role on this three</label>
+      <label className="mt-4 block text-sm font-medium">Role on this six</label>
       <input
         className={`mt-2 ${inputClass}`}
         value={slot.role}

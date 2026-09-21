@@ -3,6 +3,7 @@ import type { CatalogEntry } from "@/types/pokemon";
 import {
   emptySlot,
   flexPool,
+  manualBringSize,
   resolveActiveBox,
   resolvePackStrategy,
   type TeamManual,
@@ -44,11 +45,8 @@ export function syncSlugsFromSlots(manual: TeamManual): TeamManual {
     );
 
     const packs = manual.packs.map((p) => {
-      const bring: [string, string, string] = [
-        p.slugs[0] ?? "",
-        p.slugs[1] ?? "",
-        p.slugs[2] ?? "",
-      ];
+      const n = manualBringSize(manual);
+      const bring = Array.from({ length: n }, (_, i) => p.slugs[i] ?? "");
       return {
         ...p,
         slugs: bring,
@@ -56,8 +54,7 @@ export function syncSlugsFromSlots(manual: TeamManual): TeamManual {
       };
     });
 
-    const core: [string, string, string] = manual.core ??
-      packs[0]?.slugs ?? [six[0], six[1], six[2]];
+    const core: string[] = manual.core ?? packs[0]?.slugs ?? six.slice(0, manualBringSize(manual));
     const active = packs[0]?.slugs ?? core;
     const slots = active.map((slug) => {
       const hit = roster.find((r) => r.slug === slug);
@@ -76,8 +73,9 @@ export function syncSlugsFromSlots(manual: TeamManual): TeamManual {
   }
 
   const slugs = manual.slots.map((s) => s.slug).filter(Boolean);
-  const three: [string, string, string] = [slugs[0] ?? "", slugs[1] ?? "", slugs[2] ?? ""];
-  return { ...manual, slugs: three };
+  const n = manualBringSize(manual);
+  const bring = Array.from({ length: n }, (_, i) => slugs[i] ?? "");
+  return { ...manual, slugs: bring };
 }
 
 export function validateManual(manual: TeamManual) {
@@ -138,8 +136,11 @@ export function validateManual(manual: TeamManual) {
     }
     for (const pack of manual.packs) {
       const bring = pack.slugs.filter(Boolean);
-      if (bring.length !== 3) {
-        errors.push(`Package “${pack.label || pack.id}” needs three Pokémon.`);
+      const need = manualBringSize(manual);
+      if (bring.length !== need) {
+        errors.push(
+          `Package “${pack.label || pack.id}” needs ${need} Pokémon.`,
+        );
         continue;
       }
       if (new Set(bring).size !== bring.length) {
@@ -199,7 +200,8 @@ export function validateManual(manual: TeamManual) {
   }
 
   const slugs = manual.slots.map((s) => s.slug).filter(Boolean);
-  if (slugs.length !== 3) errors.push("Pick three Pokémon.");
+  const need = manualBringSize(manual);
+  if (slugs.length !== need) errors.push(`Pick ${need} Pokémon.`);
   if (new Set(slugs).size !== slugs.length) errors.push("Species clause. No duplicates.");
   for (const slug of slugs) {
     if (!legalSlug(slug)) errors.push(`${slug} is not legal in this regulation.`);

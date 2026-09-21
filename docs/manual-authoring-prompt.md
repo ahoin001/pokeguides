@@ -26,7 +26,7 @@ Prefer short actionable lines. Use TODO: … when you lack a fact — do not inv
 HARD RULES
 1. Registered six stays exactly 6 unique species. Never put flex mons on `box`.
 2. Every set is paste-ready: item, ability, nature, EVs (or TODO), 4 moves with { name, why }.
-3. Packs are bring-of-three from the *active* six (core box, or box after a flex swap).
+3. Packs are bring-of-three from the *active* six (core box, or box after a flex swap). If format is "doubles", packs are bring-of-four and you must fill engines / controlPlanes / previewTrees / matchupScripts / ledger (see Doubles section after this prompt).
 4. TWO version systems — both first-class; do not collapse them:
    a) In-box MODE: same slug, different kit → roster[i].modes[] + pack.winconMode = mode.id
    b) Flex SWAP: different species → altSlots[] + pack.requiresSwap { out, in }
@@ -249,3 +249,34 @@ USER MATERIAL FOLLOWS
 | Matchups | `victims` / `counters` / `advantages` / `hazards` | Pack overrides team via `resolveManual` |
 
 See `src/content/manuals.ts` (`SlotMode`, `ManualAltSlot`, `ManualPack`, `ManualMatchup`, `SlotManual`).
+
+---
+
+## Doubles (bring 4)
+
+Same `TeamManual` type. Set `"format": "doubles"`. Bring width is `FORMAT_BRING.doubles` = 4. Do **not** flatten this into pack `when` strings.
+
+HARD (in addition to the singles rules)
+
+1. Packs are bring-of-four from the active six. `slugs.length === 4` and `strategy.bring` matches.
+2. `core` is the identity four (not three). Call the ladder-default four out in `construction.thesis` if it is a different pack.
+3. Complete kits on every roster slot — required, not flavor: `item`, `itemWhy`, `ability`, `nature`, `moves[4].name`+`why`, Champions `training.sp` analog + `training.exportEvs` (verbatim Showdown EV line) + `training.ivsNote`. Never dump 252s into `sp` (252 → 32, 4 → 2, 66 budget / max 32).
+4. First-class doubles fields (author them; singles omit):
+   - `engines[]` — `{ id, label, path[], how, dependsOn?, disrupt?, fallback? }`
+   - `controlPlanes[]` — sand | tailwind | icy-wind | coaching
+   - `previewTrees[]` — `{ ask, branches: { when, then, bringPackId?, note? }[] }`
+   - `matchupScripts[]` — `{ id, foe, why, packId, sequence, trap? }` **point at a pack**; do not duplicate a fourth bring list
+   - `ledger` — `{ dropped: { slug, lost[] }, gained[], rejectedAlts?, laterTests? }`
+5. Slot extras when the source has them: `lock` (`do-not-change` | `later-test`) + `lockWhy`; `contrast` vs a named six; `abilityStages`; `ampTargets` (Coaching); `itemLoop`.
+6. Pack extras: `engineIds`, `endgameIds`, `sequence[]`, optional `defaultLeadPair` / `backPair`. **Do not invent** T1 pairs, Trick Room deny clicks, or speed-benchmarked Champions SP. Mark those TODO.
+7. Rejected species stay on `ledger.rejectedAlts` — not `construction.altSlots` unless they actually unlock a pack.
+8. Dual Mega is legal in Champions doubles via `megaPool`.
+9. No emoji in authored copy. Catalog slugs only (no hotlinked set images).
+
+VALIDATION extra
+□ every pack has exactly 4 unique slugs ⊆ active six
+□ engines, control planes, preview trees, matchup scripts, ledger present
+□ every matchupScript.packId exists
+□ every kit has item / ability / nature / 4 move-whys / SP analog / exportEvs
+□ `training.rule` says the SP is an initial analog if EVs were not Champions-optimized
+

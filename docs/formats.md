@@ -24,4 +24,4 @@ Shared layers (catalog, M-C legality, type math, after-battle Review) stay forma
 - **Singles:** bring 3, one on the field, ink chrome
 - **Doubles:** bring 4 · pairs, teal accent (`--format-doubles-accent`), separate manuals shelf
 
-Manual write-ups share one schema; only shelf + chrome + copy differ.
+Manual write-ups share one `TeamManual` type. Bring width is format-driven (`FORMAT_BRING`): 3 for Singles packs, 4 for Doubles. Doubles manuals add engines, control planes, preview trees, matchup scripts, and a trade ledger — not chrome-only.

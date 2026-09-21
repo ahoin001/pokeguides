@@ -23,6 +23,7 @@ import {
 } from "@/content/manuals";
 import { formatBoxSets, formatSlotSet, STAT_ORDER } from "@/lib/manuals/sets-text";
 import { formatBringLabel } from "@/lib/format";
+import { SequenceBeats } from "@/components/manuals/ManualDoublesChapters";
 
 function SpGrid({ slot }: { slot: SlotManual }) {
   const sp = slot.training?.sp;
@@ -204,6 +205,26 @@ export function ManualSetTabs({
                   <span className="font-medium text-muted"> @ {displayed.item}</span>
                 ) : null}
               </h3>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {displayed.lock === "do-not-change" ? (
+                  <span className="rounded-full bg-ink px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-bg">
+                    Do not change
+                  </span>
+                ) : null}
+                {displayed.lock === "later-test" ? (
+                  <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-muted">
+                    Later test
+                  </span>
+                ) : null}
+                {displayed.contrast ? (
+                  <span className="rounded-full border border-line px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-muted">
+                    vs {displayed.contrast.vs}
+                  </span>
+                ) : null}
+              </div>
+              {displayed.lockWhy ? (
+                <p className="mt-2 max-w-[52ch] text-xs text-muted">{displayed.lockWhy}</p>
+              ) : null}
               {displayed.objective ? (
                 <p className="mt-1 max-w-[52ch] text-sm text-muted">{displayed.objective}</p>
               ) : null}
@@ -246,6 +267,12 @@ export function ManualSetTabs({
                 Ability
               </dt>
               <dd className="mt-1.5 text-sm font-medium">{displayed.ability || "TODO"}</dd>
+              {displayed.abilityStages ? (
+                <p className="mt-1 text-xs text-muted">
+                  {displayed.abilityStages.before} → {displayed.abilityStages.after}{" "}
+                  ({displayed.abilityStages.when})
+                </p>
+              ) : null}
             </div>
             <div className="bg-raised/60 px-5 py-4 sm:px-6">
               <dt className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
@@ -271,6 +298,15 @@ export function ManualSetTabs({
             <div className="mt-3">
               <SpGrid slot={displayed} />
             </div>
+            {displayed.training?.exportEvs ? (
+              <p className="mt-2 font-mono text-[11px] text-muted">
+                Source EVs: {displayed.training.exportEvs}
+                {displayed.training.ivsNote ? ` · IVs ${displayed.training.ivsNote}` : ""}
+              </p>
+            ) : null}
+            {displayed.training?.rule ? (
+              <p className="mt-1 text-xs text-muted">{displayed.training.rule}</p>
+            ) : null}
           </div>
 
           <div className="border-t border-line/60 px-5 py-4 sm:px-6">
@@ -291,6 +327,54 @@ export function ManualSetTabs({
               ))}
             </ul>
           </div>
+
+          {displayed.contrast ? (
+            <div className="border-t border-line/60 px-5 py-4 sm:px-6">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+                vs {displayed.contrast.vs}
+              </p>
+              <p className="mt-2 text-sm text-muted">They used {displayed.contrast.theyUsed}.</p>
+              <p className="mt-1 text-sm">We use {displayed.contrast.weUse}.</p>
+              <p className="mt-2 text-sm text-muted">{displayed.contrast.why}</p>
+            </div>
+          ) : null}
+
+          {displayed.ampTargets?.length ? (
+            <div className="border-t border-line/60 px-5 py-4 sm:px-6">
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+                Coaching targets
+              </p>
+              <ul className="mt-3 space-y-2">
+                {displayed.ampTargets.map((t) => {
+                  const target = getPokemon(t.slug);
+                  return (
+                    <li key={t.slug} className="flex items-center gap-2 text-sm">
+                      {target ? (
+                        <span style={cssVars(target.palette)}>
+                          <PokemonArt
+                            slug={target.slug}
+                            src={target.sprite || target.artwork}
+                            name={target.name}
+                            size={28}
+                          />
+                        </span>
+                      ) : null}
+                      <span>
+                        <span className="font-medium">{target?.name ?? t.slug}</span>
+                        <span className="text-muted"> — {t.becomes}</span>
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ) : null}
+
+          {displayed.itemLoop ? (
+            <div className="border-t border-line/60 px-5 py-4 sm:px-6">
+              <SequenceBeats sequence={displayed.itemLoop} />
+            </div>
+          ) : null}
         </div>
       ) : null}
     </ManualSection>

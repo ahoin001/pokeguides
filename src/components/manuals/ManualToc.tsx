@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { SCROLL_UNDER_STACK, STICKY_LOCAL_BAR } from "@/components/chrome/PageFrame";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { getPokemon } from "@/lib/catalog/load";
-import { type TeamManual } from "@/content/manuals";
+import { type TeamManual, manualFormat } from "@/content/manuals";
 
 export const MANUAL_SCROLL_MT = SCROLL_UNDER_STACK;
 
@@ -24,13 +24,22 @@ export function manualJumps(manual: TeamManual, boxed = false, parent?: TeamManu
       (source.box?.length ?? 0) > 0,
   );
   const hasPacks = boxed && (source.packs?.length ?? 0) > 0;
+  const doubles = manualFormat(source) === "doubles";
+  const hasArch = doubles && Boolean(source.engines?.length || source.controlPlanes?.length || source.architecture?.length);
+  const hasPreview = doubles && Boolean(source.previewTrees?.length);
+  const hasScripts = doubles && Boolean(source.matchupScripts?.length);
+  const hasLedger = doubles && Boolean(source.ledger);
 
   return [
     { href: "#top", label: "Top" },
+    ...(hasArch ? [{ href: "#architecture", label: "Architecture" }] : []),
     ...(hasSix ? [{ href: "#six", label: "Six" }] : []),
     ...(hasSets ? [{ href: "#sets", label: "Sets" }] : []),
     ...(hasPacks ? [{ href: "#packages", label: "Packages" }] : []),
+    ...(hasPreview ? [{ href: "#preview", label: "Preview" }] : []),
+    ...(hasScripts ? [{ href: "#scripts", label: "Scripts" }] : []),
     { href: "#guide", label: "Guide" },
+    ...(hasLedger ? [{ href: "#ledger", label: "Ledger" }] : []),
   ];
 }
 
@@ -88,7 +97,7 @@ export function ManualToc({
             className="pointer-events-auto hidden shrink-0 items-center gap-1.5 rounded-full border border-line/70 bg-raised/50 py-1 pl-1 pr-2.5 sm:inline-flex"
             title={packLabel}
           >
-            {packSlugs.slice(0, 3).map((slug) => {
+            {packSlugs.slice(0, 4).map((slug) => {
               const mon = getPokemon(slug);
               if (!mon) return null;
               return (

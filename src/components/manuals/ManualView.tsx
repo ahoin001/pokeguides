@@ -18,6 +18,13 @@ import {
   ManualPreviewTrees,
   ManualTradeLedger,
 } from "@/components/manuals/ManualDoublesChapters";
+import {
+  ManualLayerBoard,
+  ManualNetworkGraph,
+  ManualPackStage,
+  ManualValueChips,
+  ManualWinRecipes,
+} from "@/components/manuals/ManualApproachableChapters";
 import { ManualSection } from "@/components/manuals/ManualSection";
 import type { CoverageMember } from "@/lib/champions/team-coverage";
 import {
@@ -57,11 +64,18 @@ export function ManualView({
 }) {
   const packs = packList(parent);
   const boxed = isBoxedManual(parent);
+  const doubles = manualFormat(parent) === "doubles";
+  const approachable =
+    doubles &&
+    Boolean(parent.network?.edges?.length || parent.commandments?.length);
+
   const [packParam, setPackParam] = useQueryState(
     "pack",
     parseAsString.withDefault(validatePackId(parent) ?? ""),
   );
   const [focusSlug, setFocusSlug] = useState<string | null>(null);
+  const [recipeOpen, setRecipeOpen] = useState<string | null>(parent.engines?.[0]?.id ?? null);
+
   const activeId = validatePackId(parent, packParam) ?? "";
   const manual = resolveManual(parent, activeId || undefined);
   const activePack = packs.find((p) => p.id === activeId);
@@ -76,13 +90,26 @@ export function ManualView({
   const wash = mons.find(Boolean);
   const packCoverage = coverageFromSlots(manual);
   const defaultFocus = box[0] ?? (manual.slugs.find(Boolean) as string | undefined) ?? null;
+  const focus = focusSlug ?? defaultFocus;
+
+  const valueChips = (parent.press ?? [])
+    .filter(Boolean)
+    .slice(0, 4)
+    .concat(
+      !parent.press?.length && approachable
+        ? ["Tempo", "Position", "Convert"]
+        : [],
+    )
+    .slice(0, 4);
+
+  const whisperMon = focus ? getPokemon(focus)?.name : undefined;
 
   return (
     <PageFrame
       variant="board"
       sticky="local"
       style={wash ? cssVars(wash.palette) : undefined}
-      className={manualFormat(parent) === "doubles" ? "[--manual-accent:var(--format-doubles-accent)]" : undefined}
+      className={doubles ? "[--manual-accent:var(--format-doubles-accent)]" : undefined}
     >
       <article data-format={manualFormat(parent)}>
         <ManualToc
@@ -92,36 +119,40 @@ export function ManualView({
           parent={parent}
           packLabel={activePack?.label}
           packSlugs={activePack?.slugs}
+          whisper={whisperMon}
+          approachable={approachable}
         />
 
         <header id="top" className={`${MANUAL_SCROLL_MT} max-w-3xl`}>
           <p className="text-sm text-muted">
-            <Link
-              href={manualsHref(manualFormat(parent))}
-              className="hover:text-ink"
-            >
+            <Link href={manualsHref(manualFormat(parent))} className="hover:text-ink">
               Field manuals
             </Link>
             {sourced === "local" ? " · Yours" : ""}
             {activePack ? ` · ${activePack.label}` : ""}
           </p>
           <p
-            className={`mt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] ${
-              manualFormat(parent) === "doubles"
-                ? "text-[var(--format-doubles-accent)]"
-                : "text-muted"
+            className={`mt-3 text-sm font-medium ${
+              doubles ? "text-[var(--format-doubles-accent)]" : "text-muted"
             }`}
           >
             {formatManualEyebrow(manualFormat(parent))} · {formatBringLabel(manualFormat(parent))}
           </p>
-          <h1 className="mt-2 text-4xl font-semibold tracking-tight lg:text-5xl">{parent.title}</h1>
+          <h1 className="mt-2 text-4xl font-semibold tracking-tight lg:text-6xl lg:leading-[1.05]">
+            {parent.title}
+          </h1>
           {parent.pilot?.thesis ? (
-            <p className="mt-4 max-w-[52ch] text-lg leading-snug text-ink/90">{parent.pilot.thesis}</p>
+            <blockquote className="mt-6 max-w-[36ch] border-l-0 text-xl font-medium leading-snug tracking-tight text-ink md:text-2xl">
+              {parent.pilot.thesis}
+            </blockquote>
           ) : null}
-          {parent.philosophy && manualFormat(parent) === "doubles" ? (
-            <p className="mt-3 max-w-[52ch] text-sm leading-relaxed text-muted">{parent.philosophy}</p>
+          {parent.philosophy && doubles ? (
+            <p className="mt-4 max-w-[52ch] text-sm leading-relaxed text-muted">
+              {parent.philosophy}
+            </p>
           ) : null}
-          <p className="mt-3 flex flex-wrap items-center gap-2 text-sm text-muted">
+          <ManualValueChips chips={valueChips} />
+          <p className="mt-4 flex flex-wrap items-center gap-2 text-sm text-muted">
             <span className="rounded-full bg-white/8 px-3 py-1 font-medium text-ink">
               {MANUAL_FAMILY_LABEL[manualFamily(manual)]}
             </span>
@@ -136,81 +167,141 @@ export function ManualView({
                 6-box · {packs.length} packs
               </span>
             ) : null}
+            {approachable && packs.length ? (
+              <a
+                href="#packages"
+                className="rounded-full border border-line px-3 py-1 font-medium text-ink transition hover:border-ink/40"
+              >
+                Jump to packages
+              </a>
+            ) : null}
           </p>
         </header>
 
-        {manualFormat(parent) === "doubles" ? <ManualDoublesArchitecture parent={parent} /> : null}
-
-        {boxed ? (
-          <ManualRosterHero
-            parent={parent}
-            packs={packs}
-            activeId={activeId}
-            onSelectPack={selectPack}
-            focusSlug={focusSlug ?? defaultFocus}
-            onFocusSlug={setFocusSlug}
-          />
-        ) : null}
-
-        <ManualSetTabs
-          parent={parent}
-          pack={activePack}
-          focusSlug={focusSlug ?? defaultFocus}
-          onFocusSlug={setFocusSlug}
-        />
-
-        {boxed && packs.length ? (
-          <ManualPackagePicker
-            packs={packs}
-            activeId={activeId}
-            onSelectPack={selectPack}
-            format={manualFormat(parent)}
-          />
-        ) : null}
-
-        {manualFormat(parent) === "doubles" && (parent.previewTrees?.length ?? 0) > 0 ? (
-          <ManualSection
-            id="preview"
-            title="Preview"
-            purpose={parent.pilot?.rule ?? "The question to memorize before you pick four."}
-          >
-            <ManualPreviewTrees trees={parent.previewTrees ?? []} onSelectPack={selectPack} />
-          </ManualSection>
-        ) : null}
-
-        {manualFormat(parent) === "doubles" && (parent.matchupScripts?.length ?? 0) > 0 ? (
-          <ManualSection
-            id="scripts"
-            title="Scripts"
-            purpose="Named boards. Tapping a package loads that four into the guide."
-          >
-            <ManualMatchupScripts
-              scripts={parent.matchupScripts ?? []}
-              packs={packs.map((p) => ({ id: p.id, label: p.label }))}
-              onSelectPack={selectPack}
+        {approachable ? (
+          <>
+            <ManualLayerBoard
+              parent={parent}
+              packSlugs={activePack?.slugs}
+              focusSlug={focus}
+              onFocusSlug={setFocusSlug}
             />
-          </ManualSection>
-        ) : null}
 
-        <ManualPackageGuide
-          parent={parent}
-          manual={manual}
-          pack={activePack}
-          coverageMembers={packCoverage}
-        />
+            <ManualSetTabs
+              parent={parent}
+              pack={activePack}
+              focusSlug={focus}
+              onFocusSlug={setFocusSlug}
+            />
 
-        {manualFormat(parent) === "doubles" && parent.ledger ? (
-          <ManualSection
-            id="ledger"
-            title="Ledger"
-            purpose={parent.evidence?.caveat}
-          >
-            <ManualTradeLedger ledger={parent.ledger} />
-            {parent.setsNote ? (
-              <p className="mt-6 max-w-[52ch] text-sm text-muted">{parent.setsNote}</p>
+            {(parent.engines?.length ?? 0) > 0 ? (
+              <ManualWinRecipes
+                engines={parent.engines ?? []}
+                commandments={parent.commandments}
+                highlightIds={activePack?.engineIds}
+                expandId={recipeOpen}
+                onExpand={setRecipeOpen}
+              />
             ) : null}
-          </ManualSection>
-        ) : null}
+
+            {parent.network?.edges?.length ? (
+              <ManualNetworkGraph
+                network={parent.network}
+                box={(parent.box ?? []).filter(Boolean) as string[]}
+                onNode={(slug) => {
+                  setFocusSlug(slug);
+                  document.getElementById("sets")?.scrollIntoView({ behavior: "smooth" });
+                }}
+                onEdge={(engineId) => {
+                  if (engineId) {
+                    setRecipeOpen(engineId);
+                    document.getElementById("wins")?.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+              />
+            ) : null}
+
+            {packs.length ? (
+              <ManualPackStage
+                parent={parent}
+                packs={packs}
+                activeId={activeId}
+                onSelectPack={selectPack}
+              />
+            ) : null}
+          </>
+        ) : (
+          <>
+            {doubles ? <ManualDoublesArchitecture parent={parent} /> : null}
+
+            {boxed ? (
+              <ManualRosterHero
+                parent={parent}
+                packs={packs}
+                activeId={activeId}
+                onSelectPack={selectPack}
+                focusSlug={focus}
+                onFocusSlug={setFocusSlug}
+              />
+            ) : null}
+
+            <ManualSetTabs
+              parent={parent}
+              pack={activePack}
+              focusSlug={focus}
+              onFocusSlug={setFocusSlug}
+            />
+
+            {boxed && packs.length ? (
+              <ManualPackagePicker
+                packs={packs}
+                activeId={activeId}
+                onSelectPack={selectPack}
+                format={manualFormat(parent)}
+              />
+            ) : null}
+
+            {doubles && (parent.previewTrees?.length ?? 0) > 0 ? (
+              <ManualSection
+                id="preview"
+                title="Preview"
+                purpose={parent.pilot?.rule ?? "The question to memorize before you pick four."}
+              >
+                <ManualPreviewTrees trees={parent.previewTrees ?? []} onSelectPack={selectPack} />
+              </ManualSection>
+            ) : null}
+
+            {doubles && (parent.matchupScripts?.length ?? 0) > 0 ? (
+              <ManualSection
+                id="scripts"
+                title="Scripts"
+                purpose="Named boards. Tapping a package loads that four into the guide."
+              >
+                <ManualMatchupScripts
+                  scripts={parent.matchupScripts ?? []}
+                  packs={packs.map((p) => ({ id: p.id, label: p.label }))}
+                  onSelectPack={selectPack}
+                />
+              </ManualSection>
+            ) : null}
+
+            <ManualPackageGuide
+              parent={parent}
+              manual={manual}
+              pack={activePack}
+              coverageMembers={packCoverage}
+            />
+
+            {doubles && parent.ledger ? (
+              <ManualSection id="ledger" title="Ledger" purpose={parent.evidence?.caveat}>
+                <ManualTradeLedger ledger={parent.ledger} />
+                {parent.setsNote ? (
+                  <p className="mt-6 max-w-[52ch] text-sm text-muted">{parent.setsNote}</p>
+                ) : null}
+              </ManualSection>
+            ) : null}
+          </>
+        )}
       </article>
     </PageFrame>
   );

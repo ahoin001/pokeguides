@@ -1,6 +1,6 @@
 {
   "fetchedAt": "2026-09-19T23:20:18.711Z",
-  "count": 344,
+  "count": 349,
   "moves": {
     "Accelerock": {
       "name": "Accelerock",
@@ -530,6 +530,16 @@
       "priority": 0,
       "shortEffect": "Lowers the user's Defense and Sp. Def stats by 1 stage.",
       "championsEffect": "Lowers the user's Defense and Sp. Def stats by 1 stage.",
+      "source": "champions-attackdex"
+    },
+    "Coaching": {
+      "name": "Coaching",
+      "type": "fighting",
+      "category": "status",
+      "basePower": 0,
+      "priority": 0,
+      "shortEffect": "Boosts allies' Attack and Defense stats by 1 stage.",
+      "championsEffect": "Boosts allies' Attack and Defense stats by 1 stage.",
       "source": "champions-attackdex"
     },
     "Coil": {
@@ -1202,6 +1212,16 @@
       "championsEffect": "The user gains a 2-stage Critical-Hit Ratio Boost.",
       "source": "champions-attackdex"
     },
+    "Follow Me": {
+      "name": "Follow Me",
+      "type": "normal",
+      "category": "status",
+      "basePower": 0,
+      "priority": 2,
+      "shortEffect": "Draws the attention of opposing Pokémon, making the user the target of attacks this turn.",
+      "championsEffect": "Draws the attention of opposing Pokémon, making the user the target of attacks this turn.",
+      "source": "champions-attackdex"
+    },
     "Foul Play": {
       "name": "Foul Play",
       "type": "dark",
@@ -1420,6 +1440,16 @@
       "priority": 0,
       "shortEffect": "The more the user outweighs the target the greater this move's power (ranging between 40 and 120). If the target has the Minimized status this move's power is doubled and it will be sure to hit.",
       "championsEffect": "The more the user outweighs the target the greater this move's power (ranging between 40 and 120). If the target has the Minimized status this move's power is doubled and it will be sure to hit.",
+      "source": "champions-attackdex"
+    },
+    "Helping Hand": {
+      "name": "Helping Hand",
+      "type": "normal",
+      "category": "status",
+      "basePower": 0,
+      "priority": 5,
+      "shortEffect": "Boosts the power of an ally's move this turn.",
+      "championsEffect": "Boosts the power of an ally's move this turn.",
       "source": "champions-attackdex"
     },
     "Hex": {
@@ -2340,6 +2370,16 @@
       "priority": 1,
       "shortEffect": "Inflicts damage with increased priority (+1).",
       "championsEffect": "Inflicts damage with increased priority (+1).",
+      "source": "champions-attackdex"
+    },
+    "Quick Guard": {
+      "name": "Quick Guard",
+      "type": "fighting",
+      "category": "status",
+      "basePower": 0,
+      "priority": 3,
+      "shortEffect": "Protects the user's side from moves with increased priority this turn.",
+      "championsEffect": "Protects the user's side from moves with increased priority this turn.",
       "source": "champions-attackdex"
     },
     "Quiver Dance": {
@@ -3360,6 +3400,16 @@
       "priority": -6,
       "shortEffect": "If there are other Pokémon in the target's party that can switch into battle the target is forced to switch out of battle and is replaced by one of those Pokémon at random.",
       "championsEffect": "If there are other Pokémon in the target's party that can switch into battle the target is forced to switch out of battle and is replaced by one of those Pokémon at random.",
+      "source": "champions-attackdex"
+    },
+    "Wide Guard": {
+      "name": "Wide Guard",
+      "type": "rock",
+      "category": "status",
+      "basePower": 0,
+      "priority": 3,
+      "shortEffect": "Protects the user's side from spread moves this turn.",
+      "championsEffect": "Protects the user's side from spread moves this turn.",
       "source": "champions-attackdex"
     },
     "Wild Charge": {

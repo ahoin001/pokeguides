@@ -27,8 +27,10 @@ import {
   type ManualAltSlot,
   type ManualBranch,
   type ManualEndgame,
+  type ManualEngine,
   type ManualFamilyId,
   type ManualMatchup,
+  type ManualNetworkEdge,
   type ManualPack,
   type ManualPackRole,
   type ManualPackStrategy,
@@ -163,8 +165,8 @@ export function ManualForm({
         {mode === "create" ? "Write a manual" : "Edit manual"}
       </h1>
       <p className="mt-3 max-w-[54ch] text-sm text-muted">
-        Author a flat bring of three, or a registered six with preview packages — same structure as
-        classroom boxed manuals.
+        Author a registered six with preview packages. Same chapters as the reader: thesis, six,
+        sets, how it wins, network, packages.
       </p>
 
       <div className="mt-8 flex flex-wrap gap-2">
@@ -288,7 +290,7 @@ export function ManualForm({
             onChange={(e) => commit({ ...draft, philosophy: e.target.value })}
           />
           <label className="mt-6 block text-sm font-medium">
-            {boxed ? "What this six is for" : `What this ${manualBringSize(draft) === 4 ? "four" : "three"} is for`}
+            {`What this ${manualBringSize(draft) === 4 ? "four" : "three"} is for`}
           </label>
           <textarea
             className={`mt-2 ${areaClass}`}
@@ -313,7 +315,55 @@ export function ManualForm({
           />
           <PlanList items={draft.plan ?? []} onChange={(plan) => commit({ ...draft, plan })} />
         </>
-      ) : null}
+      ) : (
+        <>
+          <label className="mt-6 block text-sm font-medium">Pull-quote thesis</label>
+          <textarea
+            className={`mt-2 ${areaClass}`}
+            value={draft.pilot?.thesis ?? ""}
+            placeholder="The one question this six answers"
+            onChange={(e) =>
+              commit({
+                ...draft,
+                pilot: {
+                  thesis: e.target.value,
+                  rule: draft.pilot?.rule ?? "",
+                  fail: draft.pilot?.fail ?? "",
+                },
+              })
+            }
+          />
+          <label className="mt-6 block text-sm font-medium">Philosophy</label>
+          <textarea
+            className={`mt-2 ${areaClass}`}
+            value={draft.philosophy}
+            placeholder="≤80 words. What this six is, not a essay."
+            onChange={(e) => commit({ ...draft, philosophy: e.target.value })}
+          />
+          <StringList
+            label="Value chips"
+            hint="Short chips under the thesis (Tempo · Position · Convert)."
+            items={draft.press ?? [""]}
+            onChange={(press) => commit({ ...draft, press })}
+          />
+          <label className="mt-6 block text-sm font-medium">Construction thesis</label>
+          <textarea
+            className={`mt-2 ${areaClass}`}
+            value={draft.construction?.thesis ?? ""}
+            onChange={(e) =>
+              commit({
+                ...draft,
+                construction: {
+                  thesis: e.target.value,
+                  method: draft.construction?.method ?? "",
+                  winCondition: draft.construction?.winCondition ?? "",
+                  ...draft.construction,
+                },
+              })
+            }
+          />
+        </>
+      )}
 
       <h2 className="mt-16 text-2xl font-semibold tracking-tight">
         {boxed ? "Registered six" : "The three you bring"}
@@ -370,6 +420,14 @@ export function ManualForm({
               })
             }
           />
+
+          {manualFormat(draft) === "doubles" ? (
+            <DoublesArchitectureEditor
+              draft={draft}
+              boxSlugs={boxSlugs}
+              onChange={commit}
+            />
+          ) : null}
 
           <h2 className="mt-16 text-2xl font-semibold tracking-tight">Packages</h2>
           <p className="mt-1 text-sm text-muted">
@@ -754,7 +812,20 @@ function PackEditor({
       </div>
 
       <div className="space-y-4 border-t border-line/70 pt-6">
-        <h3 className="text-lg font-semibold tracking-tight">Strategy</h3>
+        <h3 className="text-lg font-semibold tracking-tight">Goal</h3>
+        <label className="block text-sm font-medium">Mantra (large line on the page)</label>
+        <textarea
+          className={`mt-2 ${areaClass}`}
+          value={strategy?.mantra ?? ""}
+          onChange={(e) => onStrategy({ mantra: e.target.value })}
+          placeholder="Three Fake Outs. One setup. Convert."
+        />
+        <label className="block text-sm font-medium">Purpose</label>
+        <textarea
+          className={`mt-2 ${areaClass}`}
+          value={strategy?.purpose ?? ""}
+          onChange={(e) => onStrategy({ purpose: e.target.value })}
+        />
         <label className="block text-sm font-medium">Win condition</label>
         <textarea
           className={`mt-2 ${areaClass}`}
@@ -799,18 +870,6 @@ function PackEditor({
           className={`mt-2 ${areaClass}`}
           value={strategy?.gamePlan ?? ""}
           onChange={(e) => onStrategy({ gamePlan: e.target.value })}
-        />
-        <label className="block text-sm font-medium">Mantra</label>
-        <input
-          className={`mt-2 ${inputClass}`}
-          value={strategy?.mantra ?? ""}
-          onChange={(e) => onStrategy({ mantra: e.target.value })}
-        />
-        <label className="block text-sm font-medium">Purpose</label>
-        <textarea
-          className={`mt-2 ${areaClass}`}
-          value={strategy?.purpose ?? ""}
-          onChange={(e) => onStrategy({ purpose: e.target.value })}
         />
         <StringList
           label="Targets"
@@ -1015,6 +1074,270 @@ function PackEditor({
             </div>
           );
         })}
+      </div>
+    </section>
+  );
+}
+
+function DoublesArchitectureEditor({
+  draft,
+  boxSlugs,
+  onChange,
+}: {
+  draft: TeamManual;
+  boxSlugs: string[];
+  onChange: (next: TeamManual) => void;
+}) {
+  const engines = draft.engines ?? [];
+  const edges = draft.network?.edges ?? [];
+  const commandments = draft.commandments ?? [];
+
+  return (
+    <section className="mt-16 space-y-10">
+      <div>
+        <h2 className="text-2xl font-semibold tracking-tight">How it wins</h2>
+        <p className="mt-1 text-sm text-muted">
+          Recipes as short paths — not essays. Packs link via engine ids.
+        </p>
+        <ul className="mt-4 space-y-4">
+          {engines.map((engine, i) => (
+            <li key={engine.id || i} className="rounded-[24px] border border-line p-4">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <input
+                  className={inputClass}
+                  placeholder="Label (Nasty Plot Gholdengo)"
+                  value={engine.label}
+                  onChange={(e) => {
+                    const next = engines.map((en, j) =>
+                      j === i ? { ...en, label: e.target.value } : en,
+                    );
+                    onChange({ ...draft, engines: next });
+                  }}
+                />
+                <input
+                  className={inputClass}
+                  placeholder="id (wc-nasty-plot)"
+                  value={engine.id}
+                  onChange={(e) => {
+                    const next = engines.map((en, j) =>
+                      j === i ? { ...en, id: e.target.value } : en,
+                    );
+                    onChange({ ...draft, engines: next });
+                  }}
+                />
+              </div>
+              <input
+                className={`mt-3 ${inputClass}`}
+                placeholder="Path beats separated by →"
+                value={engine.path.join(" → ")}
+                onChange={(e) => {
+                  const path = e.target.value
+                    .split("→")
+                    .map((s) => s.trim())
+                    .filter(Boolean);
+                  const next = engines.map((en, j) => (j === i ? { ...en, path } : en));
+                  onChange({ ...draft, engines: next });
+                }}
+              />
+              <textarea
+                className={`mt-3 ${areaClass}`}
+                placeholder="How (one or two sentences)"
+                value={engine.how}
+                onChange={(e) => {
+                  const next = engines.map((en, j) =>
+                    j === i ? { ...en, how: e.target.value } : en,
+                  );
+                  onChange({ ...draft, engines: next });
+                }}
+              />
+              <Button
+                type="button"
+                variant="ghost"
+                className="mt-2"
+                onClick={() =>
+                  onChange({ ...draft, engines: engines.filter((_, j) => j !== i) })
+                }
+              >
+                Remove recipe
+              </Button>
+            </li>
+          ))}
+        </ul>
+        <Button
+          type="button"
+          variant="line"
+          className="mt-3"
+          onClick={() => {
+            const id = `wc-${engines.length + 1}`;
+            const next: ManualEngine[] = [
+              ...engines,
+              { id, label: "", path: [], how: "" },
+            ];
+            onChange({ ...draft, engines: next });
+          }}
+        >
+          Add recipe
+        </Button>
+      </div>
+
+      <div>
+        <h2 className="text-2xl font-semibold tracking-tight">Network</h2>
+        <p className="mt-1 text-sm text-muted">
+          Pick two faces. One line for creates / converts.
+        </p>
+        <input
+          className={`mt-3 ${inputClass}`}
+          placeholder="Network thesis"
+          value={draft.network?.thesis ?? ""}
+          onChange={(e) =>
+            onChange({
+              ...draft,
+              network: { thesis: e.target.value, edges },
+            })
+          }
+        />
+        <ul className="mt-4 space-y-3">
+          {edges.map((edge, i) => (
+            <li key={i} className="grid gap-2 rounded-2xl border border-line p-3 sm:grid-cols-2">
+              <select
+                className={inputClass}
+                value={edge.from}
+                onChange={(e) => {
+                  const next = edges.map((ed, j) =>
+                    j === i ? { ...ed, from: e.target.value } : ed,
+                  );
+                  onChange({
+                    ...draft,
+                    network: { thesis: draft.network?.thesis ?? "", edges: next },
+                  });
+                }}
+              >
+                <option value="">From…</option>
+                {boxSlugs.map((slug) => (
+                  <option key={slug} value={slug}>
+                    {getPokemon(slug)?.name ?? slug}
+                  </option>
+                ))}
+              </select>
+              <select
+                className={inputClass}
+                value={edge.to}
+                onChange={(e) => {
+                  const next = edges.map((ed, j) =>
+                    j === i ? { ...ed, to: e.target.value } : ed,
+                  );
+                  onChange({
+                    ...draft,
+                    network: { thesis: draft.network?.thesis ?? "", edges: next },
+                  });
+                }}
+              >
+                <option value="">To…</option>
+                {boxSlugs.map((slug) => (
+                  <option key={slug} value={slug}>
+                    {getPokemon(slug)?.name ?? slug}
+                  </option>
+                ))}
+              </select>
+              <input
+                className={inputClass}
+                placeholder="Creates"
+                value={edge.creates}
+                onChange={(e) => {
+                  const next = edges.map((ed, j) =>
+                    j === i ? { ...ed, creates: e.target.value } : ed,
+                  );
+                  onChange({
+                    ...draft,
+                    network: { thesis: draft.network?.thesis ?? "", edges: next },
+                  });
+                }}
+              />
+              <input
+                className={inputClass}
+                placeholder="Converts"
+                value={edge.converts}
+                onChange={(e) => {
+                  const next = edges.map((ed, j) =>
+                    j === i ? { ...ed, converts: e.target.value } : ed,
+                  );
+                  onChange({
+                    ...draft,
+                    network: { thesis: draft.network?.thesis ?? "", edges: next },
+                  });
+                }}
+              />
+              <select
+                className={`${inputClass} sm:col-span-2`}
+                value={edge.engineId ?? ""}
+                onChange={(e) => {
+                  const next = edges.map((ed, j) =>
+                    j === i
+                      ? { ...ed, engineId: e.target.value || undefined }
+                      : ed,
+                  );
+                  onChange({
+                    ...draft,
+                    network: { thesis: draft.network?.thesis ?? "", edges: next },
+                  });
+                }}
+              >
+                <option value="">Link recipe (optional)</option>
+                {engines.map((en) => (
+                  <option key={en.id} value={en.id}>
+                    {en.label || en.id}
+                  </option>
+                ))}
+              </select>
+              <Button
+                type="button"
+                variant="ghost"
+                onClick={() => {
+                  const next = edges.filter((_, j) => j !== i);
+                  onChange({
+                    ...draft,
+                    network: { thesis: draft.network?.thesis ?? "", edges: next },
+                  });
+                }}
+              >
+                Remove edge
+              </Button>
+            </li>
+          ))}
+        </ul>
+        <Button
+          type="button"
+          variant="line"
+          className="mt-3"
+          onClick={() => {
+            const blank: ManualNetworkEdge = {
+              from: boxSlugs[0] ?? "",
+              to: boxSlugs[1] ?? "",
+              creates: "",
+              converts: "",
+            };
+            onChange({
+              ...draft,
+              network: {
+                thesis: draft.network?.thesis ?? "",
+                edges: [...edges, blank],
+              },
+            });
+          }}
+        >
+          Add edge
+        </Button>
+      </div>
+
+      <div>
+        <h2 className="text-2xl font-semibold tracking-tight">House rules</h2>
+        <p className="mt-1 text-sm text-muted">Five one-liners under How it wins.</p>
+        <StringList
+          label=""
+          hint=""
+          items={commandments.length ? commandments : [""]}
+          onChange={(next) => onChange({ ...draft, commandments: next.filter(Boolean) })}
+        />
       </div>
     </section>
   );

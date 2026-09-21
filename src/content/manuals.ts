@@ -5,6 +5,7 @@ import { alt, train } from "@/content/manual-train";
 import { ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL } from "@/content/manuals/ultra-garchompz-salamence-gholdengo";
 import { CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL } from "@/content/manuals/charizard-lucario-rotom-flex";
 import { SAND_COACHING_TAILWIND_MILOTIC_MANUAL } from "@/content/manuals/sand-coaching-tailwind-milotic";
+import { ARCHITECTURE_C_NETWORK_TEMPO_MANUAL } from "@/content/manuals/architecture-c-network-tempo";
 
 export { alt, train };
 
@@ -125,6 +126,28 @@ export type SlotManual = {
   ampTargets?: ManualAmpTarget[];
   /** Item or scale loop unique to this slot. */
   itemLoop?: ManualSequence;
+  /** Short labels for the jobs matrix on The six. */
+  networkJobs?: ManualNetworkJobs;
+  /**
+   * Opening asks on the Sets tab (coach tone). Not a page chapter.
+   * Skip mons without a real decision tree.
+   */
+  opening?: ManualOpeningAsk[];
+};
+
+/** What this mon does for the network (skim labels). */
+export type ManualNetworkJobs = {
+  creates?: string;
+  converts?: string;
+  protects?: string;
+  scales?: string;
+  repositions?: string;
+};
+
+/** One “Ask yourself” question on a Sets tab. */
+export type ManualOpeningAsk = {
+  ask: string;
+  then: string;
 };
 
 export type ManualBranch = {
@@ -457,7 +480,8 @@ export type ManualEngine = {
   fallback?: string;
 };
 
-export type ManualControlPlaneId = "sand" | "tailwind" | "icy-wind" | "coaching";
+/** Control plane id — sand / tailwind / coaching / fake-out / grassy / etc. */
+export type ManualControlPlaneId = string;
 
 export type ManualControlPlane = {
   id: ManualControlPlaneId;
@@ -465,6 +489,23 @@ export type ManualControlPlane = {
   setterSlug: string;
   effect: string;
   whoBenefits: string;
+};
+
+/**
+ * Directed conversion: A creates a resource that B converts.
+ * One line each — no kit essays. Optional engineId links to a wincon recipe.
+ */
+export type ManualNetworkEdge = {
+  from: string;
+  to: string;
+  creates: string;
+  converts: string;
+  engineId?: string;
+};
+
+export type ManualNetwork = {
+  thesis: string;
+  edges: ManualNetworkEdge[];
 };
 
 export type ManualPreviewBranch = {
@@ -637,6 +678,13 @@ export type TeamManual = {
   engines?: ManualEngine[];
   /** Speed / tempo control planes. */
   controlPlanes?: ManualControlPlane[];
+  /** Directed conversion graph (A creates → B converts). */
+  network?: ManualNetwork;
+  /**
+   * Five house-rule one-liners under How it wins.
+   * Not a TOC chapter.
+   */
+  commandments?: string[];
   /** Team-preview questions to memorize. */
   previewTrees?: ManualPreviewTree[];
   /** Named opponent scripts that select a pack. */
@@ -1031,6 +1079,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
   ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL,
   CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL,
   SAND_COACHING_TAILWIND_MILOTIC_MANUAL,
+  ARCHITECTURE_C_NETWORK_TEMPO_MANUAL,
 ];
 
 export function getCanonicalManual(id: string) {
@@ -1085,6 +1134,9 @@ export function emptyPhase(id: string, title: string): ManualPhase {
 }
 
 export function emptyManual(id: string): TeamManual {
+  const box = ["", "", "", "", "", ""] as [string, string, string, string, string, string];
+  const bring = ["", "", ""];
+  const pack = emptyPack("pack-a", bring);
   return {
     id,
     title: "",
@@ -1093,33 +1145,27 @@ export function emptyManual(id: string): TeamManual {
     philosophy: "",
     archetype: "balance",
     family: "clock",
-    slugs: ["", "", ""],
+    pilot: { thesis: "", rule: "", fail: "" },
+    slugs: bring,
     meta: "",
-    slots: [emptySlot(), emptySlot(), emptySlot()],
-    phases: MANUAL_PHASE_IDS.map((phaseId) =>
-      emptyPhase(
-        phaseId,
-        phaseId === "preview" ? "Preview" : phaseId === "lead" ? "Lead" : phaseId === "mid" ? "Mid" : "Late",
-      ),
-    ),
-    press: [""],
-    refuse: [""],
-    switches: [{ into: "", send: "" }],
-    plan: [
-      { title: "", goal: "", play: "" },
-      { title: "", goal: "", play: "" },
-      { title: "", goal: "", play: "" },
-    ],
-    loops: [{ title: "", body: "Use when you need this sequence. " }],
-    hazards: [
-      {
-        title: "",
-        body: "",
-        watch: "",
-        play: "Answer  immediately using the switch board and plan.",
-        rule: "Do not ignore  — it ends games on this three.",
-      },
-    ],
+    slots: bring.map(() => emptySlot()),
+    phases: [],
+    loops: [],
+    hazards: [],
+    box,
+    roster: box.map(() => emptySlot()),
+    core: bring,
+    packs: [pack],
+    construction: {
+      thesis: "",
+      method: "",
+      winCondition: "",
+      endgames: [],
+      altSlots: [],
+    },
+    network: { thesis: "", edges: [] },
+    engines: [],
+    commandments: [],
   };
 }
 

@@ -2,6 +2,7 @@ import movesJson from "@/data/moves-champions.json";
 import type { TypeId } from "@/types/pokemon";
 import type { DamageMove, MoveCategory } from "@/lib/champions/damage";
 import { MOVE_TYPE, isDamagingMove } from "@/lib/champions/moves";
+import { aliasesFor, canonicalMoveName } from "@/lib/champions/move-aliases";
 
 type MovesFile = {
   moves: Record<
@@ -26,10 +27,15 @@ export type ChampionsMove = DamageMove & {
 };
 
 export function getChampionsMove(name: string): ChampionsMove | undefined {
-  const direct = file.moves[name];
+  const canon = canonicalMoveName(name);
+  const direct = file.moves[canon] ?? file.moves[name];
   const row =
     direct ??
-    Object.values(file.moves).find((m) => m.name.toLowerCase() === name.toLowerCase());
+    Object.values(file.moves).find(
+      (m) =>
+        m.name.toLowerCase() === canon.toLowerCase() ||
+        m.name.toLowerCase() === name.toLowerCase(),
+    );
   if (!row) {
     const type = MOVE_TYPE[name.toLowerCase()];
     if (!type || !isDamagingMove(name)) return undefined;
@@ -71,11 +77,15 @@ export function searchChampionsDamagingMoves(query: string, limit = 24): DamageM
   const needle = query.trim().toLowerCase();
   const all = listChampionsDamagingMoves();
   if (!needle) return all.slice(0, limit);
-  const hits = all.filter(
-    (m) =>
+  const hits = all.filter((m) => {
+    const nicks = aliasesFor(m.name);
+    return (
       m.name.toLowerCase().includes(needle) ||
+      nicks.some((nick) => nick.includes(needle)) ||
+      canonicalMoveName(needle).toLowerCase() === m.name.toLowerCase() ||
       m.type.includes(needle) ||
-      m.category.startsWith(needle),
-  );
+      m.category.startsWith(needle)
+    );
+  });
   return hits.slice(0, limit);
 }

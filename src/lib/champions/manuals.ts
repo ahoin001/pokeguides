@@ -128,9 +128,10 @@ export function validateManual(manual: TeamManual) {
       const gated = manual.packs.filter(
         (p) => p.requiresSwap?.in === alt.slug && (!alt.insteadOf || p.requiresSwap.out === alt.insteadOf),
       );
-      if (!gated.length) {
+      // Bench candidates may sit on altSlots without a swap pack yet.
+      if (unlocked.length && !gated.length) {
         errors.push(
-          `Flex ${alt.slug}: add a package with requiresSwap in=${alt.slug} — alts only exist to unlock packs.`,
+          `Flex ${alt.slug}: unlocks ${unlocked.join(", ")} but no package has requiresSwap in=${alt.slug}.`,
         );
       }
     }
@@ -196,6 +197,39 @@ export function validateManual(manual: TeamManual) {
         }
       }
     }
+
+    const network = manual.network;
+    if (network?.edges?.length) {
+      for (const edge of network.edges) {
+        if (!edge.from || !edge.to) {
+          errors.push("Network edge needs from and to.");
+          continue;
+        }
+        if (box.length && !box.includes(edge.from) && !altSlugs.has(edge.from)) {
+          errors.push(`Network edge from ${edge.from} is not on the six.`);
+        }
+        if (box.length && !box.includes(edge.to) && !altSlugs.has(edge.to)) {
+          errors.push(`Network edge to ${edge.to} is not on the six.`);
+        }
+      }
+    }
+
+    for (const script of manual.matchupScripts ?? []) {
+      if (script.packId && !packIds.has(script.packId)) {
+        errors.push(`Matchup script “${script.id || script.foe}” points at unknown pack ${script.packId}.`);
+      }
+    }
+
+    for (const slot of manual.roster ?? []) {
+      const sp = slot.training?.sp;
+      if (!sp) continue;
+      const total = Object.values(sp).reduce((a, n) => a + n, 0);
+      if (total > 66) errors.push(`${slot.slug || "slot"}: SP total ${total} exceeds 66.`);
+      if (Object.values(sp).some((n) => n > 32)) {
+        errors.push(`${slot.slug || "slot"}: no single stat may exceed 32 SP.`);
+      }
+    }
+
     return errors;
   }
 

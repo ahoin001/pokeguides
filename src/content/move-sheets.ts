@@ -577,7 +577,7 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
     rules: [
       { label: "U-turn", detail: "Bug damage, then switch." },
       { label: "Volt Switch", detail: "Electric damage, then switch; Ground blocks it." },
-      { label: "Flip Turn", detail: "Water damage, then switch." },
+      { label: "Flip Turn", detail: "Water damage, then switch. Same click as Splash Turn." },
       { label: "Parting Shot", detail: "Lowers both offenses, then switches." },
       { label: "Teleport", detail: "Slow switch that brings the next slot in safely." },
       { label: "Exit", detail: "Shed Tail passes protection; Emergency Exit forces a switch at half HP." },
@@ -620,7 +620,7 @@ export const MOVE_SHEET_LESSONS: Lesson[] = [
       {
         title: "Flip Turn",
         tag: "Water pivot",
-        body: "Flip Turn deals Water damage and switches the user out after connecting. Rain boosts the chip, but the move still keeps momentum without rain. Use it when the Water user attracts a predictable resist.",
+        body: "Flip Turn — Splash Turn in some lists — deals Water damage and switches the user out after connecting. Rain boosts the chip, but the move still keeps momentum without rain. Use it when the Water user attracts a predictable resist.",
         takeaway: "Flip Turn into the Water resist, then bring the matchup that punishes it.",
         rows: [
           { label: "Does", detail: "Deals Water damage, then lets the user switch." },

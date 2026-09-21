@@ -366,7 +366,16 @@ export const SAND_COACHING_TAILWIND_MILOTIC_MANUAL = {
         { name: "Scald", why: "Water damage Sand teams invite, plus burn." },
         { name: "Ice Beam", why: "Dragons and Ground-types that sit on Sand." },
         { name: "Icy Wind", why: "Third speed plane: their entire team gets slower." },
-        { name: "Protect", why: "Doubles glue; Competitive can wait a turn." },
+        {
+          name: "Protect",
+          why: "Doubles glue; Competitive can wait a turn.",
+          alts: [
+            {
+              name: "Flip Turn",
+              why: "Splash Turn. Water damage, then leave — cycle Milotic off when the seat is wrong without donating a hard switch.",
+            },
+          ],
+        },
       ],
       objective: "Check Water answers, punish Intimidate, and Icy Wind the speed war.",
       howToPlay:

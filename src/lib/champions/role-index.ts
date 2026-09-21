@@ -90,6 +90,7 @@ export const ROLE_FAMILIES: readonly RoleFamily[] = [
       move("taunt", "Taunt"),
       move("haze", "Haze"),
       move("clear-smog", "Clear Smog"),
+      move("coaching", "Coaching"),
     ],
   },
   {
@@ -111,6 +112,7 @@ export const ROLE_FAMILIES: readonly RoleFamily[] = [
       move("u-turn", "U-turn"),
       move("volt-switch", "Volt Switch"),
       move("flip-turn", "Flip Turn"),
+      move("splash-turn", "Splash Turn"),
       move("parting-shot", "Parting Shot"),
       move("chilly-reception", "Chilly Reception"),
       move("baton-pass", "Baton Pass"),
@@ -464,9 +466,11 @@ export type RoleMatchHow = "learns" | "runs";
 
 function hasTool(mon: CatalogEntry, tool: RoleTool, ranked: ReturnType<typeof rankedToolIds>): boolean {
   if (tool.kind === "move") {
-    if (mon.roleTools?.includes(tool.id)) return true;
-    if (ranked.moves.has(tool.id)) return true;
-    return false;
+    const ids =
+      tool.id === "flip-turn" || tool.id === "splash-turn"
+        ? ["flip-turn", "splash-turn"]
+        : [tool.id];
+    return ids.some((id) => mon.roleTools?.includes(id) || ranked.moves.has(id));
   }
   if (tool.kind === "ability") {
     if (mon.roleTools?.includes(tool.id)) return true;

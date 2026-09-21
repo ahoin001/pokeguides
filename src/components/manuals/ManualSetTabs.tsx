@@ -21,9 +21,13 @@ import {
   type SlotManual,
   type TeamManual,
 } from "@/content/manuals";
-import { formatBoxSets, formatSlotSet, STAT_ORDER } from "@/lib/manuals/sets-text";
+import { formatBoxSets, formatSlotSet } from "@/lib/manuals/sets-text";
 import { formatBringLabel } from "@/lib/format";
 import { SequenceBeats } from "@/components/manuals/ManualDoublesChapters";
+import {
+  ManualOpeningCoach,
+  SpBudgetBars,
+} from "@/components/manuals/ManualApproachableChapters";
 
 function SpGrid({ slot }: { slot: SlotManual }) {
   const sp = slot.training?.sp;
@@ -34,33 +38,7 @@ function SpGrid({ slot }: { slot: SlotManual }) {
       <p className="text-sm text-muted">SP TODO</p>
     );
   }
-  return (
-    <div>
-      <ul className="grid grid-cols-6 gap-1">
-        {STAT_ORDER.map((s) => {
-          const n = sp[s.key];
-          return (
-            <li
-              key={s.key}
-              className={`rounded-lg px-1 py-2 text-center ${n ? "bg-white/10" : "bg-white/[0.04]"}`}
-            >
-              <p className="font-mono text-[10px] uppercase tracking-[0.08em] text-muted">{s.label}</p>
-              <p
-                className={`mt-1 font-mono text-[15px] tabular-nums leading-none ${
-                  n ? "font-semibold" : "text-muted/45"
-                }`}
-              >
-                {n || "–"}
-              </p>
-            </li>
-          );
-        })}
-      </ul>
-      {slot.training?.why ? (
-        <p className="mt-2 text-sm leading-snug text-muted">{slot.training.why}</p>
-      ) : null}
-    </div>
-  );
+  return <SpBudgetBars sp={sp} why={slot.training?.why} />;
 }
 
 export function ManualSetTabs({
@@ -163,6 +141,8 @@ export function ManualSetTabs({
           if (!p) return null;
           const on = slug === activeSlug;
           const isAlt = alts.some((a) => a.slug === slug) && !box.includes(slug);
+          const bring = new Set((pack?.slugs ?? parent.slugs).filter(Boolean));
+          const benched = bring.size > 0 && !bring.has(slug) && !isAlt;
           return (
             <button
               key={slug}
@@ -170,7 +150,7 @@ export function ManualSetTabs({
               onClick={() => onFocusSlug(slug)}
               className={`inline-flex shrink-0 items-center gap-2 rounded-full border py-1 pl-1 pr-3 text-sm transition ${
                 on ? "border-ink/40 bg-raised" : "border-line/70 bg-raised/30 hover:border-ink/25"
-              }`}
+              } ${benched ? "opacity-40" : ""}`}
               style={cssVars(p.palette)}
               aria-pressed={on}
             >
@@ -323,6 +303,17 @@ export function ManualSetTabs({
                   {move.why ? (
                     <p className="mt-1 text-sm leading-snug text-muted">{move.why}</p>
                   ) : null}
+                  {move.alts
+                    ?.filter((a) => a.name)
+                    .map((alt) => (
+                      <p key={alt.name} className="mt-2 text-sm leading-snug">
+                        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-muted">
+                          Swap{" "}
+                        </span>
+                        <span className="font-medium">{alt.name}</span>
+                        {alt.why ? <span className="text-muted"> — {alt.why}</span> : null}
+                      </p>
+                    ))}
                 </li>
               ))}
             </ul>
@@ -373,6 +364,12 @@ export function ManualSetTabs({
           {displayed.itemLoop ? (
             <div className="border-t border-line/60 px-5 py-4 sm:px-6">
               <SequenceBeats sequence={displayed.itemLoop} />
+            </div>
+          ) : null}
+
+          {displayed.opening?.length ? (
+            <div className="border-t border-line/60 px-5 py-4 sm:px-6">
+              <ManualOpeningCoach asks={displayed.opening} />
             </div>
           ) : null}
         </div>

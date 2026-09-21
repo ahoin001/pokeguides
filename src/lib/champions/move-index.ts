@@ -3,6 +3,7 @@ import type { TypeId } from "@/types/pokemon";
 import type { MoveCategory } from "@/lib/champions/damage";
 import { TYPE_LABEL } from "@/lib/champions/types";
 import { isRoleFamilyId, moveMatchesFamily, type RoleFamilyId } from "@/lib/champions/role-index";
+import { aliasesFor } from "@/lib/champions/move-aliases";
 
 type MovesFile = {
   moves: Record<
@@ -131,7 +132,7 @@ const SCREEN =
 const PROTECT =
   /\b(protect|detect|king.?s shield|baneful bunker|spiky shield|obstruct|endure|silk trap|burning bulwark)\b/i;
 const PIVOT_NAME =
-  /\b(u-?turn|volt switch|flip turn|parting shot|baton pass|teleport|shed tail|chilly reception)\b/i;
+  /\b(u-?turn|volt switch|flip turn|splash turn|splashing turn|parting shot|baton pass|teleport|shed tail|chilly reception)\b/i;
 const PIVOT_EFFECT =
   /\b(user switches out of battle to be replaced|switches the user out)\b/i;
 const PHAZE_NAME = /\b(circle throw|dragon tail|roar|whirlwind)\b/i;
@@ -222,6 +223,7 @@ export function listChampionsMoves(): IndexedMove[] {
       const shortEffect = row.shortEffect ?? "";
       const tokens = [
         row.name,
+        ...aliasesFor(row.name),
         type,
         TYPE_LABEL[type] ?? type,
         row.category,

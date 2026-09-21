@@ -20218,7 +20218,7 @@
     ],
     "artwork": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/903.png",
     "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/903.png",
-    "tokens": "sneasler sneasler fighting poison pressure unburden poison touch gray pivot priority setup recovery status hazards agility brick-break counter fake-out low-sweep quick-attack rain-dance rock-tomb sunny-day switcheroo taunt toxic toxic-spikes u-turn unburden upper-hand vacuum-wave",
+    "tokens": "sneasler sneasler fighting poison pressure unburden poison touch gray pivot priority setup recovery status hazards agility brick-break coaching counter fake-out low-sweep quick-attack rain-dance rock-tomb sunny-day switcheroo taunt toxic toxic-spikes u-turn unburden upper-hand vacuum-wave",
     "speciesColor": "gray",
     "palette": {
       "dominant": "#44446c",
@@ -20233,6 +20233,7 @@
     "roleTools": [
       "agility",
       "brick-break",
+      "coaching",
       "counter",
       "fake-out",
       "low-sweep",

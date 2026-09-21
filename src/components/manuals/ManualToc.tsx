@@ -15,7 +15,12 @@ function stackOffsetPx(node: HTMLElement) {
   return shell + local + 8;
 }
 
-export function manualJumps(manual: TeamManual, boxed = false, parent?: TeamManual) {
+export function manualJumps(
+  manual: TeamManual,
+  boxed = false,
+  parent?: TeamManual,
+  approachable = false,
+) {
   const source = parent ?? manual;
   const hasSix = boxed || (source.box?.length ?? 0) >= 3;
   const hasSets = Boolean(
@@ -25,7 +30,23 @@ export function manualJumps(manual: TeamManual, boxed = false, parent?: TeamManu
   );
   const hasPacks = boxed && (source.packs?.length ?? 0) > 0;
   const doubles = manualFormat(source) === "doubles";
-  const hasArch = doubles && Boolean(source.engines?.length || source.controlPlanes?.length || source.architecture?.length);
+
+  if (approachable) {
+    return [
+      { href: "#top", label: "Top" },
+      ...(hasSix ? [{ href: "#six", label: "The six" }] : []),
+      ...(hasSets ? [{ href: "#sets", label: "Sets" }] : []),
+      ...((source.engines?.length ?? 0) > 0 ? [{ href: "#wins", label: "How it wins" }] : []),
+      ...((source.network?.edges?.length ?? 0) > 0
+        ? [{ href: "#network", label: "Network" }]
+        : []),
+      ...(hasPacks ? [{ href: "#packages", label: "Packages" }] : []),
+    ];
+  }
+
+  const hasArch =
+    doubles &&
+    Boolean(source.engines?.length || source.controlPlanes?.length || source.architecture?.length);
   const hasPreview = doubles && Boolean(source.previewTrees?.length);
   const hasScripts = doubles && Boolean(source.matchupScripts?.length);
   const hasLedger = doubles && Boolean(source.ledger);
@@ -50,6 +71,8 @@ export function ManualToc({
   parent,
   packLabel,
   packSlugs,
+  whisper,
+  approachable = false,
 }: {
   manual: TeamManual;
   boxed?: boolean;
@@ -58,10 +81,12 @@ export function ManualToc({
   parent?: TeamManual;
   packLabel?: string;
   packSlugs?: string[];
+  whisper?: string;
+  approachable?: boolean;
 }) {
   const jumps = useMemo(
-    () => manualJumps(manual, boxed, parent),
-    [manual, boxed, parent],
+    () => manualJumps(manual, boxed, parent, approachable),
+    [manual, boxed, parent, approachable],
   );
   const [active, setActive] = useState("#top");
   const [mounted, setMounted] = useState(false);
@@ -132,6 +157,11 @@ export function ManualToc({
             );
           })}
         </ul>
+        {whisper ? (
+          <p className="pointer-events-none hidden shrink-0 text-xs text-muted lg:block">
+            You are here · {whisper}
+          </p>
+        ) : null}
       </div>
     </nav>
   );

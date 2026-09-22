@@ -11,18 +11,40 @@ Two first-class ways a six gets **versions** (both can appear on one manual):
 
 Flex alts are **not** a seventh registration slot.
 
-**Mental model (evolved):** a bench Pokémon is a **strategic module** — e.g. Garchomp shifts the six toward autonomous conversion; Milotic toward reactive control; Ceruledge toward self-scaling. Author **what the six becomes**, not only “X replaces Y.”
+**Tournament reality (UI + authoring):**
+
+```text
+REGISTERED SIX  ← what you lock for matchmaking / a tournament run
+      │
+      ├── CORE PACKAGES (no requiresSwap)
+      │     bring-of-3/4 drawn only from this six
+      │     each pack.when = when to pick this bring
+      │
+      └── BENCH SWAP CARDS (altSlots)
+            why / useWhen / avoidWhen / architectureChange
+                  │
+                  ▼ click a swap
+            SWAPPED ACTIVE SIX (still 6)
+                  │
+                  └── SWAP PACKAGES (requiresSwap { out, in })
+                        only shown after that swap is active
+```
+
+Do **not** dump every package from every bench mon onto one screen. Core packages teach the registered six. Swap packages appear only after the pilot chooses that module.
+
+**Mental model:** a bench Pokémon is a **strategic module** — e.g. Garchomp shifts the six toward autonomous conversion. Author **what the six becomes**, not only “X replaces Y.”
 
 **Do not** rate bench Pokémon with static 1–10 scores. Value is **relational** (which `insteadOf`, which architecture, which routes).
 
-Hierarchy the app is moving toward:
+Hierarchy:
 
 ```text
 TEAM MANUAL
-├── coreArchitecture (identity card)
+├── coreArchitecture (identity of the REGISTERED six)
 ├── registered six + roster
-├── bench (modules) → architecture change → clocks / routes / loops
-├── packages (playable bring-of-3/4)
+├── core packages (bring from box only)
+├── bench swap cards → architecture change
+│     └── swap packages (bring from active six after out→in)
 └── benchDiagnostics (problem → recommended module)
 ```
 
@@ -37,7 +59,7 @@ You are authoring a Ringside field manual for Pokémon Champions Singles.
 
 GOAL
 Produce one boxed TeamManual JSON a pilot can open and play from. The page is:
-registered six + bench alts → paste-ready sets → packages of three → package guide.
+registered six → packages of three/four FROM that six → bench swap cards → (after a swap) packages for the new active six.
 Prefer short actionable lines. Use TODO: … when you lack a fact — do not invent lore or ladder win rates.
 
 CHAMPIONS TRAINING (required on every roster slot and flex `slot`)
@@ -54,10 +76,16 @@ HARD RULES
    a) In-box MODE: same slug, different kit → roster[i].modes[] + pack.winconMode = mode.id
    b) Bench module / flex SWAP: different species → altSlots[] (+ module metadata) + pack.requiresSwap { out, in }
    A pack may use both (swap the six, then pick a mode on a remaining mon).
-5. No mode without a package that sets winconMode. No flex alt without a package that sets requiresSwap.
-6. Matchups are required, not optional flavor. Team-level defaults + pack-level when the bring’s threats differ.
-7. One idea per line. Pilot language: “If X, then Y.”
-8. Output a single JSON object only — no markdown outside JSON.
+5. PACKAGE LAYERING (critical for the UI):
+   - Core packs: NO `requiresSwap`. Bring ⊆ registered `box`. These are what you play when the six is locked.
+   - Swap packs: MUST set `requiresSwap`. Bring ⊆ active six after out→in. Never list swap packs as if they were available on the registered six.
+   - Every core pack needs a clear `when` (preview trigger) — this is the package card description.
+   - Every altSlot needs `why` + preferably `useWhen[]` / `avoidWhen[]` / `architectureChange` — this is the bench swap card; packages for that swap live behind the click.
+6. No mode without a package that sets winconMode. No flex alt without a package that sets requiresSwap.
+7. Matchups are required, not optional flavor. Team-level defaults + pack-level when the bring’s threats differ.
+8. One idea per line. Pilot language: “If X, then Y.”
+9. Output a single JSON object only — no markdown outside JSON.
+10. Move `why` strings are shown on the kit card — write them as short readable explanations (not “TODO click for why”).
 
 ALLOWED IDS
 - format: "singles" | "doubles"
@@ -99,36 +127,51 @@ winRoutes[] (team or module): **paths** to those destinations (Tailwind → imme
 Link packs via endgameIds and/or winRoute ids. Route dependencies (optional): which slugs are critical vs supportive per route (RDI / “if X dies, which routes vanish?”).
 
 D. Core packages (legal on default six, no requiresSwap)
+These are the only packages shown while the registered six is active.
 For each pack:
-- id, label, when (preview trigger), identity, contrast? (vs sibling packs)
-- slugs[3] ⊆ box (4 for doubles)
+- id, label, **when** (REQUIRED — preview trigger shown on the package card), identity, contrast?
+- slugs[3] ⊆ box (4 for doubles) — must NOT include any flex slug
 - winconMode? — REQUIRED if this bring assumes a non-default SlotMode
 - identityCard (optional, recommended): compact machine-readable bring shape:
   engine[], connector[], converter[], scaler[], control[], winCondition, clock, commitment, autonomy, triggerBreadth
 - pilotDecision (optional, recommended): chooseWhen[], avoidWhen[], previewQuestion, primaryMistake
 - strategy: opponentPattern, purpose, targets[], refuses[], winCondition,
-  gamePlan (Break → Control → Finish), mantra?, turnChecklist? (≤5), defaultLead?
-- roles[]: { slug, macro, micro }
-- 2–4 loops and/or lead/mid/late flows — only real decisions (loops may include type: infrastructure | conversion | counterplay | resource | scaling)
-- endgameIds, optional winRouteIds[]
+  gamePlan (Break → Control → Finish), mantra?, turnChecklist? (≤5), defaultLead? / defaultLeadWhy?
+- roles[]: { slug, macro, micro } — EVERY bring member, including back pair
+- **DOUBLES fieldPlan (REQUIRED for doubles packs)** — how the four operates on the field:
+  - leadPair: [slug, slug] — who you send first
+  - leadWhy: why this lead vs alternatives
+  - backPair: [slug, slug] — who sits in back
+  - backJobs: [{ slug, job }] — what each back mon is waiting to do / when they enter
+  - pairEdges: [{ from, to, creates, converts }] — ≥2 edges among the four, especially the lead pair
+    (Fake Out → free attack, terrain → Unburden, Intimidate → safer conversion, …)
+  - turn1?: one-line script for the lead pair’s first exchange
+  - bringInTriggers?: when you switch a back mon onto the field
+- Also set defaultLeadPair / backPair to match fieldPlan (legacy mirrors)
+- 2–4 loops and/or lead/mid/late flows — loops must include at least one **lead-pair play** and one **back-pair entry / second wave**
+- endgameIds, optional winRouteIds[], engineIds[]
 - MATCHUPS for this pack (do not omit):
-  victims[]  { name, why, slug?, play?, trap? } — boards / mons you like
-  counters[] { name, why, slug?, play?, trap? } — boards that punish this bring
-  advantages[] { title, body } — soft edges
-- coverageNotes? typed holes this three covers
+  victims[]  { name, why, slug?, play?, trap? }
+  counters[] { name, why, slug?, play?, trap? }
+  advantages[] { title, body }
 - hazards[] pack-specific traps if they differ from team hazards
 
-E. Bench modules (flex swaps) — strategic transformation, not just a species swap
+Same fieldPlan + roles + loops requirements apply to **swap packages** (section E).
+
+E. Bench modules (flex swaps) — swap card first, packages second
+The UI shows a **swap card** (why change registration). Packages for that module appear only after the swap is selected.
+
 For each bench Pokémon that replaces a core mon:
 
   construction.altSlots[] (required for validation today):
   - slug (NOT on box), insteadOf (REQUIRED)
-  - why, answers, costs, unlocks[] pack ids
+  - why (REQUIRED — swap card headline)
+  - answers, costs
+  - useWhen[] / avoidWhen[] (REQUIRED for modular teams — when to take / skip the swap)
+  - architectureChange { from, to } (recommended)
+  - module { identity, strategicRole, adds[], removes[], changes[] }
+  - unlocks[] pack ids this flex enables
   - slot? paste-ready set (same fields as roster slot; may include modes)
-  - module (optional, recommended):
-      identity, strategicRole, adds[], removes[], changes[] (e.g. threatProfile, conversion speed)
-  - architectureChange (optional): { from, to } — e.g. "Conversion Network → Autonomous Conversion Network"
-  - useWhen[] / avoidWhen[] (optional) — preview triggers for this module
 
   modules[] (optional layer — groups swap + architecture + package ids):
   - { id, type: "bench-module", requiresSwap { out, in }, architecture?, packages[] }
@@ -138,11 +181,12 @@ For each bench Pokémon that replaces a core mon:
 
   replacementRelationships[] (optional): { out, in, preserves[], adds[], loses[], changes[] }
 
-HARD (unchanged): every alt MUST unlock ≥1 package. Every such package MUST set
+HARD: every alt MUST unlock ≥1 package. Every such package MUST set
   requiresSwap: { out: insteadOf, in: alt.slug }.
 Bring ⊆ active six (box with out→in). Still exactly 6 after swap.
-When a module activates, author (or TODO) module-specific clocks / winRoutes / loops if they differ from core.
+Write strategy + matchups + flows as if this were a different registered six.
 strategy.contrast + pilotDecision.avoidWhen: what the default six cannot run; when NOT to bench this mon.
+Do NOT put swap-pack brings into the core package list.
 
 F. Bench diagnostics (optional, recommended for modular teams)
 benchDiagnostics[]: problem → symptoms[] → recommendedModules[] (module ids or slug labels).
@@ -394,10 +438,14 @@ VALIDATION CHECKLIST (self-check before answering)
 □ packs whose targets differ from the six have their own victims/counters
 □ packages have when + winCondition + at least one refuse
 □ no invented numbers; TODOs labeled
+□ every core pack (no requiresSwap) has a non-empty `when` and bring ⊆ box
+□ every swap pack has requiresSwap and bring ⊆ active six after out→in
+□ every altSlots entry has why + useWhen (or TODO) — swap card copy
 □ modular teams: each altSlot has module OR architectureChange OR replacementRelationships entry (TODO ok)
 □ modular teams: ≥1 benchDiagnostic OR pilotDecision on swap packs (problem → module, not “pick a mon”)
 □ winRoutes/endgames: routes describe path; endgames describe destination — do not duplicate blindly
 □ no numeric synergy/coverage/flexibility scores on Pokémon
+□ move why strings are short readable explanations (shown on kit cards)
 
 USER MATERIAL FOLLOWS
 (Paste Showdown export, notes, package ideas, or “interview me”.)
@@ -409,14 +457,13 @@ USER MATERIAL FOLLOWS
 
 | Version of the six | Fields | Active registration |
 | --- | --- | --- |
-| Core | `box`, `roster` | 6 slugs |
-| Identity card | `coreArchitecture` | Describes default six’s strategic personality |
+| Core | `box`, `roster` | 6 slugs locked for tournament / queue |
+| Identity card | `coreArchitecture` | Describes **registered** six’s strategic personality |
 | In-box mode | `roster[].modes[]` + `packs[].winconMode` | Same 6; kit overlay via `slotsForPack` |
-| Bench module | `altSlots` + `module` / `architectureChange` + `modules[]` / `bench` | Same 6 after swap; **architecture** may change |
-| Flex swap (wire) | `construction.altSlots` + `packs[].requiresSwap` | `resolveActiveBox` (still 6) |
-| Module → packages | `modules[].packages[]` → `packs[].id` | Layer between swap and playable bring |
-| Core pack | `packs[]` without `requiresSwap` | `box` |
-| Swap pack | `packs[]` with `requiresSwap` | swapped six; bring may include `in` |
+| Core pack | `packs[]` **without** `requiresSwap`; bring ⊆ `box` | Shown first; `when` = package card copy |
+| Bench swap card | `altSlots` (+ `why`, `useWhen`, `avoidWhen`, `architectureChange`) | Off-box; not packages yet |
+| Swap pack | `packs[]` **with** `requiresSwap` | Shown only after that swap; bring ⊆ active six |
+| Module → packages | `modules[].packages[]` → `packs[].id` | Layer between swap card and playable bring |
 | Win path | `winRoutes[]` + pack `winRouteIds` | How you get there |
 | Win state | `construction.endgames[]` + pack `endgameIds` | Final board / closer |
 | Clocks | `clocks[]` | Competing time horizons (immediate / tempo / scaling) |
@@ -428,11 +475,20 @@ USER MATERIAL FOLLOWS
 **Evolution (keep legacy working):**
 
 ```text
-CURRENT          altSlot → requiresSwap → pack
+CURRENT          altSlot → requiresSwap → pack (all packs listed together)
 
-PROPOSED         altSlot → strategic module → architecture change
-                      → clocks / winRoutes / loops (module-specific)
-                      → unlocked packages → pilotDecision
+PROPOSED UI      registered six
+                    → core packages (when cards)
+                    → bench swap cards (why / useWhen)
+                         → swapped six
+                              → swap packages only
+```
+
+```text
+AUTHORING        altSlot (swap card copy)
+                    → strategic module / architectureChange
+                    → unlocked packages with requiresSwap
+                    → pilotDecision on those packages
 ```
 
 See `src/content/manuals.ts` (`SlotMode`, `ManualAltSlot`, `ManualPack`, …). TypeScript may lag the prompt; optional JSON fields are forward-compatible.
@@ -483,7 +539,7 @@ HARD (in addition to the singles rules)
    - `matchupScripts[]` — few pills that select a pack (e.g. Rain → Pack A); optional
    - `megaPool`, `construction.altSlots` (bench), `ledger.laterTests`
 4. Slot extras: `abilityStages`, `ampTargets`, `itemLoop`, `networkJobs` (creates/converts/protects/scales — feeds The six skim), `opening` (3–5 asks on Sets only).
-5. Pack extras: `engineIds`, **2–4 meaty `loops` per pack** (see **Recipes you repeat** below), `flows`, optional `defaultLeadPair`. **Do not invent** T1 pairs or speed-calced SP.
+5. Pack extras: `engineIds`, **fieldPlan** (lead/back + pairEdges), **2–4 meaty `loops` per pack**, `flows`, `defaultLeadPair` / `backPair`. **Do not invent** T1 pairs or speed-calced SP.
 6. Anti-redundancy: Fake Out / Sand / Coaching / Nasty Plot appear as a kit click **or** an engine path **or** a pack loop beat — never paste the same essay into all three. Engines own team-level win paths; pack `loops` own **bring-specific** repeatable plays. Packs link engines via `engineIds` only. Network edges are **one-line create→convert labels**, not engine essays.
 7. No emoji. Catalog slugs only.
 
@@ -548,6 +604,53 @@ For **each** engine require:
 
 `commandments[]` stay ≤5 one-liners under How it wins.
 
+### Package field plan (`packs[].fieldPlan`) — REQUIRED for doubles
+
+Every doubles package must teach **who leads**, **what the lead pair does together**, and **how the back two relate**.
+
+```json
+"fieldPlan": {
+  "leadPair": ["raichu", "gholdengo"],
+  "leadWhy": "Fake Out creates Gholdengo's first conversion window against boards that cannot immediately double it.",
+  "backPair": ["rillaboom", "sylveon"],
+  "backJobs": [
+    { "slug": "rillaboom", "job": "Second Fake Out / terrain / Grassy Glide cleanup" },
+    { "slug": "sylveon", "job": "Immediate Fairy spread when Gholdengo is answered" }
+  ],
+  "pairEdges": [
+    {
+      "from": "raichu",
+      "to": "gholdengo",
+      "creates": "Fake Out free turn",
+      "converts": "Nasty Plot or Make It Rain"
+    },
+    {
+      "from": "rillaboom",
+      "to": "gholdengo",
+      "creates": "Second Fake Out wave",
+      "converts": "Safer special endgame"
+    }
+  ],
+  "turn1": "Raichu Fake Out the biggest threat; Gholdengo Protect or attack based on whether setup is free.",
+  "bringInTriggers": [
+    "Opponent answers Gholdengo → bring Sylveon for spread",
+    "Need terrain or a second Fake Out → bring Rillaboom"
+  ]
+}
+```
+
+| Field | Requirement |
+| --- | --- |
+| `leadPair` | Exactly 2 slugs ⊆ pack.slugs |
+| `leadWhy` | Why this lead (not “default”) |
+| `backPair` | The other 2 bring members |
+| `backJobs` | One job line per back mon — what they are *for* while sitting |
+| `pairEdges` | ≥2 create→convert edges among the four; ≥1 must be between the lead pair |
+| `turn1` | Optional but recommended — visualize the opening exchange |
+| `bringInTriggers` | When a back mon comes in and why |
+
+Also mirror `defaultLeadPair` / `backPair` on the pack root. Pack `roles[]` must cover all four. Pack `loops` must include at least one lead-pair recipe and one back-entry / second-wave recipe.
+
 ### Recipes you repeat (`packs[].loops[]`)
 
 For **every** pack, require **2–4** loops (not 0–1). These render as “Recipes you repeat.”
@@ -576,14 +679,136 @@ VALIDATION
 □ ≥3 edges link to a real engines[].id via engineId
 □ every matchupScript.packId exists
 □ every engine has path (4–7), how (4–6 sentences), dependsOn, disrupt, fallback
-□ every pack has 2–4 loops; each loop body starts with If/When/Use when
+□ every doubles pack has fieldPlan with leadPair, backPair, backJobs, ≥2 pairEdges (one lead↔lead)
+□ every pack has 2–4 loops; each loop body starts with If/When/Use when; ≥1 lead-pair loop + ≥1 back-entry loop
 □ local drafts may omit previewTrees / ledger — omit empties on the page
 
 ---
 
-## Paste-ready: doubles meat (Tyranitar / sand / any six)
+## Paste-ready: full doubles team-builder prompt
 
-Copy into a team-builder AI after your six + notes:
+Copy everything in the fence into ChatGPT / Claude / Cursor. Paste your six + notes + any bench ideas after it. Ask for **JSON only**.
+
+```
+You are authoring a Ringside Champions DOUBLES field manual (format: "doubles", bring 4).
+
+TOURNAMENT REALITY
+- box = the REGISTERED six locked for matchmaking / a tournament run.
+- CORE packages = bring-of-4 from that six only (NO requiresSwap). These are the cards pilots see first.
+- BENCH swaps = off-box altSlots. Write swap CARDS (why / useWhen / avoidWhen / architectureChange). Packages for a swap appear ONLY after that swap (requiresSwap { out, in }).
+- Never dump every package from every bench mon onto the registered-six view.
+
+HARD RULES
+1. box has exactly 6 unique catalog slugs. Flex mons are NEVER on box.
+2. Every roster + flex slot: item, ability, nature, moves[4] { name, why }, recommended Champions training.sp (66 total, max 32 per stat) with label/why/spend/rule.
+3. Move why is always shown — write a short readable explanation, not “TODO”.
+4. Core packs: no requiresSwap; slugs ⊆ box; clear `when` (package card description).
+5. Swap packs: must set requiresSwap; bring ⊆ active six after out→in.
+6. Output one JSON object only. Catalog slugs. No emoji. TODO only when truly unknown.
+
+═══════════════════════════════════════
+PACKAGES — FIELD PLAN (REQUIRED EACH PACK)
+═══════════════════════════════════════
+For EVERY pack (core and swap), fill fieldPlan so we can visualize the sent-out pair and the back two:
+
+{
+  "fieldPlan": {
+    "leadPair": ["slugA", "slugB"],
+    "leadWhy": "Why this lead vs other leads in the four.",
+    "backPair": ["slugC", "slugD"],
+    "backJobs": [
+      { "slug": "slugC", "job": "What this mon does while sitting / when it enters" },
+      { "slug": "slugD", "job": "…" }
+    ],
+    "pairEdges": [
+      {
+        "from": "slugA",
+        "to": "slugB",
+        "creates": "≤6-word resource the lead creates",
+        "converts": "≤6-word what the partner spends it on"
+      },
+      {
+        "from": "slugC",
+        "to": "slugB",
+        "creates": "…",
+        "converts": "…"
+      }
+    ],
+    "turn1": "One-line opening script for the lead pair.",
+    "bringInTriggers": [
+      "When X happens → bring in slugC because …",
+      "When Y happens → bring in slugD because …"
+    ]
+  },
+  "defaultLeadPair": ["slugA", "slugB"],
+  "backPair": ["slugC", "slugD"],
+  "roles": [
+    { "slug": "slugA", "macro": "…", "micro": "…" },
+    { "slug": "slugB", "macro": "…", "micro": "…" },
+    { "slug": "slugC", "macro": "…", "micro": "…" },
+    { "slug": "slugD", "macro": "…", "micro": "…" }
+  ]
+}
+
+pairEdges rules:
+- ≥2 edges among the four
+- ≥1 edge MUST be between the two leadPair members (the “sent out together” conversion)
+- Prefer also 1 edge from a back mon into a lead (second wave / protect the endgame)
+- Same style as team network: creates = resource, converts = spend — not essays
+
+Also per pack:
+- when (REQUIRED card copy — “Bring this when…”)
+- identity, strategy { opponentPattern, purpose, targets[], refuses[], winCondition, gamePlan, mantra, turnChecklist≤5 }
+- identityCard + pilotDecision { chooseWhen[], avoidWhen[], previewQuestion, primaryMistake }
+- engineIds[], endgameIds[]
+- loops[2–4]: body starts with If/When/Use when…
+  * ≥1 loop = lead-pair play (what the two on the field do together)
+  * ≥1 loop = back-pair entry / second wave (how a sitting mon comes in and converts)
+- flows lead forks when there are real lead decisions
+- victims / counters / advantages / hazards for THIS bring
+
+═══════════════════════════════════════
+TEAM NETWORK — REQUIRED
+═══════════════════════════════════════
+network.thesis + ≥5 edges (prefer 6–10) among the registered box:
+{ from, to, creates, converts, engineId? }
+Ask: who creates a board state, who converts it?
+Mirror verbs in roster[].networkJobs { creates, converts, protects, scales }.
+
+═══════════════════════════════════════
+HOW IT WINS — REQUIRED
+═══════════════════════════════════════
+≥3 engines: path[4–7], how (4–6 sentences: create→convert→press→deny), dependsOn, disrupt, fallback.
+commandments[] ≤5 one-liners.
+
+═══════════════════════════════════════
+BENCH (if any flex)
+═══════════════════════════════════════
+altSlots[]: slug, insteadOf, why, answers, costs, useWhen[], avoidWhen[], architectureChange, module, unlocks[], slot (full kit + SP).
+Each unlocks ≥1 pack with requiresSwap. Those packs also need full fieldPlan.
+
+OPTIONAL BUT USEFUL
+coreArchitecture, clocks[], winRoutes[], failureRoutes[], benchDiagnostics[], megaPool, matchupScripts[], controlPlanes[].
+
+SELF-CHECK BEFORE ANSWERING
+□ box = 6; no flex on box
+□ every core pack when filled; bring ⊆ box; no requiresSwap
+□ every swap pack has requiresSwap; bring ⊆ swapped six
+□ every doubles pack has fieldPlan (lead/back/pairEdges/backJobs) + roles for all four
+□ ≥1 lead-pair loop + ≥1 back-entry loop per pack
+□ network ≥5 edges; ≥3 with engineId
+□ nature + 66 SP recommended on every slot
+□ move why are short readable explanations
+
+USER MATERIAL FOLLOWS
+(Paste Showdown export, notes, package ideas, VOD bullets, or “interview me”.)
+```
+
+---
+
+## Paste-ready: doubles meat (short addon)
+
+If the builder already has a draft six and you only need to beef packages / network / engines, use this shorter block:
 
 ```
 You are filling a Ringside Champions DOUBLES field manual (format: "doubles", bring 4).
@@ -604,6 +829,14 @@ Each edge: { from, to, creates, converts, engineId? }
 Ask for every edge: "Who creates a board state, who converts it?"
 Do NOT paste engine essays into creates/converts. Mirror the same verbs in roster[].networkJobs.
 
+PACKAGE FIELD PLAN — REQUIRED (every pack)
+For each pack fill fieldPlan:
+- leadPair [2], leadWhy, backPair [2], backJobs[{slug,job}]
+- pairEdges ≥2 create→convert among the four; ≥1 between the lead pair
+- turn1 opening script; bringInTriggers for when back mons enter
+Also set defaultLeadPair / backPair and roles[] for all four.
+loops: ≥1 lead-pair play + ≥1 back-entry / second-wave play (If/When… body).
+
 RECIPES YOU REPEAT — MEAT REQUIRED (every pack)
 Each pack needs 2–4 loops { title, body }.
 body MUST:
@@ -616,12 +849,15 @@ Keep strategy.purpose / mantra / winCondition to one short line each.
 Anti-redundancy: kit why OR engine OR loop beat — not the same paragraph three times.
 
 BENCH / MODULAR (when the six has flex)
-- coreArchitecture: identity card for the default six
-- altSlots: module { adds, removes, changes }, architectureChange { from, to }
+- Registered six first. Core packs have NO requiresSwap and clear `when` strings (package cards).
+- Bench = swap cards: why, useWhen[], avoidWhen[], architectureChange — not a dump of every swap package.
+- Swap packs MUST set requiresSwap; only appear after that swap is chosen.
+- coreArchitecture describes the REGISTERED six.
 - benchDiagnostics: problem → symptoms → recommendedModules
 - winRoutes vs construction.endgames (path vs destination)
 - failureRoutes: failedRoute → fallback → nextRoute
 - packs: identityCard + pilotDecision (chooseWhen / avoidWhen / previewQuestion / primaryMistake)
+- Move why text is always shown on kits — write short explanations
 - No numeric Pokémon rating tables
 
 NATURE + SP: every roster and flex slot needs a recommended nature and 66 SP spread (max 32 per stat) with training.label/why/spend/rule — not omitted.

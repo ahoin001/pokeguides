@@ -376,9 +376,11 @@ export type ManualPack = {
   winRouteIds?: string[];
   identityCard?: ManualPackIdentityCard;
   pilotDecision?: ManualPilotDecision;
-  /** Doubles: two on the field at lead. */
+  /** Doubles: lead pair, back pair, and in-package create→convert plays. */
+  fieldPlan?: ManualPackFieldPlan;
+  /** Doubles: two on the field at lead. Prefer fieldPlan.leadPair when both exist. */
   defaultLeadPair?: [string, string];
-  /** Doubles: who sits in back. */
+  /** Doubles: who sits in back. Prefer fieldPlan.backPair when both exist. */
   backPair?: [string, string];
   /** Package pipelines (Sand Rush KO chain, Corv scale, etc.). */
   sequence?: ManualSequence[];
@@ -538,6 +540,35 @@ export type ManualPilotDecision = {
   avoidWhen?: string[];
   previewQuestion?: string;
   primaryMistake?: string;
+};
+
+/**
+ * Doubles: how the brought four operates on the field —
+ * lead pair plays, back pair jobs, and in-package create→convert edges.
+ */
+export type ManualPackFieldPlan = {
+  /** Who you send first. */
+  leadPair: [string, string];
+  /** Why this lead (one short paragraph or 2–3 sentences). */
+  leadWhy: string;
+  /** Who sits in back at preview. */
+  backPair: [string, string];
+  /** What each back mon is waiting to do. */
+  backJobs: { slug: string; job: string }[];
+  /**
+   * Create→convert edges among the four (and especially the lead pair).
+   * Used to visualize “what the sent-out pair does together.”
+   */
+  pairEdges: {
+    from: string;
+    to: string;
+    creates: string;
+    converts: string;
+  }[];
+  /** Optional turn-1 script for the lead pair. */
+  turn1?: string;
+  /** When / why you switch a back mon onto the field. */
+  bringInTriggers?: string[];
 };
 
 export type ManualLoopNote = {
@@ -987,12 +1018,14 @@ export function resolveManual(manual: TeamManual, packId?: string | null): TeamM
 export function defaultPackId(manual: TeamManual): string | undefined {
   const packs = packList(manual);
   if (!packs.length) return undefined;
+  const corePacks = packs.filter((p) => !packRequiresSwap(p));
+  const pool = corePacks.length ? corePacks : packs;
   if (manual.core) {
     const coreKey = [...manual.core].sort().join("|");
-    const match = packs.find((p) => [...p.slugs].sort().join("|") === coreKey);
+    const match = pool.find((p) => [...p.slugs].sort().join("|") === coreKey);
     if (match) return match.id;
   }
-  return packs[0]?.id;
+  return pool[0]?.id;
 }
 
 /** Registered six + roster + packs — pack-first reading model. */

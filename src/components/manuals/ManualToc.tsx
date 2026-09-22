@@ -35,7 +35,6 @@ export function manualJumps(
     return [
       { href: "#top", label: "Top" },
       ...(hasSix && hasPacks ? [{ href: "#team", label: "Team & packs" }] : []),
-      ...(hasSets ? [{ href: "#sets", label: "Sets" }] : []),
       ...((source.engines?.length ?? 0) > 0 ? [{ href: "#wins", label: "How it wins" }] : []),
       ...((source.network?.edges?.length ?? 0) > 0
         ? [{ href: "#network", label: "Network" }]

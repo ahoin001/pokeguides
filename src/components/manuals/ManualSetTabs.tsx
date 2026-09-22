@@ -46,14 +46,11 @@ export function ManualSetTabs({
   pack,
   focusSlug,
   onFocusSlug,
-  compact = false,
 }: {
   parent: TeamManual;
   pack?: ManualPack;
   focusSlug: string | null;
   onFocusSlug: (slug: string) => void;
-  /** Approachable manuals: kit lives in Team hero — this is export / deep dive only. */
-  compact?: boolean;
 }) {
   const box = resolveActiveBox(parent, pack?.id);
   const alts = flexPool(parent);
@@ -101,72 +98,6 @@ export function ManualSetTabs({
   }
 
   if (!tabSlugs.length) return null;
-
-  if (compact) {
-    return (
-      <ManualSection
-        id="sets"
-        title="Copy sets"
-        purpose="Paste-ready export. Kit skim lives in Team & packages — tap a face there."
-        actions={
-          <div className="flex flex-wrap items-center gap-2">
-            <Button type="button" variant="line" onClick={() => void copy("one")}>
-              {copied === "one" ? "Copied set" : copied === "fail" ? "Copy failed" : "Copy set"}
-            </Button>
-            <Button type="button" variant="line" onClick={() => void copy("six")}>
-              {copied === "six" ? "Copied six" : "Copy six"}
-            </Button>
-            {loadSlugs.length === 3 ? (
-              <LoadSampleSix
-                slugs={loadSlugs}
-                box={loadBox}
-                intent={parent.archetype}
-                stay
-                manualId={parent.id}
-                label={pack ? `Load ${pack.label}` : "Load onto Team"}
-              />
-            ) : null}
-          </div>
-        }
-      >
-        <div className="flex gap-1.5 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {tabSlugs.map((slug) => {
-            const p = getPokemon(slug);
-            if (!p) return null;
-            const on = slug === activeSlug;
-            return (
-              <button
-                key={slug}
-                type="button"
-                onClick={() => onFocusSlug(slug)}
-                className={`inline-flex shrink-0 items-center gap-2 rounded-full border py-1 pl-1 pr-3 text-sm transition ${
-                  on ? "border-ink/40 bg-raised" : "border-line/70 bg-raised/30 hover:border-ink/25"
-                }`}
-                style={cssVars(p.palette)}
-                aria-pressed={on}
-              >
-                <PokemonArt slug={p.slug} src={p.sprite || p.artwork} name={p.name} size={28} />
-                {p.name}
-              </button>
-            );
-          })}
-        </div>
-        {displayed && mon ? (
-          <p className="mt-3 text-sm text-muted">
-            {mon.name}
-            {displayed.item ? ` @ ${displayed.item}` : ""}
-            {displayed.nature ? ` · ${displayed.nature}` : ""}
-            {displayed.ability ? ` · ${displayed.ability}` : ""}
-            {" · "}
-            {displayed.moves
-              .filter((m) => m.name)
-              .map((m) => m.name)
-              .join(" / ")}
-          </p>
-        ) : null}
-      </ManualSection>
-    );
-  }
 
   return (
     <ManualSection

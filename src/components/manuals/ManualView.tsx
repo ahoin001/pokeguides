@@ -154,14 +154,6 @@ export function ManualView({
 
         {approachable ? (
           <>
-            <ManualSetTabs
-              parent={parent}
-              pack={activePack}
-              focusSlug={focus}
-              onFocusSlug={setFocusSlug}
-              compact
-            />
-
             {(parent.engines?.length ?? 0) > 0 ? (
               <ManualWinRecipes
                 engines={parent.engines ?? []}
@@ -178,7 +170,7 @@ export function ManualView({
                 box={(parent.box ?? []).filter(Boolean) as string[]}
                 onNode={(slug) => {
                   setFocusSlug(slug);
-                  document.getElementById("sets")?.scrollIntoView({ behavior: "smooth" });
+                  document.getElementById("team")?.scrollIntoView({ behavior: "smooth" });
                 }}
                 onEdge={(engineId) => {
                   if (engineId) {
@@ -188,7 +180,6 @@ export function ManualView({
                 }}
               />
             ) : null}
-
           </>
         ) : (
           <>

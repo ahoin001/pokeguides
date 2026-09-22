@@ -1,1767 +1,2496 @@
-import { train, type TeamManual } from "@/content/manuals";
+import { train } from "@/content/manual-train";
+import type { TeamManual } from "@/content/manuals";
 
 const BOX = [
   "raichu",
   "rillaboom",
   "staraptor",
   "gholdengo",
-  "arcanine-hisui",
   "sylveon",
+  "garchomp",
 ] as const;
-
-const PACK_FAIRY = "pack-conversion-fairy";
-const PACK_GARCHOMP = "pack-autonomous-garchomp";
-const PACK_MILOTIC = "pack-reactive-milotic";
-const PACK_CERULEDGE = "pack-ceruledge-scaling";
-const PACK_ANNIHILAPE = "pack-annihilape-counterplay";
 
 const SP_NOTE =
   "Starting architecture spend (66 SP, max 32). Recommended configuration — not claimed as mathematically optimal vs every M-C threshold.";
 
 export const CONVERSION_NETWORK_MODULAR_MC_MANUAL = {
-  id: "conversion-network-modular-mc-manual",
-  title: "Conversion Network — Modular M-C",
-  lede: "A board-state generator built around Raichu, Rillaboom and Staraptor, with Gholdengo plus modular converters that change how the six wins.",
-  format: "doubles",
-  philosophy:
-    "Build a network of competing clocks rather than one rigid six. Raichu, Rillaboom and Staraptor create tempo and board states; Gholdengo scales; the final slot pair determines whether the team converts immediately, scales, reacts, or weaponizes opponent actions.",
-  archetype: "balance",
-  family: "clock",
-  meta: "Pokémon Champions Regulation M-C. Modular ladder architecture designed around immediate conversion, scaling, reactive control and opponent-action conversion.",
-  setsNote: SP_NOTE,
-  press: ["Fake Out", "Tailwind", "Nasty Plot", "Modular bench"],
-  pilot: {
-    thesis:
-      "Can we create a favorable board state, convert it on the right clock, and keep a second route alive when the first is denied?",
-    rule: "Pick a four-Pokémon package and a Mega plan before turn one — not mid-game improvisation.",
-    fail: "Forcing Gholdengo setup, Tailwind, or Rage Fist when the board already favors immediate conversion.",
-  },
-  box: [...BOX],
-  core: ["raichu", "rillaboom", "gholdengo", "sylveon"],
-  slugs: ["raichu", "rillaboom", "gholdengo", "sylveon"],
-  slots: [],
-  coreArchitecture: {
-    identity: "Conversion Network",
-    primaryEngine: "Raichu + Rillaboom + Staraptor generate tempo, terrain, speed control and positioning.",
-    conversionModel:
-      "Gholdengo provides scaling special conversion; Hisuian Arcanine provides immediate nuclear physical conversion; Sylveon provides immediate Fairy spread conversion.",
-    scalingModel:
-      "Gholdengo compounds value through Nasty Plot while the infrastructure buys positioning and protects its setup windows.",
-    controlModel: "Fake Out + Lightning Rod + Grassy Terrain + Intimidate + Tailwind + Protect.",
-    speedModel: "Mega Raichu provides immediate speed pressure; Staraptor provides Tailwind as a second speed-control route.",
-    resourceModel:
-      "Fake Out turns, terrain, priority, Intimidate, positioning and setup opportunities are converted into damage or safer endgames.",
-    threatProfile: [
-      "tempo engine",
-      "terrain engine",
-      "speed control",
-      "Intimidate",
-      "special scaling",
-      "immediate physical conversion",
-      "Fairy spread conversion",
-      "priority",
+    id: "conversion-network-modular-mc-manual",
+    title: "Garchomp Conversion Network",
+    lede: "A modular M-C balance network built around board control, immediate conversion, Tailwind positioning, and swappable reactive/scaling modules.",
+    format: "doubles",
+    philosophy: "Create board states with Fake Out, terrain, Intimidate and speed control, then convert them through Garchomp, Gholdengo and Sylveon.",
+    archetype: "balance",
+    family: "clock",
+    meta: "Pokémon Champions Doubles, Regulation M-C. Modular conversion network with swappable bench modules and competing Mega packages.",
+    setsNote: SP_NOTE,
+    press: [
+      "Fake Out",
+      "Tailwind",
+      "Garchomp",
+      "Modular bench",
     ],
-  },
-  clocks: [
-    {
-      id: "tempo-clock",
-      owner: ["raichu", "rillaboom", "staraptor"],
-      speed: "immediate",
-      goal: "Control action order and create safe conversion windows.",
+    pilot: {
+      thesis: "Create a positional advantage, convert immediately, then force the opponent to answer a second independent threat.",
+      rule: "Use two different Mega packages rather than forcing both Mega candidates into the same four.",
+      fail: "Forcing Mega, Tailwind, or setup when immediate conversion is already favored.",
     },
-    {
-      id: "immediate-conversion-clock",
-      owner: ["arcanine-hisui", "sylveon"],
-      speed: "fast",
-      goal: "Turn one favorable board state into immediate damage.",
-    },
-    {
-      id: "scaling-clock",
-      owner: ["gholdengo"],
-      speed: "medium",
-      goal: "Use protected turns to become progressively harder to answer.",
-    },
-    {
-      id: "resource-clock",
-      owner: ["rillaboom", "raichu", "staraptor"],
-      speed: "continuous",
-      goal: "Accumulate positioning, terrain, Fake Out and speed-control advantages.",
-    },
-  ],
-  winRoutes: [
-    {
-      id: "fake-out-immediate-conversion",
-      name: "Fake Out → Immediate Conversion",
-      requires: ["raichu", "rillaboom", "arcanine-hisui"],
-      sequence: [
-        "Use Fake Out to remove one immediate response.",
-        "Position Hisuian Arcanine against the exposed target.",
-        "Convert the free turn into Flare Blitz, Head Smash or Extreme Speed.",
-        "Use the resulting KO or HP advantage to control the next turn.",
-      ],
-      finish: "Hisuian Arcanine or Rillaboom closes after the opponent loses a key piece.",
-      failurePoint: "The opponent absorbs the first attack with Protect, resistances or defensive positioning.",
-      dependencies: [
-        { slug: "raichu", importance: "supportive" },
-        { slug: "rillaboom", importance: "supportive" },
-        { slug: "arcanine-hisui", importance: "critical" },
+    box: [...BOX],
+    core: [
+      "garchomp",
+      "rillaboom",
+      "sylveon",
+      "gholdengo",
+    ],
+    slugs: [
+      "garchomp",
+      "rillaboom",
+      "sylveon",
+      "gholdengo",
+    ],
+    slots: [],
+    coreArchitecture: {
+      identity: "Swiss Army knife conversion network",
+      primaryEngine: "Rillaboom plus Raichu or Staraptor creates tempo and board control.",
+      conversionModel: "Immediate conversion through Garchomp/Sylveon/Gholdengo rather than requiring every attacker to set up.",
+      scalingModel: "Gholdengo provides the primary special scaling clock while the bench can add Ceruledge or Annihilape scaling.",
+      controlModel: "Fake Out, Intimidate, Lightning Rod, Protect and Tailwind manipulate the board before committing damage.",
+      speedModel: "Two distinct speed modes: Mega Raichu natural speed and Staraptor Tailwind.",
+      resourceModel: "Fake Out turns, terrain, Intimidate resets, Protect cycles and positional switches are the primary resources.",
+      threatProfile: [
+        "immediate physical conversion",
+        "immediate special spread damage",
+        "special scaling",
+        "speed control",
+        "Intimidate control",
+        "Electric redirection",
+        "priority",
       ],
     },
-    {
-      id: "tailwind-immediate-pressure",
-      name: "Tailwind → Immediate Pressure",
-      requires: ["staraptor", "arcanine-hisui"],
-      sequence: [
-        "Establish Tailwind when Staraptor can survive or trade favorably.",
-        "Use the speed advantage to place immediate pressure with Hisuian Arcanine.",
-        "Force defensive turns or remove a vulnerable target.",
-        "Use priority and Fake Out to preserve the speed advantage.",
-      ],
-      finish: "The opponent cannot regain board control before the physical converters close.",
-      failurePoint: "Tailwind is denied or the opponent's speed control remains active.",
-      dependencies: [
-        { slug: "staraptor", importance: "critical" },
-        { slug: "arcanine-hisui", importance: "supportive" },
-      ],
-    },
-    {
-      id: "fake-out-nasty-plot",
-      name: "Fake Out → Nasty Plot",
-      requires: ["raichu", "gholdengo"],
-      sequence: [
-        "Use Fake Out to suppress the immediate threat.",
-        "Use Gholdengo's protected turn for Nasty Plot.",
-        "Transition from setup into Make It Rain or Shadow Ball pressure.",
-        "Use Rillaboom and Staraptor to maintain positioning while Gholdengo scales.",
-      ],
-      finish: "Gholdengo becomes the dominant special threat while the infrastructure prevents clean counterplay.",
-      failurePoint: "The opponent can immediately double Gholdengo or deny its setup.",
-      dependencies: [
-        { slug: "gholdengo", importance: "critical" },
-        { slug: "raichu", importance: "supportive" },
-      ],
-    },
-    {
-      id: "fairy-spread-conversion",
-      name: "Position → Hyper Voice",
-      requires: ["sylveon", "rillaboom"],
-      sequence: [
-        "Use Fake Out, terrain or positioning to reduce immediate counterpressure.",
-        "Place Sylveon where both opposing slots are meaningful targets.",
-        "Use Hyper Voice to convert one safe turn into spread damage.",
-        "Use Hyper Beam or priority from teammates to finish weakened targets.",
-      ],
-      finish: "Multiple opposing Pokémon are simultaneously pushed into KO range.",
-      failurePoint:
-        "The opponent separates targets or applies enough immediate pressure to prevent Sylveon from attacking safely.",
-      dependencies: [
-        { slug: "sylveon", importance: "critical" },
-        { slug: "rillaboom", importance: "supportive" },
-      ],
-    },
-  ],
-  failureRoutes: [
-    {
-      failedRoute: "Gholdengo setup",
-      why: "The opponent applies immediate pressure and denies Nasty Plot.",
-      fallback: "Stop investing turns into setup.",
-      nextRoute: "Immediate physical conversion through Hisuian Arcanine or Rillaboom.",
-    },
-    {
-      failedRoute: "Hisuian Arcanine conversion",
-      why: "The opponent Protects, resists the attack or pivots around the threat.",
-      fallback: "Exploit the defensive turn instead of repeatedly forcing damage.",
-      nextRoute: "Gholdengo scaling or Sylveon spread pressure.",
-    },
-    {
-      failedRoute: "Tailwind",
-      why: "Opponent denies Staraptor or establishes opposing speed control.",
-      fallback: "Stop treating speed advantage as mandatory.",
-      nextRoute: "Fake Out positioning plus priority and immediate conversion.",
-    },
-    {
-      failedRoute: "Sylveon spread pressure",
-      why: "Opponent separates targets or pressures Sylveon before it can attack.",
-      fallback: "Use Sylveon as a defensive Fairy presence while another converter operates.",
-      nextRoute: "Gholdengo scaling or Hisuian Arcanine pressure.",
-    },
-  ],
-  bench: {
-    purpose:
-      "Change the team's strategic personality when the default conversion profile is poorly matched to the opponent.",
-    slots: [
+    clocks: [
       {
-        slug: "garchomp",
-        insteadOf: "sylveon",
-        category: "autonomous-converter",
-        priority: "high",
-        useWhen: [
-          "The team needs more autonomous immediate damage.",
-          "Ground or Rock coverage materially improves the matchup.",
-          "The opponent can exploit the Fairy-dependent conversion route.",
+        id: "tempo-clock",
+        owner: [
+          "raichu",
+          "rillaboom",
         ],
-        avoidWhen: [
-          "Fairy spread pressure is specifically valuable.",
-          "The matchup rewards special spread damage more than autonomous physical coverage.",
-        ],
-        changesArchitecture: true,
-        moduleId: "garchomp-autonomous-conversion",
+        speed: "immediate",
+        goal: "Fake Out and terrain create the first conversion window.",
       },
       {
-        slug: "milotic",
-        insteadOf: "sylveon",
-        category: "reactive-control",
-        priority: "high",
-        useWhen: [
-          "The opponent relies heavily on Intimidate or physical stat manipulation.",
-          "The matchup is likely to become attritional.",
-          "Reactive punishment is more valuable than immediate spread damage.",
+        id: "speed-clock",
+        owner: [
+          "staraptor",
         ],
-        avoidWhen: [
-          "Immediate Fairy spread damage is the primary requirement.",
-          "The game must be won quickly before reactive value accumulates.",
-        ],
-        changesArchitecture: true,
-        moduleId: "milotic-reactive-control",
+        speed: "fast",
+        goal: "Tailwind compresses the board before the opponent stabilizes.",
       },
       {
-        slug: "ceruledge",
-        insteadOf: "arcanine-hisui",
-        category: "self-scaler",
-        priority: "high",
-        useWhen: [
-          "The matchup allows a protected setup turn.",
-          "Grassy Terrain can be converted into Grassy Seed value.",
-          "The game is likely to reward sustained scaling.",
+        id: "conversion-clock",
+        owner: [
+          "garchomp",
+          "sylveon",
+          "gholdengo",
         ],
-        avoidWhen: [
-          "Immediate damage is required from turn one.",
-          "The opponent can deny setup consistently.",
-        ],
-        changesArchitecture: true,
-        moduleId: "ceruledge-self-scaling",
-      },
-      {
-        slug: "annihilape",
-        insteadOf: "arcanine-hisui",
-        category: "counterplay-scaler",
-        priority: "medium",
-        useWhen: [
-          "The opponent must attack into Annihilape.",
-          "Intimidate or other stat drops are common.",
-          "The matchup rewards opponent-action conversion.",
-        ],
-        avoidWhen: [
-          "The opponent can simply ignore Annihilape.",
-          "Immediate nuclear conversion is more valuable than accumulated Rage Fist value.",
-        ],
-        changesArchitecture: true,
-        moduleId: "annihilape-counterplay",
+        speed: "fast",
+        goal: "Turn positional advantage into immediate or scaling damage.",
       },
     ],
-  },
-  modules: [
-    {
-      id: "garchomp-autonomous-conversion",
-      type: "bench-module",
-      requiresSwap: { out: "sylveon", in: "garchomp" },
-      architecture: "Autonomous Conversion Network",
-      packages: [PACK_GARCHOMP],
-    },
-    {
-      id: "milotic-reactive-control",
-      type: "bench-module",
-      requiresSwap: { out: "sylveon", in: "milotic" },
-      architecture: "Control Network",
-      packages: [PACK_MILOTIC],
-    },
-    {
-      id: "ceruledge-self-scaling",
-      type: "bench-module",
-      requiresSwap: { out: "arcanine-hisui", in: "ceruledge" },
-      architecture: "Self-Scaling Network",
-      packages: [PACK_CERULEDGE],
-    },
-    {
-      id: "annihilape-counterplay",
-      type: "bench-module",
-      requiresSwap: { out: "arcanine-hisui", in: "annihilape" },
-      architecture: "Counterplay Network",
-      packages: [PACK_ANNIHILAPE],
-    },
-  ],
-  benchDiagnostics: [
-    {
-      problem: "The team creates openings but fails to convert them immediately.",
-      symptoms: [
-        "Free turns do not produce enough damage.",
-        "Opponent repeatedly survives the first conversion attempt.",
-      ],
-      recommendedModules: ["garchomp-autonomous-conversion"],
-    },
-    {
-      problem: "The opponent is manipulating physical stats or winning attrition.",
-      symptoms: [
-        "Repeated Intimidate creates problems for the physical core.",
-        "Games remain unresolved after the first exchanges.",
-      ],
-      recommendedModules: ["milotic-reactive-control"],
-    },
-    {
-      problem: "The matchup allows a self-scaling win condition.",
-      symptoms: [
-        "Opponent lacks reliable immediate pressure.",
-        "Grassy Terrain can safely create setup opportunities.",
-      ],
-      recommendedModules: ["ceruledge-self-scaling"],
-    },
-    {
-      problem: "The opponent's normal attacks and stat manipulation create value for our side.",
-      symptoms: [
-        "Opponent must repeatedly target our scaler.",
-        "Intimidate or similar stat drops are common.",
-      ],
-      recommendedModules: ["annihilape-counterplay"],
-    },
-    {
-      problem: "The opponent separates targets and makes Sylveon's spread damage inefficient.",
-      symptoms: [
-        "Hyper Voice is difficult to convert into meaningful multi-target pressure.",
-        "Opponent's positioning removes Fairy spread value.",
-      ],
-      recommendedModules: ["garchomp-autonomous-conversion", "milotic-reactive-control"],
-    },
-  ],
-  replacementRelationships: [
-    {
-      out: "sylveon",
-      in: "garchomp",
-      preserves: ["immediate conversion", "threat saturation", "independent offensive pressure"],
-      adds: ["Ground coverage", "Rock coverage", "autonomous conversion", "physical threat diversity"],
-      loses: ["Fairy spread pressure", "Pixilate special damage", "strong Dragon immunity"],
-      changes: ["damage distribution", "targeting profile", "conversion autonomy", "coverage profile"],
-    },
-    {
-      out: "sylveon",
-      in: "milotic",
-      preserves: ["special offensive presence", "independent conversion"],
-      adds: ["Competitive", "Coil", "Muddy Water", "reactive control", "attrition value"],
-      loses: ["Fairy spread pressure", "Pixilate Hyper Voice"],
-      changes: ["immediate damage into reactive damage", "low-commitment offense into state-reactive control"],
-    },
-    {
-      out: "arcanine-hisui",
-      in: "ceruledge",
-      preserves: ["physical pressure", "Fire typing", "independent offensive route"],
-      adds: ["Grassy Seed interaction", "Swords Dance scaling", "Bitter Blade sustain", "Shadow Sneak priority"],
-      loses: ["immediate nuclear Head Smash pressure", "Extreme Speed"],
-      changes: ["immediate conversion into self-scaling", "short clock into medium clock"],
-    },
-    {
-      out: "arcanine-hisui",
-      in: "annihilape",
-      preserves: ["physical offensive pressure", "independent win route"],
-      adds: ["Rage Fist scaling", "Defiant", "opponent-action conversion"],
-      loses: ["immediate Head Smash damage", "Extreme Speed", "Rock coverage"],
-      changes: [
-        "autonomous conversion into interaction-reactive scaling",
-        "low positional commitment into higher positional commitment",
-      ],
-    },
-  ],
-  phases: [
-    {
-      id: "create-state",
-      title: "Create board state",
-      lede: "Infrastructure before conversion.",
-      branches: [
-        {
-          when: "One opponent must act first",
-          then: "Fake Out that threat while the partner creates terrain, Tailwind, or positioning.",
-        },
-        {
-          when: "Electric pressure is live",
-          then: "Position Raichu so Lightning Rod changes their targeting.",
-        },
-      ],
-    },
-    {
-      id: "choose-clock",
-      title: "Choose conversion clock",
-      branches: [
-        {
-          when: "An exposed target exists now",
-          then: "Favor immediate conversion (H-Arcanine, Sylveon, or Garchomp module).",
-        },
-        {
-          when: "Setup cannot be punished this turn",
-          then: "Favor Gholdengo or Ceruledge scaling clocks.",
-        },
-      ],
-    },
-    {
-      id: "protect-route",
-      title: "Protect the active route",
-      branches: [
-        {
-          when: "The scaler is threatened",
-          then: "Protect, Fake Out, or redirect — do not donate the invested turns.",
-        },
-        {
-          when: "The opponent shifts to stop your clock",
-          then: "Recognize denial and switch clocks via failureRoutes.",
-        },
-      ],
-    },
-    {
-      id: "convert",
-      title: "Convert",
-      branches: [
-        {
-          when: "The safe window is open",
-          then: "Click the converter — Hyper Voice, Head Smash, Earthquake, Nasty Plot, or Rage Fist.",
-        },
-        {
-          when: "They Protect into your main threat",
-          then: "Take the free reposition or attack the partner slot.",
-        },
-      ],
-    },
-    {
-      id: "endgame",
-      title: "Transition to endgame",
-      branches: [
-        {
-          when: "Opponents are chipped into priority range",
-          then: "Grassy Glide, Extreme Speed, Quick Attack, or Shadow Sneak — compress.",
-        },
-        {
-          when: "One scaler is dominant",
-          then: "Stop creating complexity; protect the closer.",
-        },
-      ],
-    },
-  ],
-  loops: [
-    {
-      title: "Fake Out → Conversion",
-      body: "If one opponent prevents your converter from acting, suppress that target with Fake Out and use the resulting action to create immediate progress.",
-    },
-    {
-      title: "Tempo → Gholdengo",
-      body: "When the infrastructure creates a safe turn, convert that turn into Nasty Plot or another Gholdengo pressure action.",
-    },
-    {
-      title: "Tailwind → Damage",
-      body: "When Tailwind changes the relevant speed order, use the faster converter immediately rather than treating Tailwind as an end in itself.",
-    },
-  ],
-  hazards: [
-    {
-      title: "One Mega per battle",
-      body: "Raichu and Staraptor both carry Mega stones on the registered six. The bring must commit to Mega Raichu Y or Mega Staraptor — not both.",
-    },
-    {
-      title: "Over-engineering",
-      body: "Do not spend multiple turns creating a perfect board when an immediate converter can already capitalize.",
-    },
-    {
-      title: "Grassy Terrain versus Ground",
-      body: "Rillaboom's terrain changes the value of Ground attacks — especially for Garchomp. Choose the click based on active terrain.",
-    },
-    {
-      title: "Setup greed",
-      body: "Gholdengo and Ceruledge only invest setup turns when the opponent cannot convert that investment into a decisive trade.",
-    },
-    {
-      title: "Route commitment",
-      body: "When Plan A is denied, change clocks rather than repeatedly forcing the same route.",
-    },
-  ],
-  commandments: [
-    "Create the opening before committing the converter.",
-    "Do not force a Pokémon's trigger when its normal kit already provides value.",
-    "Maintain at least two independent win routes.",
-    "Use the bench to repair a problem, not because the replacement is generically stronger.",
-    "When Plan A is denied, change clocks rather than repeatedly forcing the same route.",
-  ],
-  architecture: [
-    {
-      title: "Engine",
-      body: "Tempo, terrain, Tailwind, and Intimidate infrastructure.",
-      slugs: ["raichu", "rillaboom", "staraptor"],
-    },
-    {
-      title: "Converter",
-      body: "Immediate and scaling routes that spend the manufactured turn.",
-      slugs: ["gholdengo", "arcanine-hisui", "sylveon"],
-    },
-    {
-      title: "Endgame",
-      body: "Closers once the active clock has paid off.",
-      slugs: ["gholdengo", "arcanine-hisui", "sylveon"],
-    },
-  ],
-  engines: [
-    {
-      id: "tempo-infrastructure",
-      label: "Tempo Infrastructure",
-      path: [
-        "Raichu · Fake Out",
-        "Rillaboom · Fake Out or Grassy Surge",
-        "Staraptor · Intimidate or Tailwind",
-        "Infrastructure creates a safe action",
-        "Converter uses the opening",
-      ],
-      how: "The infrastructure layer does not need to win by itself. It creates action-order and positioning advantages that another Pokémon converts. Fake Out suppresses one action, terrain changes board resources, and Intimidate lowers physical pressure. Tailwind creates a second speed route. The engine succeeds when the converter receives a better action than the opponent rather than when the support Pokémon deal the most damage.",
-      dependsOn: "At least one converter on the bring can exploit the created opening.",
-      disrupt: "Immediate pressure, opposing speed control, redirection or Protect can deny the intended conversion.",
-      fallback: "Stop forcing the original converter and shift to the other clock.",
-    },
-    {
-      id: "special-scaling",
-      label: "Gholdengo Scaling",
-      path: [
-        "Raichu · Fake Out",
-        "Gholdengo · Nasty Plot",
-        "Rillaboom/Staraptor · preserve positioning",
-        "Gholdengo · Make It Rain / Shadow Ball",
-        "Infrastructure protects the endgame",
-      ],
-      how: "Gholdengo turns a protected action into a compounding special threat. The infrastructure's job is to prevent the opponent from converting that setup turn into a decisive trade. Once Gholdengo scales, the opponent must spend more resources to answer it. Good as Gold preserves independence from many status-based lines. If setup is denied, return to immediate physical or spread conversion.",
-      dependsOn: "A protected setup opportunity on the current board.",
-      disrupt: "Immediate double targeting, strong Steel-resistant answers, or speed control that makes Gholdengo manageable.",
-      fallback: "Use H-Arcanine, Sylveon, or the active bench module as the immediate alternate converter.",
-    },
-    {
-      id: "immediate-conversion",
-      label: "Immediate Conversion",
-      path: [
-        "Raichu/Rillaboom · Fake Out",
-        "Staraptor · Tailwind or Intimidate",
-        "H-Arcanine · immediate attack",
-        "Rillaboom · priority cleanup",
-        "Opponent loses the ability to reset",
-      ],
-      how: "Hisuian Arcanine prevents the architecture from becoming overly setup-dependent. Once infrastructure creates a favorable board, Arcanine converts immediately rather than spending another turn scaling. Head Smash, Flare Blitz and Extreme Speed create different conversion speeds. If the first attack fails to produce enough value, move to Gholdengo or Sylveon instead of forcing another burst.",
-      dependsOn: "An exposed target or a speed/positioning advantage on the board.",
-      disrupt: "Protect, resistances, Intimidate, defensive pivots or immediate pressure.",
-      fallback: "Transition to Gholdengo scaling or Sylveon spread damage.",
-    },
-  ],
-  network: {
-    thesis:
-      "The team is a conversion graph: infrastructure creates states, converters turn those states into advantage, and scalers prevent the opponent from resetting the board.",
-    edges: [
+    winRoutes: [
       {
-        from: "raichu",
-        to: "gholdengo",
-        creates: "Safe setup turn through Fake Out",
-        converts: "Nasty Plot",
-        engineId: "special-scaling",
+        id: "route_raichu",
+        name: "Fake Out → Mega Raichu → Special Fork",
+        requires: [],
+        sequence: [
+          "Fake Out control",
+          "Mega Raichu conversion",
+          "force target selection",
+        ],
+        finish: "Gholdengo/Sylveon finish",
       },
       {
-        from: "rillaboom",
-        to: "ceruledge",
-        creates: "Grassy Terrain and Fake Out windows",
-        converts: "Grassy Seed and Swords Dance",
+        id: "route_tailwind",
+        name: "Intimidate → Tailwind → Garchomp",
+        requires: [],
+        sequence: [
+          "Intimidate",
+          "Tailwind",
+          "Garchomp conversion",
+        ],
+        finish: "Gholdengo second wave",
       },
       {
-        from: "staraptor",
-        to: "garchomp",
-        creates: "Tailwind and Intimidate positioning",
-        converts: "Immediate coverage damage",
-        engineId: "immediate-conversion",
+        id: "route_no_mega",
+        name: "Garchomp → Sylveon → Gholdengo",
+        requires: [],
+        sequence: [
+          "Garchomp immediate pressure",
+          "defensive rotation",
+          "Sylveon spread",
+        ],
+        finish: "Gholdengo finish",
       },
       {
-        from: "raichu",
-        to: "sylveon",
-        creates: "Fake Out protection and Lightning Rod pressure",
-        converts: "Hyper Voice",
-        engineId: "immediate-conversion",
+        id: "route_reactive",
+        name: "Swap into Reactive Control",
+        requires: [],
+        sequence: [
+          "Replace Garchomp with Milotic",
+          "punish Intimidate",
+          "create special advantage",
+        ],
+        finish: "scale Gholdengo",
       },
       {
-        from: "rillaboom",
-        to: "arcanine-hisui",
-        creates: "Fake Out, terrain and positioning",
-        converts: "Flare Blitz / Head Smash / Extreme Speed",
-        engineId: "immediate-conversion",
+        id: "route_scaling",
+        name: "Swap into Self-Scaling",
+        requires: [],
+        sequence: [
+          "Replace Sylveon with Ceruledge",
+          "Grassy Seed",
+          "Swords Dance",
+        ],
+        finish: "force dual-scaler dilemma",
       },
       {
-        from: "staraptor",
-        to: "milotic",
-        creates: "Intimidate and physical stat drops",
-        converts: "Competitive pressure",
-      },
-      {
-        from: "rillaboom",
-        to: "annihilape",
-        creates: "Fake Out and terrain positioning",
-        converts: "Rage Fist accumulation",
-      },
-      {
-        from: "staraptor",
-        to: "annihilape",
-        creates: "Intimidate stat drops",
-        converts: "Defiant conversion",
+        id: "route_counterplay",
+        name: "Swap into Counterplay",
+        requires: [],
+        sequence: [
+          "Replace Garchomp with Annihilape",
+          "feed Defiant/Rage Fist",
+          "force targeting",
+        ],
+        finish: "Gholdengo converts",
       },
     ],
-  },
-  controlPlanes: [
-    {
-      id: "fake-out",
-      label: "Fake Out",
-      setterSlug: "raichu",
-      effect: "Guaranteed interruption → one free decision",
-      whoBenefits: "Converters and scalers needing a protected turn",
-    },
-    {
-      id: "grassy",
-      label: "Grassy Terrain",
-      setterSlug: "rillaboom",
-      effect: "Recovery, Grass priority, Seed activation",
-      whoBenefits: "Ceruledge module and board longevity",
-    },
-    {
-      id: "tailwind",
-      label: "Tailwind",
-      setterSlug: "staraptor",
-      effect: "Team-wide speed inversion",
-      whoBenefits: "Garchomp and immediate physical converters",
-    },
-  ],
-  megaPool: {
-    rule: "One Mega Evolution per battle.",
-    previewPressure:
-      "Mega Raichu Y is the default special-tempo Mega. Mega Staraptor is the alternate when Tailwind and physical board control matter more.",
-    candidates: [
-      { slug: "raichu", stone: "Raichunite Y", when: "Default tempo and special pressure package" },
-      { slug: "staraptor", stone: "Staraptite", when: "Autonomous Garchomp or Tailwind-heavy brings" },
-    ],
-  },
-  construction: {
-    thesis: "Build a six that generates board states rather than depending on one rigid combo.",
-    method:
-      "Raichu, Rillaboom and Staraptor create tempo and positioning; Gholdengo provides scaling; the two conversion slots determine whether the team emphasizes immediate Fairy/Fire pressure, autonomous coverage, reactive control or opponent-action scaling.",
-    winCondition:
-      "Create a favorable board state, convert it immediately or begin a scaling clock, then use the remaining infrastructure to prevent the opponent from resetting the game.",
-    endgames: [
+    failureRoutes: [
       {
-        id: "gholdengo-cleanup",
-        label: "Gholdengo Cleanup",
-        path: "gholdengo",
-        how: "Protect Gholdengo through early positioning → Nasty Plot → repeated special damage.",
+        failedRoute: "Mega Raichu is neutralized early.",
+        why: "The planned route no longer has a safe conversion window.",
+        fallback: "Use Gholdengo/Sylveon special conversion and preserve Rillaboom priority.",
+        nextRoute: "Special conversion through Gholdengo and Sylveon.",
       },
       {
-        id: "physical-conversion-cleanup",
-        label: "Physical Conversion Cleanup",
-        path: "arcanine-hisui",
-        how: "Fake Out or Tailwind → H-Arcanine pressure → Rillaboom priority.",
+        failedRoute: "Staraptor cannot establish Tailwind.",
+        why: "The planned route no longer has a safe conversion window.",
+        fallback: "Use Rillaboom Fake Out and immediate Garchomp conversion.",
+        nextRoute: "Immediate physical conversion through Garchomp and Rillaboom.",
       },
       {
-        id: "fairy-spread-cleanup",
-        label: "Fairy Spread Cleanup",
-        path: "sylveon",
-        how: "Position Sylveon → Hyper Voice pressure → finish weakened targets.",
+        failedRoute: "Garchomp cannot safely convert.",
+        why: "The planned route no longer has a safe conversion window.",
+        fallback: "Shift toward Sylveon/Gholdengo special pressure.",
+        nextRoute: "Special conversion through Gholdengo and Sylveon.",
       },
       {
-        id: "autonomous-garchomp-cleanup",
-        label: "Garchomp Autonomous Cleanup",
-        path: "garchomp",
-        how: "Tailwind/Fake Out positioning → Garchomp coverage → priority or Gholdengo finish.",
-      },
-      {
-        id: "reactive-control-cleanup",
-        label: "Reactive Control Cleanup",
-        path: "milotic",
-        how: "Opponent creates Competitive/Coil value → Milotic accumulates pressure → Gholdengo or Rillaboom closes.",
+        failedRoute: "Gholdengo is removed.",
+        why: "The planned route no longer has a safe conversion window.",
+        fallback: "Use Garchomp plus Sylveon or Rillaboom to finish through immediate conversion.",
+        nextRoute: "Immediate physical conversion through Garchomp and Rillaboom.",
       },
     ],
-    altSlots: [
-      {
-        slug: "garchomp",
-        insteadOf: "sylveon",
-        why: "Replace Fairy spread conversion with autonomous multi-axis physical coverage.",
-        answers: "Ground, Rock and independent physical conversion.",
-        costs: "Loses Fairy spread pressure and Pixilate special damage.",
-        unlocks: [PACK_GARCHOMP],
-        architectureChange: { from: "Conversion Network", to: "Autonomous Conversion Network" },
-        module: {
-          identity: "Autonomous Converter",
-          strategicRole: "Multi-axis immediate pressure",
-          adds: ["Ground pressure", "Rock coverage", "autonomous damage"],
-          removes: ["Fairy spread", "Pixilate special pressure"],
-          changes: ["damage distribution", "targeting ambiguity", "conversion autonomy"],
-        },
-        slot: {
-          title: "Garchomp",
-          job: "breaker",
-          role: "Autonomous multi-axis converter",
-          item: "Choice Scarf",
-          itemWhy: "Outruns key threats and converts Tailwind/Fake Out windows without setup.",
-          ability: "Rough Skin",
-          nature: "Jolly",
-          training: train(2, 32, 0, 0, 0, 32, {
-            label: "Jolly Choice Scarf",
-            why: "Recommended max Atk/Spe — autonomous conversion when infrastructure creates the opening.",
-            spend: ["2 HP", "32 Atk", "32 Spe"],
-            rule: SP_NOTE,
-          }),
-          moves: [
-            { name: "Earthquake", why: "Primary Ground conversion when terrain permits." },
-            { name: "Rock Slide", why: "Spread Rock pressure and Flying/Fire coverage." },
-            { name: "Dragon Claw", why: "Reliable Dragon STAB without setup commitment." },
-            { name: "Protect", why: "Preserves Garchomp while infrastructure creates the next window." },
+    bench: {
+      purpose: "Swap one module to change the conversion clock without rebuilding tempo infrastructure.",
+      slots: [
+        {
+          slug: "milotic",
+          insteadOf: "garchomp",
+          category: "reactive-control",
+          useWhen: [
+            "Intimidate is central to the opponent.",
+            "Physical pressure is the main problem.",
+            "You want a reactive control route.",
           ],
-          objective: "Convert board states independently rather than requiring a specific setup engine.",
-          howToPlay:
-            "Use Garchomp when the team needs immediate autonomous pressure. Choose Earthquake, Rock Slide, or Dragon Claw based on terrain and targets — not autopilot Ground.",
-        },
-      },
-      {
-        slug: "milotic",
-        insteadOf: "sylveon",
-        why: "Replace immediate Fairy spread with reactive control and Competitive conversion.",
-        answers: "Punishes Intimidate and supports longer games.",
-        costs: "Loses immediate Fairy spread pressure.",
-        unlocks: [PACK_MILOTIC],
-        architectureChange: { from: "Conversion Network", to: "Control Network" },
-        module: {
-          identity: "Reactive Controller",
-          strategicRole: "Convert opponent state manipulation into pressure",
-          adds: ["Competitive", "Coil", "Muddy Water", "reactive scaling"],
-          removes: ["Fairy spread", "Pixilate pressure"],
-          changes: ["immediate conversion into reactive conversion", "short clock into longer clock"],
-        },
-        slot: {
-          title: "Milotic",
-          job: "support",
-          role: "Reactive special controller",
-          item: "Sitrus Berry",
-          ability: "Competitive",
-          nature: "Calm",
-          training: train(32, 0, 19, 10, 0, 5, {
-            label: "Calm control",
-            why: "Recommended bulk-first spread; enough SpA for Muddy Water pressure.",
-            spend: ["32 HP", "19 Def", "10 SpA", "5 Spe"],
-            rule: SP_NOTE,
-          }),
-          moves: [
-            { name: "Muddy Water", why: "Spread pressure with accuracy disruption potential." },
-            { name: "Ice Beam", why: "Coverage against Dragon and Ground targets." },
-            { name: "Coil", why: "Turns safe board states into progressive scaling." },
-            { name: "Protect", why: "Preserves Competitive value while infrastructure repositions." },
+          avoidWhen: [
+            "Immediate Ground conversion is critical.",
+            "Opponent can simply ignore Competitive.",
           ],
-          objective: "Turn opponent stat manipulation and safe positioning into a longer-term control advantage.",
-          howToPlay:
-            "Do not force Milotic to create the entire win condition. Use it as the reactive layer that makes their control tools less reliable.",
+          changesArchitecture: true,
         },
-      },
-      {
-        slug: "ceruledge",
-        insteadOf: "arcanine-hisui",
-        why: "Trade nuclear immediate conversion for self-scaling and sustain.",
-        answers: "Creates a longer scaling route through Grassy Seed and Swords Dance.",
-        costs: "Loses Head Smash and Extreme Speed immediate pressure.",
-        unlocks: [PACK_CERULEDGE],
-        architectureChange: { from: "Conversion Network", to: "Self-Scaling Network" },
-        module: {
-          identity: "Self-Scaling Converter",
-          strategicRole: "Turn terrain and safe turns into progressive physical pressure",
-          adds: ["Grassy Seed", "Swords Dance", "Bitter Blade sustain", "Shadow Sneak"],
-          removes: ["Head Smash nuclear pressure", "Extreme Speed"],
-          changes: ["fast clock into scaling clock", "burst damage into sustain"],
-        },
-        slot: {
-          title: "Ceruledge",
-          job: "breaker",
-          role: "Self-scaling physical converter",
-          item: "Grassy Seed",
-          ability: "Flash Fire",
-          nature: "Adamant",
-          training: train(2, 32, 0, 0, 0, 32, {
-            label: "Adamant max offense",
-            why: "Recommended physical scaling after Swords Dance; terrain supplies sustain context.",
-            spend: ["2 HP", "32 Atk", "32 Spe"],
-            rule: SP_NOTE,
-          }),
-          moves: [
-            { name: "Bitter Blade", why: "Converts damage into sustain while maintaining Fire pressure." },
-            { name: "Shadow Sneak", why: "Priority cleanup after scaling creates KO ranges." },
-            { name: "Swords Dance", why: "Turns a protected turn into a new physical damage clock." },
-            { name: "Protect", why: "Preserves the scaling resource while infrastructure manipulates the next turn." },
+        {
+          slug: "ceruledge",
+          insteadOf: "sylveon",
+          category: "self-scaling",
+          useWhen: [
+            "Grassy Terrain creates safe setup.",
+            "Opponent has limited answers to physical scaling.",
           ],
-          objective: "Use Grassy Terrain and protected turns to become progressively harder to stop.",
-          howToPlay:
-            "Treat Ceruledge as a medium-clock threat. Swords Dance only when the opponent cannot punish the setup turn.",
-        },
-      },
-      {
-        slug: "annihilape",
-        insteadOf: "arcanine-hisui",
-        why: "Replace immediate nuclear damage with opponent-action scaling.",
-        answers: "Punishes repeated attacks and stat drops.",
-        costs: "Loses immediate Head Smash and Extreme Speed conversion.",
-        unlocks: [PACK_ANNIHILAPE],
-        architectureChange: { from: "Conversion Network", to: "Counterplay Network" },
-        module: {
-          identity: "Opponent-Action Scaler",
-          strategicRole: "Convert enemy actions into future offensive power",
-          adds: ["Rage Fist scaling", "Defiant", "counterplay conversion"],
-          removes: ["Extreme Speed", "Head Smash burst"],
-          changes: [
-            "autonomous conversion into interaction-reactive scaling",
-            "low commitment into higher positional commitment",
+          avoidWhen: [
+            "Immediate spread damage is required.",
+            "Opponent has strong Fire pressure.",
           ],
+          changesArchitecture: true,
         },
-        slot: {
-          title: "Annihilape",
-          job: "breaker",
-          role: "Opponent-action scaler",
-          item: "Sitrus Berry",
-          ability: "Defiant",
-          nature: "Adamant",
-          training: train(32, 32, 0, 0, 0, 2, {
-            label: "Adamant bulk / attack",
-            why: "Recommended to stay on field for Rage Fist while still threatening Close Combat.",
-            spend: ["32 HP", "32 Atk", "2 Spe"],
-            rule: SP_NOTE,
-          }),
-          moves: [
-            { name: "Rage Fist", why: "Turns incoming attacks into increasing Ghost-type pressure." },
-            { name: "Close Combat", why: "Immediate Fighting conversion when Rage Fist is not yet charged." },
-            { name: "Bulk Up", why: "Accelerates physical scaling when interaction value is already accumulating." },
-            { name: "Protect", why: "Preserves accumulated threat while infrastructure controls targeting." },
+        {
+          slug: "annihilape",
+          insteadOf: "garchomp",
+          category: "counterplay",
+          useWhen: [
+            "Opponent must attack.",
+            "Opponent uses Intimidate.",
+            "You can create repeated interaction.",
           ],
-          objective: "Make the opponent's necessary attacks contribute to the eventual win condition.",
-          howToPlay:
-            "Do not expose Annihilape unnecessarily. Use infrastructure to make their attacks costly while Rage Fist accumulates.",
+          avoidWhen: [
+            "Opponent can ignore Annihilape.",
+            "Immediate coverage is more important.",
+          ],
+          changesArchitecture: true,
         },
-      },
-    ],
-  },
-  ledger: {
-    dropped: {
-      slug: "linear-conversion",
-      lost: ["Single Fairy-or-Fire conversion dependency", "One rigid bring every preview"],
+      ],
     },
-    gained: [
-      "Four architectural bench modules",
-      "Competing Mega modes (Raichu Y vs Staraptor)",
-      "Five distinct four-Pokémon packages",
-      "Multiple independent clocks",
-    ],
-    laterTests: [
+    benchDiagnostics: [
       {
-        slug: "sylveon",
-        change: "Compare Sylveon versus Garchomp over a controlled ladder sample",
-        whenToTest: "When Fairy spread underperforms autonomous conversion",
+        problem: "Physical teams repeatedly overpower the main six.",
+        symptoms: [
+          "Intimidate cycling",
+          "physical setup",
+          "difficulty trading",
+        ],
+        recommendedModules: [
+          "milotic",
+        ],
       },
+      {
+        problem: "Opponent can comfortably answer immediate damage.",
+        symptoms: [
+          "passive boards",
+          "long games",
+          "single defensive answer",
+        ],
+        recommendedModules: [
+          "ceruledge",
+        ],
+      },
+      {
+        problem: "Opponent attacks or Intimidates into the team repeatedly.",
+        symptoms: [
+          "forced targeting",
+          "frequent stat drops",
+          "many attacks into one slot",
+        ],
+        recommendedModules: [
+          "annihilape",
+        ],
+      },
+      {
+        problem: "Need immediate Ground coverage and autonomous conversion.",
+        symptoms: [
+          "Steel-heavy board",
+          "Fire pressure",
+          "need to attack without setup",
+        ],
+        recommendedModules: [
+          "garchomp",
+        ],
+      },
+    ],
+    replacementRelationships: [
+      {
+        out: "garchomp",
+        in: "milotic",
+        adds: [
+          "Intimidate",
+          "physical attackers",
+          "stat-drop strategies",
+        ],
+        loses: [
+          "loses Garchomp Ground coverage",
+          "less immediate autonomous physical damage",
+        ],
+        changes: [
+          "autonomous conversion → reactive special control",
+        ],
+      },
+      {
+        out: "sylveon",
+        in: "ceruledge",
+        adds: [
+          "passive teams",
+          "physical walls",
+          "single-answer defensive plans",
+        ],
+        loses: [
+          "loses immediate Fairy spread",
+          "more setup-dependent",
+        ],
+        changes: [
+          "immediate special conversion → self-scaling physical conversion",
+        ],
+      },
+      {
+        out: "garchomp",
+        in: "annihilape",
+        adds: [
+          "Intimidate",
+          "attack-heavy teams",
+          "forced targeting",
+        ],
+        loses: [
+          "loses immediate Ground coverage",
+          "Rage Fist value has high positional commitment",
+        ],
+        changes: [
+          "autonomous physical conversion → interaction-reactive scaling",
+        ],
+      },
+    ],
+    roster: [
       {
         slug: "raichu",
-        change: "Compare Mega Raichu versus Mega Staraptor selection frequency",
-        whenToTest: "After ten preview games with both stones on the six",
+        title: "Raichu",
+        job: "mega",
+        literacy: "disruptor",
+        primaryJob: "tempo engine",
+        role: "Fast Fake Out controller and Mega special converter.",
+        objective: "Create a safe turn for Gholdengo or Sylveon while threatening immediate Electric damage.",
+        howToPlay: "Use Fake Out to create the first conversion window, Lightning Rod to manipulate Electric targeting, then Mega when the special-pressure route is the correct clock.",
+        item: "Raichunite Y",
+        ability: "Lightning Rod",
+        nature: "Timid",
+        moves: [
+          {
+            name: "Fake Out",
+            why: "Creates the tempo window that lets a partner convert safely.",
+          },
+          {
+            name: "Zap Cannon",
+            why: "Mega special conversion with paralysis pressure.",
+          },
+          {
+            name: "Focus Blast",
+            why: "Punishes Steel, Dark and Rock targets that resist Electric pressure.",
+          },
+          {
+            name: "Protect",
+            why: "Preserves Mega Raichu while its partner consumes the created advantage.",
+          },
+        ],
+        networkJobs: {
+          creates: "Fake Out turns, Electric redirection, speed pressure",
+          converts: "Zap Cannon and Focus Blast damage",
+          protects: "Partners through Lightning Rod and Fake Out",
+          scales: "Mega special pressure",
+        },
+        training: train(2, 0, 0, 32, 0, 32, {
+            "label": "Fast special pressure",
+            "why": "Prioritize Speed and Special Attack while preserving a small HP buffer.",
+            "spend": [
+              "2 HP",
+              "32 SpA",
+              "32 Spe"
+            ],
+            "rule": "Initial architecture spread; optimize exact defensive benchmarks after ladder testing."
+          }),
       },
       {
-        slug: "milotic",
-        change: "Test Milotic replacing Sylveon in Intimidate-heavy matchup families",
-        whenToTest: "When Competitive never triggers but Coil value is consistent",
+        slug: "rillaboom",
+        title: "Rillaboom",
+        job: "support",
+        literacy: "pivot",
+        primaryJob: "terrain and tempo engine",
+        role: "Terrain setter, Fake Out user and priority converter.",
+        objective: "Control the first turn and preserve endgame priority.",
+        howToPlay: "Use Fake Out and terrain to create safe positioning, then pivot or apply immediate Grass pressure.",
+        item: "Miracle Seed",
+        ability: "Grassy Surge",
+        nature: "Adamant",
+        moves: [
+          {
+            name: "Fake Out",
+            why: "Creates a second tempo source alongside Raichu.",
+          },
+          {
+            name: "Grassy Glide",
+            why: "Provides priority conversion after the board has been softened.",
+          },
+          {
+            name: "Wood Hammer",
+            why: "Provides high immediate Grass damage when priority is insufficient.",
+          },
+          {
+            name: "High Horsepower",
+            why: "Provides Ground coverage without depending on Garchomp.",
+          },
+        ],
+        networkJobs: {
+          creates: "Grassy Terrain, Fake Out turns, priority windows",
+          converts: "Grass and Ground damage",
+          protects: "Team through terrain recovery and tempo",
+          scales: "Endgame priority value",
+        },
+        training: train(2, 32, 0, 0, 0, 32, {
+            "label": "Physical pressure",
+            "why": "Maximize immediate Attack pressure while maintaining useful Speed.",
+            "spend": [
+              "2 HP",
+              "32 Atk",
+              "32 Spe"
+            ],
+            "rule": "Initial architecture spread; defensive benchmarks can replace Speed investment after testing."
+          }),
       },
       {
-        slug: "annihilape",
-        change: "Test Annihilape positional commitment versus trigger breadth",
-        whenToTest: "When Rage Fist games are lost despite sufficient interaction",
+        slug: "staraptor",
+        title: "Staraptor",
+        job: "mega",
+        literacy: "pivot",
+        primaryJob: "Tailwind and physical-control engine",
+        role: "Speed setter, Intimidate pivot and physical converter.",
+        objective: "Create a Tailwind board without sacrificing offensive pressure.",
+        howToPlay: "Lead when Tailwind changes the speed regime. Intimidate first, Tailwind when safe, then either attack or Protect while the back pair converts.",
+        item: "Staraptite",
+        ability: "Intimidate",
+        nature: "Jolly",
+        moves: [
+          {
+            name: "Tailwind",
+            why: "Creates the speed regime that unlocks Garchomp and Gholdengo.",
+          },
+          {
+            name: "Brave Bird",
+            why: "Stops Staraptor from becoming a passive speed setter.",
+          },
+          {
+            name: "Close Combat",
+            why: "Immediate Fighting conversion into Steel, Dark and Rock targets.",
+          },
+          {
+            name: "Protect",
+            why: "Preserves the Tailwind engine while the back pair takes over.",
+          },
+        ],
+        networkJobs: {
+          creates: "Tailwind and Attack drops",
+          converts: "Flying and Fighting damage",
+          protects: "Physical teammates through Intimidate",
+          scales: "Speed advantage across subsequent turns",
+        },
+        training: train(2, 32, 0, 0, 0, 32, {
+            "label": "Fast physical control",
+            "why": "Maximize Speed and Attack for reliable Tailwind positioning and Mega damage.",
+            "spend": [
+              "2 HP",
+              "32 Atk",
+              "32 Spe"
+            ],
+            "rule": "Initial architecture spread; bulk benchmarks can replace HP/Speed allocation after testing."
+          }),
       },
       {
         slug: "gholdengo",
-        change: "Measure win-route execution and missed routes",
-        whenToTest: "When losses cluster on denied Nasty Plot rather than conversion",
+        title: "Gholdengo",
+        job: "breaker",
+        literacy: "sweeper",
+        primaryJob: "special scaling converter",
+        role: "Special damage engine and status/utility blocker.",
+        objective: "Turn protected tempo into increasingly difficult special pressure.",
+        howToPlay: "Avoid exposing Gholdengo unnecessarily early. Use Fake Out, Tailwind or Intimidate to create the setup turn, then choose between immediate damage and Nasty Plot.",
+        item: "Life Orb",
+        ability: "Good as Gold",
+        nature: "Modest",
+        moves: [
+          {
+            name: "Make It Rain",
+            why: "Primary spread conversion after the team creates a safe attack window.",
+          },
+          {
+            name: "Shadow Ball",
+            why: "Single-target Ghost conversion without lowering Special Attack.",
+          },
+          {
+            name: "Nasty Plot",
+            why: "Creates the scaling clock when the opponent gives a protected turn.",
+          },
+          {
+            name: "Protect",
+            why: "Lets the team spend opponent pressure before Gholdengo commits.",
+          },
+        ],
+        networkJobs: {
+          creates: "Special scaling threat",
+          converts: "Make It Rain and Shadow Ball",
+          protects: "Team utility by blocking status/ability-based disruption",
+          scales: "Nasty Plot",
+        },
+        training: train(2, 0, 0, 32, 0, 32, {
+            "label": "Special damage",
+            "why": "Maximize Special Attack and Speed while retaining a small HP buffer.",
+            "spend": [
+              "2 HP",
+              "32 SpA",
+              "32 Spe"
+            ],
+            "rule": "Initial architecture spread; exact Speed benchmark should be tuned to the ladder."
+          }),
+      },
+      {
+        slug: "sylveon",
+        title: "Sylveon",
+        job: "breaker",
+        literacy: "wallbreaker",
+        primaryJob: "immediate special converter",
+        role: "Spread-damage converter and physical-pressure relief valve.",
+        objective: "Apply immediate special spread pressure without requiring setup.",
+        howToPlay: "Bring Sylveon when the opponent cannot comfortably absorb repeated Fairy spread damage. Use its immediate damage to force awkward defensive turns for Gholdengo or Garchomp.",
+        item: "Fairy Feather",
+        ability: "Pixilate",
+        nature: "Modest",
+        moves: [
+          {
+            name: "Hyper Voice",
+            why: "Reliable Pixilate spread conversion.",
+          },
+          {
+            name: "Hyper Beam",
+            why: "High-commitment finishing conversion once a target is already in range.",
+          },
+          {
+            name: "Quick Attack",
+            why: "Provides emergency priority conversion in endgames.",
+          },
+          {
+            name: "Detect",
+            why: "Preserves Sylveon while the opponent commits into another threat.",
+          },
+        ],
+        networkJobs: {
+          creates: "Targeting pressure and spread damage",
+          converts: "Pixilate Fairy damage",
+          protects: "Endgame through Detect and priority",
+          scales: "Damage through positioning rather than setup",
+        },
+        training: train(32, 0, 0, 32, 2, 0, {
+            "label": "Bulky special converter",
+            "why": "Maximize Special Attack while using the remaining investment to improve general survivability.",
+            "spend": [
+              "32 HP",
+              "32 SpA",
+              "2 SpD"
+            ],
+            "rule": "Initial architecture spread; Speed can be substituted if a specific Tailwind benchmark emerges."
+          }),
+      },
+      {
+        slug: "garchomp",
+        title: "Garchomp",
+        job: "breaker",
+        literacy: "wallbreaker",
+        primaryJob: "autonomous physical converter",
+        role: "Coverage bridge and immediate Ground/Dragon/Rock pressure.",
+        objective: "Give the six a physical attacker that does not need a particular opponent response or setup turn.",
+        howToPlay: "Bring Garchomp when immediate Ground coverage and autonomous damage are more valuable than another reactive or scaling engine. Use Staraptor's Tailwind or Rillaboom's Fake Out to create its conversion window.",
+        item: "Clear Amulet",
+        ability: "Rough Skin",
+        nature: "Jolly",
+        moves: [
+          {
+            name: "Earthquake",
+            why: "High-value spread Ground conversion when the partner is protected or positioned to avoid it.",
+          },
+          {
+            name: "Dragon Claw",
+            why: "Reliable single-target Dragon conversion without committing to Outrage.",
+          },
+          {
+            name: "Rock Slide",
+            why: "Adds Flying, Fire and flinch pressure while broadening coverage.",
+          },
+          {
+            name: "Protect",
+            why: "Allows Garchomp to preserve itself while its partner exploits the opponent's response.",
+          },
+        ],
+        networkJobs: {
+          creates: "Immediate physical threat",
+          converts: "Ground, Dragon and Rock damage",
+          protects: "Partners through autonomous threat saturation",
+          scales: "Board advantage through repeated coverage pressure",
+        },
+        training: train(2, 32, 0, 0, 0, 32, {
+            "label": "Fast autonomous converter",
+            "why": "The initial architecture emphasizes Speed and Attack with a small HP buffer.",
+            "spend": [
+              "2 HP",
+              "32 Atk",
+              "32 Spe"
+            ],
+            "rule": "Initial architecture spread; benchmark against the actual M-C ladder before finalizing."
+          }),
       },
     ],
-  },
-  victims: [
-    {
-      name: "Clustered offensive boards",
-      why: "Fake Out plus spread conversion can punish both slots.",
-      play: "Create one safe attack window.",
-      trap: "Do not force spread damage into obvious Protect cycles.",
-    },
-    {
-      name: "Physical-heavy boards",
-      why: "Intimidate, terrain, Fake Out and priority provide multiple forms of physical control.",
-      play: "Use Staraptor and Rillaboom to manipulate the first exchange.",
-      trap: "Do not rely on Intimidate alone against Defiant/Competitive effects.",
-    },
-  ],
-  counters: [
-    {
-      name: "Strong immediate pressure",
-      why: "Can prevent the protected conversion turns the team wants.",
-      play: "Favor immediate conversion over setup.",
-      trap: "Do not repeatedly attempt Nasty Plot or Tailwind when the board is collapsing.",
-    },
-    {
-      name: "Opposing speed control",
-      why: "Can remove the advantage created by Staraptor or Mega Raichu.",
-      play: "Use Fake Out, priority and positioning rather than assuming speed control will remain.",
-      trap: "Do not treat Tailwind as the team's only speed plan.",
-    },
-  ],
-  advantages: [
-    {
-      title: "Multiple conversion clocks",
-      body: "The default six can win immediately through H-Arcanine, through spread damage with Sylveon, or progressively through Gholdengo.",
-    },
-    {
-      title: "High connector density",
-      body: "Raichu, Rillaboom and Staraptor each create board states that multiple converters can exploit.",
-    },
-    {
-      title: "Bench architecture",
-      body: "Garchomp, Milotic, Ceruledge and Annihilape change the team's conversion, scaling and control model — not just coverage.",
-    },
-  ],
-  roster: [
-    {
-      slug: "raichu",
-      title: "Mega Raichu Y",
-      job: "mega",
-      literacy: "disruptor",
-      role: "Tempo engine / Lightning Rod / Fake Out",
-      primaryJob: "Create safe actions and manipulate Electric targeting.",
-      item: "Raichunite Y",
-      ability: "Lightning Rod",
-      nature: "Modest",
-      training: train(2, 0, 0, 32, 0, 32, {
-        label: "Modest max SpA / Spe",
-        why: "Recommended special tempo Mega with Fake Out infrastructure.",
-        spend: ["2 HP", "32 SpA", "32 Spe"],
-        rule: SP_NOTE,
-      }),
-      moves: [
-        { name: "Fake Out", why: "Creates the protected action converters and scalers need." },
-        { name: "Zap Cannon", why: "High-impact Electric conversion against exposed targets." },
-        { name: "Focus Blast", why: "Coverage against Steel and Dark that absorb Electric pressure." },
-        { name: "Protect", why: "Preserves Raichu while the team converts elsewhere." },
-      ],
-      objective: "Control the first exchange and make Electric targeting unfavorable.",
-      howToPlay:
-        "Raichu is primarily infrastructure. Use Fake Out to create a specific conversion window. Mega when the Mega value matters to the line — not automatically.",
-      modes: [
-        {
-          id: "raichu-mega-y",
-          label: "Mega Raichu Y",
-          job: "mega",
-          when: "Raichu's speed and special pressure beat Mega Staraptor for this preview.",
-          item: "Raichunite Y",
-          itemWhy: "Mega conversion of Raichu's speed and offensive profile.",
-          nature: "Modest",
-          training: train(2, 0, 0, 32, 0, 32, {
-            label: "Modest max SpA / Spe",
-            why: "Recommended Mega tempo spread.",
-            spend: ["2 HP", "32 SpA", "32 Spe"],
-            rule: SP_NOTE,
-          }),
-          moves: [
-            { name: "Fake Out", why: "Primary tempo click." },
-            { name: "Zap Cannon", why: "Primary Electric conversion." },
-            { name: "Focus Blast", why: "Coverage conversion." },
-            { name: "Protect", why: "Preserves the tempo engine." },
+    packs: [
+      {
+        id: "pack_raichu_conversion",
+        label: "Raichu Conversion",
+        when: "Bring this when Fake Out plus Mega Raichu special pressure can dictate the first two turns.",
+        identity: "Fast special conversion with redundant Fake Out.",
+        slugs: [
+          "raichu",
+          "rillaboom",
+          "gholdengo",
+          "sylveon",
+        ],
+        strategy: {
+          opponentPattern: "Fast offense or teams vulnerable to dual special pressure.",
+          purpose: "Win the first two positioning exchanges.",
+          targets: [
+            "Steel checks",
+            "Dark attackers",
+            "fast offensive leads",
           ],
-          objective: "Use Mega Raichu as the team's primary tempo Mega.",
-          howToPlay: "Mega when the team benefits from Raichu's speed and immediate special pressure.",
-        },
-      ],
-      gives: ["Fake Out", "Lightning Rod", "speed", "special pressure"],
-      answers: ["Electric targeting", "tempo-dependent leads"],
-    },
-    {
-      slug: "rillaboom",
-      title: "Rillaboom",
-      job: "support",
-      literacy: "pivot",
-      role: "Terrain engine / Fake Out / priority",
-      primaryJob: "Generate Grassy Terrain, control tempo and provide priority.",
-      item: "Miracle Seed",
-      ability: "Grassy Surge",
-      nature: "Adamant",
-      training: train(32, 32, 0, 0, 0, 2, {
-        label: "Adamant bulk / attack",
-        why: "Recommended durable Grass converter with leftover Spe.",
-        spend: ["32 HP", "32 Atk", "2 Spe"],
-        rule: SP_NOTE,
-      }),
-      moves: [
-        { name: "Fake Out", why: "Creates free actions for converters and scalers." },
-        { name: "Grassy Glide", why: "Priority conversion after chip damage." },
-        { name: "Wood Hammer", why: "High-power physical conversion when immediate damage is required." },
-        { name: "High Horsepower", why: "Ground coverage without relying on Earthquake." },
-      ],
-      objective: "Keep the team connected through terrain, Fake Out and priority.",
-      howToPlay:
-        "Preserve Rillaboom when terrain or priority will matter in the endgame, but spend Fake Out freely when it creates a decisive conversion window.",
-      gives: ["Grassy Terrain", "Fake Out", "priority", "physical pressure"],
-      answers: ["terrain-dependent strategies", "fragile offensive leads"],
-    },
-    {
-      slug: "staraptor",
-      title: "Mega Staraptor",
-      job: "mega",
-      literacy: "pivot",
-      role: "Tailwind / Intimidate / physical connector",
-      primaryJob: "Create a second speed-control route and soften physical threats.",
-      item: "Staraptite",
-      ability: "Intimidate",
-      nature: "Jolly",
-      training: train(2, 32, 0, 0, 0, 32, {
-        label: "Jolly max offense",
-        why: "Recommended Tailwind and Brave Bird pressure.",
-        spend: ["2 HP", "32 Atk", "32 Spe"],
-        rule: SP_NOTE,
-      }),
-      moves: [
-        { name: "Tailwind", why: "Creates the fast clock for immediate converters." },
-        { name: "Brave Bird", why: "Immediate Flying conversion." },
-        { name: "Close Combat", why: "Immediate Fighting conversion." },
-        { name: "Protect", why: "Preserves Tailwind positioning and Mega value." },
-      ],
-      objective: "Provide Tailwind, Intimidate and a second physical pressure vector.",
-      howToPlay:
-        "Staraptor is a connector. Use Intimidate when preserving the board matters and Tailwind when it changes the converter's speed profile.",
-      modes: [
-        {
-          id: "staraptor-mega",
-          label: "Mega Staraptor",
-          job: "mega",
-          when: "Tailwind plus Mega Staraptor's physical pressure beat Mega Raichu for this preview.",
-          item: "Staraptite",
-          itemWhy: "Enables the alternate Mega architecture.",
-          nature: "Jolly",
-          training: train(2, 32, 0, 0, 0, 32, {
-            label: "Jolly max offense",
-            why: "Recommended Mega Staraptor spread.",
-            spend: ["2 HP", "32 Atk", "32 Spe"],
-            rule: SP_NOTE,
-          }),
-          moves: [
-            { name: "Tailwind", why: "Primary speed-control conversion." },
-            { name: "Brave Bird", why: "Immediate Flying pressure." },
-            { name: "Close Combat", why: "Immediate Fighting pressure." },
-            { name: "Protect", why: "Preserves the speed engine." },
+          refuses: [
+            "long uncontrolled physical wars",
+            "free setup from opposing sweepers",
           ],
-          objective: "Use Staraptor as the team's alternate Mega and speed engine.",
-          howToPlay: "Select this Mega when Tailwind and physical board control are more important than Mega Raichu's special tempo.",
+          winCondition: "Fake Out creates the first conversion, then Gholdengo and Sylveon overwhelm the board.",
+          gamePlan: "Break with Fake Out and Mega Raichu, control with terrain and Protect, finish through double-special spread.",
+          mantra: "Create one free turn; make it worth more than one turn.",
+          turnChecklist: [
+            "Which opponent most threatens my converter?",
+            "Who gets the Fake Out?",
+            "Do I Mega now or preserve the option?",
+            "Which back mon best converts the board?",
+            "Can I preserve Rillaboom for priority?",
+          ],
+          bring: [
+            "raichu",
+            "rillaboom",
+            "gholdengo",
+            "sylveon",
+          ],
+          contrast: "Uses Mega Raichu instead of Tailwind Staraptor.",
         },
-      ],
-      gives: ["Intimidate", "Tailwind", "physical pressure"],
-      answers: ["physical offense", "speed-control matchups"],
-    },
-    {
-      slug: "gholdengo",
-      title: "Gholdengo",
-      job: "breaker",
-      literacy: "sweeper",
-      role: "Special scaler",
-      primaryJob: "Turn protected actions into a compounding special win condition.",
-      item: "Life Orb",
-      ability: "Good as Gold",
-      nature: "Modest",
-      training: train(2, 0, 0, 32, 0, 32, {
-        label: "Modest max SpA / Spe",
-        why: "Recommended special scaling and conversion reliability.",
-        spend: ["2 HP", "32 SpA", "32 Spe"],
-        rule: SP_NOTE,
-      }),
-      moves: [
-        { name: "Make It Rain", why: "Primary spread conversion after setup." },
-        { name: "Shadow Ball", why: "Reliable single-target special pressure." },
-        { name: "Nasty Plot", why: "Turns one protected action into a scaling clock." },
-        { name: "Protect", why: "Preserves the scaling resource and punishes overcommitment." },
-      ],
-      objective: "Become the team's progressively harder-to-stop special threat.",
-      howToPlay:
-        "Do not automatically Nasty Plot. Identify whether the opponent can punish the setup turn — if yes, attack or reposition.",
-      gives: ["special scaling", "Good as Gold", "spread damage"],
-      answers: ["status-based disruption", "teams vulnerable to special scaling"],
-    },
-    {
-      slug: "arcanine-hisui",
-      title: "Hisuian Arcanine",
-      job: "breaker",
-      literacy: "wallbreaker",
-      role: "Nuclear immediate converter",
-      primaryJob: "Turn one favorable board state into immediate physical damage.",
-      item: "Focus Sash",
-      ability: "Rock Head",
-      nature: "Jolly",
-      training: train(2, 32, 0, 0, 0, 32, {
-        label: "Jolly max offense",
-        why: "Recommended explosive first exchange with Extreme Speed cleanup.",
-        spend: ["2 HP", "32 Atk", "32 Spe"],
-        rule: SP_NOTE,
-      }),
-      moves: [
-        { name: "Extreme Speed", why: "Priority cleanup after the main conversion." },
-        { name: "Head Smash", why: "Primary nuclear Rock conversion without recoil." },
-        { name: "Flare Blitz", why: "Immediate Fire conversion." },
-        { name: "Protect", why: "Preserves the converter when immediate damage is not yet available." },
-      ],
-      objective: "Prevent the team from becoming overly setup-dependent.",
-      howToPlay:
-        "Enter when the board is ready to be converted. Do not spend turns perfecting setup when an exposed target already exists.",
-      gives: ["immediate damage", "Rock coverage", "Fire coverage", "priority"],
-      answers: ["Fire-weak targets", "Flying/Fire matchup pressure"],
-    },
-    {
-      slug: "sylveon",
-      title: "Sylveon",
-      job: "breaker",
-      literacy: "wallbreaker",
-      role: "Fairy spread converter",
-      primaryJob: "Convert safe positioning into immediate spread Fairy damage.",
-      item: "Fairy Feather",
-      ability: "Pixilate",
-      nature: "Modest",
-      training: train(32, 0, 0, 32, 0, 2, {
-        label: "Modest bulk / SpA",
-        why: "Recommended self-contained spread route without setup dependency.",
-        spend: ["32 HP", "32 SpA", "2 Spe"],
-        rule: SP_NOTE,
-      }),
-      moves: [
-        { name: "Hyper Voice", why: "Primary immediate spread conversion." },
-        { name: "Hyper Beam", why: "High-power single-target finishing conversion." },
-        { name: "Quick Attack", why: "Priority cleanup after Hyper Voice damage." },
-        { name: "Protect", why: "Preserves Sylveon when the opponent can punish the attack." },
-      ],
-      objective: "Turn one safe turn into meaningful spread pressure without setup.",
-      howToPlay:
-        "Sylveon is an immediate converter. Use infrastructure to create one attack window, then reassess exposure.",
-      gives: ["Fairy pressure", "spread damage", "priority cleanup"],
-      answers: ["Dragon targets", "clustered boards"],
-    },
-  ],
-  packs: [
-    {
-      id: PACK_FAIRY,
-      label: "Fairy Conversion",
-      when: "Opponent is vulnerable to immediate spread pressure or cannot safely isolate Sylveon.",
-      identity: "Immediate Fairy spread plus infrastructure tempo.",
-      slugs: ["raichu", "rillaboom", "gholdengo", "sylveon"],
-      winconMode: "raichu-mega-y",
-      engineIds: ["tempo-infrastructure", "special-scaling"],
-      endgameIds: ["fairy-spread-cleanup", "gholdengo-cleanup"],
-      winRouteIds: ["fake-out-nasty-plot", "fairy-spread-conversion"],
-      identityCard: {
-        engine: ["raichu", "rillaboom"],
-        connector: ["rillaboom"],
-        converter: ["sylveon"],
-        scaler: ["gholdengo"],
-        control: ["fake-out", "terrain"],
-        winCondition: "Use tempo to create one safe spread-damage window, then let Sylveon and Gholdengo compound pressure.",
-        clock: "fast-to-medium",
-        commitment: "low",
-        autonomy: "medium",
-        triggerBreadth: "medium",
-      },
-      pilotDecision: {
-        chooseWhen: [
-          "Two opposing targets can be pressured by Hyper Voice.",
-          "The opponent has limited immediate pressure into Sylveon.",
-          "Gholdengo can exploit attention spent on Sylveon.",
+        roles: [
+          {
+            slug: "raichu",
+            macro: "tempo",
+            micro: "Fake Out and Mega special pressure",
+          },
+          {
+            slug: "rillaboom",
+            macro: "terrain",
+            micro: "Fake Out and priority",
+          },
+          {
+            slug: "gholdengo",
+            macro: "scaler",
+            micro: "special spread conversion",
+          },
+          {
+            slug: "sylveon",
+            macro: "converter",
+            micro: "immediate Fairy spread",
+          },
         ],
-        avoidWhen: [
-          "The opponent easily isolates Sylveon.",
-          "Physical autonomous conversion is more valuable.",
-        ],
-        previewQuestion: "Can Sylveon attack both targets while Raichu/Rillaboom protect the turn?",
-        primaryMistake: "Treating Sylveon as a setup sweeper instead of an immediate converter.",
-      },
-      strategy: {
-        opponentPattern: "Opponent relies on positioning or multiple targets punishable by spread damage.",
-        bring: ["raichu", "rillaboom", "gholdengo", "sylveon"],
-        purpose: "Convert one safe turn into immediate spread damage or Gholdengo scaling.",
-        targets: ["Dragon targets", "Dark targets", "clustered board positions"],
-        refuses: [
-          "Do not repeatedly force Sylveon into isolated targets.",
-          "Do not spend multiple turns setting up when Hyper Voice already converts the position.",
-        ],
-        winCondition: "Create a spread-damage opening and finish through Sylveon plus Gholdengo.",
-        gamePlan: "Break: Fake Out or positioning. Control: preserve Sylveon/Gholdengo. Finish: Hyper Voice or boosted Gholdengo.",
-        mantra: "Make one safe turn worth two attacks.",
-        contrast: "Highest-immediacy special conversion package on the default six.",
-        winconMode: "raichu-mega-y",
-        turnChecklist: [
-          "Which target can stop Sylveon?",
-          "Can Fake Out remove it?",
-          "Does Gholdengo want the same free turn?",
-          "Can Hyper Voice hit both targets?",
-          "What does the opponent do after the first spread attack?",
-        ],
-      },
-      roles: [
-        { slug: "raichu", macro: "tempo", micro: "Fake Out and Lightning Rod manipulate the first exchange." },
-        { slug: "rillaboom", macro: "infrastructure", micro: "Terrain, Fake Out and priority preserve tempo." },
-        { slug: "gholdengo", macro: "scaler", micro: "Uses protected turns to reach Nasty Plot pressure." },
-        { slug: "sylveon", macro: "converter", micro: "Converts one safe turn into spread Fairy damage." },
-      ],
-      loops: [
-        {
-          id: "fairy-fakeout-loop",
-          type: "conversion",
-          title: "Fake Out → Hyper Voice",
-          body: "If one opposing Pokémon is the main threat to Sylveon, use Fake Out to suppress it and Hyper Voice with the resulting safe action. Preserve Sylveon after the first conversion if the opponent can retaliate. End state: immediate spread damage without setup.",
-          trigger: "One target prevents Sylveon from attacking freely.",
-        },
-        {
-          id: "gholdengo-sylveon-split",
-          type: "scaling",
-          title: "Two Special Clocks",
-          body: "When the opponent can only answer one special threat, put Gholdengo and Sylveon on different clocks. Use Sylveon's immediate damage if the board is open; otherwise protect Gholdengo and scale. End state: the opponent cannot efficiently stop both conversion routes.",
-          trigger: "Opponent cannot comfortably target both special attackers.",
-        },
-      ],
-      flows: [
-        {
-          id: "lead",
-          title: "Lead",
-          forks: [
+        fieldPlan: {
+          leadPair: [
+            "raichu",
+            "rillaboom",
+          ],
+          leadWhy: "Double Fake Out creates maximum first-turn control.",
+          backPair: [
+            "gholdengo",
+            "sylveon",
+          ],
+          backJobs: [
             {
-              id: "lead-0",
-              when: "Fake Out creates a safe Hyper Voice turn.",
-              then: "Use the immediate Fairy conversion.",
+              slug: "gholdengo",
+              job: "Enter after Fake Out and either scale with Nasty Plot or immediately spread damage.",
             },
             {
-              id: "lead-1",
-              when: "Sylveon is threatened immediately.",
-              then: "Use Raichu/Rillaboom to control the first exchange and preserve the special attackers.",
+              slug: "sylveon",
+              job: "Provide immediate Fairy spread pressure when setup is unnecessary.",
             },
           ],
+          pairEdges: [
+            {
+              from: "raichu",
+              to: "rillaboom",
+              creates: "double Fake Out control",
+              converts: "safe positioning",
+            },
+            {
+              from: "rillaboom",
+              to: "raichu",
+              creates: "terrain plus tempo",
+              converts: "Mega Electric pressure",
+            },
+            {
+              from: "gholdengo",
+              to: "sylveon",
+              creates: "special target saturation",
+              converts: "Fairy spread pressure",
+            },
+          ],
+          turn1: "Fake Out the piece that most threatens the next conversion; do not Mega automatically.",
+          bringInTriggers: [
+            "When the opposing physical attacker is controlled → bring Gholdengo to exploit the free turn.",
+            "When Steel or Ghost pressure is low → bring Sylveon to convert immediately.",
+          ],
+        },
+        defaultLeadPair: [
+          "raichu",
+          "rillaboom",
+        ],
+        backPair: [
+          "gholdengo",
+          "sylveon",
+        ],
+        identityCard: {
+          winCondition: "Fast special conversion.",
+        },
+        pilotDecision: {
+          chooseWhen: [
+            "Opponent has fragile fast leads.",
+            "Electric redirection creates value.",
+            "Fairy spread has strong targets.",
+          ],
+          avoidWhen: [
+            "Opponent has overwhelming Ground pressure.",
+            "Speed control completely invalidates Raichu.",
+          ],
+          previewQuestion: "What does the opponent fear more: Mega Raichu or double-special spread?",
+          primaryMistake: "Using both Fake Outs without converting the resulting turn.",
+        },
+        engineIds: [
+          "engine_tempo_conversion",
+          "engine_threat_fork",
+        ],
+        endgameIds: [
+          "endgame_special_fork",
+          "endgame_conversion",
+        ],
+        loops: [
+          {
+            title: "Double Fake Out",
+            body: "If the opponent has two threatening leads, use Raichu Fake Out on the piece that disrupts the conversion and Rillaboom Fake Out on the piece that threatens the second turn, then bring in the strongest converter.",
+          },
+          {
+            title: "Gholdengo Wave",
+            body: "When Fake Out has removed the immediate threat, bring Gholdengo into the protected slot and choose Nasty Plot or Make It Rain based on whether the opponent can punish setup.",
+          },
+          {
+            title: "Sylveon Close",
+            body: "If the opponent has been chipped into spread-damage range, bring Sylveon forward and use Hyper Voice while preserving Rillaboom for priority.",
+          },
+        ],
+        victims: [
+          {
+            name: "fragile fast offense",
+            why: "fragile fast offense",
+          },
+          {
+            name: "Dark attackers",
+            why: "Dark attackers",
+          },
+          {
+            name: "teams relying on Electric attacks",
+            why: "teams relying on Electric attacks",
+          },
+        ],
+        counters: [
+          {
+            name: "Ground pressure",
+            why: "Ground pressure",
+          },
+          {
+            name: "Psychic Terrain",
+            why: "Psychic Terrain",
+          },
+          {
+            name: "strong speed control",
+            why: "strong speed control",
+          },
+        ],
+        advantages: [
+          {
+            title: "dual Fake Out",
+            body: "dual Fake Out",
+          },
+          {
+            title: "high special pressure",
+            body: "high special pressure",
+          },
+          {
+            title: "Lightning Rod",
+            body: "Lightning Rod",
+          },
+        ],
+        hazards: [
+          {
+            title: "Ground targeting",
+            body: "Ground targeting",
+          },
+          {
+            title: "overcommitting Mega Raichu",
+            body: "overcommitting Mega Raichu",
+          },
+          {
+            title: "letting Gholdengo take unnecessary damage",
+            body: "letting Gholdengo take unnecessary damage",
+          },
+        ],
+      },
+      {
+        id: "pack_staraptor_tailwind",
+        label: "Staraptor Tailwind",
+        when: "Bring this when Tailwind lets Garchomp and Gholdengo attack before the opponent can stabilize.",
+        identity: "Physical-control Tailwind package with autonomous Ground conversion.",
+        slugs: [
+          "staraptor",
+          "rillaboom",
+          "garchomp",
+          "gholdengo",
+        ],
+        strategy: {
+          opponentPattern: "Physical offense or teams relying on a narrow speed regime.",
+          purpose: "Compress the opponent's defensive and speed resources.",
+          targets: [
+            "Steel types",
+            "Fire types",
+            "physical attackers",
+          ],
+          refuses: [
+            "slow passive positioning",
+            "single-target physical checks",
+          ],
+          winCondition: "Tailwind creates a Garchomp/Gholdengo double clock.",
+          gamePlan: "Break with Tailwind-enabled attacks, control with Intimidate and Fake Out, finish with the surviving faster converter.",
+          mantra: "Make their first answer too slow.",
+          turnChecklist: [
+            "Is Tailwind safe?",
+            "Which physical attacker receives Intimidate?",
+            "Which back mon benefits most from the speed window?",
+            "Can Garchomp attack without damaging its partner?",
+            "When does Staraptor Protect?",
+          ],
+          bring: [
+            "staraptor",
+            "rillaboom",
+            "garchomp",
+            "gholdengo",
+          ],
+          contrast: "Uses Mega Staraptor and Garchomp instead of Mega Raichu and Sylveon.",
+        },
+        roles: [
+          {
+            slug: "staraptor",
+            macro: "speed",
+            micro: "Tailwind and Intimidate",
+          },
+          {
+            slug: "rillaboom",
+            macro: "control",
+            micro: "Fake Out and terrain",
+          },
+          {
+            slug: "garchomp",
+            macro: "converter",
+            micro: "autonomous Ground pressure",
+          },
+          {
+            slug: "gholdengo",
+            macro: "scaler",
+            micro: "special conversion",
+          },
+        ],
+        fieldPlan: {
+          leadPair: [
+            "staraptor",
+            "rillaboom",
+          ],
+          leadWhy: "Intimidate plus Fake Out protects the Tailwind turn.",
+          backPair: [
+            "garchomp",
+            "gholdengo",
+          ],
+          backJobs: [
+            {
+              slug: "garchomp",
+              job: "Enter under Tailwind and immediately convert Ground/Dragon/Rock coverage.",
+            },
+            {
+              slug: "gholdengo",
+              job: "Exploit the same speed window as the special second wave.",
+            },
+          ],
+          pairEdges: [
+            {
+              from: "staraptor",
+              to: "rillaboom",
+              creates: "Intimidate plus speed",
+              converts: "safe Fake Out cycle",
+            },
+            {
+              from: "staraptor",
+              to: "garchomp",
+              creates: "Tailwind speed",
+              converts: "Ground pressure",
+            },
+            {
+              from: "rillaboom",
+              to: "gholdengo",
+              creates: "Fake Out window",
+              converts: "special scaling",
+            },
+          ],
+          turn1: "Intimidate the physical board and Tailwind if safe; otherwise Fake Out first and establish Tailwind on turn two.",
+          bringInTriggers: [
+            "When Tailwind is active → bring Garchomp to exploit immediate Ground pressure.",
+            "When opposing physical pressure is weakened → bring Gholdengo to create the special fork.",
+          ],
+        },
+        defaultLeadPair: [
+          "staraptor",
+          "rillaboom",
+        ],
+        backPair: [
+          "garchomp",
+          "gholdengo",
+        ],
+        identityCard: {
+          winCondition: "Tailwind compression.",
+        },
+        pilotDecision: {
+          chooseWhen: [
+            "Garchomp has valuable Ground targets.",
+            "Opponent has limited speed control.",
+            "Physical Intimidate value is high.",
+          ],
+          avoidWhen: [
+            "Opponent has overwhelming special pressure.",
+            "Tailwind is easily reversed.",
+          ],
+          previewQuestion: "Which opposing Pokémon becomes unable to function if Garchomp moves first?",
+          primaryMistake: "Treating Staraptor as the damage dealer instead of the speed/control engine.",
+        },
+        engineIds: [
+          "engine_tailwind",
+          "engine_threat_fork",
+        ],
+        endgameIds: [
+          "endgame_tailwind",
+          "endgame_conversion",
+        ],
+        loops: [
+          {
+            title: "Tailwind Wave",
+            body: "If Staraptor can survive the opening exchange, use Intimidate and Tailwind, then bring Garchomp into the safest slot and immediately pressure the highest-value target.",
+          },
+          {
+            title: "Fake Out Delay",
+            body: "When Tailwind is unsafe, use Rillaboom Fake Out while Staraptor Protects or repositions, then establish Tailwind after the opposing threat has been removed.",
+          },
+          {
+            title: "Second Wave Gholdengo",
+            body: "If Garchomp forces the opponent to commit physical answers, bring Gholdengo into the protected side and convert the resulting special opening.",
+          },
+        ],
+        victims: [
+          {
+            name: "physical offense",
+            why: "physical offense",
+          },
+          {
+            name: "Steel cores",
+            why: "Steel cores",
+          },
+          {
+            name: "slow attackers",
+            why: "slow attackers",
+          },
+        ],
+        counters: [
+          {
+            name: "special spread pressure",
+            why: "special spread pressure",
+          },
+          {
+            name: "speed reversal",
+            why: "speed reversal",
+          },
+          {
+            name: "strong priority",
+            why: "strong priority",
+          },
+        ],
+        advantages: [
+          {
+            title: "Intimidate",
+            body: "Intimidate",
+          },
+          {
+            title: "Tailwind",
+            body: "Tailwind",
+          },
+          {
+            title: "Garchomp coverage",
+            body: "Garchomp coverage",
+          },
+        ],
+        hazards: [
+          {
+            title: "Tailwind timing",
+            body: "Tailwind timing",
+          },
+          {
+            title: "Earthquake positioning",
+            body: "Earthquake positioning",
+          },
+          {
+            title: "Staraptor being focused before Tailwind",
+            body: "Staraptor being focused before Tailwind",
+          },
+        ],
+      },
+      {
+        id: "pack_garchomp_fairy",
+        label: "Garchomp + Sylveon Conversion",
+        when: "Bring this when Ground and Fairy pressure attack different defensive layers.",
+        identity: "Four-way conversion network without relying on either Mega.",
+        slugs: [
+          "garchomp",
+          "rillaboom",
+          "sylveon",
+          "gholdengo",
+        ],
+        strategy: {
+          opponentPattern: "Balanced teams with separate Ground and Fairy vulnerabilities.",
+          purpose: "Attack two defensive layers without committing a Mega.",
+          targets: [
+            "Steel targets for Garchomp",
+            "Dark targets for Sylveon",
+            "physical walls for Gholdengo",
+          ],
+          refuses: [
+            "single-axis damage races",
+            "unprotected Gholdengo setup",
+          ],
+          winCondition: "Garchomp forces physical responses while Sylveon and Gholdengo convert the exposed special axis.",
+          gamePlan: "Break with Garchomp, control with Rillaboom, convert with Sylveon, finish with Gholdengo.",
+          mantra: "Make the first answer create the second target.",
+          turnChecklist: [
+            "What does Garchomp immediately threaten?",
+            "Which target cannot afford Hyper Voice?",
+            "When does Gholdengo become safe?",
+            "Can I preserve Rillaboom for the endgame?",
+            "Do I actually need a Mega?",
+          ],
+          bring: [
+            "garchomp",
+            "rillaboom",
+            "sylveon",
+            "gholdengo",
+          ],
+          contrast: "The safest no-Mega package; preserves both Mega options for later battles.",
+        },
+        roles: [
+          {
+            slug: "garchomp",
+            macro: "breaker",
+            micro: "immediate Ground conversion",
+          },
+          {
+            slug: "rillaboom",
+            macro: "control",
+            micro: "Fake Out and terrain",
+          },
+          {
+            slug: "sylveon",
+            macro: "converter",
+            micro: "Fairy spread",
+          },
+          {
+            slug: "gholdengo",
+            macro: "scaler",
+            micro: "special scaling",
+          },
+        ],
+        fieldPlan: {
+          leadPair: [
+            "garchomp",
+            "rillaboom",
+          ],
+          leadWhy: "Fake Out protects Garchomp while giving immediate physical pressure.",
+          backPair: [
+            "sylveon",
+            "gholdengo",
+          ],
+          backJobs: [
+            {
+              slug: "sylveon",
+              job: "Enter against Dark/Dragon/Fighting-heavy boards and convert immediately.",
+            },
+            {
+              slug: "gholdengo",
+              job: "Enter when the opponent commits physical answers and begin the special clock.",
+            },
+          ],
+          pairEdges: [
+            {
+              from: "rillaboom",
+              to: "garchomp",
+              creates: "Fake Out opening",
+              converts: "Earthquake pressure",
+            },
+            {
+              from: "garchomp",
+              to: "sylveon",
+              creates: "defensive target split",
+              converts: "Fairy spread",
+            },
+            {
+              from: "sylveon",
+              to: "gholdengo",
+              creates: "special target saturation",
+              converts: "Nasty Plot",
+            },
+          ],
+          turn1: "Fake Out the biggest Garchomp threat and use Garchomp's immediate coverage rather than fishing for setup.",
+          bringInTriggers: [
+            "When Dark/Dragon/Fighting targets are exposed → bring Sylveon for immediate spread pressure.",
+            "When physical answers commit to Garchomp → bring Gholdengo and begin the special clock.",
+          ],
+        },
+        defaultLeadPair: [
+          "garchomp",
+          "rillaboom",
+        ],
+        backPair: [
+          "sylveon",
+          "gholdengo",
+        ],
+        identityCard: {
+          winCondition: "No-Mega conversion package.",
+        },
+        pilotDecision: {
+          chooseWhen: [
+            "Both Mega candidates have poor matchups.",
+            "Ground plus Fairy coverage is excellent.",
+            "You want maximum flexibility for later games.",
+          ],
+          avoidWhen: [
+            "The opponent requires Mega speed immediately.",
+          ],
+          previewQuestion: "Can Garchomp and Sylveon force different defensive answers?",
+          primaryMistake: "Trying to make every turn explosive instead of preserving the conversion chain.",
+        },
+        engineIds: [
+          "engine_tempo_conversion",
+          "engine_threat_fork",
+        ],
+        endgameIds: [
+          "endgame_conversion",
+          "endgame_special_fork",
+        ],
+        loops: [
+          {
+            title: "Ground Opening",
+            body: "If a target is vulnerable to Ground pressure, use Rillaboom Fake Out to suppress its partner and let Garchomp immediately convert the opening.",
+          },
+          {
+            title: "Fairy Second Wave",
+            body: "When the opponent rotates in a physical answer to Garchomp, bring Sylveon into the safer side and use Hyper Voice to punish the defensive rotation.",
+          },
+          {
+            title: "Gholdengo Finish",
+            body: "If Sylveon forces the opponent to commit Steel or Poison answers, bring Gholdengo into the resulting opening and scale or spread damage.",
+          },
+        ],
+        victims: [
+          {
+            name: "balanced teams",
+            why: "balanced teams",
+          },
+          {
+            name: "Dark-heavy teams",
+            why: "Dark-heavy teams",
+          },
+          {
+            name: "Ground-weak Steel cores",
+            why: "Ground-weak Steel cores",
+          },
+        ],
+        counters: [
+          {
+            name: "strong Flying pressure",
+            why: "strong Flying pressure",
+          },
+          {
+            name: "speed control",
+            why: "speed control",
+          },
+          {
+            name: "wide special pressure",
+            why: "wide special pressure",
+          },
+        ],
+        advantages: [
+          {
+            title: "no Mega commitment",
+            body: "no Mega commitment",
+          },
+          {
+            title: "broad coverage",
+            body: "broad coverage",
+          },
+          {
+            title: "multiple independent converters",
+            body: "multiple independent converters",
+          },
+        ],
+        hazards: [
+          {
+            title: "Garchomp Earthquake positioning",
+            body: "Garchomp Earthquake positioning",
+          },
+          {
+            title: "Sylveon being too slow without Tailwind",
+            body: "Sylveon being too slow without Tailwind",
+          },
+          {
+            title: "Gholdengo overexposure",
+            body: "Gholdengo overexposure",
+          },
+        ],
+      },
+      {
+        id: "pack_milotic_swap",
+        label: "Reactive Control Module",
+        when: "Use when Intimidate-heavy physical teams or setup-heavy boards demand punishment rather than more immediate damage.",
+        identity: "Converts opponent stat manipulation into special pressure and adds reactive control.",
+        slugs: [
+          "raichu",
+          "rillaboom",
+          "gholdengo",
+          "milotic",
+        ],
+        strategy: {
+          opponentPattern: "Intimidate-heavy physical offense or setup teams.",
+          purpose: "Turn opponent board manipulation into our special advantage.",
+          targets: [
+            "Intimidate users",
+            "physical attackers",
+            "Ground/Fire attackers",
+          ],
+          refuses: [
+            "unpunished Intimidate cycling",
+            "passive physical attrition",
+          ],
+          winCondition: "Competitive plus Gholdengo create a dual special clock.",
+          gamePlan: "Control with Fake Out, react with Competitive, scale with Gholdengo, finish through special pressure.",
+          mantra: "If they manipulate stats, make the manipulation expensive.",
+          turnChecklist: [
+            "Are they about to Intimidate?",
+            "Is Milotic safe to enter?",
+            "Which special attacker should receive the opening?",
+            "Can I preserve Rillaboom for priority?",
+            "Do I need to reveal Mega Raichu?",
+          ],
+          bring: [
+            "raichu",
+            "rillaboom",
+            "gholdengo",
+            "milotic",
+          ],
+        },
+        roles: [
+          {
+            slug: "raichu",
+            macro: "tempo",
+            micro: "Fake Out and redirection",
+          },
+          {
+            slug: "rillaboom",
+            macro: "control",
+            micro: "terrain and Fake Out",
+          },
+          {
+            slug: "gholdengo",
+            macro: "scaler",
+            micro: "special pressure",
+          },
+          {
+            slug: "milotic",
+            macro: "reactive",
+            micro: "Competitive and control",
+          },
+        ],
+        fieldPlan: {
+          leadPair: [
+            "raichu",
+            "rillaboom",
+          ],
+          leadWhy: "Dual Fake Out protects Milotic's eventual entry and controls early setup.",
+          backPair: [
+            "gholdengo",
+            "milotic",
+          ],
+          backJobs: [
+            {
+              slug: "gholdengo",
+              job: "Provides independent special scaling while Milotic punishes physical stat drops.",
+            },
+            {
+              slug: "milotic",
+              job: "Enters against Intimidate and physical pressure, then converts Competitive into special damage.",
+            },
+          ],
+          pairEdges: [
+            {
+              from: "raichu",
+              to: "rillaboom",
+              creates: "double Fake Out control",
+              converts: "safe Milotic entry",
+            },
+            {
+              from: "rillaboom",
+              to: "milotic",
+              creates: "protected entry window",
+              converts: "Competitive pressure",
+            },
+            {
+              from: "milotic",
+              to: "gholdengo",
+              creates: "special pressure",
+              converts: "Nasty Plot",
+            },
+          ],
+          turn1: "Use Fake Out to deny the most important attacker, then preserve the board until Milotic can enter into a favorable state.",
+          bringInTriggers: [
+            "When Intimidate appears → bring Milotic into the affected position and activate Competitive.",
+            "When physical pressure is redirected toward Milotic → bring Gholdengo into the freed lane.",
+          ],
+        },
+        defaultLeadPair: [
+          "raichu",
+          "rillaboom",
+        ],
+        backPair: [
+          "gholdengo",
+          "milotic",
+        ],
+        identityCard: {
+          winCondition: "Reactive special control.",
+        },
+        pilotDecision: {
+          chooseWhen: [
+            "Intimidate is central to the opponent.",
+            "Physical attackers dominate their preview.",
+            "Setup needs to be punished.",
+          ],
+          avoidWhen: [
+            "Opponent has little stat manipulation.",
+            "Immediate Ground conversion is more valuable.",
+          ],
+          previewQuestion: "Will the opponent naturally feed Milotic value?",
+          primaryMistake: "Bringing Milotic without a reason for its reactive engine to activate.",
+        },
+        engineIds: [
+          "engine_tempo_conversion",
+          "engine_threat_fork",
+        ],
+        endgameIds: [
+          "endgame_special_fork",
+          "endgame_bench_module",
+        ],
+        loops: [
+          {
+            title: "Competitive Punish",
+            body: "If the opponent Intimidates, bring Milotic into the affected slot and use the Competitive boost to immediately pressure the board rather than merely accepting the boost.",
+          },
+          {
+            title: "Special Rotation",
+            body: "When Milotic draws physical attacks, Protect or reposition Milotic while Gholdengo takes the free turn and begins its own scaling route.",
+          },
+        ],
+        victims: [
+          {
+            name: "Intimidate teams",
+            why: "Intimidate teams",
+          },
+          {
+            name: "physical balance",
+            why: "physical balance",
+          },
+          {
+            name: "setup reliant on stat drops",
+            why: "setup reliant on stat drops",
+          },
+        ],
+        counters: [
+          {
+            name: "special offense",
+            why: "special offense",
+          },
+          {
+            name: "status pressure",
+            why: "status pressure",
+          },
+          {
+            name: "teams that simply refuse to trigger Competitive",
+            why: "teams that simply refuse to trigger Competitive",
+          },
+        ],
+        advantages: [
+          {
+            title: "reactive conversion",
+            body: "reactive conversion",
+          },
+          {
+            title: "special redundancy",
+            body: "special redundancy",
+          },
+          {
+            title: "low positional commitment",
+            body: "low positional commitment",
+          },
+        ],
+        hazards: [
+          {
+            title: "narrow trigger",
+            body: "narrow trigger",
+          },
+          {
+            title: "being ignored",
+            body: "being ignored",
+          },
+          {
+            title: "overvaluing Competitive",
+            body: "overvaluing Competitive",
+          },
+        ],
+        requiresSwap: {
+          out: "garchomp",
+          in: "milotic",
+        },
+      },
+      {
+        id: "pack_ceruledge_swap",
+        label: "Self-Scaling Module",
+        when: "Use when the opponent gives setup windows or struggles to remove a physical scaler.",
+        identity: "Tailwind plus dual scaling.",
+        slugs: [
+          "staraptor",
+          "rillaboom",
+          "gholdengo",
+          "ceruledge",
+        ],
+        strategy: {
+          opponentPattern: "Teams with limited answers to simultaneous physical and special scaling.",
+          purpose: "Create two independent scaling clocks.",
+          targets: [
+            "passive teams",
+            "physical walls",
+            "teams with one primary scaler answer",
+          ],
+          refuses: [
+            "single-target defensive plans",
+            "slow attrition without setup",
+          ],
+          winCondition: "Force the opponent to choose which scaler receives the free turn.",
+          gamePlan: "Create setup windows with Tailwind/Intimidate/Fake Out, scale two attackers, finish whichever scaler survives.",
+          mantra: "They only get one answer at a time.",
+          turnChecklist: [
+            "Which scaler is safer?",
+            "Is Grassy Seed activated?",
+            "Does Tailwind make setup unnecessary?",
+            "Which target is forced to answer Ceruledge?",
+            "Can Gholdengo scale instead?",
+          ],
+          bring: [
+            "staraptor",
+            "rillaboom",
+            "gholdengo",
+            "ceruledge",
+          ],
+        },
+        roles: [
+          {
+            slug: "staraptor",
+            macro: "speed",
+            micro: "Tailwind and Intimidate",
+          },
+          {
+            slug: "rillaboom",
+            macro: "control",
+            micro: "terrain and Fake Out",
+          },
+          {
+            slug: "gholdengo",
+            macro: "scaler",
+            micro: "special setup",
+          },
+          {
+            slug: "ceruledge",
+            macro: "scaler",
+            micro: "physical setup",
+          },
+        ],
+        fieldPlan: {
+          leadPair: [
+            "staraptor",
+            "rillaboom",
+          ],
+          leadWhy: "Intimidate and Fake Out create the setup window for the back scalers.",
+          backPair: [
+            "gholdengo",
+            "ceruledge",
+          ],
+          backJobs: [
+            {
+              slug: "gholdengo",
+              job: "Scales specially while Ceruledge threatens physical setup.",
+            },
+            {
+              slug: "ceruledge",
+              job: "Uses Grassy Seed and Swords Dance to become progressively harder to answer.",
+            },
+          ],
+          pairEdges: [
+            {
+              from: "staraptor",
+              to: "rillaboom",
+              creates: "safe setup window",
+              converts: "Fake Out control",
+            },
+            {
+              from: "rillaboom",
+              to: "ceruledge",
+              creates: "Grassy Seed activation",
+              converts: "Swords Dance",
+            },
+            {
+              from: "ceruledge",
+              to: "gholdengo",
+              creates: "physical target pressure",
+              converts: "Nasty Plot",
+            },
+          ],
+          turn1: "Use Intimidate plus Fake Out to identify which scaler can safely take the next turn.",
+          bringInTriggers: [
+            "When physical answers are distracted by Gholdengo → bring Ceruledge into Grassy Terrain.",
+            "When Ceruledge draws Fire/physical attention → bring Gholdengo into the free lane.",
+          ],
+        },
+        defaultLeadPair: [
+          "staraptor",
+          "rillaboom",
+        ],
+        backPair: [
+          "gholdengo",
+          "ceruledge",
+        ],
+        identityCard: {
+          winCondition: "Dual scaling.",
+        },
+        pilotDecision: {
+          chooseWhen: [
+            "Opponent lacks immediate setup denial.",
+            "Grassy Terrain has strong value.",
+            "You expect long games.",
+          ],
+          avoidWhen: [
+            "Opponent has overwhelming immediate spread damage.",
+            "Setup turns are unavailable.",
+          ],
+          previewQuestion: "Can they answer both Gholdengo and Ceruledge without giving one a free turn?",
+          primaryMistake: "Setting up both scalers when immediate damage would already win the exchange.",
+        },
+        engineIds: [
+          "engine_tailwind",
+          "engine_threat_fork",
+        ],
+        endgameIds: [
+          "endgame_tailwind",
+          "endgame_bench_module",
+        ],
+        loops: [
+          {
+            title: "Grassy Setup",
+            body: "If Rillaboom has established Grassy Terrain and Ceruledge can enter safely, bring Ceruledge in, activate Grassy Seed and use Swords Dance only when the opponent cannot punish the setup.",
+          },
+          {
+            title: "Double Scaler Fork",
+            body: "When the opponent commits to stopping Ceruledge, use Gholdengo's free turn to Nasty Plot or attack, then preserve whichever scaler survives for the endgame.",
+          },
+        ],
+        victims: [
+          {
+            name: "passive balance",
+            why: "passive balance",
+          },
+          {
+            name: "single-answer defensive teams",
+            why: "single-answer defensive teams",
+          },
+          {
+            name: "physical-only counterplay",
+            why: "physical-only counterplay",
+          },
+        ],
+        counters: [
+          {
+            name: "immediate spread damage",
+            why: "immediate spread damage",
+          },
+          {
+            name: "strong setup denial",
+            why: "strong setup denial",
+          },
+          {
+            name: "Fire pressure into Ceruledge",
+            why: "Fire pressure into Ceruledge",
+          },
+        ],
+        advantages: [
+          {
+            title: "dual scaling",
+            body: "dual scaling",
+          },
+          {
+            title: "Grassy Seed",
+            body: "Grassy Seed",
+          },
+          {
+            title: "Tailwind support",
+            body: "Tailwind support",
+          },
+        ],
+        hazards: [
+          {
+            title: "over-setting up",
+            body: "over-setting up",
+          },
+          {
+            title: "Fire targeting",
+            body: "Fire targeting",
+          },
+          {
+            title: "losing both scalers simultaneously",
+            body: "losing both scalers simultaneously",
+          },
+        ],
+        requiresSwap: {
+          out: "sylveon",
+          in: "ceruledge",
+        },
+      },
+      {
+        id: "pack_annihilape_swap",
+        label: "Counterplay Module",
+        when: "Use when attacking your Pokémon or dropping their stats naturally gives Annihilape value.",
+        identity: "Opponent-action scaling network.",
+        slugs: [
+          "staraptor",
+          "rillaboom",
+          "gholdengo",
+          "annihilape",
+        ],
+        strategy: {
+          opponentPattern: "Teams that must attack or naturally lower stats to function.",
+          purpose: "Convert opponent interaction into future offensive value.",
+          targets: [
+            "Intimidate users",
+            "physical attackers",
+            "teams with forced targeting",
+          ],
+          refuses: [
+            "passive ignoring of Annihilape",
+            "single-target solutions",
+          ],
+          winCondition: "Make attacking Annihilape increase the cost of every subsequent interaction.",
+          gamePlan: "Create counterplay triggers, scale Rage Fist, force targeting decisions, then let Gholdengo convert the uncovered board.",
+          mantra: "Their correct interaction is still useful to us.",
+          turnChecklist: [
+            "What attacks Annihilape?",
+            "Can Intimidate activate Defiant?",
+            "Is Rage Fist worth preserving?",
+            "Which threat is being ignored?",
+            "Should Annihilape stay in or reset?",
+          ],
+          bring: [
+            "staraptor",
+            "rillaboom",
+            "gholdengo",
+            "annihilape",
+          ],
+        },
+        roles: [
+          {
+            slug: "staraptor",
+            macro: "control",
+            micro: "Intimidate and Tailwind",
+          },
+          {
+            slug: "rillaboom",
+            macro: "tempo",
+            micro: "Fake Out and terrain",
+          },
+          {
+            slug: "annihilape",
+            macro: "reactive scaler",
+            micro: "Rage Fist and Defiant",
+          },
+          {
+            slug: "gholdengo",
+            macro: "scaler",
+            micro: "special conversion",
+          },
+        ],
+        fieldPlan: {
+          leadPair: [
+            "staraptor",
+            "rillaboom",
+          ],
+          leadWhy: "Intimidate and Fake Out create the exact interaction economy Annihilape wants.",
+          backPair: [
+            "annihilape",
+            "gholdengo",
+          ],
+          backJobs: [
+            {
+              slug: "annihilape",
+              job: "Accumulate Rage Fist power while converting Intimidate into Defiant value.",
+            },
+            {
+              slug: "gholdengo",
+              job: "Provides an independent special threat while opponents are forced to interact with Annihilape.",
+            },
+          ],
+          pairEdges: [
+            {
+              from: "staraptor",
+              to: "annihilape",
+              creates: "Intimidate trigger",
+              converts: "Defiant boost",
+            },
+            {
+              from: "rillaboom",
+              to: "annihilape",
+              creates: "Fake Out tempo",
+              converts: "Rage Fist positioning",
+            },
+            {
+              from: "annihilape",
+              to: "gholdengo",
+              creates: "targeting dilemma",
+              converts: "free special turns",
+            },
+          ],
+          turn1: "Use Intimidate and Fake Out to make the opponent choose whether to attack the future Rage Fist threat or the special threat.",
+          bringInTriggers: [
+            "When the opponent has already spent attacks into the board → bring Annihilape to exploit accumulated Rage Fist value.",
+            "When Annihilape attracts concentrated pressure → bring Gholdengo into the free lane.",
+          ],
+        },
+        defaultLeadPair: [
+          "staraptor",
+          "rillaboom",
+        ],
+        backPair: [
+          "annihilape",
+          "gholdengo",
+        ],
+        identityCard: {
+          winCondition: "Opponent-action scaling.",
+        },
+        pilotDecision: {
+          chooseWhen: [
+            "Opponent has Intimidate.",
+            "Opponent must attack Annihilape.",
+            "You expect repeated board interaction.",
+          ],
+          avoidWhen: [
+            "Opponent can ignore Annihilape indefinitely.",
+            "You need immediate Ground coverage.",
+          ],
+          previewQuestion: "What opponent action naturally feeds Annihilape?",
+          primaryMistake: "Treating Rage Fist as permanent value after switching Annihilape out.",
+        },
+        engineIds: [
+          "engine_tempo_conversion",
+          "engine_threat_fork",
+        ],
+        endgameIds: [
+          "endgame_special_fork",
+          "endgame_bench_module",
+        ],
+        loops: [
+          {
+            title: "Defiant Trigger",
+            body: "If Staraptor's Intimidate lowers an opposing physical attacker's Attack and Annihilape is ready to enter, bring Annihilape into the board and convert the drop into immediate offensive pressure.",
+          },
+          {
+            title: "Rage Fist Funnel",
+            body: "When the opponent must attack Annihilape, keep it on the field long enough to accumulate Rage Fist value while Gholdengo exploits the target they are not attacking.",
+          },
+          {
+            title: "Reset Decision",
+            body: "If Annihilape has accumulated valuable Rage Fist power but would otherwise be removed, Protect or reposition only when preserving the accumulated resource outweighs losing board position.",
+          },
+        ],
+        victims: [
+          {
+            name: "Intimidate teams",
+            why: "Intimidate teams",
+          },
+          {
+            name: "attack-heavy offense",
+            why: "attack-heavy offense",
+          },
+          {
+            name: "forced-targeting compositions",
+            why: "forced-targeting compositions",
+          },
+        ],
+        counters: [
+          {
+            name: "ignoring Annihilape",
+            why: "ignoring Annihilape",
+          },
+          {
+            name: "special pressure",
+            why: "special pressure",
+          },
+          {
+            name: "forcing Annihilape to switch",
+            why: "forcing Annihilape to switch",
+          },
+        ],
+        advantages: [
+          {
+            title: "broad trigger breadth",
+            body: "broad trigger breadth",
+          },
+          {
+            title: "Defiant",
+            body: "Defiant",
+          },
+          {
+            title: "Rage Fist scaling",
+            body: "Rage Fist scaling",
+          },
+        ],
+        hazards: [
+          {
+            title: "high positional commitment",
+            body: "high positional commitment",
+          },
+          {
+            title: "Rage Fist reset on leaving",
+            body: "Rage Fist reset on leaving",
+          },
+          {
+            title: "physical damage concentration",
+            body: "physical damage concentration",
+          },
+        ],
+        requiresSwap: {
+          out: "garchomp",
+          in: "annihilape",
+        },
+      },
+    ],
+    construction: {
+      thesis: "Create board states with Fake Out, terrain, Intimidate and speed control, then convert them through Garchomp, Gholdengo and Sylveon.",
+      method: "Use two different Mega packages rather than forcing both Mega candidates into the same four.",
+      winCondition: "Create a positional advantage, convert immediately, then force the opponent to answer a second independent threat.",
+      endgames: [
+        {
+          id: "endgame_conversion",
+          label: "Immediate Conversion",
+          path: "Create tempo → Open a safe attacker → Convert immediately → Trade efficiently → Close with priority or spread damage",
+          how: "Rillaboom or Raichu creates the first favorable interaction. Garchomp, Gholdengo or Sylveon immediately converts that opening into damage. The opponent is forced to spend resources answering the active threat. The back Pokémon then enters into the weakened board and closes the game.",
+        },
+        {
+          id: "endgame_tailwind",
+          label: "Tailwind Compression",
+          path: "Intimidate → Tailwind → Outspeed → Double-pressure → Protect through retaliation → Finish",
+          how: "Staraptor reduces physical pressure while establishing Tailwind. Garchomp and Gholdengo use the speed window to attack before the opponent can stabilize. Rillaboom preserves Fake Out and terrain resources for the second wave. Protect and switching then preserve the speed advantage until the opponent runs out of safe positions.",
+        },
+        {
+          id: "endgame_special_fork",
+          label: "Special Threat Fork",
+          path: "Establish board control → Expose physical threat → Force target selection → Scale Gholdengo → Convert with Sylveon",
+          how: "The opponent must decide whether to respect the physical threat or the special threat. Gholdengo uses protected turns to accumulate value while Sylveon supplies immediate spread pressure. Rillaboom and Raichu manipulate targeting through Fake Out and Lightning Rod. The opponent eventually cannot cover every conversion route simultaneously.",
+        },
+        {
+          id: "endgame_bench_module",
+          label: "Architecture Swap",
+          path: "Identify structural problem → Swap one module → Change clock → Attack the new weakness → Finish",
+          how: "The registered six is deliberately not treated as the final architecture. Milotic adds reactive control, Ceruledge adds autonomous physical scaling, and Annihilape adds opponent-action scaling. The swap changes what the opponent must prepare for rather than merely changing one Pokémon. The remaining infrastructure stays intact so the pilot does not have to relearn the entire team.",
         },
       ],
-      victims: [
+      altSlots: [
         {
-          name: "Dragon-heavy boards",
-          why: "Fairy pressure creates immediate type-based pressure.",
-          play: "Position Sylveon to attack without giving the opponent a free double target.",
-          trap: "Do not assume Hyper Voice is safe if Steel or Poison pressure is present.",
+          slug: "milotic",
+          insteadOf: "garchomp",
+          why: "Changes the six from autonomous physical conversion toward reactive special control.",
+          answers: "Intimidate; physical attackers; stat-drop strategies",
+          costs: "loses Garchomp Ground coverage; less immediate autonomous physical damage",
+          unlocks: [
+            "pack_milotic_swap",
+          ],
+          module: {
+            identity: "Reactive Control",
+          },
+          architectureChange: {
+            from: "autonomous conversion",
+            to: "reactive special control",
+          },
+          useWhen: [
+            "Intimidate is central to the opponent.",
+            "Physical pressure is the main problem.",
+            "You want a reactive control route.",
+          ],
+          avoidWhen: [
+            "Immediate Ground conversion is critical.",
+            "Opponent can simply ignore Competitive.",
+          ],
+          slot: {
+            title: "Milotic",
+            job: "breaker",
+            role: "Changes the six from autonomous physical conversion toward reactive special control.",
+            objective: "Changes the six from autonomous physical conversion toward reactive special control.",
+            howToPlay: "Intimidate is central to the opponent.",
+            item: "Sitrus Berry",
+            ability: "Competitive",
+            nature: "Calm",
+            moves: [
+              {
+                name: "Muddy Water",
+                why: "Special spread pressure and accuracy disruption.",
+              },
+              {
+                name: "Ice Beam",
+                why: "Coverage against Dragon and Ground targets.",
+              },
+              {
+                name: "Coil",
+                why: "Provides a scaling route when the opponent cannot immediately punish setup.",
+              },
+              {
+                name: "Protect",
+                why: "Preserves Milotic while its reactive value compounds.",
+              },
+            ],
+            training: train(32, 0, 16, 16, 2, 0, {
+                "label": "Bulky reactive special",
+                "why": "Prioritize survivability and Special Attack while retaining useful Speed.",
+                "spend": [
+                  "32 HP",
+                  "16 Def",
+                  "16 SpA",
+                  "2 SpD"
+                ],
+                "rule": "Starting architecture spread; tune against actual Intimidate and special-damage benchmarks."
+              }),
+          },
         },
-      ],
-      counters: [
         {
-          name: "Strong Steel pressure",
-          why: "It reduces Sylveon's immediate conversion.",
-          play: "Shift pressure toward Gholdengo or Rillaboom.",
-          trap: "Do not repeatedly force Sylveon into bad targets.",
+          slug: "ceruledge",
+          insteadOf: "sylveon",
+          why: "Changes immediate Fairy conversion into autonomous physical scaling.",
+          answers: "passive teams; physical walls; single-answer defensive plans",
+          costs: "loses immediate Fairy spread; more setup-dependent",
+          unlocks: [
+            "pack_ceruledge_swap",
+          ],
+          module: {
+            identity: "Self-Scaling",
+          },
+          architectureChange: {
+            from: "immediate special conversion",
+            to: "self-scaling physical conversion",
+          },
+          useWhen: [
+            "Grassy Terrain creates safe setup.",
+            "Opponent has limited answers to physical scaling.",
+          ],
+          avoidWhen: [
+            "Immediate spread damage is required.",
+            "Opponent has strong Fire pressure.",
+          ],
+          slot: {
+            title: "Ceruledge",
+            job: "breaker",
+            role: "Changes immediate Fairy conversion into autonomous physical scaling.",
+            objective: "Changes immediate Fairy conversion into autonomous physical scaling.",
+            howToPlay: "Grassy Terrain creates safe setup.",
+            item: "Grassy Seed",
+            ability: "Flash Fire",
+            nature: "Adamant",
+            moves: [
+              {
+                name: "Bitter Blade",
+                why: "Provides damage while restoring health and extending positional commitment.",
+              },
+              {
+                name: "Shadow Sneak",
+                why: "Provides priority for endgame conversion.",
+              },
+              {
+                name: "Swords Dance",
+                why: "Creates the physical scaling clock.",
+              },
+              {
+                name: "Protect",
+                why: "Protects the setup investment.",
+              },
+            ],
+            training: train(32, 32, 0, 0, 2, 0, {
+                "label": "Physical scaler",
+                "why": "Prioritize Attack and survivability.",
+                "spend": [
+                  "32 HP",
+                  "32 Atk",
+                  "2 SpD"
+                ],
+                "rule": "Starting architecture spread; optimize Speed only if a specific benchmark matters."
+              }),
+          },
         },
-      ],
-      advantages: [
-        { title: "Immediate special conversion", body: "The package can create damage without requiring Sylveon to set up." },
-      ],
-      hazards: [
         {
-          title: "Mega choice",
-          body: "If Raichu is Mega in this package, do not plan around Staraptor's Mega kit simultaneously.",
+          slug: "annihilape",
+          insteadOf: "garchomp",
+          why: "Changes autonomous conversion into opponent-action scaling.",
+          answers: "Intimidate; attack-heavy teams; forced targeting",
+          costs: "loses immediate Ground coverage; Rage Fist value has high positional commitment",
+          unlocks: [
+            "pack_annihilape_swap",
+          ],
+          module: {
+            identity: "Counterplay",
+          },
+          architectureChange: {
+            from: "autonomous physical conversion",
+            to: "interaction-reactive scaling",
+          },
+          useWhen: [
+            "Opponent must attack.",
+            "Opponent uses Intimidate.",
+            "You can create repeated interaction.",
+          ],
+          avoidWhen: [
+            "Opponent can ignore Annihilape.",
+            "Immediate coverage is more important.",
+          ],
+          slot: {
+            title: "Annihilape",
+            job: "breaker",
+            role: "Changes autonomous conversion into opponent-action scaling.",
+            objective: "Changes autonomous conversion into opponent-action scaling.",
+            howToPlay: "Opponent must attack.",
+            item: "Leftovers",
+            ability: "Defiant",
+            nature: "Adamant",
+            moves: [
+              {
+                name: "Rage Fist",
+                why: "Turns repeated incoming attacks into a scaling damage resource.",
+              },
+              {
+                name: "Drain Punch",
+                why: "Provides sustain and Fighting conversion.",
+              },
+              {
+                name: "Protect",
+                why: "Preserves accumulated Rage Fist value while forcing targeting decisions.",
+              },
+              {
+                name: "Bulk Up",
+                why: "Creates a self-scaling route when the opponent refuses to attack.",
+              },
+            ],
+            training: train(32, 32, 0, 0, 2, 0, {
+                "label": "Durable interaction scaler",
+                "why": "Prioritize HP and Attack for positional commitment.",
+                "spend": [
+                  "32 HP",
+                  "32 Atk",
+                  "2 SpD"
+                ],
+                "rule": "Starting architecture spread; Speed can be tuned after observing common opposing speed control."
+              }),
+          },
         },
       ],
     },
-    {
-      id: PACK_GARCHOMP,
-      label: "Autonomous Garchomp",
-      when: "Ground/Rock coverage and independent physical conversion beat Fairy spread.",
-      identity: "Replace Sylveon's spread conversion with Garchomp's autonomous multi-axis pressure.",
-      slugs: ["raichu", "rillaboom", "staraptor", "garchomp"],
-      requiresSwap: { out: "sylveon", in: "garchomp" },
-      winconMode: "staraptor-mega",
-      engineIds: ["tempo-infrastructure", "immediate-conversion"],
-      endgameIds: ["autonomous-garchomp-cleanup"],
-      winRouteIds: ["tailwind-immediate-pressure"],
-      identityCard: {
-        engine: ["staraptor", "raichu", "rillaboom"],
-        connector: ["staraptor"],
-        converter: ["garchomp"],
-        scaler: [],
-        control: ["tailwind", "fake-out", "intimidate"],
-        winCondition: "Create speed or targeting advantage and let Garchomp convert without setup.",
-        clock: "fast",
-        commitment: "low-to-medium",
-        autonomy: "high",
-        triggerBreadth: "high",
-      },
-      pilotDecision: {
-        chooseWhen: [
-          "The matchup rewards Ground or Rock coverage.",
-          "The team needs autonomous damage.",
-          "The opponent can isolate Sylveon.",
-        ],
-        avoidWhen: [
-          "Fairy spread is uniquely valuable.",
-          "The board makes Garchomp's Ground attacks difficult to use.",
-        ],
-        previewQuestion: "Can Garchomp turn Tailwind, Fake Out or Intimidate into immediate damage?",
-        primaryMistake: "Treating Garchomp as a one-dimensional Earthquake user.",
-      },
-      strategy: {
-        opponentPattern: "Targets vulnerable to Ground/Rock/Dragon coverage or boards that punish slower special conversion.",
-        bring: ["raichu", "rillaboom", "staraptor", "garchomp"],
-        purpose: "Generate an opening and immediately convert through Garchomp.",
-        targets: ["Fire targets", "Steel targets", "Flying targets vulnerable to Rock", "Electric targets vulnerable to Ground"],
-        refuses: [
-          "Do not force Earthquake into Grassy Terrain if another click is superior.",
-          "Do not spend turns setting up when Garchomp already has a conversion window.",
-        ],
-        winCondition: "Use infrastructure to make Garchomp's broad coverage difficult to answer simultaneously.",
-        gamePlan: "Break: Fake Out or Tailwind. Control: Intimidate and positioning. Finish: Garchomp coverage plus Rillaboom priority.",
-        mantra: "Create the opening, then convert without asking permission.",
-        contrast: "Sacrifices Fairy spread for autonomous physical coverage.",
-        winconMode: "staraptor-mega",
-        turnChecklist: [
-          "Which Garchomp move hits the most valuable target?",
-          "Is Grassy Terrain active?",
-          "Can Tailwind turn Garchomp into the faster threat?",
-          "What target is forced to respect Rock coverage?",
-          "Can Rillaboom finish what Garchomp starts?",
-        ],
-      },
-      roles: [
-        { slug: "raichu", macro: "tempo", micro: "Creates free turns and redirects Electric pressure." },
-        { slug: "rillaboom", macro: "infrastructure", micro: "Fake Out, terrain and priority stabilize Garchomp." },
-        { slug: "staraptor", macro: "connector", micro: "Tailwind and Intimidate convert position into Garchomp access." },
-        { slug: "garchomp", macro: "converter", micro: "Autonomously converts speed and positioning into coverage damage." },
-      ],
-      loops: [
+    megaPool: {
+      rule: "Never use Raichu and Staraptor in the same bring-four. They both occupy a Mega Stone slot; select the Mega according to the package.",
+      previewPressure: "Opponent must respect Raichu Y special pressure or Staraptor Tailwind — pick the Mega with the package, not habit.",
+      candidates: [
         {
-          id: "tailwind-garchomp",
-          type: "conversion",
-          title: "Tailwind → Garchomp",
-          body: "When Garchomp can outspeed the important opposing threats under Tailwind, establish speed control and immediately attack the most valuable target. Use Tailwind only when it changes Garchomp's conversion range. End state: Garchomp converts speed control into immediate damage.",
-          trigger: "Tailwind creates a meaningful speed breakpoint.",
+          slug: "raichu",
+          stone: "Raichunite Y",
+          when: "fast special Mega",
         },
         {
-          id: "fakeout-garchomp",
-          type: "infrastructure",
-          title: "Fake Out → Autonomous Conversion",
-          body: "If one opposing Pokémon prevents Garchomp from converting safely, Fake Out that target and attack the second slot. Preserve the remaining infrastructure for the following turn. End state: Garchomp produces value without setup.",
-          trigger: "One target is the main obstacle to Garchomp.",
+          slug: "staraptor",
+          stone: "Staraptite",
+          when: "Tailwind physical-control Mega",
         },
       ],
-      flows: [
+    },
+    controlPlanes: [
+      {
+        id: "tempo",
+        label: "Tempo",
+        setterSlug: "rillaboom",
+        effect: "Control which side gets the next meaningful action.",
+        whoBenefits: "Garchomp, Gholdengo, Sylveon",
+      },
+      {
+        id: "speed",
+        label: "Speed",
+        setterSlug: "staraptor",
+        effect: "Change which conversion clock gets to act first.",
+        whoBenefits: "Garchomp, Gholdengo",
+      },
+      {
+        id: "targeting",
+        label: "Targeting",
+        setterSlug: "raichu",
+        effect: "Make the opponent's target selection create opportunities elsewhere.",
+        whoBenefits: "Gholdengo, Sylveon, partners",
+      },
+      {
+        id: "resource",
+        label: "Resources",
+        setterSlug: "rillaboom",
+        effect: "Preserve endgame resources instead of spending everything early.",
+        whoBenefits: "Endgame priority and Protect lines",
+      },
+    ],
+    network: {
+      thesis: "The six does not rely on one core; it generates different four-Pokémon systems around the same tempo infrastructure.",
+      edges: [
         {
-          id: "lead",
-          title: "Lead",
-          forks: [
+          from: "rillaboom",
+          to: "garchomp",
+          creates: "Fake Out positioning",
+          converts: "Ground pressure",
+        },
+        {
+          from: "rillaboom",
+          to: "gholdengo",
+          creates: "safe setup turns",
+          converts: "Nasty Plot",
+        },
+        {
+          from: "raichu",
+          to: "gholdengo",
+          creates: "Fake Out tempo",
+          converts: "Make It Rain",
+          engineId: "engine_tempo_conversion",
+        },
+        {
+          from: "staraptor",
+          to: "garchomp",
+          creates: "Tailwind speed",
+          converts: "Earthquake pressure",
+          engineId: "engine_tailwind",
+        },
+        {
+          from: "staraptor",
+          to: "gholdengo",
+          creates: "Tailwind speed",
+          converts: "special scaling",
+          engineId: "engine_tailwind",
+        },
+        {
+          from: "rillaboom",
+          to: "sylveon",
+          creates: "Fake Out window",
+          converts: "Hyper Voice",
+        },
+        {
+          from: "raichu",
+          to: "sylveon",
+          creates: "targeting disruption",
+          converts: "Fairy spread",
+        },
+        {
+          from: "garchomp",
+          to: "gholdengo",
+          creates: "physical targeting pressure",
+          converts: "special free turns",
+          engineId: "engine_threat_fork",
+        },
+      ],
+    },
+    engines: [
+      {
+        id: "engine_tempo_conversion",
+        label: "Fake Out Conversion",
+        path: [
+          "Lead Raichu or Rillaboom",
+          "Fake Out the key opposing piece",
+          "Partner takes the created window",
+          "Convert into damage or setup",
+          "Force the opponent to answer the new board",
+          "Bring the back converter into the weakened position",
+        ],
+        how: "Raichu and Rillaboom provide redundant Fake Out infrastructure. The first Fake Out is not the win condition; it is a resource that creates a safe conversion window. Garchomp, Gholdengo or Sylveon spends that window immediately. Once the opponent answers, the back pair enters against a board that has already been altered.",
+        dependsOn: "A safe first-turn Fake Out target and a partner capable of converting the turn.",
+        disrupt: "Protect, Fake Out immunity, Psychic Terrain, priority denial and speed control.",
+        fallback: "Use the Fake Out user as the switch/pivot while preserving the converter for the second wave.",
+      },
+      {
+        id: "engine_tailwind",
+        label: "Tailwind Compression",
+        path: [
+          "Lead Staraptor",
+          "Apply Intimidate",
+          "Establish Tailwind",
+          "Bring Garchomp or Gholdengo forward",
+          "Attack before the opponent stabilizes",
+          "Protect through retaliation",
+        ],
+        how: "Staraptor changes both the defensive and speed state of the board. Tailwind then allows Garchomp or Gholdengo to convert before the opponent can recover positioning. Staraptor does not need to attack immediately because its value is already being converted by its partner. The endgame becomes a sequence of protected attacks rather than a race to establish another speed-control effect.",
+        dependsOn: "Staraptor surviving long enough to establish Tailwind.",
+        disrupt: "Opposing speed control, priority, Taunt, Protect cycles and strong special attacks.",
+        fallback: "Use Intimidate and Protect to preserve Staraptor while Rillaboom establishes a Fake Out-based second wave.",
+      },
+      {
+        id: "engine_threat_fork",
+        label: "Physical-Special Fork",
+        path: [
+          "Expose Garchomp or Sylveon",
+          "Force target selection",
+          "Protect or reposition the threatened side",
+          "Activate Gholdengo",
+          "Convert the uncovered target",
+          "Close with priority",
+        ],
+        how: "The team presents physical and special threats simultaneously. Garchomp forces Ground/Dragon/Rock answers while Gholdengo and Sylveon punish teams that overcommit to physical defense. The opponent's first defensive decision determines which threat receives the next free turn. Rillaboom and Raichu amplify this fork through Fake Out and targeting manipulation.",
+        dependsOn: "At least two live damage threats.",
+        disrupt: "Very strong wide-area pressure, dedicated speed control or defensive positioning that answers both axes.",
+        fallback: "Shift from threat fork into direct Sylveon spread pressure or Garchomp endgame conversion.",
+      },
+      {
+        id: "engine_priority_endgame",
+        label: "Priority Close",
+        path: [
+          "Preserve Rillaboom",
+          "Chip opposing threats",
+          "Use Protect to force inefficient attacks",
+          "Grassy Glide or Quick Attack",
+          "Trade the final vulnerable target",
+        ],
+        how: "The team deliberately preserves its priority users instead of spending them for early damage. Once opposing attackers are chipped, Grassy Glide and Sylveon's Quick Attack become conversion tools. Protect forces the opponent to reveal which piece must attack. The endgame is therefore not dependent on winning a final speed check.",
+        dependsOn: "Rillaboom or Sylveon surviving into the endgame.",
+        disrupt: "Priority denial, Psychic Terrain and healthy resistant targets.",
+        fallback: "Use Tailwind or natural Speed from the surviving offensive piece.",
+      },
+    ],
+    commandments: [
+      "Do not bring Raichu and Staraptor together.",
+      "Do not spend Fake Out merely for damage when it can create a conversion turn.",
+      "Garchomp is the immediate converter; do not force it into a setup role.",
+      "Protect the second wave more than the first wave.",
+      "If the opponent answers one clock, activate another.",
+    ],
+    phases: [
+      {
+        id: "preview",
+        title: "Preview — Pick the package",
+        lede: "Select four Pokémon and a Mega mode.",
+        branches: [
+          {
+            when: "Need Fake Out plus special fork?",
+            then: "Raichu Conversion or Garchomp + Sylveon when Megas are preserved.",
+          },
+          {
+            when: "Need Tailwind compression?",
+            then: "Staraptor Tailwind with Garchomp forward.",
+          },
+          {
+            when: "Structural problem visible?",
+            then: "Consider Milotic, Ceruledge, or Annihilape swap packages.",
+          },
+        ],
+      },
+      {
+        id: "opening",
+        title: "Opening — Spend tempo",
+        branches: [
+          {
+            when: "Fake Out or Tailwind is live",
+            then: "Convert the window — do not autopilot damage without a converter ready.",
+          },
+        ],
+      },
+      {
+        id: "finish",
+        title: "Finish — Second clock",
+        branches: [
+          {
+            when: "First converter is answered",
+            then: "Activate Gholdengo, Sylveon, or priority before complexity returns.",
+          },
+        ],
+      },
+    ],
+    loops: [
+      {
+        title: "Tempo → convert",
+        body: "Fake Out or Tailwind creates a window; Garchomp, Sylveon, or Gholdengo spends it.",
+      },
+      {
+        title: "Fork → finish",
+        body: "Physical-special fork forces target selection; the uncovered axis closes.",
+      },
+    ],
+    hazards: [
+      {
+        title: "Bringing Raichu and Staraptor together",
+        body: "Bringing Raichu and Staraptor together",
+      },
+      {
+        title: "Fake Out without conversion",
+        body: "Fake Out without conversion",
+      },
+      {
+        title: "Forcing Garchomp setup",
+        body: "Forcing Garchomp setup",
+      },
+    ],
+    victims: [],
+    counters: [],
+    advantages: [],
+    matchupScripts: [
+      {
+        id: "rain",
+        foe: "Politoed/Pelipper plus Archaludon or Basculegion",
+        why: "Preserve Raichu's Electric pressure and use Rillaboom to disrupt rain positioning.",
+        packId: "pack_raichu_conversion",
+        sequence: {
+          beats: [
             {
-              id: "lead-0",
-              when: "Opponent has a clear Garchomp target.",
-              then: "Use Tailwind or Fake Out to create immediate conversion.",
+              click: "Preserve Raichu's Electric pressure and use Rillaboom to disrupt rain positioning.",
             },
             {
-              id: "lead-1",
-              when: "Opponent can punish Garchomp immediately.",
-              then: "Use the infrastructure to reposition before committing Garchomp.",
+              click: "Avoid giving Archaludon free turns.",
+            },
+            {
+              click: "Gholdengo or Sylveon becomes the second conversion axis.",
             },
           ],
         },
-      ],
-      victims: [
-        {
-          name: "Fire/Steel targets",
-          why: "Ground coverage creates immediate pressure.",
-          play: "Use positioning and speed control to make the Ground attack safe.",
-          trap: "Do not ignore terrain effects.",
-        },
-      ],
-      counters: [
-        {
-          name: "Strong Flying/Levitate boards",
-          why: "They reduce Ground conversion.",
-          play: "Use Rock coverage or shift to Rillaboom/other routes.",
-          trap: "Do not repeatedly force Ground attacks into immunity.",
-        },
-      ],
-      advantages: [
-        { title: "Autonomous conversion", body: "Garchomp does not require a specific reactive trigger or setup state to contribute." },
-      ],
-      hazards: [
-        {
-          title: "Grassy Terrain",
-          body: "Rillaboom's own terrain changes the value of Ground attacks — choose the attack rather than autopiloting Earthquake.",
-        },
-      ],
-    },
-    {
-      id: PACK_MILOTIC,
-      label: "Reactive Milotic",
-      when: "Opponent relies on Intimidate, physical manipulation or attrition.",
-      identity: "Convert opponent state manipulation into special pressure and longer-game control.",
-      slugs: ["raichu", "rillaboom", "milotic", "gholdengo"],
-      requiresSwap: { out: "sylveon", in: "milotic" },
-      winconMode: "raichu-mega-y",
-      engineIds: ["tempo-infrastructure", "special-scaling"],
-      endgameIds: ["reactive-control-cleanup", "gholdengo-cleanup"],
-      winRouteIds: ["fake-out-nasty-plot"],
-      identityCard: {
-        engine: ["raichu", "rillaboom"],
-        connector: ["rillaboom"],
-        converter: ["milotic"],
-        scaler: ["milotic", "gholdengo"],
-        control: ["fake-out", "competitive", "protect"],
-        winCondition: "Make opponent stat manipulation create value, then outscale the board.",
-        clock: "medium-to-long",
-        commitment: "low-to-medium",
-        autonomy: "medium",
-        triggerBreadth: "medium",
       },
-      pilotDecision: {
-        chooseWhen: [
-          "Intimidate is likely.",
-          "The opponent cannot immediately overwhelm Milotic.",
-          "A longer game favors accumulated value.",
-        ],
-        avoidWhen: [
-          "The game requires immediate Fairy spread.",
-          "Opponent can simply ignore Milotic and win elsewhere.",
-        ],
-        previewQuestion: "Will the opponent's normal control actions create Competitive or safe scaling opportunities?",
-        primaryMistake: "Treating Competitive as mandatory instead of treating Milotic as useful without the trigger.",
-      },
-      strategy: {
-        opponentPattern: "Physical or stat-control team that must interact with Milotic.",
-        bring: ["raichu", "rillaboom", "milotic", "gholdengo"],
-        purpose: "Turn reactive value into a stable midgame and let Gholdengo finish.",
-        targets: ["Intimidate users", "physical attackers", "teams vulnerable to Muddy Water"],
-        refuses: ["Do not chase Competitive triggers.", "Do not expose Milotic before the opponent has committed resources."],
-        winCondition: "Survive the first exchanges, accumulate reactive value and close with Milotic or Gholdengo.",
-        gamePlan: "Break: punish the opponent's first control action. Control: accumulate value. Finish: boosted special damage and priority cleanup.",
-        mantra: "Make their control tools expensive.",
-        contrast: "Replaces immediate Fairy conversion with reactive control.",
-        winconMode: "raichu-mega-y",
-        turnChecklist: [
-          "Is Intimidate likely?",
-          "What happens if they ignore Milotic?",
-          "Can Gholdengo scale while Milotic absorbs attention?",
-          "Is Coil safe?",
-          "What is the endgame if Milotic is removed?",
-        ],
-      },
-      roles: [
-        { slug: "raichu", macro: "tempo", micro: "Buys Milotic and Gholdengo safe turns." },
-        { slug: "rillaboom", macro: "infrastructure", micro: "Controls terrain and preserves board stability." },
-        { slug: "milotic", macro: "reactive-control", micro: "Turns opponent state manipulation into pressure." },
-        { slug: "gholdengo", macro: "scaler", micro: "Uses the slower game to accumulate special pressure." },
-      ],
-      loops: [
-        {
-          id: "competitive-conversion",
-          type: "counterplay",
-          title: "Intimidate → Competitive",
-          body: "When the opponent uses Intimidate into Milotic, accept the stat drop and immediately evaluate the new offensive range. Use the resulting pressure to force a defensive response while Gholdengo gains time elsewhere. End state: their Intimidate becomes an offensive resource.",
-          trigger: "Opponent uses Intimidate.",
-        },
-        {
-          id: "dual-special-scaling",
-          type: "scaling",
-          title: "Milotic + Gholdengo",
-          body: "If the opponent commits resources to Milotic, use Gholdengo to scale; if they commit to Gholdengo, preserve Milotic and accumulate control value. Do not force both attackers to scale simultaneously. End state: two scaling mechanisms create targeting ambiguity.",
-          trigger: "Opponent cannot answer both special threats equally.",
-        },
-      ],
-      flows: [
-        {
-          id: "lead",
-          title: "Lead",
-          forks: [
+      {
+        id: "sand",
+        foe: "Tyranitar plus Excadrill",
+        why: "Use Garchomp to contest Ground positioning and Rillaboom to control Tyranitar.",
+        packId: "pack_garchomp_fairy",
+        sequence: {
+          beats: [
             {
-              id: "lead-0",
-              when: "Opponent strongly signals Intimidate.",
-              then: "Position Milotic to make the stat drop costly.",
+              click: "Use Garchomp to contest Ground positioning and Rillaboom to control Tyranitar.",
             },
             {
-              id: "lead-1",
-              when: "Opponent lacks immediate Milotic pressure.",
-              then: "Use Raichu/Rillaboom tempo to establish Gholdengo scaling.",
+              click: "Sylveon provides immediate pressure into the Dark/Fighting side of the board.",
             },
           ],
         },
-      ],
-      victims: [
-        {
-          name: "Intimidate-heavy physical teams",
-          why: "Competitive converts their stat-control action into offensive value.",
-          play: "Keep Milotic positioned to receive the drop.",
-          trap: "Do not assume every Intimidate activation is automatically favorable if the opponent has a better target elsewhere.",
-        },
-      ],
-      counters: [
-        {
-          name: "Teams that ignore Milotic",
-          why: "Competitive may never activate.",
-          play: "Use Milotic's attacks and control tools rather than waiting for the trigger.",
-          trap: "Do not make the entire game plan depend on Intimidate.",
-        },
-      ],
-      advantages: [
-        { title: "Reactive conversion", body: "The opponent can create Milotic's value through normal board-control actions." },
-      ],
-      hazards: [
-        {
-          title: "Low trigger dependence",
-          body: "Milotic remains useful without Competitive; do not manufacture bad positions just to activate it.",
-        },
-      ],
-    },
-    {
-      id: PACK_CERULEDGE,
-      label: "Ceruledge Scaling",
-      when: "The opponent permits a protected setup turn and Grassy Terrain can be converted into long-term value.",
-      identity: "Self-scaling physical route backed by the infrastructure.",
-      slugs: ["raichu", "rillaboom", "ceruledge", "gholdengo"],
-      requiresSwap: { out: "arcanine-hisui", in: "ceruledge" },
-      winconMode: "raichu-mega-y",
-      engineIds: ["tempo-infrastructure", "special-scaling"],
-      endgameIds: ["gholdengo-cleanup"],
-      winRouteIds: ["fake-out-nasty-plot"],
-      identityCard: {
-        engine: ["rillaboom", "raichu"],
-        connector: ["rillaboom"],
-        converter: ["ceruledge"],
-        scaler: ["ceruledge", "gholdengo"],
-        control: ["fake-out", "terrain"],
-        winCondition: "Use Grassy Terrain and protected turns to create two independent scaling threats.",
-        clock: "medium",
-        commitment: "medium",
-        autonomy: "medium",
-        triggerBreadth: "medium",
       },
-      pilotDecision: {
-        chooseWhen: [
-          "Opponent lacks immediate setup denial.",
-          "Grassy Terrain provides meaningful sustain or Seed activation.",
-          "Long-term scaling is more valuable than immediate burst.",
-        ],
-        avoidWhen: [
-          "Opponent has reliable immediate pressure into Ceruledge.",
-          "The matchup requires instant damage.",
-        ],
-        previewQuestion: "Can Ceruledge receive one protected turn and become meaningfully harder to remove?",
-        primaryMistake: "Swords Dancing without first securing the board.",
-      },
-      strategy: {
-        opponentPattern: "Opponent has difficulty stopping setup and sustain simultaneously.",
-        bring: ["raichu", "rillaboom", "ceruledge", "gholdengo"],
-        purpose: "Create a board where either Ceruledge or Gholdengo receives the scaling turn.",
-        targets: ["Teams weak to sustained Fire/Ghost pressure", "Teams with limited setup denial"],
-        refuses: [
-          "Do not Swords Dance into obvious double-target pressure.",
-          "Do not sacrifice the infrastructure before the scaling route has paid off.",
-        ],
-        winCondition: "One scaler reaches a point where the opponent can no longer trade efficiently.",
-        gamePlan: "Break: Fake Out and positioning. Control: protect the scaling piece. Finish: Bitter Blade/Shadow Sneak or Gholdengo.",
-        mantra: "One safe turn creates the next threat.",
-        contrast: "Medium-clock scaling package.",
-        winconMode: "raichu-mega-y",
-        turnChecklist: [
-          "Can Ceruledge survive the next turn?",
-          "Is Grassy Seed already active?",
-          "Who is the opponent targeting?",
-          "Would Gholdengo benefit more from the free turn?",
-          "Can Shadow Sneak finish something?",
-        ],
-      },
-      roles: [
-        { slug: "raichu", macro: "tempo", micro: "Creates protected setup windows." },
-        { slug: "rillaboom", macro: "engine", micro: "Creates terrain and Fake Out opportunities." },
-        { slug: "ceruledge", macro: "scaler", micro: "Turns safe turns into progressively stronger physical pressure." },
-        { slug: "gholdengo", macro: "scaler", micro: "Creates the second independent scaling clock." },
-      ],
-      loops: [
-        {
-          id: "grassy-seed-scale",
-          type: "scaling",
-          title: "Terrain → Seed → Swords Dance",
-          body: "When Grassy Terrain gives Ceruledge a safe durability window, use the Seed value to absorb pressure and only Swords Dance when the opponent cannot punish the setup. Then use Bitter Blade to turn offensive pressure back into sustain. End state: Ceruledge is harder to remove and more dangerous.",
-          trigger: "Ceruledge has a protected setup window.",
-        },
-        {
-          id: "two-scaler-dilemma",
-          type: "counterplay",
-          title: "Ceruledge or Gholdengo",
-          body: "If the opponent commits to stopping Ceruledge, use Gholdengo's free turn to scale; if they stop Gholdengo, let Ceruledge accumulate value. Preserve whichever scaler is less contested. End state: two scaling threats create targeting ambiguity.",
-          trigger: "Opponent cannot fully deny both scaling routes.",
-        },
-      ],
-      flows: [
-        {
-          id: "lead",
-          title: "Lead",
-          forks: [
+      {
+        id: "sun",
+        foe: "Charizard-Y plus Fire/Grass offense",
+        why: "Use Tailwind and Garchomp's Rock/Ground coverage while preserving Rillaboom for terrain control.",
+        packId: "pack_staraptor_tailwind",
+        sequence: {
+          beats: [
             {
-              id: "lead-0",
-              when: "Opponent has weak immediate pressure.",
-              then: "Prioritize the Ceruledge scaling route.",
+              click: "Use Tailwind and Garchomp's Rock/Ground coverage while preserving Rillaboom for terrain control.",
             },
             {
-              id: "lead-1",
-              when: "Opponent heavily pressures Ceruledge.",
-              then: "Use Gholdengo as the alternate scaling route.",
+              click: "Do not allow the opponent to dictate the speed regime.",
             },
           ],
         },
-      ],
-      victims: [
-        {
-          name: "Passive setup-denial-light teams",
-          why: "Ceruledge can accumulate value without being immediately removed.",
-          play: "Use the infrastructure to create one protected setup turn.",
-          trap: "Do not assume a passive-looking board cannot punish greed.",
-        },
-      ],
-      counters: [
-        {
-          name: "Immediate double-target pressure",
-          why: "It can prevent Ceruledge from reaching its scaling threshold.",
-          play: "Pivot toward Gholdengo and preserve Ceruledge.",
-          trap: "Do not repeatedly attempt Swords Dance.",
-        },
-      ],
-      advantages: [
-        {
-          title: "Two independent scaling clocks",
-          body: "Ceruledge and Gholdengo become progressively harder to answer in different ways.",
-        },
-      ],
-      hazards: [
-        {
-          title: "Setup greed",
-          body: "The module is scaling — not blind Swords Dance whenever available.",
-        },
-      ],
-    },
-    {
-      id: PACK_ANNIHILAPE,
-      label: "Counterplay Network",
-      when: "Opponent must attack or use stat manipulation into Annihilape.",
-      identity: "Convert opponent actions into Rage Fist and Defiant value.",
-      slugs: ["raichu", "rillaboom", "annihilape", "gholdengo"],
-      requiresSwap: { out: "arcanine-hisui", in: "annihilape" },
-      winconMode: "raichu-mega-y",
-      engineIds: ["tempo-infrastructure", "special-scaling"],
-      endgameIds: ["gholdengo-cleanup"],
-      winRouteIds: ["fake-out-nasty-plot"],
-      identityCard: {
-        engine: ["raichu", "rillaboom"],
-        connector: ["raichu", "rillaboom"],
-        converter: ["annihilape"],
-        scaler: ["annihilape", "gholdengo"],
-        control: ["fake-out", "defiant"],
-        winCondition:
-          "Make the opponent's required attacks increase Annihilape's future threat while Gholdengo provides an independent scaling route.",
-        clock: "medium",
-        commitment: "high",
-        autonomy: "medium",
-        triggerBreadth: "high",
       },
-      pilotDecision: {
-        chooseWhen: [
-          "Opponent must attack Annihilape.",
-          "Intimidate or other stat drops are likely.",
-          "The matchup rewards prolonged board interaction.",
-        ],
-        avoidWhen: ["Opponent can ignore Annihilape.", "Immediate nuclear conversion is required."],
-        previewQuestion: "What happens if the opponent attacks Annihilape twice?",
-        primaryMistake: "Treating Rage Fist as free damage without respecting its positional commitment.",
-      },
-      strategy: {
-        opponentPattern: "Opponent must interact directly with Annihilape or manipulate its stats.",
-        bring: ["raichu", "rillaboom", "annihilape", "gholdengo"],
-        purpose: "Make ordinary opponent actions increase the team's future conversion power.",
-        targets: ["Intimidate users", "physical attackers", "teams that cannot safely ignore Annihilape"],
-        refuses: [
-          "Do not expose Annihilape merely to charge Rage Fist.",
-          "Do not sacrifice Gholdengo because Annihilape is accumulating value.",
-        ],
-        winCondition:
-          "Annihilape accumulates enough interaction value to become a dominant threat while Gholdengo creates the alternate clock.",
-        gamePlan: "Break: identify the opponent's forced interaction. Control: preserve Annihilape's HP and positioning. Finish: boosted Rage Fist or Gholdengo.",
-        mantra: "Make their correct attacks expensive.",
-        contrast: "Highest counterplay-conversion package.",
-        winconMode: "raichu-mega-y",
-        turnChecklist: [
-          "Must they attack Annihilape?",
-          "Will the attack actually improve Rage Fist enough?",
-          "Is Defiant likely?",
-          "Can Gholdengo scale while they interact with Annihilape?",
-          "Is Annihilape's accumulated resource worth staying in?",
-        ],
-      },
-      roles: [
-        { slug: "raichu", macro: "tempo", micro: "Creates turns and protects the Rage Fist resource." },
-        { slug: "rillaboom", macro: "infrastructure", micro: "Fake Out and terrain control create better Annihilape positions." },
-        { slug: "annihilape", macro: "counterplay-scaler", micro: "Turns attacks and stat drops into future offensive value." },
-        { slug: "gholdengo", macro: "scaler", micro: "Provides an independent special clock." },
-      ],
-      loops: [
-        {
-          id: "rage-fist-resource",
-          type: "counterplay",
-          title: "Attack Me → Rage Fist",
-          body: "When the opponent must attack Annihilape, preserve its position and allow the accumulated Rage Fist resource to increase. Use Fake Out and positioning to prevent the opponent from converting their attack into a favorable trade. End state: opponent interaction becomes future offensive power.",
-          trigger: "Opponent must target Annihilape.",
-        },
-        {
-          id: "defiant-conversion",
-          type: "counterplay",
-          title: "Stat Drop → Defiant",
-          body: "When the opponent uses a stat-dropping action into Annihilape, treat Defiant as an immediate conversion window. Attack the newly valuable target while the opponent is forced to reconsider its control plan. End state: their control action creates offensive momentum.",
-          trigger: "Opponent uses a stat-dropping effect.",
-        },
-      ],
-      flows: [
-        {
-          id: "lead",
-          title: "Lead",
-          forks: [
+      {
+        id: "psyspam",
+        foe: "Indeedee-F plus Expanding Force attackers",
+        why: "Avoid relying on Fake Out as the sole control mechanism.",
+        packId: "pack_staraptor_tailwind",
+        sequence: {
+          beats: [
             {
-              id: "lead-0",
-              when: "Opponent must attack Annihilape.",
-              then: "Protect its positioning and allow Rage Fist to accumulate.",
+              click: "Avoid relying on Fake Out as the sole control mechanism.",
             },
             {
-              id: "lead-1",
-              when: "Opponent can ignore Annihilape.",
-              then: "Do not force the Rage Fist route; use Gholdengo as the primary scaler.",
+              click: "Use Tailwind and immediate physical pressure to attack the board before Psychic Terrain becomes the entire game.",
             },
           ],
         },
-      ],
-      victims: [
-        {
-          name: "Intimidate-heavy teams",
-          why: "Defiant turns stat drops into offensive value.",
-          play: "Keep Annihilape positioned to receive the drop.",
-          trap: "Do not assume Intimidate alone makes Annihilape safe.",
+      },
+      {
+        id: "trick_room",
+        foe: "Indeedee/Farigiraf plus slow attackers",
+        why: "Prioritize immediate conversion and avoid unnecessary Tailwind investment.",
+        packId: "pack_garchomp_fairy",
+        sequence: {
+          beats: [
+            {
+              click: "Prioritize immediate conversion and avoid unnecessary Tailwind investment.",
+            },
+            {
+              click: "Preserve Protect and pressure the setter before the room becomes the opponent's clock.",
+            },
+          ],
         },
-      ],
-      counters: [
-        {
-          name: "Teams that ignore Annihilape",
-          why: "Rage Fist requires interaction to accumulate.",
-          play: "Shift the win condition toward Gholdengo.",
-          trap: "Do not sacrifice board position trying to force Rage Fist.",
+      },
+      {
+        id: "rillaboom_sneasler",
+        foe: "Rillaboom plus Sneasler",
+        why: "Use dual Fake Out to disrupt the opening and force Sneasler to reveal its intended target.",
+        packId: "pack_raichu_conversion",
+        sequence: {
+          beats: [
+            {
+              click: "Use dual Fake Out to disrupt the opening and force Sneasler to reveal its intended target.",
+            },
+            {
+              click: "Gholdengo and Sylveon provide two different ways to punish the resulting positioning.",
+            },
+          ],
         },
-      ],
-      advantages: [
-        {
-          title: "Broad trigger breadth",
-          body: "Attacks and stat manipulation can both create value, giving the module multiple reactive entry points.",
+      },
+      {
+        id: "kingambit",
+        foe: "Kingambit balance",
+        why: "Preserve Garchomp's Ground pressure and avoid relying exclusively on Intimidate.",
+        packId: "pack_garchomp_fairy",
+        sequence: {
+          beats: [
+            {
+              click: "Preserve Garchomp's Ground pressure and avoid relying exclusively on Intimidate.",
+            },
+            {
+              click: "Sylveon provides a separate special route while Rillaboom supplies priority.",
+            },
+          ],
         },
-      ],
-      hazards: [
-        {
-          title: "Resource lock",
-          body: "Rage Fist accumulation rewards staying on the field — leaving at the wrong time can destroy accumulated value.",
+      },
+      {
+        id: "screens_balance",
+        foe: "Screens or defensive balance",
+        why: "Swap Sylveon for Ceruledge when the opponent can repeatedly blunt immediate damage.",
+        packId: "pack_ceruledge_swap",
+        sequence: {
+          beats: [
+            {
+              click: "Swap Sylveon for Ceruledge when the opponent can repeatedly blunt immediate damage.",
+            },
+            {
+              click: "Force them to answer two scaling clocks instead of one.",
+            },
+          ],
         },
-      ],
-    },
-  ],
-} satisfies TeamManual;
+      },
+    ],
+  } satisfies TeamManual;

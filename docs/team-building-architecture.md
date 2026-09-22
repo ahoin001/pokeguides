@@ -1,4 +1,6 @@
-# Pokémon Champions Team-Building Architecture Reference
+# Pokémon Champions VGC Team-Building Architecture Thesis
+
+## A reference sheet for Regulation M-C team construction
 
 Lab-derived framework for Ringside: how we evaluate sixes, packages, bench modules, and candidate Pokémon.
 
@@ -6,642 +8,2111 @@ Lab-derived framework for Ringside: how we evaluate sixes, packages, bench modul
 
 **Related:** [manual-authoring-prompt.md](./manual-authoring-prompt.md) (JSON schema + packages), [formats.md](./formats.md).
 
----
+This document codifies the framework we developed for answering a much harder question than “which six Pokémon are strongest?”
 
-## 1. The Fundamental Shift
+> **What six Pokémon create the largest number of robust, meaningfully different, failure-resistant winning systems?**
 
-### Old question
+The central thesis is that elite VGC teams are not merely collections of individually strong Pokémon, nor are they necessarily built around one dominant combo. The strongest constructions tend to behave more like **networks of overlapping strategic modules**: different four-Pokémon packages can generate different board states, different clocks, and different ways of converting small advantages into wins.
 
-> “What six Pokémon synergize well together?”
-
-### New question
-
-> **“What six Pokémon create the largest number of winning 3-Pokémon systems?”**
-
-For doubles, because you bring 4 of 6:
-
-> **“What six Pokémon create the largest number of coherent 4-Pokémon packages and winning 3-Pokémon interactions inside those packages?”**
-
-This distinction is the foundation of the framework.
-
-A great team isn't necessarily six Pokémon that all love each other.
-
-It is six Pokémon that create a **network of possible game plans**.
+Current M-C tournament evidence strongly supports that view. The format contains multiple successful architectures rather than one solved shell: Raichu/Rillaboom/Sneasler/Gholdengo, Sand/Indeedee/Sneasler structures, Gengar/Politoed/Archaludon control, and Pelipper/Archaludon/Swampert/Grimmsnarl all have meaningful tournament evidence despite playing fundamentally different games. ([Pokémon Zone][1])
 
 ---
 
-## 2. Team = Strategy Generator
+# I. Core Thesis
 
-Treat a team as a:
+## 1. Do not build “six good Pokémon”
 
-> **Strategy Generator / Swiss Army Knife**
+The basic unit of VGC team construction is not the Pokémon.
 
-Instead of one linear game plan:
+It is not even the pair.
 
-**Lead → execute combo → win**
+It is the **winning subsystem**.
 
-we want:
+Because a player selects four of six, a six-Pokémon roster should function as a **Strategy Generator**:
 
-**Preview → identify opponent structure → select package → create state → convert state → adapt → transition into a win condition**
+> **The registered six should produce several coherent four-Pokémon teams, and those fours should contain multiple interacting three-Pokémon subsystems.**
 
-The team should be able to change its *method of winning* without becoming incoherent.
+A team therefore has two levels:
 
----
+**Registered Team**
+→ the strategic possibility space.
 
-## 3. The Core Functional Roles
+**Bring Four**
+→ the actual mini-team played in a matchup.
 
-Every Pokémon can occupy multiple roles.
-
-### Engine
-
-Creates a useful board state or resource.
-
-Examples: Grassy Terrain, Psychic Terrain, Rain, Tailwind, Trick Room, stat changes, Fake Out positioning, Lightning Rod redirection, opponent-triggered resources.
-
-### Converter
-
-Turns an existing state into immediate progress.
-
-Examples: Garchomp converting positioning into damage; Sylveon converting speed/positioning into spread damage; Gholdengo converting safe positioning into Make It Rain pressure; H-Arcanine converting a protected turn into enormous damage.
-
-### Scaler
-
-Gets progressively stronger or more difficult to answer.
-
-Examples: Gholdengo + Nasty Plot; Ceruledge + Swords Dance; Sneasler + Coaching; Annihilape + Rage Fist.
-
-### Disruptor / State Controller
-
-Prevents the opponent from executing their intended game.
-
-Examples: Fake Out, Intimidate, speed control, Hypnosis, priority, terrain manipulation, redirection, stat suppression.
-
-### Connector
-
-Interacts positively with many members of the team.
-
-A connector doesn't merely have synergy with one partner.
-
-It has **many useful edges** across the architecture.
-
-### Bridge
-
-Connects otherwise separate strategic clusters.
-
-For example, a Pokémon might connect physical offense, special offense, speed control, and defensive play without necessarily being the strongest member of any one cluster.
+The six is valuable partly because of what each Pokémon does and partly because of **how many strategically coherent subsets the six contains**.
 
 ---
 
-## 4. Engine ≠ Win Condition
+# II. The Fundamental Architecture Model
 
-A Pokémon creating a state does not mean that state itself wins.
-
-**Rillaboom** creates Grassy Terrain — the important question becomes:
-
-> **Who converts Grassy Terrain into winning progress?**
-
-Possible answers: Ceruledge → Grassy Seed; Rillaboom → boosted Grass damage; team → recovery/positioning; others → benefit indirectly.
-
-So:
+Our original model was:
 
 > **Engine → Converter → Win Condition**
 
-is much more useful than simply asking whether two Pokémon “synergize.”
+We later refined it to:
+
+> **Infrastructure → Engine → Converter → Clock**
+
+Each layer matters.
+
+| Layer              | Definition                                                     | Example                                        |
+| ------------------ | -------------------------------------------------------------- | ---------------------------------------------- |
+| **Infrastructure** | Changes the rules/resources of the board                       | Psychic Terrain, Sand, Grassy Terrain, screens |
+| **Engine**         | Produces repeatable usable advantage                           | Coaching, Fake Out loops, Stamina, Intimidate  |
+| **Converter**      | Turns that advantage into actual progress                      | Excadrill, Gholdengo, Metagross                |
+| **Clock**          | Creates a state that becomes increasingly difficult to survive | Corviknight scaling, Perish Song, Sand offense |
+
+A Pokémon can occupy multiple layers simultaneously.
+
+That is generally valuable because it reduces “dead support” turns.
 
 ---
 
-## 5. Conversion Pathways
+# III. The Roles We Use
 
-Measure **how many ways a resource can become actual progress.**
+## Engine
 
-Example — Rillaboom creates Grassy Terrain. Possible conversions: Grassy Glide, Wood Hammer, Ceruledge's Grassy Seed, terrain-based positioning, recovery, reduced Ground damage.
-
-That's a **conversion network**, not merely synergy.
-
-> **How many useful things can the team do with what it generates?**
-
----
-
-## 6. Network Density
-
-Think of the team as a graph.
-
-Pokémon = nodes. Useful interactions = edges.
+Creates a repeatable useful resource or state.
 
 Examples:
 
-- **Rillaboom → Ceruledge** — creates Grassy Terrain; converts Grassy Seed
-- **Raichu → Gholdengo** — Lightning Rod / Fake Out positioning; converts into safe setup
-- **Staraptor → Gholdengo** — Intimidate / Tailwind / positioning; converts into offensive tempo
+* terrain
+* weather
+* stat boosts
+* Intimidate cycling
+* Fake Out
+* screens
+* Stamina
+* speed control.
 
-A strong team has a high number of **meaningful edges**.
+## Converter
 
-> **Not all edges are equal.**
+Turns a useful state into damage or positional progress.
 
----
+Examples:
 
-## 7. Edge Taxonomy
+* Excadrill converting Sand into speed and pressure
+* Gholdengo converting protected turns into Nasty Plot or Make It Rain
+* Metagross converting screens/terrain into something it can actively attack.
 
-### 1. Amplification Edge
+## Scaler
 
-A makes B stronger. Example: Sneasler → Garchomp through Coaching.
+Becomes progressively harder to answer as turns/resources accumulate.
 
-### 2. Protection Edge
+Examples:
 
-A helps B safely retain or accumulate value. Example: Raichu → Gholdengo through Lightning Rod.
+* Corviknight
+* Gholdengo
+* Kommo-o
+* Annihilape
+* Kingambit.
 
-### 3. Conversion Edge
+## Disruptor / State Controller
 
-A creates a state that B converts. Example: Rillaboom → Ceruledge (Grassy Terrain → Grassy Seed).
+Prevents the opponent from playing their preferred game.
 
-### 4. Reset Edge
+Examples:
 
-A allows B to recover from a negative state. Example: pivoting → remove/re-enter → reset Intimidate drops.
+* Trick
+* Encore
+* Fake Out
+* Perish Song
+* screens
+* priority denial
+* terrain manipulation.
 
-U-turn matters architecturally: it **does not prevent Intimidate** and U-turn damage is still reduced. Instead: Intimidate → pivot out → re-enter → fresh offensive state. It's a **reset valve**.
+## Connector
 
-### 5. Counterplay Edge
+Participates usefully in many different subsystems.
 
-The opponent's attempt to stop A creates value for B.
+A good connector is not merely “support.”
 
----
+It lets resources move between modules.
 
-## 8. Counterplay Conversion
+Examples:
 
-> **“What happens when the opponent correctly responds to my threat?”**
+* Sneasler
+* Salamence
+* Rillaboom
+* Indeedee-M.
 
-Weak team: Opponent counters A → plan collapses.
+## Bridge
 
-Strong team: Opponent counters A → B becomes stronger.
+Connects two otherwise distinct strategic modules without requiring either one to compromise.
 
-Example: Opponent attacks Annihilape → Rage Fist; Intimidate → Defiant; ignore Annihilape → Ceruledge/Gholdengo gets room. That produces an **adversarial flywheel**.
-
----
-
-## 9. Opponent Action Conversion Rate — OACR
-
-> **How often do common opponent actions create value for us?**
-
-Potential opponent actions: Attack, Intimidate, Fake Out, Protect, Switch, set weather/terrain, boost, target a particular Pokémon, ignore a threat, double target, attempt speed control.
-
-A team with high OACR makes the opponent's normal actions less clean.
-
----
-
-## 10. Trigger Breadth
-
-Not all reactive Pokémon are equally reactive.
-
-**Milotic** — Competitive triggers primarily on stat drops → relatively narrow trigger breadth.
-
-**Annihilape** — can react to attacks → Rage Fist; stat drops → Defiant → broader trigger breadth.
-
-> **State-reactive vs interaction-reactive**
-
-- Milotic: **State-reactive control**
-- Annihilape: **Interaction-reactive pressure**
+This became particularly important after examining Baltimore.
 
 ---
 
-## 11. Conditionality vs Commitment
+# IV. The Most Important Architectural Metrics
 
-**Conditionality** — How dependent is the engine on the opponent doing something specific?
+## Marginal Architecture Gain — MAG
 
-- Milotic: “I really want Intimidate/stat drops.”
-- Annihilape: “You attacking me is enough.”
+> **What becomes strategically possible because this Pokémon exists?**
 
-**Commitment** — How much value does the Pokémon lose by leaving the field?
+High MAG means a Pokémon creates new territory rather than merely duplicating an existing function.
 
-Annihilape's Rage Fist creates **Positional Commitment + Resource Lock**. Milotic can generally leave without losing an equivalent accumulated resource.
+Examples:
 
-- Milotic: narrower trigger, lower commitment
-- Annihilape: broader trigger, higher commitment
+Adding another fast physical attacker to an already-fast physical team may have low MAG.
 
----
+Adding Farigiraf may have high MAG because it introduces:
 
-## 12. Positional Commitment
-
-High: “I need to remain here to keep my accumulated advantage.”
-
-Low: “I can leave, reset, and return without losing much.”
-
-Use this to distinguish superficially similar engines.
+* Trick Room
+* priority denial
+* slow-mode compatibility.
 
 ---
 
-## 13. Resource Lock
+## Conditional MAG — C-MAG
 
-A resource is **locked** when leaving the field causes it to disappear or substantially change.
+MAG must be contextual.
 
-Examples: Rage Fist accumulation, certain boosts, temporary board states, positioning-dependent pressure.
+> **How much new territory does Pokémon X add specifically to these other five Pokémon?**
 
-> **More power does not necessarily mean more usable power.**
+A generally excellent Pokémon can have poor C-MAG if its role is already saturated.
 
-A high-power engine that cannot safely leave the field can create architectural fragility.
-
----
-
-## 14. Autonomous Conversion
-
-> **How effectively does a Pokémon turn its own positioning/resources into progress without requiring a specific opponent response?**
-
-**High:** Garchomp (enter → threaten → force positioning → progress); H-Arcanine (enter → enormous damage immediately).
-
-**Lower:** Annihilape (dangerous, but part of scaling depends on being attacked / interacting).
-
-This is why Garchomp remains architecturally interesting.
+Conversely, a niche Pokémon can have enormous C-MAG if it patches an architectural weakness.
 
 ---
 
-## 15. Marginal Architecture Gain — MAG
+## Infrastructure Fan-Out
 
-When adding Pokémon X:
+> **How many strategically meaningful teammates can consume what this Pokémon creates?**
 
-> **How much NEW strategic territory does X add?**
+Sneasler has high fan-out because Coaching can improve many physical recipients.
 
-Not “Is X strong?” or “Does X synergize?”
+Rillaboom has high fan-out because terrain influences:
 
-> **“What disappears from the architecture if I don't use X?”**
-
-If A duplicates four things the team already does → **low MAG**.
-
-If B introduces a new speed regime, damage axis, matchup solution, conversion route, or defensive interaction → **high MAG**.
-
-Look beyond usage statistics.
+* healing
+* Grassy Glide
+* Ground damage
+* Seed activation
+* positioning.
 
 ---
 
-## 16. Slot Replacement Value
+## Scaling Fan-Out
 
-> **“If I remove this Pokémon, how many functions and loops disappear?”**
+> **How many different recipients can a scaling tool meaningfully accelerate?**
 
-High SRV: speed control + Intimidate + pivoting + physical pressure + defensive utility + a matchup answer — remove it and multiple systems disappear. That slot is architecturally expensive to replace.
+This is especially relevant to Coaching.
 
----
+A Coaching user with only one worthwhile recipient has low fan-out.
 
-## 17. Route Dependency Index — RDI
-
-> **What percentage of the team's winning routes disappear when one Pokémon is removed?**
-
-High RDI: “If Gholdengo dies, my entire team becomes something else.”
-
-Low RDI: “Gholdengo dying hurts, but I still have several legitimate ways to win.”
-
-Example low-fragility control network: Raichu / Rillaboom / Staraptor / Gholdengo / Ceruledge / Milotic — removing one component doesn't necessarily collapse the system.
+A Coaching user supporting Corviknight, Tyranitar, Excadrill and other threats has high fan-out.
 
 ---
 
-## 18. Failure Resistance
+# V. Conversion Pathways
 
-A great team should have:
+Resources are only valuable if they can become progress.
 
-> **surviving routes after something goes wrong.**
+For each engine ask:
 
-What if lead gets KO'd? Mega target dies? Speed control fails? Scaler gets ignored? Main attacker Intimidated? Opponent sets Trick Room? Preferred engine denied?
+> **How many ways can this resource be converted?**
 
-Not: “How strong is the ideal line?”
+Example:
 
-> **“How much of the architecture survives when the ideal line fails?”**
+### Grassy Terrain
 
----
+Can become:
 
-## 19. Surviving Routes
+* Rillaboom priority
+* Grassy Seed activation
+* passive recovery
+* Ground mitigation
+* safer setup
+* potentially consumable terrain for Steel Roller.
 
-Operational failure resistance. If Gholdengo disappears, Ceruledge scaling / Milotic control / Raichu tempo / Rillaboom priority / Staraptor speed control can still exist. That is **route redundancy**.
-
----
-
-## 20. Redundancy in Function, Diversity in Conversion
-
-> **Multiple ways to perform important functions, but different mechanisms for converting those functions into victory.**
-
-Example — multiple forms of speed/tempo: Fake Out, Tailwind, priority, speed manipulation — different kinds of advantage → resilience without pure redundancy.
+A team with several conversion pathways gets more value from one infrastructure slot.
 
 ---
 
-## 21. Threat-Profile Diversity
+# VI. Shared Infrastructure
 
-Not merely Physical + Special.
+The most efficient teams often use one resource to support several routes.
 
-- **Kill threats** — Garchomp, H-Arcanine, Sylveon
-- **Board manipulators** — Raichu, Rillaboom, Staraptor
-- **Attack punishers** — Annihilape, Milotic
-- **Scalers** — Gholdengo, Ceruledge
-- **Switch/pivot threats** — Rillaboom, Staraptor
-- **Speed threats** — Tailwind, priority, natural speed
+## Infrastructure Reuse
 
-Many threat *types* force different answers.
+> **How many distinct win routes consume the same resource?**
+
+Psychic Terrain can create:
+
+* priority denial
+* Psychic Seed
+* Expanding Force pressure
+* safe setup conditions.
+
+Sand can create:
+
+* Excadrill speed
+* Tyranitar pressure
+* residual/defensive implications.
+
+Infrastructure reuse increases slot efficiency.
 
 ---
 
-## 22. Targeting Ambiguity
+# VII. Consumable Infrastructure
 
-> **How many dangerous targets can the opponent reasonably choose?**
+A newer concept that emerged from Metagross analysis.
 
-If only one is threatening: “Kill that one.” Easy.
+> **Can a resource create value while existing and then create additional value when intentionally removed or consumed?**
 
-If they must choose among Gholdengo setup, Ceruledge setup, Annihilape scaling, Sylveon Hyper Voice, Garchomp attacking, Raichu board control → **Targeting Ambiguity**.
+Example:
+
+Grassy Terrain:
+
+1. heals teammates;
+2. enables priority;
+3. reduces Ground damage;
+4. can later be consumed by **Steel Roller**.
+
+Likewise Psychic Terrain can first deny priority and then become Steel Roller ammunition.
+
+This means terrain is not just a persistent state.
+
+It can function like **stored board currency**.
 
 ---
 
-## 23. Threat Saturation
+# VIII. Competing Clocks
+
+Strong teams often operate several kinds of clocks simultaneously.
+
+## Immediate Clock
+
+> “If you don't respond right now, something dies.”
+
+Examples:
+
+Excadrill
+Garchomp
+Raichu
+Metagross.
+
+## Short-Term Tempo Clock
+
+> “I will accumulate positional advantage across the next few turns.”
+
+Examples:
+
+Fake Out
+Tailwind
+Intimidate cycling.
+
+## Scaling Clock
+
+> “The longer this remains unchecked, the harder the game becomes.”
+
+Examples:
+
+Corviknight
+Gholdengo
+Kommo-o.
+
+## Reactive Clock
+
+> “Your own actions increase my threat.”
+
+Examples:
+
+Milotic
+Annihilape
+Archaludon.
+
+## Temporal Clock
+
+> “Passing turns itself advances my win condition.”
+
+Examples:
+
+Perish Song
+poison
+screens + sustain
+weather/terrain recovery.
+
+The best teams often force opponents to answer **multiple clocks operating on different timelines**.
+
+---
+
+# IX. Threat Saturation
 
 > **How many simultaneous threats require fundamentally different answers?**
 
-Tailwind + Fake Out + special spread + physical burst + setup + priority + Intimidate — opponent cannot solve all with one defensive action.
+This matters more than simply having high damage.
+
+A team could present:
+
+* Fake Out
+* Tailwind
+* Trick Room
+* setup
+* spread damage
+* priority
+* Perish Song.
+
+If one defensive action does not address all of these, the opponent faces strategic overload.
 
 ---
 
-## 24. Scaling Diversity
+# X. Targeting Ambiguity
 
-“Having setup” isn't enough — want **different kinds of scaling**.
+> **How difficult is it for the opponent to identify the correct target?**
 
-- Self-scaling — Ceruledge → Swords Dance
-- Special scaling — Gholdengo → Nasty Plot
-- Coaching scaling — Sneasler → partner
-- Opponent-action scaling — Annihilape → Rage Fist
-- Reactive scaling — Milotic → Competitive
+If the opponent must decide between:
 
-These behave differently under counterplay.
+* stopping Corviknight
+* stopping Sneasler
+* removing Sand
+* controlling Salamence
 
----
+their targeting choice creates opportunity elsewhere.
 
-## 25. Competing Clocks
-
-### Clock 1 — Immediate
-
-Garchomp, H-Arcanine, Sylveon, Rillaboom — “I can create damage now.”
-
-### Clock 2 — Short-term
-
-Fake Out, Tailwind, positioning — “I gain tempo over the next few turns.”
-
-### Clock 3 — Scaling
-
-Gholdengo, Ceruledge, Sneasler — “If you don't stop this, the game gets progressively worse.”
-
-### Clock 4 — Reactive
-
-Milotic, Annihilape — “Your actions themselves can accelerate my win condition.”
-
-A great team makes the opponent answer **multiple clocks simultaneously**.
+This becomes especially important when several threats **convert the opponent's attention into resources for teammates**.
 
 ---
 
-## 26. The Adversarial Flywheel
+# XI. Counterplay Conversion
 
-> **Opponent acts → their action changes the board → our network converts that change → their next response becomes harder → our resources compound → multiple clocks approach their win conditions simultaneously.**
+This was one of our most important discoveries.
 
-The team behaves like a system rather than a collection of Pokémon.
+Ordinary team building asks:
 
----
+> “What happens when the opponent doesn't answer my threat?”
 
-## 27. Resource Economy
+Our framework asks:
 
-Resources: HP, turns, Fake Outs, Tailwind turns, boosts, terrain turns, positioning, switches, speed advantage, accumulated Rage Fist, defensive resources, opponent attention.
+> **“What happens when the opponent answers it correctly?”**
 
-> **How much progress can I extract before I have to commit to the endgame?**
+Weak architecture:
 
----
+> opponent answers A → A stops working.
 
-## 28. Resource Generator → Converter → Protector
+Strong architecture:
 
-- **Generator** creates the resource
-- **Converter** spends it to produce progress
-- **Protector** keeps it alive long enough to matter
-
-Example: Rillaboom generates terrain → Ceruledge converts via Grassy Seed → Staraptor/Raichu protect setup through positioning/control. Complete loop.
-
----
-
-## 29. Loop Architecture
-
-Strong teams contain **repeatable positive interactions**, not one-time combos.
+> opponent answers A → B gets more room.
 
 Examples:
 
-- Fake Out → favorable position → Tailwind → attack → pivot → re-enter → Fake Out again
-- Intimidate → reduced physical pressure → pivot → re-enter → Intimidate again
-- Grassy Terrain → Ceruledge Seed → Swords Dance → Bitter Blade recovery → continue scaling
+Opponent Intimidates physical attackers
+→ Milotic can activate Competitive.
 
-Loops enable **repeatable resource extraction**.
+Opponent attacks Annihilape
+→ Rage Fist becomes stronger.
 
----
+Opponent commits heavily to Corviknight
+→ Sand offense gets freedom.
 
-## 30. Counterplay Loops
-
-> The opponent's attempt to break your loop becomes fuel for another loop.
-
-Opponent attacks Annihilape → Rage Fist grows; ignores it → Ceruledge/Gholdengo gets room; Intimidates → Defiant; focuses Ceruledge → infrastructure survives and another win route opens. **Adversarial loop.**
+This produces an **adversarial flywheel**.
 
 ---
 
-## 31. Architecture Fragility
+# XII. Opponent Action Conversion Rate — OACR
 
-> **How many loops can one opponent action destroy simultaneously?**
+> **How often do normal opponent actions create value for our team?**
 
-High: One Taunt kills the entire strategy.
+Relevant opponent actions include:
 
-Low: Taunt stops one route, but three others remain.
+* attacking
+* Intimidating
+* protecting
+* switching
+* boosting
+* targeting
+* ignoring
+* changing weather
+* changing terrain
+* setting speed control.
 
-Critical distinction from raw synergy.
-
----
-
-## 32. Speed Inversion
-
-A team doesn't necessarily need to beat every speed-control strategy on the same axis.
-
-> **Can the team exploit the opposite speed regime?**
-
-Normal: Tailwind → fast offense. Opposite: Kingambit → slow-mode scaling.
-
-Not only “How do I stop Trick Room?” but **“Can I make Trick Room economically useful to me?”**
+A high-OACR architecture makes “correct play” less clean.
 
 ---
 
-## 33. Autonomous vs Reactive Architecture
+# XIII. Counterplay Debt
 
-A six should have a **portfolio** of engine types.
+Sometimes stopping one threat is possible—but expensive.
 
-| Type | Behavior | Examples |
-|------|----------|----------|
-| Autonomous | Works largely on its own | Garchomp |
-| Reactive | Stronger from opponent behavior | Milotic, Annihilape |
-| Committed | Accumulates by staying in | Annihilape |
-| Low-commitment | Pivot/reset without losing much | Milotic, Garchomp |
+> **What useful thing must the opponent neglect in order to execute their counterplay?**
 
-Ideal team isn't six autonomous or six reactive — it has a **portfolio**.
+If stopping Corviknight requires two attacks, perhaps Excadrill gets a free turn.
 
----
+If stopping Gholdengo requires preserving one specific answer, another attacker gets positional freedom.
 
-## 34. Architectural Surprise
-
-Not gimmick. Not “nobody has seen this Pokémon.”
-
-> **How difficult is it for the opponent to identify the actual win condition from team preview?**
-
-If they can't tell Tailwind vs Gholdengo setup vs physical burst vs Ceruledge scaling vs reactive counterplay vs immediate conversion → **Architectural Surprise**.
+That lost opportunity is **Counterplay Debt**.
 
 ---
 
-## 35. Human Complexity
+# XIV. Forced-Response Density — FRD
 
-> The theoretically strongest architecture isn't necessarily the strongest ladder team.
+The Gengar control architecture led us to this metric.
 
-Every additional branch increases decision load, sequencing complexity, preview complexity, execution mistakes.
+> **How many different tools force the opponent to abandon their preferred line?**
 
-> **Strategic depth must be balanced against Human Complexity.**
+Examples:
 
-A team with 20 theoretical routes at 40% execution may lose to 10 routes at 90% execution.
+* Fake Out
+* Encore
+* Perish Song
+* redirection
+* Sleep
+* Trick Room
+* screens
+* Steel Roller terrain removal.
 
----
-
-## 36. Win Route Actualization — WRA
-
-> **WRA = executed winning routes / available winning routes**
-
-Theoretical route density ≠ actual route density the pilot can identify and execute.
-
----
-
-## 37. MAG + WRA
-
-Opposite problems:
-
-- **MAG** — “Does this Pokémon add enough architecture?”
-- **WRA** — “Can I actually use the architecture I've built?”
-
-Huge MAG + huge complexity may hurt WRA. Simple low-MAG may improve WRA without enough strategic territory. Want the **sweet spot**.
+Gengar/Politoed/Archaludon is one of the clearest current examples of this philosophy; the trio has appeared on 386 teams with 215 Top-16 finishes, roughly 1.96× expectation. ([Pokémon Zone][2])
 
 ---
 
-## 38. Reserve Value
+# XV. Advantage Generation Rate — AGR
 
-A Pokémon doesn't have to be in the six to be valuable.
+Not all teams create advantage in the same way.
 
-> **Reserve Value** — How much strategic territory can this cover if the metagame or matchup changes?
+AGR asks:
 
-Modules like Garchomp, Milotic, Ceruledge, Annihilape, Kingambit, Corviknight can be valuable even when not simultaneously registered.
+> **How frequently can the team manufacture a meaningful favorable state without requiring a hard prediction?**
 
----
+Examples of low-read advantage:
 
-## 39. Bench Pokémon Should Be Modules, Not “Alternates”
+* Fake Out
+* Intimidate
+* screens
+* weather
+* Tailwind
+* terrain
+* redirection
+* Perish Song
+* Trick Room.
 
-Bad bench: “Here are four other good Pokémon.”
-
-Good bench: “Here are four strategic modules that change what the six does.”
-
-| Module | Architectural shift |
-|--------|---------------------|
-| Garchomp | control/scaling → immediate autonomous conversion |
-| Milotic | direct offense → reactive control |
-| Ceruledge | immediate conversion → self-scaling |
-| Annihilape | self-contained strategy → opponent-action scaling |
-
-Each swap has an **architectural delta**.
+A team that repeatedly produces small advantages can convert nominally even matchups into favorable game states.
 
 ---
 
-## 40. Architectural Delta
+# XVI. Advantage Retention
 
-When swapping X → Y, don't merely ask “Is Y better?”
+Creating advantage is not enough.
 
-Ask: **Gains** / **Losses** / **Identity change** / **Matchup change** / **Loop change** / **Win-condition change**.
+> **How well does the team preserve accumulated advantage?**
 
----
+Corviknight demonstrates this beautifully:
 
-## 41. Swap Cost
+Psychic Seed
+→ bulk
 
-No swap is free. Ceruledge → Garchomp gains autonomous conversion, immediate Ground, less setup dependence; loses self-scaling, Grassy Seed interaction, Swords Dance route.
+Coaching
+→ more stats
 
-> **Choose the correct architecture for the problem** — not “find the strongest Pokémon.”
+Bulk Up
+→ additional scaling
 
----
+Roost
+→ retain accumulated value
 
-## 42. Package Architecture
+Power Trip
+→ eventually cash it out.
 
-For doubles (bring 4 of 6), the six should produce multiple **packages of four**.
+Durable Rain achieves the same goal differently through:
 
-Each package: identity, lead pair, back pair, turn-1 plan, loops, conversion edges, win condition, bring-in triggers, matchup purpose.
-
-The four are a **mini-team**. The six are the **strategy generator that produces those mini-teams**.
-
-For Champions Singles (bring 3 of 6), the same idea applies to **preview packs of three**.
-
----
-
-## 43. Package Independence
-
-A good six shouldn't require “these exact four or the team doesn't work.” Multiple packages should emerge and **overlap without being identical**.
-
-Examples: Conversion package; Scaling package; Immediate-control package; Counterplay package.
+* screens
+* Stamina
+* recovery
+* Sinistcha support.
 
 ---
 
-## 44. Bring as a Strategic Decision
+# XVII. Advantage Recovery
 
-Not “my four/three strongest.”
+> **After losing a favorable state, how easily can the team create a different one?**
 
-> **“Which bring creates the correct clock portfolio against this opponent?”**
+Examples:
 
-Preview: **What does this opponent want to make inevitable?** Then: **Which bring prevents that while creating my own?**
+Lose Sand
+→ use Corviknight scaling.
 
----
+Lose setup route
+→ use Excadrill.
 
-## 45. The Three-Layer Team Test
+Lose Gengar
+→ Archaludon rain remains.
 
-1. **Pokémon** — Are these individually good?
-2. **Interactions** — Do they create useful edges?
-3. **Architecture** — Does the six generate multiple independent winning systems?
+Lose rain
+→ Metagross/Swampert/screens remain.
 
-Most team-building stops at Layer 2. Goal is Layer 3.
-
----
-
-## 46. Candidate Pokémon Checklist
-
-### Individual
-
-- What does it do by itself?
-- Autonomous conversion?
-- What resources does it generate / consume?
-
-### Network
-
-- Who does it create value for / who creates value for it?
-- How many edges, and of what kinds?
-
-### Architecture
-
-- New route? Replaced route? MAG? Slot Replacement Value? What if it dies?
-
-### Counterplay
-
-- Opponent attacks / ignores / Intimidates / protects / switches / uses speed control?
-
-### Resource
-
-- Generate / convert / protect / reset / lock?
-
-### Timing
-
-- Immediate / short-term / scaling / reactive clock?
-
-### Execution
-
-- Complexity? Decision load? Can the pilot realize theoretical value (WRA)?
+This became one of the major reasons modular architectures outperform linear ones.
 
 ---
 
-## 47. Architecture We Are Searching For
+# XVIII. Opponent Progress Suppression
 
-> **A low-fragility, high-MAG network with multiple independent conversion pathways, multiple competing clocks, broad counterplay conversion, diverse scaling mechanisms, high threat saturation, strong resource economy, and enough simplicity that the pilot can actually realize the routes.**
+Durable Rain taught us that advantage can come from preventing progress rather than generating immediate pressure.
+
+> **How much useful progress does an otherwise-correct opponent action actually accomplish?**
+
+Screens + recovery + Stamina can make an attack “correct” but inefficient.
+
+This creates another style of advantage:
+
+> **Your turn happened, but it didn't accomplish enough.**
+
+---
+
+# XIX. Resource Economy
+
+Resources include more than HP.
+
+Relevant resources include:
+
+* HP
+* turns
+* Tailwind turns
+* weather turns
+* terrain turns
+* boosts
+* positioning
+* Fake Outs
+* switches
+* opponent attention
+* information
+* accumulated Rage Fist
+* screen turns
+* remaining Pokémon.
+
+A strong team asks:
+
+> **How much progress can we extract before spending our scarce resources?**
+
+---
+
+# XX. Resource Generator → Converter → Protector
+
+A useful micro-model:
+
+**Generator**
+creates the resource.
+
+**Converter**
+turns it into progress.
+
+**Protector**
+preserves the resource long enough to be valuable.
+
+Example:
+
+Indeedee
+→ Psychic Terrain
+
+Sneasler
+→ Coaching
+
+Corviknight
+→ converts boosts
+
+Roost
+→ protects accumulated value.
+
+---
+
+# XXI. Loop Architecture
+
+Elite teams tend to contain **repeatable loops**, not merely one-time combos.
+
+Example:
+
+Fake Out
+→ positioning
+→ setup
+→ pivot
+→ re-enter
+→ Fake Out again.
 
 Or:
 
-> **Don't build six Pokémon. Build a machine that keeps generating ways to win.**
+Intimidate
+→ reduce damage
+→ pivot
+→ re-enter
+→ Intimidate.
 
-Most important test — not “Does this team have synergy?”
+Or:
 
-> **“When the opponent makes the correct play, does my architecture still give me somewhere productive to go?”**
+screens
+→ survive
+→ recover
+→ accumulate Stamina/setup
+→ convert.
+
+Loops create sustainable resource economies.
+
+---
+
+# XXII. Counterplay Loops
+
+Even stronger:
+
+> **The opponent's attempt to interrupt one loop powers another loop.**
+
+Example:
+
+Attack Annihilape
+→ Rage Fist.
+
+Intimidate physical core
+→ Milotic.
+
+Focus Corviknight
+→ offensive partner gets room.
+
+This is the ideal form of counterplay conversion.
+
+---
+
+# XXIII. Route Dependency Index — RDI
+
+> **How many winning routes disappear if one Pokémon is removed?**
+
+High RDI = fragile.
+
+Low RDI = resilient.
+
+A Pokémon can be extremely important and still create unhealthy dependency.
+
+For example, if one Rillaboom simultaneously provides:
+
+* terrain
+* Sneasler activation
+* Fake Out
+* priority
+* healing
+
+then removing it may damage several paths at once.
+
+That is useful power—but also dependency.
+
+---
+
+# XXIV. Slot Replacement Value
+
+Different from RDI.
+
+> **How much functional value disappears when this specific Pokémon is removed?**
+
+High Slot Replacement Value is not automatically bad.
+
+It simply tells us that the slot is structurally central.
+
+The goal is to prevent that centrality from becoming a **single failure point**.
+
+---
+
+# XXV. Failure Resistance
+
+Test architecture under failure.
+
+Questions:
+
+* primary lead dies
+* Mega dies early
+* speed control fails
+* weather disappears
+* terrain is overwritten
+* setup is denied
+* primary converter is removed
+* opponent never triggers reactive ability
+* opponent knows the set.
+
+A team should not only have a powerful optimal line.
+
+It should retain meaningful routes when that line fails.
+
+---
+
+# XXVI. Surviving Routes
+
+> **How many credible ways to win remain after an important engine or Pokémon is removed?**
+
+This metric is often more informative than theoretical synergy.
+
+Baltimore performs particularly well because:
+
+* Corviknight can disappear and Sand still works;
+* Sand can disappear and Corviknight still works.
+
+---
+
+# XXVII. Failure Correlation Index — FCI
+
+One of the most important late-stage discoveries.
+
+Two win conditions are not truly independent merely because they involve different Pokémon.
+
+> **FCI measures how many routes share the same failure condition.**
+
+Example:
+
+Four physical sweepers may look like four win conditions.
+
+If Intimidate damages all four, they have high failure correlation.
+
+Three speed-based routes may look diverse.
+
+If Trick Room punishes all three, they have high failure correlation.
+
+Low FCI is desirable.
+
+---
+
+# XXVIII. Orthogonal Failure Design
+
+The ideal is:
+
+> **Different routes should lose to different answers.**
+
+Healthy architecture:
+
+Route A loses to weather removal.
+Route B loses to setup denial.
+Route C loses to Intimidate.
+Route D loses to special defense.
+
+Unhealthy architecture:
+
+Route A loses to Trick Room.
+Route B loses to Trick Room.
+Route C loses to Trick Room.
+
+This is **true strategic diversity**.
+
+---
+
+# XXIX. Failure Inversion Count — FIC
+
+Even better than low failure correlation:
+
+> **How many opponent answers actively make another route better?**
+
+Examples:
+
+Intimidate
+→ Milotic Competitive.
+
+Opponent moves faster
+→ Trick Room becomes more valuable.
+
+Opponent attacks Annihilape
+→ Rage Fist.
+
+Opponent creates terrain
+→ Metagross may consume it.
+
+Opponent spends two actions stopping one scaler
+→ another converter receives space.
+
+This is the highest form of counterplay conversion.
+
+---
+
+# XXX. Redundancy: Good and Bad
+
+## Functional Redundancy
+
+Several Pokémon can perform related roles through different mechanisms.
+
+Example:
+
+* Fake Out
+* Tailwind
+* priority
+* Trick Room
+
+all influence tempo, but fail differently.
+
+This is healthy.
+
+## Correlated Redundancy
+
+Several tools perform the same function and fail to the same answer.
+
+Example:
+
+three Fake Out users into Psychic Terrain.
+
+That appears redundant, but the redundancy collapses simultaneously.
+
+---
+
+# XXXI. Threat-Profile Diversity
+
+Diversity is not merely:
+
+physical vs special.
+
+Threat types include:
+
+* immediate KO threat
+* setup threat
+* reactive threat
+* board-control threat
+* temporal threat
+* priority threat
+* positional threat
+* attrition threat.
+
+A six becomes harder to answer when these threats require distinct forms of counterplay.
+
+---
+
+# XXXII. Scaling Diversity
+
+Different scaling mechanisms matter more than simply having multiple setup Pokémon.
+
+Examples:
+
+**Self-scaling**
+→ Corviknight Bulk Up.
+
+**Special scaling**
+→ Gholdengo Nasty Plot.
+
+**External scaling**
+→ Sneasler Coaching.
+
+**Opponent-action scaling**
+→ Annihilape.
+
+**Reactive scaling**
+→ Milotic.
+
+A team containing several different scaling mechanisms can reduce failure correlation.
+
+---
+
+# XXXIII. Speed Inversion
+
+Do not always fight speed control on the opponent's axis.
+
+> **Can our team benefit from the opposite speed state?**
+
+Examples:
+
+fast Salamence + slow Kingambit.
+
+Raichu + Trick Room Farigiraf/Golisopod.
+
+The goal is not:
+
+> always be faster.
+
+It is:
+
+> **have productive states regardless of which speed regime exists.**
+
+---
+
+# XXXIV. Positional Commitment
+
+Some resources require staying on the field.
+
+Example:
+
+Annihilape's accumulated Rage Fist value.
+
+Leaving can reset or sacrifice meaningful progress.
+
+This creates **positional commitment**.
+
+Milotic tends to have lower commitment because its strategic identity survives switching more easily.
+
+A healthy team should contain a portfolio of:
+
+* high-commitment scalers
+* low-commitment pivots
+* autonomous attackers.
+
+---
+
+# XXXV. Resource Lock
+
+A resource is locked when leaving the field destroys it.
+
+Examples:
+
+* boosts
+* Rage Fist accumulation
+* temporary positioning states
+* some setup structures.
+
+High power with extreme resource lock may be less usable than slightly lower power with greater flexibility.
+
+---
+
+# XXXVI. Autonomous Conversion
+
+> **How well can a Pokémon turn its own presence into progress without needing a particular opponent action?**
+
+High autonomy:
+
+* Garchomp
+* Gholdengo
+* Metagross.
+
+More reactive:
+
+* Milotic
+* Annihilape.
+
+Teams generally benefit from combining both.
+
+---
+
+# XXXVII. Preview Tax
+
+> **How much does preparing for one plausible mode weaken the opponent against another plausible mode?**
+
+Baltimore:
+
+prepare for Sand
+→ Corviknight may gain room.
+
+prepare for Corviknight
+→ Sand becomes easier to execute.
+
+Durable Rain:
+
+prepare for Rain
+→ Charizard/Venusaur dual-weather branch can alter assumptions.
+
+Preview Tax is one reason modular teams can outperform their raw matchup numbers.
+
+---
+
+# XXXVIII. Package Density
+
+There are 15 possible bring-four combinations from a six.
+
+## Effective Package Density — EPD
+
+> **How many of the 15 combinations are genuinely coherent?**
+
+Not every one needs to be good.
+
+But teams with more viable fours are harder to predict and less dependent on one matchup script.
+
+---
+
+# XXXIX. Independent Package Density
+
+EPD alone is insufficient.
+
+> **How many viable bring-four packages have meaningfully different failure conditions?**
+
+A team could have 12 usable packages but all depend on the same engine.
+
+That is less resilient than seven packages split across several independent systems.
+
+---
+
+# XL. Package Entropy
+
+This was a critical refinement.
+
+> **How strategically different are the viable bring-four packages?**
+
+High package density + low entropy:
+
+> many fours, same basic game.
+
+High package density + high entropy:
+
+> many fours that ask the opponent entirely different questions.
+
+Baltimore is unusually strong here.
+
+---
+
+# XLI. Strategic Modularity
+
+> **Does the team contain several internally coherent modules connected by shared bridge Pokémon?**
+
+The ideal graph is **not** six Pokémon where every Pokémon depends on every other Pokémon.
+
+That can become fragile.
+
+The healthier structure resembles:
+
+> several dense local clusters joined by high-value bridge nodes.
+
+Baltimore is a prime example.
+
+---
+
+# XLII. Architecture Root
+
+> **The smallest subsystem whose removal fundamentally changes the team's identity.**
+
+Examples from our current research:
+
+### Raichu Tempo Root
+
+**Raichu / Rillaboom / Sneasler / Gholdengo**
+
+This four has excellent tournament evidence: 104 teams, 69 Top-16 finishes and roughly **3.01× expected Top-16 performance**; Incineroar/Floette is its most common completion. ([Pokémon Zone][1])
+
+### Sand Root
+
+**Tyranitar / Excadrill / Salamence**
+
+Supports multiple distinct module families.
+
+### Gengar Control Root
+
+**Gengar / Politoed / Archaludon**
+
+386 teams, 215 Top-16 finishes and about **1.96× expected**. ([Pokémon Zone][2])
+
+### Durable Rain Root
+
+**Pelipper / Archaludon / Swampert / Grimmsnarl**
+
+659 teams, 332 Top-16 finishes and about **2.13× expected**. ([Pokémon Zone][3])
+
+---
+
+# XLIII. Architecture Module
+
+> **A slot or pair of slots that changes how the root wins without invalidating the root.**
+
+Example:
+
+Durable Rain root +
+
+**Sinistcha / Metagross**
+
+→ preservation / attrition.
+
+The same root +
+
+**Charizard / Venusaur**
+
+→ weather ambiguity / faster conversion.
+
+Both completions have substantial current tournament representation. The Metagross/Sinistcha completion is listed at 59.3% across 168 teams, while the Charizard/Venusaur completion is around 65% across roughly 129–130 teams. These are observational, selected samples rather than controlled comparisons. ([Pokémon Zone][3])
+
+---
+
+# XLIV. Module Elasticity
+
+> **How many strategically different modules can an architecture root support while remaining competitively functional?**
+
+This is one of the clearest signs of a good “strategy generator.”
+
+High Module Elasticity means we can customize a root for:
+
+* ladder
+* tournament
+* specific meta
+* pilot preference
+
+without rebuilding from scratch.
+
+---
+
+# XLV. Bridge Quality
+
+> **How effectively can one Pokémon participate in separate modules without weakening either?**
+
+High Bridge Quality examples:
+
+### Salamence
+
+Can contribute:
+
+* Intimidate
+* Tailwind
+* immediate offense
+* Mega pressure
+
+without demanding a particular team identity.
+
+### Sneasler
+
+Can:
+
+* Coach Corviknight
+* support Sand attackers
+* function offensively itself.
+
+### Indeedee-M
+
+Can:
+
+* activate Psychic Seed
+* block priority
+* disrupt with Trick
+* weaken special attackers
+* contribute damage.
+
+Bridge Quality is one of the reasons some Pokémon repeatedly appear across otherwise unrelated successful architectures.
+
+---
+
+# XLVI. Information Resilience
+
+> **How much of the team's value survives after the opponent knows exactly what it does?**
+
+This matters enormously in Bo3.
+
+Low-information-resilience strategy:
+
+> surprise is the primary advantage.
+
+High-information-resilience strategy:
+
+> knowledge does not remove the pressure.
+
+Examples:
+
+Screens remain screens after being revealed.
+
+Perish Song still creates a deadline.
+
+Competitive still taxes Intimidate.
+
+Sand Rush still exists.
+
+Baltimore's modularity also helps: revealing Corviknight does not reveal away Sand.
+
+---
+
+# XLVII. Information-Invariant Pressure
+
+A subset of Information Resilience.
+
+> **A mechanic is information-invariant if the opponent understanding it does not meaningfully eliminate its forcing effect.**
+
+Examples:
+
+* Fake Out
+* Perish Song
+* screens
+* Armor Tail
+* Intimidate
+* Stamina.
+
+This helps distinguish robust control from surprise gimmicks.
+
+---
+
+# XLVIII. Adaptation Depth
+
+Bo3 introduces another layer.
+
+Game 1:
+Plan A.
+
+Game 2:
+opponent adapts.
+
+Game 3:
+
+> **How many meaningful second-order adaptations remain?**
+
+High adaptation depth means the team can choose:
+
+* A again with altered sequencing
+* B
+* C
+* hybrid A/B.
+
+Baltimore appears unusually strong here because its modes overlap rather than existing as completely separate fours.
+
+---
+
+# XLIX. Human Complexity / WRA
+
+Architecture cannot be evaluated purely theoretically.
+
+## Human Complexity
+
+Measures:
+
+* number of branching decisions
+* lead complexity
+* sequencing burden
+* information burden
+* positional precision required.
+
+## Win Route Actualization — WRA
+
+> **executed winning routes ÷ theoretically available winning routes**
+
+A team can have enormous theoretical architecture but poor WRA if the pilot cannot consistently identify the correct route.
+
+This is why Milotic Sand can plausibly be preferable to Corviknight Sand for some pilots:
+
+less intricate ceiling, but easier route actualization.
+
+Piloting remains inseparable from team quality.
+
+---
+
+# L. Why We Should Maintain Multiple Teams
+
+The framework does **not** imply that one perfect six exists.
+
+Quite the opposite.
+
+Different architecture families optimize different things.
+
+| Architecture               | What it primarily optimizes                         |
+| -------------------------- | --------------------------------------------------- |
+| **Raichu Tempo**           | rapid low-read advantage generation                 |
+| **Baltimore Modular Sand** | package entropy + low failure correlation           |
+| **Milotic Sand**           | reactive robustness + easier execution              |
+| **Gengar Control**         | forced-response density + temporal pressure         |
+| **Durable Rain**           | advantage retention + opponent-progress suppression |
+| **Dual-Speed Farigiraf**   | failure inversion + speed ambiguity                 |
+
+Therefore the proper project is:
+
+> **Build several exceptional teams representing different strategic philosophies, then choose among them based on matchup environment, tournament structure and pilot comfort.**
+
+---
+
+# LI. Architecture 1 — Raichu Tempo Conversion
+
+## Root
+
+**Raichu / Rillaboom / Sneasler / Gholdengo**
+
+The current four has particularly strong tournament-core evidence: 104 recorded teams, 69 Top-16 finishes and roughly 3.01× expected performance. ([Pokémon Zone][1])
+
+The underlying Raichu/Rillaboom/Sneasler triad also shows about **2.86× expected Top-16 frequency**. ([Pokémon Zone][4])
+
+## Identity
+
+> **Manufacture safe turns quickly and turn them into immediate offensive progress.**
+
+## Strengths
+
+* huge AGR
+* strong Fake Out pressure
+* terrain reuse
+* physical/special conversion
+* strong opening tempo.
+
+## Structural weakness
+
+Several paths share:
+
+* terrain
+* priority
+* Fake Out
+* fast-board assumptions.
+
+So Failure Correlation is higher than Baltimore.
+
+## Development direction
+
+Do **not** add more tempo merely because it synergizes.
+
+Add a module that loses differently.
+
+Current best research candidates:
+
+**Salamence**
+→ Tailwind, Intimidate, autonomous offense.
+
+**Farigiraf**
+→ speed inversion, anti-priority.
+
+**Kingambit**
+→ slow endgame.
+
+**Metagross**
+→ physical conversion + counter-infrastructure.
+
+---
+
+# LII. Architecture 2 — Baltimore Modular Sand
+
+## Reference structure
+
+**Tyranitar / Excadrill / Salamence / Indeedee-M / Sneasler / Corviknight**
+
+## Identity
+
+> **Several overlapping modules with unusually low shared failure conditions.**
+
+### Sand module
+
+Tyranitar / Excadrill.
+
+### Setup-war module
+
+Indeedee / Sneasler / Corviknight.
+
+### Fast general offense
+
+Salamence / Tyranitar / Excadrill / Sneasler.
+
+The important part is not merely that each module is good.
+
+It is that:
+
+> stopping one does not automatically stop the others.
+
+## Key architectural property
+
+**Low Failure Correlation.**
+
+Weather denial:
+→ Sand suffers.
+
+Corviknight remains.
+
+Setup denial:
+→ Corviknight suffers.
+
+Sand remains.
+
+Terrain denial:
+→ Psychic Seed plan suffers.
+
+White Herb Sneasler still functions.
+
+This is among the strongest architecture lessons we extracted from Baltimore.
+
+---
+
+# LIII. Architecture 3 — Milotic Sand
+
+Reference:
+
+**Tyranitar / Excadrill / Salamence / Indeedee-M / Sneasler / Milotic**
+
+The Excadrill/Indeedee/Milotic/Tyranitar four appears on 37 teams in the current database, with 20 Top-16 finishes and 2.13× expected performance; 35 of those 37 teams use Sneasler + Salamence as the completion. Lloyd Villar won a current event 13–1 with the resulting six. ([Pokémon Zone][5])
+
+## Identity
+
+> **Turn normal counterplay against physical offense into reactive resources.**
+
+Intimidate physical core
+→ potential Competitive Milotic.
+
+Refuse to Intimidate
+→ physical core operates more freely.
+
+This is **Failure Inversion**.
+
+## Why preserve this separately from Corviknight Sand?
+
+Corviknight and Milotic solve different architectural problems.
+
+Corviknight:
+
+* higher setup ceiling
+* higher Preview Tax
+* higher package entropy.
+
+Milotic:
+
+* lower commitment
+* simpler routes
+* higher reactive robustness
+* likely higher WRA for many pilots.
+
+---
+
+# LIV. Architecture 4 — Gengar Forced-Response Control
+
+## Root
+
+**Gengar / Politoed / Archaludon**
+
+The trio currently shows 386 teams, 215 Top-16 finishes and roughly **1.96× expected Top-16 representation**. ([Pokémon Zone][2])
+
+The most common completion:
+
+**Vivillon / Incineroar / Swampert**
+
+accounts for 172 teams with a listed 60.6% full-team win rate. ([Pokémon Zone][2])
+
+## Identity
+
+> **Remove clean turns from the opponent while maintaining multiple clocks.**
+
+Tools:
+
+* rain
+* Stamina
+* Fake Out
+* Encore
+* Perish
+* redirection
+* sleep
+* Swampert physical conversion.
+
+## Primary strength
+
+**Forced-Response Density.**
+
+The opponent repeatedly has to abandon their preferred line.
+
+## Secondary strength
+
+Perish provides a clock whose failure conditions differ radically from ordinary damage.
+
+## Structural warning
+
+Do not oversaturate control.
+
+The architecture still needs enough conversion to actually cash out the turns it creates.
+
+That is why Swampert is so important.
+
+---
+
+# LV. Architecture 5 — Durable Rain / Progress Suppression
+
+## Root
+
+**Pelipper / Archaludon / Swampert / Grimmsnarl**
+
+This four has some of the strongest distributed current evidence:
+
+659 teams
+332 Top-16 finishes
+approximately **2.13× expectation**. ([Pokémon Zone][3])
+
+Related roots also remain strong:
+
+Archaludon/Grimmsnarl/Pelipper:
+**2.17× expected**. ([Pokémon Zone][6])
+
+Archaludon/Grimmsnarl/Swampert:
+**2.12× expected**. ([Pokémon Zone][7])
+
+Pelipper/Archaludon/Swampert:
+**1.89× expected** across well over 1,300 teams. ([Pokémon Zone][8])
+
+## Identity
+
+> **Make normal opponent actions produce insufficient progress.**
+
+Screens
+→ effective HP.
+
+Stamina
+→ attacks potentially improve defense.
+
+Sinistcha
+→ recovery/redirection.
+
+Rain
+→ modifies damage environment.
+
+Metagross/Swampert
+→ cash out preserved turns.
+
+## Main branch A
+
+**Sinistcha / Metagross**
+
+→ maximum preservation and conversion stability.
+
+## Main branch B
+
+**Charizard / Venusaur**
+
+→ weather ambiguity + faster offense.
+
+The same four-mon root supports both branches. ([Pokémon Zone][3])
+
+That is an excellent example of **Module Elasticity**.
+
+---
+
+# LVI. Architecture 6 — Dual-Speed Failure Inversion
+
+This remains our most interesting dedicated experiment.
+
+Conceptual root:
+
+**Farigiraf + slow converter + fast converter**
+
+Potential slow pieces:
+
+* Golisopod
+* Kingambit
+* Camerupt.
+
+Potential fast pieces:
+
+* Raichu
+* Salamence
+* Garchomp.
+
+Supporting candidates:
+
+* Rillaboom
+* Incineroar
+* Milotic.
+
+## Identity
+
+> **Instead of merely surviving the wrong speed regime, actively exploit it.**
+
+Opponent Tailwinds
+→ Trick Room becomes attractive.
+
+Opponent uses Trick Room
+→ slow converter thrives.
+
+Opponent Intimidates
+→ Milotic.
+
+Opponent relies on priority
+→ Farigiraf.
+
+Opponent uses Electric offense
+→ Raichu.
+
+This architecture aims for extremely high **Failure Inversion Count**.
+
+---
+
+# LVII. The Architecture-Building Workflow
+
+This is the practical methodology we should use whenever constructing a new team.
+
+### Phase 1 — Candidate discovery
+
+Do not search only for high usage + high win rate.
+
+Look for:
+
+* high usage + rising adoption
+* low/moderate usage + high win rate
+* high-rating concentration
+* unusual tournament concentration
+* multiple viable modes
+* unique board-rule interaction
+* strong specific cores despite mediocre individual results.
+
+### Phase 2 — Identify architecture roots
+
+Find the smallest subsystem that already performs a coherent strategic job.
+
+Do not automatically start with six.
+
+### Phase 3 — Map resources
+
+For every Pokémon record:
+
+**creates**
+**converts**
+**protects**
+**scales**.
+
+### Phase 4 — Map clocks
+
+Identify:
+
+* immediate
+* tempo
+* scaling
+* reactive
+* temporal.
+
+### Phase 5 — Calculate C-MAG
+
+Ask what every additional slot adds **that the root does not already have**.
+
+### Phase 6 — Audit bring-four packages
+
+Of 15 possible fours:
+
+* how many are coherent?
+* how many have at least one engine?
+* how many have a converter?
+* how many have multiple clocks?
+
+### Phase 7 — Audit Package Entropy
+
+Do those fours actually play differently?
+
+### Phase 8 — Build failure-condition graph
+
+Map opponent answers against routes.
+
+### Phase 9 — Lower FCI
+
+Replace redundant routes whose failure conditions overlap unnecessarily.
+
+### Phase 10 — Seek Failure Inversion
+
+Prefer modules where the opponent's answer to A improves B.
+
+### Phase 11 — Test Information Resilience
+
+Assume the opponent knows everything.
+
+Does the architecture still work?
+
+### Phase 12 — Account for WRA
+
+Choose the version the pilot can actually execute.
+
+---
+
+# LVIII. The Main Diagnostic Questions
+
+When examining any candidate Pokémon or team, these are the questions that matter most:
+
+1. **What resource does this Pokémon create?**
+2. **Who converts that resource?**
+3. **Who protects the converter?**
+4. **What clock does this create?**
+5. **What happens when the opponent correctly counters it?**
+6. **Does that counterplay create value elsewhere?**
+7. **How many teammates benefit from this Pokémon?**
+8. **Does it introduce a genuinely new speed regime?**
+9. **Does it duplicate an existing failure condition?**
+10. **If it dies, what routes remain?**
+11. **If its intended partner dies, is it still useful?**
+12. **Does it increase Package Entropy?**
+13. **Does it create Preview Tax?**
+14. **Does it lower Failure Correlation?**
+15. **Does it increase Human Complexity enough to lower WRA?**
+
+---
+
+# LIX. The Biggest Errors This Framework Helps Us Avoid
+
+## Usage-rate slavery
+
+High usage tells us:
+
+> what the metagame frequently presents.
+
+It does **not** tell us:
+
+> what our six should contain.
+
+---
+
+## Synergy worship
+
+Six Pokémon can have enormous theoretical synergy and still be fragile if all interactions depend on one state.
+
+---
+
+## Support saturation
+
+Too many Pokémon can create turns without anyone converting those turns.
+
+Gengar-control testing made this especially obvious.
+
+---
+
+## False redundancy
+
+Three Fake Out users do not automatically create three independent tempo engines.
+
+Psychic Terrain can suppress all three.
+
+---
+
+## Overvaluing the ideal line
+
+A team that looks incredible when everything works may be worse than a slightly lower-ceiling team whose architecture survives disruption.
+
+---
+
+## Treating backup plans as independence
+
+Plan B is not truly independent if the same answer kills Plan A and Plan B.
+
+---
+
+## Confusing surprise with robustness
+
+A strategy that works once because it is unknown may have poor Information Resilience.
+
+---
+
+## Ignoring pilot burden
+
+Theoretical route density is worthless if the pilot consistently chooses the wrong one.
+
+---
+
+# LX. Current Research Priorities
+
+The framework suggests we should build **architecture families**, not crown one universal roster.
+
+### Project A — Tempo Conversion
+
+Root:
+**Raichu / Rillaboom / Sneasler / Gholdengo**
+
+Goal:
+reduce correlated dependence on terrain/Fake Out/fast-board play.
+
+Main modules to investigate:
+**Salamence, Farigiraf, Kingambit, Metagross.**
+
+---
+
+### Project B — Modular Sand
+
+Root:
+**Tyranitar / Excadrill / Salamence**
+
+Branches:
+
+**Indeedee / Sneasler / Corviknight**
+
+**Indeedee / Sneasler / Milotic**
+
+**Rillaboom / Milotic / Gholdengo**
+
+Goal:
+maximize orthogonal failure and package entropy.
+
+---
+
+### Project C — Forced-Response Control
+
+Root:
+**Gengar / Politoed / Archaludon**
+
+Likely completion:
+**Incineroar / Vivillon / Swampert**
+
+Goal:
+maximize FRD while preserving enough conversion.
+
+---
+
+### Project D — Progress Suppression
+
+Root:
+**Pelipper / Archaludon / Swampert / Grimmsnarl**
+
+Branches:
+
+**Sinistcha / Metagross**
+
+or
+
+**Charizard / Venusaur**
+
+Goal:
+decide whether we want maximum stability or greater Preview Tax.
+
+---
+
+### Project E — Failure Inversion
+
+Root concept:
+**Farigiraf + slow converter + fast converter + Milotic-style reactive infrastructure**
+
+Goal:
+create a team where common opponent answers actively improve alternate modes.
+
+---
+
+# LXI. Working Definition of an Elite Team
+
+Our current best formulation is:
+
+> **An elite VGC team is a low-failure-correlation network of overlapping modules that creates repeated low-read advantages, converts them through multiple clocks, preserves enough functional redundancy to survive disruption, and forces the opponent to use different answers against different routes.**
+
+A stronger version:
+
+> **The best six are not necessarily those with the most synergy. They are the six whose useful four-Pokémon packages create the greatest number of distinct winning states without sharing the same failure conditions.**
+
+And the strongest diagnostic question remains:
+
+> **When the opponent makes the correct play against one of our routes, does the architecture still give us somewhere productive to go?**
+
+The ideal answer is even stronger:
+
+> **Does their correct answer make another route better?**
+
+---
+
+# APPENDIX A — Metric Glossary
+
+| Metric                          | Meaning                                                       |
+| ------------------------------- | ------------------------------------------------------------- |
+| **MAG**                         | Marginal Architecture Gain                                    |
+| **C-MAG**                       | Architecture added specifically given the other five          |
+| **OACR**                        | Frequency with which opponent actions generate value for us   |
+| **AGR**                         | Frequency of low-read favorable-state creation                |
+| **FRD**                         | Number of tools that force opponent responses                 |
+| **RDI**                         | Percentage of routes dependent on one Pokémon                 |
+| **FCI**                         | Degree to which several routes lose to the same answer        |
+| **FIC**                         | Number of opponent answers that strengthen an alternate route |
+| **EPD**                         | Number of genuinely coherent bring-four packages              |
+| **Independent Package Density** | Viable packages with distinct failure conditions              |
+| **Package Entropy**             | Strategic diversity among viable bring-four packages          |
+| **Infrastructure Fan-Out**      | Number of meaningful consumers of a generated resource        |
+| **Scaling Fan-Out**             | Number of meaningful recipients of a scaling mechanism        |
+| **Bridge Quality**              | Ability to connect independent modules without compromise     |
+| **Module Elasticity**           | Number of distinct modules a root can successfully support    |
+| **Slot Replacement Value**      | Functional loss when one Pokémon is removed                   |
+| **Information Resilience**      | Value retained after opponent knows the strategy              |
+| **Adaptation Depth**            | Number of meaningful later-set strategic pivots               |
+| **Human Complexity**            | Execution burden on the pilot                                 |
+| **WRA**                         | Winning routes actually executed relative to routes available |
+
+---
+
+# APPENDIX B — Resource Taxonomy
+
+## Board-state resources
+
+Weather
+Terrain
+Screens
+Tailwind
+Trick Room
+priority permission/denial.
+
+## Tempo resources
+
+Fake Out
+redirection
+Encore
+Sleep
+Trick
+forced switching.
+
+## Stat resources
+
+Coaching
+Bulk Up
+Nasty Plot
+Stamina
+Competitive
+Defiant.
+
+## Positional resources
+
+switching
+pivoting
+Intimidate recycling
+safe board entries.
+
+## Temporal resources
+
+Perish turns
+screen turns
+weather turns
+terrain recovery
+poison/chip clocks.
+
+## Information resources
+
+hidden Mega choice
+multiple possible modes
+set ambiguity
+lead ambiguity.
+
+---
+
+# APPENDIX C — Edge Taxonomy
+
+## Amplification Edge
+
+A directly increases B's power.
+
+Example:
+Sneasler → Corviknight through Coaching.
+
+## Protection Edge
+
+A helps B retain resources.
+
+Example:
+screens → setup attacker.
+
+## Conversion Edge
+
+A creates a state B spends.
+
+Example:
+Tyranitar → Sand → Excadrill.
+
+## Reset Edge
+
+A helps B recover from a negative state.
+
+Example:
+pivoting out to reset stat drops.
+
+## Counterplay Edge
+
+Opponent's response to A creates value for B.
+
+Example:
+physical core → Intimidate → Milotic.
+
+## Infrastructure-Consumption Edge
+
+B deliberately consumes the state A created.
+
+Example:
+Rillaboom → terrain → Metagross Steel Roller.
+
+---
+
+# APPENDIX D — Clock Taxonomy
+
+| Clock         | Question asked of opponent                                              |
+| ------------- | ----------------------------------------------------------------------- |
+| **Immediate** | Can you survive the next attack?                                        |
+| **Tempo**     | Can you stop us accumulating positioning advantage?                     |
+| **Scaling**   | Can you prevent this Pokémon becoming unmanageable?                     |
+| **Reactive**  | Can you act without feeding our response?                               |
+| **Temporal**  | Can you win before the clock expires?                                   |
+| **Attrition** | Can you generate progress faster than we regenerate/preserve resources? |
+
+---
+
+# APPENDIX E — Failure Taxonomy
+
+When evaluating a six, test at minimum:
+
+| Failure                  | What it tests                 |
+| ------------------------ | ----------------------------- |
+| Weather removed          | engine dependence             |
+| Terrain overwritten      | terrain/Seed dependency       |
+| Tailwind lost            | speed dependence              |
+| Trick Room imposed       | speed inversion               |
+| Priority denied          | priority dependence           |
+| Intimidate spammed       | physical correlation          |
+| Setup denied             | scaler dependency             |
+| Fake Out neutralized     | tempo correlation             |
+| Primary Mega KO'd        | exclusive-resource dependence |
+| Main converter KO'd      | surviving clocks              |
+| Reactive trigger refused | autonomous floor              |
+| Opponent knows sets      | information resilience        |
+| Game 3 adaptation        | adaptation depth              |
+
+---
+
+# APPENDIX F — Evidence Hierarchy
+
+When deciding whether an architecture deserves development, evidence should be weighted roughly in this order:
+
+### Strongest
+
+Large repeated tournament-core evidence across many teams.
+
+### Strong
+
+Multiple strong tournaments using substantially the same six/core.
+
+### Useful
+
+One elite major-event finish backed by coherent mechanics.
+
+### Exploratory
+
+Small-sample tournament result plus strong architecture.
+
+### Hypothesis
+
+Mechanically plausible idea with little competitive evidence.
+
+The key is not to confuse:
+
+> **mechanistic plausibility**
+
+with:
+
+> **competitive validation.**
+
+Both matter, but they answer different questions.
+
+---
+
+# APPENDIX G — Current Evidence Anchors
+
+### Raichu/Rillaboom/Sneasler/Gholdengo
+
+104 teams, 69 Top-16 finishes, approximately **3.01× expected**. ([Pokémon Zone][1])
+
+### Raichu/Rillaboom/Sneasler
+
+131 teams, 88 Top-16 finishes, approximately **2.86× expected**. ([Pokémon Zone][4])
+
+### Milotic Sand four
+
+Excadrill/Indeedee/Milotic/Tyranitar:
+37 teams, 20 Top-16s, approximately **2.13× expected**; 35 of 37 complete with Sneasler/Salamence. ([Pokémon Zone][5])
+
+### Gengar Control root
+
+Archaludon/Gengar/Politoed:
+386 teams, 215 Top-16s, approximately **1.96× expected**. ([Pokémon Zone][2])
+
+### Durable Rain root
+
+Archaludon/Grimmsnarl/Pelipper/Swampert:
+659 teams, 332 Top-16s, approximately **2.13× expected**. ([Pokémon Zone][3])
+
+### Durable Rain supporting triad
+
+Archaludon/Grimmsnarl/Pelipper:
+1,115 teams, 593 Top-16s, approximately **2.17× expected**. ([Pokémon Zone][6])
+
+### Pelipper/Archaludon/Swampert
+
+1,384 teams, 640 Top-16s, approximately **1.89× expected**. ([Pokémon Zone][8])
+
+### Durable Rain completion flexibility
+
+Archaludon/Grimmsnarl/Pelipper/Swampert completes most commonly with Sinistcha/Metagross at 59.3% across 168 teams or Charizard/Venusaur around 65% across roughly 129 teams. These are observational full-team rates, not causal comparisons. ([Pokémon Zone][3])
+
+---
+
+# APPENDIX H — The Short Version for the Top of Your Notion Page
+
+> **Pokémon Champions VGC Team-Building Thesis**
+>
+> A great six is not merely six strong Pokémon and not merely one highly synergistic combo. It is a **strategy generator**: a roster capable of producing several coherent bring-four packages with different clocks, different conversion pathways, and preferably different failure conditions.
+>
+> Build around **architecture roots** and add high-C-MAG **modules**. Favor shared infrastructure with multiple consumers, bridge Pokémon that connect independent modules, and win conditions that create competing clocks.
+>
+> Measure not only how many ways a team can win, but whether those routes fail to the same opponent answer. This is **Failure Correlation**. The strongest teams use **orthogonal failure design**: weather removal may stop one mode, setup denial another, Intimidate another, but no single answer collapses everything.
+>
+> Better still is **Failure Inversion**: when the opponent's correct answer to one route strengthens another—such as Intimidate activating Milotic or speed escalation making Trick Room more valuable.
+>
+> Evaluate every team through **Package Density, Package Entropy, Bridge Quality, Advantage Generation, Counterplay Conversion, Information Resilience, Adaptation Depth and WRA**.
+>
+> The final objective is:
+>
+> **A low-failure-correlation network of overlapping modules that repeatedly generates advantages, converts them through multiple independent clocks, survives disruption, and remains strategically flexible after the opponent understands what it is doing.**
+>
+> The defining test is:
+>
+> **When the opponent makes the correct play against our current route, do we still have somewhere productive to go?**
+>
+> The ideal team goes one step further:
+>
+> **Their correct answer becomes our next resource.**
+
+[1]: https://www.pokemon-zone.com/champions/team-cores/gholdengo%2Braichu%2Brillaboom%2Bsneasler/ "Gholdengo + Raichu + Rillaboom + Sneasler - Team Core - Pokémon Zone"
+[2]: https://www.pokemon-zone.com/champions/team-cores/archaludon%2Bgengar%2Bpolitoed/ "Archaludon + Gengar + Politoed - Team Core - Pokémon Zone"
+[3]: https://www.pokemon-zone.com/champions/team-cores/archaludon%2Bgrimmsnarl%2Bpelipper%2Bswampert/ "Archaludon + Grimmsnarl + Pelipper + Swampert - Team Core - Pokémon Zone"
+[4]: https://www.pokemon-zone.com/champions/team-cores/raichu%2Brillaboom%2Bsneasler/ "Raichu + Rillaboom + Sneasler - Team Core - Pokémon Zone"
+[5]: https://www.pokemon-zone.com/champions/team-cores/excadrill%2Bindeedee%2Bmilotic%2Btyranitar/ "Excadrill + Indeedee + Milotic + Tyranitar - Team Core - Pokémon Zone"
+[6]: https://www.pokemon-zone.com/champions/team-cores/archaludon%2Bgrimmsnarl%2Bpelipper/ "Archaludon + Grimmsnarl + Pelipper - Team Core - Pokémon Zone"
+[7]: https://www.pokemon-zone.com/champions/team-cores/archaludon%2Bgrimmsnarl%2Bswampert/ "Archaludon + Grimmsnarl + Swampert - Team Core - Pokémon Zone"
+[8]: https://www.pokemon-zone.com/champions/team-cores/archaludon%2Bpelipper%2Bswampert/ "Archaludon + Pelipper + Swampert - Team Core - Pokémon Zone"

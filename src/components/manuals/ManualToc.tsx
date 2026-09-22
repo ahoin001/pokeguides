@@ -19,7 +19,7 @@ export function manualJumps(
   manual: TeamManual,
   boxed = false,
   parent?: TeamManual,
-  approachable = false,
+  opts: { hasWinMeat?: boolean; compactDoubles?: boolean } = {},
 ) {
   const source = parent ?? manual;
   const hasSix = boxed || (source.box?.length ?? 0) >= 3;
@@ -30,8 +30,12 @@ export function manualJumps(
   );
   const hasPacks = boxed && (source.packs?.length ?? 0) > 0;
   const doubles = manualFormat(source) === "doubles";
+  const hasWinMeat =
+    opts.hasWinMeat ??
+    Boolean(source.engines?.length || source.network?.edges?.length || source.commandments?.length);
+  const compactDoubles = opts.compactDoubles ?? (doubles && hasWinMeat);
 
-  if (approachable) {
+  if (compactDoubles) {
     return [
       { href: "#top", label: "Top" },
       ...(hasSix && hasPacks ? [{ href: "#team", label: "Team & packs" }] : []),
@@ -44,13 +48,20 @@ export function manualJumps(
 
   const hasArch =
     doubles &&
+    !hasWinMeat &&
     Boolean(source.engines?.length || source.controlPlanes?.length || source.architecture?.length);
-  const hasPreview = doubles && Boolean(source.previewTrees?.length);
-  const hasScripts = doubles && Boolean(source.matchupScripts?.length);
+  const hasPreview = Boolean(source.previewTrees?.length);
+  const hasScripts = Boolean(source.matchupScripts?.length);
   const hasLedger = doubles && Boolean(source.ledger);
 
   return [
     { href: "#top", label: "Top" },
+    ...(hasWinMeat && (source.engines?.length ?? 0) > 0
+      ? [{ href: "#wins", label: "How it wins" }]
+      : []),
+    ...(hasWinMeat && (source.network?.edges?.length ?? 0) > 0
+      ? [{ href: "#network", label: "Network" }]
+      : []),
     ...(hasArch ? [{ href: "#architecture", label: "Architecture" }] : []),
     ...(hasSix && hasPacks ? [{ href: "#team", label: "Team & packs" }] : []),
     ...(hasSets ? [{ href: "#sets", label: "Sets" }] : []),
@@ -69,7 +80,8 @@ export function ManualToc({
   packLabel,
   packSlugs,
   whisper,
-  approachable = false,
+  hasWinMeat = false,
+  compactDoubles = false,
 }: {
   manual: TeamManual;
   boxed?: boolean;
@@ -79,11 +91,12 @@ export function ManualToc({
   packLabel?: string;
   packSlugs?: string[];
   whisper?: string;
-  approachable?: boolean;
+  hasWinMeat?: boolean;
+  compactDoubles?: boolean;
 }) {
   const jumps = useMemo(
-    () => manualJumps(manual, boxed, parent, approachable),
-    [manual, boxed, parent, approachable],
+    () => manualJumps(manual, boxed, parent, { hasWinMeat, compactDoubles }),
+    [manual, boxed, parent, hasWinMeat, compactDoubles],
   );
   const [active, setActive] = useState("#top");
   const [mounted, setMounted] = useState(false);

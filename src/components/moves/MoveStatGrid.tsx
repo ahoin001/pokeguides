@@ -54,7 +54,7 @@ export function MoveStatGrid({
         <Cell label="Category">
           {category ? (
             <span className="flex flex-col items-center gap-0.5">
-              <MoveCategoryIcon category={category} className="h-5 w-5" />
+              <MoveCategoryIcon category={category} className="h-6 w-8 object-contain" />
               <span className="sr-only">{moveCategoryLabel(category)}</span>
             </span>
           ) : (

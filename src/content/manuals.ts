@@ -378,6 +378,8 @@ export type ManualPack = {
   pilotDecision?: ManualPilotDecision;
   /** Doubles: lead pair, back pair, and in-package create→convert plays. */
   fieldPlan?: ManualPackFieldPlan;
+  /** Singles: lead → mid → late clock + entry edges. */
+  leadPlan?: ManualPackLeadPlan;
   /** Doubles: two on the field at lead. Prefer fieldPlan.leadPair when both exist. */
   defaultLeadPair?: [string, string];
   /** Doubles: who sits in back. Prefer fieldPlan.backPair when both exist. */
@@ -569,6 +571,35 @@ export type ManualPackFieldPlan = {
   turn1?: string;
   /** When / why you switch a back mon onto the field. */
   bringInTriggers?: string[];
+};
+
+/**
+ * Singles: lead → mid → late clock for one bring of three.
+ * Pair to doubles `fieldPlan` — same job, different field shape.
+ */
+export type ManualPackLeadPlan = {
+  /** Who opens. */
+  lead: string;
+  /** Why that lead. */
+  leadWhy: string;
+  /** Who you prefer mid-game / second send (optional). */
+  mid?: string;
+  midWhy?: string;
+  /** Who closes / sits as the late send (optional). */
+  late?: string;
+  lateWhy?: string;
+  /**
+   * Create→convert edges among the three (entry → converter).
+   * Short labels for chips, not essays.
+   */
+  entryEdges?: {
+    from: string;
+    to: string;
+    creates: string;
+    converts: string;
+  }[];
+  /** Optional turn-1 script. */
+  turn1?: string;
 };
 
 export type ManualLoopNote = {

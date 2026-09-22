@@ -1,10 +1,19 @@
 # Manual authoring AI prompt
 
-Copy everything inside the fenced block below into ChatGPT / Claude / Cursor. Paste your team (Showdown export, notes, or VOD bullets) after the prompt. Ask for **JSON only** matching Ringside’s boxed `TeamManual` shape.
+Copy the **paste-ready** block that matches the format you are building (**Singles** or **Doubles**). Paste your team (Showdown export, notes, or VOD bullets) after it. Ask for **JSON only** matching Ringside’s boxed `TeamManual` shape.
 
-**Theory reference (agents + authors):** [team-building-architecture.md](./team-building-architecture.md) — strategy-generator sixes, MAG / WRA / OACR, engines vs converters, packages, bench as modules. Use it when evaluating synergy, flex swaps, or hunting catalog adds.
+**Theory reference:** [team-building-architecture.md](./team-building-architecture.md) — strategy-generator sixes, MAG / WRA / OACR, engines vs converters, packages as mini-teams, bench as modules.
 
-Default: **Pokémon Champions Singles** — registered six + preview packs of three. Keep `box.length === 6`.
+**How this doc is organized**
+
+1. **Shared** — registration, flex, kits, hierarchy (both formats)
+2. **Paste-ready Singles** — default block below (`format: "singles"`, bring 3)
+3. **Singles meat** — engines / network / `leadPlan` / roles (required for rich Singles UI)
+4. **Doubles** — separate paste-ready + `fieldPlan` / pair loops (bring 4)
+
+Do **not** put Doubles-only fields (`fieldPlan`, leadPair, backPair) on Singles manuals. Do **not** omit Singles `leadPlan` / roles / engines when you want How-it-wins / Network / Lead & clock chapters.
+
+Default paste target below: **Pokémon Champions Singles** — registered six + preview packs of three. Keep `box.length === 6`.
 
 Two first-class ways a six gets **versions** (both can appear on one manual):
 
@@ -19,7 +28,7 @@ Flex alts are **not** a seventh registration slot.
 REGISTERED SIX  ← what you lock for matchmaking / a tournament run
       │
       ├── CORE PACKAGES (no requiresSwap)
-      │     bring-of-3/4 drawn only from this six
+      │     bring-of-3 (singles) or bring-of-4 (doubles) from this six
       │     each pack.when = when to pick this bring
       │
       └── BENCH SWAP CARDS (altSlots)
@@ -43,6 +52,7 @@ Hierarchy:
 ```text
 TEAM MANUAL
 ├── coreArchitecture (identity of the REGISTERED six)
+├── engines + network + commandments  ← How it wins / Network (both formats)
 ├── registered six + roster
 ├── core packages (bring from box only)
 ├── bench swap cards → architecture change
@@ -54,14 +64,14 @@ Legacy path still valid: `altSlot → requiresSwap → pack`. Enrich with module
 
 ---
 
-## Paste-ready prompt
+## Paste-ready prompt (Singles)
 
 ```
 You are authoring a Ringside field manual for Pokémon Champions Singles.
 
 GOAL
 Produce one boxed TeamManual JSON a pilot can open and play from. The page is:
-registered six → packages of three/four FROM that six → bench swap cards → (after a swap) packages for the new active six.
+registered six → packages of three FROM that six → How it wins / Network → Sets → Guide (roles + lead clock) → bench swap cards → (after a swap) packages for the new active six.
 Prefer short actionable lines. Use TODO: … when you lack a fact — do not invent lore or ladder win rates.
 
 CHAMPIONS TRAINING (required on every roster slot and flex `slot`)
@@ -71,26 +81,35 @@ CHAMPIONS TRAINING (required on every roster slot and flex `slot`)
 - Optional: `exportEvs` / `ivsNote` when translating from Showdown; never invent calced speed tiers unless sourced.
 
 HARD RULES
-1. Registered six stays exactly 6 unique species. Never put flex mons on `box`.
+1. Registered six stays exactly 6 unique species. Never put flex mons on `box`. Set `"format": "singles"`.
 2. Every set is paste-ready: item, ability, **nature**, **recommended Champions SP spread** (see above), 4 moves with { name, why }.
-3. Packs are bring-of-three from the *active* six (core box, or box after a flex swap). If format is "doubles", packs are bring-of-four and you must fill engines, **network** (thesis + ≥5 create→convert edges), controlPlanes / previewTrees / matchupScripts / ledger (see Doubles section after this prompt).
-4. TWO version systems — both first-class; do not collapse them:
+3. Packs are bring-of-three from the *active* six (core box, or box after a flex swap). `slugs.length === 3` and `strategy.bring` match.
+4. SINGLES MEAT (required — unlocks rich UI chapters):
+   a) Team `engines[]` — min 3 win recipes (id, label, path[4–7], how, dependsOn, disrupt, fallback)
+   b) Team `network` — thesis + ≥5 edges { from, to, creates, converts, engineId? } among the registered six
+   c) Team `commandments[]` — ≤5 house rules
+   d) Every pack: `roles[]` for all three { slug, macro, micro }
+   e) Every pack: `leadPlan` { lead, leadWhy, mid?, midWhy?, late?, lateWhy?, entryEdges?, turn1? }
+      — Singles clock. **Do NOT** author `fieldPlan` / leadPair / backPair on singles.
+   f) Every pack: 2–4 meaty `loops` (entry → mid → finish). Optional `previewTrees` / pack previewQuestions.
+5. TWO version systems — both first-class; do not collapse them:
    a) In-box MODE: same slug, different kit → roster[i].modes[] + pack.winconMode = mode.id
    b) Bench module / flex SWAP: different species → altSlots[] (+ module metadata) + pack.requiresSwap { out, in }
    A pack may use both (swap the six, then pick a mode on a remaining mon).
-5. PACKAGE LAYERING (critical for the UI):
+6. PACKAGE LAYERING (critical for the UI):
    - Core packs: NO `requiresSwap`. Bring ⊆ registered `box`. These are what you play when the six is locked.
    - Swap packs: MUST set `requiresSwap`. Bring ⊆ active six after out→in. Never list swap packs as if they were available on the registered six.
    - Every core pack needs a clear `when` (preview trigger) — this is the package card description.
    - Every altSlot needs `why` + preferably `useWhen[]` / `avoidWhen[]` / `architectureChange` — this is the bench swap card; packages for that swap live behind the click.
-6. No mode without a package that sets winconMode. No flex alt without a package that sets requiresSwap.
-7. Matchups are required, not optional flavor. Team-level defaults + pack-level when the bring’s threats differ.
-8. One idea per line. Pilot language: “If X, then Y.”
-9. Output a single JSON object only — no markdown outside JSON.
-10. Move `why` strings are shown on the kit card — write them as short readable explanations (not “TODO click for why”).
+7. No mode without a package that sets winconMode. No flex alt without a package that sets requiresSwap.
+8. Matchups are required, not optional flavor. Team-level defaults + pack-level when the bring’s threats differ.
+9. One idea per line. Pilot language: “If X, then Y.”
+10. Output a single JSON object only — no markdown outside JSON.
+11. Move `why` strings are shown on the kit card — write them as short readable explanations (not “TODO click for why”).
+12. Recommended: `identityCard` + `pilotDecision` on packs when packs ≥ 3 or flex exists.
 
 ALLOWED IDS
-- format: "singles" | "doubles"
+- format: "singles" (this prompt) | use the Doubles section for "doubles"
 - archetype: balance | hyper-offense | trick-room | rain | sun | grassy
 - family: clock | kite | weather | terrain | room
 - job (RoleId): support | breaker | speed | weather | mega
@@ -132,25 +151,21 @@ D. Core packages (legal on default six, no requiresSwap)
 These are the only packages shown while the registered six is active.
 For each pack:
 - id, label, **when** (REQUIRED — preview trigger shown on the package card), identity, contrast?
-- slugs[3] ⊆ box (4 for doubles) — must NOT include any flex slug
+- slugs[3] ⊆ box — must NOT include any flex slug
 - winconMode? — REQUIRED if this bring assumes a non-default SlotMode
 - identityCard (optional, recommended): compact machine-readable bring shape:
   engine[], connector[], converter[], scaler[], control[], winCondition, clock, commitment, autonomy, triggerBreadth
 - pilotDecision (optional, recommended): chooseWhen[], avoidWhen[], previewQuestion, primaryMistake
 - strategy: opponentPattern, purpose, targets[], refuses[], winCondition,
   gamePlan (Break → Control → Finish), mantra?, turnChecklist? (≤5), defaultLead? / defaultLeadWhy?
-- roles[]: { slug, macro, micro } — EVERY bring member, including back pair
-- **DOUBLES fieldPlan (REQUIRED for doubles packs)** — how the four operates on the field:
-  - leadPair: [slug, slug] — who you send first
-  - leadWhy: why this lead vs alternatives
-  - backPair: [slug, slug] — who sits in back
-  - backJobs: [{ slug, job }] — what each back mon is waiting to do / when they enter
-  - pairEdges: [{ from, to, creates, converts }] — ≥2 edges among the four, especially the lead pair
-    (Fake Out → free attack, terrain → Unburden, Intimidate → safer conversion, …)
-  - turn1?: one-line script for the lead pair’s first exchange
-  - bringInTriggers?: when you switch a back mon onto the field
-- Also set defaultLeadPair / backPair to match fieldPlan (legacy mirrors)
-- 2–4 loops and/or lead/mid/late flows — loops must include at least one **lead-pair play** and one **back-pair entry / second wave**
+- roles[]: { slug, macro, micro } — EVERY bring member (all three)
+- **SINGLES leadPlan (REQUIRED)** — Lead → Mid → Late clock for this three:
+  - lead, leadWhy
+  - mid?, midWhy?, late?, lateWhy?
+  - entryEdges?: [{ from, to, creates, converts }] — ≥1 among the three
+  - turn1?: one-line opening script
+  - Also set strategy.defaultLead to match leadPlan.lead
+- 2–4 loops and/or lead/mid/late flows — at least one **entry** loop and one **finish** loop
 - endgameIds, optional winRouteIds[], engineIds[]
 - MATCHUPS for this pack (do not omit):
   victims[]  { name, why, slug?, play?, trap? }
@@ -158,7 +173,8 @@ For each pack:
   advantages[] { title, body }
 - hazards[] pack-specific traps if they differ from team hazards
 
-Same fieldPlan + roles + loops requirements apply to **swap packages** (section E).
+Same leadPlan + roles + loops requirements apply to **swap packages** (section E).
+For Doubles packs use `fieldPlan` instead — see Doubles section (do not mix).
 
 E. Bench modules (flex swaps) — swap card first, packages second
 The UI shows a **swap card** (why change registration). Packages for that module appear only after the swap is selected.
@@ -448,10 +464,54 @@ VALIDATION CHECKLIST (self-check before answering)
 □ winRoutes/endgames: routes describe path; endgames describe destination — do not duplicate blindly
 □ no numeric synergy/coverage/flexibility scores on Pokémon
 □ move why strings are short readable explanations (shown on kit cards)
+□ singles: engines ≥3, network ≥5 edges, commandments ≤5
+□ singles: every pack has roles[3] + leadPlan (no fieldPlan)
+□ singles: every pack has ≥2 loops
 
 USER MATERIAL FOLLOWS
 (Paste Showdown export, notes, package ideas, or “interview me”.)
 ```
+
+---
+
+## Singles meat (engines / network / leadPlan)
+
+Singles manuals unlock the same **How it wins** and **Network** chapters as doubles when you fill:
+
+| Field | UI chapter | Requirement |
+| --- | --- | --- |
+| `engines[]` | How it wins | Min 3 — same shape as doubles engines |
+| `network` | Network constellation | thesis + ≥5 create→convert edges among `box` |
+| `commandments[]` | Under How it wins | ≤5 one-liners |
+| `packs[].roles` | Guide · Roles on this three | All three bring members |
+| `packs[].leadPlan` | Guide · Lead & clock | Singles clock (not `fieldPlan`) |
+| `previewTrees` / `matchupScripts` | Preview / Scripts | Optional; shown for either format when authored |
+
+### Package lead plan (`packs[].leadPlan`) — REQUIRED for singles
+
+```json
+"leadPlan": {
+  "lead": "garchomp",
+  "leadWhy": "Forces the Ice / Fairy answer immediately.",
+  "mid": "rillaboom",
+  "midWhy": "Grassy Glide / Fake Out after the first KO or forced switch.",
+  "late": "kingambit",
+  "lateWhy": "Sucker / Overlord clean when the board is chipped.",
+  "entryEdges": [
+    {
+      "from": "garchomp",
+      "to": "kingambit",
+      "creates": "Forced switch / chip",
+      "converts": "Supreme Overlord window"
+    }
+  ],
+  "turn1": "Lead Garchomp; click the coverage that hits their most likely stay."
+}
+```
+
+Also set `strategy.defaultLead` = `leadPlan.lead`.
+
+**Do not** author `fieldPlan`, `defaultLeadPair`, or `backPair` on Singles.
 
 ---
 
@@ -472,6 +532,10 @@ USER MATERIAL FOLLOWS
 | Failure | `failureRoutes[]` | Plan A denied → Plan B |
 | Ladder help | `benchDiagnostics[]` | Symptom → recommended module |
 | Package teach | `identityCard` + `pilotDecision` on `packs[]` | Preview/ladder decisions |
+| Singles clock | `packs[].leadPlan` | Lead → Mid → Late + entryEdges |
+| Doubles field | `packs[].fieldPlan` | Lead pair / back pair / pairEdges |
+| How it wins | `engines[]` + `commandments[]` | Both formats |
+| Network | `network.edges[]` | Both formats |
 | Matchups | `victims` / `counters` / `advantages` / `hazards` | Pack overrides team via `resolveManual` |
 
 **Evolution (keep legacy working):**
@@ -513,6 +577,10 @@ See `src/content/manuals.ts` (`SlotMode`, `ManualAltSlot`, `ManualPack`, …). T
 ---
 
 ## Doubles (bring 4) — six-chapter shape
+
+Use this section when `"format": "doubles"`. Do **not** mix with Singles `leadPlan` — doubles packs use **`fieldPlan`** (lead pair / back pair). The Guide chapter renders `fieldPlan` on the package page.
+
+Doubles manuals with `engines` / `network` / `commandments` open a compact **How it wins + Network** path (Sets/Guide deferred). Author those fields fully — empty network edges leave an empty constellation.
 
 Same `TeamManual` type. Set `"format": "doubles"`. Bring width is `FORMAT_BRING.doubles` = 4.
 

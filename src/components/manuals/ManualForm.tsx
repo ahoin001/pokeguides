@@ -421,13 +421,7 @@ export function ManualForm({
             }
           />
 
-          {manualFormat(draft) === "doubles" ? (
-            <DoublesArchitectureEditor
-              draft={draft}
-              boxSlugs={boxSlugs}
-              onChange={commit}
-            />
-          ) : null}
+          <ArchitectureMeatEditor draft={draft} boxSlugs={boxSlugs} onChange={commit} />
 
           <h2 className="mt-16 text-2xl font-semibold tracking-tight">Packages</h2>
           <p className="mt-1 text-sm text-muted">
@@ -1079,7 +1073,7 @@ function PackEditor({
   );
 }
 
-function DoublesArchitectureEditor({
+function ArchitectureMeatEditor({
   draft,
   boxSlugs,
   onChange,
@@ -1091,13 +1085,16 @@ function DoublesArchitectureEditor({
   const engines = draft.engines ?? [];
   const edges = draft.network?.edges ?? [];
   const commandments = draft.commandments ?? [];
+  const doubles = manualFormat(draft) === "doubles";
 
   return (
     <section className="mt-16 space-y-10">
       <div>
         <h2 className="text-2xl font-semibold tracking-tight">How it wins</h2>
         <p className="mt-1 text-sm text-muted">
-          Recipes as short paths — not essays. Packs link via engine ids.
+          {doubles
+            ? "Recipes as short paths — not essays. Packs link via engine ids. Required for doubles."
+            : "Win recipes + conversion network — unlocks How it wins / Network on the manual page. Recommended for singles."}
         </p>
         <ul className="mt-4 space-y-4">
           {engines.map((engine, i) => (

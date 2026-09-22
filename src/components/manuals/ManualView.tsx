@@ -61,9 +61,15 @@ export function ManualView({
   const packs = packList(parent);
   const boxed = isBoxedManual(parent);
   const doubles = manualFormat(parent) === "doubles";
-  const approachable =
-    doubles &&
-    Boolean(parent.network?.edges?.length || parent.commandments?.length);
+  /** Win recipes + network exist — unlock How-it-wins chapters for either format. */
+  const hasWinMeat = Boolean(
+    parent.engines?.length || parent.network?.edges?.length || parent.commandments?.length,
+  );
+  /**
+   * Doubles approachable compact path: win meat first, skip Sets/Guide.
+   * Singles always keeps Sets + Guide when win meat is present.
+   */
+  const compactDoubles = doubles && hasWinMeat;
 
   const [packParam, setPackParam] = useQueryState(
     "pack",
@@ -106,7 +112,8 @@ export function ManualView({
           packLabel={activePack?.label}
           packSlugs={activePack?.slugs}
           whisper={whisperMon}
-          approachable={approachable}
+          hasWinMeat={hasWinMeat}
+          compactDoubles={compactDoubles}
         />
 
         <header id="top" className={`${MANUAL_SCROLL_MT}`}>
@@ -152,7 +159,7 @@ export function ManualView({
           />
         ) : null}
 
-        {approachable ? (
+        {hasWinMeat ? (
           <>
             {(parent.engines?.length ?? 0) > 0 ? (
               <ManualWinRecipes
@@ -181,9 +188,11 @@ export function ManualView({
               />
             ) : null}
           </>
-        ) : (
+        ) : null}
+
+        {!compactDoubles ? (
           <>
-            {doubles ? <ManualDoublesArchitecture parent={parent} /> : null}
+            {doubles && !hasWinMeat ? <ManualDoublesArchitecture parent={parent} /> : null}
 
             <ManualSetTabs
               parent={parent}
@@ -192,21 +201,30 @@ export function ManualView({
               onFocusSlug={setFocusSlug}
             />
 
-            {doubles && (parent.previewTrees?.length ?? 0) > 0 ? (
+            {(parent.previewTrees?.length ?? 0) > 0 ? (
               <ManualSection
                 id="preview"
                 title="Preview"
-                purpose={parent.pilot?.rule ?? "The question to memorize before you pick four."}
+                purpose={
+                  parent.pilot?.rule ??
+                  (doubles
+                    ? "The question to memorize before you pick four."
+                    : "The question to memorize before you pick three.")
+                }
               >
                 <ManualPreviewTrees trees={parent.previewTrees ?? []} onSelectPack={selectPack} />
               </ManualSection>
             ) : null}
 
-            {doubles && (parent.matchupScripts?.length ?? 0) > 0 ? (
+            {(parent.matchupScripts?.length ?? 0) > 0 ? (
               <ManualSection
                 id="scripts"
                 title="Scripts"
-                purpose="Named boards. Tapping a package loads that four into the guide."
+                purpose={
+                  doubles
+                    ? "Named boards. Tapping a package loads that four into the guide."
+                    : "Named boards. Tapping a package loads that three into the guide."
+                }
               >
                 <ManualMatchupScripts
                   scripts={parent.matchupScripts ?? []}
@@ -232,7 +250,7 @@ export function ManualView({
               </ManualSection>
             ) : null}
           </>
-        )}
+        ) : null}
       </article>
     </PageFrame>
   );

@@ -8,6 +8,10 @@ import { ManualInsights } from "@/components/manuals/ManualInsights";
 import { ManualBriefing } from "@/components/manuals/ManualBriefing";
 import { TeamCoverage } from "@/components/manuals/TeamCoverage";
 import { SequenceBeats } from "@/components/manuals/ManualDoublesChapters";
+import {
+  ManualFieldPlanBoard,
+  ManualLeadPlanBoard,
+} from "@/components/manuals/ManualFieldPlan";
 import { getPokemon } from "@/lib/catalog/load";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { cssVars } from "@/lib/champions/palette";
@@ -49,6 +53,8 @@ export function ManualPackageGuide({
 
   const doubles = manualFormat(parent) === "doubles";
   const sequences = pack?.sequence ?? [];
+  const hasFieldPlan = Boolean(pack?.fieldPlan);
+  const hasLeadPlan = Boolean(pack?.leadPlan);
   const hasBody =
     strategy ||
     hasWinPath ||
@@ -56,7 +62,10 @@ export function ManualPackageGuide({
     hasGame ||
     hasMatchups ||
     coverageMembers.length > 0 ||
-    sequences.length > 0;
+    sequences.length > 0 ||
+    hasFieldPlan ||
+    hasLeadPlan ||
+    Boolean(pack?.roles?.length);
 
   if (!hasBody) return null;
 
@@ -98,35 +107,58 @@ export function ManualPackageGuide({
 
         {hasWinPath ? <ManualWinPath parent={parent} pack={pack} /> : null}
 
-        {doubles && pack?.roles?.length ? (
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {pack.roles.map((role) => {
-              const mon = getPokemon(role.slug);
-              return (
-                <li
-                  key={role.slug}
-                  className="flex items-start gap-3 rounded-[24px] border border-line/70 bg-raised/30 px-4 py-4"
-                  style={mon ? cssVars(mon.palette) : undefined}
-                >
-                  {mon ? (
-                    <PokemonArt
-                      slug={mon.slug}
-                      src={mon.sprite || mon.artwork}
-                      name={mon.name}
-                      size={44}
-                    />
-                  ) : null}
-                  <div className="min-w-0">
-                    <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
-                      {role.macro}
-                    </p>
-                    <p className="mt-1 text-sm font-medium">{mon?.name ?? role.slug}</p>
-                    <p className="mt-1 text-sm text-muted">{role.micro}</p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
+        {pack?.roles?.length ? (
+          <div>
+            <h3 className="text-xl font-semibold tracking-tight">
+              {doubles ? "Roles on this four" : "Roles on this three"}
+            </h3>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+              {pack.roles.map((role) => {
+                const mon = getPokemon(role.slug);
+                return (
+                  <li
+                    key={role.slug}
+                    className="flex items-start gap-3 rounded-[24px] border border-line/70 bg-raised/30 px-4 py-4"
+                    style={mon ? cssVars(mon.palette) : undefined}
+                  >
+                    {mon ? (
+                      <PokemonArt
+                        slug={mon.slug}
+                        src={mon.sprite || mon.artwork}
+                        name={mon.name}
+                        size={44}
+                      />
+                    ) : null}
+                    <div className="min-w-0">
+                      <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+                        {role.macro}
+                      </p>
+                      <p className="mt-1 text-sm font-medium">{mon?.name ?? role.slug}</p>
+                      <p className="mt-1 text-sm text-muted">{role.micro}</p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ) : null}
+
+        {pack?.fieldPlan ? (
+          <div>
+            <h3 className="text-xl font-semibold tracking-tight">Field plan</h3>
+            <div className="mt-4">
+              <ManualFieldPlanBoard plan={pack.fieldPlan} />
+            </div>
+          </div>
+        ) : null}
+
+        {pack?.leadPlan ? (
+          <div>
+            <h3 className="text-xl font-semibold tracking-tight">Lead & clock</h3>
+            <div className="mt-4">
+              <ManualLeadPlanBoard plan={pack.leadPlan} />
+            </div>
+          </div>
         ) : null}
 
         {sequences.length ? (

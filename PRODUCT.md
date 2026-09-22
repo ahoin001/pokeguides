@@ -29,3 +29,7 @@ Next.js App Router, TypeScript, Tailwind v4, Motion, TanStack Query, Zustand (ID
 ## Open
 
 Brand name may change. Ranked meta lives on `/meta` (committed Champions Battle Data snapshot; refresh with `npm run sync:ranked`). `/usage` redirects there.
+
+## Team theory
+
+Strategy-generator architecture (MAG, packages, bench modules, counterplay conversion): `docs/team-building-architecture.md`. Manual JSON prompt: `docs/manual-authoring-prompt.md`.

@@ -2,6 +2,8 @@
 
 Copy everything inside the fenced block below into ChatGPT / Claude / Cursor. Paste your team (Showdown export, notes, or VOD bullets) after the prompt. Ask for **JSON only** matching Ringside’s boxed `TeamManual` shape.
 
+**Theory reference (agents + authors):** [team-building-architecture.md](./team-building-architecture.md) — strategy-generator sixes, MAG / WRA / OACR, engines vs converters, packages, bench as modules. Use it when evaluating synergy, flex swaps, or hunting catalog adds.
+
 Default: **Pokémon Champions Singles** — registered six + preview packs of three. Keep `box.length === 6`.
 
 Two first-class ways a six gets **versions** (both can appear on one manual):

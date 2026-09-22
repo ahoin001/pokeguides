@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
@@ -8,6 +9,7 @@ import { ManualFlowchart } from "@/components/manuals/ManualFlowchart";
 import { ManualLoopStrip } from "@/components/manuals/ManualLoopStrip";
 import { PackFourArts, PackThreeArts } from "@/components/manuals/ManualPackagePicker";
 import { MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
+import { panelIn } from "@/components/motion/tokens";
 import { flowsFor } from "@/content/classroom-flows";
 import {
   defaultPackId,
@@ -26,9 +28,10 @@ import { formatBringLabel } from "@/lib/format";
 
 /**
  * Hero for tournament reality:
- * 1. Registered six (what you submit)
- * 2. Packages of 4/3 from THAT six (when to bring)
- * 3. Bench swap cards (why change registration) → then packages for the swapped six
+ * 1. Registered six
+ * 2. Pokémon detail (collapsed until opened)
+ * 3. Packages from that six
+ * 4. Bench (tucked; click to reveal) → packages after swap
  */
 export function ManualTeamPackageHero({
   parent,
@@ -52,7 +55,6 @@ export function ManualTeamPackageHero({
   const bring = new Set((pack?.slugs ?? parent.slugs).filter(Boolean));
   const alts = flexPool(parent);
   const doubles = manualFormat(parent) === "doubles";
-  const bringN = doubles ? 4 : 3;
 
   const corePacks = useMemo(() => packs.filter((p) => !packRequiresSwap(p)), [packs]);
   const visiblePacks = useMemo(() => {
@@ -62,7 +64,8 @@ export function ManualTeamPackageHero({
     );
   }, [packs, corePacks, swap]);
 
-  const [kitOpen, setKitOpen] = useState(true);
+  const [kitOpen, setKitOpen] = useState(false);
+  const [benchOpen, setBenchOpen] = useState(false);
   const [playbookOpen, setPlaybookOpen] = useState(false);
 
   const strategy = pack ? resolvePackStrategy(pack) : null;
@@ -87,6 +90,10 @@ export function ManualTeamPackageHero({
   }, [focus, parent, pack, strategy]);
 
   function selectMon(slug: string) {
+    if (focus === slug && kitOpen) {
+      setKitOpen(false);
+      return;
+    }
     onFocusSlug(slug);
     setKitOpen(true);
   }
@@ -94,6 +101,7 @@ export function ManualTeamPackageHero({
   function activateSwap(alt: ManualAltSlot) {
     onFocusSlug(alt.slug);
     setKitOpen(true);
+    setBenchOpen(false);
     const unlocked = packs.filter(
       (p) => packRequiresSwap(p) && p.requiresSwap.in === alt.slug && p.requiresSwap.out === alt.insteadOf,
     );
@@ -106,6 +114,7 @@ export function ManualTeamPackageHero({
     if (home) onSelectPack(home);
     const first = registeredBox[0];
     if (first) onFocusSlug(first);
+    setKitOpen(false);
   }
 
   if (!registeredBox.length || !packs.length) return null;
@@ -147,7 +156,7 @@ export function ManualTeamPackageHero({
           {box.map((slug) => {
             const mon = getPokemon(slug);
             if (!mon) return null;
-            const on = focus === slug;
+            const on = focus === slug && kitOpen;
             const inBring = bring.has(slug);
             const isFlex = swap?.in === slug;
             return (
@@ -164,6 +173,8 @@ export function ManualTeamPackageHero({
                   }`}
                   style={cssVars(mon.palette)}
                   aria-pressed={on}
+                  aria-expanded={on}
+                  title={on ? `Hide ${mon.name} kit` : `Show ${mon.name} kit`}
                 >
                   <PokemonArt
                     slug={mon.slug}
@@ -193,6 +204,15 @@ export function ManualTeamPackageHero({
           })}
         </ul>
       </div>
+
+      {/* Pokémon detail — between six and packages; reveal / hide */}
+      {kitSlot && focus ? (
+        <KitSheet
+          slot={kitSlot}
+          open={kitOpen}
+          onToggle={() => setKitOpen((o) => !o)}
+        />
+      ) : null}
 
       {/* Packages for the active six only */}
       <div className="border-b border-line/50 px-4 py-4 md:px-5">
@@ -287,93 +307,15 @@ export function ManualTeamPackageHero({
         ) : null}
       </div>
 
-      {/* Bench swaps — only on registered six view */}
+      {/* Bench — tucked; click to reveal (registered six only) */}
       {!swap && alts.length ? (
-        <div className="border-b border-line/50 px-4 py-4 md:px-5">
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
-            Bench swaps
-          </p>
-          <p className="mt-1 max-w-[52ch] text-[11px] text-muted">
-            Not on the registered six. Tap a card when the ladder problem needs a different
-            architecture — then you&apos;ll see packages for that swapped six.
-          </p>
-          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-            {alts.map((alt) => {
-              const mon = getPokemon(alt.slug);
-              const instead = alt.insteadOf ? getPokemon(alt.insteadOf) : undefined;
-              if (!mon) return null;
-              const unlocked = packs.filter(
-                (p) =>
-                  packRequiresSwap(p) &&
-                  p.requiresSwap.in === alt.slug &&
-                  (!alt.insteadOf || p.requiresSwap.out === alt.insteadOf),
-              );
-              return (
-                <li key={alt.slug}>
-                  <button
-                    type="button"
-                    onClick={() => activateSwap(alt)}
-                    className="flex h-full w-full flex-col rounded-2xl border border-line/60 bg-raised/15 px-3 py-3 text-left transition hover:border-amber-400/35 hover:bg-amber-500/5"
-                    style={cssVars(mon.palette)}
-                  >
-                    <span className="flex items-start gap-2.5">
-                      <PokemonArt
-                        slug={mon.slug}
-                        src={mon.sprite || mon.artwork}
-                        name={mon.name}
-                        size={40}
-                      />
-                      <span className="min-w-0">
-                        <span className="block text-sm font-semibold tracking-tight">{mon.name}</span>
-                        {instead ? (
-                          <span className="text-[11px] text-muted">replaces {instead.name}</span>
-                        ) : null}
-                        {alt.module?.identity ? (
-                          <span className="mt-0.5 block text-[10px] font-medium text-amber-200/90">
-                            {alt.module.identity}
-                          </span>
-                        ) : null}
-                      </span>
-                    </span>
-                    {alt.architectureChange ? (
-                      <span className="mt-2 text-[11px] leading-snug text-muted">
-                        {alt.architectureChange.from} →{" "}
-                        <span className="text-ink">{alt.architectureChange.to}</span>
-                      </span>
-                    ) : null}
-                    <span className="mt-2 text-[11px] leading-snug text-ink">
-                      {alt.why || alt.answers || "Open this swap to see its packages."}
-                    </span>
-                    {(alt.useWhen?.length || alt.avoidWhen?.length) && (
-                      <span className="mt-2 space-y-0.5 text-[10px] text-muted">
-                        {alt.useWhen?.slice(0, 2).map((line) => (
-                          <span key={line} className="block">
-                            Use when · {line}
-                          </span>
-                        ))}
-                        {alt.avoidWhen?.slice(0, 1).map((line) => (
-                          <span key={line} className="block">
-                            Avoid when · {line}
-                          </span>
-                        ))}
-                      </span>
-                    )}
-                    {unlocked.length ? (
-                      <span className="mt-2 font-mono text-[9px] uppercase tracking-wide text-muted">
-                        Unlocks {unlocked.length} package{unlocked.length === 1 ? "" : "s"}
-                      </span>
-                    ) : null}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      ) : null}
-
-      {/* Kit */}
-      {kitSlot && focus ? (
-        <KitSheet slot={kitSlot} open={kitOpen} onToggle={() => setKitOpen((o) => !o)} />
+        <BenchDrawer
+          alts={alts}
+          packs={packs}
+          open={benchOpen}
+          onToggle={() => setBenchOpen((o) => !o)}
+          onActivate={activateSwap}
+        />
       ) : null}
 
       {(loops.length > 0 || flows.length > 0) && pack ? (
@@ -402,6 +344,129 @@ export function ManualTeamPackageHero({
   );
 }
 
+function BenchDrawer({
+  alts,
+  packs,
+  open,
+  onToggle,
+  onActivate,
+}: {
+  alts: ManualAltSlot[];
+  packs: ManualPack[];
+  open: boolean;
+  onToggle: () => void;
+  onActivate: (alt: ManualAltSlot) => void;
+}) {
+  return (
+    <div className="border-b border-line/50 bg-raised/10">
+      <button
+        type="button"
+        onClick={onToggle}
+        className="flex w-full items-center gap-3 px-4 py-2.5 text-left md:px-5"
+        aria-expanded={open}
+      >
+        <span className="flex min-w-0 flex-1 items-center gap-2">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+            Bench
+          </span>
+          <span className="text-[11px] text-muted">
+            {alts.length} swap{alts.length === 1 ? "" : "s"} · not on the registered six
+          </span>
+          {!open ? (
+            <span className="-ml-0.5 flex items-center">
+              {alts.slice(0, 3).map((alt) => {
+                const mon = getPokemon(alt.slug);
+                if (!mon) return null;
+                return (
+                  <span
+                    key={alt.slug}
+                    className="-ml-1.5 first:ml-0 inline-block rounded-full ring-1 ring-[var(--bg)]"
+                    style={cssVars(mon.palette)}
+                  >
+                    <PokemonArt
+                      slug={mon.slug}
+                      src={mon.sprite || mon.artwork}
+                      name={mon.name}
+                      size={22}
+                    />
+                  </span>
+                );
+              })}
+            </span>
+          ) : null}
+        </span>
+        <span className="shrink-0 text-xs text-muted">{open ? "Hide" : "Show"}</span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open ? (
+          <motion.div
+            key="bench"
+            {...panelIn}
+            className="border-t border-line/40 px-4 pb-3 pt-2 md:px-5"
+          >
+            <p className="mb-2 max-w-[52ch] text-[11px] text-muted">
+              Tap a module when the ladder needs a different architecture — packages for that
+              swapped six appear above.
+            </p>
+            <ul className="divide-y divide-line/40 overflow-hidden rounded-xl border border-line/50 bg-bg/40">
+              {alts.map((alt) => {
+                const mon = getPokemon(alt.slug);
+                const instead = alt.insteadOf ? getPokemon(alt.insteadOf) : undefined;
+                if (!mon) return null;
+                const unlocked = packs.filter(
+                  (p) =>
+                    packRequiresSwap(p) &&
+                    p.requiresSwap.in === alt.slug &&
+                    (!alt.insteadOf || p.requiresSwap.out === alt.insteadOf),
+                );
+                return (
+                  <li key={alt.slug}>
+                    <button
+                      type="button"
+                      onClick={() => onActivate(alt)}
+                      className="flex w-full items-center gap-2.5 px-2.5 py-2 text-left transition hover:bg-raised/50"
+                      style={cssVars(mon.palette)}
+                    >
+                      <PokemonArt
+                        slug={mon.slug}
+                        src={mon.sprite || mon.artwork}
+                        name={mon.name}
+                        size={32}
+                      />
+                      <span className="min-w-0 flex-1">
+                        <span className="flex flex-wrap items-baseline gap-x-1.5">
+                          <span className="text-sm font-semibold tracking-tight">{mon.name}</span>
+                          {instead ? (
+                            <span className="text-[10px] text-muted">for {instead.name}</span>
+                          ) : null}
+                          {alt.module?.identity ? (
+                            <span className="text-[10px] font-medium text-amber-200/90">
+                              · {alt.module.identity}
+                            </span>
+                          ) : null}
+                        </span>
+                        <span className="mt-0.5 line-clamp-1 text-[11px] text-muted">
+                          {alt.why || alt.answers || "Open swap packages"}
+                        </span>
+                      </span>
+                      {unlocked.length ? (
+                        <span className="shrink-0 font-mono text-[9px] uppercase tracking-wide text-muted">
+                          {unlocked.length} pkg
+                        </span>
+                      ) : null}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 function KitSheet({
   slot,
   open,
@@ -417,11 +482,12 @@ function KitSheet({
   const moves = slot.moves.filter((m) => m.name);
 
   return (
-    <div className="border-t border-line/50" style={cssVars(mon.palette)}>
+    <div className="border-b border-line/50" style={cssVars(mon.palette)}>
       <button
         type="button"
         onClick={onToggle}
         className="flex w-full items-center gap-3 px-4 py-2.5 text-left md:px-5"
+        aria-expanded={open}
       >
         <PokemonArt slug={mon.slug} src={mon.sprite || mon.artwork} name={mon.name} size={36} />
         <span className="min-w-0 flex-1">
@@ -434,62 +500,68 @@ function KitSheet({
             {sp ? ` · ${spSpend(sp)}` : ""}
           </span>
         </span>
-        <span className="shrink-0 text-xs text-muted">{open ? "Less" : "Kit"}</span>
+        <span className="shrink-0 text-xs text-muted">{open ? "Hide" : "Show kit"}</span>
       </button>
 
-      {open ? (
-        <div className="border-t border-line/40 px-4 pb-4 pt-3 md:px-5">
-          <dl className="grid grid-cols-3 gap-2 text-center sm:text-left">
-            <KitMeta label="Item" value={slot.item} />
-            <KitMeta label="Ability" value={slot.ability} />
-            <KitMeta label="Nature" value={slot.nature} />
-          </dl>
+      <AnimatePresence initial={false}>
+        {open ? (
+          <motion.div
+            key="kit"
+            {...panelIn}
+            className="border-t border-line/40 px-4 pb-4 pt-3 md:px-5"
+          >
+            <dl className="grid grid-cols-3 gap-2 text-center sm:text-left">
+              <KitMeta label="Item" value={slot.item} />
+              <KitMeta label="Ability" value={slot.ability} />
+              <KitMeta label="Nature" value={slot.nature} />
+            </dl>
 
-          {sp ? (
-            <div className="mt-3 flex flex-wrap gap-1">
-              {(
-                [
-                  ["HP", sp.hp],
-                  ["Atk", sp.atk],
-                  ["Def", sp.def],
-                  ["SpA", sp.spa],
-                  ["SpD", sp.spd],
-                  ["Spe", sp.spe],
-                ] as const
-              )
-                .filter(([, n]) => n > 0)
-                .map(([label, n]) => (
-                  <span
-                    key={label}
-                    className="rounded-md border border-line/60 bg-raised/40 px-2 py-0.5 font-mono text-[10px] tabular-nums text-ink"
-                  >
-                    {label} {n}
-                  </span>
-                ))}
-            </div>
-          ) : null}
+            {sp ? (
+              <div className="mt-3 flex flex-wrap gap-1">
+                {(
+                  [
+                    ["HP", sp.hp],
+                    ["Atk", sp.atk],
+                    ["Def", sp.def],
+                    ["SpA", sp.spa],
+                    ["SpD", sp.spd],
+                    ["Spe", sp.spe],
+                  ] as const
+                )
+                  .filter(([, n]) => n > 0)
+                  .map(([label, n]) => (
+                    <span
+                      key={label}
+                      className="rounded-md border border-line/60 bg-raised/40 px-2 py-0.5 font-mono text-[10px] tabular-nums text-ink"
+                    >
+                      {label} {n}
+                    </span>
+                  ))}
+              </div>
+            ) : null}
 
-          {slot.primaryJob || slot.role ? (
-            <p className="mt-2 text-[11px] leading-snug text-muted">
-              {slot.primaryJob || slot.role}
-            </p>
-          ) : null}
+            {slot.primaryJob || slot.role ? (
+              <p className="mt-2 text-[11px] leading-snug text-muted">
+                {slot.primaryJob || slot.role}
+              </p>
+            ) : null}
 
-          <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
-            {moves.map((move) => (
-              <li
-                key={move.name}
-                className="rounded-xl border border-line/50 bg-raised/20 px-2.5 py-2"
-              >
-                <p className="text-xs font-semibold">{move.name}</p>
-                {move.why ? (
-                  <p className="mt-1 text-[11px] leading-snug text-muted">{move.why}</p>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
+            <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
+              {moves.map((move) => (
+                <li
+                  key={move.name}
+                  className="rounded-xl border border-line/50 bg-raised/20 px-2.5 py-2"
+                >
+                  <p className="text-xs font-semibold">{move.name}</p>
+                  {move.why ? (
+                    <p className="mt-1 text-[11px] leading-snug text-muted">{move.why}</p>
+                  ) : null}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </div>
   );
 }

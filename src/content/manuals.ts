@@ -4,8 +4,8 @@ import { FORMAT_BRING } from "@/lib/format";
 import { alt, train } from "@/content/manual-train";
 import { ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL } from "@/content/manuals/ultra-garchompz-salamence-gholdengo";
 import { CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL } from "@/content/manuals/charizard-lucario-rotom-flex";
-import { SAND_COACHING_TAILWIND_MILOTIC_MANUAL } from "@/content/manuals/sand-coaching-tailwind-milotic";
-import { ARCHITECTURE_C_NETWORK_TEMPO_MANUAL } from "@/content/manuals/architecture-c-network-tempo";
+import { ARCHITECTURE_A_SAND_SCALING_MANUAL } from "@/content/manuals/architecture-a-sand-scaling";
+import { CONVERSION_NETWORK_MODULAR_MC_MANUAL } from "@/content/manuals/conversion-network-modular-mc";
 
 export { alt, train };
 
@@ -372,6 +372,10 @@ export type ManualPack = {
   endgameIds?: string[];
   /** Which team engines this four/three is allowed to pursue. */
   engineIds?: string[];
+  /** Win paths this bring pursues (ManualWinRoute.id). */
+  winRouteIds?: string[];
+  identityCard?: ManualPackIdentityCard;
+  pilotDecision?: ManualPilotDecision;
   /** Doubles: two on the field at lead. */
   defaultLeadPair?: [string, string];
   /** Doubles: who sits in back. */
@@ -395,7 +399,7 @@ export type ManualPack = {
   advantages?: ManualNote[];
   phases?: ManualPhase[];
   flows?: ManualFlow[];
-  loops: { title: string; body: string }[];
+  loops: ManualLoopNote[];
   hazards: ManualNote[];
 };
 
@@ -423,6 +427,129 @@ export type ManualSubstitution = {
   why: string;
 };
 
+/** Default-six strategic identity (distinct from architecture[] skim layers). */
+export type ManualCoreArchitecture = {
+  identity: string;
+  primaryEngine?: string;
+  conversionModel?: string;
+  scalingModel?: string;
+  controlModel?: string;
+  speedModel?: string;
+  resourceModel?: string;
+  threatProfile?: string[];
+};
+
+export type ManualClock = {
+  id: string;
+  owner: string[];
+  speed: string;
+  goal: string;
+};
+
+export type ManualRouteDependency = {
+  slug: string;
+  importance: string;
+};
+
+export type ManualWinRoute = {
+  id: string;
+  name: string;
+  requires: string[];
+  sequence: string[];
+  finish: string;
+  failurePoint?: string;
+  dependencies?: ManualRouteDependency[];
+};
+
+export type ManualFailureRoute = {
+  failedRoute: string;
+  why: string;
+  fallback: string;
+  nextRoute: string;
+};
+
+export type ManualAltModule = {
+  identity: string;
+  strategicRole?: string;
+  adds?: string[];
+  removes?: string[];
+  changes?: string[];
+};
+
+export type ManualArchitectureChange = {
+  from: string;
+  to: string;
+};
+
+export type ManualBenchSlot = {
+  slug: string;
+  insteadOf: string;
+  category?: string;
+  priority?: string;
+  useWhen?: string[];
+  avoidWhen?: string[];
+  changesArchitecture?: boolean;
+  moduleId?: string;
+};
+
+export type ManualBench = {
+  purpose?: string;
+  slots: ManualBenchSlot[];
+};
+
+export type ManualBenchModule = {
+  id: string;
+  type?: string;
+  requiresSwap: ManualPackSwap;
+  architecture?: string;
+  packages: string[];
+};
+
+export type ManualBenchDiagnostic = {
+  problem: string;
+  symptoms?: string[];
+  recommendedModules: string[];
+};
+
+export type ManualReplacementRelationship = {
+  out: string;
+  in: string;
+  preserves?: string[];
+  adds?: string[];
+  loses?: string[];
+  changes?: string[];
+};
+
+export type ManualPackIdentityCard = {
+  engine?: string[];
+  connector?: string[];
+  converter?: string[];
+  scaler?: string[];
+  control?: string[];
+  winCondition?: string;
+  clock?: string;
+  commitment?: string;
+  autonomy?: string;
+  triggerBreadth?: string;
+};
+
+export type ManualPilotDecision = {
+  chooseWhen?: string[];
+  avoidWhen?: string[];
+  previewQuestion?: string;
+  primaryMistake?: string;
+};
+
+export type ManualLoopNote = {
+  title: string;
+  body: string;
+  id?: string;
+  type?: string;
+  trigger?: string;
+  sequence?: string[];
+  payoff?: string;
+};
+
 /**
  * Flex-pool candidate: not on the registered six until a pack requires the swap.
  * Keeps Champions registration at six while unlocking alternate packages.
@@ -439,6 +566,10 @@ export type ManualAltSlot = {
   costs?: string;
   /** Pack ids this flex is meant to unlock. */
   unlocks?: string[];
+  module?: ManualAltModule;
+  architectureChange?: ManualArchitectureChange;
+  useWhen?: string[];
+  avoidWhen?: string[];
   /** Optional paste-ready set for the flex mon. */
   slot?: Omit<SlotManual, "slug"> & { slug?: string };
 };
@@ -656,8 +787,16 @@ export type TeamManual = {
   slots: SlotManual[];
   phases: ManualPhase[];
   flows?: ManualFlow[];
-  loops: { title: string; body: string }[];
+  loops: ManualLoopNote[];
   hazards: ManualNote[];
+  coreArchitecture?: ManualCoreArchitecture;
+  clocks?: ManualClock[];
+  winRoutes?: ManualWinRoute[];
+  failureRoutes?: ManualFailureRoute[];
+  bench?: ManualBench;
+  modules?: ManualBenchModule[];
+  benchDiagnostics?: ManualBenchDiagnostic[];
+  replacementRelationships?: ManualReplacementRelationship[];
   /** Registered six for Champions preview. */
   box?: [string, string, string, string, string, string] | string[];
   /** All six sets once. Packs reference by slug. */
@@ -1078,8 +1217,8 @@ export function manualBringSize(manual: Pick<TeamManual, "format">) {
 export const CANONICAL_MANUALS: TeamManual[] = [
   ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL,
   CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL,
-  SAND_COACHING_TAILWIND_MILOTIC_MANUAL,
-  ARCHITECTURE_C_NETWORK_TEMPO_MANUAL,
+  ARCHITECTURE_A_SAND_SCALING_MANUAL,
+  CONVERSION_NETWORK_MODULAR_MC_MANUAL,
 ];
 
 export function getCanonicalManual(id: string) {

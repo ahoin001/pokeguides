@@ -8,9 +8,8 @@ import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { ARCHETYPE_LABEL, archetypeHref } from "@/content/archetypes";
 import { ManualToc, MANUAL_SCROLL_MT } from "@/components/manuals/ManualToc";
-import { ManualRosterHero } from "@/components/manuals/ManualRosterHero";
 import { ManualSetTabs } from "@/components/manuals/ManualSetTabs";
-import { ManualPackagePicker } from "@/components/manuals/ManualPackagePicker";
+import { ManualTeamPackageHero } from "@/components/manuals/ManualTeamPackageHero";
 import { ManualPackageGuide } from "@/components/manuals/ManualPackageGuide";
 import {
   ManualDoublesArchitecture,
@@ -19,9 +18,7 @@ import {
   ManualTradeLedger,
 } from "@/components/manuals/ManualDoublesChapters";
 import {
-  ManualLayerBoard,
   ManualNetworkGraph,
-  ManualPackStage,
   ManualValueChips,
   ManualWinRecipes,
 } from "@/components/manuals/ManualApproachableChapters";
@@ -167,26 +164,31 @@ export function ManualView({
                 6-box · {packs.length} packs
               </span>
             ) : null}
-            {approachable && packs.length ? (
+            {boxed && packs.length ? (
               <a
-                href="#packages"
+                href="#team"
                 className="rounded-full border border-line px-3 py-1 font-medium text-ink transition hover:border-ink/40"
               >
-                Jump to packages
+                Team &amp; packages
               </a>
             ) : null}
           </p>
         </header>
 
+        {boxed && packs.length ? (
+          <ManualTeamPackageHero
+            parent={parent}
+            packs={packs}
+            activeId={activeId}
+            onSelectPack={selectPack}
+            focusSlug={focus}
+            onFocusSlug={setFocusSlug}
+            layered={approachable && Boolean(parent.architecture?.length)}
+          />
+        ) : null}
+
         {approachable ? (
           <>
-            <ManualLayerBoard
-              parent={parent}
-              packSlugs={activePack?.slugs}
-              focusSlug={focus}
-              onFocusSlug={setFocusSlug}
-            />
-
             <ManualSetTabs
               parent={parent}
               pack={activePack}
@@ -221,29 +223,10 @@ export function ManualView({
               />
             ) : null}
 
-            {packs.length ? (
-              <ManualPackStage
-                parent={parent}
-                packs={packs}
-                activeId={activeId}
-                onSelectPack={selectPack}
-              />
-            ) : null}
           </>
         ) : (
           <>
             {doubles ? <ManualDoublesArchitecture parent={parent} /> : null}
-
-            {boxed ? (
-              <ManualRosterHero
-                parent={parent}
-                packs={packs}
-                activeId={activeId}
-                onSelectPack={selectPack}
-                focusSlug={focus}
-                onFocusSlug={setFocusSlug}
-              />
-            ) : null}
 
             <ManualSetTabs
               parent={parent}
@@ -251,15 +234,6 @@ export function ManualView({
               focusSlug={focus}
               onFocusSlug={setFocusSlug}
             />
-
-            {boxed && packs.length ? (
-              <ManualPackagePicker
-                packs={packs}
-                activeId={activeId}
-                onSelectPack={selectPack}
-                format={manualFormat(parent)}
-              />
-            ) : null}
 
             {doubles && (parent.previewTrees?.length ?? 0) > 0 ? (
               <ManualSection

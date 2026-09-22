@@ -34,13 +34,12 @@ export function manualJumps(
   if (approachable) {
     return [
       { href: "#top", label: "Top" },
-      ...(hasSix ? [{ href: "#six", label: "The six" }] : []),
+      ...(hasSix && hasPacks ? [{ href: "#team", label: "Team & packs" }] : []),
       ...(hasSets ? [{ href: "#sets", label: "Sets" }] : []),
       ...((source.engines?.length ?? 0) > 0 ? [{ href: "#wins", label: "How it wins" }] : []),
       ...((source.network?.edges?.length ?? 0) > 0
         ? [{ href: "#network", label: "Network" }]
         : []),
-      ...(hasPacks ? [{ href: "#packages", label: "Packages" }] : []),
     ];
   }
 
@@ -54,9 +53,8 @@ export function manualJumps(
   return [
     { href: "#top", label: "Top" },
     ...(hasArch ? [{ href: "#architecture", label: "Architecture" }] : []),
-    ...(hasSix ? [{ href: "#six", label: "Six" }] : []),
+    ...(hasSix && hasPacks ? [{ href: "#team", label: "Team & packs" }] : []),
     ...(hasSets ? [{ href: "#sets", label: "Sets" }] : []),
-    ...(hasPacks ? [{ href: "#packages", label: "Packages" }] : []),
     ...(hasPreview ? [{ href: "#preview", label: "Preview" }] : []),
     ...(hasScripts ? [{ href: "#scripts", label: "Scripts" }] : []),
     { href: "#guide", label: "Guide" },
@@ -118,7 +116,7 @@ export function ManualToc({
       <div className="flex items-center gap-3">
         {packLabel && packSlugs?.length ? (
           <a
-            href="#packages"
+            href="#team"
             className="pointer-events-auto hidden shrink-0 items-center gap-1.5 rounded-full border border-line/70 bg-raised/50 py-1 pl-1 pr-2.5 sm:inline-flex"
             title={packLabel}
           >

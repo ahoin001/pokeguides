@@ -607,14 +607,14 @@ export function ManualPackStage({
         ) : null}
 
         {(alts.length > 0 || mega) && (
-          <SideboardTray alts={alts} mega={mega} later={parent.ledger?.laterTests} />
+          <ManualSideboardTray alts={alts} mega={mega} later={parent.ledger?.laterTests} />
         )}
       </div>
     </ManualSection>
   );
 }
 
-function SideboardTray({
+export function ManualSideboardTray({
   alts,
   mega,
   later,

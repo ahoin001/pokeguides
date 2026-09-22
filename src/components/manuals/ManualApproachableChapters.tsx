@@ -433,18 +433,34 @@ export function ManualNetworkGraph({
             const on = hover === i;
             return (
               <g key={`${edge.from}-${edge.to}-${i}`}>
+                {/* Wide invisible hit target — easier than aiming at the thin stroke */}
+                <line
+                  x1={a.x}
+                  y1={a.y}
+                  x2={b.x}
+                  y2={b.y}
+                  stroke="transparent"
+                  strokeWidth={8}
+                  strokeLinecap="round"
+                  className="cursor-pointer"
+                  onMouseEnter={() => setHover(i)}
+                  onMouseLeave={() => setHover(null)}
+                  onFocus={() => setHover(i)}
+                  onBlur={() => setHover(null)}
+                  onClick={() => onEdge?.(edge.engineId)}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`${edge.from} creates ${edge.creates}, ${edge.to} converts ${edge.converts}`}
+                />
                 <line
                   x1={a.x}
                   y1={a.y}
                   x2={b.x}
                   y2={b.y}
                   stroke="currentColor"
-                  strokeWidth={on ? 0.6 : 0.35}
-                  className={on ? "text-ink" : "text-ink/25"}
-                  onMouseEnter={() => setHover(i)}
-                  onMouseLeave={() => setHover(null)}
-                  onClick={() => onEdge?.(edge.engineId)}
-                  style={{ cursor: "pointer" }}
+                  strokeWidth={on ? 0.85 : 0.4}
+                  strokeLinecap="round"
+                  className={`pointer-events-none ${on ? "text-ink" : "text-ink/25"}`}
                 />
               </g>
             );

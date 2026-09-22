@@ -19,7 +19,6 @@ import {
 } from "@/components/manuals/ManualDoublesChapters";
 import {
   ManualNetworkGraph,
-  ManualValueChips,
   ManualWinRecipes,
 } from "@/components/manuals/ManualApproachableChapters";
 import { ManualSection } from "@/components/manuals/ManualSection";
@@ -35,7 +34,7 @@ import {
   validatePackId,
   type TeamManual,
 } from "@/content/manuals";
-import { formatBringLabel, formatManualEyebrow, manualsHref } from "@/lib/format";
+import { formatBringLabel, formatManualEyebrow } from "@/lib/format";
 
 function coverageFromSlots(manual: TeamManual): CoverageMember[] {
   const out: CoverageMember[] = [];
@@ -89,16 +88,6 @@ export function ManualView({
   const defaultFocus = box[0] ?? (manual.slugs.find(Boolean) as string | undefined) ?? null;
   const focus = focusSlug ?? defaultFocus;
 
-  const valueChips = (parent.press ?? [])
-    .filter(Boolean)
-    .slice(0, 4)
-    .concat(
-      !parent.press?.length && approachable
-        ? ["Tempo", "Position", "Convert"]
-        : [],
-    )
-    .slice(0, 4);
-
   const whisperMon = focus ? getPokemon(focus)?.name : undefined;
 
   return (
@@ -120,57 +109,34 @@ export function ManualView({
           approachable={approachable}
         />
 
-        <header id="top" className={`${MANUAL_SCROLL_MT} max-w-3xl`}>
-          <p className="text-sm text-muted">
-            <Link href={manualsHref(manualFormat(parent))} className="hover:text-ink">
-              Field manuals
-            </Link>
-            {sourced === "local" ? " · Yours" : ""}
-            {activePack ? ` · ${activePack.label}` : ""}
-          </p>
-          <p
-            className={`mt-3 text-sm font-medium ${
-              doubles ? "text-[var(--format-doubles-accent)]" : "text-muted"
-            }`}
-          >
-            {formatManualEyebrow(manualFormat(parent))} · {formatBringLabel(manualFormat(parent))}
-          </p>
-          <h1 className="mt-2 text-4xl font-semibold tracking-tight lg:text-6xl lg:leading-[1.05]">
-            {parent.title}
-          </h1>
-          {parent.pilot?.thesis ? (
-            <blockquote className="mt-6 max-w-[36ch] border-l-0 text-xl font-medium leading-snug tracking-tight text-ink md:text-2xl">
-              {parent.pilot.thesis}
-            </blockquote>
-          ) : null}
-          {parent.philosophy && doubles ? (
-            <p className="mt-4 max-w-[52ch] text-sm leading-relaxed text-muted">
-              {parent.philosophy}
-            </p>
-          ) : null}
-          <ManualValueChips chips={valueChips} />
-          <p className="mt-4 flex flex-wrap items-center gap-2 text-sm text-muted">
-            <span className="rounded-full bg-white/8 px-3 py-1 font-medium text-ink">
-              {MANUAL_FAMILY_LABEL[manualFamily(manual)]}
-            </span>
-            <Link
-              href={archetypeHref(manual.archetype)}
-              className="rounded-full border border-line px-3 py-1 font-medium text-ink transition hover:border-ink/40"
+        <header id="top" className={`${MANUAL_SCROLL_MT}`}>
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <h1 className="text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl lg:leading-[1.05]">
+              {parent.title}
+            </h1>
+            {sourced === "local" ? (
+              <span className="text-sm text-muted">Yours</span>
+            ) : null}
+          </div>
+          <p className="mt-2 flex flex-wrap items-center gap-1.5 text-xs text-muted">
+            <span
+              className={
+                doubles ? "font-medium text-[var(--format-doubles-accent)]" : "font-medium text-ink"
+              }
             >
+              {formatManualEyebrow(manualFormat(parent))} · {formatBringLabel(manualFormat(parent))}
+            </span>
+            <span aria-hidden>·</span>
+            <span>{MANUAL_FAMILY_LABEL[manualFamily(manual)]}</span>
+            <span aria-hidden>·</span>
+            <Link href={archetypeHref(manual.archetype)} className="hover:text-ink">
               {ARCHETYPE_LABEL[manual.archetype]}
             </Link>
-            {boxed ? (
-              <span className="rounded-full border border-line px-3 py-1 text-muted">
-                6-box · {packs.length} packs
-              </span>
-            ) : null}
             {boxed && packs.length ? (
-              <a
-                href="#team"
-                className="rounded-full border border-line px-3 py-1 font-medium text-ink transition hover:border-ink/40"
-              >
-                Team &amp; packages
-              </a>
+              <>
+                <span aria-hidden>·</span>
+                <span>{packs.length} packs</span>
+              </>
             ) : null}
           </p>
         </header>
@@ -183,7 +149,6 @@ export function ManualView({
             onSelectPack={selectPack}
             focusSlug={focus}
             onFocusSlug={setFocusSlug}
-            layered={approachable && Boolean(parent.architecture?.length)}
           />
         ) : null}
 
@@ -194,6 +159,7 @@ export function ManualView({
               pack={activePack}
               focusSlug={focus}
               onFocusSlug={setFocusSlug}
+              compact
             />
 
             {(parent.engines?.length ?? 0) > 0 ? (

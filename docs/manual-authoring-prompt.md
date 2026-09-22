@@ -49,7 +49,7 @@ CHAMPIONS TRAINING (required on every roster slot and flex `slot`)
 HARD RULES
 1. Registered six stays exactly 6 unique species. Never put flex mons on `box`.
 2. Every set is paste-ready: item, ability, **nature**, **recommended Champions SP spread** (see above), 4 moves with { name, why }.
-3. Packs are bring-of-three from the *active* six (core box, or box after a flex swap). If format is "doubles", packs are bring-of-four and you must fill engines / controlPlanes / previewTrees / matchupScripts / ledger (see Doubles section after this prompt).
+3. Packs are bring-of-three from the *active* six (core box, or box after a flex swap). If format is "doubles", packs are bring-of-four and you must fill engines, **network** (thesis + ≥5 create→convert edges), controlPlanes / previewTrees / matchupScripts / ledger (see Doubles section after this prompt).
 4. TWO version systems — both first-class; do not collapse them:
    a) In-box MODE: same slug, different kit → roster[i].modes[] + pack.winconMode = mode.id
    b) Bench module / flex SWAP: different species → altSlots[] (+ module metadata) + pack.requiresSwap { out, in }
@@ -468,24 +468,68 @@ The reader has **six chapters**. Do not 1-1 map a long essay into page sections.
 | The six | `architecture[]` (3 skim layers), `roster[].primaryJob` + `networkJobs`, dead-loss via `gives` | Visual, not essays |
 | Sets | Full kit + `training.sp` (66 / max 32) + optional `opening[]` asks | Per-mon theater |
 | How it wins | `engines[]` (recipes) + `commandments[]` (≤5 one-liners) | **Meat:** each engine teaches setup → conversion → fail → recovery |
-| Network | `network.thesis` + `network.edges[]` `{ from, to, creates, converts, engineId? }` | One line per edge |
+| Network | `network.thesis` + `network.edges[]` (required for doubles — see Network meat) | Graph of create → convert |
 | Packages | Packs of 4: `identityCard`, `pilotDecision`, short `strategy`, **meaty** typed `loops`, `flows`, `engineIds` | Goal short; loops carry the teach |
 
 HARD (in addition to the singles rules)
 
 1. Packs are bring-of-four from the active six. `slugs.length === 4` and `strategy.bring` matches.
 2. Complete kits: `item`, `ability`, **nature (required)**, `moves[4].name`+`why`, Champions **`training.sp`** (66 total / max 32 per stat) with **recommended spread + label/why/spend/rule** — team builder must propose nature and SP even when items are TODO. Optional `exportEvs` for provenance.
-3. Doubles extras when the source has them:
+3. Doubles extras — **required**, not optional flavor:
    - `engines[]` — win recipes (see **How it wins meat** below)
-   - `network` — conversion graph (not ASCII)
+   - **`network`** — conversion graph (see **Network meat** below) — the UI constellation is empty without this
    - `commandments[]` — five house rules as strings
    - `controlPlanes[]` — freeform id string (fake-out, grassy, coaching, …)
    - `matchupScripts[]` — few pills that select a pack (e.g. Rain → Pack A); optional
    - `megaPool`, `construction.altSlots` (bench), `ledger.laterTests`
-4. Slot extras: `abilityStages`, `ampTargets`, `itemLoop`, `networkJobs`, `opening` (3–5 asks on Sets only).
+4. Slot extras: `abilityStages`, `ampTargets`, `itemLoop`, `networkJobs` (creates/converts/protects/scales — feeds The six skim), `opening` (3–5 asks on Sets only).
 5. Pack extras: `engineIds`, **2–4 meaty `loops` per pack** (see **Recipes you repeat** below), `flows`, optional `defaultLeadPair`. **Do not invent** T1 pairs or speed-calced SP.
-6. Anti-redundancy: Fake Out / Sand / Coaching / Nasty Plot appear as a kit click **or** an engine path **or** a pack loop beat — never paste the same essay into all three. Engines own team-level win paths; pack `loops` own **bring-specific** repeatable plays. Packs link engines via `engineIds` only.
+6. Anti-redundancy: Fake Out / Sand / Coaching / Nasty Plot appear as a kit click **or** an engine path **or** a pack loop beat — never paste the same essay into all three. Engines own team-level win paths; pack `loops` own **bring-specific** repeatable plays. Packs link engines via `engineIds` only. Network edges are **one-line create→convert labels**, not engine essays.
 7. No emoji. Catalog slugs only.
+
+### Network meat (`network`) — REQUIRED for doubles
+
+The Network chapter is a constellation: nodes = registered six, edges = “A creates a resource that B converts.” Without filled edges the page section is empty.
+
+**Required shape:**
+
+```json
+"network": {
+  "thesis": "One sentence: what the conversion graph is about.",
+  "edges": [
+    {
+      "from": "raichu",
+      "to": "gholdengo",
+      "creates": "Fake Out free turn",
+      "converts": "Nasty Plot",
+      "engineId": "special-scaling"
+    }
+  ]
+}
+```
+
+| Field | Requirement |
+| --- | --- |
+| `thesis` | One sentence (≤120 chars). Appears as the Network section purpose. |
+| `edges[]` | **Minimum 5**, prefer **6–10**. Each edge is one directed conversion. |
+| `from` / `to` | Catalog slugs. Prefer edges **among the registered `box`** so the constellation draws them. Flex-only endpoints are allowed for documentation but may not appear on the default graph. |
+| `creates` | Short noun phrase: the **resource** A manufactures (Fake Out free turn, Sand, Coaching, Intimidate, Tailwind, …). Max ~6 words. |
+| `converts` | Short noun phrase: what B spends that resource on (Nasty Plot, Sand Rush KO, Hyper Voice, …). Max ~6 words. |
+| `engineId` | Optional but recommended when the edge is a step of an `engines[].id` — clicking the edge jumps the reader to that win recipe. |
+
+**Authoring rules:**
+
+1. Ask “Who creates a board state, and who converts it?” — every edge must answer both halves.
+2. Cover the primary paths: tempo → scaler, terrain → physical, speed control → converter, and at least one failure/alternate route (e.g. physical denied → special).
+3. Do **not** invent edges that are not real on this six (no fictional Fake Out partners).
+4. Do **not** paste engine `how` essays into `creates`/`converts` — those fields are labels for the hover chip.
+5. Mirror the same language in `roster[].networkJobs` (creates / converts / protects / scales) so The six skim and the graph agree.
+6. Opponent-triggered edges (Intimidate → Competitive) may use the support mon as `from` if the trigger is opponent-side: phrase `creates` as “Intimidate into Competitive” rather than inventing a fake opponent slug.
+
+**Self-check example language:**
+
+- Good: `creates: "Fake Out free turn"`, `converts: "Nasty Plot"`
+- Bad: `creates: "Raichu uses Fake Out to stop the opponent from attacking which then allows Gholdengo to…"` (too long; belongs in engines)
 
 ### How it wins meat (`engines[]`)
 
@@ -528,7 +572,8 @@ Keep pack `strategy.purpose` / `mantra` / `winCondition` short (one goal line ea
 VALIDATION
 □ every pack has exactly 4 unique slugs ⊆ active six
 □ SP ≤ 66 and no stat > 32 when training is filled
-□ network from/to ⊆ box (or flex)
+□ network.thesis filled; edges ≥5; every from/to ⊆ box (prefer) or flex; creates/converts ≤6 words each
+□ ≥3 edges link to a real engines[].id via engineId
 □ every matchupScript.packId exists
 □ every engine has path (4–7), how (4–6 sentences), dependsOn, disrupt, fallback
 □ every pack has 2–4 loops; each loop body starts with If/When/Use when
@@ -549,6 +594,15 @@ Author ≥3 engines. For each engine:
 - how: 4–6 sentences covering create → convert → when to press → what denies
 - dependsOn, disrupt, fallback — all required, one line each
 Do not write one-liner engines. Do not write novels — teach the win path.
+
+NETWORK — MEAT REQUIRED (constellation is empty without this)
+Author network.thesis (one sentence) + ≥5 edges, prefer 6–10.
+Each edge: { from, to, creates, converts, engineId? }
+- from/to: catalog slugs on the registered box (flex endpoints allowed but box edges draw the UI)
+- creates / converts: short noun phrases (≤6 words) — resource A makes → what B spends it on
+- engineId: set when the edge is a step of an engines[].id so the UI can jump to that recipe
+Ask for every edge: "Who creates a board state, who converts it?"
+Do NOT paste engine essays into creates/converts. Mirror the same verbs in roster[].networkJobs.
 
 RECIPES YOU REPEAT — MEAT REQUIRED (every pack)
 Each pack needs 2–4 loops { title, body }.

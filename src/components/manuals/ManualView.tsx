@@ -178,6 +178,7 @@ export function ManualView({
               <ManualNetworkGraph
                 network={parent.network}
                 box={(parent.box ?? []).filter(Boolean) as string[]}
+                roster={parent.roster?.length ? parent.roster : parent.slots}
                 onNode={(slug) => {
                   setFocusSlug(slug);
                   document.getElementById("team")?.scrollIntoView({ behavior: "smooth" });

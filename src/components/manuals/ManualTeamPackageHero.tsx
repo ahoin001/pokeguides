@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
+import { MoveNoteRow } from "@/components/moves/MoveNoteRow";
 import { ManualFlowchart } from "@/components/manuals/ManualFlowchart";
 import { ManualLoopStrip } from "@/components/manuals/ManualLoopStrip";
 import { PackFourArts, PackThreeArts } from "@/components/manuals/ManualPackagePicker";
@@ -548,15 +549,14 @@ function KitSheet({
 
             <ul className="mt-3 grid gap-1.5 sm:grid-cols-2">
               {moves.map((move) => (
-                <li
+                <MoveNoteRow
                   key={move.name}
-                  className="rounded-xl border border-line/50 bg-raised/20 px-2.5 py-2"
-                >
-                  <p className="text-xs font-semibold">{move.name}</p>
-                  {move.why ? (
-                    <p className="mt-1 text-[11px] leading-snug text-muted">{move.why}</p>
-                  ) : null}
-                </li>
+                  name={move.name}
+                  why={move.why}
+                  alts={move.alts}
+                  size="sm"
+                  density="compact"
+                />
               ))}
             </ul>
           </motion.div>

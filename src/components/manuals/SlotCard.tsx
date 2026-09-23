@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
+import { MoveNoteRow } from "@/components/moves/MoveNoteRow";
 import { ROLE_LABEL, roleHref } from "@/content/roles";
 import { getLiteracyRole } from "@/content/literacy-roles";
 import { playLines, type SlotManual } from "@/content/manuals";
@@ -199,10 +200,13 @@ export function SlotCardBody({ slot, identity = true }: { slot: SlotManual; iden
                 {mode.moves.length ? (
                   <ul className="mt-3 border-t border-white/8 pt-3">
                     {mode.moves.map((move) => (
-                      <li key={move.name} className="border-t border-white/6 py-2 first:border-t-0 first:pt-0">
-                        <p className="text-[15px] font-medium leading-snug">{move.name}</p>
-                        <p className="mt-1 text-sm leading-relaxed text-muted">{move.why}</p>
-                      </li>
+                      <MoveNoteRow
+                        key={move.name}
+                        name={move.name}
+                        why={move.why}
+                        size="md"
+                        density="comfortable"
+                      />
                     ))}
                   </ul>
                 ) : null}
@@ -226,22 +230,14 @@ export function SlotCardBody({ slot, identity = true }: { slot: SlotManual; iden
         <Band tone="kit" title={slot.modes?.length ? "Default kit" : "Kit"}>
           <ul>
             {moves.map((move) => (
-              <li key={move.name} className="border-t border-white/8 py-3 first:border-t-0 first:pt-0 last:pb-0">
-                <SlotField label="">
-                  <p className="text-[15px] font-medium leading-snug">{move.name}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted">{move.why}</p>
-                </SlotField>
-                {move.alts
-                  ?.filter((a) => a.name)
-                  .map((alt) => (
-                    <div key={alt.name} className="mt-2.5">
-                      <SlotField label="Swap">
-                        <p className="font-medium leading-snug">{alt.name}</p>
-                        <p className="mt-1 text-sm leading-relaxed text-muted">{alt.why}</p>
-                      </SlotField>
-                    </div>
-                  ))}
-              </li>
+              <MoveNoteRow
+                key={move.name}
+                name={move.name}
+                why={move.why}
+                alts={move.alts}
+                size="md"
+                density="comfortable"
+              />
             ))}
           </ul>
         </Band>

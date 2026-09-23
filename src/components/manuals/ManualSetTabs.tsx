@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
+import { MoveNoteRow } from "@/components/moves/MoveNoteRow";
 import { Button } from "@/components/ui/Button";
 import { LoadSampleSix } from "@/components/learn/LoadSampleSix";
 import { ManualSection } from "@/components/manuals/ManualSection";
@@ -295,26 +296,14 @@ export function ManualSetTabs({
             </p>
             <ul className="mt-3">
               {displayed.moves.filter((m) => m.name).map((move) => (
-                <li
+                <MoveNoteRow
                   key={move.name}
-                  className="border-t border-white/8 py-2.5 first:border-t-0 first:pt-0"
-                >
-                  <p className="text-[15px] font-medium leading-snug">{move.name}</p>
-                  {move.why ? (
-                    <p className="mt-1 text-sm leading-snug text-muted">{move.why}</p>
-                  ) : null}
-                  {move.alts
-                    ?.filter((a) => a.name)
-                    .map((alt) => (
-                      <p key={alt.name} className="mt-2 text-sm leading-snug">
-                        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-muted">
-                          Swap{" "}
-                        </span>
-                        <span className="font-medium">{alt.name}</span>
-                        {alt.why ? <span className="text-muted"> — {alt.why}</span> : null}
-                      </p>
-                    ))}
-                </li>
+                  name={move.name}
+                  why={move.why}
+                  alts={move.alts}
+                  size="md"
+                  density="comfortable"
+                />
               ))}
             </ul>
           </div>

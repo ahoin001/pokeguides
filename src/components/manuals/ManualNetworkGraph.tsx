@@ -33,8 +33,8 @@ type NodeLayout = {
 
 /**
  * Conversion constellation — nodes placed on a Creates → Converts flow field.
- * High creators sit left / high; high converters sit right / high; bridges mid;
- * low-interaction faces drift toward the quiet bottom pocket.
+ * High creators sit left / high; high converters sit right / high; bridges mid.
+ * Every boxed face stays in the readable field with a visible name — no quiet pocket.
  */
 export function ManualNetworkGraph({
   network,
@@ -153,7 +153,7 @@ export function ManualNetworkGraph({
       }
     >
       <p className="mb-3 max-w-[52ch] text-[11px] leading-snug text-muted">
-        Left creates · right converts · higher faces do more of the work. Quiet pieces settle lower.
+        Left creates · right converts · higher faces do more of the work. Every boxed Pokémon stays on the board.
       </p>
 
       <div className="relative mx-auto aspect-[4/5] w-full max-w-xl sm:aspect-[5/4] sm:max-w-2xl md:aspect-square">
@@ -169,9 +169,6 @@ export function ManualNetworkGraph({
           </div>
           <div className="absolute right-3 top-2.5 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-muted/80">
             Converts
-          </div>
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 font-mono text-[9px] uppercase tracking-[0.12em] text-muted/60">
-            Quiet
           </div>
         </div>
 
@@ -280,55 +277,62 @@ export function ManualNetworkGraph({
               onFocus={() => setLitSlug(n.slug)}
               onBlur={() => setLitSlug(null)}
               onClick={() => onNode?.(n.slug)}
-              className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full border bg-bg p-1 shadow-sm transition duration-200 md:p-1.5 ${
-                connected
-                  ? focused
-                    ? "z-10 scale-110 border-ink/50"
-                    : bandRing(n.band)
-                  : "scale-95 border-transparent opacity-35"
+              className={`absolute z-[1] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 transition duration-200 ${
+                connected ? (focused ? "z-10 scale-105" : "") : "opacity-40"
               }`}
               style={{ left: `${n.x}%`, top: `${n.y}%`, ...cssVars(mon.palette) }}
               title={`${mon.name} · ${bandLabel(n.band)}${out ? ` · feeds ${out}` : ""}${inn ? ` · fed by ${inn}` : ""}`}
             >
-              <span className="md:hidden">
-                <PokemonArt
-                  slug={mon.slug}
-                  src={mon.sprite || mon.artwork}
-                  name={mon.name}
-                  size={art.sm}
-                />
+              <span
+                className={`rounded-full border bg-bg p-1 shadow-sm md:p-1.5 ${
+                  focused ? "border-ink/50" : bandRing(n.band)
+                }`}
+              >
+                <span className="md:hidden">
+                  <PokemonArt
+                    slug={mon.slug}
+                    src={mon.sprite || mon.artwork}
+                    name={mon.name}
+                    size={art.sm}
+                  />
+                </span>
+                <span className="hidden md:block">
+                  <PokemonArt
+                    slug={mon.slug}
+                    src={mon.sprite || mon.artwork}
+                    name={mon.name}
+                    size={art.md}
+                  />
+                </span>
               </span>
-              <span className="hidden md:block">
-                <PokemonArt
-                  slug={mon.slug}
-                  src={mon.sprite || mon.artwork}
-                  name={mon.name}
-                  size={art.md}
-                />
-              </span>
-              <span className="pointer-events-none absolute -bottom-1 left-1/2 flex -translate-x-1/2 gap-0.5">
-                {n.out > 0 ? (
-                  <span className="rounded-full bg-ink px-1 py-px font-mono text-[8px] font-semibold tabular-nums text-bg">
-                    →{n.out}
-                  </span>
-                ) : null}
-                {n.inn > 0 ? (
-                  <span className="rounded-full border border-line/80 bg-bg px-1 py-px font-mono text-[8px] font-semibold tabular-nums text-muted">
-                    ←{n.inn}
-                  </span>
-                ) : null}
-                {n.band === "idle" ? (
-                  <span className="rounded-full border border-dashed border-line/70 bg-bg/90 px-1 py-px font-mono text-[8px] text-muted">
-                    ·
-                  </span>
-                ) : null}
+              <span className="pointer-events-none flex max-w-[5.5rem] flex-col items-center gap-0.5">
+                <span className="truncate text-center text-[10px] font-semibold leading-tight tracking-tight text-ink sm:text-[11px]">
+                  {mon.name}
+                </span>
+                <span className="flex flex-wrap items-center justify-center gap-0.5">
+                  {n.out > 0 ? (
+                    <span className="rounded-full bg-ink px-1 py-px font-mono text-[8px] font-semibold tabular-nums text-bg">
+                      →{n.out}
+                    </span>
+                  ) : null}
+                  {n.inn > 0 ? (
+                    <span className="rounded-full border border-line/80 bg-bg px-1 py-px font-mono text-[8px] font-semibold tabular-nums text-muted">
+                      ←{n.inn}
+                    </span>
+                  ) : null}
+                  {n.band === "idle" ? (
+                    <span className="rounded-full border border-line/70 bg-bg/95 px-1 py-px font-mono text-[8px] text-muted">
+                      low
+                    </span>
+                  ) : null}
+                </span>
               </span>
             </button>
           );
         })}
 
         {active || litSlug ? (
-          <div className="pointer-events-none absolute bottom-2 left-1/2 z-10 w-[min(94%,22rem)] -translate-x-1/2 rounded-2xl border border-line bg-bg/95 px-3 py-2.5 text-center shadow-md backdrop-blur-sm">
+          <div className="pointer-events-none absolute bottom-2 left-1/2 z-20 w-[min(94%,22rem)] -translate-x-1/2 rounded-2xl border border-line bg-bg/95 px-3 py-2.5 text-center shadow-md backdrop-blur-sm">
             {active && activePhrases ? (
               <>
                 <p className="text-sm font-semibold tracking-tight text-ink">
@@ -353,11 +357,7 @@ export function ManualNetworkGraph({
               />
             ) : null}
           </div>
-        ) : (
-          <p className="pointer-events-none absolute bottom-8 left-1/2 z-10 w-[min(92%,18rem)] -translate-x-1/2 text-center text-[11px] text-muted sm:bottom-2">
-            Hover a face or link · flow reads Creates → Converts
-          </p>
-        )}
+        ) : null}
       </div>
 
       <div className="mt-6 space-y-4">
@@ -563,7 +563,7 @@ function degreeMaps(edges: Edge[], slugs: string[]) {
 /**
  * Flow field:
  *  x — Creates (left) → Converts (right)
- *  y — Busy (top) → Quiet (bottom)
+ *  y — Busier slightly higher; everyone stays in the readable mid band
  */
 function layoutByFlow(
   slugs: string[],
@@ -582,10 +582,15 @@ function layoutByFlow(
   const maxIn = Math.max(1, ...scored.map((s) => s.inn));
   const maxTotal = Math.max(1, ...scored.map((s) => s.total));
 
+  // Rank by activity so low-link faces still get distinct slots (not stacked).
+  const byActivity = [...scored].sort((a, b) => b.total - a.total || a.slug.localeCompare(b.slug));
+  const rank = new Map(byActivity.map((s, i) => [s.slug, i]));
+
   const nodes: NodeLayout[] = scored.map((s) => {
     const c = s.out / maxOut;
     const v = s.inn / maxIn;
-    const activity = s.total / maxTotal;
+    // Floor so low-interaction faces stay visually present
+    const activity = s.total === 0 ? 0.22 : 0.35 + (s.total / maxTotal) * 0.65;
     let role: number;
     let band: NodeLayout["band"];
 
@@ -609,42 +614,37 @@ function layoutByFlow(
       band = "converts";
     }
 
-    // Clamp role
     role = Math.max(-1, Math.min(1, role));
 
-    const x =
-      band === "idle"
-        ? 50
-        : 50 + role * 36;
-    const y =
-      band === "idle"
-        ? 90
-        : 16 + (1 - activity) * 58;
+    // Spread zero-link faces across the center so they stay readable as a row
+    if (band === "idle") {
+      const idles = scored.filter((x) => x.total === 0);
+      const idx = idles.findIndex((x) => x.slug === s.slug);
+      const t = idles.length <= 1 ? 0.5 : idx / (idles.length - 1);
+      role = -0.35 + t * 0.7;
+    }
+
+    const r = rank.get(s.slug) ?? 0;
+    // Mild fan so six faces don't stack — busier a bit higher, quieter still mid-field
+    const yBase = 28 + (r / Math.max(1, slugs.length - 1)) * 36;
+    const yBusy = 22 + (1 - Math.min(1, s.total / maxTotal)) * 28;
+    const y = band === "idle" ? 48 + (r % 2) * 8 : (yBase + yBusy) / 2;
+    const x = 50 + role * 34;
 
     return { slug: s.slug, x, y, out: s.out, inn: s.inn, role, activity, band };
   });
 
-  // Spread idle nodes if several sit in the quiet pocket
-  const idles = nodes.filter((n) => n.band === "idle");
-  if (idles.length > 1) {
-    idles.forEach((n, i) => {
-      const t = idles.length === 1 ? 0.5 : i / (idles.length - 1);
-      n.x = 28 + t * 44;
-      n.y = 88 + (i % 2) * 3;
-    });
-  }
-
-  separateNodes(nodes, 18);
-  // Keep inside padded viewport
+  separateNodes(nodes, 22);
   for (const n of nodes) {
-    n.x = Math.max(12, Math.min(88, n.x));
-    n.y = Math.max(12, Math.min(90, n.y));
+    n.x = Math.max(14, Math.min(86, n.x));
+    // Keep clear of top labels and bottom focus card
+    n.y = Math.max(18, Math.min(72, n.y));
   }
   return nodes;
 }
 
 function separateNodes(nodes: NodeLayout[], minDist: number) {
-  for (let pass = 0; pass < 10; pass++) {
+  for (let pass = 0; pass < 12; pass++) {
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
         const a = nodes[i]!;
@@ -653,7 +653,7 @@ function separateNodes(nodes: NodeLayout[], minDist: number) {
         const dy = b.y - a.y;
         const d = Math.hypot(dx, dy) || 0.01;
         if (d >= minDist) continue;
-        const push = ((minDist - d) / 2) * 0.85;
+        const push = ((minDist - d) / 2) * 0.9;
         const ux = dx / d;
         const uy = dy / d;
         a.x -= ux * push;
@@ -666,8 +666,9 @@ function separateNodes(nodes: NodeLayout[], minDist: number) {
 }
 
 function artSize(activity: number) {
-  const sm = Math.round(36 + activity * 12);
-  const md = Math.round(44 + activity * 14);
+  const t = Math.max(0.4, Math.min(1, activity));
+  const sm = Math.round(40 + t * 10);
+  const md = Math.round(48 + t * 12);
   return { sm, md };
 }
 
@@ -680,7 +681,7 @@ function bandLabel(band: NodeLayout["band"]) {
     case "bridge":
       return "Bridge";
     case "idle":
-      return "Quiet";
+      return "Low link";
   }
 }
 
@@ -693,7 +694,7 @@ function bandRing(band: NodeLayout["band"]) {
     case "bridge":
       return "border-ink/40 hover:scale-105 shadow-sm";
     case "idle":
-      return "border-dashed border-line/70 opacity-80 hover:opacity-100";
+      return "border-ink/20 hover:scale-105";
   }
 }
 
@@ -765,8 +766,7 @@ function NodeFocusSummary({
   if (!out.length && !inn.length) {
     return (
       <p className="text-[11px] text-muted">
-        {name}
-        {layout?.band === "idle" ? " sits quiet in this view" : " has no links in this view"}
+        {name} has no create/convert links in this view
       </p>
     );
   }

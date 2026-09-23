@@ -6,6 +6,8 @@ import { ULTRA_GARCHOMPZ_SALAMENCE_GHOLDENGO_MANUAL } from "@/content/manuals/ul
 import { CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL } from "@/content/manuals/charizard-lucario-rotom-flex";
 import { ARCHITECTURE_A_SAND_SCALING_MANUAL } from "@/content/manuals/architecture-a-sand-scaling";
 import { CONVERSION_NETWORK_MODULAR_MC_MANUAL } from "@/content/manuals/conversion-network-modular-mc";
+import { R2_MIXED_AUTONOMOUS_SAND_MANUAL } from "@/content/manuals/r2-mixed-autonomous-sand";
+import { R4_COUNTERPLAY_CLOSURE_MANUAL } from "@/content/manuals/r4-counterplay-closure";
 
 export { alt, train };
 
@@ -1283,6 +1285,8 @@ export const CANONICAL_MANUALS: TeamManual[] = [
   CHARIZARD_LUCARIO_ROTOM_FLEX_MANUAL,
   ARCHITECTURE_A_SAND_SCALING_MANUAL,
   CONVERSION_NETWORK_MODULAR_MC_MANUAL,
+  R2_MIXED_AUTONOMOUS_SAND_MANUAL,
+  R4_COUNTERPLAY_CLOSURE_MANUAL,
 ];
 
 export function getCanonicalManual(id: string) {

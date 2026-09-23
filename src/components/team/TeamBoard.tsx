@@ -205,7 +205,7 @@ export function TeamBoard() {
               <TeamPresetsBar
                 party={partySlugs}
                 moves={slotMoves}
-                hint="Saved here and on Live Match — same list."
+                hint="Saved teams plus manuals you pin from their detail pages."
                 onApply={(preset) => {
                   const bring = preset.slugs.slice(0, 3);
                   loadThree(

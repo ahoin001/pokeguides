@@ -3,7 +3,9 @@
 import {
   useEffect,
   useId,
+  useLayoutEffect,
   useRef,
+  useState,
   type ReactNode,
 } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -45,7 +47,7 @@ const ALIGN: Record<PopoverAlign, string> = {
 
 /**
  * Lightweight popover: outside press + Escape dismiss, enter/exit motion.
- * Scale from the trigger corner — never from nothing.
+ * Keeps the panel inside the viewport (shifts horizontally when near edges).
  */
 export function Popover({
   open,
@@ -60,9 +62,11 @@ export function Popover({
   widthClassName = "w-[min(100vw-2rem,22rem)]",
 }: PopoverProps) {
   const root = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const panelId = useId();
   const reduce = useReducedMotion();
   const battle = variant === "battle";
+  const [shiftX, setShiftX] = useState(0);
 
   useEffect(() => {
     if (!open) return;
@@ -83,6 +87,34 @@ export function Popover({
     };
   }, [open, onOpenChange]);
 
+  useLayoutEffect(() => {
+    if (!open) {
+      setShiftX(0);
+      return;
+    }
+    const panel = panelRef.current;
+    if (!panel) return;
+
+    function clamp() {
+      const el = panelRef.current;
+      if (!el) return;
+      // Reset before measuring so we don't compound previous shifts.
+      el.style.marginLeft = "0px";
+      const rect = el.getBoundingClientRect();
+      const margin = 12;
+      const vw = window.innerWidth;
+      let dx = 0;
+      if (rect.left < margin) dx = margin - rect.left;
+      else if (rect.right > vw - margin) dx = vw - margin - rect.right;
+      setShiftX(dx);
+      el.style.marginLeft = dx ? `${dx}px` : "0px";
+    }
+
+    clamp();
+    window.addEventListener("resize", clamp);
+    return () => window.removeEventListener("resize", clamp);
+  }, [open, children, align, widthClassName]);
+
   function toggle() {
     onOpenChange(!open);
   }
@@ -101,13 +133,15 @@ export function Popover({
       <AnimatePresence>
         {open ? (
           <motion.div
+            ref={panelRef}
             id={panelId}
             role={role}
             initial={reduce ? false : panelIn.initial}
             animate={panelIn.animate}
             exit={reduce ? undefined : panelIn.exit}
             transition={panelIn.transition}
-            className={`absolute top-[calc(100%+0.5rem)] z-30 ${ALIGN[align]} ${widthClassName}`}
+            style={shiftX ? { marginLeft: shiftX } : undefined}
+            className={`absolute top-[calc(100%+0.5rem)] z-40 max-w-[calc(100vw-1.5rem)] ${ALIGN[align]} ${widthClassName}`}
           >
             <div
               className={

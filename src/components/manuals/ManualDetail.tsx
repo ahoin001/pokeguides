@@ -20,17 +20,21 @@ import { ManualNotes } from "@/components/manuals/ManualNotes";
 import { ManualNavStrip } from "@/components/manuals/ManualNavStrip";
 import { ManualForm } from "@/components/manuals/ManualForm";
 import { Button } from "@/components/ui/Button";
+import { useTeamPresetsStore } from "@/stores/team-presets";
 
 export function ManualDetail({ id }: { id: string }) {
   const router = useRouter();
   const local = useManualsStore((s) => s.local);
   const removeLocal = useManualsStore((s) => s.removeLocal);
+  const pinnedManualIds = useTeamPresetsStore((s) => s.pinnedManualIds);
+  const toggleManualPin = useTeamPresetsStore((s) => s.toggleManualPin);
   const [editing, setEditing] = useQueryState("edit", parseAsBoolean.withDefault(false));
 
   const canonical = getCanonicalManual(id);
   const manual = resolveManualById(id, local);
   const sourced = manualSource(id, local);
   const overridden = isDeviceOverride(id, local);
+  const pinnedToLive = pinnedManualIds.includes(id);
 
   if (!manual || !sourced) {
     return (
@@ -88,6 +92,18 @@ export function ManualDetail({ id }: { id: string }) {
           )}
         </div>
         <div className="flex flex-wrap gap-2">
+          <Button
+            type="button"
+            variant={pinnedToLive ? "primary" : "line"}
+            onClick={() => toggleManualPin(id)}
+            title={
+              pinnedToLive
+                ? "Hide this six from Live Match presets"
+                : "Show this registered six in Live Match presets"
+            }
+          >
+            {pinnedToLive ? "On Live Match" : "Add to Live Match"}
+          </Button>
           {editing ? (
             <Button type="button" variant="line" onClick={exitEdit}>
               Reader

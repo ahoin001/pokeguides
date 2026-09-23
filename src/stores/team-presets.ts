@@ -4,6 +4,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 const MAX_PRESETS = 12;
+const MAX_MANUAL_PINS = 16;
 const MAX_BRING = 6;
 const MAX_MOVES = 4;
 
@@ -17,12 +18,19 @@ export type TeamPreset = {
 };
 
 type TeamPresetsState = {
+  /** Teams saved from Live Match or Team builder. */
   presets: TeamPreset[];
+  /** Manual ids toggled “show on Live Match” from a manual detail page. */
+  pinnedManualIds: string[];
   savePreset: (name: string, slugs: string[], moves: Record<string, string[]>) => string | null;
   deletePreset: (id: string) => void;
   renamePreset: (id: string, name: string) => void;
   /** One-shot import (e.g. migrate Live presets). Skips duplicate ids. */
   importPresets: (incoming: TeamPreset[]) => void;
+  pinManual: (manualId: string) => void;
+  unpinManual: (manualId: string) => void;
+  toggleManualPin: (manualId: string) => void;
+  isManualPinned: (manualId: string) => boolean;
 };
 
 function normalizeBring(slugs: string[]) {
@@ -91,6 +99,7 @@ export const useTeamPresetsStore = create<TeamPresetsState>()(
   persist(
     (set, get) => ({
       presets: [],
+      pinnedManualIds: [],
       savePreset: (name, slugs, moves) => {
         const trimmed = name.trim();
         const party = normalizeBring(slugs);
@@ -135,10 +144,39 @@ export const useTeamPresetsStore = create<TeamPresetsState>()(
             .slice(0, MAX_PRESETS),
         }));
       },
+      pinManual: (manualId) => {
+        const id = manualId.trim();
+        if (!id) return;
+        set((s) => {
+          if (s.pinnedManualIds.includes(id)) return s;
+          return {
+            pinnedManualIds: [id, ...s.pinnedManualIds].slice(0, MAX_MANUAL_PINS),
+          };
+        });
+      },
+      unpinManual: (manualId) =>
+        set((s) => ({
+          pinnedManualIds: s.pinnedManualIds.filter((id) => id !== manualId),
+        })),
+      toggleManualPin: (manualId) => {
+        const id = manualId.trim();
+        if (!id) return;
+        if (get().pinnedManualIds.includes(id)) get().unpinManual(id);
+        else get().pinManual(id);
+      },
+      isManualPinned: (manualId) => get().pinnedManualIds.includes(manualId),
     }),
     {
       name: "ringside-team-presets",
-      version: 1,
+      version: 2,
+      migrate: (persisted, version) => {
+        const raw = (persisted ?? {}) as Partial<TeamPresetsState>;
+        return {
+          presets: Array.isArray(raw.presets) ? raw.presets : [],
+          pinnedManualIds:
+            version >= 2 && Array.isArray(raw.pinnedManualIds) ? raw.pinnedManualIds : [],
+        };
+      },
       onRehydrateStorage: () => (state) => {
         if (!state) return;
         if (state.presets.length) return;
@@ -149,4 +187,4 @@ export const useTeamPresetsStore = create<TeamPresetsState>()(
   ),
 );
 
-export { MAX_PRESETS, MAX_BRING, MAX_MOVES, normalizeBring, normalizeMoves };
+export { MAX_PRESETS, MAX_MANUAL_PINS, MAX_BRING, MAX_MOVES, normalizeBring, normalizeMoves };

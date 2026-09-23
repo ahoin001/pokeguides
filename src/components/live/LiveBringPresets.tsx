@@ -31,7 +31,7 @@ export function LiveBringPresets() {
       party={party}
       moves={bringMoves}
       onApply={apply}
-      hint="Same presets as Team builder — save once, load on either side."
+      hint="Save a Live/Team preset, or pin manuals from their detail pages."
     />
   );
 }

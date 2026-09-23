@@ -18,9 +18,23 @@ type Edge = ManualNetwork["edges"][number];
 type CardAxis = "creates" | "converts";
 type IndexedEdge = { edge: Edge; index: number };
 
+type NodeLayout = {
+  slug: string;
+  x: number;
+  y: number;
+  out: number;
+  inn: number;
+  /** -1 pure creator … +1 pure converter */
+  role: number;
+  /** 0 idle … 1 busiest */
+  activity: number;
+  band: "creates" | "bridge" | "converts" | "idle";
+};
+
 /**
- * Conversion constellation — directed edges without mid-line labels,
- * focus dock + kit-aware MoveChip cards (hover syncs graph ↔ cards).
+ * Conversion constellation — nodes placed on a Creates → Converts flow field.
+ * High creators sit left / high; high converters sit right / high; bridges mid;
+ * low-interaction faces drift toward the quiet bottom pocket.
  */
 export function ManualNetworkGraph({
   network,
@@ -43,19 +57,15 @@ export function ManualNetworkGraph({
 
   const kits = useMemo(() => kitMapFromRoster(roster), [roster]);
 
-  const nodes = useMemo(() => {
-    const slugs = box.filter(Boolean).slice(0, 6);
-    // Even hex — more vertical separation so edges don't pile mid-graph
-    const positions: { slug: string; x: number; y: number }[] = [
-      { slug: slugs[0] ?? "", x: 50, y: 10 },
-      { slug: slugs[1] ?? "", x: 12, y: 36 },
-      { slug: slugs[2] ?? "", x: 88, y: 36 },
-      { slug: slugs[3] ?? "", x: 50, y: 48 },
-      { slug: slugs[4] ?? "", x: 22, y: 88 },
-      { slug: slugs[5] ?? "", x: 78, y: 88 },
-    ];
-    return positions.filter((p) => p.slug);
-  }, [box]);
+  const slugs = useMemo(() => box.filter(Boolean).slice(0, 6), [box]);
+
+  /** Degrees from the full authored graph — layout stays stable when toggling simple links. */
+  const fullDegree = useMemo(() => degreeMaps(network.edges, slugs), [network.edges, slugs]);
+
+  const nodes = useMemo(
+    () => layoutByFlow(slugs, fullDegree.feeds, fullDegree.fedBy),
+    [slugs, fullDegree],
+  );
 
   const pos = useMemo(() => {
     const m = new Map<string, { x: number; y: number }>();
@@ -63,23 +73,24 @@ export function ManualNetworkGraph({
     return m;
   }, [nodes]);
 
+  const bySlug = useMemo(() => {
+    const m = new Map<string, NodeLayout>();
+    for (const n of nodes) m.set(n.slug, n);
+    return m;
+  }, [nodes]);
+
   const edges = useMemo(() => {
     const all = network.edges.filter((e) => pos.has(e.from) && pos.has(e.to));
     if (!simple) return all;
-    const converters = new Set(box.slice(3, 5));
-    const prefer = all.filter((e) => converters.has(e.to) || e.engineId);
-    return prefer.length ? prefer : all.slice(0, 5);
-  }, [network.edges, pos, simple, box]);
+    // Prefer edges into active converters / engine-tagged routes
+    const hotConverters = new Set(
+      nodes.filter((n) => n.band === "converts" || n.band === "bridge").map((n) => n.slug),
+    );
+    const prefer = all.filter((e) => hotConverters.has(e.to) || e.engineId);
+    return prefer.length ? prefer : all.slice(0, Math.min(6, all.length));
+  }, [network.edges, pos, simple, nodes]);
 
-  const degree = useMemo(() => {
-    const feeds = new Map<string, number>();
-    const fedBy = new Map<string, number>();
-    for (const e of edges) {
-      feeds.set(e.from, (feeds.get(e.from) ?? 0) + 1);
-      fedBy.set(e.to, (fedBy.get(e.to) ?? 0) + 1);
-    }
-    return { feeds, fedBy };
-  }, [edges]);
+  const degree = useMemo(() => degreeMaps(edges, slugs), [edges, slugs]);
 
   const phraseFor = (edge: Edge) => ({
     creates: resolveNetworkPhrase(edge.creates, kits.get(edge.from) ?? []),
@@ -95,8 +106,14 @@ export function ManualNetworkGraph({
     const present = new Set(
       indexedEdges.map(({ edge }) => (cardAxis === "creates" ? edge.from : edge.to)),
     );
-    return box.filter((s) => present.has(s));
-  }, [indexedEdges, box, cardAxis]);
+    return [...slugs]
+      .filter((s) => present.has(s))
+      .sort((a, b) => {
+        const da = cardAxis === "creates" ? (degree.feeds.get(a) ?? 0) : (degree.fedBy.get(a) ?? 0);
+        const db = cardAxis === "creates" ? (degree.feeds.get(b) ?? 0) : (degree.fedBy.get(b) ?? 0);
+        return db - da;
+      });
+  }, [indexedEdges, slugs, cardAxis, degree]);
 
   const activeFocus =
     cardFocus && axisSlugs.includes(cardFocus) ? cardFocus : null;
@@ -107,12 +124,12 @@ export function ManualNetworkGraph({
       ? indexedEdges.filter(({ edge }) => keyOf(edge) === activeFocus)
       : indexedEdges;
     const groups: { slug: string; items: IndexedEdge[] }[] = [];
-    for (const slug of box) {
+    for (const slug of axisSlugs) {
       const g = items.filter(({ edge }) => keyOf(edge) === slug);
       if (g.length) groups.push({ slug, items: g });
     }
     return groups;
-  }, [indexedEdges, box, cardAxis, activeFocus]);
+  }, [indexedEdges, axisSlugs, cardAxis, activeFocus]);
 
   if (!nodes.length || !network.edges.length) return null;
 
@@ -135,7 +152,29 @@ export function ManualNetworkGraph({
         </button>
       }
     >
-      <div className="relative mx-auto aspect-[5/4] w-full max-w-2xl sm:aspect-square">
+      <p className="mb-3 max-w-[52ch] text-[11px] leading-snug text-muted">
+        Left creates · right converts · higher faces do more of the work. Quiet pieces settle lower.
+      </p>
+
+      <div className="relative mx-auto aspect-[4/5] w-full max-w-xl sm:aspect-[5/4] sm:max-w-2xl md:aspect-square">
+        {/* Soft flow zones */}
+        <div
+          className="pointer-events-none absolute inset-0 overflow-hidden rounded-[22px] border border-line/40"
+          aria-hidden
+        >
+          <div className="absolute inset-y-0 left-0 w-[38%] bg-[linear-gradient(90deg,color-mix(in_srgb,var(--ink)_6%,transparent),transparent)]" />
+          <div className="absolute inset-y-0 right-0 w-[38%] bg-[linear-gradient(270deg,color-mix(in_srgb,var(--ink)_6%,transparent),transparent)]" />
+          <div className="absolute left-3 top-2.5 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-muted/80">
+            Creates
+          </div>
+          <div className="absolute right-3 top-2.5 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-muted/80">
+            Converts
+          </div>
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 font-mono text-[9px] uppercase tracking-[0.12em] text-muted/60">
+            Quiet
+          </div>
+        </div>
+
         <svg
           viewBox="0 0 100 100"
           className="absolute inset-0 h-full w-full overflow-visible"
@@ -203,12 +242,12 @@ export function ManualNetworkGraph({
                   x2={geo.x2}
                   y2={geo.y2}
                   stroke="currentColor"
-                  strokeWidth={hot ? 1.05 : 0.45}
+                  strokeWidth={hot ? 1.05 : 0.4 + Math.min(0.35, ((fullDegree.feeds.get(edge.from) ?? 0) + (fullDegree.fedBy.get(edge.to) ?? 0)) * 0.08)}
                   strokeLinecap="round"
                   strokeDasharray={hot ? "2.4 1.6" : undefined}
                   markerEnd={hot ? "url(#net-arrow-hot)" : "url(#net-arrow)"}
                   className={`pointer-events-none transition-opacity duration-200 ${
-                    dim ? "text-ink/10" : hot ? "text-ink network-edge-flow" : "text-ink/30"
+                    dim ? "text-ink/10" : hot ? "text-ink network-edge-flow" : "text-ink/28"
                   }`}
                 />
               </g>
@@ -228,6 +267,7 @@ export function ManualNetworkGraph({
           const focused =
             litSlug === n.slug ||
             (active != null && (active.from === n.slug || active.to === n.slug));
+          const art = artSize(n.activity);
           return (
             <button
               key={n.slug}
@@ -243,19 +283,19 @@ export function ManualNetworkGraph({
               className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full border bg-bg p-1 shadow-sm transition duration-200 md:p-1.5 ${
                 connected
                   ? focused
-                    ? "scale-110 border-ink/50"
-                    : "border-line/70 hover:scale-105"
+                    ? "z-10 scale-110 border-ink/50"
+                    : bandRing(n.band)
                   : "scale-95 border-transparent opacity-35"
               }`}
               style={{ left: `${n.x}%`, top: `${n.y}%`, ...cssVars(mon.palette) }}
-              title={`${mon.name}${out ? ` · feeds ${out}` : ""}${inn ? ` · fed by ${inn}` : ""}`}
+              title={`${mon.name} · ${bandLabel(n.band)}${out ? ` · feeds ${out}` : ""}${inn ? ` · fed by ${inn}` : ""}`}
             >
               <span className="md:hidden">
                 <PokemonArt
                   slug={mon.slug}
                   src={mon.sprite || mon.artwork}
                   name={mon.name}
-                  size={44}
+                  size={art.sm}
                 />
               </span>
               <span className="hidden md:block">
@@ -263,23 +303,26 @@ export function ManualNetworkGraph({
                   slug={mon.slug}
                   src={mon.sprite || mon.artwork}
                   name={mon.name}
-                  size={52}
+                  size={art.md}
                 />
               </span>
-              {(out > 0 || inn > 0) && (
-                <span className="pointer-events-none absolute -bottom-1 left-1/2 flex -translate-x-1/2 gap-0.5">
-                  {out > 0 ? (
-                    <span className="rounded-full bg-ink px-1 py-px font-mono text-[8px] font-semibold tabular-nums text-bg">
-                      →{out}
-                    </span>
-                  ) : null}
-                  {inn > 0 ? (
-                    <span className="rounded-full border border-line/80 bg-bg px-1 py-px font-mono text-[8px] font-semibold tabular-nums text-muted">
-                      ←{inn}
-                    </span>
-                  ) : null}
-                </span>
-              )}
+              <span className="pointer-events-none absolute -bottom-1 left-1/2 flex -translate-x-1/2 gap-0.5">
+                {n.out > 0 ? (
+                  <span className="rounded-full bg-ink px-1 py-px font-mono text-[8px] font-semibold tabular-nums text-bg">
+                    →{n.out}
+                  </span>
+                ) : null}
+                {n.inn > 0 ? (
+                  <span className="rounded-full border border-line/80 bg-bg px-1 py-px font-mono text-[8px] font-semibold tabular-nums text-muted">
+                    ←{n.inn}
+                  </span>
+                ) : null}
+                {n.band === "idle" ? (
+                  <span className="rounded-full border border-dashed border-line/70 bg-bg/90 px-1 py-px font-mono text-[8px] text-muted">
+                    ·
+                  </span>
+                ) : null}
+              </span>
             </button>
           );
         })}
@@ -302,12 +345,17 @@ export function ManualNetworkGraph({
                 </div>
               </>
             ) : litSlug ? (
-              <NodeFocusSummary slug={litSlug} edges={edges} kits={kits} />
+              <NodeFocusSummary
+                slug={litSlug}
+                edges={edges}
+                kits={kits}
+                layout={bySlug.get(litSlug)}
+              />
             ) : null}
           </div>
         ) : (
-          <p className="pointer-events-none absolute bottom-2 left-1/2 z-10 w-[min(92%,18rem)] -translate-x-1/2 text-center text-[11px] text-muted">
-            Hover a face or link · arrows show who feeds whom
+          <p className="pointer-events-none absolute bottom-8 left-1/2 z-10 w-[min(92%,18rem)] -translate-x-1/2 text-center text-[11px] text-muted sm:bottom-2">
+            Hover a face or link · flow reads Creates → Converts
           </p>
         )}
       </div>
@@ -342,7 +390,7 @@ export function ManualNetworkGraph({
 
           <div className="flex flex-wrap items-center gap-1.5">
             <span className="mr-1 font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-muted">
-              {cardAxis === "creates" ? "Creator" : "Converter"}
+              {cardAxis === "creates" ? "By creator weight" : "By converter weight"}
             </span>
             <button
               type="button"
@@ -357,15 +405,20 @@ export function ManualNetworkGraph({
             </button>
             {axisSlugs.map((slug) => {
               const mon = getPokemon(slug);
+              const layout = bySlug.get(slug);
               if (!mon) return null;
               const on = activeFocus === slug;
+              const weight =
+                cardAxis === "creates"
+                  ? (degree.feeds.get(slug) ?? 0)
+                  : (degree.fedBy.get(slug) ?? 0);
               return (
                 <button
                   key={slug}
                   type="button"
                   onClick={() => setCardFocus(on ? null : slug)}
-                  title={`${mon.name} · ${cardAxis}`}
-                  className={`rounded-full border p-0.5 transition ${
+                  title={`${mon.name} · ${weight} ${cardAxis}${layout ? ` · ${bandLabel(layout.band)}` : ""}`}
+                  className={`relative rounded-full border p-0.5 transition ${
                     on
                       ? "border-ink/50 bg-raised/60 shadow-sm"
                       : "border-line/60 hover:border-ink/30"
@@ -378,6 +431,11 @@ export function ManualNetworkGraph({
                     name={mon.name}
                     size={26}
                   />
+                  {weight > 0 ? (
+                    <span className="absolute -right-1 -top-1 rounded-full bg-ink px-1 font-mono text-[8px] font-semibold tabular-nums text-bg">
+                      {weight}
+                    </span>
+                  ) : null}
                 </button>
               );
             })}
@@ -387,6 +445,7 @@ export function ManualNetworkGraph({
         <div className="space-y-5">
           {cardGroups.map((group) => {
             const mon = getPokemon(group.slug);
+            const layout = bySlug.get(group.slug);
             return (
               <section key={`${cardAxis}-${group.slug}`} className="space-y-2">
                 <header className="flex items-center gap-2 px-0.5">
@@ -399,8 +458,13 @@ export function ManualNetworkGraph({
                     />
                   ) : null}
                   <div className="min-w-0">
-                    <p className="text-sm font-semibold tracking-tight">
-                      {mon?.name ?? group.slug}
+                    <p className="flex flex-wrap items-baseline gap-x-2 text-sm font-semibold tracking-tight">
+                      <span>{mon?.name ?? group.slug}</span>
+                      {layout ? (
+                        <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-muted">
+                          {bandLabel(layout.band)}
+                        </span>
+                      ) : null}
                     </p>
                     <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-muted">
                       {cardAxis === "creates"
@@ -481,6 +545,158 @@ export function ManualNetworkGraph({
   );
 }
 
+function degreeMaps(edges: Edge[], slugs: string[]) {
+  const feeds = new Map<string, number>();
+  const fedBy = new Map<string, number>();
+  for (const s of slugs) {
+    feeds.set(s, 0);
+    fedBy.set(s, 0);
+  }
+  for (const e of edges) {
+    if (!feeds.has(e.from) && !fedBy.has(e.to)) continue;
+    if (feeds.has(e.from)) feeds.set(e.from, (feeds.get(e.from) ?? 0) + 1);
+    if (fedBy.has(e.to)) fedBy.set(e.to, (fedBy.get(e.to) ?? 0) + 1);
+  }
+  return { feeds, fedBy };
+}
+
+/**
+ * Flow field:
+ *  x — Creates (left) → Converts (right)
+ *  y — Busy (top) → Quiet (bottom)
+ */
+function layoutByFlow(
+  slugs: string[],
+  feeds: Map<string, number>,
+  fedBy: Map<string, number>,
+): NodeLayout[] {
+  if (!slugs.length) return [];
+
+  const scored = slugs.map((slug) => {
+    const out = feeds.get(slug) ?? 0;
+    const inn = fedBy.get(slug) ?? 0;
+    return { slug, out, inn, total: out + inn };
+  });
+
+  const maxOut = Math.max(1, ...scored.map((s) => s.out));
+  const maxIn = Math.max(1, ...scored.map((s) => s.inn));
+  const maxTotal = Math.max(1, ...scored.map((s) => s.total));
+
+  const nodes: NodeLayout[] = scored.map((s) => {
+    const c = s.out / maxOut;
+    const v = s.inn / maxIn;
+    const activity = s.total / maxTotal;
+    let role: number;
+    let band: NodeLayout["band"];
+
+    if (s.total === 0) {
+      role = 0;
+      band = "idle";
+    } else if (c >= 0.55 && v <= 0.35) {
+      role = -0.75 - c * 0.2;
+      band = "creates";
+    } else if (v >= 0.55 && c <= 0.35) {
+      role = 0.75 + v * 0.2;
+      band = "converts";
+    } else if (c > 0.2 && v > 0.2) {
+      role = (v - c) * 0.55;
+      band = "bridge";
+    } else if (c >= v) {
+      role = -0.35 - c * 0.25;
+      band = "creates";
+    } else {
+      role = 0.35 + v * 0.25;
+      band = "converts";
+    }
+
+    // Clamp role
+    role = Math.max(-1, Math.min(1, role));
+
+    const x =
+      band === "idle"
+        ? 50
+        : 50 + role * 36;
+    const y =
+      band === "idle"
+        ? 90
+        : 16 + (1 - activity) * 58;
+
+    return { slug: s.slug, x, y, out: s.out, inn: s.inn, role, activity, band };
+  });
+
+  // Spread idle nodes if several sit in the quiet pocket
+  const idles = nodes.filter((n) => n.band === "idle");
+  if (idles.length > 1) {
+    idles.forEach((n, i) => {
+      const t = idles.length === 1 ? 0.5 : i / (idles.length - 1);
+      n.x = 28 + t * 44;
+      n.y = 88 + (i % 2) * 3;
+    });
+  }
+
+  separateNodes(nodes, 18);
+  // Keep inside padded viewport
+  for (const n of nodes) {
+    n.x = Math.max(12, Math.min(88, n.x));
+    n.y = Math.max(12, Math.min(90, n.y));
+  }
+  return nodes;
+}
+
+function separateNodes(nodes: NodeLayout[], minDist: number) {
+  for (let pass = 0; pass < 10; pass++) {
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i]!;
+        const b = nodes[j]!;
+        const dx = b.x - a.x;
+        const dy = b.y - a.y;
+        const d = Math.hypot(dx, dy) || 0.01;
+        if (d >= minDist) continue;
+        const push = ((minDist - d) / 2) * 0.85;
+        const ux = dx / d;
+        const uy = dy / d;
+        a.x -= ux * push;
+        a.y -= uy * push;
+        b.x += ux * push;
+        b.y += uy * push;
+      }
+    }
+  }
+}
+
+function artSize(activity: number) {
+  const sm = Math.round(36 + activity * 12);
+  const md = Math.round(44 + activity * 14);
+  return { sm, md };
+}
+
+function bandLabel(band: NodeLayout["band"]) {
+  switch (band) {
+    case "creates":
+      return "Creates";
+    case "converts":
+      return "Converts";
+    case "bridge":
+      return "Bridge";
+    case "idle":
+      return "Quiet";
+  }
+}
+
+function bandRing(band: NodeLayout["band"]) {
+  switch (band) {
+    case "creates":
+      return "border-ink/35 hover:scale-105";
+    case "converts":
+      return "border-ink/20 hover:scale-105 ring-1 ring-ink/15";
+    case "bridge":
+      return "border-ink/40 hover:scale-105 shadow-sm";
+    case "idle":
+      return "border-dashed border-line/70 opacity-80 hover:opacity-100";
+  }
+}
+
 function PhraseChips({
   hits,
   selected = false,
@@ -517,14 +733,13 @@ function nameOf(slug: string) {
   return getPokemon(slug)?.name ?? slug;
 }
 
-/** Shorten the drawn segment so arrowheads clear face circles. */
 function edgeGeometry(a: { x: number; y: number }, b: { x: number; y: number }) {
   const dx = b.x - a.x;
   const dy = b.y - a.y;
   const len = Math.hypot(dx, dy) || 1;
   const ux = dx / len;
   const uy = dy / len;
-  const pad = 8.5;
+  const pad = 9;
   return {
     x1: a.x + ux * pad,
     y1: a.y + uy * pad,
@@ -537,20 +752,34 @@ function NodeFocusSummary({
   slug,
   edges,
   kits,
+  layout,
 }: {
   slug: string;
   edges: Edge[];
   kits: Map<string, string[]>;
+  layout?: NodeLayout;
 }) {
   const out = edges.filter((e) => e.from === slug);
   const inn = edges.filter((e) => e.to === slug);
   const name = nameOf(slug);
   if (!out.length && !inn.length) {
-    return <p className="text-[11px] text-muted">{name} has no links in this view</p>;
+    return (
+      <p className="text-[11px] text-muted">
+        {name}
+        {layout?.band === "idle" ? " sits quiet in this view" : " has no links in this view"}
+      </p>
+    );
   }
   return (
     <div className="space-y-1.5 text-[11px] leading-snug">
-      <p className="text-sm font-semibold tracking-tight text-ink">{name}</p>
+      <p className="text-sm font-semibold tracking-tight text-ink">
+        {name}
+        {layout ? (
+          <span className="ml-2 font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-muted">
+            {bandLabel(layout.band)}
+          </span>
+        ) : null}
+      </p>
       {out.length ? (
         <div className="flex flex-wrap items-center justify-center gap-1">
           <span className="text-muted">Feeds</span>

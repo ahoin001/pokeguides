@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-09-19T23:20:18.711Z",
-  "count": 349,
+  "fetchedAt": "2026-09-23T15:30:00.000Z",
+  "count": 350,
   "moves": {
     "Accelerock": {
       "name": "Accelerock",
@@ -2040,6 +2040,16 @@
       "priority": 0,
       "shortEffect": "Lowers the target's Speed stat by 1 stage.",
       "championsEffect": "Lowers the target's Speed stat by 1 stage.",
+      "source": "champions-attackdex"
+    },
+    "Muddy Water": {
+      "name": "Muddy Water",
+      "type": "water",
+      "category": "special",
+      "basePower": 90,
+      "priority": 0,
+      "shortEffect": "Has a 30% chance of lowering targets' accuracy by 1 stage.",
+      "championsEffect": "Has a 30% chance of lowering targets' accuracy by 1 stage.",
       "source": "champions-attackdex"
     },
     "Mystical Fire": {

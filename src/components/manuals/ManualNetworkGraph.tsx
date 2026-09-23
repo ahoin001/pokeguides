@@ -15,6 +15,8 @@ import { ManualSection } from "@/components/manuals/ManualSection";
 import type { ManualNetwork, SlotManual } from "@/content/manuals";
 
 type Edge = ManualNetwork["edges"][number];
+type CardAxis = "creates" | "converts";
+type IndexedEdge = { edge: Edge; index: number };
 
 /**
  * Conversion constellation — directed edges without mid-line labels,
@@ -36,6 +38,8 @@ export function ManualNetworkGraph({
   const [hoverEdge, setHoverEdge] = useState<number | null>(null);
   const [litSlug, setLitSlug] = useState<string | null>(null);
   const [simple, setSimple] = useState(true);
+  const [cardAxis, setCardAxis] = useState<CardAxis>("creates");
+  const [cardFocus, setCardFocus] = useState<string | null>(null);
 
   const kits = useMemo(() => kitMapFromRoster(roster), [roster]);
 
@@ -81,6 +85,34 @@ export function ManualNetworkGraph({
     creates: resolveNetworkPhrase(edge.creates, kits.get(edge.from) ?? []),
     converts: resolveNetworkPhrase(edge.converts, kits.get(edge.to) ?? []),
   });
+
+  const indexedEdges = useMemo<IndexedEdge[]>(
+    () => edges.map((edge, index) => ({ edge, index })),
+    [edges],
+  );
+
+  const axisSlugs = useMemo(() => {
+    const present = new Set(
+      indexedEdges.map(({ edge }) => (cardAxis === "creates" ? edge.from : edge.to)),
+    );
+    return box.filter((s) => present.has(s));
+  }, [indexedEdges, box, cardAxis]);
+
+  const activeFocus =
+    cardFocus && axisSlugs.includes(cardFocus) ? cardFocus : null;
+
+  const cardGroups = useMemo(() => {
+    const keyOf = (edge: Edge) => (cardAxis === "creates" ? edge.from : edge.to);
+    const items = activeFocus
+      ? indexedEdges.filter(({ edge }) => keyOf(edge) === activeFocus)
+      : indexedEdges;
+    const groups: { slug: string; items: IndexedEdge[] }[] = [];
+    for (const slug of box) {
+      const g = items.filter(({ edge }) => keyOf(edge) === slug);
+      if (g.length) groups.push({ slug, items: g });
+    }
+    return groups;
+  }, [indexedEdges, box, cardAxis, activeFocus]);
 
   if (!nodes.length || !network.edges.length) return null;
 
@@ -280,68 +312,171 @@ export function ManualNetworkGraph({
         )}
       </div>
 
-      <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
-        {edges.map((edge, i) => {
-          const from = getPokemon(edge.from);
-          const to = getPokemon(edge.to);
-          const hot =
-            hoverEdge === i ||
-            (litSlug != null && (edge.from === litSlug || edge.to === litSlug));
-          const phrases = phraseFor(edge);
-          return (
-            <li key={`${edge.from}-${edge.to}-row-${i}`}>
+      <div className="mt-6 space-y-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div
+            className="inline-flex rounded-full border border-line/70 p-0.5"
+            role="group"
+            aria-label="Organize cards by"
+          >
+            {(
+              [
+                ["creates", "Creates"],
+                ["converts", "Converts"],
+              ] as const
+            ).map(([id, label]) => (
               <button
+                key={id}
                 type="button"
-                onMouseEnter={() => {
-                  setHoverEdge(i);
-                  setLitSlug(null);
-                }}
-                onMouseLeave={() => setHoverEdge(null)}
-                onFocus={() => setHoverEdge(i)}
-                onBlur={() => setHoverEdge(null)}
-                onClick={() => onEdge?.(edge.engineId)}
-                className={`flex w-full items-center gap-2.5 rounded-2xl border px-2.5 py-2.5 text-left transition ${
-                  hot
-                    ? "border-ink/40 bg-raised/55 shadow-sm"
-                    : "border-line/55 bg-raised/15 hover:border-ink/25"
+                onClick={() => setCardAxis(id)}
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                  cardAxis === id
+                    ? "bg-ink text-bg"
+                    : "text-muted hover:text-ink"
                 }`}
-                style={from ? cssVars(from.palette) : undefined}
               >
-                {from ? (
-                  <PokemonArt
-                    slug={from.slug}
-                    src={from.sprite || from.artwork}
-                    name={from.name}
-                    size={32}
-                  />
-                ) : null}
-                <span className="min-w-0 flex-1 space-y-1.5">
-                  <span className="flex flex-wrap items-center gap-1.5">
-                    <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.12em] text-muted">
-                      creates
-                    </span>
-                    <PhraseChips hits={phrases.creates} selected={hot} />
-                  </span>
-                  <span className="flex flex-wrap items-center gap-1.5">
-                    <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.12em] text-muted">
-                      converts
-                    </span>
-                    <PhraseChips hits={phrases.converts} selected={hot} />
-                  </span>
-                </span>
-                {to ? (
-                  <PokemonArt
-                    slug={to.slug}
-                    src={to.sprite || to.artwork}
-                    name={to.name}
-                    size={32}
-                  />
-                ) : null}
+                {label}
               </button>
-            </li>
-          );
-        })}
-      </ul>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="mr-1 font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-muted">
+              {cardAxis === "creates" ? "Creator" : "Converter"}
+            </span>
+            <button
+              type="button"
+              onClick={() => setCardFocus(null)}
+              className={`rounded-full border px-2.5 py-1 text-[11px] font-semibold transition ${
+                !activeFocus
+                  ? "border-ink/40 bg-ink text-bg"
+                  : "border-line/70 text-muted hover:border-ink/30 hover:text-ink"
+              }`}
+            >
+              All
+            </button>
+            {axisSlugs.map((slug) => {
+              const mon = getPokemon(slug);
+              if (!mon) return null;
+              const on = activeFocus === slug;
+              return (
+                <button
+                  key={slug}
+                  type="button"
+                  onClick={() => setCardFocus(on ? null : slug)}
+                  title={`${mon.name} · ${cardAxis}`}
+                  className={`rounded-full border p-0.5 transition ${
+                    on
+                      ? "border-ink/50 bg-raised/60 shadow-sm"
+                      : "border-line/60 hover:border-ink/30"
+                  }`}
+                  style={cssVars(mon.palette)}
+                >
+                  <PokemonArt
+                    slug={mon.slug}
+                    src={mon.sprite || mon.artwork}
+                    name={mon.name}
+                    size={26}
+                  />
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="space-y-5">
+          {cardGroups.map((group) => {
+            const mon = getPokemon(group.slug);
+            return (
+              <section key={`${cardAxis}-${group.slug}`} className="space-y-2">
+                <header className="flex items-center gap-2 px-0.5">
+                  {mon ? (
+                    <PokemonArt
+                      slug={mon.slug}
+                      src={mon.sprite || mon.artwork}
+                      name={mon.name}
+                      size={28}
+                    />
+                  ) : null}
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold tracking-tight">
+                      {mon?.name ?? group.slug}
+                    </p>
+                    <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-muted">
+                      {cardAxis === "creates"
+                        ? `${group.items.length} create${group.items.length === 1 ? "" : "s"}`
+                        : `${group.items.length} convert${group.items.length === 1 ? "" : "s"}`}
+                    </p>
+                  </div>
+                </header>
+                <ul className="grid gap-2.5 sm:grid-cols-2">
+                  {group.items.map(({ edge, index: i }) => {
+                    const from = getPokemon(edge.from);
+                    const to = getPokemon(edge.to);
+                    const hot =
+                      hoverEdge === i ||
+                      (litSlug != null &&
+                        (edge.from === litSlug || edge.to === litSlug));
+                    const phrases = phraseFor(edge);
+                    return (
+                      <li key={`${edge.from}-${edge.to}-row-${i}`}>
+                        <button
+                          type="button"
+                          onMouseEnter={() => {
+                            setHoverEdge(i);
+                            setLitSlug(null);
+                          }}
+                          onMouseLeave={() => setHoverEdge(null)}
+                          onFocus={() => setHoverEdge(i)}
+                          onBlur={() => setHoverEdge(null)}
+                          onClick={() => onEdge?.(edge.engineId)}
+                          className={`flex w-full items-center gap-2.5 rounded-2xl border px-2.5 py-2.5 text-left transition ${
+                            hot
+                              ? "border-ink/40 bg-raised/55 shadow-sm"
+                              : "border-line/55 bg-raised/15 hover:border-ink/25"
+                          }`}
+                          style={from ? cssVars(from.palette) : undefined}
+                        >
+                          {from ? (
+                            <PokemonArt
+                              slug={from.slug}
+                              src={from.sprite || from.artwork}
+                              name={from.name}
+                              size={32}
+                            />
+                          ) : null}
+                          <span className="min-w-0 flex-1 space-y-1.5">
+                            <span className="flex flex-wrap items-center gap-1.5">
+                              <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.12em] text-muted">
+                                creates
+                              </span>
+                              <PhraseChips hits={phrases.creates} selected={hot} />
+                            </span>
+                            <span className="flex flex-wrap items-center gap-1.5">
+                              <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.12em] text-muted">
+                                converts
+                              </span>
+                              <PhraseChips hits={phrases.converts} selected={hot} />
+                            </span>
+                          </span>
+                          {to ? (
+                            <PokemonArt
+                              slug={to.slug}
+                              src={to.sprite || to.artwork}
+                              name={to.name}
+                              size={32}
+                            />
+                          ) : null}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+            );
+          })}
+        </div>
+      </div>
     </ManualSection>
   );
 }

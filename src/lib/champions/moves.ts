@@ -14,6 +14,7 @@ export const MOVE_TYPE: Record<string, TypeId> = {
   moonblast: "fairy",
   surf: "water",
   "hydro pump": "water",
+  "muddy water": "water",
   "ice beam": "ice",
   "sparkling aria": "water",
   "ice shard": "ice",

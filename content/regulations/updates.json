@@ -1,0 +1,3607 @@
+{
+    "manuals": [
+    {
+    "id": "r2-mixed-autonomous-sand",
+    "title": "R2 — Mixed Autonomous Sand",
+    "lede": "Sand is one route, not the operating system: Excadrill speed, Salamence Tailwind, Gholdengo scaling, Rillaboom tempo, and Coil Milotic all win differently.",
+    "format": "doubles",
+    "philosophy": "Create several autonomous clocks whose failure conditions overlap as little as possible. Sand supplies explosive conversion, but the six can abandon Sand entirely and still function through Gholdengo, Salamence, Rillaboom, and Coil Milotic.",
+    "archetype": "balance",
+    "family": "weather",
+    "meta": "Regulation M-C",
+    "box": [
+    "tyranitar",
+    "excadrill",
+    "salamence",
+    "rillaboom",
+    "gholdengo",
+    "milotic"
+    ],
+    "core": [
+    "tyranitar",
+    "excadrill",
+    "salamence"
+    ],
+    "pilot": {
+    "thesis": "Use Sand when it is cheap; otherwise let one of the autonomous converters become the game."
+    },
+    "architecture": [
+    {
+    "layer": "Engine",
+    "body": "Tyranitar supplies Sand, Salamence supplies Tailwind and Intimidate, Rillaboom supplies Fake Out and terrain, and Milotic can manufacture its own Coil state."
+    },
+    {
+    "layer": "Converter",
+    "body": "Excadrill converts Sand immediately, Gholdengo converts free turns into Nasty Plot or Make It Rain, and Milotic converts quiet turns into reliable Hypnosis control."
+    },
+    {
+    "layer": "Endgame",
+    "body": "Finish with whichever clock survived: Sand Rush cleanup, boosted Gholdengo, Coil Milotic control, Salamence pressure, or Grassy Glide priority."
+    }
+    ],
+    "roster": [
+    {
+    "slug": "tyranitar",
+    "title": "Tyranitar",
+    "job": "weather",
+    "literacy": "setter",
+    "role": "Sand engine and independent physical pressure.",
+    "primaryJob": "Create Sand without becoming a passive weather slot.",
+    "item": "Tyranitarite",
+    "ability": "Sand Stream",
+    "nature": "Jolly",
+    "training": {
+    "sp": {
+    "hp": 2,
+    "atk": 32,
+    "def": 0,
+    "spa": 0,
+    "spd": 0,
+    "spe": 32
+    },
+    "label": "Jolly max Attack / Speed",
+    "why": "Recommended starting spread for immediate Sand pressure; verify exact speed and bulk benchmarks on device.",
+    "spend": [
+    "2 HP",
+    "32 Atk",
+    "32 Spe"
+    ],
+    "rule": "66 SP max 32 per stat; recommended starting spread, not claimed optimal."
+    },
+    "moves": [
+    {
+    "name": "Rock Slide",
+    "why": "Primary spread pressure once Sand or Tailwind creates the speed edge."
+    },
+    {
+    "name": "Knock Off",
+    "why": "Single-target Dark pressure that also strips opposing resources."
+    },
+    {
+    "name": "Low Kick",
+    "why": "Targets heavy Steel, Rock, and opposing Tyranitar-style threats without relying on spread damage."
+    },
+    {
+    "name": "Protect",
+    "why": "Preserves the weather engine while partners convert Sand or reposition."
+    }
+    ],
+    "objective": "Set Sand when Excadrill can immediately cash it in; otherwise preserve Tyranitar as a durable attacker.",
+    "howToPlay": "Do not Mega evolve automatically. Keep Mega Salamence available when Intimidate, Tailwind, or special pressure matters more.",
+    "abilityStages": [
+    "Entry: Sand Stream creates the speed resource.",
+    "Mega decision: only spend the Mega resource when Tyranitar itself needs the upgrade."
+    ],
+    "ampTargets": [
+    "excadrill"
+    ],
+    "itemLoop": "Tyranitarite creates Mega flexibility with Salamence; one stone will be inactive each battle, so preview must justify which Mega matters.",
+    "networkJobs": {
+    "creates": [
+    "Sand"
+    ],
+    "converts": [
+    "Rock Slide pressure",
+    "Knock Off progress"
+    ],
+    "protects": [
+    "Excadrill speed mode"
+    ],
+    "scales": [
+    "Mega bulk and pressure"
+    ]
+    },
+    "opening": [
+    "Is Sand immediately safe?",
+    "Does the opponent have easy weather overwrite?",
+    "Would Mega Salamence matter more than Mega Tyranitar?"
+    ]
+    },
+    {
+    "slug": "excadrill",
+    "title": "Excadrill",
+    "job": "breaker",
+    "literacy": "sweeper",
+    "role": "Immediate Sand Rush converter.",
+    "primaryJob": "Turn one weather activation into immediate positional and damage pressure.",
+    "item": "Focus Sash",
+    "ability": "Sand Rush",
+    "nature": "Jolly",
+    "training": {
+    "sp": {
+    "hp": 2,
+    "atk": 32,
+    "def": 0,
+    "spa": 0,
+    "spd": 0,
+    "spe": 32
+    },
+    "label": "Jolly max Attack / Speed",
+    "why": "Recommended starting spread for the team's fastest Sand conversion role.",
+    "spend": [
+    "2 HP",
+    "32 Atk",
+    "32 Spe"
+    ],
+    "rule": "66 SP max 32 per stat; recommended starting spread, not claimed optimal."
+    },
+    "moves": [
+    {
+    "name": "Rock Slide",
+    "why": "Fast spread conversion after Sand activates."
+    },
+    {
+    "name": "High Horsepower",
+    "why": "Reliable single-target Ground pressure that avoids hitting the partner."
+    },
+    {
+    "name": "Iron Head",
+    "why": "Steel conversion into Fairy and Ice targets."
+    },
+    {
+    "name": "Protect",
+    "why": "Keeps Focus Sash and Sand turns usable while the partner controls the board."
+    }
+    ],
+    "objective": "Take immediate KOs or force defensive actions during Sand turns.",
+    "howToPlay": "Treat Excadrill as a converter, not an engine. If Sand is awkward, bench it and use the other clocks.",
+    "ampTargets": [],
+    "itemLoop": "Focus Sash keeps one conversion turn available even when the board is hostile.",
+    "networkJobs": {
+    "creates": [
+    "Fast spread threat"
+    ],
+    "converts": [
+    "Sand",
+    "Tailwind"
+    ],
+    "protects": [
+    "Partner by forcing Protects"
+    ],
+    "scales": []
+    },
+    "opening": [
+    "Can Sand Rush create immediate damage?",
+    "Is Wide Guard likely?",
+    "Does preserving Focus Sash matter more than attacking immediately?"
+    ]
+    },
+    {
+    "slug": "salamence",
+    "title": "Salamence",
+    "job": "speed",
+    "literacy": "pivot",
+    "role": "Universal bridge: Intimidate, Tailwind, special damage, and alternate Mega.",
+    "primaryJob": "Create an independent speed regime when Sand is unavailable or unnecessary.",
+    "item": "Salamencite",
+    "ability": "Intimidate",
+    "nature": "Timid",
+    "training": {
+    "sp": {
+    "hp": 2,
+    "atk": 0,
+    "def": 0,
+    "spa": 32,
+    "spd": 0,
+    "spe": 32
+    },
+    "label": "Timid max SpA / Speed",
+    "why": "Recommended starting spread for immediate special pressure and Tailwind access.",
+    "spend": [
+    "2 HP",
+    "32 SpA",
+    "32 Spe"
+    ],
+    "rule": "66 SP max 32 per stat; recommended starting spread, not claimed optimal."
+    },
+    "moves": [
+    {
+    "name": "Hyper Voice",
+    "why": "Repeatable spread pressure that does not depend on Sand."
+    },
+    {
+    "name": "Draco Meteor",
+    "why": "Immediate single-target burst when a key target must disappear."
+    },
+    {
+    "name": "Tailwind",
+    "why": "Creates the team's second major speed state."
+    },
+    {
+    "name": "Protect",
+    "why": "Preserves Intimidate and Mega timing while partners reposition."
+    }
+    ],
+    "objective": "Bridge Sand, Gholdengo, Milotic, and Rillaboom packages without forcing any of them to depend on Salamence.",
+    "howToPlay": "Use Intimidate before thinking about Mega evolution. Tailwind is valuable when it creates multiple conversions, not merely because it is available.",
+    "abilityStages": [
+    "Pre-Mega: Intimidate manufactures defensive time.",
+    "Mega: convert the preserved slot into stronger direct special pressure."
+    ],
+    "ampTargets": [
+    "milotic",
+    "gholdengo"
+    ],
+    "itemLoop": "Dual-Mega flexibility with Tyranitar creates preview value but one Mega stone is inactive each battle.",
+    "networkJobs": {
+    "creates": [
+    "Intimidate turns",
+    "Tailwind"
+    ],
+    "converts": [
+    "Hyper Voice",
+    "Draco Meteor"
+    ],
+    "protects": [
+    "Milotic Coil turn",
+    "Gholdengo setup turn"
+    ],
+    "scales": []
+    },
+    "opening": [
+    "Does Intimidate create a safe setup turn?",
+    "Is Tailwind more valuable than Sand?",
+    "Which Mega matters in this matchup?"
+    ]
+    },
+    {
+    "slug": "rillaboom",
+    "title": "Rillaboom",
+    "job": "support",
+    "literacy": "pivot",
+    "role": "Tempo engine, terrain resource, priority cleaner, and independent physical converter.",
+    "primaryJob": "Manufacture safe turns without becoming passive.",
+    "item": "Miracle Seed",
+    "ability": "Grassy Surge",
+    "nature": "Adamant",
+    "training": {
+    "sp": {
+    "hp": 20,
+    "atk": 32,
+    "def": 0,
+    "spa": 0,
+    "spd": 0,
+    "spe": 14
+    },
+    "label": "Adamant Attack with mixed bulk/speed utility",
+    "why": "Recommended starting spread: maximize physical conversion while retaining extra HP and some speed investment.",
+    "spend": [
+    "20 HP",
+    "32 Atk",
+    "14 Spe"
+    ],
+    "rule": "66 SP max 32 per stat; recommended starting spread, not claimed optimal."
+    },
+    "moves": [
+    {
+    "name": "Wood Hammer",
+    "why": "Immediate Grass conversion when priority damage is insufficient."
+    },
+    {
+    "name": "Grassy Glide",
+    "why": "Turns terrain into priority cleanup."
+    },
+    {
+    "name": "High Horsepower",
+    "why": "Adds single-target Ground coverage without disturbing the partner."
+    },
+    {
+    "name": "Fake Out",
+    "why": "Manufactures the first Coil, Nasty Plot, Tailwind, or clean attack turn."
+    }
+    ],
+    "objective": "Create one safe conversion turn, then remain a real damage threat.",
+    "howToPlay": "Do not spend Fake Out automatically. Ask which partner turns that one denied action into the largest future advantage.",
+    "ampTargets": [
+    "milotic",
+    "gholdengo",
+    "salamence"
+    ],
+    "itemLoop": "Miracle Seed turns the infrastructure Pokémon into a legitimate attacker.",
+    "networkJobs": {
+    "creates": [
+    "Grassy Terrain",
+    "Fake Out free turn"
+    ],
+    "converts": [
+    "Grassy Glide",
+    "Wood Hammer"
+    ],
+    "protects": [
+    "Milotic",
+    "Gholdengo"
+    ],
+    "scales": []
+    },
+    "opening": [
+    "Who most benefits from one free turn?",
+    "Do I need terrain now or later?",
+    "Can Rillaboom simply attack instead of supporting?"
+    ]
+    },
+    {
+    "slug": "gholdengo",
+    "title": "Gholdengo",
+    "job": "breaker",
+    "literacy": "sweeper",
+    "role": "Portable autonomous special win condition.",
+    "primaryJob": "Convert any free turn supplied by the rest of the six into special pressure.",
+    "item": "Life Orb",
+    "ability": "Good as Gold",
+    "nature": "Modest",
+    "training": {
+    "sp": {
+    "hp": 20,
+    "atk": 0,
+    "def": 0,
+    "spa": 32,
+    "spd": 0,
+    "spe": 14
+    },
+    "label": "Modest max SpA with HP / Speed split",
+    "why": "Recommended starting spread for strong immediate conversion with some retained bulk; verify desired speed tier on device.",
+    "spend": [
+    "20 HP",
+    "32 SpA",
+    "14 Spe"
+    ],
+    "rule": "66 SP max 32 per stat; recommended starting spread, not claimed optimal."
+    },
+    "moves": [
+    {
+    "name": "Shadow Ball",
+    "why": "Single-target special conversion when spread damage is undesirable."
+    },
+    {
+    "name": "Make It Rain",
+    "why": "Primary spread payoff after a free turn or speed advantage."
+    },
+    {
+    "name": "Nasty Plot",
+    "why": "Turns one protected tempo window into an independent win clock."
+    },
+    {
+    "name": "Protect",
+    "why": "Preserves Life Orb pressure while partners cycle weather, terrain, or Intimidate."
+    }
+    ],
+    "objective": "Punish opponents who overprepare for the physical Sand half.",
+    "howToPlay": "Do not force Nasty Plot. Immediate Make It Rain is correct when the board already gives enough conversion.",
+    "ampTargets": [],
+    "itemLoop": "Life Orb prioritizes conversion speed over long-term preservation.",
+    "networkJobs": {
+    "creates": [
+    "Special setup threat"
+    ],
+    "converts": [
+    "Fake Out turns",
+    "Tailwind"
+    ],
+    "protects": [
+    "Team from status-oriented disruption via Good as Gold"
+    ],
+    "scales": [
+    "Nasty Plot"
+    ]
+    },
+    "opening": [
+    "Is setup truly free?",
+    "Does immediate spread damage already win the exchange?",
+    "Is the opponent overcommitting to the physical side?"
+    ]
+    },
+    {
+    "slug": "milotic",
+    "title": "Milotic",
+    "job": "support",
+    "literacy": "disruptor",
+    "role": "Adaptive control scaler and failure inverter.",
+    "primaryJob": "Punish stat suppression while retaining an autonomous Coil/Hypnosis route.",
+    "item": "Leftovers",
+    "ability": "Competitive",
+    "nature": "Calm",
+    "training": {
+    "sp": {
+    "hp": 32,
+    "atk": 0,
+    "def": 14,
+    "spa": 0,
+    "spd": 20,
+    "spe": 0
+    },
+    "label": "Calm bulky Coil control",
+    "why": "Recommended starting spread for repeated Coil, Hypnosis, and Leftovers turns; not a sourced damage benchmark.",
+    "spend": [
+    "32 HP",
+    "14 Def",
+    "20 SpD"
+    ],
+    "rule": "66 SP max 32 per stat; recommended starting spread, not claimed optimal."
+    },
+    "moves": [
+    {
+    "name": "Coil",
+    "why": "Creates Defense and accuracy resources so Hypnosis and Muddy Water become increasingly reliable."
+    },
+    {
+    "name": "Hypnosis",
+    "why": "Converts Coil accuracy into action denial and extra setup turns."
+    },
+    {
+    "name": "Muddy Water",
+    "why": "Spread conversion that can also degrade opposing accuracy."
+    },
+    {
+    "name": "Protect",
+    "why": "Preserves boosts, Leftovers turns, and partner positioning."
+    }
+    ],
+    "objective": "Become productive whether the opponent triggers Competitive or refuses to.",
+    "howToPlay": "First ask whether the team can manufacture one safe Coil. Hypnosis is the payoff, not the opening assumption.",
+    "ampTargets": [],
+    "itemLoop": "Leftovers plus Grassy Terrain can turn every protected or denied action into additional staying power.",
+    "networkJobs": {
+    "creates": [
+    "Sleep pressure",
+    "Accuracy control"
+    ],
+    "converts": [
+    "Competitive boosts",
+    "Coil turns"
+    ],
+    "protects": [
+    "Long-game board state"
+    ],
+    "scales": [
+    "Coil"
+    ]
+    },
+    "opening": [
+    "Can Rillaboom or Salamence safely buy Coil?",
+    "Is Competitive likely to trigger?",
+    "Would immediate Muddy Water be better than scaling?"
+    ]
+    }
+    ],
+    "coreArchitecture": {
+    "identity": "A modular Sand balance team whose strongest property is that most members remain functional when the preferred engine disappears.",
+    "primaryEngine": "Sand gives Excadrill the fastest conversion, but the six deliberately carries multiple non-Sand engines.",
+    "conversionModel": "Convert Sand, Tailwind, Fake Out, Intimidate, or a quiet Coil turn into immediate damage or an autonomous scaler.",
+    "scalingModel": "Gholdengo scales specially through Nasty Plot; Milotic scales defensively/control-wise through Coil; Mega choices add situational power.",
+    "controlModel": "Intimidate, Fake Out, Competitive, sleep pressure, terrain, and Protect cycles manufacture and preserve favorable states.",
+    "speedModel": "Sand Rush is the explosive mode; Tailwind is the portable mode; priority and bulky Milotic cover boards where moving first is not guaranteed.",
+    "resourceModel": "Weather, terrain, Fake Out turns, Intimidate reductions, boosts, Leftovers recovery, and Mega choice are separate resources rather than one chain.",
+    "threatProfile": [
+    "Fast Sand Rush burst",
+    "Independent special setup",
+    "Coil/Hypnosis control",
+    "Tailwind special pressure",
+    "Priority cleanup"
+    ]
+    },
+    "clocks": [
+    {
+    "id": "sand-clock",
+    "owner": [
+    "tyranitar",
+    "excadrill"
+    ],
+    "speed": "immediate",
+    "goal": "Convert weather into immediate KOs before defensive positioning stabilizes."
+    },
+    {
+    "id": "special-clock",
+    "owner": [
+    "gholdengo",
+    "rillaboom"
+    ],
+    "speed": "scaling",
+    "goal": "Create one free Nasty Plot or a clean Make It Rain exchange."
+    },
+    {
+    "id": "control-clock",
+    "owner": [
+    "milotic"
+    ],
+    "speed": "scaling",
+    "goal": "Coil once, then convert accuracy into sleep and Muddy Water pressure."
+    },
+    {
+    "id": "tailwind-clock",
+    "owner": [
+    "salamence"
+    ],
+    "speed": "tempo",
+    "goal": "Give the non-Sand half a temporary speed advantage."
+    }
+    ],
+    "winRoutes": [
+    {
+    "id": "sand-rush",
+    "name": "Sand Rush Conversion",
+    "requires": [
+    "tyranitar",
+    "excadrill"
+    ],
+    "sequence": [
+    "Tyranitar establishes Sand.",
+    "Excadrill converts Sand Rush into immediate pressure.",
+    "Use Protect or Salamence positioning to preserve useful Sand turns.",
+    "Finish with Excadrill or the backline priority/special attacker."
+    ],
+    "finish": "Opponent is forced into defensive play while a healthy backline closes.",
+    "failurePoint": "Weather is overwritten or Excadrill cannot safely convert.",
+    "dependencies": [
+    {
+    "slug": "tyranitar",
+    "importance": "critical"
+    },
+    {
+    "slug": "excadrill",
+    "importance": "critical"
+    },
+    {
+    "slug": "salamence",
+    "importance": "supportive"
+    }
+    ]
+    },
+    {
+    "id": "gold-conversion",
+    "name": "Free Turn to Gholdengo",
+    "requires": [
+    "gholdengo"
+    ],
+    "sequence": [
+    "Rillaboom, Salamence, or natural board pressure creates a safe turn.",
+    "Gholdengo chooses Nasty Plot or immediate Make It Rain.",
+    "Preserve Gholdengo with Protect while the second wave enters.",
+    "Finish through special spread or Shadow Ball."
+    ],
+    "finish": "Boosted or healthy Gholdengo controls the special endgame.",
+    "failurePoint": "Gholdengo is forced to trade before obtaining sufficient value.",
+    "dependencies": [
+    {
+    "slug": "gholdengo",
+    "importance": "critical"
+    },
+    {
+    "slug": "rillaboom",
+    "importance": "supportive"
+    },
+    {
+    "slug": "salamence",
+    "importance": "supportive"
+    }
+    ]
+    },
+    {
+    "id": "coil-control",
+    "name": "Coil Control",
+    "requires": [
+    "milotic"
+    ],
+    "sequence": [
+    "Use Intimidate, Fake Out, or defensive pressure to create one quiet turn.",
+    "Milotic uses Coil.",
+    "Hypnosis removes an opposing action lane.",
+    "Muddy Water and partners convert the immobilized board."
+    ],
+    "finish": "Milotic remains healthy while the opponent loses reliable action economy.",
+    "failurePoint": "Milotic is burst down before the first Coil or cannot afford setup.",
+    "dependencies": [
+    {
+    "slug": "milotic",
+    "importance": "critical"
+    },
+    {
+    "slug": "rillaboom",
+    "importance": "supportive"
+    },
+    {
+    "slug": "salamence",
+    "importance": "supportive"
+    }
+    ]
+    }
+    ],
+    "failureRoutes": [
+    {
+    "failedRoute": "sand-rush",
+    "why": "Weather control or Excadrill pressure removes the clean Sand conversion.",
+    "fallback": "Move to Rillaboom/Gholdengo or Salamence/Milotic positioning.",
+    "nextRoute": "gold-conversion"
+    },
+    {
+    "failedRoute": "gold-conversion",
+    "why": "Gholdengo is targeted or setup is denied.",
+    "fallback": "Use physical Sand or Coil Milotic rather than adding more setup commitment.",
+    "nextRoute": "coil-control"
+    },
+    {
+    "failedRoute": "coil-control",
+    "why": "Opponent applies immediate burst and never allows Milotic a quiet turn.",
+    "fallback": "Treat Milotic as immediate Muddy Water pressure and accelerate through Sand or Tailwind.",
+    "nextRoute": "sand-rush"
+    }
+    ],
+    "engines": [
+    {
+    "id": "sand-rush",
+    "label": "Sand Rush",
+    "path": [
+    "Tyranitar · enter and set Sand",
+    "Excadrill · gain Sand Rush speed",
+    "Excadrill · choose single-target or Rock Slide pressure",
+    "Partner · Protect, attack, or cover the response",
+    "Backline · finish once the opponent spends defensive resources"
+    ],
+    "how": "Sand is the fastest way for this team to create immediate advantage. Tyranitar creates the state and Excadrill converts it without requiring a setup turn. Press this engine when weather control is favorable and Excadrill can threaten meaningful damage immediately. Do not treat Sand as mandatory: opposing weather, Wide Guard, or poor Excadrill positioning can make another route more efficient. When denied, transition to Salamence speed, Gholdengo setup, or Milotic control rather than fighting endlessly for weather.",
+    "dependsOn": "Tyranitar must establish Sand and Excadrill must have a useful attack lane.",
+    "disrupt": "Weather overwrite, focused Excadrill pressure, spread denial, or defensive positioning.",
+    "fallback": "Use Tailwind plus Gholdengo/Rillaboom, or manufacture a Coil turn for Milotic."
+    },
+    {
+    "id": "gold-conversion",
+    "label": "Gholdengo Conversion",
+    "path": [
+    "Rillaboom or Salamence · manufacture a safer turn",
+    "Gholdengo · Nasty Plot if the board permits",
+    "Gholdengo · Make It Rain or Shadow Ball",
+    "Partner · preserve tempo with Fake Out, Intimidate, or damage",
+    "Gholdengo · finish the special endgame"
+    ],
+    "how": "This is the principal non-Sand special win route. The important resource is not a specific partner; it is one low-cost turn created by Fake Out, Intimidate, Tailwind, or forced defensive play. Gholdengo converts that turn through Nasty Plot when the opponent cannot immediately punish it, but immediate damage is preferred when setup is unnecessary. This engine is particularly valuable when the opponent overprepares for Tyranitar and Excadrill. If Gholdengo is denied, the team still retains Milotic and physical conversion.",
+    "dependsOn": "Gholdengo needs either a safe setup turn or an already favorable attacking board.",
+    "disrupt": "Immediate focused damage, strong special resistance, or denying the free turn.",
+    "fallback": "Shift to Sand pressure or Coil Milotic."
+    },
+    {
+    "id": "coil-control",
+    "label": "Coil Control",
+    "path": [
+    "Salamence or Rillaboom · reduce immediate pressure",
+    "Milotic · Coil",
+    "Milotic · threaten increasingly reliable Hypnosis",
+    "Partner · attack the immobilized or defensive board",
+    "Milotic · Muddy Water and Protect to retain control"
+    ],
+    "how": "Milotic gives the team an autonomous long-game state that does not require Sand or Tailwind. Coil increases physical durability and accuracy, making Hypnosis and Muddy Water progressively more reliable. Press this engine when the opponent lacks immediate burst or when Fake Out and Intimidate can manufacture the first quiet turn. Competitive is a bonus failure-inversion layer if the opponent uses stat drops, but the route does not depend on that trigger. If Coil is impossible, Milotic can still contribute immediate spread pressure while another converter becomes the win condition.",
+    "dependsOn": "Milotic must survive the first setup turn without giving away decisive board position.",
+    "disrupt": "Immediate burst, repeated double-targeting, or pressure that prevents setup.",
+    "fallback": "Skip Coil and play immediate Muddy Water while Sand or Tailwind carries conversion."
+    },
+    {
+    "id": "tailwind-bridge",
+    "label": "Tailwind Bridge",
+    "path": [
+    "Salamence · enter and Intimidate",
+    "Salamence · Tailwind when multiple partners benefit",
+    "Rillaboom or Gholdengo · convert the speed window",
+    "Salamence · add Hyper Voice or Draco Meteor",
+    "Backline · clean before Tailwind expires"
+    ],
+    "how": "Tailwind prevents the six from becoming weather-dependent. Salamence first creates defensive time through Intimidate and can then convert that time into a speed advantage. Use this route when Sand is contested or when Gholdengo and Rillaboom benefit more from broad speed control than Excadrill benefits from weather. The route is less valuable when the opponent is deliberately playing a slower Trick Room state. If Tailwind is inverted, preserve Salamence and lean into Milotic or priority instead.",
+    "dependsOn": "At least two members of the active package must materially benefit from Tailwind.",
+    "disrupt": "Trick Room, immediate Salamence pressure, or boards where speed is not the relevant axis.",
+    "fallback": "Use Milotic's speed-independent control or Grassy Glide priority."
+    }
+    ],
+    "network": {
+    "thesis": "Independent engines share bridge resources without sharing one common failure condition.",
+    "edges": [
+    {
+    "from": "tyranitar",
+    "to": "excadrill",
+    "creates": "Sand",
+    "converts": "Sand Rush pressure",
+    "engineId": "sand-rush"
+    },
+    {
+    "from": "salamence",
+    "to": "gholdengo",
+    "creates": "Intimidate free turn",
+    "converts": "Nasty Plot",
+    "engineId": "gold-conversion"
+    },
+    {
+    "from": "salamence",
+    "to": "milotic",
+    "creates": "Reduced physical pressure",
+    "converts": "Safer Coil",
+    "engineId": "coil-control"
+    },
+    {
+    "from": "rillaboom",
+    "to": "gholdengo",
+    "creates": "Fake Out free turn",
+    "converts": "Nasty Plot",
+    "engineId": "gold-conversion"
+    },
+    {
+    "from": "rillaboom",
+    "to": "milotic",
+    "creates": "Fake Out plus recovery",
+    "converts": "Coil control",
+    "engineId": "coil-control"
+    },
+    {
+    "from": "salamence",
+    "to": "excadrill",
+    "creates": "Tailwind",
+    "converts": "Non-Sand speed",
+    "engineId": "tailwind-bridge"
+    },
+    {
+    "from": "rillaboom",
+    "to": "tyranitar",
+    "creates": "Fake Out tempo",
+    "converts": "Safer Rock pressure"
+    },
+    {
+    "from": "milotic",
+    "to": "gholdengo",
+    "creates": "Sleep pressure",
+    "converts": "Special attack window",
+    "engineId": "coil-control"
+    }
+    ]
+    },
+    "commandments": [
+    "Sand is a weapon, not an obligation.",
+    "Spend Fake Out on the teammate that converts the turn best.",
+    "Do not click Hypnosis as though Coil never existed.",
+    "Choose the Mega for the matchup, not from habit.",
+    "When one route is denied, switch clocks instead of forcing it."
+    ],
+    "controlPlanes": [
+    "sand",
+    "tailwind",
+    "fake-out",
+    "grassy-terrain",
+    "intimidate",
+    "competitive",
+    "coil-hypnosis",
+    "nasty-plot",
+    "priority"
+    ],
+    "megaPool": [
+    {
+    "slug": "tyranitar",
+    "item": "Tyranitarite",
+    "reason": "Use when Tyranitar itself must become the durable physical centerpiece."
+    },
+    {
+    "slug": "salamence",
+    "item": "Salamencite",
+    "reason": "Use when Intimidate plus faster special conversion is the more valuable Mega path."
+    }
+    ],
+    "matchupScripts": [
+    {
+    "pattern": "Opponent lacks reliable weather control",
+    "packId": "r2-sand-pressure"
+    },
+    {
+    "pattern": "Opponent overprepares for physical Sand",
+    "packId": "r2-grassy-special"
+    },
+    {
+    "pattern": "Opponent uses heavy Intimidate or positional physical control",
+    "packId": "r2-adaptive-control"
+    },
+    {
+    "pattern": "Weather war looks expensive",
+    "packId": "r2-no-sand"
+    }
+    ],
+    "construction": {
+    "thesis": "Combine a proven Tyranitar/Excadrill/Salamence/Milotic root with Rillaboom/Gholdengo to create multiple independent conversion paths.",
+    "method": "Preserve Sand as the fastest engine while ensuring weather loss never ends the game plan.",
+    "winCondition": "Reach an endgame where at least one of Excadrill, Gholdengo, Milotic, Salamence, or Rillaboom retains an uncontested clock.",
+    "endgames": [
+    {
+    "id": "sand-clean",
+    "label": "Sand Cleanup",
+    "path": "Preserve Sand turns and Excadrill HP until opposing defensive resources are spent.",
+    "how": "Excadrill closes through Sand Rush plus single-target or spread pressure."
+    },
+    {
+    "id": "gold-endgame",
+    "label": "Golden Endgame",
+    "path": "Create one free turn, then preserve Gholdengo after Nasty Plot or favorable Make It Rain trades.",
+    "how": "Gholdengo closes from the special axis while physical answers are exhausted."
+    },
+    {
+    "id": "milotic-lock",
+    "label": "Milotic Control",
+    "path": "Create one Coil, then use Hypnosis, Muddy Water, Protect, and recovery turns to reduce opposing actions.",
+    "how": "Milotic wins by making the opponent's remaining turns unreliable."
+    }
+    ],
+    "altSlots": []
+    },
+    "packs": [
+    {
+    "id": "r2-sand-pressure",
+    "label": "Sand Pressure",
+    "when": "Bring this when Tyranitar can establish Sand cheaply and Excadrill threatens immediate meaningful damage.",
+    "identity": "Immediate Sand conversion with two speed-independent backline answers.",
+    "slugs": [
+    "tyranitar",
+    "excadrill",
+    "salamence",
+    "milotic"
+    ],
+    "endgameIds": [
+    "sand-clean",
+    "milotic-lock"
+    ],
+    "winRouteIds": [
+    "sand-rush",
+    "coil-control"
+    ],
+    "engineIds": [
+    "sand-rush",
+    "tailwind-bridge",
+    "coil-control"
+    ],
+    "identityCard": {
+    "engine": [
+    "tyranitar",
+    "salamence"
+    ],
+    "connector": [
+    "salamence"
+    ],
+    "converter": [
+    "excadrill"
+    ],
+    "scaler": [
+    "milotic"
+    ],
+    "control": [
+    "salamence",
+    "milotic"
+    ],
+    "winCondition": "Take early Sand progress, then close with whichever of Excadrill or Milotic remains structurally favored.",
+    "clock": "Immediate into scaling",
+    "commitment": "Medium",
+    "autonomy": "High",
+    "triggerBreadth": "Sand, Intimidate, Tailwind, Coil, or Competitive can each create progress."
+    },
+    "pilotDecision": {
+    "chooseWhen": [
+    "Weather control is favorable.",
+    "Excadrill has several clean targets.",
+    "The opponent's physical control could feed Milotic."
+    ],
+    "avoidWhen": [
+    "Opponent can overwrite weather repeatedly with little cost.",
+    "Spread denial plus strong Excadrill answers make Sand inefficient."
+    ],
+    "previewQuestion": "If Sand disappears after turn one, do Salamence and Milotic still give me a winning four?",
+    "primaryMistake": "Spending every turn trying to restore Sand after the matchup has already shifted."
+    },
+    "strategy": {
+    "opponentPattern": "Boards where immediate speed and damage matter but a bulky fallback is needed.",
+    "bring": [
+    "tyranitar",
+    "excadrill",
+    "salamence",
+    "milotic"
+    ],
+    "purpose": "Force immediate Sand respect without becoming dependent on Sand.",
+    "targets": [
+    "Teams with limited weather overwrite",
+    "Physical-control teams that may trigger Competitive"
+    ],
+    "refuses": [
+    "A weather war that consumes every turn",
+    "Automatic Mega Tyranitar"
+    ],
+    "winCondition": "Convert Sand early, then preserve Salamence or Milotic as the second clock.",
+    "gamePlan": "Break with Sand → bridge with Salamence → control or finish with Milotic/Excadrill.",
+    "mantra": "Take the cheap Sand advantage; do not marry it.",
+    "turnChecklist": [
+    "Is Sand safe?",
+    "Can Excadrill take real progress now?",
+    "Does Salamence need to preserve Intimidate?",
+    "Can Milotic safely Coil?"
+    ]
+    },
+    "defaultLeadPair": [
+    "tyranitar",
+    "excadrill"
+    ],
+    "backPair": [
+    "salamence",
+    "milotic"
+    ],
+    "roles": [
+    {
+    "slug": "tyranitar",
+    "macro": "Weather engine",
+    "micro": "Set Sand and force immediate Rock/Dark respect."
+    },
+    {
+    "slug": "excadrill",
+    "macro": "Immediate converter",
+    "micro": "Spend Sand turns on the highest-value damage."
+    },
+    {
+    "slug": "salamence",
+    "macro": "Bridge",
+    "micro": "Intimidate or Tailwind when Sand no longer solves the board."
+    },
+    {
+    "slug": "milotic",
+    "macro": "Control scaler",
+    "micro": "Exploit the stabilized board with Coil or immediate Muddy Water."
+    }
+    ],
+    "fieldPlan": {
+    "leadPair": [
+    "tyranitar",
+    "excadrill"
+    ],
+    "leadWhy": "This is the highest-velocity conversion pair when weather is favorable.",
+    "backPair": [
+    "salamence",
+    "milotic"
+    ],
+    "backJobs": [
+    {
+    "slug": "salamence",
+    "job": "Reset physical pressure and provide Tailwind when Sand expires."
+    },
+    {
+    "slug": "milotic",
+    "job": "Punish stat control and become the slow-board win condition."
+    }
+    ],
+    "pairEdges": [
+    {
+    "from": "tyranitar",
+    "to": "excadrill",
+    "creates": "Sand",
+    "converts": "Sand Rush pressure"
+    },
+    {
+    "from": "salamence",
+    "to": "milotic",
+    "creates": "Intimidate breathing room",
+    "converts": "Safer Coil"
+    }
+    ],
+    "turn1": "Set Sand naturally; attack with Excadrill only if the exchange is actually favorable rather than automatic.",
+    "bringInTriggers": [
+    "Sand expires or physical pressure rises → bring Salamence.",
+    "Opponent begins stat-control or the board slows → bring Milotic."
+    ]
+    },
+    "loops": [
+    {
+    "id": "r2-sand-hit",
+    "type": "conversion",
+    "title": "Take the Sand Turn",
+    "body": "When Sand gives Excadrill a clean damage window, Tyranitar protects or pressures while Excadrill takes the highest-value attack. Do not spend the turn setting extra infrastructure. End with the opponent forced defensive and your backline still hidden."
+    },
+    {
+    "id": "r2-milo-second-wave",
+    "type": "scaling",
+    "title": "Milotic Second Wave",
+    "body": "When the opponent stabilizes against Sand, bring Milotic into the lower-pressure board. Coil if Salamence or prior damage has bought the turn, then threaten Hypnosis while Excadrill or Tyranitar finishes damaged targets. End with Milotic controlling actions instead of contesting speed."
+    }
+    ],
+    "flows": [
+    {
+    "id": "lead",
+    "title": "Lead",
+    "forks": [
+    {
+    "id": "sand-open",
+    "when": "Weather is safe and Excadrill has pressure",
+    "then": "Commit to the first Sand conversion."
+    },
+    {
+    "id": "weather-contested",
+    "when": "Opponent can cheaply overwrite Sand",
+    "then": "Protect resources and pivot toward Salamence/Milotic."
+    }
+    ]
+    }
+    ],
+    "victims": [
+    {
+    "name": "Single-speed offensive boards",
+    "why": "Sand Rush creates an immediate speed regime while Milotic supplies a different second clock.",
+    "play": "Take early Sand progress, then stop racing once Milotic becomes better.",
+    "trap": "Do not assume speed advantage alone wins."
+    }
+    ],
+    "counters": [
+    {
+    "name": "Repeated weather overwrite plus Excadrill control",
+    "why": "It can reduce the value of the opening pair simultaneously.",
+    "play": "Abandon the weather fight and pivot into Salamence/Milotic.",
+    "trap": "Repeatedly switching Tyranitar solely to restore Sand."
+    }
+    ],
+    "advantages": [
+    {
+    "title": "Low route correlation",
+    "body": "Weather denial hurts Excadrill but does not remove Tailwind or Coil Milotic."
+    }
+    ],
+    "hazards": [
+    {
+    "title": "Mega autopilot",
+    "body": "Do not spend the unique Mega resource before deciding whether Tyranitar or Salamence matters more."
+    }
+    ]
+    },
+    {
+    "id": "r2-grassy-special",
+    "label": "Grassy Special",
+    "when": "Bring this when the opponent's plan is strongest into Tyranitar/Excadrill and weaker into special scaling plus terrain tempo.",
+    "identity": "No-Sand pressure built around Fake Out, Gholdengo, Tailwind, and Coil.",
+    "slugs": [
+    "rillaboom",
+    "gholdengo",
+    "salamence",
+    "milotic"
+    ],
+    "endgameIds": [
+    "gold-endgame",
+    "milotic-lock"
+    ],
+    "winRouteIds": [
+    "gold-conversion",
+    "coil-control"
+    ],
+    "engineIds": [
+    "gold-conversion",
+    "coil-control",
+    "tailwind-bridge"
+    ],
+    "identityCard": {
+    "engine": [
+    "rillaboom",
+    "salamence"
+    ],
+    "connector": [
+    "salamence",
+    "rillaboom"
+    ],
+    "converter": [
+    "gholdengo"
+    ],
+    "scaler": [
+    "gholdengo",
+    "milotic"
+    ],
+    "control": [
+    "rillaboom",
+    "milotic"
+    ],
+    "winCondition": "Use one free turn to establish Gholdengo or Milotic, then attack from the axis the opponent did not prepare for.",
+    "clock": "Tempo into scaling",
+    "commitment": "Low to medium",
+    "autonomy": "Very high",
+    "triggerBreadth": "Fake Out, Intimidate, Tailwind, Coil, Competitive, or raw damage."
+    },
+    "pilotDecision": {
+    "chooseWhen": [
+    "Sand is awkward.",
+    "The opponent overindexes on Ground/Rock counterplay.",
+    "Fake Out can create a high-value setup turn."
+    ],
+    "avoidWhen": [
+    "Rillaboom has no safe entry and Gholdengo is immediately pressured from both slots."
+    ],
+    "previewQuestion": "Which scaler gets the first free turn: Gholdengo or Milotic?",
+    "primaryMistake": "Trying to set up both scalers instead of letting one create space for the other."
+    },
+    "strategy": {
+    "opponentPattern": "Anti-Sand previews or bulky balance.",
+    "bring": [
+    "rillaboom",
+    "gholdengo",
+    "salamence",
+    "milotic"
+    ],
+    "purpose": "Play an entirely functional game without Tyranitar or Excadrill.",
+    "targets": [
+    "Anti-Sand structures",
+    "Intimidate-heavy balance"
+    ],
+    "refuses": [
+    "Weather dependency",
+    "Double setup greed"
+    ],
+    "winCondition": "Establish one scaler while Salamence and Rillaboom keep the board favorable.",
+    "gamePlan": "Create turn → scale once → preserve converter → close with special/control pressure.",
+    "mantra": "One free turn is enough.",
+    "turnChecklist": [
+    "Can Fake Out buy Nasty Plot?",
+    "Would Coil be safer?",
+    "Does Tailwind matter?",
+    "Which scaler should remain hidden?"
+    ]
+    },
+    "defaultLeadPair": [
+    "rillaboom",
+    "gholdengo"
+    ],
+    "backPair": [
+    "salamence",
+    "milotic"
+    ],
+    "roles": [
+    {
+    "slug": "rillaboom",
+    "macro": "Tempo engine",
+    "micro": "Create one free turn or simply convert with Grass damage."
+    },
+    {
+    "slug": "gholdengo",
+    "macro": "Primary converter",
+    "micro": "Choose immediate Make It Rain or Nasty Plot."
+    },
+    {
+    "slug": "salamence",
+    "macro": "Speed and defensive bridge",
+    "micro": "Enter when physical pressure or speed becomes the relevant axis."
+    },
+    {
+    "slug": "milotic",
+    "macro": "Second scaler",
+    "micro": "Take over once the opponent spends resources on Gholdengo."
+    }
+    ],
+    "fieldPlan": {
+    "leadPair": [
+    "rillaboom",
+    "gholdengo"
+    ],
+    "leadWhy": "Fake Out creates the cleanest first conversion window for Gholdengo.",
+    "backPair": [
+    "salamence",
+    "milotic"
+    ],
+    "backJobs": [
+    {
+    "slug": "salamence",
+    "job": "Enter on physical pressure and create Tailwind if the board needs speed."
+    },
+    {
+    "slug": "milotic",
+    "job": "Become the second long-game clock after Gholdengo draws attention."
+    }
+    ],
+    "pairEdges": [
+    {
+    "from": "rillaboom",
+    "to": "gholdengo",
+    "creates": "Fake Out free turn",
+    "converts": "Nasty Plot"
+    },
+    {
+    "from": "salamence",
+    "to": "milotic",
+    "creates": "Reduced physical pressure",
+    "converts": "Safer Coil"
+    }
+    ],
+    "turn1": "Fake Out only if it produces a meaningful Gholdengo conversion; otherwise attack immediately.",
+    "bringInTriggers": [
+    "Physical attacker threatens the lead → Salamence.",
+    "Opponent spends resources containing Gholdengo → Milotic."
+    ]
+    },
+    "loops": [
+    {
+    "id": "r2-fake-gold",
+    "type": "conversion",
+    "title": "Fake Out to Gold",
+    "body": "When one opposing slot can be denied safely, Rillaboom uses Fake Out and Gholdengo chooses Nasty Plot only if the second slot cannot punish it. On the next turn convert with Make It Rain or Shadow Ball rather than stacking setup. End with Gholdengo ahead and Rillaboom still threatening priority."
+    },
+    {
+    "id": "r2-mence-milo",
+    "type": "resource",
+    "title": "Intimidate into Coil",
+    "body": "When the opponent pivots toward physical pressure, bring Salamence to reduce damage and expose Milotic later. Milotic uses the quieter board to Coil, then Hypnosis attacks the opponent's action economy. End with a speed-independent control state."
+    }
+    ],
+    "flows": [
+    {
+    "id": "lead",
+    "title": "Lead",
+    "forks": [
+    {
+    "id": "setup-free",
+    "when": "One slot is Fake Out-vulnerable and the other cannot punish Gholdengo",
+    "then": "Use Nasty Plot."
+    },
+    {
+    "id": "setup-not-free",
+    "when": "Opponent can immediately pressure Gholdengo",
+    "then": "Attack or Protect and preserve the second-wave scalers."
+    }
+    ]
+    }
+    ],
+    "victims": [
+    {
+    "name": "Physical-control balance",
+    "why": "Intimidate does little to Gholdengo and can feed Milotic's Competitive.",
+    "play": "Keep the special/control clocks separated.",
+    "trap": "Do not expose both scalers to the same burst turn."
+    }
+    ],
+    "counters": [
+    {
+    "name": "Immediate dual-slot special burst",
+    "why": "It can deny both Nasty Plot and Coil access.",
+    "play": "Use Salamence speed and immediate attacks rather than setup.",
+    "trap": "Greedy turn-one scaling."
+    }
+    ],
+    "advantages": [
+    {
+    "title": "Sandless identity",
+    "body": "This package proves the six does not require its nominal weather root."
+    }
+    ],
+    "hazards": [
+    {
+    "title": "Setup saturation",
+    "body": "Gholdengo and Milotic are alternate scalers, not a requirement to set up both."
+    }
+    ]
+    },
+    {
+    "id": "r2-hybrid-sand-special",
+    "label": "Hybrid Sand + Gold",
+    "when": "Bring this when Sand is useful but the opponent has enough physical counterplay that a special second wave is mandatory.",
+    "identity": "Sand forces immediate answers; Gholdengo punishes those answers.",
+    "slugs": [
+    "tyranitar",
+    "excadrill",
+    "gholdengo",
+    "milotic"
+    ],
+    "endgameIds": [
+    "sand-clean",
+    "gold-endgame",
+    "milotic-lock"
+    ],
+    "winRouteIds": [
+    "sand-rush",
+    "gold-conversion",
+    "coil-control"
+    ],
+    "engineIds": [
+    "sand-rush",
+    "gold-conversion",
+    "coil-control"
+    ],
+    "identityCard": {
+    "engine": [
+    "tyranitar"
+    ],
+    "connector": [
+    "milotic"
+    ],
+    "converter": [
+    "excadrill",
+    "gholdengo"
+    ],
+    "scaler": [
+    "gholdengo",
+    "milotic"
+    ],
+    "control": [
+    "milotic"
+    ],
+    "winCondition": "Force physical answers with Sand, then convert the opponent's adjustment through Gholdengo or Milotic.",
+    "clock": "Immediate plus two independent scaling clocks",
+    "commitment": "Medium",
+    "autonomy": "Very high",
+    "triggerBreadth": "Weather, setup opportunity, stat drops, or Coil access."
+    },
+    "pilotDecision": {
+    "chooseWhen": [
+    "Sand pressures preview but will not win alone.",
+    "Opponent relies heavily on Intimidate or physical checks."
+    ],
+    "avoidWhen": [
+    "The matchup demands Tailwind or Fake Out more than raw converter density."
+    ],
+    "previewQuestion": "What does the opponent need to spend to survive Excadrill, and which backline mon punishes that spend?",
+    "primaryMistake": "Treating Gholdengo as backup rather than a deliberately separate clock."
+    },
+    "strategy": {
+    "opponentPattern": "Mixed counterplay into Sand.",
+    "bring": [
+    "tyranitar",
+    "excadrill",
+    "gholdengo",
+    "milotic"
+    ],
+    "purpose": "Overload physical answers with two special/control backline routes.",
+    "targets": [
+    "Intimidate-heavy Sand answers",
+    "Teams with narrow special counterplay"
+    ],
+    "refuses": [
+    "Single-axis physical offense"
+    ],
+    "winCondition": "Use Sand to force resources, then finish from the special or control axis.",
+    "gamePlan": "Pressure physically → identify their answer → deploy Gholdengo or Milotic.",
+    "mantra": "Make their Sand answer choose the next winner.",
+    "turnChecklist": [
+    "What are they spending to stop Excadrill?",
+    "Does that create Gholdengo room?",
+    "Does it trigger Competitive?",
+    "Can Milotic Coil instead of racing?"
+    ]
+    },
+    "defaultLeadPair": [
+    "tyranitar",
+    "excadrill"
+    ],
+    "backPair": [
+    "gholdengo",
+    "milotic"
+    ],
+    "roles": [
+    {
+    "slug": "tyranitar",
+    "macro": "Engine",
+    "micro": "Create Sand and force an immediate answer."
+    },
+    {
+    "slug": "excadrill",
+    "macro": "First-wave converter",
+    "micro": "Spend Sand turns aggressively."
+    },
+    {
+    "slug": "gholdengo",
+    "macro": "Special second wave",
+    "micro": "Punish overcommitted physical defense."
+    },
+    {
+    "slug": "milotic",
+    "macro": "Reactive/control second wave",
+    "micro": "Punish stat drops or take the long game."
+    }
+    ],
+    "fieldPlan": {
+    "leadPair": [
+    "tyranitar",
+    "excadrill"
+    ],
+    "leadWhy": "The lead forces the opponent to reveal how they intend to contain the physical Sand axis.",
+    "backPair": [
+    "gholdengo",
+    "milotic"
+    ],
+    "backJobs": [
+    {
+    "slug": "gholdengo",
+    "job": "Punish physical commitments with special conversion."
+    },
+    {
+    "slug": "milotic",
+    "job": "Punish stat-control and slower stabilization attempts."
+    }
+    ],
+    "pairEdges": [
+    {
+    "from": "tyranitar",
+    "to": "excadrill",
+    "creates": "Sand",
+    "converts": "Sand Rush pressure"
+    },
+    {
+    "from": "milotic",
+    "to": "gholdengo",
+    "creates": "Sleep or control pressure",
+    "converts": "Special attack window"
+    }
+    ],
+    "turn1": "Use the Sand lead to reveal the opponent's defensive plan; preserve at least one backline clock.",
+    "bringInTriggers": [
+    "Opponent commits Intimidate or physical walls → bring Milotic or Gholdengo.",
+    "Opponent slows the board → favor Milotic over forcing Excadrill."
+    ]
+    },
+    "loops": [
+    {
+    "id": "r2-reveal-answer",
+    "type": "counterplay",
+    "title": "Make Them Show the Sand Answer",
+    "body": "When the preview suggests physical answers, lead Sand anyway if the exchange is safe. Use the first turn to force their answer rather than overextend. Once their response is visible, transition into Gholdengo or Milotic so the board state they created becomes your second-wave advantage."
+    },
+    {
+    "id": "r2-special-back",
+    "type": "conversion",
+    "title": "Special Backline",
+    "body": "When Excadrill has forced Protects, switches, or stat control, bring Gholdengo or Milotic into that reduced-pressure state. Gholdengo converts through immediate damage or Nasty Plot; Milotic converts through Coil or Competitive. End with the opponent answering a different damage axis than the one they prepared for."
+    }
+    ],
+    "flows": [
+    {
+    "id": "lead",
+    "title": "Lead",
+    "forks": [
+    {
+    "id": "sand-winning",
+    "when": "Their Sand answer is weak",
+    "then": "Keep converting with Excadrill."
+    },
+    {
+    "id": "sand-contained",
+    "when": "Their Sand answer is effective",
+    "then": "Do not force it; expose the special/control backline."
+    }
+    ]
+    }
+    ],
+    "victims": [
+    {
+    "name": "Narrow anti-Sand game plans",
+    "why": "The package deliberately carries two backline routes that do not share Excadrill's answers.",
+    "play": "Force the anti-Sand resource first.",
+    "trap": "Do not sacrifice both leads before converting the information."
+    }
+    ],
+    "counters": [
+    {
+    "name": "Broad mixed offense",
+    "why": "It can pressure both physical and special backline without committing to one answer.",
+    "play": "Use Protect and selective trades; do not assume setup.",
+    "trap": "Giving away Milotic or Gholdengo before their axis matters."
+    }
+    ],
+    "advantages": [
+    {
+    "title": "Counterplay debt",
+    "body": "Resources spent containing Sand can create the opening for Gholdengo or Milotic."
+    }
+    ],
+    "hazards": [
+    {
+    "title": "Lead overcommitment",
+    "body": "The purpose of the lead is often to reveal and tax the answer, not necessarily to sweep."
+    }
+    ]
+    },
+    {
+    "id": "r2-no-sand",
+    "label": "No-Sand Adaptive",
+    "when": "Bring this when weather is actively unfavorable or the opposing six is built to make Tyranitar/Excadrill inefficient.",
+    "identity": "Tailwind, Fake Out, special scaling, and Coil control without either Sand Pokémon.",
+    "slugs": [
+    "salamence",
+    "rillaboom",
+    "gholdengo",
+    "milotic"
+    ],
+    "endgameIds": [
+    "gold-endgame",
+    "milotic-lock"
+    ],
+    "winRouteIds": [
+    "gold-conversion",
+    "coil-control"
+    ],
+    "engineIds": [
+    "tailwind-bridge",
+    "gold-conversion",
+    "coil-control"
+    ],
+    "identityCard": {
+    "engine": [
+    "salamence",
+    "rillaboom"
+    ],
+    "connector": [
+    "salamence",
+    "rillaboom"
+    ],
+    "converter": [
+    "gholdengo"
+    ],
+    "scaler": [
+    "gholdengo",
+    "milotic"
+    ],
+    "control": [
+    "milotic"
+    ],
+    "winCondition": "Win as a four-Pokémon balance team without touching weather.",
+    "clock": "Flexible tempo/scaling",
+    "commitment": "Low",
+    "autonomy": "Very high",
+    "triggerBreadth": "Intimidate, Fake Out, Tailwind, Coil, Competitive, or direct damage."
+    },
+    "pilotDecision": {
+    "chooseWhen": [
+    "Opponent's weather denial is central.",
+    "Sand would expose too many poor trades.",
+    "The matchup rewards repeated autonomous decisions."
+    ],
+    "avoidWhen": [
+    "Excadrill has a clearly dominant Sand matchup."
+    ],
+    "previewQuestion": "Would I still choose this four if Tyranitar and Excadrill were not on the team sheet?",
+    "primaryMistake": "Feeling obligated to bring Sand because the registered six contains Sand."
+    },
+    "strategy": {
+    "opponentPattern": "Weather-hostile or anti-Sand preview.",
+    "bring": [
+    "salamence",
+    "rillaboom",
+    "gholdengo",
+    "milotic"
+    ],
+    "purpose": "Demonstrate the team's architecture remains complete without its nominal root.",
+    "targets": [
+    "Heavy weather control",
+    "Bulky mixed balance"
+    ],
+    "refuses": [
+    "Forced weather wars"
+    ],
+    "winCondition": "Create one favorable turn, then preserve the converter the opponent is least equipped to answer.",
+    "gamePlan": "Intimidate/Fake Out → Gholdengo or Milotic conversion → Tailwind or priority cleanup.",
+    "mantra": "The weather slot can stay home.",
+    "turnChecklist": [
+    "Which scaler has cleaner access?",
+    "Is Tailwind necessary?",
+    "Can Rillaboom attack instead of support?",
+    "Which back mon should remain hidden?"
+    ]
+    },
+    "defaultLeadPair": [
+    "rillaboom",
+    "gholdengo"
+    ],
+    "backPair": [
+    "salamence",
+    "milotic"
+    ],
+    "roles": [
+    {
+    "slug": "salamence",
+    "macro": "Speed/defensive bridge",
+    "micro": "Enter when Intimidate or Tailwind has concrete value."
+    },
+    {
+    "slug": "rillaboom",
+    "macro": "Tempo and priority",
+    "micro": "Buy the first conversion turn."
+    },
+    {
+    "slug": "gholdengo",
+    "macro": "Special win condition",
+    "micro": "Convert the free turn aggressively."
+    },
+    {
+    "slug": "milotic",
+    "macro": "Control win condition",
+    "micro": "Take over when immediate speed matters less."
+    }
+    ],
+    "fieldPlan": {
+    "leadPair": [
+    "rillaboom",
+    "gholdengo"
+    ],
+    "leadWhy": "The pair creates immediate Fake Out versus special-conversion ambiguity without exposing either Sand slot.",
+    "backPair": [
+    "salamence",
+    "milotic"
+    ],
+    "backJobs": [
+    {
+    "slug": "salamence",
+    "job": "Reset physical pressure and create Tailwind later rather than telegraphing it."
+    },
+    {
+    "slug": "milotic",
+    "job": "Take the long game if the opponent survives Gholdengo's first wave."
+    }
+    ],
+    "pairEdges": [
+    {
+    "from": "rillaboom",
+    "to": "gholdengo",
+    "creates": "Fake Out free turn",
+    "converts": "Special scaling"
+    },
+    {
+    "from": "salamence",
+    "to": "milotic",
+    "creates": "Intimidate breathing room",
+    "converts": "Coil control"
+    }
+    ],
+    "turn1": "Use Fake Out only if it converts into a decisive Gholdengo state; otherwise preserve resources.",
+    "bringInTriggers": [
+    "Physical pressure rises → Salamence.",
+    "Game slows or stat drops appear → Milotic."
+    ]
+    },
+    "loops": [
+    {
+    "id": "r2-sandless-open",
+    "type": "conversion",
+    "title": "Sandless Opening",
+    "body": "When weather is a liability, lead Rillaboom and Gholdengo instead of trying to repair the matchup with Tyranitar. Use Fake Out to create the first profitable attack or Nasty Plot. End with the opponent committed to answering a special route while Salamence and Milotic remain unrevealed."
+    },
+    {
+    "id": "r2-second-clock",
+    "type": "resource",
+    "title": "Second Clock Entry",
+    "body": "When the opponent commits enough resources to Gholdengo, bring Salamence or Milotic according to the axis they used. Salamence creates speed and damage reduction; Milotic creates a slower control clock. End with a second win condition that does not share Gholdengo's failure condition."
+    }
+    ],
+    "flows": [
+    {
+    "id": "lead",
+    "title": "Lead",
+    "forks": [
+    {
+    "id": "gold-route",
+    "when": "Gholdengo gets a safe first conversion",
+    "then": "Press the special clock."
+    },
+    {
+    "id": "control-route",
+    "when": "Opponent immediately contains Gholdengo",
+    "then": "Preserve it and pivot toward Milotic."
+    }
+    ]
+    }
+    ],
+    "victims": [
+    {
+    "name": "Teams whose anti-Sand investment narrows their special/control answers",
+    "why": "This four ignores the matchup assumptions created by Tyranitar and Excadrill at preview.",
+    "play": "Keep the Sand slots benched and exploit preview tax.",
+    "trap": "Revealing the non-Sand plan too early in a set without reason."
+    }
+    ],
+    "counters": [
+    {
+    "name": "High-output mixed offense",
+    "why": "Can reduce setup access for both Gholdengo and Milotic.",
+    "play": "Use immediate damage and Tailwind rather than insisting on setup.",
+    "trap": "Treating every game as a scaling game."
+    }
+    ],
+    "advantages": [
+    {
+    "title": "Package entropy",
+    "body": "The six can register as Sand while this bring functions as an independent balance team."
+    }
+    ],
+    "hazards": [
+    {
+    "title": "Identity confusion",
+    "body": "Once this four is selected, stop making decisions as though Sand is still the plan."
+    }
+    ]
+    }
+    ],
+    "victims": [
+    {
+    "name": "Single-axis anti-Sand structures",
+    "why": "The six can simply route through Gholdengo, Milotic, Rillaboom, and Salamence."
+    },
+    {
+    "name": "Intimidate-heavy physical control",
+    "why": "Milotic can invert stat-drop counterplay while Gholdengo attacks specially."
+    }
+    ],
+    "counters": [
+    {
+    "name": "High-output mixed offense with broad speed control",
+    "why": "It can reduce the safe turns needed by both Gholdengo and Milotic while pressuring Sand."
+    },
+    {
+    "name": "Repeated weather control plus strong Ground/Steel answers",
+    "why": "It compresses the value of the Sand package and forces precise package selection."
+    }
+    ],
+    "advantages": [
+    {
+    "title": "Multiple autonomous converters",
+    "body": "Five members can create meaningful progress without the primary Sand engine."
+    },
+    {
+    "title": "Low failure correlation",
+    "body": "Weather denial, Intimidate, setup denial, and speed reversal do not all hit the same routes."
+    },
+    {
+    "title": "Empirical root",
+    "body": "Excadrill/Gholdengo/Milotic/Salamence has 28 recorded teams, 19 Top-16 finishes, and 2.61× expected Top-16 performance; Tyranitar/Rillaboom completes 25 of those cores at 66.8% full-team win rate. ([Pokémon Zone - Pokémon TCG Pocket][1])"
+    }
+    ],
+    "hazards": [
+    {
+    "title": "Dual-Mega item tax",
+    "body": "Tyranitar and Salamence both hold Mega stones, so one item is inactive every battle; the preview flexibility must justify it."
+    },
+    {
+    "title": "Experimental Milotic overlay",
+    "body": "The exact documented R2 tournament version used Sitrus Berry with Scald / Ice Beam / Coil / Protect; this manual intentionally tests the independently successful Leftovers Coil / Hypnosis / Muddy Water / Protect identity instead. ([PokeSynergy][2])"
+    }
+    ],
+    "evidence": {
+    "season": "Regulation M-C",
+    "asOf": "2026-09-22",
+    "source": "The Excadrill/Gholdengo/Milotic/Salamence core has 2.61× expected Top-16 performance, with Tyranitar/Rillaboom completing 89.3% of those recorded cores at 66.8% team win rate. Related overlapping fours also recur successfully. ([Pokémon Zone - Pokémon TCG Pocket][1])",
+    "caveat": "Core percentages are observational tournament data, not controlled matchup estimates. Milotic's Coil/Hypnosis set is an intentional architecture experiment layered onto a proven six.",
+    "templateBasis": "Authored to the attached Ringside Doubles requirements: bring four, full kits, fieldPlan, engines, network, package loops, and 66-SP recommendations. "
+    }
+    },
+    {
+    "id": "r4-counterplay-closure",
+    "title": "R4 — Counterplay Closure",
+    "lede": "Fast Raichu, slow Golisopod, Trick Room Farigiraf, Coil Milotic, and dual positional pivots attack the opponent's exits from multiple directions.",
+    "format": "doubles",
+    "philosophy": "Do not merely present fast and slow modes. Close the opponent's escape routes: Armor Tail attacks priority, Trick Room attacks speed, Psychic Noise attacks recovery, Encore attacks passivity, Competitive attacks stat control, and Coil/Hypnosis attacks inactivity.",
+    "archetype": "balance",
+    "family": "room",
+    "meta": "Regulation M-C",
+    "box": [
+    "raichu",
+    "farigiraf",
+    "incineroar",
+    "rillaboom",
+    "milotic",
+    "golisopod"
+    ],
+    "core": [
+    "farigiraf",
+    "milotic",
+    "golisopod"
+    ],
+    "pilot": {
+    "thesis": "Make every normal escape from one clock expose the opponent to another."
+    },
+    "architecture": [
+    {
+    "layer": "Engine",
+    "body": "Farigiraf controls speed and priority, Rillaboom/Incineroar manufacture turns, and Raichu changes from Lightning Rod infrastructure into No Guard offense."
+    },
+    {
+    "layer": "Converter",
+    "body": "Golisopod converts Trick Room into slow physical pressure, Milotic converts quiet turns or stat drops into control, and Raichu converts Mega timing into perfectly accurate burst."
+    },
+    {
+    "layer": "Endgame",
+    "body": "Close through Swords Dance Golisopod, Coil Milotic, or Mega Raichu once speed, priority, recovery, or Protect counterplay has been constrained."
+    }
+    ],
+    "roster": [
+    {
+    "slug": "raichu",
+    "title": "Raichu",
+    "job": "mega",
+    "literacy": "wallbreaker",
+    "role": "Pre-Mega Electric protection that transitions into No Guard burst and Encore control.",
+    "primaryJob": "Exploit Mega timing rather than treating Mega evolution as automatic.",
+    "item": "Raichunite Y",
+    "ability": "Lightning Rod",
+    "nature": "Timid",
+    "training": {
+    "sp": {
+    "hp": 2,
+    "atk": 0,
+    "def": 0,
+    "spa": 32,
+    "spd": 0,
+    "spe": 32
+    },
+    "label": "Timid max SpA / Speed",
+    "why": "Recommended starting spread for the exact fast offensive/control identity used by the tournament team.",
+    "spend": [
+    "2 HP",
+    "32 SpA",
+    "32 Spe"
+    ],
+    "rule": "66 SP max 32 per stat; recommended starting spread, not claimed optimal."
+    },
+    "moves": [
+    {
+    "name": "Zap Cannon",
+    "why": "No Guard turns normally unreliable Electric pressure into guaranteed-accuracy burst with paralysis utility."
+    },
+    {
+    "name": "Focus Blast",
+    "why": "No Guard converts high-power Fighting coverage into reliable pressure."
+    },
+    {
+    "name": "Protect",
+    "why": "Preserves Mega timing and lets Trick Room or partner positioning develop."
+    },
+    {
+    "name": "Encore",
+    "why": "Punishes Protect, setup, and passive attempts to wait out the team's clocks."
+    }
+    ],
+    "objective": "Use Lightning Rod before Mega when it matters; Mega only when offensive No Guard conversion is more valuable.",
+    "howToPlay": "Raichu is a state-transition Pokémon. Delay Mega evolution when Electric redirection protects the board; Mega when Zap Cannon, Focus Blast, or fast Encore becomes the stronger rule.",
+    "abilityStages": [
+    "Pre-Mega: Lightning Rod protects partners from Electric targeting.",
+    "Post-Mega: No Guard makes Zap Cannon and Focus Blast reliable."
+    ],
+    "ampTargets": [
+    "golisopod",
+    "milotic"
+    ],
+    "itemLoop": "The Mega stone creates a deliberate before/after ability transition rather than a simple stat upgrade.",
+    "networkJobs": {
+    "creates": [
+    "Electric protection",
+    "Encore lock"
+    ],
+    "converts": [
+    "No Guard burst"
+    ],
+    "protects": [
+    "golisopod",
+    "milotic"
+    ],
+    "scales": []
+    },
+    "opening": [
+    "Do I still need Lightning Rod?",
+    "Would Mega No Guard win more immediately?",
+    "Can Encore close an opponent escape route?"
+    ]
+    },
+    {
+    "slug": "farigiraf",
+    "title": "Farigiraf",
+    "job": "speed",
+    "literacy": "setter",
+    "role": "Speed inverter, priority gate, and recovery-denial controller.",
+    "primaryJob": "Make fast and priority-based counterplay unreliable.",
+    "item": "Sitrus Berry",
+    "ability": "Armor Tail",
+    "nature": "Bold",
+    "training": {
+    "sp": {
+    "hp": 32,
+    "atk": 0,
+    "def": 32,
+    "spa": 2,
+    "spd": 0,
+    "spe": 0
+    },
+    "label": "Bold max HP / Defense",
+    "why": "Recommended starting spread for surviving physical pressure while establishing Trick Room or Psychic Noise.",
+    "spend": [
+    "32 HP",
+    "32 Def",
+    "2 SpA"
+    ],
+    "rule": "66 SP max 32 per stat; recommended starting spread, not claimed optimal."
+    },
+    "moves": [
+    {
+    "name": "Trick Room",
+    "why": "Inverts speed when the opponent leans into faster modes."
+    },
+    {
+    "name": "Psychic Noise",
+    "why": "Attacks recovery-based counterplay while dealing useful STAB damage."
+    },
+    {
+    "name": "Thunderbolt",
+    "why": "Adds direct Electric conversion instead of becoming purely passive."
+    },
+    {
+    "name": "Protect",
+    "why": "Preserves Armor Tail and Trick Room timing."
+    }
+    ],
+    "objective": "Use Farigiraf only when speed inversion, priority denial, or recovery denial meaningfully closes the matchup.",
+    "howToPlay": "Do not click Trick Room by default. If the opponent already moves slowly, Armor Tail and Psychic Noise may be the more important functions.",
+    "ampTargets": [
+    "golisopod"
+    ],
+    "itemLoop": "Sitrus Berry extends the number of turns Armor Tail and speed control remain on the board.",
+    "networkJobs": {
+    "creates": [
+    "Trick Room",
+    "Priority denial",
+    "Recovery denial"
+    ],
+    "converts": [
+    "Psychic Noise pressure"
+    ],
+    "protects": [
+    "Golisopod slow mode"
+    ],
+    "scales": []
+    },
+    "opening": [
+    "Does Trick Room improve my board or theirs?",
+    "Is opposing priority a central answer?",
+    "Can Psychic Noise remove their recovery exit?"
+    ]
+    },
+    {
+    "slug": "incineroar",
+    "title": "Incineroar",
+    "job": "support",
+    "literacy": "pivot",
+    "role": "Physical stabilizer, Fake Out engine, and voluntary reset valve.",
+    "primaryJob": "Create safer setup and Trick Room turns without becoming passive.",
+    "item": "Expert Belt",
+    "ability": "Intimidate",
+    "nature": "Adamant",
+    "training": {
+    "sp": {
+    "hp": 20,
+    "atk": 32,
+    "def": 0,
+    "spa": 0,
+    "spd": 14,
+    "spe": 0
+    },
+    "label": "Adamant Attack with mixed bulk",
+    "why": "Recommended starting spread reflecting the published offensive Expert Belt identity while preserving useful bulk.",
+    "spend": [
+    "20 HP",
+    "32 Atk",
+    "14 SpD"
+    ],
+    "rule": "66 SP max 32 per stat; recommended starting spread, not claimed optimal."
+    },
+    "moves": [
+    {
+    "name": "Darkest Lariat",
+    "why": "Reliable Dark conversion that keeps Incineroar from being only support."
+    },
+    {
+    "name": "Flare Blitz",
+    "why": "Immediate Fire pressure into targets that would otherwise ignore the pivot."
+    },
+    {
+    "name": "Parting Shot",
+    "why": "Resets Intimidate and manufactures safer entries for the team's scalers."
+    },
+    {
+    "name": "Fake Out",
+    "why": "Buys Trick Room, Coil, or Swords Dance turns."
+    }
+    ],
+    "objective": "Lower incoming physical pressure and hand the board to the correct win condition.",
+    "howToPlay": "Use Parting Shot as a resource loop, not merely an escape button. The target is the next favorable entry state.",
+    "ampTargets": [
+    "farigiraf",
+    "milotic",
+    "golisopod"
+    ],
+    "itemLoop": "Expert Belt preserves real offensive consequence while Incineroar performs support work.",
+    "networkJobs": {
+    "creates": [
+    "Fake Out free turn",
+    "Intimidate",
+    "Parting Shot reset"
+    ],
+    "converts": [
+    "Flare Blitz",
+    "Darkest Lariat"
+    ],
+    "protects": [
+    "farigiraf",
+    "milotic",
+    "golisopod"
+    ],
+    "scales": []
+    },
+    "opening": [
+    "Which setup turn is most valuable?",
+    "Should I pivot or attack?",
+    "Can Parting Shot create the correct second wave?"
+    ]
+    },
+    {
+    "slug": "rillaboom",
+    "title": "Rillaboom",
+    "job": "support",
+    "literacy": "wallbreaker",
+    "role": "Offensive Fake Out engine, terrain setter, and priority converter.",
+    "primaryJob": "Create tempo while retaining enough damage that the opponent cannot simply ignore it.",
+    "item": "Life Orb",
+    "ability": "Grassy Surge",
+    "nature": "Adamant",
+    "training": {
+    "sp": {
+    "hp": 14,
+    "atk": 32,
+    "def": 0,
+    "spa": 0,
+    "spd": 0,
+    "spe": 20
+    },
+    "label": "Adamant max Attack with speed utility",
+    "why": "Recommended starting spread for an offensive Life Orb role rather than a purely bulky support build.",
+    "spend": [
+    "14 HP",
+    "32 Atk",
+    "20 Spe"
+    ],
+    "rule": "66 SP max 32 per stat; recommended starting spread, not claimed optimal."
+    },
+    "moves": [
+    {
+    "name": "Fake Out",
+    "why": "Buys Coil, Trick Room, or Swords Dance access."
+    },
+    {
+    "name": "Wood Hammer",
+    "why": "Immediate high-power conversion when the team needs damage now."
+    },
+    {
+    "name": "Grassy Glide",
+    "why": "Priority cleanup outside Trick Room."
+    },
+    {
+    "name": "High Horsepower",
+    "why": "Ground coverage that does not interfere with the partner."
+    }
+    ],
+    "objective": "Function as both infrastructure and a credible immediate attacker.",
+    "howToPlay": "Life Orb means supporting forever is often wrong. Once the free turn has been created, convert with damage.",
+    "ampTargets": [
+    "milotic",
+    "golisopod",
+    "farigiraf"
+    ],
+    "itemLoop": "Life Orb turns Fake Out infrastructure into immediate offensive threat on subsequent turns.",
+    "networkJobs": {
+    "creates": [
+    "Grassy Terrain",
+    "Fake Out free turn"
+    ],
+    "converts": [
+    "Wood Hammer",
+    "Grassy Glide"
+    ],
+    "protects": [
+    "milotic",
+    "farigiraf"
+    ],
+    "scales": []
+    },
+    "opening": [
+    "Who needs the Fake Out turn?",
+    "Is Trick Room actually needed?",
+    "Can I simply attack for the bigger advantage?"
+    ]
+    },
+    {
+    "slug": "milotic",
+    "title": "Milotic",
+    "job": "support",
+    "literacy": "disruptor",
+    "role": "Adaptive control scaler and Intimidate failure inverter.",
+    "primaryJob": "Create a speed-independent win route through Coil and Hypnosis.",
+    "item": "Leftovers",
+    "ability": "Competitive",
+    "nature": "Calm",
+    "training": {
+    "sp": {
+    "hp": 32,
+    "atk": 0,
+    "def": 14,
+    "spa": 0,
+    "spd": 20,
+    "spe": 0
+    },
+    "label": "Calm bulky Coil control",
+    "why": "Recommended starting spread for the published Coil/Hypnosis identity; prioritize staying power over a guessed speed benchmark.",
+    "spend": [
+    "32 HP",
+    "14 Def",
+    "20 SpD"
+    ],
+    "rule": "66 SP max 32 per stat; recommended starting spread, not claimed optimal."
+    },
+    "moves": [
+    {
+    "name": "Coil",
+    "why": "Improves Defense and accuracy so the control package becomes more reliable."
+    },
+    {
+    "name": "Muddy Water",
+    "why": "Spread pressure with additional accuracy-control upside."
+    },
+    {
+    "name": "Hypnosis",
+    "why": "Converts Coil accuracy into lost opponent actions."
+    },
+    {
+    "name": "Protect",
+    "why": "Preserves boosts and Leftovers while Trick Room, terrain, or positioning changes."
+    }
+    ],
+    "objective": "Win boards where neither pure fast nor pure slow offense is ideal.",
+    "howToPlay": "Milotic is the team's third speed state: it can stop caring about the speed race and instead control actions.",
+    "ampTargets": [],
+    "itemLoop": "Leftovers plus Grassy Terrain rewards every extra turn created by Coil, sleep, Fake Out, or Protect.",
+    "networkJobs": {
+    "creates": [
+    "Sleep pressure",
+    "Accuracy pressure"
+    ],
+    "converts": [
+    "Competitive",
+    "Coil"
+    ],
+    "protects": [
+    "Long-game state"
+    ],
+    "scales": [
+    "Coil"
+    ]
+    },
+    "opening": [
+    "Can Fake Out or Intimidate manufacture Coil?",
+    "Is Competitive likely to activate?",
+    "Do I need to ignore the speed war entirely?"
+    ]
+    },
+    {
+    "slug": "golisopod",
+    "title": "Golisopod",
+    "job": "breaker",
+    "literacy": "sweeper",
+    "role": "Slow Mega converter that retains Sucker Punch outside Trick Room.",
+    "primaryJob": "Exploit slow boards without becoming useless on fast boards.",
+    "item": "Golisopite",
+    "ability": "Emergency Exit",
+    "nature": "Adamant",
+    "training": {
+    "sp": {
+    "hp": 32,
+    "atk": 32,
+    "def": 0,
+    "spa": 0,
+    "spd": 2,
+    "spe": 0
+    },
+    "label": "Adamant max HP / Attack",
+    "why": "Recommended starting spread for a slow physical setup and Trick Room conversion role.",
+    "spend": [
+    "32 HP",
+    "32 Atk",
+    "2 SpD"
+    ],
+    "rule": "66 SP max 32 per stat; recommended starting spread, not claimed optimal."
+    },
+    "moves": [
+    {
+    "name": "Swords Dance",
+    "why": "Turns one protected Trick Room or Fake Out turn into a threatening slow clock."
+    },
+    {
+    "name": "Leech Life",
+    "why": "Primary STAB conversion with built-in resource recovery."
+    },
+    {
+    "name": "Sucker Punch",
+    "why": "Preserves priority pressure when Trick Room is absent."
+    },
+    {
+    "name": "Protect",
+    "why": "Preserves setup, Mega timing, and Trick Room turns."
+    }
+    ],
+    "objective": "Become the slow-mode win condition while maintaining an out-of-room priority route.",
+    "howToPlay": "Do not assume Trick Room is required. Sucker Punch and natural bulk let Golisopod participate before or after the room state.",
+    "abilityStages": [
+    "Pre-Mega: Emergency Exit can create an involuntary reposition.",
+    "Mega: convert the slot into the dedicated slow physical win condition."
+    ],
+    "ampTargets": [],
+    "itemLoop": "Golisopite turns the slow-mode slot into the team's principal Mega option when Raichu should retain Lightning Rod.",
+    "networkJobs": {
+    "creates": [
+    "Swords Dance threat"
+    ],
+    "converts": [
+    "Trick Room",
+    "Fake Out turns"
+    ],
+    "protects": [
+    "Own longevity through Leech Life"
+    ],
+    "scales": [
+    "Swords Dance"
+    ]
+    },
+    "opening": [
+    "Does Trick Room truly favor Golisopod?",
+    "Should Raichu remain non-Mega so Golisopod can Mega?",
+    "Is Sucker Punch enough without Room?"
+    ]
+    }
+    ],
+    "coreArchitecture": {
+    "identity": "A counterplay-closure balance team that can play fast, slow, or speed-independent control while denying priority, recovery, passive Protect lines, and stat-drop counterplay.",
+    "primaryEngine": "Farigiraf decides whether speed should be inverted while Rillaboom and Incineroar manufacture setup turns.",
+    "conversionModel": "Golisopod converts slow states, Raichu converts Mega timing into No Guard burst, and Milotic converts quiet turns or stat drops into control.",
+    "scalingModel": "Golisopod uses Swords Dance; Milotic uses Coil; Raichu changes offensive state through Mega evolution.",
+    "controlModel": "Armor Tail, Psychic Noise, Encore, Fake Out, Intimidate, Parting Shot, Hypnosis, and Competitive close common escape routes.",
+    "speedModel": "Raichu occupies the fast extreme, Golisopod the slow extreme, Farigiraf flips the board, and Milotic can ignore the race.",
+    "resourceModel": "Priority access, Trick Room turns, Grassy recovery, Leftovers, Fake Out turns, and Mega timing are intentionally separate resources.",
+    "threatProfile": [
+    "Fast No Guard burst",
+    "Slow Swords Dance conversion",
+    "Coil/Hypnosis control",
+    "Priority asymmetry",
+    "Recovery denial",
+    "Encore punishment"
+    ]
+    },
+    "clocks": [
+    {
+    "id": "fast-raichu",
+    "owner": [
+    "raichu"
+    ],
+    "speed": "immediate",
+    "goal": "Use Mega No Guard offense and Encore before the opponent establishes control."
+    },
+    {
+    "id": "room-golisopod",
+    "owner": [
+    "farigiraf",
+    "golisopod"
+    ],
+    "speed": "room",
+    "goal": "Invert faster opponents and convert with Swords Dance or Leech Life."
+    },
+    {
+    "id": "milotic-control",
+    "owner": [
+    "milotic"
+    ],
+    "speed": "scaling",
+    "goal": "Step outside the speed war and control actions through Coil/Hypnosis."
+    },
+    {
+    "id": "position-loop",
+    "owner": [
+    "incineroar",
+    "rillaboom"
+    ],
+    "speed": "tempo",
+    "goal": "Repeatedly manufacture low-cost setup and entry turns."
+    }
+    ],
+    "winRoutes": [
+    {
+    "id": "room-break",
+    "name": "Room into Golisopod",
+    "requires": [
+    "farigiraf",
+    "golisopod"
+    ],
+    "sequence": [
+    "Farigiraf establishes or threatens Trick Room.",
+    "Armor Tail removes opposing priority as an escape.",
+    "Golisopod uses Swords Dance or immediate Leech Life.",
+    "Psychic Noise prevents recovery-based stabilization.",
+    "Golisopod or the fast backline closes."
+    ],
+    "finish": "The opponent is trapped between a slow physical threat and reduced recovery/priority options.",
+    "failurePoint": "Trick Room helps the opponent more than Golisopod or Farigiraf cannot establish the state.",
+    "dependencies": [
+    {
+    "slug": "farigiraf",
+    "importance": "critical"
+    },
+    {
+    "slug": "golisopod",
+    "importance": "critical"
+    }
+    ]
+    },
+    {
+    "id": "mega-raichu",
+    "name": "Lightning Rod to No Guard",
+    "requires": [
+    "raichu"
+    ],
+    "sequence": [
+    "Keep Raichu non-Mega while Lightning Rod protects the board if needed.",
+    "Mega evolve when offensive conversion becomes more valuable.",
+    "Use accurate Zap Cannon or Focus Blast to force damage.",
+    "Use Encore when the opponent escapes through Protect or setup.",
+    "Preserve Raichu or hand the board to the alternate slow/control route."
+    ],
+    "finish": "Raichu either closes directly or forces the defensive action another teammate exploits.",
+    "failurePoint": "Mega evolution is spent too early and Lightning Rod was still strategically necessary.",
+    "dependencies": [
+    {
+    "slug": "raichu",
+    "importance": "critical"
+    }
+    ]
+    },
+    {
+    "id": "coil-lock",
+    "name": "Coil Lock",
+    "requires": [
+    "milotic"
+    ],
+    "sequence": [
+    "Rillaboom or Incineroar manufactures a quiet turn.",
+    "Milotic uses Coil.",
+    "Hypnosis removes an action lane.",
+    "Muddy Water degrades both HP and accuracy.",
+    "Partners convert while Milotic preserves itself."
+    ],
+    "finish": "The opponent has fewer reliable actions and fewer safe ways to wait.",
+    "failurePoint": "Immediate burst removes Milotic before the first Coil.",
+    "dependencies": [
+    {
+    "slug": "milotic",
+    "importance": "critical"
+    },
+    {
+    "slug": "rillaboom",
+    "importance": "supportive"
+    },
+    {
+    "slug": "incineroar",
+    "importance": "supportive"
+    }
+    ]
+    }
+    ],
+    "failureRoutes": [
+    {
+    "failedRoute": "room-break",
+    "why": "Trick Room is denied or would favor the opponent.",
+    "fallback": "Keep Farigiraf for Armor Tail/Psychic Noise and pivot to Raichu or Milotic.",
+    "nextRoute": "mega-raichu"
+    },
+    {
+    "failedRoute": "mega-raichu",
+    "why": "Fast offense is checked or Mega Raichu is removed.",
+    "fallback": "Invert speed through Farigiraf or abandon speed competition through Milotic.",
+    "nextRoute": "coil-lock"
+    },
+    {
+    "failedRoute": "coil-lock",
+    "why": "Milotic cannot safely establish Coil.",
+    "fallback": "Use immediate Muddy Water and positional Fake Out while Golisopod or Raichu becomes the closer.",
+    "nextRoute": "room-break"
+    }
+    ],
+    "engines": [
+    {
+    "id": "room-break",
+    "label": "Trick Room Golisopod",
+    "path": [
+    "Incineroar or Farigiraf · stabilize the opening",
+    "Farigiraf · Trick Room",
+    "Golisopod · Swords Dance or immediate Leech Life",
+    "Farigiraf · Psychic Noise to close recovery",
+    "Golisopod · convert the remaining Room turns"
+    ],
+    "how": "This engine exists to punish opponents who optimize heavily for moving first. Farigiraf changes the speed state while Armor Tail makes opposing priority a less reliable escape. Golisopod converts the slower board through immediate damage or Swords Dance, and Psychic Noise can deny recovery-based stabilization. Press the engine only when Trick Room is genuinely favorable; the team does not require Room every game. If Room is denied or would help the opponent, preserve Farigiraf's other control functions and use Raichu or Milotic instead.",
+    "dependsOn": "Trick Room must favor Golisopod more than the opposing board.",
+    "disrupt": "Taunt-like denial, immediate Farigiraf removal, or opposing slow attackers that benefit from Room.",
+    "fallback": "Use Armor Tail/Psychic Noise without Room and transition to Raichu or Coil Milotic."
+    },
+    {
+    "id": "mega-raichu",
+    "label": "Mega State Transition",
+    "path": [
+    "Raichu · remain Lightning Rod if Electric protection matters",
+    "Partner · establish favorable positioning",
+    "Raichu · Mega evolve when offense matters more",
+    "Mega Raichu · Zap Cannon or Focus Blast",
+    "Mega Raichu · Encore defensive counterplay when available"
+    ],
+    "how": "Raichu is valuable because Mega evolution changes its strategic function rather than simply increasing stats. Before Mega, Lightning Rod protects partners and can discourage Electric targeting. After Mega, No Guard converts Zap Cannon and Focus Blast into reliable attacks and makes fast Encore a powerful closure tool. Press the transition when the board no longer needs Lightning Rod or when immediate burst will create more value. If Mega Raichu is a poor fit, preserve the Mega resource for Golisopod.",
+    "dependsOn": "The pilot must correctly judge whether Lightning Rod or No Guard is more valuable in the current state.",
+    "disrupt": "Premature Mega evolution, strong special answers, or losing Raichu before the transition matters.",
+    "fallback": "Use Golisopod as the Mega and shift toward Trick Room or Milotic control."
+    },
+    {
+    "id": "coil-lock",
+    "label": "Coil Hypnosis",
+    "path": [
+    "Rillaboom or Incineroar · buy one quieter turn",
+    "Milotic · Coil",
+    "Milotic · Hypnosis the highest-value action",
+    "Partner · convert the lost opponent turn",
+    "Milotic · Muddy Water or Protect to retain control"
+    ],
+    "how": "Milotic is the architecture's speed-independent mode. Fake Out, Intimidate, Parting Shot, or Grassy recovery can manufacture the initial Coil turn. Coil improves Defense and accuracy, allowing Hypnosis and Muddy Water to become progressively more reliable. Competitive means opposing stat control may accelerate the same slot instead of containing the team. If the opponent never allows setup, Milotic still contributes Muddy Water pressure while another clock becomes primary.",
+    "dependsOn": "Milotic must receive one low-cost turn without being immediately overwhelmed.",
+    "disrupt": "Focused burst before Coil or relentless double targeting.",
+    "fallback": "Skip setup, use Muddy Water immediately, and move the win condition to Raichu or Golisopod."
+    },
+    {
+    "id": "position-loop",
+    "label": "Double Positional Infrastructure",
+    "path": [
+    "Rillaboom or Incineroar · Fake Out",
+    "Partner · Trick Room, Coil, Swords Dance, or attack",
+    "Incineroar · Parting Shot when the board asks for reset",
+    "Rillaboom · terrain and priority convert the second wave",
+    "Win condition · take the preserved board"
+    ],
+    "how": "Rillaboom and Incineroar provide overlapping Fake Out access but convert that overlap into different second-wave states. Incineroar adds Intimidate and Parting Shot, while Rillaboom adds terrain, healing, and priority damage. Use the pair to manufacture setup only when the setup creates more future value than immediate offense. The engine is vulnerable to priority denial, but Farigiraf can alter that axis and the team does not require Fake Out to function. When Fake Out is unavailable, use direct damage or the speed/control engines instead.",
+    "dependsOn": "At least one opposing slot must be meaningfully constrained by Fake Out or the positional threat it represents.",
+    "disrupt": "Psychic Terrain, Armor Tail-style denial from the opponent, Ghost interactions, or Protect-heavy scouting.",
+    "fallback": "Use Farigiraf, Raichu, or immediate offense rather than forcing Fake Out."
+    }
+    ],
+    "network": {
+    "thesis": "Every major counterplay axis is either inverted, denied, or converted into a different clock.",
+    "edges": [
+    {
+    "from": "farigiraf",
+    "to": "golisopod",
+    "creates": "Trick Room",
+    "converts": "Slow physical pressure",
+    "engineId": "room-break"
+    },
+    {
+    "from": "farigiraf",
+    "to": "golisopod",
+    "creates": "Priority denial",
+    "converts": "Safer slow turns",
+    "engineId": "room-break"
+    },
+    {
+    "from": "incineroar",
+    "to": "milotic",
+    "creates": "Reduced physical pressure",
+    "converts": "Safer Coil",
+    "engineId": "coil-lock"
+    },
+    {
+    "from": "rillaboom",
+    "to": "milotic",
+    "creates": "Fake Out plus recovery",
+    "converts": "Coil control",
+    "engineId": "coil-lock"
+    },
+    {
+    "from": "incineroar",
+    "to": "farigiraf",
+    "creates": "Fake Out free turn",
+    "converts": "Trick Room",
+    "engineId": "position-loop"
+    },
+    {
+    "from": "rillaboom",
+    "to": "golisopod",
+    "creates": "Fake Out free turn",
+    "converts": "Swords Dance",
+    "engineId": "position-loop"
+    },
+    {
+    "from": "raichu",
+    "to": "golisopod",
+    "creates": "Electric protection",
+    "converts": "Safer Mega pressure",
+    "engineId": "mega-raichu"
+    },
+    {
+    "from": "farigiraf",
+    "to": "raichu",
+    "creates": "Priority denial",
+    "converts": "Fast No Guard offense",
+    "engineId": "mega-raichu"
+    },
+    {
+    "from": "milotic",
+    "to": "golisopod",
+    "creates": "Sleep pressure",
+    "converts": "Swords Dance window",
+    "engineId": "coil-lock"
+    }
+    ]
+    },
+    "commandments": [
+    "Trick Room is an option, not an obligation.",
+    "Delay Mega Raichu when Lightning Rod still protects the board.",
+    "A safe Coil is worth more than a desperate raw Hypnosis.",
+    "Use Psychic Noise and Encore to close exits, not merely deal damage.",
+    "If the opponent answers one speed mode, switch states rather than fighting on the same axis."
+    ],
+    "controlPlanes": [
+    "trick-room",
+    "armor-tail",
+    "psychic-noise",
+    "encore",
+    "fake-out",
+    "intimidate",
+    "parting-shot",
+    "competitive",
+    "coil-hypnosis",
+    "grassy-terrain",
+    "priority"
+    ],
+    "megaPool": [
+    {
+    "slug": "raichu",
+    "item": "Raichunite Y",
+    "reason": "Use when No Guard burst and Encore are more valuable than retaining Lightning Rod or Mega Golisopod."
+    },
+    {
+    "slug": "golisopod",
+    "item": "Golisopite",
+    "reason": "Use when the slow physical mode is the central win condition."
+    }
+    ],
+    "matchupScripts": [
+    {
+    "pattern": "Fast offense with limited slow-mode answers",
+    "packId": "r4-room-break"
+    },
+    {
+    "pattern": "Bulky balance relying on recovery and Protect",
+    "packId": "r4-closure"
+    },
+    {
+    "pattern": "Electric pressure plus moderate speed",
+    "packId": "r4-fast-control"
+    },
+    {
+    "pattern": "Physical offense with Intimidate interactions",
+    "packId": "r4-coil-position"
+    }
+    ],
+    "construction": {
+    "thesis": "Build around failure inversion and counterplay closure rather than one preferred speed state.",
+    "method": "Pair fast, slow, and speed-independent clocks with tools that attack priority, recovery, Protect, and stat control.",
+    "winCondition": "Force the opponent to commit to one escape route, then use the teammate that specifically closes that exit.",
+    "endgames": [
+    {
+    "id": "goli-room",
+    "label": "Golisopod Room",
+    "path": "Establish favorable Trick Room, deny priority, and preserve Golisopod through setup or Leech Life.",
+    "how": "Golisopod closes while the opponent lacks reliable speed or priority escape."
+    },
+    {
+    "id": "raichu-fast",
+    "label": "Mega Raichu Fast",
+    "path": "Retain Lightning Rod until it is no longer needed, then Mega evolve and exploit No Guard.",
+    "how": "Accurate Zap Cannon/Focus Blast plus Encore creates the fast endgame."
+    },
+    {
+    "id": "milotic-lock",
+    "label": "Milotic Lock",
+    "path": "Create one Coil and preserve Milotic through Leftovers, terrain, and denied actions.",
+    "how": "Hypnosis and Muddy Water progressively reduce opponent action quality."
+    }
+    ],
+    "altSlots": []
+    },
+    "packs": [
+    {
+    "id": "r4-room-break",
+    "label": "Room Breaker",
+    "when": "Bring this when the opponent is strongly optimized for moving first and does not gain more from Trick Room than Golisopod does.",
+    "identity": "Farigiraf flips speed while Golisopod becomes the slow physical clock.",
+    "slugs": [
+    "farigiraf",
+    "golisopod",
+    "incineroar",
+    "milotic"
+    ],
+    "endgameIds": [
+    "goli-room",
+    "milotic-lock"
+    ],
+    "winRouteIds": [
+    "room-break",
+    "coil-lock"
+    ],
+    "engineIds": [
+    "room-break",
+    "coil-lock",
+    "position-loop"
+    ],
+    "identityCard": {
+    "engine": [
+    "farigiraf",
+    "incineroar"
+    ],
+    "connector": [
+    "incineroar"
+    ],
+    "converter": [
+    "golisopod"
+    ],
+    "scaler": [
+    "golisopod",
+    "milotic"
+    ],
+    "control": [
+    "farigiraf",
+    "milotic"
+    ],
+    "winCondition": "Make the opponent's fast mode bad, then convert the slower state with Golisopod or Milotic.",
+    "clock": "Slow plus speed-independent",
+    "commitment": "Medium",
+    "autonomy": "High",
+    "triggerBreadth": "Opponent speed, Fake Out access, stat drops, or a quiet Coil turn."
+    },
+    "pilotDecision": {
+    "chooseWhen": [
+    "Opponent depends heavily on speed.",
+    "Golisopod is advantaged under Room.",
+    "Armor Tail meaningfully constrains priority."
+    ],
+    "avoidWhen": [
+    "Opponent's slow threats benefit more from Trick Room.",
+    "Farigiraf would be forced into a predictable turn-one Room."
+    ],
+    "previewQuestion": "Who actually benefits most if Trick Room goes up?",
+    "primaryMistake": "Treating Farigiraf as a mandatory Trick Room button."
+    },
+    "strategy": {
+    "opponentPattern": "Fast offense or priority-dependent offense.",
+    "bring": [
+    "farigiraf",
+    "golisopod",
+    "incineroar",
+    "milotic"
+    ],
+    "purpose": "Invert speed while retaining a second control win condition.",
+    "targets": [
+    "Fast single-regime offense",
+    "Priority-reliant cleanup"
+    ],
+    "refuses": [
+    "Blind turn-one Trick Room",
+    "Forcing Golisopod setup into obvious double-targeting"
+    ],
+    "winCondition": "Establish the correct slow state, then choose Golisopod burst or Milotic control.",
+    "gamePlan": "Stabilize → invert speed if favorable → scale one win condition → close recovery/priority exits.",
+    "mantra": "Room only when Room helps us more.",
+    "turnChecklist": [
+    "Who wins under Trick Room?",
+    "Can Fake Out buy Room safely?",
+    "Should Golisopod attack or Swords Dance?",
+    "Can Milotic become the second clock?"
+    ]
+    },
+    "defaultLeadPair": [
+    "incineroar",
+    "farigiraf"
+    ],
+    "backPair": [
+    "golisopod",
+    "milotic"
+    ],
+    "roles": [
+    {
+    "slug": "farigiraf",
+    "macro": "Speed and priority control",
+    "micro": "Set Room only when it improves the package."
+    },
+    {
+    "slug": "golisopod",
+    "macro": "Slow converter",
+    "micro": "Choose immediate Leech Life or Swords Dance."
+    },
+    {
+    "slug": "incineroar",
+    "macro": "Setup access",
+    "micro": "Fake Out or Parting Shot to manufacture the first state."
+    },
+    {
+    "slug": "milotic",
+    "macro": "Second win condition",
+    "micro": "Use Coil when Golisopod draws the opponent's attention."
+    }
+    ],
+    "fieldPlan": {
+    "leadPair": [
+    "incineroar",
+    "farigiraf"
+    ],
+    "leadWhy": "Fake Out plus Intimidate gives Farigiraf the safest opportunity to decide whether Trick Room is correct.",
+    "backPair": [
+    "golisopod",
+    "milotic"
+    ],
+    "backJobs": [
+    {
+    "slug": "golisopod",
+    "job": "Enter once the slow state is established and convert Room turns."
+    },
+    {
+    "slug": "milotic",
+    "job": "Punish Intimidate or become the control fallback if Golisopod is checked."
+    }
+    ],
+    "pairEdges": [
+    {
+    "from": "incineroar",
+    "to": "farigiraf",
+    "creates": "Fake Out free turn",
+    "converts": "Trick Room"
+    },
+    {
+    "from": "farigiraf",
+    "to": "golisopod",
+    "creates": "Trick Room",
+    "converts": "Slow physical pressure"
+    },
+    {
+    "from": "incineroar",
+    "to": "milotic",
+    "creates": "Reduced physical pressure",
+    "converts": "Safer Coil"
+    }
+    ],
+    "turn1": "Fake Out only if it creates a genuinely favorable Room or Psychic Noise state; otherwise preserve the ambiguity.",
+    "bringInTriggers": [
+    "Room is established → bring Golisopod.",
+    "Opponent commits stat control or the board stabilizes → bring Milotic."
+    ]
+    },
+    "loops": [
+    {
+    "id": "r4-fake-room",
+    "type": "infrastructure",
+    "title": "Fake Out to Room",
+    "body": "When the opponent's speed advantage is the main problem, Incineroar uses Fake Out while Farigiraf establishes Trick Room. Bring Golisopod into the resulting slow state and choose Swords Dance only if the opponent cannot punish the setup. End with Golisopod converting Room while Armor Tail constrains priority."
+    },
+    {
+    "id": "r4-milo-back",
+    "type": "counterplay",
+    "title": "Milotic Backstop",
+    "body": "When the opponent adapts to Golisopod with Intimidate, defensive positioning, or concentrated physical control, bring Milotic rather than forcing the slow breaker. Use Coil if the board is quiet or cash Competitive immediately if triggered. End with the opponent facing a special/control clock instead of the physical one they prepared for."
+    }
+    ],
+    "flows": [
+    {
+    "id": "lead",
+    "title": "Lead",
+    "forks": [
+    {
+    "id": "room-good",
+    "when": "Our slow mode clearly benefits more",
+    "then": "Create and convert Trick Room."
+    },
+    {
+    "id": "room-bad",
+    "when": "Opponent also wants the slow board",
+    "then": "Use Farigiraf for Armor Tail/Psychic Noise and play Milotic control."
+    }
+    ]
+    }
+    ],
+    "victims": [
+    {
+    "name": "Fast priority-reliant offense",
+    "why": "Trick Room and Armor Tail attack two of its preferred conversion axes.",
+    "play": "Do not overcomplicate the first speed inversion.",
+    "trap": "Setting Room against an opposing slow mode."
+    }
+    ],
+    "counters": [
+    {
+    "name": "Naturally slow offense with strong Farigiraf pressure",
+    "why": "It can make Trick Room actively unfavorable.",
+    "play": "Keep Room optional and use Milotic or direct damage.",
+    "trap": "Assuming the slow package always requires Room."
+    }
+    ],
+    "advantages": [
+    {
+    "title": "Orthogonal second clock",
+    "body": "If Golisopod's physical route is controlled, Milotic attacks from a different failure axis."
+    }
+    ],
+    "hazards": [
+    {
+    "title": "Room autopilot",
+    "body": "The package is strongest when Trick Room remains a threat rather than a compulsory click."
+    }
+    ]
+    },
+    {
+    "id": "r4-fast-control",
+    "label": "Fast Control",
+    "when": "Bring this when Lightning Rod, Mega Raichu speed, and Rillaboom/Incineroar tempo matter more than Trick Room.",
+    "identity": "Fast Raichu backed by double positional infrastructure and Milotic control.",
+    "slugs": [
+    "raichu",
+    "rillaboom",
+    "incineroar",
+    "milotic"
+    ],
+    "endgameIds": [
+    "raichu-fast",
+    "milotic-lock"
+    ],
+    "winRouteIds": [
+    "mega-raichu",
+    "coil-lock"
+    ],
+    "engineIds": [
+    "mega-raichu",
+    "coil-lock",
+    "position-loop"
+    ],
+    "identityCard": {
+    "engine": [
+    "rillaboom",
+    "incineroar"
+    ],
+    "connector": [
+    "rillaboom",
+    "incineroar"
+    ],
+    "converter": [
+    "raichu"
+    ],
+    "scaler": [
+    "milotic"
+    ],
+    "control": [
+    "raichu",
+    "incineroar"
+    ],
+    "winCondition": "Use fast Raichu to force defensive actions, then punish those actions with Encore or Coil Milotic.",
+    "clock": "Fast into scaling",
+    "commitment": "Low",
+    "autonomy": "High",
+    "triggerBreadth": "Electric attacks, Fake Out turns, Protect, setup, Intimidate, or Coil access."
+    },
+    "pilotDecision": {
+    "chooseWhen": [
+    "Electric targeting matters.",
+    "Opponent is not strongly faster than Raichu.",
+    "Trick Room would be unnecessary or risky."
+    ],
+    "avoidWhen": [
+    "Opponent's speed profile makes Raichu unable to create meaningful pressure without Room support."
+    ],
+    "previewQuestion": "Do I gain more from Lightning Rod before Mega or No Guard after Mega?",
+    "primaryMistake": "Mega evolving immediately and throwing away Lightning Rod utility."
+    },
+    "strategy": {
+    "opponentPattern": "Balanced or moderately fast boards.",
+    "bring": [
+    "raichu",
+    "rillaboom",
+    "incineroar",
+    "milotic"
+    ],
+    "purpose": "Play fast without sacrificing a slower control endgame.",
+    "targets": [
+    "Electric-reliant pressure",
+    "Protect-heavy balance"
+    ],
+    "refuses": [
+    "Automatic Mega evolution",
+    "Raw Hypnosis before setup when Coil is available"
+    ],
+    "winCondition": "Force defensive actions with Raichu, close those actions with Encore, then let Milotic take the long game.",
+    "gamePlan": "Protect board with Lightning Rod → transition to No Guard → pivot and Coil when opponent slows.",
+    "mantra": "Use the right Raichu state.",
+    "turnChecklist": [
+    "Keep Lightning Rod or Mega?",
+    "Can Encore punish their defensive action?",
+    "Which Fake Out creates the best future turn?",
+    "Can Milotic Coil now?"
+    ]
+    },
+    "defaultLeadPair": [
+    "raichu",
+    "rillaboom"
+    ],
+    "backPair": [
+    "incineroar",
+    "milotic"
+    ],
+    "roles": [
+    {
+    "slug": "raichu",
+    "macro": "Fast converter",
+    "micro": "Transition from Lightning Rod to No Guard at the correct time."
+    },
+    {
+    "slug": "rillaboom",
+    "macro": "Tempo/offense",
+    "micro": "Fake Out once, then become a Life Orb attacker."
+    },
+    {
+    "slug": "incineroar",
+    "macro": "Reset engine",
+    "micro": "Enter when physical suppression or Parting Shot creates the second wave."
+    },
+    {
+    "slug": "milotic",
+    "macro": "Control closer",
+    "micro": "Take over when the opponent slows the pace."
+    }
+    ],
+    "fieldPlan": {
+    "leadPair": [
+    "raichu",
+    "rillaboom"
+    ],
+    "leadWhy": "Rillaboom provides one immediate denied action while Raichu decides whether to remain Lightning Rod or become the fast Mega converter.",
+    "backPair": [
+    "incineroar",
+    "milotic"
+    ],
+    "backJobs": [
+    {
+    "slug": "incineroar",
+    "job": "Reset the physical board and create the next favorable entry."
+    },
+    {
+    "slug": "milotic",
+    "job": "Become the slow-control closer after fast resources are spent."
+    }
+    ],
+    "pairEdges": [
+    {
+    "from": "rillaboom",
+    "to": "raichu",
+    "creates": "Fake Out free turn",
+    "converts": "No Guard pressure"
+    },
+    {
+    "from": "incineroar",
+    "to": "milotic",
+    "creates": "Reduced physical pressure",
+    "converts": "Safer Coil"
+    }
+    ],
+    "turn1": "Preserve Lightning Rod unless Mega Raichu immediately creates more value; use Rillaboom to deny the highest-value opposing action.",
+    "bringInTriggers": [
+    "Physical pressure rises → Incineroar.",
+    "Opponent begins protecting or stabilizing → Milotic."
+    ]
+    },
+    "loops": [
+    {
+    "id": "r4-lightning-transition",
+    "type": "conversion",
+    "title": "Lightning Rod to No Guard",
+    "body": "When Electric protection matters, keep Raichu non-Mega while Rillaboom controls one opposing action. Once the Electric threat or target pattern changes, Mega evolve and convert with Zap Cannon or Focus Blast. End with the opponent forced into Protect or repositioning that Encore can punish."
+    },
+    {
+    "id": "r4-control-back",
+    "type": "resource",
+    "title": "Fast Front, Slow Back",
+    "body": "When the opponent spends resources containing Raichu, bring Incineroar or Milotic rather than forcing the fast game. Incineroar lowers physical output and Milotic Coils into the quieter board. End with the pace of the game shifted from burst to control."
+    }
+    ],
+    "flows": [
+    {
+    "id": "lead",
+    "title": "Lead",
+    "forks": [
+    {
+    "id": "keep-lightning",
+    "when": "Electric protection still constrains the opponent",
+    "then": "Delay Mega."
+    },
+    {
+    "id": "mega-now",
+    "when": "No Guard offense immediately creates greater value",
+    "then": "Mega and press the attack."
+    }
+    ]
+    }
+    ],
+    "victims": [
+    {
+    "name": "Electric-reliant balance",
+    "why": "Lightning Rod changes targeting before Raichu transitions into offense.",
+    "play": "Extract defensive value before spending the Mega transition.",
+    "trap": "Mega evolving before Electric protection has finished its job."
+    }
+    ],
+    "counters": [
+    {
+    "name": "Very fast non-Electric hyper offense",
+    "why": "Can reduce Raichu's conversion window without feeding Lightning Rod.",
+    "play": "Use Fake Out and Incineroar, or choose the Farigiraf package instead.",
+    "trap": "Insisting on the fast package when the speed matchup is poor."
+    }
+    ],
+    "advantages": [
+    {
+    "title": "State-transition value",
+    "body": "Raichu offers defensive utility before Mega and reliable offense after Mega."
+    }
+    ],
+    "hazards": [
+    {
+    "title": "Mega collision",
+    "body": "Selecting Mega Raichu means Golisopod is not the Mega this battle; preview must justify the resource."
+    }
+    ]
+    },
+    {
+    "id": "r4-closure",
+    "label": "Counterplay Closure",
+    "when": "Bring this when the opponent relies on speed, priority, Protect, or recovery to stabilize.",
+    "identity": "The four directly attacks common escape routes instead of only generating raw damage.",
+    "slugs": [
+    "raichu",
+    "farigiraf",
+    "milotic",
+    "golisopod"
+    ],
+    "endgameIds": [
+    "goli-room",
+    "raichu-fast",
+    "milotic-lock"
+    ],
+    "winRouteIds": [
+    "room-break",
+    "mega-raichu",
+    "coil-lock"
+    ],
+    "engineIds": [
+    "room-break",
+    "mega-raichu",
+    "coil-lock"
+    ],
+    "identityCard": {
+    "engine": [
+    "farigiraf"
+    ],
+    "connector": [
+    "farigiraf",
+    "raichu"
+    ],
+    "converter": [
+    "raichu",
+    "golisopod"
+    ],
+    "scaler": [
+    "milotic",
+    "golisopod"
+    ],
+    "control": [
+    "raichu",
+    "farigiraf",
+    "milotic"
+    ],
+    "winCondition": "Remove the opponent's clean escape routes until one of three very different clocks becomes unavoidable.",
+    "clock": "Fast + slow + speed-independent",
+    "commitment": "Medium",
+    "autonomy": "Very high",
+    "triggerBreadth": "Speed, priority, recovery, Protect, stat drops, or inactivity."
+    },
+    "pilotDecision": {
+    "chooseWhen": [
+    "Opponent depends on Protect cycles.",
+    "Recovery is central to their long game.",
+    "Priority is central to their cleanup.",
+    "Their speed mode is identifiable."
+    ],
+    "avoidWhen": [
+    "Immediate raw offense matters more than layered control and neither Farigiraf nor Milotic can survive."
+    ],
+    "previewQuestion": "What is their escape route once my first threat is answered?",
+    "primaryMistake": "Trying to use every closure tool in one game rather than identifying the two that matter."
+    },
+    "strategy": {
+    "opponentPattern": "Bulky balance or structured offense with clear defensive exits.",
+    "bring": [
+    "raichu",
+    "farigiraf",
+    "milotic",
+    "golisopod"
+    ],
+    "purpose": "Attack speed, priority, recovery, and passive defense from separate directions.",
+    "targets": [
+    "Recovery-heavy balance",
+    "Priority-dependent endgames",
+    "Protect-dependent positioning"
+    ],
+    "refuses": [
+    "Letting the opponent reset for free",
+    "Treating Trick Room as the only Farigiraf function"
+    ],
+    "winCondition": "Close enough exits that one of Raichu, Golisopod, or Milotic gets an uncontested clock.",
+    "gamePlan": "Identify escape → remove it → force second escape → convert with opposite-speed win condition.",
+    "mantra": "Do not just threaten them; close the exits.",
+    "turnChecklist": [
+    "Is their exit speed, priority, healing, or Protect?",
+    "Which move closes that exit?",
+    "Which Mega belongs in this game?",
+    "Can Milotic win without contesting speed?"
+    ]
+    },
+    "defaultLeadPair": [
+    "farigiraf",
+    "golisopod"
+    ],
+    "backPair": [
+    "raichu",
+    "milotic"
+    ],
+    "roles": [
+    {
+    "slug": "raichu",
+    "macro": "Fast closure",
+    "micro": "Use Encore or No Guard offense once the slow mode draws defensive actions."
+    },
+    {
+    "slug": "farigiraf",
+    "macro": "Rule setter",
+    "micro": "Choose between Room, priority denial, and recovery denial."
+    },
+    {
+    "slug": "milotic",
+    "macro": "Speed-independent closer",
+    "micro": "Coil once the opponent's exits are narrowed."
+    },
+    {
+    "slug": "golisopod",
+    "macro": "Slow breaker",
+    "micro": "Force the opponent to respect the opposite speed extreme."
+    }
+    ],
+    "fieldPlan": {
+    "leadPair": [
+    "farigiraf",
+    "golisopod"
+    ],
+    "leadWhy": "The pair immediately presents the opponent with the possibility of Room plus a slow physical threat while Armor Tail constrains priority.",
+    "backPair": [
+    "raichu",
+    "milotic"
+    ],
+    "backJobs": [
+    {
+    "slug": "raichu",
+    "job": "Punish the fast or defensive adaptation with No Guard offense and Encore."
+    },
+    {
+    "slug": "milotic",
+    "job": "Take the game if both players slow down and begin trading resources."
+    }
+    ],
+    "pairEdges": [
+    {
+    "from": "farigiraf",
+    "to": "golisopod",
+    "creates": "Trick Room threat",
+    "converts": "Slow physical pressure"
+    },
+    {
+    "from": "farigiraf",
+    "to": "raichu",
+    "creates": "Priority denial",
+    "converts": "Fast No Guard offense"
+    },
+    {
+    "from": "milotic",
+    "to": "golisopod",
+    "creates": "Sleep pressure",
+    "converts": "Swords Dance window"
+    }
+    ],
+    "turn1": "Force the opponent to respect Trick Room without committing to it unless the resulting slow state is genuinely favorable.",
+    "bringInTriggers": [
+    "Opponent Protects or plays passively around the slow threat → bring Raichu for Encore.",
+    "Opponent settles into an attrition game → bring Milotic."
+    ]
+    },
+    "loops": [
+    {
+    "id": "r4-close-recovery",
+    "type": "counterplay",
+    "title": "Close Recovery",
+    "body": "When the opponent plans to stabilize through healing, Farigiraf uses Psychic Noise while Golisopod or Milotic continues applying pressure. Do not waste the denial turn on low-value damage. End with their long-game resource removed while your own scaler remains active."
+    },
+    {
+    "id": "r4-protect-encore",
+    "type": "counterplay",
+    "title": "Protect Becomes a Trap",
+    "body": "When the opponent Protects to wait out Trick Room, sleep, or Golisopod pressure, transition Raichu onto the field if safe. Encore the passive action or use No Guard offense into the exposed partner. End with the defensive turn becoming another constrained state instead of a reset."
+    },
+    {
+    "id": "r4-opposite-speed",
+    "type": "conversion",
+    "title": "Opposite-Speed Second Wave",
+    "body": "When the opponent adapts heavily to Golisopod and Trick Room, bring Raichu from the back rather than extending the slow mode. Mega only if Lightning Rod has completed its job, then pressure from the opposite speed extreme. End with the opponent's slow-mode preparation becoming a fast-mode liability."
+    }
+    ],
+    "flows": [
+    {
+    "id": "lead",
+    "title": "Lead",
+    "forks": [
+    {
+    "id": "room",
+    "when": "Their speed is the main advantage",
+    "then": "Invert it."
+    },
+    {
+    "id": "noise",
+    "when": "Recovery is the main escape",
+    "then": "Use Psychic Noise without committing to Room."
+    },
+    {
+    "id": "raichu-back",
+    "when": "They overadapt to the slow mode",
+    "then": "Transition to the fast backline."
+    }
+    ]
+    }
+    ],
+    "victims": [
+    {
+    "name": "Structured balance with predictable defensive exits",
+    "why": "The package can attack speed, healing, priority, and Protect on separate axes.",
+    "play": "Identify which exit matters first.",
+    "trap": "Using the correct closure tool at the wrong time."
+    }
+    ],
+    "counters": [
+    {
+    "name": "Immediate mixed burst with minimal setup or recovery dependence",
+    "why": "It gives the closure tools fewer strategic exits to punish.",
+    "play": "Simplify and attack; do not overbuild the control state.",
+    "trap": "Trying to manufacture a long game the opponent is not offering."
+    }
+    ],
+    "advantages": [
+    {
+    "title": "Counterplay closure",
+    "body": "The package does not merely create threats; it attacks the opponent's normal ways of escaping those threats."
+    }
+    ],
+    "hazards": [
+    {
+    "title": "Tool overload",
+    "body": "You do not need Trick Room, Psychic Noise, Encore, Coil, and Swords Dance every game. Select the closure tools the matchup actually requires."
+    }
+    ]
+    },
+    {
+    "id": "r4-coil-position",
+    "label": "Coil Position",
+    "when": "Bring this when the opponent's main plan is physical pressure, Intimidate cycling, or a slower positional game.",
+    "identity": "Double Fake Out and Intimidate manufacture the Milotic control state while Golisopod supplies the physical endgame.",
+    "slugs": [
+    "rillaboom",
+    "incineroar",
+    "milotic",
+    "golisopod"
+    ],
+    "endgameIds": [
+    "milotic-lock",
+    "goli-room"
+    ],
+    "winRouteIds": [
+    "coil-lock"
+    ],
+    "engineIds": [
+    "coil-lock",
+    "position-loop"
+    ],
+    "identityCard": {
+    "engine": [
+    "rillaboom",
+    "incineroar"
+    ],
+    "connector": [
+    "rillaboom",
+    "incineroar"
+    ],
+    "converter": [
+    "golisopod"
+    ],
+    "scaler": [
+    "milotic",
+    "golisopod"
+    ],
+    "control": [
+    "incineroar",
+    "milotic"
+    ],
+    "winCondition": "Use positional infrastructure to generate one stable scaler, then let the other become the closing threat.",
+    "clock": "Tempo into control",
+    "commitment": "Medium",
+    "autonomy": "High",
+    "triggerBreadth": "Fake Out, Intimidate, Competitive, Coil, Swords Dance, or priority."
+    },
+    "pilotDecision": {
+    "chooseWhen": [
+    "Opponent is physical-heavy.",
+    "Stat drops are likely.",
+    "The game can be slowed safely."
+    ],
+    "avoidWhen": [
+    "Opponent has overwhelming special burst and no need to interact with Intimidate."
+    ],
+    "previewQuestion": "Can I reliably manufacture the first Coil without giving up too much damage?",
+    "primaryMistake": "Using both Fake Outs for short-term denial without converting either into a lasting state."
+    },
+    "strategy": {
+    "opponentPattern": "Physical balance or positional grind.",
+    "bring": [
+    "rillaboom",
+    "incineroar",
+    "milotic",
+    "golisopod"
+    ],
+    "purpose": "Turn positional turns into a durable Milotic or Golisopod endgame.",
+    "targets": [
+    "Physical offense",
+    "Intimidate cycling",
+    "Slow positional teams"
+    ],
+    "refuses": [
+    "Tempo with no conversion",
+    "Raw Hypnosis before a safer Coil line"
+    ],
+    "winCondition": "Establish Milotic control, then use Golisopod as the physical threat that benefits from the forced responses.",
+    "gamePlan": "Fake Out/Intimidate → Coil → sleep or Muddy Water → Golisopod second wave.",
+    "mantra": "Every denied action must buy something permanent.",
+    "turnChecklist": [
+    "Which Fake Out buys the best state?",
+    "Can Milotic Coil?",
+    "Will Parting Shot improve the next entry?",
+    "Is Golisopod ready to punish the stabilized board?"
+    ]
+    },
+    "defaultLeadPair": [
+    "rillaboom",
+    "milotic"
+    ],
+    "backPair": [
+    "incineroar",
+    "golisopod"
+    ],
+    "roles": [
+    {
+    "slug": "rillaboom",
+    "macro": "First setup access",
+    "micro": "Fake Out once, then threaten Life Orb damage."
+    },
+    {
+    "slug": "incineroar",
+    "macro": "Reset engine",
+    "micro": "Enter when Intimidate or Parting Shot creates the next control turn."
+    },
+    {
+    "slug": "milotic",
+    "macro": "Primary control scaler",
+    "micro": "Coil before Hypnosis whenever the board permits."
+    },
+    {
+    "slug": "golisopod",
+    "macro": "Physical second wave",
+    "micro": "Exploit sleep, lowered damage, or forced switches."
+    }
+    ],
+    "fieldPlan": {
+    "leadPair": [
+    "rillaboom",
+    "milotic"
+    ],
+    "leadWhy": "Fake Out plus Grassy recovery gives Milotic one of its cleanest Coil-access patterns.",
+    "backPair": [
+    "incineroar",
+    "golisopod"
+    ],
+    "backJobs": [
+    {
+    "slug": "incineroar",
+    "job": "Reset physical pressure and create another protected turn."
+    },
+    {
+    "slug": "golisopod",
+    "job": "Enter once Milotic has forced passive or sleeping turns and convert physically."
+    }
+    ],
+    "pairEdges": [
+    {
+    "from": "rillaboom",
+    "to": "milotic",
+    "creates": "Fake Out plus recovery",
+    "converts": "Safer Coil"
+    },
+    {
+    "from": "incineroar",
+    "to": "milotic",
+    "creates": "Intimidate plus reset",
+    "converts": "Longer control state"
+    },
+    {
+    "from": "milotic",
+    "to": "golisopod",
+    "creates": "Sleep pressure",
+    "converts": "Physical setup window"
+    }
+    ],
+    "turn1": "Fake Out the action that most threatens Milotic and Coil only when the second slot cannot punish the setup.",
+    "bringInTriggers": [
+    "Physical pressure increases → Incineroar.",
+    "Opponent becomes passive, asleep, or forced to switch → Golisopod."
+    ]
+    },
+    "loops": [
+    {
+    "id": "r4-coil-entry",
+    "type": "scaling",
+    "title": "Buy the Coil",
+    "body": "When one opposing action can be denied safely, Rillaboom uses Fake Out and Milotic uses Coil. On following turns, use Hypnosis or Muddy Water according to whether denying one action or pressuring both slots matters more. End with Milotic controlling the board rather than merely gambling on sleep."
+    },
+    {
+    "id": "r4-goli-second",
+    "type": "conversion",
+    "title": "Sleep into Golisopod",
+    "body": "When Milotic has forced sleep, Protect, or a defensive switch, bring Golisopod into the reduced-action state. Use Swords Dance only if the remaining active threat cannot punish it; otherwise convert immediately with Leech Life. End with a physical threat occupying the turns Milotic created."
+    }
+    ],
+    "flows": [
+    {
+    "id": "lead",
+    "title": "Lead",
+    "forks": [
+    {
+    "id": "coil",
+    "when": "Fake Out genuinely protects Milotic",
+    "then": "Coil."
+    },
+    {
+    "id": "attack",
+    "when": "The second opposing slot still threatens too much",
+    "then": "Use immediate Muddy Water or Rillaboom damage."
+    }
+    ]
+    }
+    ],
+    "victims": [
+    {
+    "name": "Physical positional teams",
+    "why": "Intimidate, Competitive, Coil, and Grassy recovery all make their normal control pattern awkward.",
+    "play": "Convert the first quiet turn into a permanent Milotic state.",
+    "trap": "Using support turns without gaining lasting value."
+    }
+    ],
+    "counters": [
+    {
+    "name": "Immediate special burst",
+    "why": "Can deny the setup-access premise before Coil begins compounding.",
+    "play": "Attack immediately or choose the Farigiraf/Raichu package.",
+    "trap": "Trying to force a long game into a board that will not permit one."
+    }
+    ],
+    "advantages": [
+    {
+    "title": "Failure inversion",
+    "body": "Stat drops aimed at the physical half can accelerate Milotic instead."
+    }
+    ],
+    "hazards": [
+    {
+    "title": "Support saturation",
+    "body": "Rillaboom and Incineroar must convert their control into Milotic or Golisopod progress; denial alone is not a win condition."
+    }
+    ]
+    }
+    ],
+    "victims": [
+    {
+    "name": "Single-speed teams",
+    "why": "Farigiraf can invert speed while Raichu and Golisopod occupy opposite extremes."
+    },
+    {
+    "name": "Priority-dependent endgames",
+    "why": "Armor Tail changes a major opponent conversion rule."
+    },
+    {
+    "name": "Intimidate-heavy physical control",
+    "why": "Competitive Milotic can turn that answer into a resource."
+    },
+    {
+    "name": "Recovery-dependent balance",
+    "why": "Psychic Noise attacks the opponent's long-game exit."
+    }
+    ],
+    "counters": [
+    {
+    "name": "Immediate mixed burst",
+    "why": "Can reduce the time available for Trick Room, Coil, and Swords Dance before the closure tools begin compounding."
+    },
+    {
+    "name": "Naturally slow offense",
+    "why": "Can make Trick Room neutral or actively favorable for the opponent."
+    }
+    ],
+    "advantages": [
+    {
+    "title": "Counterplay closure",
+    "body": "Speed, priority, recovery, Protect, and stat-control exits are attacked by different members."
+    },
+    {
+    "title": "Three speed philosophies",
+    "body": "Raichu plays fast, Golisopod plays slow, and Milotic can largely ignore the speed race."
+    },
+    {
+    "title": "Tournament proof",
+    "body": "The exact six and exact published moves/items/natures finished second at Maddo's Cup #12. ([PokeSynergy][3])"
+    }
+    ],
+    "hazards": [
+    {
+    "title": "Dual-Mega collision",
+    "body": "Raichu and Golisopod both carry Mega stones; choosing one necessarily leaves the other stone inactive."
+    },
+    {
+    "title": "Overusing Trick Room",
+    "body": "The team is dual-speed, not hard Trick Room. Farigiraf remains useful without setting it."
+    },
+    {
+    "title": "Raw Hypnosis temptation",
+    "body": "Milotic's cleanest plan is usually to manufacture Coil first when the board permits."
+    }
+    ],
+    "evidence": {
+    "season": "Regulation M-C",
+    "asOf": "2026-09-22",
+    "source": "The exact R4 roster, items, abilities, natures, and moves are taken from shaikhvgc786's #2 Maddo's Cup #12 team sheet. ([PokeSynergy][3]) Milotic's current tournament profile independently shows Leftovers, Coil, Farigiraf, Mega Golisopod, Rillaboom, and Incineroar as real current M-C usage patterns. ([PokeSynergy][4])",
+    "caveat": "Package plans and SP allocations are our recommended pilot architecture, not claimed to be the original player's exact training or matchup scripts.",
+    "templateBasis": "Authored to the attached Ringside Doubles TeamManual requirements, including bring-four packages, fieldPlan, network, engines, loops, full kits, and recommended Champions SP. "
+    }
+    }
+    ]
+    }
+    
+    [1]: https://www.pokemon-zone.com/champions/team-cores/excadrill%2Bgholdengo%2Bmilotic%2Bsalamence/?utm_source=chatgpt.com "Excadrill + Gholdengo + Milotic + Salamence - Team Core - Pokémon Zone"
+    [2]: https://pokesynergy.app/metadex/teams/js753mmxf5zv5tdgm2sgef228s8eef2k?utm_source=chatgpt.com "Tournament Team – MetaDex | PokeSynergy"
+    [3]: https://pokesynergy.app/metadex/teams/js79q3nc8m4r8enbpm5szc2sys8er2qn?utm_source=chatgpt.com "Tournament Team – MetaDex | PokeSynergy"
+    [4]: https://pokesynergy.app/metadex/pokemon/milotic?utm_source=chatgpt.com "Milotic Tournament Usage – MetaDex | PokeSynergy"
+    

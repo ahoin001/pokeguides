@@ -17,10 +17,8 @@ import {
   ManualPreviewTrees,
   ManualTradeLedger,
 } from "@/components/manuals/ManualDoublesChapters";
-import {
-  ManualNetworkGraph,
-  ManualWinRecipes,
-} from "@/components/manuals/ManualApproachableChapters";
+import { ManualWinRecipes } from "@/components/manuals/ManualApproachableChapters";
+import { ManualNetworkGraph } from "@/components/manuals/ManualNetworkGraph";
 import { ManualSection } from "@/components/manuals/ManualSection";
 import type { CoverageMember } from "@/lib/champions/team-coverage";
 import {

@@ -127,6 +127,16 @@ html[data-theme="light"] ::selection {
   color: #152033;
 }
 
+@keyframes network-edge-flow {
+  to {
+    stroke-dashoffset: -8;
+  }
+}
+
+.network-edge-flow {
+  animation: network-edge-flow 0.9s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

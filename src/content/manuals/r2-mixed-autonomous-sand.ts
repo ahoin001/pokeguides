@@ -549,6 +549,10 @@ export const R2_MIXED_AUTONOMOUS_SAND_MANUAL = {
           "tailwind-bridge",
           "coil-control",
         ],
+        winRouteIds: [
+          "sand-rush",
+          "coil-control",
+        ],
         endgameIds: [
           "sand-clean",
           "milotic-lock",
@@ -765,6 +769,10 @@ export const R2_MIXED_AUTONOMOUS_SAND_MANUAL = {
           "coil-control",
           "tailwind-bridge",
         ],
+        winRouteIds: [
+          "gold-conversion",
+          "coil-control",
+        ],
         endgameIds: [
           "gold-endgame",
           "milotic-lock",
@@ -973,6 +981,11 @@ export const R2_MIXED_AUTONOMOUS_SAND_MANUAL = {
           primaryMistake: "Treating Gholdengo as backup rather than a deliberately separate clock.",
         },
         engineIds: [
+          "sand-rush",
+          "gold-conversion",
+          "coil-control",
+        ],
+        winRouteIds: [
           "sand-rush",
           "gold-conversion",
           "coil-control",
@@ -1189,6 +1202,10 @@ export const R2_MIXED_AUTONOMOUS_SAND_MANUAL = {
         },
         engineIds: [
           "tailwind-bridge",
+          "gold-conversion",
+          "coil-control",
+        ],
+        winRouteIds: [
           "gold-conversion",
           "coil-control",
         ],

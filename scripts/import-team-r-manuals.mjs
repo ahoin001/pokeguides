@@ -1,12 +1,15 @@
 /**
- * Import doubles manuals from content/regulations/team-r into src/content/manuals/.
+ * Import doubles manuals from content/regulations/updates.json
+ * (falls back to content/regulations/team-r) into src/content/manuals/.
  * Strips markdown footnotes, normalizes to TeamManual, emits TS + registers.
  */
 import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
-const SRC = path.join(ROOT, "content/regulations/team-r");
+const SRC_UPDATES = path.join(ROOT, "content/regulations/updates.json");
+const SRC_TEAM_R = path.join(ROOT, "content/regulations/team-r");
+const SRC = fs.existsSync(SRC_UPDATES) ? SRC_UPDATES : SRC_TEAM_R;
 const OUT_DIR = path.join(ROOT, "src/content/manuals");
 const MANUALS_INDEX = path.join(ROOT, "src/content/manuals.ts");
 
@@ -260,11 +263,7 @@ function normalizeArchitecture(layers) {
 }
 
 function normalizePack(pack) {
-  const {
-    winRouteIds: _wr,
-    contrast,
-    ...rest
-  } = pack;
+  const contrast = pack.contrast;
 
   const strategy = pack.strategy
     ? {
@@ -288,6 +287,7 @@ function normalizePack(pack) {
     ...(pack.identityCard ? { identityCard: pack.identityCard } : {}),
     ...(pack.pilotDecision ? { pilotDecision: pack.pilotDecision } : {}),
     ...(pack.engineIds ? { engineIds: pack.engineIds } : {}),
+    ...(pack.winRouteIds ? { winRouteIds: pack.winRouteIds } : {}),
     ...(pack.endgameIds ? { endgameIds: pack.endgameIds } : {}),
     ...(pack.flows ? { flows: pack.flows } : {}),
     ...(pack.loops ? { loops: pack.loops } : {}),
@@ -444,9 +444,10 @@ rawText = rawText.slice(0, end + 1);
 const payload = JSON.parse(rawText);
 const manuals = payload.manuals ?? [];
 if (!manuals.length) {
-  console.error("No manuals found in team-r");
+  console.error("No manuals found in", path.relative(ROOT, SRC));
   process.exit(1);
 }
+console.log("importing from", path.relative(ROOT, SRC));
 
 const emitted = [];
 for (const raw of manuals) {

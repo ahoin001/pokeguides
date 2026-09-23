@@ -569,6 +569,10 @@ export const R4_COUNTERPLAY_CLOSURE_MANUAL = {
           "coil-lock",
           "position-loop",
         ],
+        winRouteIds: [
+          "room-break",
+          "coil-lock",
+        ],
         endgameIds: [
           "goli-room",
           "milotic-lock",
@@ -783,6 +787,10 @@ export const R4_COUNTERPLAY_CLOSURE_MANUAL = {
           "mega-raichu",
           "coil-lock",
           "position-loop",
+        ],
+        winRouteIds: [
+          "mega-raichu",
+          "coil-lock",
         ],
         endgameIds: [
           "raichu-fast",
@@ -1005,6 +1013,11 @@ export const R4_COUNTERPLAY_CLOSURE_MANUAL = {
           primaryMistake: "Trying to use every closure tool in one game rather than identifying the two that matter.",
         },
         engineIds: [
+          "room-break",
+          "mega-raichu",
+          "coil-lock",
+        ],
+        winRouteIds: [
           "room-break",
           "mega-raichu",
           "coil-lock",
@@ -1242,6 +1255,9 @@ export const R4_COUNTERPLAY_CLOSURE_MANUAL = {
         engineIds: [
           "coil-lock",
           "position-loop",
+        ],
+        winRouteIds: [
+          "coil-lock",
         ],
         endgameIds: [
           "milotic-lock",

@@ -18,6 +18,7 @@ import { LITERACY_ROLES } from "@/content/literacy-roles";
 import {
   emptyPack,
   emptySlot,
+  isCanonicalManualId,
   MANUAL_FAMILY_IDS,
   MANUAL_FAMILY_LABEL,
   manualBringSize,
@@ -69,9 +70,16 @@ function isBoxedDraft(m: TeamManual) {
 export function ManualForm({
   initial,
   mode,
+  variant = "page",
+  onCancel,
+  onSaved,
 }: {
   initial: TeamManual;
   mode: "create" | "edit";
+  /** Embed in the reader page without PageFrame / navigation. */
+  variant?: "page" | "embedded";
+  onCancel?: () => void;
+  onSaved?: (manual: TeamManual) => void;
 }) {
   const router = useRouter();
   const saveLocal = useManualsStore((s) => s.saveLocal);
@@ -80,6 +88,8 @@ export function ManualForm({
   const [packTab, setPackTab] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const boxed = isBoxedDraft(draft);
+  const embedded = variant === "embedded";
+  const classroomOverride = isCanonicalManualId(initial.id);
 
   function commit(next: TeamManual) {
     setDraft(syncSlugsFromSlots(next));
@@ -146,7 +156,19 @@ export function ManualForm({
       return;
     }
     saveLocal(next);
+    if (onSaved) {
+      onSaved(next);
+      return;
+    }
     router.push(`/manuals/${next.id}`);
+  }
+
+  function cancel() {
+    if (onCancel) {
+      onCancel();
+      return;
+    }
+    router.push(embedded ? `/manuals/${initial.id}` : "/manuals");
   }
 
   const slotList = boxed ? (draft.roster ?? []).slice(0, 6) : draft.slots;
@@ -159,14 +181,15 @@ export function ManualForm({
   const alts = draft.construction?.altSlots ?? [];
   const flexSlugs = alts.map((a) => a.slug).filter(Boolean);
 
-  return (
-    <PageFrame variant="reading">
-      <h1 className="text-4xl font-semibold tracking-tight">
-        {mode === "create" ? "Write a manual" : "Edit manual"}
+  const body = (
+    <>
+      <h1 className={`${embedded ? "text-2xl" : "text-4xl"} font-semibold tracking-tight`}>
+        {mode === "create" ? "Write a manual" : embedded ? "Edit on this device" : "Edit manual"}
       </h1>
       <p className="mt-3 max-w-[54ch] text-sm text-muted">
-        Author a registered six with preview packages. Same chapters as the reader: thesis, six,
-        sets, how it wins, network, packages.
+        {classroomOverride
+          ? "Tweaks save to this browser only. Reset from the reader to restore the classroom copy."
+          : "Author a registered six with preview packages. Same chapters as the reader: thesis, six, sets, how it wins, network, packages."}
       </p>
 
       <div className="mt-8 flex flex-wrap gap-2">
@@ -595,12 +618,12 @@ export function ManualForm({
       />
 
       {error ? <p className="mt-8 text-sm text-amber-200">{error}</p> : null}
-      <div className="mt-8 flex flex-wrap gap-3">
+      <div className="sticky bottom-0 z-20 mt-8 flex flex-wrap gap-3 border-t border-line/60 bg-bg/95 py-4 backdrop-blur-sm">
         <Button type="button" onClick={save}>
           Save on this device
         </Button>
-        <Button type="button" variant="ghost" onClick={() => router.push("/manuals")}>
-          Cancel
+        <Button type="button" variant="ghost" onClick={cancel}>
+          {embedded ? "Back to reader" : "Cancel"}
         </Button>
       </div>
 
@@ -621,8 +644,18 @@ export function ManualForm({
           />
         ) : null}
       </Modal>
-    </PageFrame>
+    </>
   );
+
+  if (embedded) {
+    return (
+      <div className="mx-auto max-w-3xl rounded-[28px] border border-line/70 bg-raised/20 px-4 py-6 md:px-6">
+        {body}
+      </div>
+    );
+  }
+
+  return <PageFrame variant="reading">{body}</PageFrame>;
 
   function updateBranch(pi: number, bi: number, patch: Partial<ManualBranch>) {
     const phases = draft.phases.map((ph, i) => {

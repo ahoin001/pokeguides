@@ -52,9 +52,12 @@ function coverageFromSlots(manual: TeamManual): CoverageMember[] {
 export function ManualView({
   manual: parent,
   sourced,
+  overridden = false,
 }: {
   manual: TeamManual;
   sourced: "canonical" | "local";
+  /** Classroom id with a device override saved. */
+  overridden?: boolean;
 }) {
   const packs = packList(parent);
   const boxed = isBoxedManual(parent);
@@ -119,7 +122,9 @@ export function ManualView({
             <h1 className="text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl lg:leading-[1.05]">
               {parent.title}
             </h1>
-            {sourced === "local" ? (
+            {overridden ? (
+              <span className="text-sm text-muted">Edited on device</span>
+            ) : sourced === "local" ? (
               <span className="text-sm text-muted">Yours</span>
             ) : null}
           </div>

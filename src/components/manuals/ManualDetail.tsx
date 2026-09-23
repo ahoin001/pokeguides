@@ -2,23 +2,37 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { defaultPackId, getCanonicalManual, isCanonicalManualId, resolveManual } from "@/content/manuals";
-import { useManualsStore } from "@/stores/manuals";
+import { parseAsBoolean, useQueryState } from "nuqs";
+import {
+  defaultPackId,
+  getCanonicalManual,
+  isCanonicalManualId,
+  resolveManual,
+} from "@/content/manuals";
+import {
+  isDeviceOverride,
+  manualSource,
+  resolveManualById,
+  useManualsStore,
+} from "@/stores/manuals";
 import { ManualView } from "@/components/manuals/ManualView";
 import { ManualNotes } from "@/components/manuals/ManualNotes";
 import { ManualNavStrip } from "@/components/manuals/ManualNavStrip";
+import { ManualForm } from "@/components/manuals/ManualForm";
 import { Button } from "@/components/ui/Button";
 
 export function ManualDetail({ id }: { id: string }) {
   const router = useRouter();
   const local = useManualsStore((s) => s.local);
   const removeLocal = useManualsStore((s) => s.removeLocal);
-  const canonical = getCanonicalManual(id);
-  const mine = local.find((m) => m.id === id);
-  const manual = canonical ?? mine;
-  const sourced = canonical ? "canonical" : "local";
+  const [editing, setEditing] = useQueryState("edit", parseAsBoolean.withDefault(false));
 
-  if (!manual) {
+  const canonical = getCanonicalManual(id);
+  const manual = resolveManualById(id, local);
+  const sourced = manualSource(id, local);
+  const overridden = isDeviceOverride(id, local);
+
+  if (!manual || !sourced) {
     return (
       <div className="mx-auto max-w-6xl">
         <p className="text-sm text-muted">
@@ -40,32 +54,94 @@ export function ManualDetail({ id }: { id: string }) {
     ),
   ];
 
+  function exitEdit() {
+    void setEditing(false);
+  }
+
+  function resetClassroom() {
+    if (!overridden) return;
+    if (
+      !window.confirm(
+        "Discard device tweaks and restore the classroom manual? Field notes stay on this device.",
+      )
+    ) {
+      return;
+    }
+    removeLocal(id);
+    void setEditing(false);
+  }
+
   return (
     <div>
-      <ManualView manual={manual} sourced={sourced} />
-      {!isCanonicalManualId(id) ? (
-        <div className="mx-auto mt-10 flex max-w-6xl flex-wrap gap-3">
-          <Link
-            href={`/manuals/${id}/edit`}
-            className="inline-flex items-center justify-center rounded-full border border-line px-4 py-2 text-sm font-medium transition hover:border-ink/40"
-          >
-            Edit
-          </Link>
-          <Button
-            type="button"
-            variant="ghost"
-            onClick={() => {
-              if (!window.confirm("Delete this manual from this device?")) return;
-              removeLocal(id);
-              router.push("/manuals");
-            }}
-          >
-            Delete
-          </Button>
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-1 pb-2 pt-1">
+        <div className="min-w-0 text-sm text-muted">
+          {overridden ? (
+            <span>
+              <span className="font-medium text-ink">Edited on this device</span>
+              <span aria-hidden> · </span>
+              Classroom copy still in the repo
+            </span>
+          ) : sourced === "local" ? (
+            <span className="font-medium text-ink">Yours · saved on this device</span>
+          ) : (
+            <span>Classroom manual · editable as a device override</span>
+          )}
         </div>
-      ) : null}
-      <ManualNotes id={id} exclude={noteExclude} />
-      {canonical ? <ManualNavStrip manualId={id} /> : null}
+        <div className="flex flex-wrap gap-2">
+          {editing ? (
+            <Button type="button" variant="line" onClick={exitEdit}>
+              Reader
+            </Button>
+          ) : (
+            <Button type="button" variant="line" onClick={() => void setEditing(true)}>
+              Edit mode
+            </Button>
+          )}
+          {overridden ? (
+            <Button type="button" variant="ghost" onClick={resetClassroom}>
+              Reset to classroom
+            </Button>
+          ) : null}
+          {sourced === "local" && !isCanonicalManualId(id) ? (
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => {
+                if (!window.confirm("Delete this manual from this device?")) return;
+                removeLocal(id);
+                router.push("/manuals");
+              }}
+            >
+              Delete
+            </Button>
+          ) : null}
+        </div>
+      </div>
+
+      {editing ? (
+        <div className="mx-auto max-w-6xl">
+          <ManualForm
+            key={`${id}-edit`}
+            mode="edit"
+            variant="embedded"
+            initial={manual}
+            onCancel={exitEdit}
+            onSaved={() => {
+              exitEdit();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          />
+        </div>
+      ) : (
+        <ManualView
+          manual={manual}
+          sourced={sourced === "override" ? "local" : sourced}
+          overridden={overridden}
+        />
+      )}
+
+      {!editing ? <ManualNotes id={id} exclude={noteExclude} /> : null}
+      {canonical && !editing ? <ManualNavStrip manualId={id} /> : null}
     </div>
   );
 }

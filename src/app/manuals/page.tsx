@@ -17,7 +17,7 @@ import {
 } from "@/content/manuals";
 import { ARCHETYPE_LABEL } from "@/content/archetypes";
 import { ARCHETYPE_IDS, type ArchetypeId } from "@/types/pokemon";
-import { useManualsStore } from "@/stores/manuals";
+import { useManualsStore, pureLocalManuals, withDeviceOverrides } from "@/stores/manuals";
 import { ManualCard } from "@/components/manuals/ManualCard";
 import {
   filterManuals,
@@ -97,10 +97,13 @@ export default function ManualsIndex() {
   const filtering = Boolean(q.trim() || familyFilter || archetypeFilter);
 
   const shelfCanonical = useMemo(
-    () => manualsForFormat(format, CANONICAL_MANUALS),
-    [format],
+    () => manualsForFormat(format, withDeviceOverrides(CANONICAL_MANUALS, local)),
+    [format, local],
   );
-  const shelfLocal = useMemo(() => manualsForFormat(format, local), [format, local]);
+  const shelfLocal = useMemo(
+    () => manualsForFormat(format, pureLocalManuals(local)),
+    [format, local],
+  );
 
   const classroom = useMemo(() => {
     const found = filterManuals(shelfCanonical, {

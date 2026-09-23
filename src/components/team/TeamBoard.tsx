@@ -11,8 +11,8 @@ import { Modal } from "@/components/ui/Modal";
 import { ManualNotes } from "@/components/manuals/ManualNotes";
 import { TEAM_NOTES_ID } from "@/lib/manuals/field-notes";
 import { VsScout } from "@/components/scout/VsScout";
-import { getCanonicalManual, manualHref } from "@/content/manuals";
-import { useManualsStore } from "@/stores/manuals";
+import { manualHref } from "@/content/manuals";
+import { resolveManualById, useManualsStore } from "@/stores/manuals";
 import { rankedFoesFor } from "@/lib/ranked/foes";
 import { LEARN_ROLE_IDS } from "@/content/roles";
 import { readTeam } from "@/lib/champions/team-readout";
@@ -61,7 +61,7 @@ export function TeamBoard() {
 
   const playbook = useMemo(() => {
     if (!manualId) return undefined;
-    return getCanonicalManual(manualId) ?? localManuals.find((m) => m.id === manualId);
+    return resolveManualById(manualId, localManuals);
   }, [manualId, localManuals]);
 
   const mons: (CatalogEntry | null)[] = slugs.map((s) => (s ? getPokemon(s) ?? null : null));

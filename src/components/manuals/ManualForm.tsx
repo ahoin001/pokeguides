@@ -7,6 +7,7 @@ import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { SlotMatchups } from "@/components/manuals/SlotMatchups";
 import { PokemonPicker } from "@/components/pokemon/PokemonPicker";
+import { MoveNameField } from "@/components/moves/MoveNameField";
 import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
 import { PageFrame } from "@/components/chrome/PageFrame";
@@ -63,6 +64,31 @@ const inputClass =
   "w-full rounded-2xl border border-line bg-sunken px-4 py-3 text-ink outline-none placeholder:text-muted focus:border-ink/40";
 const areaClass = `${inputClass} min-h-24`;
 
+type FormStepId =
+  | "identity"
+  | "kits"
+  | "wins"
+  | "packages"
+  | "bench"
+  | "trees"
+  | "matchups";
+
+const FORM_STEPS_BOXED: { id: FormStepId; label: string; hint: string }[] = [
+  { id: "identity", label: "Identity", hint: "Title, format, thesis" },
+  { id: "kits", label: "Kits", hint: "Registered six sets" },
+  { id: "wins", label: "How it wins", hint: "Engines, network, house rules" },
+  { id: "packages", label: "Packages", hint: "Bring fours / threes" },
+  { id: "bench", label: "Bench", hint: "Flex swaps & endgames" },
+  { id: "matchups", label: "Matchups", hint: "Favored & trap boards" },
+];
+
+const FORM_STEPS_FLAT: { id: FormStepId; label: string; hint: string }[] = [
+  { id: "identity", label: "Identity", hint: "Title, format, thesis" },
+  { id: "kits", label: "Bring", hint: "The three you bring" },
+  { id: "trees", label: "Trees", hint: "Phases, loops, hazards" },
+  { id: "matchups", label: "Matchups", hint: "Favored & trap boards" },
+];
+
 function isBoxedDraft(m: TeamManual) {
   return Boolean(m.packs?.length);
 }
@@ -86,8 +112,12 @@ export function ManualForm({
   const [draft, setDraft] = useState<TeamManual>(() => syncSlugsFromSlots(initial));
   const [pick, setPick] = useState<{ kind: "slot" | "roster"; index: number } | null>(null);
   const [packTab, setPackTab] = useState(0);
+  const [kitFocus, setKitFocus] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const boxed = isBoxedDraft(draft);
+  const steps = boxed ? FORM_STEPS_BOXED : FORM_STEPS_FLAT;
+  const [step, setStep] = useState<FormStepId>(steps[0]!.id);
+  const activeStep = steps.some((s) => s.id === step) ? step : steps[0]!.id;
   const embedded = variant === "embedded";
   const classroomOverride = isCanonicalManualId(initial.id);
 
@@ -99,11 +129,13 @@ export function ManualForm({
     if (next === "boxed" && !boxed) {
       commit(toBoxedDraft(draft));
       setPackTab(0);
+      setStep("identity");
       return;
     }
     if (next === "three" && boxed) {
       if (!window.confirm("Flatten to a single three? Packs beyond the first will be dropped.")) return;
       commit(toFlatDraft(draft));
+      setStep("identity");
     }
   }
 
@@ -180,19 +212,73 @@ export function ManualForm({
   const endgames = draft.construction?.endgames ?? [];
   const alts = draft.construction?.altSlots ?? [];
   const flexSlugs = alts.map((a) => a.slug).filter(Boolean);
+  const stepIndex = Math.max(0, steps.findIndex((x) => x.id === activeStep));
+  const stepMeta = steps[stepIndex] ?? steps[0]!;
+  const isFirst = stepIndex <= 0;
+  const isLast = stepIndex >= steps.length - 1;
+
+  function goStep(id: FormStepId) {
+    setStep(id);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function goNext() {
+    const next = steps[stepIndex + 1];
+    if (next) goStep(next.id);
+  }
+
+  function goPrev() {
+    const prev = steps[stepIndex - 1];
+    if (prev) goStep(prev.id);
+  }
+
+  // Keep kit focus in range when roster shrinks
+  const safeKitFocus = Math.min(kitFocus, Math.max(0, slotList.length - 1));
 
   const body = (
     <>
-      <h1 className={`${embedded ? "text-2xl" : "text-4xl"} font-semibold tracking-tight`}>
-        {mode === "create" ? "Write a manual" : embedded ? "Edit on this device" : "Edit manual"}
-      </h1>
-      <p className="mt-3 max-w-[54ch] text-sm text-muted">
-        {classroomOverride
-          ? "Tweaks save to this browser only. Reset from the reader to restore the classroom copy."
-          : "Author a registered six with preview packages. Same chapters as the reader: thesis, six, sets, how it wins, network, packages."}
-      </p>
+      <header className="border-b border-line/50 pb-5">
+        <h1 className={`${embedded ? "text-2xl" : "text-4xl"} font-semibold tracking-tight`}>
+          {mode === "create" ? "Write a manual" : embedded ? "Edit on this device" : "Edit manual"}
+        </h1>
+        <p className="mt-2 max-w-[54ch] text-sm text-muted">
+          {classroomOverride
+            ? "Tweaks save to this browser only. Reset from the reader to restore the classroom copy."
+            : "One section at a time — identity, kits, win meat, packages, then matchups."}
+        </p>
+        <p className="mt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-muted">
+          Step {stepIndex + 1} of {steps.length} · {stepMeta.label}
+        </p>
+        <p className="mt-1 text-sm text-muted">{stepMeta.hint}</p>
+      </header>
 
-      <div className="mt-8 flex flex-wrap gap-2">
+      <nav
+        className="sticky top-0 z-30 -mx-1 mt-4 overflow-x-auto border-b border-line/60 bg-bg/95 px-1 py-2 backdrop-blur-sm"
+        aria-label="Edit sections"
+      >
+        <ul className="flex min-w-max gap-1.5">
+          {steps.map((sStep, i) => {
+            const on = sStep.id === activeStep;
+            return (
+              <li key={sStep.id}>
+                <button
+                  type="button"
+                  onClick={() => goStep(sStep.id)}
+                  className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+                    on ? "bg-ink text-bg" : "border border-line/70 text-muted hover:text-ink"
+                  }`}
+                >
+                  <span className="font-mono text-[9px] opacity-70">{i + 1}</span> {sStep.label}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
+      {activeStep === "identity" ? (
+      <div className="mt-6 space-y-1">
+      <div className="mt-2 flex flex-wrap gap-2">
         <button
           type="button"
           onClick={() => setFormat("three")}
@@ -388,28 +474,65 @@ export function ManualForm({
         </>
       )}
 
-      <h2 className="mt-16 text-2xl font-semibold tracking-tight">
-        {boxed ? "Registered six" : "The three you bring"}
-      </h2>
-      <p className="mt-1 text-sm text-muted">
+      </div>
+      ) : null}
+
+      {activeStep === "kits" ? (
+      <div className="mt-6">
+      <p className="text-sm text-muted">
         {boxed
           ? `Sets live on the six once. Packages pick ${manualBringSize(draft)} by slug.`
           : "Author the three you bring."}
       </p>
-      <div className="mt-6 space-y-8">
-        {slotList.map((slot, i) => (
+      <ul className="mt-4 flex flex-wrap gap-2">
+        {slotList.map((slot, i) => {
+          const mon = slot.slug ? getPokemon(slot.slug) : undefined;
+          const on = i === safeKitFocus;
+          return (
+            <li key={i}>
+              <button
+                type="button"
+                onClick={() => setKitFocus(i)}
+                className={`flex items-center gap-2 rounded-2xl border px-2.5 py-1.5 text-left transition ${
+                  on ? "border-ink/45 bg-raised/60" : "border-line/60 opacity-70 hover:opacity-100"
+                }`}
+                style={mon ? cssVars(mon.palette) : undefined}
+              >
+                {mon ? (
+                  <PokemonArt slug={mon.slug} src={mon.sprite || mon.artwork} name={mon.name} size={32} />
+                ) : (
+                  <span className="grid h-8 w-8 place-items-center rounded-full bg-sunken text-[10px] text-muted">
+                    {i + 1}
+                  </span>
+                )}
+                <span className="text-xs font-medium">{mon?.name ?? `Slot ${i + 1}`}</span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+      <div className="mt-5">
+        {slotList[safeKitFocus] ? (
           <SlotEditor
-            key={i}
-            index={i}
-            slot={slot}
-            onChange={(patch) => updateSlot(i, patch)}
-            onPick={() => setPick({ kind: boxed ? "roster" : "slot", index: i })}
+            key={safeKitFocus}
+            index={safeKitFocus}
+            slot={slotList[safeKitFocus]!}
+            onChange={(patch) => updateSlot(safeKitFocus, patch)}
+            onPick={() => setPick({ kind: boxed ? "roster" : "slot", index: safeKitFocus })}
           />
-        ))}
+        ) : null}
       </div>
+      </div>
+      ) : null}
 
-      {boxed ? (
-        <>
+      {activeStep === "wins" && boxed ? (
+      <div className="mt-6">
+          <ArchitectureMeatEditor draft={draft} boxSlugs={boxSlugs} onChange={commit} />
+      </div>
+      ) : null}
+
+      {activeStep === "bench" && boxed ? (
+      <div className="mt-6 space-y-4">
           <EndgamesEditor
             endgames={endgames}
             onChange={(next) =>
@@ -443,10 +566,15 @@ export function ManualForm({
               })
             }
           />
+      </div>
+      ) : null}
 
-          <ArchitectureMeatEditor draft={draft} boxSlugs={boxSlugs} onChange={commit} />
-
-          <h2 className="mt-16 text-2xl font-semibold tracking-tight">Packages</h2>
+      {activeStep === "packages" && boxed ? (
+      <div className="mt-6">
+          <p className="text-sm text-muted">
+            Each package is a preview bring of {manualBringSize(draft)}.
+          </p>
+          <h2 className="sr-only">Packages</h2>
           <p className="mt-1 text-sm text-muted">
             Each package is a preview bring of {manualBringSize(draft)} — strategy, plan clock, endgame links, and
             situation loops. Swap-gated packs pick from the active six after the flex.
@@ -514,10 +642,12 @@ export function ManualForm({
               }
             />
           ) : null}
-        </>
-      ) : (
-        <>
-          <h2 className="mt-16 text-2xl font-semibold tracking-tight">Decision trees</h2>
+      </div>
+      ) : null}
+
+      {activeStep === "trees" && !boxed ? (
+        <div className="mt-6">
+          <h2 className="text-lg font-semibold tracking-tight">Decision trees</h2>
           {draft.phases.map((phase, pi) => (
             <section key={phase.id} className="mt-8 rounded-[28px] border border-line p-5">
               <label className="block text-sm font-medium">Phase title</label>
@@ -601,9 +731,11 @@ export function ManualForm({
             items={draft.hazards}
             onChange={(hazards) => commit({ ...draft, hazards })}
           />
-        </>
-      )}
+        </div>
+      ) : null}
 
+      {activeStep === "matchups" ? (
+      <div className="mt-6 space-y-2">
       <MatchupList
         title="Favored matchups"
         hint="Boards or species you like. Packs inherit these unless they override."
@@ -616,9 +748,20 @@ export function ManualForm({
         items={draft.counters ?? []}
         onChange={(counters) => commit({ ...draft, counters })}
       />
+      </div>
+      ) : null}
 
-      {error ? <p className="mt-8 text-sm text-amber-200">{error}</p> : null}
-      <div className="sticky bottom-0 z-20 mt-8 flex flex-wrap gap-3 border-t border-line/60 bg-bg/95 py-4 backdrop-blur-sm">
+      {error ? <p className="mt-6 text-sm text-amber-200">{error}</p> : null}
+      <div className="sticky bottom-0 z-20 mt-8 flex flex-wrap items-center gap-3 border-t border-line/60 bg-bg/95 py-4 backdrop-blur-sm">
+        <Button type="button" variant="line" disabled={isFirst} onClick={goPrev}>
+          Previous
+        </Button>
+        {!isLast ? (
+          <Button type="button" variant="line" onClick={goNext}>
+            Next · {steps[stepIndex + 1]?.label}
+          </Button>
+        ) : null}
+        <span className="flex-1" />
         <Button type="button" onClick={save}>
           Save on this device
         </Button>
@@ -649,7 +792,7 @@ export function ManualForm({
 
   if (embedded) {
     return (
-      <div className="mx-auto max-w-3xl rounded-[28px] border border-line/70 bg-raised/20 px-4 py-6 md:px-6">
+      <div className="mx-auto max-w-4xl rounded-[28px] border border-line/70 bg-raised/20 px-4 py-6 md:px-6">
         {body}
       </div>
     );
@@ -1121,9 +1264,9 @@ function ArchitectureMeatEditor({
   const doubles = manualFormat(draft) === "doubles";
 
   return (
-    <section className="mt-16 space-y-10">
+    <section className="space-y-10">
       <div>
-        <h2 className="text-2xl font-semibold tracking-tight">How it wins</h2>
+        <h2 className="text-lg font-semibold tracking-tight">How it wins</h2>
         <p className="mt-1 text-sm text-muted">
           {doubles
             ? "Recipes as short paths — not essays. Packs link via engine ids. Required for doubles."
@@ -1211,7 +1354,7 @@ function ArchitectureMeatEditor({
       </div>
 
       <div>
-        <h2 className="text-2xl font-semibold tracking-tight">Network</h2>
+        <h2 className="text-lg font-semibold tracking-tight">Network</h2>
         <p className="mt-1 text-sm text-muted">
           Pick two faces. One line for creates / converts.
         </p>
@@ -1360,7 +1503,7 @@ function ArchitectureMeatEditor({
       </div>
 
       <div>
-        <h2 className="text-2xl font-semibold tracking-tight">House rules</h2>
+        <h2 className="text-lg font-semibold tracking-tight">House rules</h2>
         <p className="mt-1 text-sm text-muted">Five one-liners under How it wins.</p>
         <StringList
           label=""
@@ -1386,7 +1529,7 @@ function FlexPoolEditor({
 }) {
   const rows = alts.length ? alts : [];
   return (
-    <section className="mt-16">
+    <section>
       <h2 className="text-2xl font-semibold tracking-tight">Flex pool</h2>
       <p className="mt-1 text-sm text-muted">
         Candidates off the registered six. A package can require swapping one in to unlock a bring
@@ -1556,7 +1699,7 @@ function EndgamesEditor({
 }) {
   const rows = endgames.length ? endgames : [];
   return (
-    <section className="mt-16">
+    <section>
       <h2 className="text-2xl font-semibold tracking-tight">Endgames (six-level)</h2>
       <p className="mt-1 text-sm text-muted">
         Closes the registered six can pursue. Link them from each package.
@@ -1778,31 +1921,47 @@ function SlotEditor({
         );
       })()}
       <p className="mt-5 text-sm font-medium">Best kit</p>
-      <div className="mt-2 space-y-4">
-        {(slot.moves.length ? slot.moves : emptySlot().moves).map((move, mi) => (
-          <div key={mi} className="grid gap-2 rounded-2xl bg-white/5 p-3 sm:grid-cols-2">
-            <input
-              className={inputClass}
-              placeholder="Move"
-              value={move.name}
-              onChange={(e) => {
-                const moves = [...(slot.moves.length ? slot.moves : emptySlot().moves)];
-                moves[mi] = { ...moves[mi], name: e.target.value };
-                onChange({ moves });
-              }}
-            />
-            <input
-              className={inputClass}
-              placeholder="Why"
-              value={move.why}
-              onChange={(e) => {
-                const moves = [...(slot.moves.length ? slot.moves : emptySlot().moves)];
-                moves[mi] = { ...moves[mi], why: e.target.value };
-                onChange({ moves });
-              }}
-            />
-          </div>
-        ))}
+      <p className="mt-1 text-xs text-muted">
+        Search the Champions move DB — type chips, power, and effect come with the pick.
+      </p>
+      <div className="mt-3 space-y-3">
+        {(slot.moves.length ? slot.moves : emptySlot().moves).map((move, mi) => {
+          const kit = slot.moves.length ? slot.moves : emptySlot().moves;
+          const exclude = kit
+            .map((m, i) => (i === mi ? "" : m.name))
+            .filter(Boolean);
+          return (
+            <div
+              key={mi}
+              className="space-y-2 rounded-2xl border border-line/50 bg-bg/35 p-3"
+            >
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-muted">
+                Move {mi + 1}
+              </p>
+              <MoveNameField
+                value={move.name}
+                slug={slot.slug}
+                exclude={exclude}
+                placeholder={`Search moves — Fake Out, Protect, Tailwind…`}
+                onChange={(name) => {
+                  const moves = [...kit];
+                  moves[mi] = { ...moves[mi], name };
+                  onChange({ moves });
+                }}
+              />
+              <input
+                className={inputClass}
+                placeholder="Why this move on the kit"
+                value={move.why}
+                onChange={(e) => {
+                  const moves = [...kit];
+                  moves[mi] = { ...moves[mi], why: e.target.value };
+                  onChange({ moves });
+                }}
+              />
+            </div>
+          );
+        })}
       </div>
       <label className="mt-4 block text-sm font-medium">Objective</label>
       <textarea
@@ -1900,19 +2059,26 @@ function SlotModesEditor({
               />
             </div>
             <div className="grid gap-2 sm:grid-cols-2">
-              {(mode.moves.length ? mode.moves : emptySlot().moves).map((move, mi) => (
-                <input
-                  key={mi}
-                  className={inputClass}
-                  placeholder={`Move ${mi + 1}`}
-                  value={move.name}
-                  onChange={(e) => {
-                    const moves = [...(mode.moves.length ? mode.moves : emptySlot().moves)];
-                    moves[mi] = { ...moves[mi], name: e.target.value };
-                    onChange(modes.map((x, j) => (j === i ? { ...x, moves } : x)));
-                  }}
-                />
-              ))}
+              {(mode.moves.length ? mode.moves : emptySlot().moves).map((move, mi) => {
+                const kit = mode.moves.length ? mode.moves : emptySlot().moves;
+                const exclude = kit
+                  .map((m, i) => (i === mi ? "" : m.name))
+                  .filter(Boolean);
+                return (
+                  <MoveNameField
+                    key={mi}
+                    value={move.name}
+                    slug={slug}
+                    exclude={exclude}
+                    placeholder={`Move ${mi + 1}`}
+                    onChange={(name) => {
+                      const moves = [...kit];
+                      moves[mi] = { ...moves[mi], name };
+                      onChange(modes.map((x, j) => (j === i ? { ...x, moves } : x)));
+                    }}
+                  />
+                );
+              })}
             </div>
             <Button
               type="button"
@@ -1944,7 +2110,7 @@ function MatchupList({
 }) {
   const rows = items.length ? items : [];
   return (
-    <section className="mt-12">
+    <section className="mt-6">
       <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
       <p className="mt-1 text-xs text-muted">{hint}</p>
       <ul className="mt-3 space-y-3">

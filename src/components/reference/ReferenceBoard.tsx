@@ -7,8 +7,8 @@ import { PageFrame } from "@/components/chrome/PageFrame";
 import { catalog } from "@/lib/catalog/load";
 import { getEditorial } from "@/lib/catalog/load";
 import { searchCatalog, sortCatalog, type SortKey } from "@/lib/catalog/search";
-import { PokemonCard } from "@/components/pokemon/PokemonCard";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
+import { VirtualPokemonGrid } from "@/components/reference/VirtualPokemonGrid";
 import { TypeIcon } from "@/components/pokemon/TypeIcon";
 import { MoveChip } from "@/components/moves/MoveChip";
 import { MoveStatGrid } from "@/components/moves/MoveStatGrid";
@@ -258,18 +258,13 @@ function PokemonPanel({
           <option value="usage">Ladder usage</option>
         </select>
       </div>
-      <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-        {rows.map((p) => {
+      <VirtualPokemonGrid
+        rows={rows}
+        jobFor={(p) => {
           const runs = activeTool ? pokemonRunsTool(p, activeTool) : false;
-          return (
-            <PokemonCard
-              key={p.slug}
-              pokemon={p}
-              job={runs ? `Runs ${activeTool?.label} on ladder` : getEditorial(p.slug)?.job}
-            />
-          );
-        })}
-      </div>
+          return runs ? `Runs ${activeTool?.label} on ladder` : getEditorial(p.slug)?.job;
+        }}
+      />
       {!rows.length ? (
         <p className="mt-10 text-center text-sm text-muted">No Pokémon match those filters.</p>
       ) : null}

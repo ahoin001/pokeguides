@@ -26,7 +26,9 @@ export const TYPE_IDS_ALPHA = [...TYPE_IDS].sort((a, b) =>
   TYPE_LABEL[a].localeCompare(TYPE_LABEL[b]),
 ) as TypeId[];
 
-/** Attacker -> defender -> multiplier. Official chart. */
+/** Attacker -> defender -> multiplier. Official Gen 6+ chart (sparse; missing = 1×).
+ * Vetted by `npm run verify:types` against scripts/verify-type-chart.ts.
+ */
 const CHART: Record<TypeId, Partial<Record<TypeId, number>>> = {
   normal: { rock: 0.5, ghost: 0, steel: 0.5 },
   fire: {
@@ -80,7 +82,7 @@ const CHART: Record<TypeId, Partial<Record<TypeId, number>>> = {
     rock: 2,
     ghost: 0,
     dark: 2,
-    steel: 0.5,
+    steel: 2,
     fairy: 0.5,
   },
   poison: {

@@ -15,7 +15,8 @@
     "sync:abilities": "tsx scripts/sync-abilities.ts",
     "fill:move-effects": "tsx scripts/fill-move-effects.ts",
     "sync:move-effects-champions": "tsx scripts/sync-move-effects-champions.ts",
-    "sync:ability-effects": "tsx scripts/sync-ability-effects.ts"
+    "sync:ability-effects": "tsx scripts/sync-ability-effects.ts",
+    "verify:types": "tsx scripts/verify-type-chart.ts"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

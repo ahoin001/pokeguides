@@ -1,0 +1,3117 @@
+{
+  "meta": {
+    "format": "doubles",
+    "regulation": "M-C",
+    "asOf": "2026-09-23",
+    "caveat": "Architecture-first seed for UI; not claimed ladder-optimal. Scores describe species/form tendencies across plausible Champions doubles architectures rather than one exact set. Regulation M-C legality and the one-Mega-per-battle rule were checked against current official regulation information. ([Champions News][1])",
+    "scale": "All numeric scores are integers 0–5 unless noted. 0 = absent, 3 = solid, 5 = elite for Champions doubles architectures."
+  },
+  "metricDefs": [
+    {
+      "id": "engineParticipation",
+      "label": "Engine Participation Count",
+      "meaning": "How many distinct win engines / infrastructure loops this species can meaningfully participate in across common Champions doubles architectures, rather than within only one team.",
+      "scale": "0-5"
+    },
+    {
+      "id": "engineExclusivityTax",
+      "label": "Engine Exclusivity Tax",
+      "meaning": "How often teammates must become dedicated servants for this species to function. High tax means packages collapse around it; low tax means many packages can support it lightly.",
+      "scale": "0-5 (higher = worse / more exclusive)"
+    },
+    {
+      "id": "bridgeQuality",
+      "label": "Bridge Quality",
+      "meaning": "How effectively this species participates in separate modules without forcing either module to compromise.",
+      "scale": "0-5"
+    },
+    {
+      "id": "createFanOut",
+      "label": "Create Fan-Out",
+      "meaning": "How many strategically distinct teammate roles can consume what this species creates.",
+      "scale": "0-5"
+    },
+    {
+      "id": "convertFanOut",
+      "label": "Convert Fan-Out",
+      "meaning": "How many distinct infrastructure forms this species can convert into progress, such as weather, Tailwind, Fake Out turns, terrain, Intimidate turns, screens, Trick Room, redirection, or free setup turns.",
+      "scale": "0-5"
+    },
+    {
+      "id": "mag",
+      "label": "MAG",
+      "meaning": "Marginal Architecture Gain — how much genuinely new strategic territory this species tends to open on Champions doubles sixes at species baseline rather than in one specific six.",
+      "scale": "0-5"
+    },
+    {
+      "id": "moduleElasticity",
+      "label": "Module Elasticity Support",
+      "meaning": "As a root or key module, how many strategically different packages it can support without rebuilding the six.",
+      "scale": "0-5"
+    },
+    {
+      "id": "engineConverterContinuity",
+      "label": "Engine-Converter Continuity",
+      "meaning": "How effectively this species can create a favorable resource or state and later personally convert that same state into damage, control, scaling, or a win condition instead of requiring another dedicated converter.",
+      "scale": "0-5"
+    }
+  ],
+  "teamContextRules": {
+    "cMagHint": "Start with species-baseline MAG, then inspect the five teammates for duplicated territory. Raise C-MAG when the candidate adds a genuinely new engine, failure condition, speed state, damage axis, counterplay inversion, Mega package, or conversion route that existing teammates can also exploit. Lower C-MAG when it merely strengthens an already-saturated route without creating a meaningfully different package or failure state.",
+    "exclusivityGivenSix": "Lower Engine Exclusivity Tax when the other five already provide the infrastructure this species wants while remaining useful in unrelated packages. Lower it further when the species can function autonomously after consuming that infrastructure. Raise it when several teammates must change moves, items, Mega choice, positioning, speed profiles, or normal roles primarily to enable this species. Shared infrastructure with multiple consumers lowers tax; dedicated servants raise it.",
+    "saturation": "Adding another member of the same archetype lowers C-MAG when both create or consume the same resources, compete for the same setup or Mega turn, fail to the same counterplay, or improve the same packages without opening new ones. Functional redundancy remains valuable when the new species converts shared infrastructure differently, creates another speed or damage state, supplies a different endgame, or turns the first route's counterplay into progress for a second route."
+  },
+  "batch": {
+    "index": 1,
+    "of": 8,
+    "slugs": [
+      "abomasnow-mega",
+      "absol-mega",
+      "absol-mega-z",
+      "aerodactyl-mega",
+      "aggron-mega",
+      "alakazam-mega",
+      "altaria-mega",
+      "ampharos-mega",
+      "annihilape",
+      "archaludon",
+      "audino-mega",
+      "banette-mega",
+      "barbaracle-mega",
+      "baxcalibur",
+      "baxcalibur-mega",
+      "beedrill-mega",
+      "blastoise-mega",
+      "blaziken-mega",
+      "camerupt-mega",
+      "chandelure-mega",
+      "charizard",
+      "charizard-mega-x",
+      "charizard-mega-y",
+      "chesnaught-mega",
+      "chimecho-mega",
+      "clefable-mega",
+      "corviknight",
+      "crabominable-mega",
+      "delphox-mega",
+      "dragalge-mega",
+      "dragonite",
+      "dragonite-mega",
+      "drampa-mega",
+      "eelektross-mega",
+      "emboar-mega",
+      "excadrill",
+      "excadrill-mega",
+      "falinks-mega",
+      "farigiraf",
+      "feraligatr-mega",
+      "floette-mega",
+      "froslass-mega",
+      "gallade-mega",
+      "garchomp",
+      "garchomp-mega"
+    ]
+  },
+  "profiles": [
+    {
+      "slug": "abomasnow-mega",
+      "name": "Mega Abomasnow",
+      "archetype": "engine",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 2,
+        "createFanOut": 4,
+        "convertFanOut": 3,
+        "mag": 3,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "Snow",
+          "consumers": [
+            "Blizzard users",
+            "Ice defenders",
+            "weather denial"
+          ]
+        },
+        {
+          "resource": "weather overwrite",
+          "consumers": [
+            "anti-Rain packages",
+            "anti-Sun packages"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Snow",
+          "into": "Blizzard pressure"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow heavy offense"
+        },
+        {
+          "resource": "free turn",
+          "into": "coverage pressure"
+        }
+      ],
+      "engines": [
+        "snow-offense",
+        "weather-denial",
+        "trick-room-offense"
+      ],
+      "whyUnderOrOverRated": "Often judged as a slow Ice attacker, but its stronger architectural feature is one-slot weather creation plus immediate self-conversion.",
+      "conversionMonsterNote": "Excellent ECC: it creates Snow and can personally spend the weather immediately.",
+      "antiPatterns": [
+        "Adding several dedicated Snow servants when only Abomasnow meaningfully converts Snow"
+      ],
+      "caveat": "Exact M-C set quality is matchup-dependent; score emphasizes weather compression rather than usage."
+    },
+    {
+      "slug": "absol-mega",
+      "name": "Mega Absol",
+      "archetype": "disruptor",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "status deterrence",
+          "consumers": [
+            "setup partners",
+            "frail attackers"
+          ]
+        },
+        {
+          "resource": "Dark pressure",
+          "consumers": [
+            "Psychic matchups",
+            "Ghost matchups"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Tailwind",
+          "into": "fast Dark offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "immediate pressure"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe attacks"
+        },
+        {
+          "resource": "forced switches",
+          "into": "targeted damage"
+        }
+      ],
+      "engines": [
+        "tailwind-offense",
+        "anti-status-pressure",
+        "dark-breaker"
+      ],
+      "whyUnderOrOverRated": "Its outward create-web is modest, but it is easier to support lightly than many dedicated Mega sweepers.",
+      "conversionMonsterNote": "Good Fan-In from generic tempo resources, but less self-contained than top conversion Megas.",
+      "antiPatterns": [
+        "Treating Magic Bounce-style utility as enough reason to consume the Mega slot"
+      ],
+      "caveat": "Architectural score is more confident than any claim about current tournament prevalence."
+    },
+    {
+      "slug": "absol-mega-z",
+      "name": "Mega Absol Z",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "disruptor",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Dark threat pressure",
+          "consumers": [
+            "setup partners",
+            "Psychic matchups"
+          ]
+        },
+        {
+          "resource": "forced defensive turns",
+          "consumers": [
+            "secondary scalers",
+            "speed setters"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Tailwind",
+          "into": "fast breaker turns"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "high-value attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe conversion"
+        },
+        {
+          "resource": "opponent passivity",
+          "into": "Mega offense"
+        },
+        {
+          "resource": "forced switch",
+          "into": "tempo gain"
+        }
+      ],
+      "engines": [
+        "tailwind-offense",
+        "fake-out-conversion",
+        "dark-breaker",
+        "mega-autonomy"
+      ],
+      "whyUnderOrOverRated": "Connector metrics underrate it because most arrows point inward; its value is how many generic tempo resources it can turn into immediate progress.",
+      "conversionMonsterNote": "High convert Fan-Out and relatively low servant tax make it a stronger architecture candidate than a thin create-web suggests.",
+      "antiPatterns": [
+        "Building four support slots solely to manufacture Absol attack turns"
+      ],
+      "caveat": "New M-C Mega; role breadth should be updated as tournament sets stabilize."
+    },
+    {
+      "slug": "aerodactyl-mega",
+      "name": "Mega Aerodactyl",
+      "archetype": "bridge",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 4,
+        "createFanOut": 3,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "fast Tailwind",
+          "consumers": [
+            "mid-speed breakers",
+            "scalers",
+            "cleaners"
+          ]
+        },
+        {
+          "resource": "Rock pressure",
+          "consumers": [
+            "Flying matchups",
+            "Fire matchups"
+          ]
+        },
+        {
+          "resource": "fast disruption",
+          "consumers": [
+            "setup partners",
+            "tempo teams"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Tailwind",
+          "into": "fast physical pressure"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "speed control"
+        },
+        {
+          "resource": "forced Protect",
+          "into": "positioning"
+        }
+      ],
+      "engines": [
+        "tailwind-offense",
+        "fast-disruption",
+        "rock-cleanup"
+      ],
+      "whyUnderOrOverRated": "Its best architectural feature is low exclusivity: speed control, disruption, and offense can coexist without demanding a dedicated team.",
+      "conversionMonsterNote": "Not the strongest raw converter, but unusually easy to insert into unrelated packages.",
+      "antiPatterns": [
+        "Using the Mega slot only for marginally stronger Rock damage"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "aggron-mega",
+      "name": "Mega Aggron",
+      "archetype": "scaler",
+      "archetypeSecondary": "bridge",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "physical wall pressure",
+          "consumers": [
+            "special partners",
+            "slow balance"
+          ]
+        },
+        {
+          "resource": "Steel defensive anchor",
+          "consumers": [
+            "Fairy-weak cores",
+            "Dragon cores"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Trick Room",
+          "into": "slow Steel pressure"
+        },
+        {
+          "resource": "screens",
+          "into": "durable scaling"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "setup or attack"
+        },
+        {
+          "resource": "healing support",
+          "into": "long control game"
+        }
+      ],
+      "engines": [
+        "trick-room-offense",
+        "durable-scaling",
+        "steel-anchor"
+      ],
+      "whyUnderOrOverRated": "Its raw defensive value is real, but it often needs the rest of the six to slow the game enough for that value to convert.",
+      "conversionMonsterNote": "Can consume several defensive infrastructures but rarely creates the speed or tempo state itself.",
+      "antiPatterns": [
+        "Adding too many passive partners and producing a team that cannot convert durability into KOs"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "alakazam-mega",
+      "name": "Mega Alakazam",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 2,
+        "createFanOut": 1,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "extreme speed pressure",
+          "consumers": [
+            "cleanup partners",
+            "double-target pressure"
+          ]
+        },
+        {
+          "resource": "forced Protects",
+          "consumers": [
+            "setup partners",
+            "positioning"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Psychic Terrain",
+          "into": "Psychic offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe breaker turn"
+        },
+        {
+          "resource": "redirection",
+          "into": "frail conversion"
+        },
+        {
+          "resource": "special-defense drops",
+          "into": "KOs"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "psychic-terrain-offense",
+        "fake-out-conversion",
+        "special-breaker",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "A classic example of a thin outward graph masking elite conversion Fan-In.",
+      "conversionMonsterNote": "Many generic infrastructures support it without becoming servants, but Alakazam itself creates relatively little durable infrastructure.",
+      "antiPatterns": [
+        "Confusing high speed and damage with high bridge value"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "altaria-mega",
+      "name": "Mega Altaria",
+      "archetype": "hybrid",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 4,
+        "createFanOut": 3,
+        "convertFanOut": 4,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Fairy pressure",
+          "consumers": [
+            "Dragon cores",
+            "Dark matchups"
+          ]
+        },
+        {
+          "resource": "defensive role compression",
+          "consumers": [
+            "balance cores",
+            "setup partners"
+          ]
+        },
+        {
+          "resource": "forced Dragon responses",
+          "consumers": [
+            "Steel breakers",
+            "Fire partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Tailwind",
+          "into": "mixed offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "setup"
+        },
+        {
+          "resource": "screens",
+          "into": "durable scaling"
+        },
+        {
+          "resource": "forced switch",
+          "into": "position advantage"
+        }
+      ],
+      "engines": [
+        "fairy-pressure",
+        "durable-scaling",
+        "tailwind-offense",
+        "mixed-offense"
+      ],
+      "whyUnderOrOverRated": "Role flexibility helps it bridge packages, though it rarely creates a single overwhelming infrastructure state.",
+      "conversionMonsterNote": "Can spend many generic balance resources and remain useful without dedicated servants.",
+      "antiPatterns": [
+        "Giving it too many utility jobs and losing an actual conversion route"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "ampharos-mega",
+      "name": "Mega Ampharos",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 2,
+        "createFanOut": 2,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 2,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Electric pressure",
+          "consumers": [
+            "Water matchups",
+            "Flying matchups"
+          ]
+        },
+        {
+          "resource": "Dragon pressure",
+          "consumers": [
+            "mixed offense",
+            "coverage compression"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Trick Room",
+          "into": "slow special offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "bulky conversion"
+        },
+        {
+          "resource": "screens",
+          "into": "longer damage loop"
+        }
+      ],
+      "engines": [
+        "trick-room-offense",
+        "electric-pressure",
+        "bulky-special-offense"
+      ],
+      "whyUnderOrOverRated": "Strong converter under slow-board infrastructure, but usually does not justify reorganizing multiple partners around it.",
+      "conversionMonsterNote": "Good Fan-In from Trick Room and tempo support; modest outward engine creation.",
+      "antiPatterns": [
+        "Forcing Trick Room solely because Ampharos is slow"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "annihilape",
+      "name": "Annihilape",
+      "archetype": "scaler",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 4,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Defiant deterrence",
+          "consumers": [
+            "physical partners",
+            "Intimidate-sensitive cores"
+          ]
+        },
+        {
+          "resource": "targeting pressure",
+          "consumers": [
+            "setup partners",
+            "positioning"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "opponent Intimidate",
+          "into": "Defiant offense"
+        },
+        {
+          "resource": "incoming hits",
+          "into": "Rage Fist scaling"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "fast physical offense"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "bulky pressure"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe scaling"
+        },
+        {
+          "resource": "screens",
+          "into": "durable conversion"
+        }
+      ],
+      "engines": [
+        "defiant-inversion",
+        "rage-fist-scaling",
+        "tailwind-offense",
+        "durable-scaling"
+      ],
+      "whyUnderOrOverRated": "One of the strongest inward-conversion profiles because normal opponent counterplay can become its resource.",
+      "conversionMonsterNote": "Excellent convert Fan-Out with minimal servant tax; can play immediate or scaling identities depending set.",
+      "antiPatterns": [
+        "Assuming every Annihilape must be a slow Rage Fist composition"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "archaludon",
+      "name": "Archaludon",
+      "archetype": "scaler",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 4,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Stamina defense growth",
+          "consumers": [
+            "slow partners",
+            "positioning teams"
+          ]
+        },
+        {
+          "resource": "Steel / Dragon pressure",
+          "consumers": [
+            "Rain cores",
+            "balance cores"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Rain",
+          "into": "Electro Shot scaling"
+        },
+        {
+          "resource": "incoming physical hits",
+          "into": "Stamina bulk"
+        },
+        {
+          "resource": "screens",
+          "into": "durable offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "special scaling"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "faster conversion"
+        }
+      ],
+      "engines": [
+        "rain-offense",
+        "stamina-scaling",
+        "durable-scaling",
+        "special-setup"
+      ],
+      "whyUnderOrOverRated": "Rain is the obvious engine, but Stamina lets Archaludon convert opponent attacks even outside dedicated weather.",
+      "conversionMonsterNote": "High Fan-In from Rain, screens, tempo, and opponent contact makes it less weather-exclusive than it first appears.",
+      "antiPatterns": [
+        "Treating Archaludon as unusable whenever Rain is not active"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "audino-mega",
+      "name": "Mega Audino",
+      "archetype": "connector",
+      "archetypeSecondary": "engine",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 4,
+        "createFanOut": 5,
+        "convertFanOut": 1,
+        "mag": 3,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 1
+      },
+      "creates": [
+        {
+          "resource": "healing support",
+          "consumers": [
+            "bulky scalers",
+            "setup attackers",
+            "walls"
+          ]
+        },
+        {
+          "resource": "speed-state support",
+          "consumers": [
+            "slow converters",
+            "balance cores"
+          ]
+        },
+        {
+          "resource": "defensive turns",
+          "consumers": [
+            "setup partners",
+            "resource teams"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "free turn",
+          "into": "team sustain"
+        }
+      ],
+      "engines": [
+        "sustain-engine",
+        "durable-scaling",
+        "slow-balance"
+      ],
+      "whyUnderOrOverRated": "Outstanding outward support graph but poor ECC; consuming the Mega slot for pure support is a substantial opportunity cost.",
+      "conversionMonsterNote": "Low Fan-In as a personal win condition. Its value is almost entirely what teammates convert.",
+      "antiPatterns": [
+        "Building a passive six where Audino preserves resources but nobody converts them"
+      ],
+      "caveat": "Exact support options should be interpreted set-by-set."
+    },
+    {
+      "slug": "banette-mega",
+      "name": "Mega Banette",
+      "archetype": "disruptor",
+      "archetypeSecondary": "connector",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 4,
+        "convertFanOut": 3,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "priority disruption",
+          "consumers": [
+            "setup partners",
+            "slow breakers"
+          ]
+        },
+        {
+          "resource": "forced targeting",
+          "consumers": [
+            "positioning teams",
+            "cleaners"
+          ]
+        },
+        {
+          "resource": "Ghost pressure",
+          "consumers": [
+            "Psychic matchups",
+            "TR disruption"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "opponent passivity",
+          "into": "disruption"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "control setup"
+        },
+        {
+          "resource": "chip",
+          "into": "Ghost cleanup"
+        }
+      ],
+      "engines": [
+        "priority-disruption",
+        "ghost-control",
+        "setup-access"
+      ],
+      "whyUnderOrOverRated": "Its create-web can be valuable, but the Mega slot asks whether disruption could be supplied more cheaply elsewhere.",
+      "conversionMonsterNote": "Moderate self-conversion; best when disruption itself directly creates a winning partner turn.",
+      "antiPatterns": [
+        "Using priority utility without a teammate that meaningfully spends the denied action"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "barbaracle-mega",
+      "name": "Mega Barbaracle",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 4,
+        "bridgeQuality": 1,
+        "createFanOut": 1,
+        "convertFanOut": 5,
+        "mag": 3,
+        "moduleElasticity": 2,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "setup threat",
+          "consumers": [
+            "redirection partners",
+            "tempo partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "redirection",
+          "into": "setup access"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "setup access"
+        },
+        {
+          "resource": "screens",
+          "into": "safer scaling"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "offensive conversion"
+        },
+        {
+          "resource": "forced Protect",
+          "into": "boosting turn"
+        }
+      ],
+      "engines": [
+        "setup-sweeper",
+        "redirection-setup",
+        "screens-offense"
+      ],
+      "whyUnderOrOverRated": "Excellent at consuming generic setup infrastructure, but several teammates often become servants to create the first safe boost.",
+      "conversionMonsterNote": "High Fan-In, high exclusivity tax: a textbook conversion monster that can over-centralize its six.",
+      "antiPatterns": [
+        "Stacking redirection, screens, and Fake Out solely to enable one sweeper"
+      ],
+      "caveat": "Specific optimal Mega Barbaracle loops remain comparatively less tournament-established."
+    },
+    {
+      "slug": "baxcalibur",
+      "name": "Baxcalibur",
+      "archetype": "scaler",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Dragon / Ice pressure",
+          "consumers": [
+            "Steel breakers",
+            "positioning partners"
+          ]
+        },
+        {
+          "resource": "physical threat",
+          "consumers": [
+            "special scalers",
+            "mixed offense"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Fake Out turn",
+          "into": "Dragon Dance"
+        },
+        {
+          "resource": "redirection",
+          "into": "setup access"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "immediate offense"
+        },
+        {
+          "resource": "screens",
+          "into": "durable scaling"
+        },
+        {
+          "resource": "opponent Fire move",
+          "into": "Thermal Exchange value"
+        }
+      ],
+      "engines": [
+        "dragon-dance-scaling",
+        "tailwind-offense",
+        "thermal-exchange-inversion"
+      ],
+      "whyUnderOrOverRated": "Does not create much infrastructure, but can convert many common support resources and even some opponent actions.",
+      "conversionMonsterNote": "Strong inward graph with manageable servant tax because it can attack immediately when setup is unavailable.",
+      "antiPatterns": [
+        "Forcing Dragon Dance when immediate Ice or Dragon pressure is already sufficient"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "baxcalibur-mega",
+      "name": "Mega Baxcalibur",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "extreme physical threat",
+          "consumers": [
+            "special scalers",
+            "positioning partners"
+          ]
+        },
+        {
+          "resource": "forced defensive turns",
+          "consumers": [
+            "secondary setup",
+            "speed control"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Fake Out turn",
+          "into": "setup or KO"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe conversion"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "fast physical sweep"
+        },
+        {
+          "resource": "screens",
+          "into": "durable scaling"
+        },
+        {
+          "resource": "opponent Fire pressure",
+          "into": "offensive value"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "mid-speed pressure"
+        }
+      ],
+      "engines": [
+        "dragon-dance-scaling",
+        "tailwind-offense",
+        "physical-breaker",
+        "counterplay-conversion"
+      ],
+      "whyUnderOrOverRated": "New Mega form should be viewed less as a connector and more as an unusually broad infrastructure consumer.",
+      "conversionMonsterNote": "High conversion surface area with lower support tax than many setup Megas because immediate attacks remain threatening.",
+      "antiPatterns": [
+        "Using every partner to force a boost instead of exploiting immediate pressure"
+      ],
+      "caveat": "New M-C Mega; architecture score should be revisited as more tournament packages establish stable roles."
+    },
+    {
+      "slug": "beedrill-mega",
+      "name": "Mega Beedrill",
+      "archetype": "cleaner",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 2,
+        "createFanOut": 2,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "fast pivot pressure",
+          "consumers": [
+            "positioning partners",
+            "setup partners"
+          ]
+        },
+        {
+          "resource": "forced switches",
+          "consumers": [
+            "hazard pressure",
+            "double targets"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "speed dominance"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        },
+        {
+          "resource": "forced switch",
+          "into": "pivot advantage"
+        }
+      ],
+      "engines": [
+        "fast-cleanup",
+        "pivot-offense",
+        "tailwind-offense"
+      ],
+      "whyUnderOrOverRated": "Very efficient at converting tempo, but fragile and contributes less infrastructure than top bridge Megas.",
+      "conversionMonsterNote": "High speed reduces servant tax; it often needs only light positioning support.",
+      "antiPatterns": [
+        "Spending several team slots compensating for Beedrill's fragility"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "blastoise-mega",
+      "name": "Mega Blastoise",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "engine",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 3,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Water pressure",
+          "consumers": [
+            "Fire matchups",
+            "Ground matchups"
+          ]
+        },
+        {
+          "resource": "bulky board presence",
+          "consumers": [
+            "setup partners",
+            "slow balance"
+          ]
+        },
+        {
+          "resource": "forced special answers",
+          "consumers": [
+            "physical breakers",
+            "mixed offense"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Rain",
+          "into": "Water offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe special attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "protected conversion"
+        },
+        {
+          "resource": "speed control",
+          "into": "heavy special damage"
+        },
+        {
+          "resource": "chip",
+          "into": "spread cleanup"
+        }
+      ],
+      "engines": [
+        "rain-offense",
+        "bulky-special-offense",
+        "mixed-offense"
+      ],
+      "whyUnderOrOverRated": "More autonomous than many bulky Megas because generic speed or Rain support immediately converts into damage.",
+      "conversionMonsterNote": "Broad infrastructure consumer with moderate outward pressure creation.",
+      "antiPatterns": [
+        "Building a full Rain team when Blastoise only needs Rain for select conversion turns"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "blaziken-mega",
+      "name": "Mega Blaziken",
+      "archetype": "engine",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "self-generated speed",
+          "consumers": [
+            "Blaziken offense",
+            "opponent targeting pressure"
+          ]
+        },
+        {
+          "resource": "Fire / Fighting pressure",
+          "consumers": [
+            "Steel-breaking cores",
+            "mixed offense"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Speed Boost",
+          "into": "self-sustaining offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "free speed cycle"
+        },
+        {
+          "resource": "Protect turn",
+          "into": "speed advantage"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe acceleration"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "self-speed-engine",
+        "protect-conversion",
+        "fire-fighting-breaker",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "One of the clearest ECC species: the engine piece and converter are literally the same slot.",
+      "conversionMonsterNote": "Excellent Fan-In with very low exclusivity because Protect or one tempo turn can start the engine.",
+      "antiPatterns": [
+        "Adding redundant external speed control when Speed Boost already solves the relevant tier"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "camerupt-mega",
+      "name": "Mega Camerupt",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 4,
+        "bridgeQuality": 1,
+        "createFanOut": 2,
+        "convertFanOut": 4,
+        "mag": 4,
+        "moduleElasticity": 2,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "Fire / Ground pressure",
+          "consumers": [
+            "slow offense",
+            "Steel-breaking cores"
+          ]
+        },
+        {
+          "resource": "forced Water responses",
+          "consumers": [
+            "Grass partners",
+            "Electric partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Trick Room",
+          "into": "slow special offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "TR conversion"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe heavy attack"
+        },
+        {
+          "resource": "Helping Hand",
+          "into": "burst damage"
+        }
+      ],
+      "engines": [
+        "trick-room-offense",
+        "fire-ground-breaker",
+        "slow-burst"
+      ],
+      "whyUnderOrOverRated": "Enormous conversion payoff, but one of the clearest examples of a high Engine Exclusivity Tax.",
+      "conversionMonsterNote": "Consumes Trick Room exceptionally well, yet often asks the six to supply and preserve that one state.",
+      "antiPatterns": [
+        "Making Trick Room exist primarily for Camerupt rather than several slow converters"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "chandelure-mega",
+      "name": "Mega Chandelure",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "disruptor",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Fire / Ghost pressure",
+          "consumers": [
+            "Steel-breaking cores",
+            "Psychic matchups"
+          ]
+        },
+        {
+          "resource": "forced switches",
+          "consumers": [
+            "setup partners",
+            "positioning"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Trick Room",
+          "into": "special offense"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "faster pressure"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe nuke"
+        },
+        {
+          "resource": "redirection",
+          "into": "free attack"
+        },
+        {
+          "resource": "special-defense drops",
+          "into": "KOs"
+        }
+      ],
+      "engines": [
+        "trick-room-offense",
+        "tailwind-offense",
+        "fire-ghost-breaker",
+        "special-breaker"
+      ],
+      "whyUnderOrOverRated": "Unusually flexible for a heavy special Mega because it can participate in both faster and slower speed states.",
+      "conversionMonsterNote": "High conversion surface area; teams need not become dedicated servants if Chandelure is one of several special converters.",
+      "antiPatterns": [
+        "Building exclusively around one speed mode when Chandelure can function in several"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "charizard",
+      "name": "Charizard",
+      "archetype": "bridge",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 5,
+        "createFanOut": 3,
+        "convertFanOut": 4,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "dual-Mega ambiguity",
+          "consumers": [
+            "X packages",
+            "Y packages",
+            "preview pressure"
+          ]
+        },
+        {
+          "resource": "Fire pressure",
+          "consumers": [
+            "Steel matchups",
+            "Grass matchups"
+          ]
+        },
+        {
+          "resource": "Ground immunity",
+          "consumers": [
+            "Ground-sensitive partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Sun",
+          "into": "Fire offense"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "fast Mega pressure"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe Mega conversion"
+        },
+        {
+          "resource": "redirection",
+          "into": "protected attack"
+        }
+      ],
+      "engines": [
+        "mega-portfolio",
+        "sun-offense",
+        "tailwind-offense",
+        "fire-breaker"
+      ],
+      "whyUnderOrOverRated": "Base Charizard's architectural value is unusually tied to Mega Portfolio Value: preview must account for two materially different Mega identities.",
+      "conversionMonsterNote": "Strong Fan-In becomes clearer only when X and Y packages are evaluated separately.",
+      "antiPatterns": [
+        "Treating Charizard as one fixed node rather than a preview fork between Mega identities"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "charizard-mega-x",
+      "name": "Mega Charizard X",
+      "archetype": "scaler",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "physical Fire / Dragon threat",
+          "consumers": [
+            "special scalers",
+            "mixed offense"
+          ]
+        },
+        {
+          "resource": "forced defensive turns",
+          "consumers": [
+            "setup partners",
+            "speed setters"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Fake Out turn",
+          "into": "Dragon Dance"
+        },
+        {
+          "resource": "redirection",
+          "into": "setup access"
+        },
+        {
+          "resource": "screens",
+          "into": "durable scaling"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "immediate offense"
+        },
+        {
+          "resource": "forced switch",
+          "into": "boosting turn"
+        }
+      ],
+      "engines": [
+        "dragon-dance-scaling",
+        "physical-fire-offense",
+        "redirection-setup",
+        "mixed-offense"
+      ],
+      "whyUnderOrOverRated": "Less outward infrastructure than Charizard Y, but high conversion Fan-In and strong dual-Mega preview value.",
+      "conversionMonsterNote": "Best treated as a physical scaler that can consume many generic free-turn resources.",
+      "antiPatterns": [
+        "Making every support choice serve Dragon Dance"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "charizard-mega-y",
+      "name": "Mega Charizard Y",
+      "archetype": "engine",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 4,
+        "createFanOut": 5,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "Sun",
+          "consumers": [
+            "Fire attackers",
+            "Chlorophyll users",
+            "Water mitigation"
+          ]
+        },
+        {
+          "resource": "weather overwrite",
+          "consumers": [
+            "anti-Rain packages",
+            "Sun converters"
+          ]
+        },
+        {
+          "resource": "spread Fire threat",
+          "consumers": [
+            "physical partners",
+            "setup partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "self-created Sun",
+          "into": "Fire damage"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "fast Sun pressure"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe Heat Wave"
+        },
+        {
+          "resource": "special-defense drops",
+          "into": "burst KOs"
+        },
+        {
+          "resource": "forced Protect",
+          "into": "partner setup"
+        }
+      ],
+      "engines": [
+        "sun-offense",
+        "weather-denial",
+        "tailwind-offense",
+        "special-breaker",
+        "self-weather-conversion"
+      ],
+      "whyUnderOrOverRated": "One of the best examples of engine-converter continuity: it creates Sun and immediately becomes one of the strongest Sun converters.",
+      "conversionMonsterNote": "Elite on both axes; teammates can consume its Sun without becoming dedicated servants, while Charizard itself converts several external resources.",
+      "antiPatterns": [
+        "Adding too many Sun-only teammates and making weather denial collapse the entire six"
+      ],
+      "caveat": "Current Champions results have established Mega Charizard Y as a serious Sun architecture root. ([Pokemon][2])"
+    },
+    {
+      "slug": "chesnaught-mega",
+      "name": "Mega Chesnaught",
+      "archetype": "scaler",
+      "archetypeSecondary": "connector",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 3,
+        "createFanOut": 3,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "physical defensive anchor",
+          "consumers": [
+            "special partners",
+            "slow balance"
+          ]
+        },
+        {
+          "resource": "Grass / Fighting pressure",
+          "consumers": [
+            "Water answers",
+            "Steel matchups"
+          ]
+        },
+        {
+          "resource": "forced targeting",
+          "consumers": [
+            "setup partners",
+            "positioning"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "screens",
+          "into": "durable scaling"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "setup or control"
+        },
+        {
+          "resource": "healing",
+          "into": "long-game pressure"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow offense"
+        }
+      ],
+      "engines": [
+        "durable-scaling",
+        "slow-balance",
+        "grass-fighting-pressure"
+      ],
+      "whyUnderOrOverRated": "Has more bridge value than a pure wall because its defensive presence can create setup opportunities for partners.",
+      "conversionMonsterNote": "Moderate Fan-In, but teams risk becoming too passive if they overinvest in preserving it.",
+      "antiPatterns": [
+        "Stacking defensive support without a fast route to convert board control"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "chimecho-mega",
+      "name": "Mega Chimecho",
+      "archetype": "connector",
+      "archetypeSecondary": "engine",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 4,
+        "createFanOut": 5,
+        "convertFanOut": 2,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "speed-state support",
+          "consumers": [
+            "slow converters",
+            "mixed-speed teams"
+          ]
+        },
+        {
+          "resource": "support turns",
+          "consumers": [
+            "setup scalers",
+            "bulky offense"
+          ]
+        },
+        {
+          "resource": "Psychic pressure",
+          "consumers": [
+            "Fighting matchups",
+            "Poison matchups"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "free turn",
+          "into": "support action"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow utility"
+        }
+      ],
+      "engines": [
+        "trick-room-engine",
+        "setup-access",
+        "slow-balance"
+      ],
+      "whyUnderOrOverRated": "Likely stronger as a create-web species than as a personal converter, which makes Mega opportunity cost central to evaluation.",
+      "conversionMonsterNote": "Low-to-moderate personal conversion; strongest when several teammates independently spend its support state.",
+      "antiPatterns": [
+        "Consuming the Mega slot for support when only one teammate benefits"
+      ],
+      "caveat": "Specific M-C package evidence is thinner than for top metagame roots."
+    },
+    {
+      "slug": "clefable-mega",
+      "name": "Mega Clefable",
+      "archetype": "connector",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 5,
+        "createFanOut": 4,
+        "convertFanOut": 4,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Fairy pressure",
+          "consumers": [
+            "Dragon matchups",
+            "Dark matchups"
+          ]
+        },
+        {
+          "resource": "defensive role compression",
+          "consumers": [
+            "setup partners",
+            "balance cores"
+          ]
+        },
+        {
+          "resource": "forced Steel answers",
+          "consumers": [
+            "Fire partners",
+            "Ground partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Fake Out turn",
+          "into": "setup or attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "safer scaling"
+        },
+        {
+          "resource": "screens",
+          "into": "durable offense"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "Fairy pressure"
+        }
+      ],
+      "engines": [
+        "fairy-pressure",
+        "durable-scaling",
+        "mixed-offense",
+        "setup-access"
+      ],
+      "whyUnderOrOverRated": "Its best value is role compression: Fairy offense and defensive utility can coexist without demanding a narrow team.",
+      "conversionMonsterNote": "Good Fan-In and solid ECC if configured to transition from support into offense.",
+      "antiPatterns": [
+        "Overloading the set with support and leaving the Mega slot without conversion power"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "corviknight",
+      "name": "Corviknight",
+      "archetype": "scaler",
+      "archetypeSecondary": "connector",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 5,
+        "createFanOut": 4,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "Tailwind",
+          "consumers": [
+            "physical cleaners",
+            "special breakers",
+            "setup attackers"
+          ]
+        },
+        {
+          "resource": "Ground immunity",
+          "consumers": [
+            "Ground-sensitive partners",
+            "Sand cores"
+          ]
+        },
+        {
+          "resource": "durable board presence",
+          "consumers": [
+            "resource loops",
+            "setup partners"
+          ]
+        },
+        {
+          "resource": "physical scaling threat",
+          "consumers": [
+            "special partners",
+            "forced targeting"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Coaching",
+          "into": "Bulk Up scaling"
+        },
+        {
+          "resource": "free turn",
+          "into": "Bulk Up"
+        },
+        {
+          "resource": "Roost turn",
+          "into": "resource reset"
+        },
+        {
+          "resource": "opponent passivity",
+          "into": "Power Trip clock"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "partner speed advantage"
+        }
+      ],
+      "engines": [
+        "tailwind-offense",
+        "bulk-up-scaling",
+        "coaching-scale",
+        "durable-scaling",
+        "ground-immunity-bridge"
+      ],
+      "whyUnderOrOverRated": "One of the rare non-Megas that can be infrastructure, scaler, and eventual converter without changing slots.",
+      "conversionMonsterNote": "Excellent ECC: creates durable control states and can become the clock itself.",
+      "antiPatterns": [
+        "Running Corviknight as passive Tailwind support when the six needs an independent win condition"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "crabominable-mega",
+      "name": "Mega Crabominable",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 4,
+        "bridgeQuality": 1,
+        "createFanOut": 1,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 2,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "Ice / Fighting threat",
+          "consumers": [
+            "Dragon matchups",
+            "Steel matchups"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Trick Room",
+          "into": "slow physical offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe heavy attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "protected conversion"
+        },
+        {
+          "resource": "screens",
+          "into": "extra attack turns"
+        }
+      ],
+      "engines": [
+        "trick-room-offense",
+        "ice-fighting-breaker",
+        "slow-burst"
+      ],
+      "whyUnderOrOverRated": "Its damage profile can be excellent, but the architecture often pays heavily to solve its speed and positioning.",
+      "conversionMonsterNote": "Strong Trick Room converter, limited bridge value and relatively high servant tax.",
+      "antiPatterns": [
+        "Building an entire Trick Room shell for one slow attacker"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "delphox-mega",
+      "name": "Mega Delphox",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "bridge",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 3,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Fire / Psychic pressure",
+          "consumers": [
+            "Steel-breaking cores",
+            "Fighting matchups"
+          ]
+        },
+        {
+          "resource": "forced special answers",
+          "consumers": [
+            "physical breakers",
+            "mixed offense"
+          ]
+        },
+        {
+          "resource": "speed pressure",
+          "consumers": [
+            "cleanup partners",
+            "setup partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Psychic Terrain",
+          "into": "Psychic offense"
+        },
+        {
+          "resource": "Sun",
+          "into": "Fire offense"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "fast special pressure"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe nuke"
+        },
+        {
+          "resource": "special-defense drops",
+          "into": "KOs"
+        }
+      ],
+      "engines": [
+        "psychic-terrain-offense",
+        "sun-offense",
+        "tailwind-offense",
+        "special-breaker"
+      ],
+      "whyUnderOrOverRated": "A potentially excellent high-Fan-In Mega because it can spend both Psychic and Fire infrastructures without demanding either.",
+      "conversionMonsterNote": "Strong conversion surface area is more important than its relatively modest create-web.",
+      "antiPatterns": [
+        "Forcing both Sun and Psychic Terrain into the same six solely for Delphox"
+      ],
+      "caveat": "Exact best M-C role remains less established than top-tier Megas."
+    },
+    {
+      "slug": "dragalge-mega",
+      "name": "Mega Dragalge",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 2,
+        "createFanOut": 2,
+        "convertFanOut": 4,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Dragon / Poison pressure",
+          "consumers": [
+            "Fairy matchups",
+            "mixed offense"
+          ]
+        },
+        {
+          "resource": "forced Steel responses",
+          "consumers": [
+            "Ground partners",
+            "Fire partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Trick Room",
+          "into": "slow special offense"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe heavy attack"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "special conversion"
+        },
+        {
+          "resource": "special-defense drops",
+          "into": "burst damage"
+        }
+      ],
+      "engines": [
+        "trick-room-offense",
+        "dragon-poison-breaker",
+        "slow-special-offense"
+      ],
+      "whyUnderOrOverRated": "Useful coverage compression, but slower speed makes its best packages more infrastructure-dependent.",
+      "conversionMonsterNote": "Good Trick Room Fan-In, moderate tax if the six already supports other slow converters.",
+      "antiPatterns": [
+        "Adding Trick Room exclusively to rescue Dragalge's speed"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "dragonite",
+      "name": "Dragonite",
+      "archetype": "bridge",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 5,
+        "createFanOut": 4,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Tailwind",
+          "consumers": [
+            "physical cleaners",
+            "special breakers",
+            "setup attackers"
+          ]
+        },
+        {
+          "resource": "priority pressure",
+          "consumers": [
+            "chip teams",
+            "endgames"
+          ]
+        },
+        {
+          "resource": "Ground immunity",
+          "consumers": [
+            "Ground-sensitive partners"
+          ]
+        },
+        {
+          "resource": "Dragon threat",
+          "consumers": [
+            "mixed offense",
+            "forced Fairy responses"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Tailwind",
+          "into": "own offense"
+        },
+        {
+          "resource": "chip",
+          "into": "priority cleanup"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "setup or attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe conversion"
+        },
+        {
+          "resource": "Multiscale-style safety",
+          "into": "setup access"
+        }
+      ],
+      "engines": [
+        "tailwind-offense",
+        "priority-cleanup",
+        "dragon-pressure",
+        "setup-access",
+        "mega-portfolio"
+      ],
+      "whyUnderOrOverRated": "Its strongest quality is package flexibility: support, priority, setup, and Mega ambiguity can coexist across different fours.",
+      "conversionMonsterNote": "High Fan-In with low exclusivity; generic infrastructure usually suffices.",
+      "antiPatterns": [
+        "Assuming Dragonite must be a single fixed physical setup role"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "dragonite-mega",
+      "name": "Mega Dragonite",
+      "archetype": "bridge",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 5,
+        "createFanOut": 4,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "Tailwind",
+          "consumers": [
+            "fast packages",
+            "mid-speed breakers",
+            "cleaners"
+          ]
+        },
+        {
+          "resource": "Dragon pressure",
+          "consumers": [
+            "Fairy lures",
+            "Steel partners"
+          ]
+        },
+        {
+          "resource": "Fire coverage pressure",
+          "consumers": [
+            "Steel matchups",
+            "Bug matchups"
+          ]
+        },
+        {
+          "resource": "bulky field presence",
+          "consumers": [
+            "setup partners",
+            "balance cores"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "own Tailwind",
+          "into": "special or mixed offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "Tailwind or attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe conversion"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        },
+        {
+          "resource": "Mega slot",
+          "into": "autonomous pressure"
+        }
+      ],
+      "engines": [
+        "tailwind-offense",
+        "dragon-control",
+        "fire-coverage",
+        "mega-autonomy",
+        "mega-portfolio"
+      ],
+      "whyUnderOrOverRated": "Recent Champions sets show that Mega Dragonite can be infrastructure and attacker rather than merely a bulky Dragon sweeper.",
+      "conversionMonsterNote": "High ECC and excellent Mega Portfolio Value because it can create Tailwind then personally exploit it.",
+      "antiPatterns": [
+        "Treating it only as a late-game cleaner and ignoring its bridge functions"
+      ],
+      "caveat": "Role breadth is supported by contemporary Champions usage, but exact set mix remains team-dependent."
+    },
+    {
+      "slug": "drampa-mega",
+      "name": "Mega Drampa",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 4,
+        "bridgeQuality": 1,
+        "createFanOut": 2,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 2,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "Dragon / Normal pressure",
+          "consumers": [
+            "slow offense",
+            "coverage cores"
+          ]
+        },
+        {
+          "resource": "forced Fairy responses",
+          "consumers": [
+            "Steel partners",
+            "Poison partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Trick Room",
+          "into": "slow special offense"
+        },
+        {
+          "resource": "Helping Hand",
+          "into": "burst damage"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe nuke"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "heavy attack"
+        }
+      ],
+      "engines": [
+        "trick-room-offense",
+        "slow-special-offense",
+        "dragon-breaker"
+      ],
+      "whyUnderOrOverRated": "Can hit extremely hard under the right state, but the speed-state support often belongs to other teammates rather than Drampa itself.",
+      "conversionMonsterNote": "Strong Trick Room consumer with meaningful exclusivity tax.",
+      "antiPatterns": [
+        "Creating an entire slow mode that only Drampa can exploit"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "eelektross-mega",
+      "name": "Mega Eelektross",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "bridge",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 4,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Electric coverage pressure",
+          "consumers": [
+            "Water matchups",
+            "Flying matchups"
+          ]
+        },
+        {
+          "resource": "awkward targeting profile",
+          "consumers": [
+            "positioning teams",
+            "Ground partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Trick Room",
+          "into": "slow offense"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "mid-speed offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "protected conversion"
+        },
+        {
+          "resource": "coverage openings",
+          "into": "mixed pressure"
+        }
+      ],
+      "engines": [
+        "trick-room-offense",
+        "tailwind-offense",
+        "electric-pressure",
+        "mixed-offense"
+      ],
+      "whyUnderOrOverRated": "Its unusual defensive and coverage profile can fit both slow and mid-speed modules, giving it better bridge quality than many heavy Megas.",
+      "conversionMonsterNote": "Broad infrastructure consumer that does not necessarily force one dedicated engine.",
+      "antiPatterns": [
+        "Using generic coverage without defining what matchup axis the slot actually adds"
+      ],
+      "caveat": "Specific current tournament role is less established than top M-C Megas."
+    },
+    {
+      "slug": "emboar-mega",
+      "name": "Mega Emboar",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 2,
+        "createFanOut": 2,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 2,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Fire / Fighting pressure",
+          "consumers": [
+            "Steel-breaking cores",
+            "Ice matchups"
+          ]
+        },
+        {
+          "resource": "forced Water responses",
+          "consumers": [
+            "Grass partners",
+            "Electric partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Trick Room",
+          "into": "slow physical offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe heavy attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "protected conversion"
+        },
+        {
+          "resource": "screens",
+          "into": "extra attack cycles"
+        }
+      ],
+      "engines": [
+        "trick-room-offense",
+        "fire-fighting-breaker",
+        "slow-burst"
+      ],
+      "whyUnderOrOverRated": "Immediate type pressure is useful, but its speed profile often asks the team to provide the state it consumes.",
+      "conversionMonsterNote": "Good slow-board converter, moderate exclusivity.",
+      "antiPatterns": [
+        "Making the whole six slow solely because Emboar prefers Trick Room"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "excadrill",
+      "name": "Excadrill",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 4,
+        "mag": 5,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "Ground / Steel pressure",
+          "consumers": [
+            "special partners",
+            "Sand cores"
+          ]
+        },
+        {
+          "resource": "forced Ground immunities",
+          "consumers": [
+            "setup partners",
+            "positioning"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Sand",
+          "into": "Sand Rush speed"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "non-Sand speed"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        },
+        {
+          "resource": "weather reset",
+          "into": "immediate tempo"
+        }
+      ],
+      "engines": [
+        "sand-rush-engine",
+        "tailwind-offense",
+        "ground-steel-breaker",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "Its Sand conversion is elite, but Sand dependence raises exclusivity compared with high-autonomy connectors.",
+      "conversionMonsterNote": "Strong converter with meaningful Fan-In from Tailwind as well as Sand, which prevents total engine dependence.",
+      "antiPatterns": [
+        "Treating Excadrill as dead whenever Sand is not active"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "excadrill-mega",
+      "name": "Mega Excadrill",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "engine",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "extreme Ground / Steel pressure",
+          "consumers": [
+            "special scalers",
+            "forced-switch teams"
+          ]
+        },
+        {
+          "resource": "defensive-response tax",
+          "consumers": [
+            "secondary converters",
+            "setup partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Sand",
+          "into": "speed or offensive state"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "fast Mega pressure"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe heavy attack"
+        },
+        {
+          "resource": "forced Protect",
+          "into": "partner setup"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "sand-offense",
+        "tailwind-offense",
+        "ground-steel-breaker",
+        "mega-autonomy",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "Mega conversion can reduce the normal Sand-tax problem by making Excadrill itself a more autonomous source of pressure.",
+      "conversionMonsterNote": "High inward conversion and better ECC than base Excadrill, though exact value depends strongly on ability/set.",
+      "antiPatterns": [
+        "Spending both a weather slot and Mega slot when one of those commitments is not generating extra package value"
+      ],
+      "caveat": "Specific Mega Excadrill role should be revisited against current tournament sets as the M-C field settles."
+    },
+    {
+      "slug": "falinks-mega",
+      "name": "Mega Falinks",
+      "archetype": "scaler",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 4,
+        "bridgeQuality": 1,
+        "createFanOut": 1,
+        "convertFanOut": 5,
+        "mag": 3,
+        "moduleElasticity": 2,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "setup threat",
+          "consumers": [
+            "redirection partners",
+            "tempo partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Fake Out turn",
+          "into": "setup access"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe boosting"
+        },
+        {
+          "resource": "screens",
+          "into": "durable scaling"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "offensive conversion"
+        },
+        {
+          "resource": "forced Protect",
+          "into": "extra setup"
+        }
+      ],
+      "engines": [
+        "setup-sweeper",
+        "redirection-setup",
+        "screens-offense",
+        "tailwind-offense"
+      ],
+      "whyUnderOrOverRated": "The inward graph is broad, but the support tax can become extreme because Falinks itself creates little for unrelated packages.",
+      "conversionMonsterNote": "High conversion Fan-Out paired with one of the higher exclusivity taxes in the batch.",
+      "antiPatterns": [
+        "Turning four teammates into setup insurance for Falinks"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "farigiraf",
+      "name": "Farigiraf",
+      "archetype": "engine",
+      "archetypeSecondary": "connector",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 5,
+        "createFanOut": 5,
+        "convertFanOut": 3,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Trick Room",
+          "consumers": [
+            "slow physical attackers",
+            "slow special attackers",
+            "bulky scalers"
+          ]
+        },
+        {
+          "resource": "priority denial",
+          "consumers": [
+            "slow converters",
+            "fragile attackers",
+            "setup partners"
+          ]
+        },
+        {
+          "resource": "Helping Hand boost",
+          "consumers": [
+            "burst breakers",
+            "spread attackers"
+          ]
+        },
+        {
+          "resource": "Psychic pressure",
+          "consumers": [
+            "Fighting matchups",
+            "Poison matchups"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Fake Out turn",
+          "into": "Trick Room"
+        },
+        {
+          "resource": "redirection",
+          "into": "Trick Room"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "own special attacks"
+        }
+      ],
+      "engines": [
+        "trick-room-engine",
+        "priority-denial",
+        "helping-hand-burst",
+        "slow-mesh"
+      ],
+      "whyUnderOrOverRated": "Farigiraf becomes elite only when several teammates can spend Trick Room or Armor Tail; then one slot feeds multiple independent engines.",
+      "conversionMonsterNote": "Personal conversion is secondary, but ECC is respectable because Farigiraf can attack inside its own speed state.",
+      "antiPatterns": [
+        "Adding Farigiraf to a team where only one slow Pokémon wants Trick Room"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "feraligatr-mega",
+      "name": "Mega Feraligatr",
+      "archetype": "scaler",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 2,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Water / Dragon pressure",
+          "consumers": [
+            "Fire matchups",
+            "mixed offense"
+          ]
+        },
+        {
+          "resource": "physical threat",
+          "consumers": [
+            "special scalers",
+            "forced switches"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Rain",
+          "into": "Water offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "setup"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe scaling"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "fast physical offense"
+        },
+        {
+          "resource": "screens",
+          "into": "durable setup"
+        }
+      ],
+      "engines": [
+        "rain-offense",
+        "setup-sweeper",
+        "tailwind-offense",
+        "physical-breaker"
+      ],
+      "whyUnderOrOverRated": "Can consume both weather and generic setup infrastructure, keeping it from being a one-engine Mega.",
+      "conversionMonsterNote": "Broad Fan-In with moderate support tax; strongest when Rain also benefits other teammates.",
+      "antiPatterns": [
+        "Building Rain solely to amplify Feraligatr"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "floette-mega",
+      "name": "Mega Floette",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Fairy pressure",
+          "consumers": [
+            "Dragon matchups",
+            "Dark matchups"
+          ]
+        },
+        {
+          "resource": "forced Steel answers",
+          "consumers": [
+            "Fire partners",
+            "Ground partners"
+          ]
+        },
+        {
+          "resource": "special scaling threat",
+          "consumers": [
+            "physical breakers",
+            "tempo partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Fake Out turn",
+          "into": "Calm Mind"
+        },
+        {
+          "resource": "Intimidate turn",
+          "into": "safer scaling"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "fast Fairy pressure"
+        },
+        {
+          "resource": "redirection",
+          "into": "setup access"
+        },
+        {
+          "resource": "Helping Hand",
+          "into": "burst Fairy damage"
+        },
+        {
+          "resource": "forced Protect",
+          "into": "Calm Mind"
+        }
+      ],
+      "engines": [
+        "calm-mind-scaling",
+        "fairy-pressure",
+        "fake-out-conversion",
+        "tailwind-offense",
+        "mixed-offense"
+      ],
+      "whyUnderOrOverRated": "A prime example of connector bias: its outward arrows are modest, but enormous conversion Fan-In lets many ordinary support actions become a Floette clock.",
+      "conversionMonsterNote": "Elite conversion monster with low servant tax; it can scale or attack immediately depending how expensive the free turn is.",
+      "antiPatterns": [
+        "Demanding Calm Mind every game when immediate Fairy damage already wins the position"
+      ],
+      "caveat": "Recent Champions tournament success supports both immediate and scaling Mega Floette identities."
+    },
+    {
+      "slug": "froslass-mega",
+      "name": "Mega Froslass",
+      "archetype": "disruptor",
+      "archetypeSecondary": "bridge",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 4,
+        "createFanOut": 4,
+        "convertFanOut": 4,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "fast disruption",
+          "consumers": [
+            "setup partners",
+            "slow breakers"
+          ]
+        },
+        {
+          "resource": "Ice pressure",
+          "consumers": [
+            "Dragon matchups",
+            "Ground matchups"
+          ]
+        },
+        {
+          "resource": "Ghost pressure",
+          "consumers": [
+            "Psychic matchups",
+            "TR denial"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Tailwind",
+          "into": "speed dominance"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "control action"
+        },
+        {
+          "resource": "chip",
+          "into": "fast cleanup"
+        },
+        {
+          "resource": "forced switch",
+          "into": "disruption tempo"
+        }
+      ],
+      "engines": [
+        "fast-disruption",
+        "ice-control",
+        "ghost-control",
+        "tailwind-offense"
+      ],
+      "whyUnderOrOverRated": "Its value is often spread across disruption and matchup control rather than one visible damage engine.",
+      "conversionMonsterNote": "Moderate-to-high Fan-In because speed and free turns can become either control or attacks.",
+      "antiPatterns": [
+        "Using the Mega slot for disruption that a non-Mega could supply without opening new packages"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "gallade-mega",
+      "name": "Mega Gallade",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Fighting / Psychic pressure",
+          "consumers": [
+            "Dark matchups",
+            "Steel matchups"
+          ]
+        },
+        {
+          "resource": "physical targeting pressure",
+          "consumers": [
+            "special scalers",
+            "positioning"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Tailwind",
+          "into": "fast physical offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "setup or attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe conversion"
+        },
+        {
+          "resource": "Psychic Terrain",
+          "into": "Psychic pressure"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "tailwind-offense",
+        "psychic-terrain-offense",
+        "physical-breaker",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "A flexible infrastructure consumer whose servant tax stays reasonable because it can usually attack without setup.",
+      "conversionMonsterNote": "Strong Fan-In, moderate bridge quality; better as one converter among several than as the sole team centerpiece.",
+      "antiPatterns": [
+        "Building excessive redirection and setup support around Gallade"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "garchomp",
+      "name": "Garchomp",
+      "archetype": "bridge",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 5,
+        "createFanOut": 3,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Ground pressure",
+          "consumers": [
+            "special scalers",
+            "Electric partners"
+          ]
+        },
+        {
+          "resource": "Dragon pressure",
+          "consumers": [
+            "Steel partners",
+            "Fairy lures"
+          ]
+        },
+        {
+          "resource": "forced Ground immunities",
+          "consumers": [
+            "setup partners",
+            "coverage traps"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Tailwind",
+          "into": "fast Ground offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "setup or attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe conversion"
+        },
+        {
+          "resource": "Sand",
+          "into": "weather synergy"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "ground-pressure",
+        "tailwind-offense",
+        "sand-offense",
+        "mixed-offense",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "Low exclusivity and broad package compatibility make base Garchomp more architecturally valuable than a simple physical-breaker label suggests.",
+      "conversionMonsterNote": "Can spend speed control, weather, Fake Out, redirection, or simple chip without needing any one resource.",
+      "antiPatterns": [
+        "Treating Garchomp as requiring Sand or dedicated setup support"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "garchomp-mega",
+      "name": "Mega Garchomp",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Ground / Dragon pressure",
+          "consumers": [
+            "special partners",
+            "mixed offense"
+          ]
+        },
+        {
+          "resource": "forced defensive turns",
+          "consumers": [
+            "secondary scalers",
+            "speed setters"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Sand",
+          "into": "amplified offense"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "speed correction"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe heavy attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "protected conversion"
+        },
+        {
+          "resource": "forced Protect",
+          "into": "setup access"
+        }
+      ],
+      "engines": [
+        "sand-offense",
+        "tailwind-offense",
+        "ground-dragon-breaker",
+        "setup-sweeper"
+      ],
+      "whyUnderOrOverRated": "Its raw conversion is excellent, but compared with base Garchomp it can impose a greater speed and Mega-slot tax.",
+      "conversionMonsterNote": "High Fan-In and powerful conversion; strongest when Sand or Tailwind already benefits other teammates.",
+      "antiPatterns": [
+        "Adding Sand and Tailwind solely to repair Mega Garchomp rather than building shared infrastructure"
+      ],
+      "caveat": "This row refers to the standard Mega Garchomp slug, not Mega Garchomp Z."
+    }
+  ],
+  "rosterStatus": {
+    "complete": false,
+    "scoredInThisReply": 45
+  }
+}

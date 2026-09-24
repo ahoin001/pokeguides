@@ -608,7 +608,8 @@ HARD (in addition to the singles rules)
    - `controlPlanes[]` — freeform id string (fake-out, grassy, coaching, …)
    - `matchupScripts[]` — few pills that select a pack (e.g. Rain → Pack A); optional
    - `megaPool`, `construction.altSlots` (bench), `ledger.laterTests`
-4. Slot extras: `abilityStages`, `ampTargets`, `itemLoop`, `networkJobs` (creates/converts/protects/scales — feeds The six skim), `opening` (3–5 asks on Sets only).
+4. Slot extras: `abilityStages`, `ampTargets`, `itemLoop`, `networkJobs` (creates/converts/protects/scales — feeds The six skim; optional `archetype` aligned with species overlay: connector | bridge | conversion-monster | engine | scaler | cleaner | disruptor | hybrid), `opening` (3–5 asks on Sets only).
+   - **Species overlay vs manual:** Champions-wide scores live in `architecture-metrics.json` (MAG, tax, fan-out, ECC). Manuals own **this team's** edges (`network.edges`) and skim jobs. Do not paste overlay numeric scores into the manual JSON.
 5. Pack extras: `engineIds`, **fieldPlan** (lead/back + pairEdges), **2–4 meaty `loops` per pack**, `flows`, `defaultLeadPair` / `backPair`. **Do not invent** T1 pairs or speed-calced SP.
 6. Anti-redundancy: Fake Out / Sand / Coaching / Nasty Plot appear as a kit click **or** an engine path **or** a pack loop beat — never paste the same essay into all three. Engines own team-level win paths; pack `loops` own **bring-specific** repeatable plays. Packs link engines via `engineIds` only. Network edges are **one-line create→convert labels**, not engine essays.
 7. No emoji. Catalog slugs only.
@@ -649,7 +650,7 @@ The Network chapter is a constellation: nodes = registered six, edges = “A cre
 2. Cover the primary paths: tempo → scaler, terrain → physical, speed control → converter, and at least one failure/alternate route (e.g. physical denied → special).
 3. Do **not** invent edges that are not real on this six (no fictional Fake Out partners).
 4. Do **not** paste engine `how` essays into `creates`/`converts` — those fields are labels for the hover chip.
-5. Mirror the same language in `roster[].networkJobs` (creates / converts / protects / scales) so The six skim and the graph agree.
+5. Mirror the same language in `roster[].networkJobs` (creates / converts / protects / scales / optional archetype) so The six skim and the graph agree. Numeric overlay scores stay in `architecture-metrics.json`.
 6. Opponent-triggered edges (Intimidate → Competitive) may use the support mon as `from` if the trigger is opponent-side: phrase `creates` as “Intimidate into Competitive” rather than inventing a fake opponent slug.
 
 **Self-check example language:**
@@ -843,7 +844,8 @@ TEAM NETWORK — REQUIRED
 network.thesis + ≥5 edges (prefer 6–10) among the registered box:
 { from, to, creates, converts, engineId? }
 Ask: who creates a board state, who converts it?
-Mirror verbs in roster[].networkJobs { creates, converts, protects, scales }.
+Mirror verbs in roster[].networkJobs { creates, converts, protects, scales, optional archetype }.
+Species architecture overlay (createFanOut / convertFanOut / tax / ECC) is separate — manuals do not invent those numbers.
 
 ═══════════════════════════════════════
 HOW IT WINS — REQUIRED

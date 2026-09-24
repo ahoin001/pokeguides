@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
+import { ArchitectureProfileSearch } from "@/components/architecture/ArchitectureProfileSearch";
 import { WeaknessGrid } from "@/components/team/WeaknessGrid";
 import { CoverageGrid } from "@/components/team/CoverageGrid";
 import { ThreatsList } from "@/components/team/ThreatsList";
@@ -11,7 +12,7 @@ import type { TeamThreat } from "@/lib/champions/team-threats";
 import type { CoverageMember } from "@/lib/champions/team-coverage";
 import type { CatalogEntry, TypeId } from "@/types/pokemon";
 
-export type AnalysisTab = "weaknesses" | "coverage" | "threats" | "speed";
+export type AnalysisTab = "weaknesses" | "coverage" | "threats" | "speed" | "architecture";
 export type CoverageMode = "stab" | "moves";
 
 const TABS: { id: AnalysisTab; label: string }[] = [
@@ -19,6 +20,7 @@ const TABS: { id: AnalysisTab; label: string }[] = [
   { id: "coverage", label: "Coverage" },
   { id: "threats", label: "Threats" },
   { id: "speed", label: "Speed" },
+  { id: "architecture", label: "Architecture" },
 ];
 
 export function BuilderAnalysis({
@@ -151,6 +153,12 @@ export function BuilderAnalysis({
             {tab === "threats" ? <ThreatsList threats={threats} onScout={onScout} /> : null}
             {tab === "speed" ? (
               <SpeedTier team={team} selectedSlug={selectedSlug} onSelectSlug={onSelectSlug} />
+            ) : null}
+            {tab === "architecture" ? (
+              <ArchitectureProfileSearch
+                partySlugs={team.map((m) => m.slug)}
+                initialSlug={selectedSlug}
+              />
             ) : null}
           </motion.div>
         </AnimatePresence>

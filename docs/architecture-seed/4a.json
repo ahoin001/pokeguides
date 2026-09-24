@@ -1,0 +1,2497 @@
+{
+  "meta": {
+    "format": "doubles",
+    "regulation": "M-C",
+    "asOf": "2026-09-23",
+    "caveat": "Architecture-first seed for UI; not claimed ladder-optimal. Batch 4 is being continued in complete-profile chunks to avoid truncating a JSON object.",
+    "scale": "All numeric scores are integers 0–5 unless noted. 0 = absent, 3 = solid, 5 = elite for Champions doubles architectures."
+  },
+  "metricDefs": [
+    {
+      "id": "engineParticipation",
+      "label": "Engine Participation Count",
+      "meaning": "How many distinct win engines / infrastructure loops this species can meaningfully participate in across common Champions doubles architectures, rather than within only one team.",
+      "scale": "0-5"
+    },
+    {
+      "id": "engineExclusivityTax",
+      "label": "Engine Exclusivity Tax",
+      "meaning": "How often teammates must become dedicated servants for this species to function. High tax means packages collapse around it; low tax means many packages can support it lightly.",
+      "scale": "0-5 (higher = worse / more exclusive)"
+    },
+    {
+      "id": "bridgeQuality",
+      "label": "Bridge Quality",
+      "meaning": "How effectively this species participates in separate modules without forcing either module to compromise.",
+      "scale": "0-5"
+    },
+    {
+      "id": "createFanOut",
+      "label": "Create Fan-Out",
+      "meaning": "How many strategically distinct teammate roles can consume what this species creates.",
+      "scale": "0-5"
+    },
+    {
+      "id": "convertFanOut",
+      "label": "Convert Fan-Out",
+      "meaning": "How many distinct infrastructure forms this species can convert into progress, such as weather, Tailwind, Fake Out turns, terrain, Intimidate turns, screens, Trick Room, redirection, or free setup turns.",
+      "scale": "0-5"
+    },
+    {
+      "id": "mag",
+      "label": "MAG",
+      "meaning": "Marginal Architecture Gain — how much genuinely new strategic territory this species tends to open on Champions doubles sixes at species baseline rather than in one specific six.",
+      "scale": "0-5"
+    },
+    {
+      "id": "moduleElasticity",
+      "label": "Module Elasticity Support",
+      "meaning": "As a root or key module, how many strategically different packages it can support without rebuilding the six.",
+      "scale": "0-5"
+    },
+    {
+      "id": "engineConverterContinuity",
+      "label": "Engine-Converter Continuity",
+      "meaning": "How effectively this species can create a favorable resource or state and later personally convert that same state into damage, control, scaling, or a win condition instead of requiring another dedicated converter.",
+      "scale": "0-5"
+    }
+  ],
+  "teamContextRules": {
+    "cMagHint": "Start with species-baseline MAG, then inspect the five teammates for duplicated territory. Raise C-MAG when the candidate adds a genuinely new engine, failure condition, speed state, damage axis, counterplay inversion, Mega package, or conversion route that existing teammates can also exploit. Lower C-MAG when it merely strengthens an already-saturated route without creating a meaningfully different package or failure state.",
+    "exclusivityGivenSix": "Lower Engine Exclusivity Tax when the other five already provide the infrastructure this species wants while remaining useful in unrelated packages. Lower it further when the species can function autonomously after consuming that infrastructure. Raise it when several teammates must change moves, items, Mega choice, positioning, speed profiles, or normal roles primarily to enable this species. Shared infrastructure with multiple consumers lowers tax; dedicated servants raise it.",
+    "saturation": "Adding another member of the same archetype lowers C-MAG when both create or consume the same resources, compete for the same setup or Mega turn, fail to the same counterplay, or improve the same packages without opening new ones. Functional redundancy remains valuable when the new species converts shared infrastructure differently, creates another speed or damage state, supplies a different endgame, or turns the first route's counterplay into progress for a second route."
+  },
+  "batch": {
+    "index": 4,
+    "of": 4,
+    "slugs": [
+      "abomasnow",
+      "absol",
+      "aegislash-shield",
+      "aerodactyl",
+      "aggron",
+      "alakazam",
+      "alcremie",
+      "altaria",
+      "ampharos",
+      "appletun",
+      "araquanid",
+      "arbok",
+      "arboliva",
+      "arcanine",
+      "arcanine-hisui",
+      "ariados",
+      "armarouge",
+      "aromatisse",
+      "audino",
+      "aurorus",
+      "avalugg",
+      "avalugg-hisui",
+      "azumarill",
+      "banette",
+      "barbaracle",
+      "basculegion-female",
+      "basculegion-male",
+      "bastiodon",
+      "beartic",
+      "beedrill",
+      "bellibolt",
+      "blastoise",
+      "blaziken",
+      "camerupt",
+      "castform",
+      "ceruledge",
+      "chandelure",
+      "chesnaught",
+      "chimecho",
+      "cinderace",
+      "clawitzer",
+      "clefable",
+      "clodsire",
+      "cofagrigus",
+      "conkeldurr",
+      "crabominable",
+      "cyclizar",
+      "dachsbun",
+      "decidueye",
+      "decidueye-hisui",
+      "dedenne",
+      "delphox",
+      "diggersby",
+      "ditto",
+      "dondozo",
+      "dragalge",
+      "dragapult",
+      "drampa",
+      "dudunsparce-two-segment",
+      "eelektross",
+      "emboar",
+      "emolga",
+      "empoleon",
+      "espathra",
+      "espeon",
+      "falinks",
+      "farfetchd",
+      "feraligatr",
+      "flamigo",
+      "flapple",
+      "flareon",
+      "floette-eternal",
+      "florges",
+      "forretress",
+      "froslass",
+      "furfrou",
+      "gallade",
+      "garbodor",
+      "garganacl",
+      "gengar",
+      "glaceon",
+      "glalie",
+      "glimmora",
+      "gliscor",
+      "gogoat",
+      "golurk",
+      "goodra",
+      "goodra-hisui",
+      "gourgeist-average",
+      "gourgeist-large",
+      "gourgeist-small",
+      "gourgeist-super",
+      "grafaiai",
+      "grapploct",
+      "greninja",
+      "hatterene",
+      "heliolisk",
+      "heracross",
+      "hippowdon",
+      "houndoom",
+      "houndstone",
+      "hydrapple",
+      "hydreigon",
+      "infernape",
+      "inteleon",
+      "jolteon",
+      "kangaskhan",
+      "kilowattrel",
+      "kleavor",
+      "klefki",
+      "krookodile",
+      "leafeon",
+      "liepard",
+      "lopunny",
+      "ludicolo",
+      "luxray",
+      "lycanroc-dusk",
+      "lycanroc-midday",
+      "lycanroc-midnight",
+      "mabosstiff",
+      "machamp",
+      "malamar",
+      "mamoswine",
+      "manectric",
+      "maushold-family-of-four",
+      "medicham",
+      "meowscarada",
+      "meowstic-female",
+      "meowstic-male",
+      "mimikyu-disguised",
+      "morpeko-full-belly",
+      "mr-mime",
+      "mr-rime",
+      "mudsdale",
+      "musharna",
+      "ninetales",
+      "ninetales-alola",
+      "noivern",
+      "orthworm",
+      "overqwil",
+      "palafin-zero",
+      "pangoro",
+      "pawmot",
+      "perrserker",
+      "persian",
+      "persian-alola",
+      "pidgeot",
+      "pikachu",
+      "pincurchin",
+      "pinsir",
+      "polteageist",
+      "pyroar-male",
+      "quaquaval",
+      "qwilfish",
+      "rampardos",
+      "reuniclus",
+      "rhyperior",
+      "roserade",
+      "rotom",
+      "rotom-fan",
+      "rotom-frost",
+      "rotom-heat",
+      "rotom-mow",
+      "rotom-wash",
+      "runerigus",
+      "sableye",
+      "salazzle",
+      "samurott",
+      "samurott-hisui",
+      "sandaconda",
+      "sceptile",
+      "scolipede",
+      "scovillain",
+      "scrafty",
+      "serperior",
+      "sharpedo",
+      "simipour",
+      "simisage",
+      "simisear",
+      "sirfetchd",
+      "skarmory",
+      "skeledirge",
+      "slowbro",
+      "slowbro-galar",
+      "slowking",
+      "slowking-galar",
+      "slurpuff",
+      "snorlax",
+      "spiritomb",
+      "squawkabilly-blue-plumage",
+      "squawkabilly-green-plumage",
+      "squawkabilly-white-plumage",
+      "squawkabilly-yellow-plumage",
+      "staraptor",
+      "starmie",
+      "steelix",
+      "stunfisk",
+      "stunfisk-galar",
+      "swalot",
+      "sylveon",
+      "talonflame",
+      "tatsugiri-curly",
+      "tauros",
+      "tauros-paldea-aqua-breed",
+      "tauros-paldea-blaze-breed",
+      "tauros-paldea-combat-breed",
+      "thievul",
+      "tinkaton",
+      "togekiss",
+      "torterra",
+      "toucannon",
+      "toxapex",
+      "toxicroak",
+      "toxtricity-amped",
+      "toxtricity-low-key",
+      "trevenant",
+      "tsareena",
+      "typhlosion",
+      "typhlosion-hisui",
+      "tyrantrum",
+      "umbreon",
+      "ursaluna",
+      "vanilluxe",
+      "vaporeon",
+      "victreebel",
+      "vileplume",
+      "vivillon",
+      "volcarona",
+      "watchog",
+      "weavile",
+      "wigglytuff",
+      "wyrdeer",
+      "zoroark",
+      "zoroark-hisui"
+    ]
+  },
+  "profiles": [
+    {
+      "slug": "abomasnow",
+      "name": "Abomasnow",
+      "archetype": "engine",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 5,
+        "convertFanOut": 4,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "Snow",
+          "consumers": [
+            "Blizzard users",
+            "Ice defenders",
+            "weather denial"
+          ]
+        },
+        {
+          "resource": "weather overwrite",
+          "consumers": [
+            "anti-Rain packages",
+            "anti-Sun packages"
+          ]
+        },
+        {
+          "resource": "Grass / Ice pressure",
+          "consumers": [
+            "Water matchups",
+            "Dragon matchups"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "self-created Snow",
+          "into": "Blizzard pressure"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe weather conversion"
+        },
+        {
+          "resource": "weather advantage",
+          "into": "chip and control"
+        }
+      ],
+      "engines": [
+        "snow-offense",
+        "weather-denial",
+        "trick-room-offense",
+        "self-weather-conversion"
+      ],
+      "whyUnderOrOverRated": "Abomasnow is more architecturally valuable than a slow Ice attacker because one slot both creates Snow and immediately spends it.",
+      "conversionMonsterNote": "High ECC with better Fan-Out when several teammates exploit Snow rather than only Abomasnow.",
+      "antiPatterns": [
+        "Building a full Snow package around only one Blizzard user"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "absol",
+      "name": "Absol",
+      "archetype": "disruptor",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Dark pressure",
+          "consumers": [
+            "Psychic matchups",
+            "Ghost matchups"
+          ]
+        },
+        {
+          "resource": "forced caution",
+          "consumers": [
+            "setup partners",
+            "positioning teams"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Tailwind",
+          "into": "fast Dark offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        },
+        {
+          "resource": "chip",
+          "into": "priority cleanup"
+        },
+        {
+          "resource": "forced switch",
+          "into": "tempo gain"
+        }
+      ],
+      "engines": [
+        "tailwind-offense",
+        "dark-breaker",
+        "priority-cleanup"
+      ],
+      "whyUnderOrOverRated": "Its create-web is modest; most architectural value comes from lightly supported conversion.",
+      "conversionMonsterNote": "Good generic Fan-In without requiring a dedicated package.",
+      "antiPatterns": [
+        "Spending several support slots to force Absol attacks"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "aegislash-shield",
+      "name": "Aegislash",
+      "archetype": "hybrid",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 5,
+        "createFanOut": 4,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "King's Shield pressure",
+          "consumers": [
+            "setup partners",
+            "positioning cores"
+          ]
+        },
+        {
+          "resource": "Steel / Ghost pressure",
+          "consumers": [
+            "Fairy matchups",
+            "Psychic matchups"
+          ]
+        },
+        {
+          "resource": "forced targeting hesitation",
+          "consumers": [
+            "scalers",
+            "speed setters"
+          ]
+        },
+        {
+          "resource": "defensive form cycling",
+          "consumers": [
+            "slow balance",
+            "resource loops"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "opponent contact",
+          "into": "attack reduction"
+        },
+        {
+          "resource": "free turn",
+          "into": "stance conversion"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow offense"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "faster Blade conversion"
+        },
+        {
+          "resource": "chip",
+          "into": "priority cleanup"
+        }
+      ],
+      "engines": [
+        "stance-control",
+        "trick-room-offense",
+        "tailwind-offense",
+        "steel-ghost-pressure",
+        "priority-cleanup"
+      ],
+      "whyUnderOrOverRated": "Aegislash's value is state elasticity: the same slot can alternate defensive resource creation and offensive conversion.",
+      "conversionMonsterNote": "Elite ECC because defensive stance manipulation manufactures the turns that Blade form later spends.",
+      "antiPatterns": [
+        "Playing Aegislash as a static attacker instead of exploiting stance transitions"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "aerodactyl",
+      "name": "Aerodactyl",
+      "archetype": "bridge",
+      "archetypeSecondary": "disruptor",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 0,
+        "bridgeQuality": 5,
+        "createFanOut": 5,
+        "convertFanOut": 4,
+        "mag": 4,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "fast Tailwind",
+          "consumers": [
+            "mid-speed breakers",
+            "cleaners",
+            "setup attackers"
+          ]
+        },
+        {
+          "resource": "fast disruption",
+          "consumers": [
+            "setup partners",
+            "fragile attackers"
+          ]
+        },
+        {
+          "resource": "Rock pressure",
+          "consumers": [
+            "Flying matchups",
+            "Fire matchups"
+          ]
+        },
+        {
+          "resource": "Ground immunity",
+          "consumers": [
+            "Ground-sensitive partners",
+            "positioning cores"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "own Tailwind",
+          "into": "fast pressure"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "speed control"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        },
+        {
+          "resource": "forced Protect",
+          "into": "positioning"
+        }
+      ],
+      "engines": [
+        "tailwind-offense",
+        "fast-disruption",
+        "rock-cleanup",
+        "ground-immunity-bridge"
+      ],
+      "whyUnderOrOverRated": "Aerodactyl is valuable because speed control, disruption, Rock pressure, and Ground immunity coexist without demanding a dedicated shell.",
+      "conversionMonsterNote": "Solid ECC: it can create Tailwind and personally use the resulting speed state.",
+      "antiPatterns": [
+        "Using Aerodactyl only as a disposable Tailwind button"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "aggron",
+      "name": "Aggron",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 2,
+        "createFanOut": 2,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "Steel / Rock pressure",
+          "consumers": [
+            "Fairy matchups",
+            "Flying matchups"
+          ]
+        },
+        {
+          "resource": "physical wall presence",
+          "consumers": [
+            "special partners",
+            "slow balance"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Trick Room",
+          "into": "slow physical offense"
+        },
+        {
+          "resource": "screens",
+          "into": "durable pressure"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        },
+        {
+          "resource": "healing support",
+          "into": "long-game value"
+        }
+      ],
+      "engines": [
+        "trick-room-offense",
+        "durable-scaling",
+        "steel-anchor"
+      ],
+      "whyUnderOrOverRated": "Aggron's bulk is meaningful, but it needs shared slow-game infrastructure to turn that bulk into tournament-grade progress.",
+      "conversionMonsterNote": "Moderate Fan-In with higher speed-state tax than premium converters.",
+      "antiPatterns": [
+        "Creating Trick Room solely to rescue Aggron's speed"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "alakazam",
+      "name": "Alakazam",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 2,
+        "createFanOut": 1,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "extreme speed pressure",
+          "consumers": [
+            "setup partners",
+            "double-target teams"
+          ]
+        },
+        {
+          "resource": "forced Protects",
+          "consumers": [
+            "secondary setup",
+            "positioning"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Psychic Terrain",
+          "into": "Psychic offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "protected conversion"
+        },
+        {
+          "resource": "special-defense drops",
+          "into": "KOs"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "psychic-terrain-offense",
+        "special-breaker",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "A thin outward graph should not hide its elite conversion surface area.",
+      "conversionMonsterNote": "Very high Fan-In with little servant tax because natural speed reduces support requirements.",
+      "antiPatterns": [
+        "Confusing low create Fan-Out with low architectural value"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "alcremie",
+      "name": "Alcremie",
+      "archetype": "connector",
+      "archetypeSecondary": "engine",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 4,
+        "createFanOut": 5,
+        "convertFanOut": 2,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "damage amplification",
+          "consumers": [
+            "physical breakers",
+            "special breakers",
+            "spread attackers"
+          ]
+        },
+        {
+          "resource": "Fairy pressure",
+          "consumers": [
+            "Dragon matchups",
+            "Dark matchups"
+          ]
+        },
+        {
+          "resource": "support turns",
+          "consumers": [
+            "setup scalers",
+            "slow balance"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "free turn",
+          "into": "amplification support"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow support sequencing"
+        }
+      ],
+      "engines": [
+        "burst-conversion",
+        "fairy-pressure",
+        "setup-access",
+        "slow-balance"
+      ],
+      "whyUnderOrOverRated": "Alcremie is strongest when its amplification can feed multiple unrelated damage clocks rather than one designated carry.",
+      "conversionMonsterNote": "Low personal conversion, but excellent outward Fan-Out keeps exclusivity low.",
+      "antiPatterns": [
+        "Using amplification support for only one teammate"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "altaria",
+      "name": "Altaria",
+      "archetype": "bridge",
+      "archetypeSecondary": "connector",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 5,
+        "createFanOut": 4,
+        "convertFanOut": 4,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Ground immunity",
+          "consumers": [
+            "Ground-sensitive partners",
+            "positioning cores"
+          ]
+        },
+        {
+          "resource": "Dragon pressure",
+          "consumers": [
+            "Steel partners",
+            "Fairy partners"
+          ]
+        },
+        {
+          "resource": "speed / support options",
+          "consumers": [
+            "mid-speed attackers",
+            "setup partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Tailwind",
+          "into": "own offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "support or setup"
+        },
+        {
+          "resource": "screens",
+          "into": "durable play"
+        },
+        {
+          "resource": "forced switch",
+          "into": "position advantage"
+        }
+      ],
+      "engines": [
+        "tailwind-offense",
+        "ground-immunity-bridge",
+        "dragon-control",
+        "durable-scaling"
+      ],
+      "whyUnderOrOverRated": "Altaria's architecture comes from fitting several positional and speed-control jobs into one low-tax slot.",
+      "conversionMonsterNote": "Solid Fan-In without needing dedicated servants.",
+      "antiPatterns": [
+        "Giving Altaria too many utility jobs and no conversion route"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "ampharos",
+      "name": "Ampharos",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 2,
+        "createFanOut": 2,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 2,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "Electric pressure",
+          "consumers": [
+            "Water matchups",
+            "Flying matchups"
+          ]
+        },
+        {
+          "resource": "bulky special presence",
+          "consumers": [
+            "slow balance",
+            "physical partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Trick Room",
+          "into": "slow special offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        },
+        {
+          "resource": "screens",
+          "into": "durable conversion"
+        },
+        {
+          "resource": "redirection",
+          "into": "protected pressure"
+        }
+      ],
+      "engines": [
+        "trick-room-offense",
+        "electric-pressure",
+        "bulky-special-offense"
+      ],
+      "whyUnderOrOverRated": "Ampharos can consume common slow-game infrastructure but rarely creates enough of its own to anchor a six.",
+      "conversionMonsterNote": "Moderate Fan-In with meaningful Trick Room dependence.",
+      "antiPatterns": [
+        "Building a slow mode that only Ampharos truly needs"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "appletun",
+      "name": "Appletun",
+      "archetype": "scaler",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 3,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Grass / Dragon pressure",
+          "consumers": [
+            "Water matchups",
+            "Fire partners"
+          ]
+        },
+        {
+          "resource": "durable board presence",
+          "consumers": [
+            "slow balance",
+            "resource loops"
+          ]
+        },
+        {
+          "resource": "special-defense pressure",
+          "consumers": [
+            "special partners",
+            "spread attackers"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Trick Room",
+          "into": "slow special offense"
+        },
+        {
+          "resource": "screens",
+          "into": "durable scaling"
+        },
+        {
+          "resource": "healing support",
+          "into": "long-game pressure"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe setup or attack"
+        }
+      ],
+      "engines": [
+        "trick-room-offense",
+        "durable-scaling",
+        "slow-balance"
+      ],
+      "whyUnderOrOverRated": "Appletun becomes useful when its bulk and debuff pressure serve a wider slow-control network instead of one isolated endgame.",
+      "conversionMonsterNote": "Good defensive Fan-In but modest speed-state autonomy.",
+      "antiPatterns": [
+        "Playing for endless sustain without a closing clock"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "araquanid",
+      "name": "Araquanid",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "bridge",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 3,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Water pressure",
+          "consumers": [
+            "Fire matchups",
+            "Ground matchups"
+          ]
+        },
+        {
+          "resource": "Fire resistance utility",
+          "consumers": [
+            "Grass partners",
+            "Steel partners"
+          ]
+        },
+        {
+          "resource": "slow physical threat",
+          "consumers": [
+            "Trick Room teams",
+            "special scalers"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Rain",
+          "into": "amplified Water offense"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow physical conversion"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "protected pressure"
+        },
+        {
+          "resource": "Helping Hand",
+          "into": "burst damage"
+        }
+      ],
+      "engines": [
+        "rain-offense",
+        "trick-room-offense",
+        "slow-burst",
+        "physical-breaker"
+      ],
+      "whyUnderOrOverRated": "Araquanid is a strong dual-state consumer because Rain and Trick Room can independently amplify it.",
+      "conversionMonsterNote": "High Fan-In, especially when Rain and Trick Room already serve other teammates.",
+      "antiPatterns": [
+        "Using both Rain and Trick Room solely to enable Araquanid"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "arbok",
+      "name": "Arbok",
+      "archetype": "connector",
+      "archetypeSecondary": "disruptor",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 4,
+        "createFanOut": 4,
+        "convertFanOut": 3,
+        "mag": 3,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Intimidate Attack drop",
+          "consumers": [
+            "setup scalers",
+            "fragile attackers",
+            "slow balance"
+          ]
+        },
+        {
+          "resource": "Poison pressure",
+          "consumers": [
+            "Fairy matchups",
+            "attrition teams"
+          ]
+        },
+        {
+          "resource": "disruption turns",
+          "consumers": [
+            "setup partners",
+            "positioning cores"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Intimidate turn",
+          "into": "safer disruption"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "status or attack"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "intimidate-setup",
+        "poison-control",
+        "setup-access"
+      ],
+      "whyUnderOrOverRated": "Arbok's value is primarily low-cost physical control rather than personal conversion ceiling.",
+      "conversionMonsterNote": "Moderate ECC through Intimidate-enabled disruption.",
+      "antiPatterns": [
+        "Using Arbok without teammates that can spend Intimidate-created safety"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "arboliva",
+      "name": "Arboliva",
+      "archetype": "engine",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 4,
+        "createFanOut": 5,
+        "convertFanOut": 4,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Grassy Terrain",
+          "consumers": [
+            "Grass attackers",
+            "Seed users",
+            "Ground-sensitive partners"
+          ]
+        },
+        {
+          "resource": "terrain recovery",
+          "consumers": [
+            "durable scalers",
+            "slow balance"
+          ]
+        },
+        {
+          "resource": "Grass pressure",
+          "consumers": [
+            "Water matchups",
+            "Ground matchups"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "self-created Terrain",
+          "into": "Grass offense"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow special pressure"
+        },
+        {
+          "resource": "screens",
+          "into": "durable scaling"
+        },
+        {
+          "resource": "healing",
+          "into": "long-game conversion"
+        }
+      ],
+      "engines": [
+        "terrain-seed-engine",
+        "durable-scaling",
+        "trick-room-offense",
+        "ground-suppression"
+      ],
+      "whyUnderOrOverRated": "Arboliva's terrain creation can support several packages, but activation timing is less controllable than Rillaboom's.",
+      "conversionMonsterNote": "Good ECC once Terrain is active; reasonable slow-game Fan-In.",
+      "antiPatterns": [
+        "Assuming Seed activation timing will always align with the intended turn"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "arcanine",
+      "name": "Arcanine",
+      "archetype": "connector",
+      "archetypeSecondary": "bridge",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 0,
+        "bridgeQuality": 5,
+        "createFanOut": 5,
+        "convertFanOut": 4,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Intimidate Attack drop",
+          "consumers": [
+            "setup scalers",
+            "fragile attackers",
+            "slow balance"
+          ]
+        },
+        {
+          "resource": "Fire pressure",
+          "consumers": [
+            "Steel matchups",
+            "Grass matchups"
+          ]
+        },
+        {
+          "resource": "priority pressure",
+          "consumers": [
+            "chip teams",
+            "endgames"
+          ]
+        },
+        {
+          "resource": "forced defensive turns",
+          "consumers": [
+            "setup partners",
+            "speed setters"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "own Intimidate turn",
+          "into": "safe attack or control"
+        },
+        {
+          "resource": "Sun",
+          "into": "Fire offense"
+        },
+        {
+          "resource": "chip",
+          "into": "priority cleanup"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe conversion"
+        }
+      ],
+      "engines": [
+        "intimidate-setup",
+        "sun-offense",
+        "priority-cleanup",
+        "fire-breaker"
+      ],
+      "whyUnderOrOverRated": "Arcanine is a classic low-tax bridge because Intimidate, Fire pressure, and priority all remain useful in unrelated packages.",
+      "conversionMonsterNote": "Good ECC through Intimidate-created attack windows and Sun conversion.",
+      "antiPatterns": [
+        "Using Intimidate without a plan to convert the reduced-pressure turn"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "arcanine-hisui",
+      "name": "Hisuian Arcanine",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 0,
+        "bridgeQuality": 4,
+        "createFanOut": 3,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Fire / Rock pressure",
+          "consumers": [
+            "Steel matchups",
+            "Flying matchups"
+          ]
+        },
+        {
+          "resource": "priority threat",
+          "consumers": [
+            "chip teams",
+            "endgames"
+          ]
+        },
+        {
+          "resource": "forced Protects",
+          "consumers": [
+            "secondary setup",
+            "positioning"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Tailwind",
+          "into": "immediate burst"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe Flare Blitz or Head Smash"
+        },
+        {
+          "resource": "chip",
+          "into": "Extreme Speed cleanup"
+        },
+        {
+          "resource": "Sun",
+          "into": "Fire conversion"
+        },
+        {
+          "resource": "forced Protect",
+          "into": "partner setup"
+        }
+      ],
+      "engines": [
+        "tailwind-offense",
+        "fire-breaker",
+        "rock-cleanup",
+        "priority-cleanup",
+        "forced-response"
+      ],
+      "whyUnderOrOverRated": "Hisuian Arcanine is an elite immediate converter because almost any generic tempo resource becomes meaningful damage without setup.",
+      "conversionMonsterNote": "High Fan-In and virtually no servant tax; one of the cleanest instant-conversion nodes.",
+      "antiPatterns": [
+        "Adding elaborate setup support to a Pokémon whose main virtue is immediate conversion"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "ariados",
+      "name": "Ariados",
+      "archetype": "disruptor",
+      "archetypeSecondary": "connector",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 4,
+        "convertFanOut": 2,
+        "mag": 3,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "speed disruption",
+          "consumers": [
+            "slow breakers",
+            "setup partners"
+          ]
+        },
+        {
+          "resource": "Bug / Poison pressure",
+          "consumers": [
+            "Psychic matchups",
+            "Fairy matchups"
+          ]
+        },
+        {
+          "resource": "status pressure",
+          "consumers": [
+            "attrition teams",
+            "setup scalers"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "free turn",
+          "into": "disruption"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow utility"
+        }
+      ],
+      "engines": [
+        "speed-control",
+        "poison-control",
+        "setup-access"
+      ],
+      "whyUnderOrOverRated": "Ariados is primarily an outward control piece; the challenge is whether its support package is efficient enough compared with stronger connectors.",
+      "conversionMonsterNote": "Low personal conversion ceiling.",
+      "antiPatterns": [
+        "Using disruption that does not create a concrete partner advantage"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "armarouge",
+      "name": "Armarouge",
+      "archetype": "engine",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 5,
+        "createFanOut": 5,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "Trick Room",
+          "consumers": [
+            "slow physical attackers",
+            "slow special attackers",
+            "bulky scalers"
+          ]
+        },
+        {
+          "resource": "Fire / Psychic pressure",
+          "consumers": [
+            "Steel matchups",
+            "Fighting matchups"
+          ]
+        },
+        {
+          "resource": "forced spread-move respect",
+          "consumers": [
+            "setup partners",
+            "positioning"
+          ]
+        },
+        {
+          "resource": "speed-state inversion",
+          "consumers": [
+            "mixed-speed teams",
+            "anti-Tailwind plans"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "own Trick Room",
+          "into": "slow special offense"
+        },
+        {
+          "resource": "Psychic Terrain",
+          "into": "Expanding Force pressure"
+        },
+        {
+          "resource": "Sun",
+          "into": "Fire offense"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe Trick Room"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "room or attack"
+        }
+      ],
+      "engines": [
+        "trick-room-engine",
+        "trick-room-offense",
+        "psychic-terrain-offense",
+        "sun-offense",
+        "dual-speed-state"
+      ],
+      "whyUnderOrOverRated": "Armarouge is one of the best shared-infrastructure species because it can set Trick Room and then personally exploit Trick Room, Psychic Terrain, or Sun.",
+      "conversionMonsterNote": "Elite ECC with several independent infrastructure inputs.",
+      "antiPatterns": [
+        "Building hard Trick Room when Armarouge could be one branch of a mixed-speed team"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "aromatisse",
+      "name": "Aromatisse",
+      "archetype": "engine",
+      "archetypeSecondary": "connector",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 4,
+        "createFanOut": 5,
+        "convertFanOut": 2,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "Trick Room",
+          "consumers": [
+            "slow attackers",
+            "bulky scalers",
+            "mixed-speed teams"
+          ]
+        },
+        {
+          "resource": "Fairy pressure",
+          "consumers": [
+            "Dragon matchups",
+            "Dark matchups"
+          ]
+        },
+        {
+          "resource": "support stability",
+          "consumers": [
+            "setup partners",
+            "slow balance"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Fake Out turn",
+          "into": "Trick Room"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow utility"
+        }
+      ],
+      "engines": [
+        "trick-room-engine",
+        "fairy-pressure",
+        "slow-balance"
+      ],
+      "whyUnderOrOverRated": "Aromatisse's main value is reliable outward Trick Room infrastructure rather than personal conversion.",
+      "conversionMonsterNote": "Low ECC; strongest when several teammates independently consume Trick Room.",
+      "antiPatterns": [
+        "Using Aromatisse when only one teammate wants the slow state"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "audino",
+      "name": "Audino",
+      "archetype": "connector",
+      "archetypeSecondary": "engine",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 4,
+        "createFanOut": 5,
+        "convertFanOut": 1,
+        "mag": 3,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 1
+      },
+      "creates": [
+        {
+          "resource": "healing support",
+          "consumers": [
+            "bulky scalers",
+            "setup attackers",
+            "walls"
+          ]
+        },
+        {
+          "resource": "support turns",
+          "consumers": [
+            "Trick Room setters",
+            "slow breakers"
+          ]
+        },
+        {
+          "resource": "defensive stabilization",
+          "consumers": [
+            "resource loops",
+            "balance cores"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "free turn",
+          "into": "team sustain"
+        }
+      ],
+      "engines": [
+        "sustain-engine",
+        "slow-balance",
+        "setup-access"
+      ],
+      "whyUnderOrOverRated": "Audino has strong outward support but almost no personal conversion, so the rest of the team must provide the clocks.",
+      "conversionMonsterNote": "Low Fan-In by design.",
+      "antiPatterns": [
+        "Building a six that can preserve resources but cannot cash them into progress"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "aurorus",
+      "name": "Aurorus",
+      "archetype": "engine",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 2,
+        "createFanOut": 4,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Snow",
+          "consumers": [
+            "Blizzard users",
+            "Ice defenders",
+            "weather denial"
+          ]
+        },
+        {
+          "resource": "Ice / Rock pressure",
+          "consumers": [
+            "Dragon matchups",
+            "Flying matchups"
+          ]
+        },
+        {
+          "resource": "weather overwrite",
+          "consumers": [
+            "anti-Rain packages",
+            "anti-Sun packages"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "self-created Snow",
+          "into": "Ice offense"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow special pressure"
+        },
+        {
+          "resource": "screens",
+          "into": "durable conversion"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        }
+      ],
+      "engines": [
+        "snow-offense",
+        "weather-denial",
+        "trick-room-offense",
+        "self-weather-conversion"
+      ],
+      "whyUnderOrOverRated": "Aurorus compresses Snow creation and special conversion, but defensive liabilities can raise the practical infrastructure tax.",
+      "conversionMonsterNote": "Good ECC with meaningful slow-board dependence.",
+      "antiPatterns": [
+        "Stacking Snow-only teammates until weather denial collapses the team"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "avalugg",
+      "name": "Avalugg",
+      "archetype": "scaler",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 2,
+        "createFanOut": 2,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 2,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "physical wall presence",
+          "consumers": [
+            "special partners",
+            "slow balance"
+          ]
+        },
+        {
+          "resource": "Ice pressure",
+          "consumers": [
+            "Dragon matchups",
+            "Ground matchups"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Snow",
+          "into": "greater physical durability"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow physical offense"
+        },
+        {
+          "resource": "screens",
+          "into": "extreme durability"
+        },
+        {
+          "resource": "healing",
+          "into": "long control loop"
+        }
+      ],
+      "engines": [
+        "snow-offense",
+        "trick-room-offense",
+        "durable-scaling"
+      ],
+      "whyUnderOrOverRated": "Avalugg can become extremely difficult to remove physically, but several support resources often have to align before that durability becomes a clock.",
+      "conversionMonsterNote": "Moderate Fan-In with high slow-game tax.",
+      "antiPatterns": [
+        "Winning the durability contest without creating offensive progress"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "avalugg-hisui",
+      "name": "Hisuian Avalugg",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 2,
+        "createFanOut": 2,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 2,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Ice / Rock pressure",
+          "consumers": [
+            "Dragon matchups",
+            "Flying matchups"
+          ]
+        },
+        {
+          "resource": "physical wall pressure",
+          "consumers": [
+            "special partners",
+            "slow balance"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Snow",
+          "into": "physical durability"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow physical offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe heavy attack"
+        },
+        {
+          "resource": "screens",
+          "into": "durable conversion"
+        }
+      ],
+      "engines": [
+        "snow-offense",
+        "trick-room-offense",
+        "rock-cleanup",
+        "durable-scaling"
+      ],
+      "whyUnderOrOverRated": "Its offensive typing raises conversion potential relative to standard Avalugg, but speed and defensive weaknesses still create infrastructure demands.",
+      "conversionMonsterNote": "Good slow-state converter with moderate exclusivity.",
+      "antiPatterns": [
+        "Building both Snow and Trick Room solely for Hisuian Avalugg"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "azumarill",
+      "name": "Azumarill",
+      "archetype": "scaler",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Water / Fairy pressure",
+          "consumers": [
+            "Dragon matchups",
+            "Fire matchups"
+          ]
+        },
+        {
+          "resource": "priority threat",
+          "consumers": [
+            "chip teams",
+            "endgames"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Fake Out turn",
+          "into": "Belly Drum or attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "setup access"
+        },
+        {
+          "resource": "screens",
+          "into": "safer scaling"
+        },
+        {
+          "resource": "Rain",
+          "into": "Water offense"
+        },
+        {
+          "resource": "chip",
+          "into": "Aqua Jet cleanup"
+        }
+      ],
+      "engines": [
+        "setup-sweeper",
+        "rain-offense",
+        "priority-cleanup",
+        "redirection-setup"
+      ],
+      "whyUnderOrOverRated": "Azumarill has a high conversion ceiling, but its most explosive setup route can tempt teams into excessive servant support.",
+      "conversionMonsterNote": "High Fan-In with moderate exclusivity; priority helps preserve value after external speed control ends.",
+      "antiPatterns": [
+        "Making every package depend on Belly Drum"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "banette",
+      "name": "Banette",
+      "archetype": "disruptor",
+      "archetypeSecondary": "connector",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 4,
+        "convertFanOut": 3,
+        "mag": 3,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Ghost pressure",
+          "consumers": [
+            "Psychic matchups",
+            "Trick Room denial"
+          ]
+        },
+        {
+          "resource": "disruption turns",
+          "consumers": [
+            "setup partners",
+            "positioning cores"
+          ]
+        },
+        {
+          "resource": "forced targeting",
+          "consumers": [
+            "fragile attackers",
+            "scalers"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "free turn",
+          "into": "disruption"
+        },
+        {
+          "resource": "chip",
+          "into": "Ghost cleanup"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "control setup"
+        }
+      ],
+      "engines": [
+        "ghost-control",
+        "priority-disruption",
+        "setup-access"
+      ],
+      "whyUnderOrOverRated": "Banette's main value is action denial that other teammates convert.",
+      "conversionMonsterNote": "Moderate ECC when disruption creates its own later attack windows.",
+      "antiPatterns": [
+        "Using disruption without a partner clock"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "barbaracle",
+      "name": "Barbaracle",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 4,
+        "bridgeQuality": 1,
+        "createFanOut": 1,
+        "convertFanOut": 5,
+        "mag": 3,
+        "moduleElasticity": 2,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "setup threat",
+          "consumers": [
+            "redirection partners",
+            "tempo partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Fake Out turn",
+          "into": "setup access"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe scaling"
+        },
+        {
+          "resource": "screens",
+          "into": "durable setup"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "post-setup offense"
+        },
+        {
+          "resource": "forced Protect",
+          "into": "boosting turn"
+        }
+      ],
+      "engines": [
+        "setup-sweeper",
+        "redirection-setup",
+        "screens-offense",
+        "tailwind-offense"
+      ],
+      "whyUnderOrOverRated": "Barbaracle converts many infrastructure forms, but that impressive Fan-In comes with one of the higher exclusivity taxes.",
+      "conversionMonsterNote": "Classic high-Fan-In, high-servant-tax scaler.",
+      "antiPatterns": [
+        "Turning the rest of the team into setup insurance"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "basculegion-female",
+      "name": "Basculegion Female",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Water / Ghost pressure",
+          "consumers": [
+            "Fire matchups",
+            "Psychic matchups"
+          ]
+        },
+        {
+          "resource": "late-game threat",
+          "consumers": [
+            "chip teams",
+            "sacrifice sequencing"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Rain",
+          "into": "Water offense"
+        },
+        {
+          "resource": "ally KOs",
+          "into": "Last Respects scaling"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "fast cleanup"
+        },
+        {
+          "resource": "chip",
+          "into": "endgame conversion"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        }
+      ],
+      "engines": [
+        "rain-offense",
+        "last-respects-scaling",
+        "tailwind-offense",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "Its endgame clock can convert normal battle attrition into offense, giving it a unique opponent-independent scaling resource.",
+      "conversionMonsterNote": "High Fan-In from Rain, speed, chip, and ally-loss states.",
+      "antiPatterns": [
+        "Sacrificing teammates unnecessarily just to scale Last Respects"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "basculegion-male",
+      "name": "Basculegion Male",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "physical Water / Ghost pressure",
+          "consumers": [
+            "special scalers",
+            "Fire matchups"
+          ]
+        },
+        {
+          "resource": "late-game threat",
+          "consumers": [
+            "chip teams",
+            "sacrifice sequencing"
+          ]
+        },
+        {
+          "resource": "priority pressure",
+          "consumers": [
+            "endgames",
+            "speed-independent packages"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Rain",
+          "into": "Water offense"
+        },
+        {
+          "resource": "ally KOs",
+          "into": "Last Respects scaling"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "fast physical cleanup"
+        },
+        {
+          "resource": "chip",
+          "into": "priority endgame"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe conversion"
+        }
+      ],
+      "engines": [
+        "rain-offense",
+        "last-respects-scaling",
+        "tailwind-offense",
+        "priority-cleanup",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "Male Basculegion combines Rain conversion, attrition scaling, and priority into a particularly strong endgame profile.",
+      "conversionMonsterNote": "Elite inward conversion with moderate weather dependence.",
+      "antiPatterns": [
+        "Making Rain the only route when Last Respects and priority already create independent clocks"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "bastiodon",
+      "name": "Bastiodon",
+      "archetype": "scaler",
+      "archetypeSecondary": "disruptor",
+      "scores": {
+        "engineParticipation": 2,
+        "engineExclusivityTax": 4,
+        "bridgeQuality": 2,
+        "createFanOut": 2,
+        "convertFanOut": 3,
+        "mag": 2,
+        "moduleElasticity": 2,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "defensive wall pressure",
+          "consumers": [
+            "setup partners",
+            "attrition cores"
+          ]
+        },
+        {
+          "resource": "Steel / Rock resistance profile",
+          "consumers": [
+            "slow balance",
+            "positioning teams"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "screens",
+          "into": "extreme durability"
+        },
+        {
+          "resource": "healing support",
+          "into": "long control loop"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow utility"
+        }
+      ],
+      "engines": [
+        "durable-scaling",
+        "slow-balance"
+      ],
+      "whyUnderOrOverRated": "Bastiodon can absorb enormous pressure, but converting that survival into a win condition usually requires substantial external help.",
+      "conversionMonsterNote": "Low-to-moderate Fan-In with high exclusivity tax.",
+      "antiPatterns": [
+        "Confusing survival with progress"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "beartic",
+      "name": "Beartic",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 3,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 2,
+        "createFanOut": 1,
+        "convertFanOut": 4,
+        "mag": 3,
+        "moduleElasticity": 2,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "Ice physical pressure",
+          "consumers": [
+            "Dragon matchups",
+            "Ground matchups"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "weather speed",
+          "into": "physical offense"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "speed correction"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack or setup"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "weather-speed-engine",
+        "tailwind-offense",
+        "ice-control",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "Beartic can be threatening when weather fixes its speed, but the support cost is high if weather serves nobody else.",
+      "conversionMonsterNote": "Strong weather conversion, weak outward graph.",
+      "antiPatterns": [
+        "Creating weather solely to make Beartic functional"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "beedrill",
+      "name": "Beedrill",
+      "archetype": "cleaner",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 2,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 1,
+        "createFanOut": 1,
+        "convertFanOut": 4,
+        "mag": 2,
+        "moduleElasticity": 2,
+        "engineConverterContinuity": 2
+      },
+      "creates": [
+        {
+          "resource": "Bug / Poison pressure",
+          "consumers": [
+            "Psychic matchups",
+            "Fairy matchups"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Tailwind",
+          "into": "fast physical pressure"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        },
+        {
+          "resource": "forced switch",
+          "into": "pivot advantage"
+        }
+      ],
+      "engines": [
+        "tailwind-offense",
+        "fast-cleanup",
+        "pivot-offense"
+      ],
+      "whyUnderOrOverRated": "Beedrill can consume tempo but contributes little infrastructure and is much less autonomous than its Mega form.",
+      "conversionMonsterNote": "Reasonable Fan-In, high fragility tax.",
+      "antiPatterns": [
+        "Using multiple support slots to preserve a low-autonomy attacker"
+      ],
+      "caveat": null
+    }
+  ],
+  "rosterStatus": {
+    "complete": false,
+    "scoredInThisReply": 30
+  },
+  "unscoredRemaining": [
+    "bellibolt",
+    "blastoise",
+    "blaziken",
+    "camerupt",
+    "castform",
+    "ceruledge",
+    "chandelure",
+    "chesnaught",
+    "chimecho",
+    "cinderace",
+    "clawitzer",
+    "clefable",
+    "clodsire",
+    "cofagrigus",
+    "conkeldurr",
+    "crabominable",
+    "cyclizar",
+    "dachsbun",
+    "decidueye",
+    "decidueye-hisui",
+    "dedenne",
+    "delphox",
+    "diggersby",
+    "ditto",
+    "dondozo",
+    "dragalge",
+    "dragapult",
+    "drampa",
+    "dudunsparce-two-segment",
+    "eelektross",
+    "emboar",
+    "emolga",
+    "empoleon",
+    "espathra",
+    "espeon",
+    "falinks",
+    "farfetchd",
+    "feraligatr",
+    "flamigo",
+    "flapple",
+    "flareon",
+    "floette-eternal",
+    "florges",
+    "forretress",
+    "froslass",
+    "furfrou",
+    "gallade",
+    "garbodor",
+    "garganacl",
+    "gengar",
+    "glaceon",
+    "glalie",
+    "glimmora",
+    "gliscor",
+    "gogoat",
+    "golurk",
+    "goodra",
+    "goodra-hisui",
+    "gourgeist-average",
+    "gourgeist-large",
+    "gourgeist-small",
+    "gourgeist-super",
+    "grafaiai",
+    "grapploct",
+    "greninja",
+    "hatterene",
+    "heliolisk",
+    "heracross",
+    "hippowdon",
+    "houndoom",
+    "houndstone",
+    "hydrapple",
+    "hydreigon",
+    "infernape",
+    "inteleon",
+    "jolteon",
+    "kangaskhan",
+    "kilowattrel",
+    "kleavor",
+    "klefki",
+    "krookodile",
+    "leafeon",
+    "liepard",
+    "lopunny",
+    "ludicolo",
+    "luxray",
+    "lycanroc-dusk",
+    "lycanroc-midday",
+    "lycanroc-midnight",
+    "mabosstiff",
+    "machamp",
+    "malamar",
+    "mamoswine",
+    "manectric",
+    "maushold-family-of-four",
+    "medicham",
+    "meowscarada",
+    "meowstic-female",
+    "meowstic-male",
+    "mimikyu-disguised",
+    "morpeko-full-belly",
+    "mr-mime",
+    "mr-rime",
+    "mudsdale",
+    "musharna",
+    "ninetales",
+    "ninetales-alola",
+    "noivern",
+    "orthworm",
+    "overqwil",
+    "palafin-zero",
+    "pangoro",
+    "pawmot",
+    "perrserker",
+    "persian",
+    "persian-alola",
+    "pidgeot",
+    "pikachu",
+    "pincurchin",
+    "pinsir",
+    "polteageist",
+    "pyroar-male",
+    "quaquaval",
+    "qwilfish",
+    "rampardos",
+    "reuniclus",
+    "rhyperior",
+    "roserade",
+    "rotom",
+    "rotom-fan",
+    "rotom-frost",
+    "rotom-heat",
+    "rotom-mow",
+    "rotom-wash",
+    "runerigus",
+    "sableye",
+    "salazzle",
+    "samurott",
+    "samurott-hisui",
+    "sandaconda",
+    "sceptile",
+    "scolipede",
+    "scovillain",
+    "scrafty",
+    "serperior",
+    "sharpedo",
+    "simipour",
+    "simisage",
+    "simisear",
+    "sirfetchd",
+    "skarmory",
+    "skeledirge",
+    "slowbro",
+    "slowbro-galar",
+    "slowking",
+    "slowking-galar",
+    "slurpuff",
+    "snorlax",
+    "spiritomb",
+    "squawkabilly-blue-plumage",
+    "squawkabilly-green-plumage",
+    "squawkabilly-white-plumage",
+    "squawkabilly-yellow-plumage",
+    "staraptor",
+    "starmie",
+    "steelix",
+    "stunfisk",
+    "stunfisk-galar",
+    "swalot",
+    "sylveon",
+    "talonflame",
+    "tatsugiri-curly",
+    "tauros",
+    "tauros-paldea-aqua-breed",
+    "tauros-paldea-blaze-breed",
+    "tauros-paldea-combat-breed",
+    "thievul",
+    "tinkaton",
+    "togekiss",
+    "torterra",
+    "toucannon",
+    "toxapex",
+    "toxicroak",
+    "toxtricity-amped",
+    "toxtricity-low-key",
+    "trevenant",
+    "tsareena",
+    "typhlosion",
+    "typhlosion-hisui",
+    "tyrantrum",
+    "umbreon",
+    "ursaluna",
+    "vanilluxe",
+    "vaporeon",
+    "victreebel",
+    "vileplume",
+    "vivillon",
+    "volcarona",
+    "watchog",
+    "weavile",
+    "wigglytuff",
+    "wyrdeer",
+    "zoroark",
+    "zoroark-hisui"
+  ]
+}

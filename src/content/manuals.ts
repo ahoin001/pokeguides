@@ -144,6 +144,20 @@ export type ManualNetworkJobs = {
   protects?: string;
   scales?: string;
   repositions?: string;
+  /**
+   * Optional alignment with species architecture overlay
+   * (`src/data/architecture-metrics.json` archetypes).
+   * Manuals still own edges; this is a skim label only.
+   */
+  archetype?:
+    | "connector"
+    | "bridge"
+    | "conversion-monster"
+    | "engine"
+    | "scaler"
+    | "cleaner"
+    | "disruptor"
+    | "hybrid";
 };
 
 /** One “Ask yourself” question on a Sets tab. */

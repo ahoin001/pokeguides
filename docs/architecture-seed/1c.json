@@ -1,0 +1,2685 @@
+{
+  "meta": {
+    "format": "doubles",
+    "regulation": "M-C",
+    "asOf": "2026-09-23",
+    "caveat": "Architecture-first seed for UI; not claimed ladder-optimal. Scores describe species/form tendencies across plausible Champions doubles architectures rather than one exact set.",
+    "scale": "All numeric scores are integers 0–5 unless noted. 0 = absent, 3 = solid, 5 = elite for Champions doubles architectures."
+  },
+  "metricDefs": [
+    {
+      "id": "engineParticipation",
+      "label": "Engine Participation Count",
+      "meaning": "How many distinct win engines / infrastructure loops this species can meaningfully participate in across common Champions doubles architectures, rather than within only one team.",
+      "scale": "0-5"
+    },
+    {
+      "id": "engineExclusivityTax",
+      "label": "Engine Exclusivity Tax",
+      "meaning": "How often teammates must become dedicated servants for this species to function. High tax means packages collapse around it; low tax means many packages can support it lightly.",
+      "scale": "0-5 (higher = worse / more exclusive)"
+    },
+    {
+      "id": "bridgeQuality",
+      "label": "Bridge Quality",
+      "meaning": "How effectively this species participates in separate modules without forcing either module to compromise.",
+      "scale": "0-5"
+    },
+    {
+      "id": "createFanOut",
+      "label": "Create Fan-Out",
+      "meaning": "How many strategically distinct teammate roles can consume what this species creates.",
+      "scale": "0-5"
+    },
+    {
+      "id": "convertFanOut",
+      "label": "Convert Fan-Out",
+      "meaning": "How many distinct infrastructure forms this species can convert into progress, such as weather, Tailwind, Fake Out turns, terrain, Intimidate turns, screens, Trick Room, redirection, or free setup turns.",
+      "scale": "0-5"
+    },
+    {
+      "id": "mag",
+      "label": "MAG",
+      "meaning": "Marginal Architecture Gain — how much genuinely new strategic territory this species tends to open on Champions doubles sixes at species baseline rather than in one specific six.",
+      "scale": "0-5"
+    },
+    {
+      "id": "moduleElasticity",
+      "label": "Module Elasticity Support",
+      "meaning": "As a root or key module, how many strategically different packages it can support without rebuilding the six.",
+      "scale": "0-5"
+    },
+    {
+      "id": "engineConverterContinuity",
+      "label": "Engine-Converter Continuity",
+      "meaning": "How effectively this species can create a favorable resource or state and later personally convert that same state into damage, control, scaling, or a win condition instead of requiring another dedicated converter.",
+      "scale": "0-5"
+    }
+  ],
+  "teamContextRules": {
+    "cMagHint": "Start with species-baseline MAG, then inspect the five teammates for duplicated territory. Raise C-MAG when the candidate adds a genuinely new engine, failure condition, speed state, damage axis, counterplay inversion, Mega package, or conversion route that existing teammates can also exploit. Lower C-MAG when it merely strengthens an already-saturated route without creating a meaningfully different package or failure state.",
+    "exclusivityGivenSix": "Lower Engine Exclusivity Tax when the other five already provide the infrastructure this species wants while remaining useful in unrelated packages. Lower it further when the species can function autonomously after consuming that infrastructure. Raise it when several teammates must change moves, items, Mega choice, positioning, speed profiles, or normal roles primarily to enable this species. Shared infrastructure with multiple consumers lowers tax; dedicated servants raise it.",
+    "saturation": "Adding another member of the same archetype lowers C-MAG when both create or consume the same resources, compete for the same setup or Mega turn, fail to the same counterplay, or improve the same packages without opening new ones. Functional redundancy remains valuable when the new species converts shared infrastructure differently, creates another speed or damage state, supplies a different endgame, or turns the first route's counterplay into progress for a second route."
+  },
+  "batch": {
+    "index": 3,
+    "of": 8,
+    "slugs": [
+      "politoed",
+      "primarina",
+      "pyroar-mega",
+      "raichu",
+      "raichu-alola",
+      "raichu-mega-x",
+      "raichu-mega-y",
+      "rillaboom",
+      "sableye-mega",
+      "salamence",
+      "salamence-mega",
+      "sceptile-mega",
+      "scizor",
+      "scizor-mega",
+      "scolipede-mega",
+      "scovillain-mega",
+      "scrafty-mega",
+      "sharpedo-mega",
+      "sinistcha",
+      "skarmory-mega",
+      "slowbro-mega",
+      "sneasler",
+      "staraptor-mega",
+      "starmie-mega",
+      "steelix-mega",
+      "swampert",
+      "swampert-mega",
+      "torkoal",
+      "tyranitar",
+      "tyranitar-mega",
+      "venusaur",
+      "venusaur-mega",
+      "victreebel-mega",
+      "whimsicott"
+    ]
+  },
+  "profiles": [
+    {
+      "slug": "politoed",
+      "name": "Politoed",
+      "archetype": "engine",
+      "archetypeSecondary": "connector",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 4,
+        "createFanOut": 5,
+        "convertFanOut": 3,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Rain",
+          "consumers": [
+            "Water attackers",
+            "Swift Swim users",
+            "Fire-weak partners"
+          ]
+        },
+        {
+          "resource": "weather overwrite",
+          "consumers": [
+            "anti-Sun packages",
+            "Rain converters"
+          ]
+        },
+        {
+          "resource": "support turns",
+          "consumers": [
+            "setup partners",
+            "slow balance"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "self-created Rain",
+          "into": "Water pressure"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "support or control"
+        },
+        {
+          "resource": "weather advantage",
+          "into": "partner conversion"
+        }
+      ],
+      "engines": [
+        "rain-offense",
+        "weather-denial",
+        "setup-access",
+        "slow-balance"
+      ],
+      "whyUnderOrOverRated": "Politoed is strongest when Rain is a shared team resource rather than a one-partner activation button.",
+      "conversionMonsterNote": "Moderate personal conversion; its architectural value is mostly elite Rain Fan-Out.",
+      "antiPatterns": [
+        "Building Rain around only one Swift Swim consumer"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "primarina",
+      "name": "Primarina",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Water / Fairy pressure",
+          "consumers": [
+            "Dragon matchups",
+            "Fire matchups"
+          ]
+        },
+        {
+          "resource": "forced Steel responses",
+          "consumers": [
+            "Ground partners",
+            "Fire partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Rain",
+          "into": "Water offense"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow special pressure"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "mid-speed offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack or setup"
+        },
+        {
+          "resource": "redirection",
+          "into": "protected conversion"
+        }
+      ],
+      "engines": [
+        "rain-offense",
+        "trick-room-offense",
+        "tailwind-offense",
+        "fairy-pressure",
+        "special-breaker"
+      ],
+      "whyUnderOrOverRated": "Primarina is easy to slot because it can convert several speed states and weather without asking the team to become dedicated support.",
+      "conversionMonsterNote": "High Fan-In with low servant tax and useful Water/Fairy role compression.",
+      "antiPatterns": [
+        "Forcing one speed mode when Primarina can function in several"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "pyroar-mega",
+      "name": "Mega Pyroar",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Fire / Normal pressure",
+          "consumers": [
+            "Steel matchups",
+            "forced-switch teams"
+          ]
+        },
+        {
+          "resource": "fast special threat",
+          "consumers": [
+            "physical partners",
+            "setup partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Sun",
+          "into": "Fire offense"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "speed dominance"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe special pressure"
+        },
+        {
+          "resource": "special-defense drops",
+          "into": "burst KOs"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "sun-offense",
+        "tailwind-offense",
+        "special-breaker",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "Mega Pyroar's graph points inward: it is more valuable as a light-support conversion piece than as an engine root.",
+      "conversionMonsterNote": "High Fan-In from Sun, speed control, and generic tempo.",
+      "antiPatterns": [
+        "Building a full Sun shell solely for Pyroar"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "raichu",
+      "name": "Raichu",
+      "archetype": "connector",
+      "archetypeSecondary": "disruptor",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 0,
+        "bridgeQuality": 5,
+        "createFanOut": 5,
+        "convertFanOut": 4,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Fake Out turn",
+          "consumers": [
+            "setup scalers",
+            "Trick Room setters",
+            "speed setters"
+          ]
+        },
+        {
+          "resource": "Lightning Rod protection",
+          "consumers": [
+            "Water partners",
+            "Flying partners",
+            "Electric-weak Megas"
+          ]
+        },
+        {
+          "resource": "Electric pressure",
+          "consumers": [
+            "Water matchups",
+            "Flying matchups"
+          ]
+        },
+        {
+          "resource": "forced targeting changes",
+          "consumers": [
+            "positioning teams",
+            "setup partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Fake Out turn",
+          "into": "partner setup"
+        },
+        {
+          "resource": "Lightning Rod boost",
+          "into": "Electric offense"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "fast support or damage"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "fake-out-conversion",
+        "lightning-rod-control",
+        "electric-pressure",
+        "setup-access",
+        "tailwind-offense"
+      ],
+      "whyUnderOrOverRated": "Base Raichu is one of the cleanest low-tax connectors because Fake Out and Lightning Rod create resources for many unrelated packages.",
+      "conversionMonsterNote": "Better personal Fan-In than pure supports because Electric boosts and speed control can become its own damage.",
+      "antiPatterns": [
+        "Using Fake Out without a specific conversion target"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "raichu-alola",
+      "name": "Alolan Raichu",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "bridge",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 4,
+        "createFanOut": 3,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Electric / Psychic pressure",
+          "consumers": [
+            "Water matchups",
+            "Fighting matchups"
+          ]
+        },
+        {
+          "resource": "speed pressure",
+          "consumers": [
+            "setup partners",
+            "cleanup cores"
+          ]
+        },
+        {
+          "resource": "forced Ground responses",
+          "consumers": [
+            "Grass partners",
+            "Flying partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Electric Terrain",
+          "into": "Surge Surfer speed"
+        },
+        {
+          "resource": "Psychic Terrain",
+          "into": "Psychic offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "extreme speed advantage"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "electric-terrain-offense",
+        "psychic-terrain-offense",
+        "tailwind-offense",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "Alolan Raichu is a terrain conversion specialist rather than a broad support Raichu.",
+      "conversionMonsterNote": "Excellent Fan-In when terrain already has several consumers, but higher tax when terrain exists only for Raichu.",
+      "antiPatterns": [
+        "Adding Electric Terrain solely to activate Surge Surfer"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "raichu-mega-x",
+      "name": "Mega Raichu X",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "connector",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 4,
+        "createFanOut": 4,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "pre-Mega Lightning Rod",
+          "consumers": [
+            "Water partners",
+            "Flying partners",
+            "Electric-weak cores"
+          ]
+        },
+        {
+          "resource": "Fake Out turn",
+          "consumers": [
+            "setup scalers",
+            "speed setters",
+            "Trick Room setters"
+          ]
+        },
+        {
+          "resource": "Mega transition pressure",
+          "consumers": [
+            "positioning teams",
+            "alternate attackers"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "pre-Mega support turn",
+          "into": "Mega offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "partner setup"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "fast Mega conversion"
+        },
+        {
+          "resource": "Lightning Rod boost",
+          "into": "offensive pressure"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "lightning-rod-control",
+        "fake-out-conversion",
+        "mega-transition",
+        "tailwind-offense",
+        "electric-pressure"
+      ],
+      "whyUnderOrOverRated": "The critical value is phase transition: Raichu can contribute infrastructure before committing the Mega slot, then become an attacker.",
+      "conversionMonsterNote": "High ECC and low exclusivity because its support phase benefits many teammates independently.",
+      "antiPatterns": [
+        "Mega evolving before Lightning Rod or Fake Out has purchased useful board value"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "raichu-mega-y",
+      "name": "Mega Raichu Y",
+      "archetype": "connector",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 0,
+        "bridgeQuality": 5,
+        "createFanOut": 5,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "pre-Mega Lightning Rod",
+          "consumers": [
+            "Water partners",
+            "Flying partners",
+            "Electric-weak cores"
+          ]
+        },
+        {
+          "resource": "Fake Out turn",
+          "consumers": [
+            "Nasty Plot users",
+            "Coil users",
+            "speed setters"
+          ]
+        },
+        {
+          "resource": "forced Electric respect",
+          "consumers": [
+            "positioning teams",
+            "setup partners"
+          ]
+        },
+        {
+          "resource": "No Guard pressure",
+          "consumers": [
+            "forced Protect loops",
+            "partner setup"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "pre-Mega support phase",
+          "into": "No Guard offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "partner setup"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "fast No Guard pressure"
+        },
+        {
+          "resource": "Lightning Rod boost",
+          "into": "Electric offense"
+        },
+        {
+          "resource": "forced Protect",
+          "into": "partner scaling"
+        }
+      ],
+      "engines": [
+        "lightning-rod-control",
+        "fake-out-conversion",
+        "mega-transition",
+        "tailwind-offense",
+        "no-guard-offense"
+      ],
+      "whyUnderOrOverRated": "Mega Raichu Y is one of the clearest engine-becomes-converter species: support before Mega, autonomous offense after Mega.",
+      "conversionMonsterNote": "Elite on both axes with almost no servant tax; the same slot can create tempo, protect partners, and later become the clock.",
+      "antiPatterns": [
+        "Mega evolving automatically on turn one",
+        "Treating Fake Out as the entire reason to bring Raichu"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "rillaboom",
+      "name": "Rillaboom",
+      "archetype": "engine",
+      "archetypeSecondary": "connector",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 0,
+        "bridgeQuality": 5,
+        "createFanOut": 5,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "Grassy Terrain",
+          "consumers": [
+            "Seed users",
+            "Grass attackers",
+            "Ground-sensitive cores"
+          ]
+        },
+        {
+          "resource": "Fake Out turn",
+          "consumers": [
+            "setup scalers",
+            "Trick Room setters",
+            "speed setters"
+          ]
+        },
+        {
+          "resource": "terrain recovery",
+          "consumers": [
+            "durable scalers",
+            "slow balance"
+          ]
+        },
+        {
+          "resource": "Ground suppression",
+          "consumers": [
+            "Steel partners",
+            "Electric partners"
+          ]
+        },
+        {
+          "resource": "pivot tempo",
+          "consumers": [
+            "Intimidate users",
+            "weather setters",
+            "scalers"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "self-created Terrain",
+          "into": "Grassy Glide and Wood Hammer"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "partner setup"
+        },
+        {
+          "resource": "chip",
+          "into": "Grassy Glide cleanup"
+        },
+        {
+          "resource": "U-turn",
+          "into": "engine transition"
+        },
+        {
+          "resource": "terrain recovery",
+          "into": "longer board presence"
+        }
+      ],
+      "engines": [
+        "terrain-seed-engine",
+        "fake-out-conversion",
+        "pivot-engine",
+        "priority-cleanup",
+        "setup-access",
+        "ground-suppression"
+      ],
+      "whyUnderOrOverRated": "Rillaboom is an elite engine hub because Terrain, Fake Out, priority, recovery, Ground suppression, and pivoting all feed different packages.",
+      "conversionMonsterNote": "Elite ECC: it creates Terrain and immediately converts it itself while simultaneously enabling other converters.",
+      "antiPatterns": [
+        "Treating Rillaboom as only a Fake Out user",
+        "Using Terrain with no meaningful secondary consumers"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "sableye-mega",
+      "name": "Mega Sableye",
+      "archetype": "disruptor",
+      "archetypeSecondary": "connector",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 4,
+        "createFanOut": 5,
+        "convertFanOut": 2,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "status deterrence",
+          "consumers": [
+            "setup partners",
+            "slow balance"
+          ]
+        },
+        {
+          "resource": "disruption turns",
+          "consumers": [
+            "scalers",
+            "positioning teams"
+          ]
+        },
+        {
+          "resource": "forced targeting changes",
+          "consumers": [
+            "fragile attackers",
+            "setup partners"
+          ]
+        },
+        {
+          "resource": "Ghost / Dark control",
+          "consumers": [
+            "Psychic matchups",
+            "Trick Room plans"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "free turn",
+          "into": "disruption"
+        },
+        {
+          "resource": "opponent status",
+          "into": "reflected pressure"
+        }
+      ],
+      "engines": [
+        "anti-status-pressure",
+        "priority-disruption",
+        "ghost-control",
+        "setup-access"
+      ],
+      "whyUnderOrOverRated": "Its create-web can be excellent, but Mega opportunity cost rises sharply if disruption does not feed several independent clocks.",
+      "conversionMonsterNote": "Low personal Fan-In compared with premier offensive Megas.",
+      "antiPatterns": [
+        "Using the Mega slot for disruption without multiple teammates converting the denied turns"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "salamence",
+      "name": "Salamence",
+      "archetype": "connector",
+      "archetypeSecondary": "bridge",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 0,
+        "bridgeQuality": 5,
+        "createFanOut": 5,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "Intimidate Attack drop",
+          "consumers": [
+            "Coil scalers",
+            "Nasty Plot scalers",
+            "setup attackers"
+          ]
+        },
+        {
+          "resource": "Tailwind",
+          "consumers": [
+            "physical cleaners",
+            "special breakers",
+            "mid-speed converters"
+          ]
+        },
+        {
+          "resource": "Ground immunity",
+          "consumers": [
+            "Ground-sensitive partners",
+            "Sand cores",
+            "Steel partners"
+          ]
+        },
+        {
+          "resource": "Dragon pressure",
+          "consumers": [
+            "Fairy partners",
+            "Steel partners",
+            "mixed offense"
+          ]
+        },
+        {
+          "resource": "Mega ambiguity",
+          "consumers": [
+            "preview pressure",
+            "alternate Mega packages"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "own Intimidate turn",
+          "into": "Tailwind or attack"
+        },
+        {
+          "resource": "own Tailwind",
+          "into": "Draco or spread pressure"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "Tailwind"
+        },
+        {
+          "resource": "forced switch",
+          "into": "speed control or damage"
+        },
+        {
+          "resource": "Mega slot",
+          "into": "autonomous offense"
+        }
+      ],
+      "engines": [
+        "intimidate-setup",
+        "tailwind-offense",
+        "ground-immunity-bridge",
+        "dragon-control",
+        "mega-portfolio",
+        "mega-autonomy"
+      ],
+      "whyUnderOrOverRated": "Salamence passes the connector test before it attacks: Intimidate, Tailwind, Ground immunity, Dragon control, and credible Mega pressure connect otherwise separate packages without demanding servants.",
+      "conversionMonsterNote": "Its inward graph is also elite because Salamence can personally spend Intimidate-created safety, Tailwind, Fake Out turns, and the Mega slot.",
+      "antiPatterns": [
+        "Building a six that only works if Salamence Mega evolves every game",
+        "Treating Intimidate as passive value instead of setup access"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "salamence-mega",
+      "name": "Mega Salamence",
+      "archetype": "bridge",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 0,
+        "bridgeQuality": 5,
+        "createFanOut": 5,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "pre-Mega Intimidate",
+          "consumers": [
+            "Coil scalers",
+            "Nasty Plot scalers",
+            "physical setup"
+          ]
+        },
+        {
+          "resource": "Tailwind",
+          "consumers": [
+            "physical cleaners",
+            "special breakers",
+            "priority endgames"
+          ]
+        },
+        {
+          "resource": "Ground immunity",
+          "consumers": [
+            "Ground-sensitive partners",
+            "Sand cores",
+            "Steel partners"
+          ]
+        },
+        {
+          "resource": "Draco pressure",
+          "consumers": [
+            "Dragon control",
+            "mixed offense"
+          ]
+        },
+        {
+          "resource": "Aerilate pressure",
+          "consumers": [
+            "forced Protect loops",
+            "secondary setup"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "pre-Mega Intimidate",
+          "into": "safe Mega transition"
+        },
+        {
+          "resource": "own Tailwind",
+          "into": "Aerilate or Draco offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "Tailwind or attack"
+        },
+        {
+          "resource": "forced Protect",
+          "into": "partner setup"
+        },
+        {
+          "resource": "Mega transition",
+          "into": "autonomous damage"
+        }
+      ],
+      "engines": [
+        "intimidate-setup",
+        "tailwind-offense",
+        "ground-immunity-bridge",
+        "dragon-control",
+        "mega-transition",
+        "mega-autonomy"
+      ],
+      "whyUnderOrOverRated": "Mega Salamence preserves Salamence's elite bridge graph while adding a genuine autonomous conversion phase, so the Mega slot amplifies rather than replaces its connector value.",
+      "conversionMonsterNote": "Elite ECC: pre-Mega Intimidate creates the board, Tailwind reshapes speed, and Mega Salamence can then personally cash those states into damage.",
+      "antiPatterns": [
+        "Mega evolving before pre-Mega Intimidate has generated value",
+        "Using Tailwind as a rote move when immediate damage already converts the turn"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "sceptile-mega",
+      "name": "Mega Sceptile",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "bridge",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 4,
+        "createFanOut": 3,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "fast Grass / Dragon pressure",
+          "consumers": [
+            "Water matchups",
+            "Dragon matchups"
+          ]
+        },
+        {
+          "resource": "Electric deterrence",
+          "consumers": [
+            "Water partners",
+            "Flying partners"
+          ]
+        },
+        {
+          "resource": "forced Steel responses",
+          "consumers": [
+            "Fire partners",
+            "Ground partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Electric targeting",
+          "into": "Lightning Rod value"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "speed dominance"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        },
+        {
+          "resource": "Rain",
+          "into": "Water-partner synergy"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "lightning-rod-control",
+        "tailwind-offense",
+        "grass-dragon-pressure",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "Mega Sceptile has better bridge value than a pure fast attacker because Lightning Rod can protect entire Water or Flying modules.",
+      "conversionMonsterNote": "High Fan-In with low exclusivity; its Electric interaction can itself become infrastructure.",
+      "antiPatterns": [
+        "Using Lightning Rod protection when no partner meaningfully benefits"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "scizor",
+      "name": "Scizor",
+      "archetype": "cleaner",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Steel pressure",
+          "consumers": [
+            "Fairy matchups",
+            "Dragon partners"
+          ]
+        },
+        {
+          "resource": "priority threat",
+          "consumers": [
+            "chip teams",
+            "endgames"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "chip",
+          "into": "Bullet Punch cleanup"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "Swords Dance"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe scaling"
+        },
+        {
+          "resource": "screens",
+          "into": "durable setup"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "midgame pressure"
+        }
+      ],
+      "engines": [
+        "priority-cleanup",
+        "swords-dance-scaling",
+        "redirection-setup",
+        "screens-offense"
+      ],
+      "whyUnderOrOverRated": "Scizor converts generic setup access efficiently and retains a strong priority endgame even after external speed control expires.",
+      "conversionMonsterNote": "High Fan-In, low servant tax when priority is independently useful.",
+      "antiPatterns": [
+        "Using Swords Dance when Bullet Punch already closes the clock"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "scizor-mega",
+      "name": "Mega Scizor",
+      "archetype": "scaler",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 3,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "extreme Steel pressure",
+          "consumers": [
+            "Fairy matchups",
+            "Dragon partners"
+          ]
+        },
+        {
+          "resource": "priority clock",
+          "consumers": [
+            "chip teams",
+            "speed-independent endgames"
+          ]
+        },
+        {
+          "resource": "forced Fire answers",
+          "consumers": [
+            "Water partners",
+            "Rock partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "chip",
+          "into": "Bullet Punch cleanup"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "Swords Dance"
+        },
+        {
+          "resource": "screens",
+          "into": "durable scaling"
+        },
+        {
+          "resource": "redirection",
+          "into": "setup access"
+        },
+        {
+          "resource": "forced switch",
+          "into": "boosting turn"
+        }
+      ],
+      "engines": [
+        "priority-cleanup",
+        "swords-dance-scaling",
+        "durable-scaling",
+        "redirection-setup"
+      ],
+      "whyUnderOrOverRated": "Mega Scizor's value is less about creating team infrastructure and more about turning several generic defensive resources into a self-sustaining priority clock.",
+      "conversionMonsterNote": "Excellent Fan-In and low tax; priority reduces dependence on speed engines.",
+      "antiPatterns": [
+        "Adding redundant speed support when priority already solves the intended endgame"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "scolipede-mega",
+      "name": "Mega Scolipede",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 2,
+        "createFanOut": 2,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Bug / Poison pressure",
+          "consumers": [
+            "Fairy matchups",
+            "Psychic matchups"
+          ]
+        },
+        {
+          "resource": "speed pressure",
+          "consumers": [
+            "setup partners",
+            "forced-target teams"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "speed advantage",
+          "into": "fast physical conversion"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "setup or attack"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe scaling"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        },
+        {
+          "resource": "forced Protect",
+          "into": "setup access"
+        }
+      ],
+      "engines": [
+        "fast-cleanup",
+        "physical-breaker",
+        "setup-sweeper",
+        "redirection-setup"
+      ],
+      "whyUnderOrOverRated": "Mega Scolipede's architecture is mostly inward conversion, but high natural speed keeps support tax manageable.",
+      "conversionMonsterNote": "Strong Fan-In from generic tempo with limited outward creation.",
+      "antiPatterns": [
+        "Using multiple support slots to solve problems its natural speed already handles"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "scovillain-mega",
+      "name": "Mega Scovillain",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "engine",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 3,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Fire / Grass pressure",
+          "consumers": [
+            "Water matchups",
+            "Steel matchups"
+          ]
+        },
+        {
+          "resource": "Sun synergy",
+          "consumers": [
+            "Fire partners",
+            "weather cores"
+          ]
+        },
+        {
+          "resource": "forced Water responses",
+          "consumers": [
+            "Electric partners",
+            "Grass partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Sun",
+          "into": "Fire and speed pressure"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "speed dominance"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe conversion"
+        },
+        {
+          "resource": "special-defense drops",
+          "into": "burst damage"
+        },
+        {
+          "resource": "forced switch",
+          "into": "coverage leverage"
+        }
+      ],
+      "engines": [
+        "sun-offense",
+        "tailwind-offense",
+        "fire-grass-breaker",
+        "special-breaker"
+      ],
+      "whyUnderOrOverRated": "Its dual offensive typing lets shared Sun infrastructure create more matchup reach than a simple Fire sweeper.",
+      "conversionMonsterNote": "High Fan-In; strongest when Sun already feeds multiple team members.",
+      "antiPatterns": [
+        "Building Sun only to activate Scovillain"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "scrafty-mega",
+      "name": "Mega Scrafty",
+      "archetype": "connector",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 5,
+        "createFanOut": 5,
+        "convertFanOut": 4,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "pre-Mega Intimidate",
+          "consumers": [
+            "setup scalers",
+            "fragile attackers",
+            "slow balance"
+          ]
+        },
+        {
+          "resource": "Fake Out turn",
+          "consumers": [
+            "Trick Room setters",
+            "setup scalers",
+            "speed setters"
+          ]
+        },
+        {
+          "resource": "Dark / Fighting pressure",
+          "consumers": [
+            "Psychic matchups",
+            "Steel matchups"
+          ]
+        },
+        {
+          "resource": "slow-board presence",
+          "consumers": [
+            "Trick Room cores",
+            "resource loops"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "pre-Mega Intimidate",
+          "into": "safe Mega transition"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "partner setup"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow physical offense"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "intimidate-setup",
+        "fake-out-conversion",
+        "trick-room-offense",
+        "mega-transition",
+        "slow-mesh"
+      ],
+      "whyUnderOrOverRated": "Mega Scrafty scores well because Intimidate and Fake Out remain valuable across many packages before it becomes a slow physical converter.",
+      "conversionMonsterNote": "Strong ECC with low exclusivity; support phase and attack phase occupy the same slot.",
+      "antiPatterns": [
+        "Mega evolving before Intimidate or Fake Out has generated useful infrastructure"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "sharpedo-mega",
+      "name": "Mega Sharpedo",
+      "archetype": "engine",
+      "archetypeSecondary": "cleaner",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 2,
+        "createFanOut": 1,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "self-generated speed",
+          "consumers": [
+            "Sharpedo offense",
+            "forced defensive turns"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Speed Boost",
+          "into": "Mega cleanup"
+        },
+        {
+          "resource": "Protect turn",
+          "into": "speed advantage"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "free speed cycle"
+        },
+        {
+          "resource": "Rain",
+          "into": "Water pressure"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "self-speed-engine",
+        "protect-conversion",
+        "rain-offense",
+        "fast-cleanup",
+        "mega-transition"
+      ],
+      "whyUnderOrOverRated": "Sharpedo has thin outward Fan-Out but exceptional ECC because its own pre-Mega speed engine powers the post-Mega converter.",
+      "conversionMonsterNote": "A pure inward architecture can still be efficient when the activation cost is largely self-contained.",
+      "antiPatterns": [
+        "Adding redundant speed infrastructure instead of exploiting Speed Boost"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "sinistcha",
+      "name": "Sinistcha",
+      "archetype": "connector",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 0,
+        "bridgeQuality": 5,
+        "createFanOut": 5,
+        "convertFanOut": 4,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "entry healing",
+          "consumers": [
+            "bulky scalers",
+            "pivot cores",
+            "weather setters"
+          ]
+        },
+        {
+          "resource": "burn pressure",
+          "consumers": [
+            "physical matchups",
+            "setup partners"
+          ]
+        },
+        {
+          "resource": "Grass / Ghost pressure",
+          "consumers": [
+            "Water matchups",
+            "Psychic matchups"
+          ]
+        },
+        {
+          "resource": "slow-board sustain",
+          "consumers": [
+            "Trick Room cores",
+            "resource loops"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "pivot cycle",
+          "into": "repeat healing"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow support or offense"
+        },
+        {
+          "resource": "burned attacker",
+          "into": "setup access"
+        },
+        {
+          "resource": "sustain",
+          "into": "long control loop"
+        }
+      ],
+      "engines": [
+        "sustain-engine",
+        "pivot-engine",
+        "trick-room-offense",
+        "durable-scaling",
+        "setup-access"
+      ],
+      "whyUnderOrOverRated": "Sinistcha is an unusually high-value connector because simply entering the field creates a reusable resource that many unrelated packages can spend.",
+      "conversionMonsterNote": "Good ECC through pivot-heal loops and slow-board conversion.",
+      "antiPatterns": [
+        "Using Hospitality healing without a pivot structure that can repeat it"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "skarmory-mega",
+      "name": "Mega Skarmory",
+      "archetype": "bridge",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 5,
+        "createFanOut": 5,
+        "convertFanOut": 4,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Tailwind",
+          "consumers": [
+            "mid-speed breakers",
+            "cleaners",
+            "setup attackers"
+          ]
+        },
+        {
+          "resource": "Ground immunity",
+          "consumers": [
+            "Ground-sensitive partners",
+            "Steel cores"
+          ]
+        },
+        {
+          "resource": "physical wall pressure",
+          "consumers": [
+            "special scalers",
+            "slow balance"
+          ]
+        },
+        {
+          "resource": "Flying / Steel role compression",
+          "consumers": [
+            "Fairy matchups",
+            "Ground matchups"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "free turn",
+          "into": "Tailwind or setup"
+        },
+        {
+          "resource": "screens",
+          "into": "durable scaling"
+        },
+        {
+          "resource": "physical reduction",
+          "into": "long control game"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "partner speed advantage"
+        }
+      ],
+      "engines": [
+        "tailwind-offense",
+        "durable-scaling",
+        "ground-immunity-bridge",
+        "steel-anchor"
+      ],
+      "whyUnderOrOverRated": "Mega Skarmory can bridge speed control, defensive anchoring, and Ground immunity without forcing a narrow package.",
+      "conversionMonsterNote": "Moderate personal conversion, elite outward graph.",
+      "antiPatterns": [
+        "Using it as passive defense without a clock or setup route"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "slowbro-mega",
+      "name": "Mega Slowbro",
+      "archetype": "scaler",
+      "archetypeSecondary": "engine",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 4,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "Trick Room",
+          "consumers": [
+            "slow physical attackers",
+            "slow special attackers",
+            "bulky scalers"
+          ]
+        },
+        {
+          "resource": "physical wall pressure",
+          "consumers": [
+            "special partners",
+            "slow balance"
+          ]
+        },
+        {
+          "resource": "Water / Psychic pressure",
+          "consumers": [
+            "Fire matchups",
+            "Fighting matchups"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "own Trick Room",
+          "into": "slow Mega offense"
+        },
+        {
+          "resource": "physical reduction",
+          "into": "setup access"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "room or scaling"
+        },
+        {
+          "resource": "screens",
+          "into": "durable scaling"
+        },
+        {
+          "resource": "healing",
+          "into": "long-game conversion"
+        }
+      ],
+      "engines": [
+        "trick-room-engine",
+        "trick-room-offense",
+        "durable-scaling",
+        "slow-mesh"
+      ],
+      "whyUnderOrOverRated": "Mega Slowbro is strongest when Trick Room is both a resource it creates and one several teammates, including Slowbro itself, can spend.",
+      "conversionMonsterNote": "Excellent ECC for a slow Mega; its own durability can manufacture the turns needed to establish the engine.",
+      "antiPatterns": [
+        "Using Trick Room only for Slowbro",
+        "Building a passive shell with no second slow converter"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "sneasler",
+      "name": "Sneasler",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "engine",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 4,
+        "createFanOut": 3,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "fast Fighting / Poison pressure",
+          "consumers": [
+            "special scalers",
+            "Fairy matchups"
+          ]
+        },
+        {
+          "resource": "Dire Claw disruption",
+          "consumers": [
+            "setup partners",
+            "double-target pressure"
+          ]
+        },
+        {
+          "resource": "forced Protects",
+          "consumers": [
+            "secondary setup",
+            "positioning"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "terrain Seed",
+          "into": "Unburden speed"
+        },
+        {
+          "resource": "White Herb consumption",
+          "into": "Unburden speed"
+        },
+        {
+          "resource": "Close Combat drops",
+          "into": "self-activation"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe pressure"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "speed dominance"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "unburden-engine",
+        "terrain-seed-engine",
+        "self-activation",
+        "tailwind-offense",
+        "fast-cleanup",
+        "forced-response"
+      ],
+      "whyUnderOrOverRated": "Sneasler is more than a terrain servant because multiple sets can self-activate or consume unrelated infrastructure.",
+      "conversionMonsterNote": "Elite ECC when item consumption is generated by its own moves; very high Fan-In otherwise.",
+      "antiPatterns": [
+        "Assuming Sneasler requires a terrain setter",
+        "Over-supporting Unburden when self-activation is available"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "staraptor-mega",
+      "name": "Mega Staraptor",
+      "archetype": "bridge",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 0,
+        "bridgeQuality": 5,
+        "createFanOut": 5,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "pre-Mega Intimidate",
+          "consumers": [
+            "setup scalers",
+            "fragile attackers",
+            "slow balance"
+          ]
+        },
+        {
+          "resource": "Tailwind",
+          "consumers": [
+            "physical cleaners",
+            "special breakers",
+            "mid-speed converters"
+          ]
+        },
+        {
+          "resource": "Flying / Fighting pressure",
+          "consumers": [
+            "mixed offense",
+            "Steel matchups"
+          ]
+        },
+        {
+          "resource": "forced Protects",
+          "consumers": [
+            "secondary setup",
+            "positioning"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "pre-Mega Intimidate",
+          "into": "safe Mega transition"
+        },
+        {
+          "resource": "own Tailwind",
+          "into": "Brave Bird or Close Combat"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "Tailwind or attack"
+        },
+        {
+          "resource": "chip",
+          "into": "fast cleanup"
+        },
+        {
+          "resource": "forced Protect",
+          "into": "partner setup"
+        }
+      ],
+      "engines": [
+        "intimidate-setup",
+        "tailwind-offense",
+        "mega-transition",
+        "physical-breaker",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "Mega Staraptor is one of the closest alternatives to Salamence as a true bridge Mega: Intimidate and Tailwind create resources before its own physical conversion begins.",
+      "conversionMonsterNote": "Elite ECC with almost no servant tax; support and breaker identities coexist naturally.",
+      "antiPatterns": [
+        "Treating Staraptor as only an attacker",
+        "Mega evolving before Intimidate value is secured"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "starmie-mega",
+      "name": "Mega Starmie",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "bridge",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 4,
+        "createFanOut": 3,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "fast Water / Psychic pressure",
+          "consumers": [
+            "Fire matchups",
+            "Fighting matchups"
+          ]
+        },
+        {
+          "resource": "speed pressure",
+          "consumers": [
+            "setup partners",
+            "cleaners"
+          ]
+        },
+        {
+          "resource": "coverage pressure",
+          "consumers": [
+            "mixed offense",
+            "forced switches"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Rain",
+          "into": "Water offense"
+        },
+        {
+          "resource": "Psychic Terrain",
+          "into": "Psychic offense"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "speed dominance"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe coverage attack"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "rain-offense",
+        "psychic-terrain-offense",
+        "tailwind-offense",
+        "fast-cleanup",
+        "coverage-pressure"
+      ],
+      "whyUnderOrOverRated": "Mega Starmie can consume multiple unrelated offensive infrastructures, making it more architecture-flexible than a simple fast special attacker.",
+      "conversionMonsterNote": "High Fan-In, low servant tax, moderate create-web.",
+      "antiPatterns": [
+        "Forcing both Rain and Psychic Terrain onto one six solely for Starmie"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "steelix-mega",
+      "name": "Mega Steelix",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "scaler",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 3,
+        "bridgeQuality": 3,
+        "createFanOut": 3,
+        "convertFanOut": 4,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "Steel / Ground pressure",
+          "consumers": [
+            "special partners",
+            "Fairy matchups"
+          ]
+        },
+        {
+          "resource": "physical wall pressure",
+          "consumers": [
+            "slow balance",
+            "setup partners"
+          ]
+        },
+        {
+          "resource": "forced Water / Fire responses",
+          "consumers": [
+            "Grass partners",
+            "Rock partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Trick Room",
+          "into": "slow physical offense"
+        },
+        {
+          "resource": "Sand",
+          "into": "weather synergy"
+        },
+        {
+          "resource": "screens",
+          "into": "durable scaling"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe heavy attack"
+        }
+      ],
+      "engines": [
+        "trick-room-offense",
+        "sand-offense",
+        "durable-scaling",
+        "ground-steel-breaker"
+      ],
+      "whyUnderOrOverRated": "Mega Steelix has multiple legitimate infrastructures to consume, but its low speed raises tax unless those infrastructures already serve other teammates.",
+      "conversionMonsterNote": "Good slow-board Fan-In; architecture improves sharply when Sand or Trick Room has several consumers.",
+      "antiPatterns": [
+        "Adding both Sand and Trick Room solely for Steelix"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "swampert",
+      "name": "Swampert",
+      "archetype": "bridge",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 5,
+        "createFanOut": 3,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Ground / Water pressure",
+          "consumers": [
+            "Electric partners",
+            "Fire matchups"
+          ]
+        },
+        {
+          "resource": "Electric immunity",
+          "consumers": [
+            "Water partners",
+            "Flying partners"
+          ]
+        },
+        {
+          "resource": "bulky field presence",
+          "consumers": [
+            "setup partners",
+            "slow balance"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Rain",
+          "into": "Water offense"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "mid-speed pressure"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow-board pressure"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe attack"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "rain-offense",
+        "tailwind-offense",
+        "trick-room-offense",
+        "ground-pressure",
+        "mixed-offense"
+      ],
+      "whyUnderOrOverRated": "Swampert's low exclusivity comes from functioning across Rain, Tailwind, and slower balance without requiring any one state.",
+      "conversionMonsterNote": "Broad Fan-In plus useful defensive bridge typing.",
+      "antiPatterns": [
+        "Treating Swampert as Rain-only"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "swampert-mega",
+      "name": "Mega Swampert",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "engine",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 4,
+        "createFanOut": 3,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Rain-converted speed pressure",
+          "consumers": [
+            "secondary Rain attackers",
+            "forced-target partners"
+          ]
+        },
+        {
+          "resource": "Ground / Water pressure",
+          "consumers": [
+            "special scalers",
+            "Electric partners"
+          ]
+        },
+        {
+          "resource": "forced Grass responses",
+          "consumers": [
+            "Fire partners",
+            "Flying partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Rain",
+          "into": "Swift Swim offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe Mega pressure"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "speed redundancy"
+        },
+        {
+          "resource": "weather overwrite",
+          "into": "immediate tempo swing"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "rain-offense",
+        "swift-swim-engine",
+        "ground-pressure",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "Mega Swampert is a very powerful weather converter, but its architecture is healthiest when Rain also powers Archaludon, Pelipper, Water pressure, or Fire mitigation.",
+      "conversionMonsterNote": "Elite Rain Fan-In with moderate weather exclusivity.",
+      "antiPatterns": [
+        "Making Rain exist only for Mega Swampert"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "torkoal",
+      "name": "Torkoal",
+      "archetype": "engine",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 4,
+        "createFanOut": 5,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "Sun",
+          "consumers": [
+            "Fire attackers",
+            "Chlorophyll users",
+            "Water mitigation"
+          ]
+        },
+        {
+          "resource": "weather overwrite",
+          "consumers": [
+            "anti-Rain packages",
+            "Sun converters"
+          ]
+        },
+        {
+          "resource": "slow-board threat",
+          "consumers": [
+            "Trick Room cores",
+            "forced targeting"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "self-created Sun",
+          "into": "Fire offense"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow eruption pressure"
+        },
+        {
+          "resource": "Helping Hand",
+          "into": "burst spread damage"
+        },
+        {
+          "resource": "redirection",
+          "into": "safe eruption turn"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "free damage cycle"
+        }
+      ],
+      "engines": [
+        "sun-offense",
+        "self-weather-conversion",
+        "trick-room-offense",
+        "weather-denial",
+        "slow-burst"
+      ],
+      "whyUnderOrOverRated": "Torkoal is one of the strongest ECC weather setters because the same Sun that supports the team immediately amplifies its own offense.",
+      "conversionMonsterNote": "Elite create and convert Fan-Out; low tax when Trick Room and Sun have multiple independent consumers.",
+      "antiPatterns": [
+        "Using hard Trick Room only to enable Torkoal",
+        "Making every damage route weather-dependent"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "tyranitar",
+      "name": "Tyranitar",
+      "archetype": "engine",
+      "archetypeSecondary": "bridge",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 4,
+        "createFanOut": 5,
+        "convertFanOut": 4,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "Sand",
+          "consumers": [
+            "Sand Rush users",
+            "Sand-special-defense users",
+            "weather denial"
+          ]
+        },
+        {
+          "resource": "weather overwrite",
+          "consumers": [
+            "anti-Rain packages",
+            "anti-Sun packages"
+          ]
+        },
+        {
+          "resource": "Rock / Dark pressure",
+          "consumers": [
+            "Flying matchups",
+            "Psychic matchups"
+          ]
+        },
+        {
+          "resource": "forced Water / Fighting answers",
+          "consumers": [
+            "Grass partners",
+            "Ghost partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "self-created Sand",
+          "into": "special bulk and Rock pressure"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow physical offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe weather or attack"
+        },
+        {
+          "resource": "weather replacement",
+          "into": "partner speed inversion"
+        }
+      ],
+      "engines": [
+        "sand-offense",
+        "weather-denial",
+        "trick-room-offense",
+        "rock-dark-pressure",
+        "self-weather-conversion"
+      ],
+      "whyUnderOrOverRated": "Tyranitar's Sand engine is unusually strong because the setter is also a substantial independent attacker and weather-control piece.",
+      "conversionMonsterNote": "Excellent ECC: it creates Sand, benefits personally, and can turn weather replacement into immediate teammate conversion.",
+      "antiPatterns": [
+        "Leading Tyranitar automatically when preserving weather overwrite is more valuable",
+        "Treating Sand as the identity of every Tyranitar team"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "tyranitar-mega",
+      "name": "Mega Tyranitar",
+      "archetype": "engine",
+      "archetypeSecondary": "conversion-monster",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 4,
+        "createFanOut": 5,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 5
+      },
+      "creates": [
+        {
+          "resource": "Sand",
+          "consumers": [
+            "Sand Rush users",
+            "weather denial",
+            "special-bulk cores"
+          ]
+        },
+        {
+          "resource": "weather overwrite",
+          "consumers": [
+            "anti-Rain packages",
+            "anti-Sun packages"
+          ]
+        },
+        {
+          "resource": "massive Rock / Dark threat",
+          "consumers": [
+            "secondary scalers",
+            "forced-target teams"
+          ]
+        },
+        {
+          "resource": "Mega preview pressure",
+          "consumers": [
+            "alternate Mega packages",
+            "team preview"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "self-created Sand",
+          "into": "Mega bulk and offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "safe Mega attack"
+        },
+        {
+          "resource": "Trick Room",
+          "into": "slow Mega conversion"
+        },
+        {
+          "resource": "weather replacement",
+          "into": "Sand Rush activation"
+        },
+        {
+          "resource": "chip",
+          "into": "Rock Slide cleanup"
+        }
+      ],
+      "engines": [
+        "sand-offense",
+        "weather-denial",
+        "trick-room-offense",
+        "self-weather-conversion",
+        "mega-autonomy",
+        "mega-portfolio"
+      ],
+      "whyUnderOrOverRated": "Mega Tyranitar keeps the Sand root while becoming an even more autonomous converter, so the Mega slot strengthens rather than substitutes for its engine role.",
+      "conversionMonsterNote": "Elite ECC and broad Fan-In from Trick Room, Fake Out, weather exchange, and chip.",
+      "antiPatterns": [
+        "Mega evolving when another Mega package has higher matchup value",
+        "Forcing Sand after the opponent has already solved the weather route"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "venusaur",
+      "name": "Venusaur",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "disruptor",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 4,
+        "createFanOut": 4,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 4,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "sleep pressure",
+          "consumers": [
+            "setup partners",
+            "double-target pressure"
+          ]
+        },
+        {
+          "resource": "Grass / Poison pressure",
+          "consumers": [
+            "Water matchups",
+            "Fairy matchups"
+          ]
+        },
+        {
+          "resource": "forced defensive turns",
+          "consumers": [
+            "secondary scalers",
+            "positioning"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Sun",
+          "into": "Chlorophyll speed"
+        },
+        {
+          "resource": "sleep turn",
+          "into": "damage or partner setup"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "sleep or attack"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "speed redundancy"
+        },
+        {
+          "resource": "chip",
+          "into": "cleanup"
+        }
+      ],
+      "engines": [
+        "sun-offense",
+        "sleep-control",
+        "setup-access",
+        "fast-cleanup"
+      ],
+      "whyUnderOrOverRated": "Venusaur is more than a Sun converter because sleep itself becomes infrastructure that several teammates can spend.",
+      "conversionMonsterNote": "High Fan-In with meaningful create Fan-Out through sleep control.",
+      "antiPatterns": [
+        "Treating Sun as mandatory in every Venusaur package",
+        "Using sleep without a plan to convert the denied action"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "venusaur-mega",
+      "name": "Mega Venusaur",
+      "archetype": "scaler",
+      "archetypeSecondary": "connector",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 1,
+        "bridgeQuality": 5,
+        "createFanOut": 4,
+        "convertFanOut": 5,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "sleep pressure",
+          "consumers": [
+            "setup scalers",
+            "double-target pressure",
+            "positioning teams"
+          ]
+        },
+        {
+          "resource": "durable Grass / Poison presence",
+          "consumers": [
+            "Water matchups",
+            "Fairy matchups"
+          ]
+        },
+        {
+          "resource": "forced Fire / Psychic answers",
+          "consumers": [
+            "Water partners",
+            "Dark partners"
+          ]
+        },
+        {
+          "resource": "long-game control",
+          "consumers": [
+            "resource loops",
+            "slow balance"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Fake Out turn",
+          "into": "sleep or scaling"
+        },
+        {
+          "resource": "sleep turn",
+          "into": "damage or sustain"
+        },
+        {
+          "resource": "screens",
+          "into": "durable control"
+        },
+        {
+          "resource": "healing support",
+          "into": "longer scaling loop"
+        },
+        {
+          "resource": "forced switch",
+          "into": "control advantage"
+        }
+      ],
+      "engines": [
+        "sleep-control",
+        "durable-scaling",
+        "setup-access",
+        "slow-balance"
+      ],
+      "whyUnderOrOverRated": "Mega Venusaur exchanges Chlorophyll conversion for a much more autonomous durable-control identity with excellent bridge utility.",
+      "conversionMonsterNote": "High Fan-In from generic defensive infrastructure with low exclusivity.",
+      "antiPatterns": [
+        "Building Sun automatically when Mega evolution removes the reason Sun was needed"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "victreebel-mega",
+      "name": "Mega Victreebel",
+      "archetype": "conversion-monster",
+      "archetypeSecondary": "disruptor",
+      "scores": {
+        "engineParticipation": 4,
+        "engineExclusivityTax": 2,
+        "bridgeQuality": 3,
+        "createFanOut": 3,
+        "convertFanOut": 5,
+        "mag": 4,
+        "moduleElasticity": 3,
+        "engineConverterContinuity": 4
+      },
+      "creates": [
+        {
+          "resource": "Grass / Poison pressure",
+          "consumers": [
+            "Water matchups",
+            "Fairy matchups"
+          ]
+        },
+        {
+          "resource": "sleep or status pressure",
+          "consumers": [
+            "setup partners",
+            "double-target teams"
+          ]
+        },
+        {
+          "resource": "forced Steel responses",
+          "consumers": [
+            "Fire partners",
+            "Ground partners"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "Sun",
+          "into": "fast Grass offense"
+        },
+        {
+          "resource": "Fake Out turn",
+          "into": "status or attack"
+        },
+        {
+          "resource": "sleep turn",
+          "into": "damage conversion"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "speed dominance"
+        },
+        {
+          "resource": "special-defense drops",
+          "into": "burst KOs"
+        }
+      ],
+      "engines": [
+        "sun-offense",
+        "sleep-control",
+        "tailwind-offense",
+        "special-breaker"
+      ],
+      "whyUnderOrOverRated": "Mega Victreebel has high conversion Fan-In but a thinner outward graph than premier weather roots.",
+      "conversionMonsterNote": "Strong Sun and tempo consumer with moderate support tax.",
+      "antiPatterns": [
+        "Building Sun exclusively around Victreebel"
+      ],
+      "caveat": null
+    },
+    {
+      "slug": "whimsicott",
+      "name": "Whimsicott",
+      "archetype": "engine",
+      "archetypeSecondary": "connector",
+      "scores": {
+        "engineParticipation": 5,
+        "engineExclusivityTax": 0,
+        "bridgeQuality": 5,
+        "createFanOut": 5,
+        "convertFanOut": 3,
+        "mag": 5,
+        "moduleElasticity": 5,
+        "engineConverterContinuity": 3
+      },
+      "creates": [
+        {
+          "resource": "priority Tailwind",
+          "consumers": [
+            "physical cleaners",
+            "special breakers",
+            "mid-speed converters"
+          ]
+        },
+        {
+          "resource": "special-defense pressure",
+          "consumers": [
+            "special attackers",
+            "spread damage cores"
+          ]
+        },
+        {
+          "resource": "priority disruption",
+          "consumers": [
+            "setup partners",
+            "fragile attackers"
+          ]
+        },
+        {
+          "resource": "forced speed respect",
+          "consumers": [
+            "alternate slow modes",
+            "positioning teams"
+          ]
+        }
+      ],
+      "converts": [
+        {
+          "resource": "free turn",
+          "into": "Tailwind"
+        },
+        {
+          "resource": "Tailwind",
+          "into": "support sequencing"
+        },
+        {
+          "resource": "partner special pressure",
+          "into": "debuff conversion"
+        }
+      ],
+      "engines": [
+        "tailwind-offense",
+        "priority-disruption",
+        "special-breaker",
+        "setup-access",
+        "dual-speed-state"
+      ],
+      "whyUnderOrOverRated": "Whimsicott is an elite create-web species because priority Tailwind and special amplification can feed many unrelated converters without demanding package commitment.",
+      "conversionMonsterNote": "Personal damage conversion is secondary, but its infrastructure has exceptional Fan-Out and nearly zero exclusivity.",
+      "antiPatterns": [
+        "Clicking Tailwind automatically when the opponent's speed answer makes another resource more valuable",
+        "Pairing Whimsicott with attackers that cannot meaningfully spend its speed or debuff turns"
+      ],
+      "caveat": null
+    }
+  ],
+  "rosterStatus": {
+    "complete": false,
+    "scoredInThisReply": 34
+  }
+}

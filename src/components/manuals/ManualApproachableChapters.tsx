@@ -1,7 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { ArchitectureProfileCard } from "@/components/architecture/ArchitectureProfileCard";
 import { getPokemon } from "@/lib/catalog/load";
+import { getArchitectureProfile } from "@/lib/architecture/load";
+import { archetypeLabel } from "@/lib/architecture/team-context";
 import { cssVars } from "@/lib/champions/palette";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { ManualSection } from "@/components/manuals/ManualSection";
@@ -60,6 +63,7 @@ export function ManualLayerBoard({
   const roster = parent.roster ?? parent.slots;
   const bySlug = new Map(roster.map((s) => [s.slug, s]));
   const [peek, setPeek] = useState<string | null>(null);
+  const partySlugs = (parent.box ?? parent.slugs ?? []).filter(Boolean);
 
   if (!layers.length) return null;
 
@@ -122,7 +126,11 @@ export function ManualLayerBoard({
                         ) : null}
                       </button>
                       {open && slot ? (
-                        <JobPeek slot={slot} onClose={() => setPeek(null)} />
+                        <JobPeek
+                          slot={slot}
+                          partySlugs={partySlugs}
+                          onClose={() => setPeek(null)}
+                        />
                       ) : null}
                     </li>
                   );
@@ -136,11 +144,30 @@ export function ManualLayerBoard({
   );
 }
 
-function JobPeek({ slot, onClose }: { slot: SlotManual; onClose: () => void }) {
+function JobPeek({
+  slot,
+  partySlugs,
+  onClose,
+}: {
+  slot: SlotManual;
+  partySlugs: string[];
+  onClose: () => void;
+}) {
   const jobs = slot.networkJobs;
+  const species = getArchitectureProfile(slot.slug);
+  const arch =
+    jobs?.archetype ?? species?.archetype ?? null;
   return (
-    <div className="absolute left-0 top-full z-20 mt-2 w-64 rounded-2xl border border-line bg-bg p-3 shadow-lg">
+    <div className="absolute left-0 top-full z-20 mt-2 w-72 rounded-2xl border border-line bg-bg p-3 shadow-lg">
       <p className="text-sm font-semibold">{slot.role || slot.primaryJob}</p>
+      {arch ? (
+        <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+          {archetypeLabel(arch)}
+          {species?.archetypeSecondary
+            ? ` · ${archetypeLabel(species.archetypeSecondary)}`
+            : null}
+        </p>
+      ) : null}
       {jobs ? (
         <ul className="mt-2 space-y-1 text-xs text-muted">
           {jobs.creates ? <li>Creates · {jobs.creates}</li> : null}
@@ -155,6 +182,9 @@ function JobPeek({ slot, onClose }: { slot: SlotManual; onClose: () => void }) {
           If fainted, you still have: {slot.gives.join(", ")}
         </p>
       ) : null}
+      <div className="mt-3">
+        <ArchitectureProfileCard slug={slot.slug} partySlugs={partySlugs} compact />
+      </div>
       <button
         type="button"
         onClick={onClose}

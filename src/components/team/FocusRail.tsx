@@ -9,6 +9,7 @@ import { slotJob } from "@/lib/champions/team-readout";
 import { scorePokemon } from "@/lib/champions/role-score";
 import { ROLE_LABEL } from "@/content/roles";
 import { easeOut, motionTokens } from "@/components/motion/tokens";
+import { ArchitectureProfileCard } from "@/components/architecture/ArchitectureProfileCard";
 import { PokemonArt } from "@/components/pokemon/PokemonArt";
 import { TypeBadge } from "@/components/pokemon/TypeBadge";
 import { getPokemon } from "@/lib/catalog/lookup";
@@ -40,6 +41,7 @@ export function FocusRail({
   onOpenScout,
   onChangeSlot,
   onSuggestPick,
+  partySlugs = [],
 }: {
   mon: CatalogEntry | null;
   intent: ArchetypeId | null;
@@ -49,6 +51,8 @@ export function FocusRail({
   onChangeSlot: () => void;
   /** Optional: tap a usual partner to add it to an empty bench slot. */
   onSuggestPick?: (slug: string) => void;
+  /** Registered six for C-MAG / exclusivity overlays. */
+  partySlugs?: string[];
 }) {
   const roleScore = mon ? scorePokemon(mon) : null;
   const partners = useMemo(() => {
@@ -134,6 +138,14 @@ export function FocusRail({
                 </ul>
               </div>
             ) : null}
+
+            <div className="mt-4">
+              <ArchitectureProfileCard
+                slug={mon.slug}
+                partySlugs={partySlugs.length ? partySlugs : undefined}
+                compact
+              />
+            </div>
 
             <div className="mt-auto flex flex-col gap-2 pt-5">
               <button

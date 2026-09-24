@@ -16,6 +16,7 @@ import { scorePokemon } from "@/lib/champions/role-score";
 import { manualsFeaturing, manualHref } from "@/content/manuals";
 import { getRankedBySlug, rankedByName, rankedSingles } from "@/lib/ranked/load";
 import { formatAsOf, formatPct } from "@/lib/ranked/format";
+import { ArchitectureProfileCard } from "@/components/architecture/ArchitectureProfileCard";
 import { LadderKit } from "@/components/ladder/LadderKit";
 import type { ParsedBattleKit } from "@/lib/champions-battle/types";
 
@@ -136,6 +137,17 @@ export default async function PokemonPage({
           </div>
         </section>
       ) : null}
+
+      <section className="mt-16">
+        <h2 className="text-2xl font-semibold">Architecture</h2>
+        <p className="mt-2 max-w-[52ch] text-muted">
+          Champions doubles species profile — create/convert fan-out, exclusivity tax, and
+          engine-converter continuity. Team C-MAG adjusts when this mon sits in a six.
+        </p>
+        <div className="mt-6 max-w-3xl">
+          <ArchitectureProfileCard slug={pokemon.slug} />
+        </div>
+      </section>
 
       <section className="mt-16">
         <h2 className="text-2xl font-semibold">On a team</h2>

@@ -339,6 +339,7 @@ export function TeamBoard() {
                     setSlot(empty, slug);
                     setSelectedIndex(empty);
                   }}
+                  partySlugs={filled.map((m) => m.slug)}
                 />
               </div>
             </div>

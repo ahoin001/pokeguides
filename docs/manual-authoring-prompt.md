@@ -1,6 +1,11 @@
 # Manual authoring AI prompt
 
-Copy the **paste-ready** block that matches the format you are building (**Singles** or **Doubles**). Paste your team (Showdown export, notes, or VOD bullets) after it. Ask for **JSON only** matching Ringside’s boxed `TeamManual` shape.
+Copy the **paste-ready** block that matches the format you are building.
+
+- **Doubles (bring 4):** use the dedicated template → [manual-authoring-prompt-doubles.md](./manual-authoring-prompt-doubles.md) (schema enrichment + wow fields live there).
+- **Singles (bring 3):** paste-ready block below.
+
+Paste your team (Showdown export, notes, or VOD bullets) after the prompt. Ask for **JSON only** matching Ringside’s boxed `TeamManual` shape.
 
 **Theory reference:** [team-building-architecture.md](./team-building-architecture.md) — strategy-generator sixes, MAG / WRA / OACR, engines vs converters, packages as mini-teams, bench as modules.
 
@@ -9,9 +14,9 @@ Copy the **paste-ready** block that matches the format you are building (**Singl
 1. **Shared** — registration, flex, kits, hierarchy (both formats)
 2. **Paste-ready Singles** — default block below (`format: "singles"`, bring 3)
 3. **Singles meat** — engines / network / `leadPlan` / roles (required for rich Singles UI)
-4. **Doubles** — separate paste-ready + `fieldPlan` / pair loops (bring 4)
+4. **Doubles** — summary + pointer to the dedicated doubles prompt (do not author doubles from the Singles block)
 
-Do **not** put Doubles-only fields (`fieldPlan`, leadPair, backPair) on Singles manuals. Do **not** omit Singles `leadPlan` / roles / engines when you want How-it-wins / Network / Lead & clock chapters.
+Do **not** put Doubles-only fields (`fieldPlan`, leadPair, backPair, seats, protectEconomy) on Singles manuals. Do **not** omit Singles `leadPlan` / roles / engines when you want How-it-wins / Network / Lead & clock chapters.
 
 Default paste target below: **Pokémon Champions Singles** — registered six + preview packs of three. Keep `box.length === 6`.
 
@@ -576,15 +581,25 @@ See `src/content/manuals.ts` (`SlotMode`, `ManualAltSlot`, `ManualPack`, …). T
 
 ---
 
-## Doubles (bring 4) — six-chapter shape
+## Doubles (bring 4)
 
-Use this section when `"format": "doubles"`. Do **not** mix with Singles `leadPlan` — doubles packs use **`fieldPlan`** (lead pair / back pair). The Guide chapter renders `fieldPlan` on the package page.
+**Use the dedicated doubles prompt:** [manual-authoring-prompt-doubles.md](./manual-authoring-prompt-doubles.md).
 
-Doubles manuals with `engines` / `network` / `commandments` open a compact **How it wins + Network** path (Sets/Guide deferred). Author those fields fully — empty network edges leave an empty constellation.
+That file is the source of truth for Champions Doubles authoring. It includes:
 
-Same `TeamManual` type. Set `"format": "doubles"`. Bring width is `FORMAT_BRING.doubles` = 4.
+- Paste-ready full team-builder prompt (bring 4, `fieldPlan`, network, engines)
+- Schema enrichments: `seats`, `protectEconomy`, `bringInScripts`, `pairChemistries`, `speedRegimes`, `redirectMaps`, `denyTree`, `teamContextNote`
+- What the live compact doubles UI shows vs what to still author for Guide / Sets / Architecture
 
-The reader has **six chapters**. Do not 1-1 map a long essay into page sections. Distill.
+Do **not** mix Singles `leadPlan` into doubles manuals. Summary rules below remain valid for quick reference; prefer the dedicated file when prompting an AI.
+
+---
+
+### Doubles quick reference (see dedicated file for paste-ready)
+
+Use when `"format": "doubles"`. Doubles packs use **`fieldPlan`** (lead pair / back pair). Bring width = 4.
+
+Doubles manuals with `engines` / `network` / `commandments` open a compact **How it wins + Network** path (Sets/Guide deferred). Author `fieldPlan` and Sets fully anyway — empty network edges leave an empty constellation.
 
 | Chapter | Fields | Copy budget |
 | --- | --- | --- |
@@ -758,7 +773,9 @@ VALIDATION
 
 ## Paste-ready: full doubles team-builder prompt
 
-Copy everything in the fence into ChatGPT / Claude / Cursor. Paste your six + notes + any bench ideas after it. Ask for **JSON only**.
+**Superseded.** Copy from [manual-authoring-prompt-doubles.md](./manual-authoring-prompt-doubles.md) instead (includes seats / protectEconomy / wow fields).
+
+Legacy fence kept for diff history only — prefer the dedicated doubles file.
 
 ```
 You are authoring a Ringside Champions DOUBLES field manual (format: "doubles", bring 4).

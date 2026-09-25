@@ -158,6 +158,12 @@ export type ManualNetworkJobs = {
     | "cleaner"
     | "disruptor"
     | "hybrid";
+  /**
+   * One-line: how this mon’s job on *this* six differs from the species overlay
+   * (e.g. “Converter here, not cleaner — Excadrill spends Sand, does not set it”).
+   * Do not invent MAG/tax numbers.
+   */
+  teamContextNote?: string;
 };
 
 /** One “Ask yourself” question on a Sets tab. */
@@ -587,6 +593,94 @@ export type ManualPackFieldPlan = {
   turn1?: string;
   /** When / why you switch a back mon onto the field. */
   bringInTriggers?: string[];
+  /**
+   * Seat jobs for the lead pair (left = usually Fake Out / support seat,
+   * right = usually converter / attacker). Visual 2v2 board.
+   */
+  seats?: {
+    left: string;
+    right: string;
+    leftJob?: string;
+    rightJob?: string;
+  };
+  /**
+   * Protect / Fake Out turn economy for this four —
+   * who spends the scout, who banks the flinch, what if Protect is denied.
+   */
+  protectEconomy?: {
+    spendsProtect?: string[];
+    banksFakeOut?: string[];
+    ifProtectDenied?: string;
+  };
+  /**
+   * Structured second-wave scripts (upgrade of bringInTriggers strings).
+   * Prefer these when the entry has ordered beats.
+   */
+  bringInScripts?: {
+    when: string;
+    send: string;
+    beats: string[];
+    why?: string;
+  }[];
+};
+
+/** Named lead-pair chemistry across the registered six (not one pack only). */
+export type ManualPairChemistry = {
+  id: string;
+  pair: [string, string];
+  label: string;
+  /** Boards this pair wants to face. */
+  vsBoards?: string[];
+  /** What kills the pair if misplayed. */
+  diesTo?: string[];
+  /** What the second wave looks like after they trade. */
+  secondWave?: string;
+  /** Pack ids that commonly lead this pair. */
+  packIds?: string[];
+};
+
+/** Speed / tempo regime window (Tailwind, Sand Rush, TR, Icy Wind, etc.). */
+export type ManualSpeedRegime = {
+  id: string;
+  label: string;
+  /** What creates the window (move, weather, ability). */
+  creates: string;
+  /** Who benefits while it is up. */
+  beneficiaries: string[];
+  /** What the board becomes when it expires / is denied. */
+  expiresInto?: string;
+  /** Typical duration note (e.g. "4 turns", "while Sand is up"). */
+  window?: string;
+};
+
+/**
+ * Redirection / redirect-bait map (Follow Me, Rage Powder, Lightning Rod, Storm Drain).
+ */
+export type ManualRedirectMap = {
+  id: string;
+  /** Who draws the click. */
+  bait: string;
+  /** Who is protected / converts behind the bait. */
+  protected: string[];
+  /** How you punish if they click into the bait wrong. */
+  punish?: string;
+  /** Ability or move that creates the attract (Lightning Rod, Follow Me…). */
+  attractor?: string;
+};
+
+/**
+ * Structured deny → recover branch (machine-readable failureRoutes companion).
+ */
+export type ManualDenyBranch = {
+  id: string;
+  /** What was denied (Fake Out immune, weather replaced, Protect scouts…). */
+  denied: string;
+  /** Immediate pilot line. */
+  then: string;
+  /** Which engine / winRoute / pack to pivot toward. */
+  next?: string;
+  /** Optional follow-up if the first recover also fails. */
+  ifStillDenied?: string;
 };
 
 /**
@@ -912,6 +1006,14 @@ export type TeamManual = {
   speedBenchmarks?: ManualSpeedBenchmark[];
   /** Authored six-wide coverage notes (supplements computed kit coverage). */
   coverageNotes?: ManualCoverageNote[];
+  /**
+   * Doubles wow-fields — optional; author when the six uses these structures.
+   * UI may render later; still fill for forward-compatible manuals.
+   */
+  pairChemistries?: ManualPairChemistry[];
+  speedRegimes?: ManualSpeedRegime[];
+  redirectMaps?: ManualRedirectMap[];
+  denyTree?: ManualDenyBranch[];
 };
 
 export function packList(manual: TeamManual): ManualPack[] {

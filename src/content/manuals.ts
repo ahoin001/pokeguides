@@ -8,6 +8,7 @@ import { ARCHITECTURE_A_SAND_SCALING_MANUAL } from "@/content/manuals/architectu
 import { CONVERSION_NETWORK_MODULAR_MC_MANUAL } from "@/content/manuals/conversion-network-modular-mc";
 import { R2_MIXED_AUTONOMOUS_SAND_MANUAL } from "@/content/manuals/r2-mixed-autonomous-sand";
 import { R4_COUNTERPLAY_CLOSURE_MANUAL } from "@/content/manuals/r4-counterplay-closure";
+import { DUAL_MEGA_FARIGIRAF_CONTRARY_Z_MANUAL } from "@/content/manuals/dual-mega-farigiraf-contrary-z";
 
 export { alt, train };
 
@@ -1403,6 +1404,7 @@ export const CANONICAL_MANUALS: TeamManual[] = [
   CONVERSION_NETWORK_MODULAR_MC_MANUAL,
   R2_MIXED_AUTONOMOUS_SAND_MANUAL,
   R4_COUNTERPLAY_CLOSURE_MANUAL,
+  DUAL_MEGA_FARIGIRAF_CONTRARY_Z_MANUAL,
 ];
 
 export function getCanonicalManual(id: string) {

@@ -101,14 +101,160 @@ function assignLocalId(rawId: unknown, title: string) {
   return id;
 }
 
-function extractJson(text: string) {
-  const trimmed = text.trim();
-  const fenced = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/i);
-  if (fenced?.[1]) return fenced[1].trim();
-  const start = trimmed.indexOf("{");
-  const end = trimmed.lastIndexOf("}");
-  if (start >= 0 && end > start) return trimmed.slice(start, end + 1);
-  return trimmed;
+function stringField(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+/** Every fenced block, plus every top-level `{...}` so a sample before the manual is not the one we keep. */
+function jsonCandidates(text: string): string[] {
+  const chunks: string[] = [];
+  const fence = /```(?:json)?\s*([\s\S]*?)```/gi;
+  let match: RegExpExecArray | null;
+  while ((match = fence.exec(text))) {
+    const body = match[1]?.trim();
+    if (body) chunks.push(body);
+  }
+  chunks.push(...scanTopLevelObjects(text));
+  if (!chunks.length) {
+    const trimmed = text.trim();
+    if (trimmed) chunks.push(trimmed);
+  }
+  return chunks;
+}
+
+function scanTopLevelObjects(text: string): string[] {
+  const found: string[] = [];
+  let depth = 0;
+  let start = -1;
+  let inString = false;
+  let escape = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (inString) {
+      if (escape) escape = false;
+      else if (ch === "\\") escape = true;
+      else if (ch === '"') inString = false;
+      continue;
+    }
+    if (ch === '"') {
+      inString = true;
+      continue;
+    }
+    if (ch === "{") {
+      if (depth === 0) start = i;
+      depth++;
+    } else if (ch === "}") {
+      depth--;
+      if (depth === 0 && start >= 0) {
+        found.push(text.slice(start, i + 1));
+        start = -1;
+      }
+      if (depth < 0) depth = 0;
+    }
+  }
+  return found;
+}
+
+function parseLoose(chunk: string): unknown {
+  try {
+    return JSON.parse(chunk);
+  } catch {
+    const loosened = chunk
+      .replace(/^\uFEFF/, "")
+      .replace(/\/\*[\s\S]*?\*\//g, "")
+      .replace(/(^|[^:\\])\/\/.*$/gm, "$1")
+      .replace(/,(\s*[}\]])/g, "$1");
+    try {
+      return JSON.parse(loosened);
+    } catch {
+      return undefined;
+    }
+  }
+}
+
+function expandManuals(value: unknown): Record<string, unknown>[] {
+  if (Array.isArray(value)) return value.flatMap(expandManuals);
+  if (!value || typeof value !== "object") return [];
+  const row = value as Record<string, unknown>;
+  const nested = ["manual", "teamManual", "TeamManual", "data", "result", "payload", "json"].flatMap(
+    (key) => expandManuals(row[key]),
+  );
+  return [row, ...nested];
+}
+
+function manualScore(row: Record<string, unknown>): number {
+  let score = 0;
+  const box = Array.isArray(row.box) ? row.box.length : 0;
+  const roster = Array.isArray(row.roster) ? row.roster.length : 0;
+  if (box >= 6) score += 100;
+  else if (box > 0) score += box * 5;
+  if (roster >= 6) score += 80;
+  else if (roster > 0) score += roster * 4;
+  if (stringField(row.title) || stringField(row.name) || stringField(row.teamName)) score += 30;
+  if (row.format === "singles" || row.format === "doubles") score += 15;
+  if (Array.isArray(row.packs)) score += 10 + Math.min(row.packs.length, 8);
+  if (Array.isArray(row.engines)) score += 8;
+  if (row.fieldPlan && box === 0 && roster === 0) score -= 40;
+  return score;
+}
+
+function pickManual(text: string): Record<string, unknown> | undefined {
+  let best: Record<string, unknown> | undefined;
+  let bestScore = -1;
+  for (const chunk of jsonCandidates(text)) {
+    const parsed = parseLoose(chunk);
+    if (parsed === undefined) continue;
+    for (const row of expandManuals(parsed)) {
+      const score = manualScore(row);
+      if (score > bestScore) {
+        best = row;
+        bestScore = score;
+      }
+    }
+  }
+  return bestScore > 0 ? best : undefined;
+}
+
+function readTitle(raw: Record<string, unknown>, box: string[]): string {
+  for (const value of [raw.title, raw.name, raw.teamName, raw.heading, raw.label]) {
+    const text = stringField(value);
+    if (text) return text;
+  }
+  const core = raw.coreArchitecture;
+  if (core && typeof core === "object") {
+    const identity = stringField((core as { identity?: unknown }).identity);
+    if (identity) return identity.length > 90 ? `${identity.slice(0, 87)}…` : identity;
+  }
+  const pilot = raw.pilot;
+  if (pilot && typeof pilot === "object") {
+    const thesis = stringField((pilot as { thesis?: unknown }).thesis);
+    if (thesis) return thesis.length > 90 ? `${thesis.slice(0, 87)}…` : thesis;
+  }
+  const network = raw.network;
+  if (network && typeof network === "object") {
+    const thesis = stringField((network as { thesis?: unknown }).thesis);
+    if (thesis) return thesis.length > 90 ? `${thesis.slice(0, 87)}…` : thesis;
+  }
+  const lede = stringField(raw.lede);
+  if (lede) return lede.length > 90 ? `${lede.slice(0, 87)}…` : lede;
+  const philosophy = stringField(raw.philosophy);
+  if (philosophy) return philosophy.length > 90 ? `${philosophy.slice(0, 87)}…` : philosophy;
+  const id = stringField(raw.id);
+  if (id && id !== "kebab-id") {
+    const words = id
+      .replace(/^local-/, "")
+      .split(/[-_]+/)
+      .filter(Boolean)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+    if (words) return words;
+  }
+  const names = box
+    .map((slug) => getPokemon(slug)?.name ?? slug)
+    .filter(Boolean)
+    .slice(0, 3);
+  if (names.length) return `${names.join(" · ")} six`;
+  return "";
 }
 
 function asStringArray(value: unknown): string[] | undefined {
@@ -124,24 +270,16 @@ export function importPastedManual(
   text: string,
   options: { format: BattleFormat },
 ): ImportPasteResult {
-  let parsed: unknown;
-  try {
-    parsed = JSON.parse(extractJson(text));
-  } catch {
+  const raw = pickManual(text);
+  if (!raw) {
     return {
       ok: false,
-      error: "That isn’t JSON. Paste the manual object the model returned, fences included are fine.",
+      error: "Couldn’t find a manual in that paste. Paste the JSON object the model returned — a ```json fence is fine.",
     };
   }
-  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
-    return { ok: false, error: "Expected one manual object, not a list." };
-  }
 
-  const raw = parsed as Record<string, unknown>;
   const notes: string[] = [];
-  const title = typeof raw.title === "string" ? raw.title.trim() : "";
-  if (!title) return { ok: false, error: "The manual needs a title." };
-
+  const explicitTitle = stringField(raw.title) || stringField(raw.name) || stringField(raw.teamName);
   const box = asStringArray(raw.box);
   const rosterRaw = Array.isArray(raw.roster) ? raw.roster : [];
   const rosterSlugs = rosterRaw
@@ -159,6 +297,10 @@ export function importPastedManual(
       error: `Unknown Pokémon in the six: ${unknown.join(", ")}. Use catalog slugs (for example garchomp, farigiraf).`,
     };
   }
+
+  const title = readTitle(raw, registered.slice(0, 6));
+  if (!title) return { ok: false, error: "The manual needs a title." };
+  if (!explicitTitle) notes.push("No title in the JSON, so this one is named from the team.");
 
   const roster = rosterRaw.map((slot) => normalizeSlot(slot));
   const construction =

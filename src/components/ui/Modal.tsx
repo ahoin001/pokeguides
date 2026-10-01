@@ -7,12 +7,13 @@ type ModalProps = {
   onClose: () => void;
   children: ReactNode;
   label?: string;
+  panelClassName?: string;
 };
 
 /**
  * Full-screen overlay. Backdrop / Escape dismiss; panel clicks stay inside.
  */
-export function Modal({ open, onClose, children, label }: ModalProps) {
+export function Modal({ open, onClose, children, label, panelClassName }: ModalProps) {
   useEffect(() => {
     if (!open) return;
     function onKey(e: KeyboardEvent) {
@@ -35,7 +36,7 @@ export function Modal({ open, onClose, children, label }: ModalProps) {
         role="dialog"
         aria-modal="true"
         aria-label={label}
-        className="w-full max-w-lg rounded-t-3xl bg-raised p-5 md:rounded-3xl"
+        className={`w-full rounded-t-3xl bg-raised p-5 md:rounded-3xl ${panelClassName ?? "max-w-lg"}`}
         onClick={(e) => e.stopPropagation()}
       >
         {children}

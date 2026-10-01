@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { getPokemon } from "@/lib/catalog/load";
 import { cssVars } from "@/lib/champions/palette";
@@ -18,9 +19,11 @@ import { formatBringLabel, formatManualEyebrow } from "@/lib/format";
 export function ManualCard({
   manual,
   sourced,
+  actions,
 }: {
   manual: TeamManual;
   sourced: "canonical" | "local";
+  actions?: ReactNode;
 }) {
   const format = manualFormat(manual);
   const doubles = format === "doubles";
@@ -116,6 +119,8 @@ export function ManualCard({
           ))}
         </ul>
       ) : null}
+
+      {actions ? <div className="mt-3 flex flex-wrap gap-2 border-t border-line/60 pt-3">{actions}</div> : null}
     </article>
   );
 }
